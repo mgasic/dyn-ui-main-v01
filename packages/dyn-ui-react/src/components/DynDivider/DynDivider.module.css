@@ -1,0 +1,170 @@
+.root {
+  --dyn-divider-color: var(--dyn-color-border, rgba(15, 23, 42, 0.12));
+  --dyn-divider-text-color: var(--dyn-color-text-secondary, #475569);
+  --dyn-divider-gap: 0;
+  --dyn-divider-thickness: 1px;
+  --dyn-divider-line-style: solid;
+  --dyn-divider-spacing-block: 1rem;
+  --dyn-divider-spacing-inline: 1rem;
+
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: var(--dyn-divider-gap);
+  color: var(--dyn-divider-text-color);
+  font-size: var(--dyn-font-size-xs, 0.75rem);
+  font-weight: var(--dyn-font-weight-medium, 500);
+  letter-spacing: 0.02em;
+}
+
+.directionHorizontal {
+  margin-block: var(--dyn-divider-spacing-block);
+}
+
+.directionVertical {
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  min-height: 100%;
+  align-self: stretch;
+  margin-inline: var(--dyn-divider-spacing-inline);
+}
+
+.withLabel {
+  --dyn-divider-gap: 0.75rem;
+}
+
+.line {
+  flex: 1 1 0%;
+  border-top: var(--dyn-divider-thickness) var(--dyn-divider-line-style)
+    var(--dyn-divider-color);
+  min-width: 0;
+}
+
+.directionVertical .line {
+  width: 0;
+  min-height: 16px;
+  border-top: none;
+  border-left: var(--dyn-divider-thickness) var(--dyn-divider-line-style)
+    var(--dyn-divider-color);
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.75rem;
+  white-space: nowrap;
+  border-radius: 999px;
+  background: var(--dyn-color-background, #ffffff);
+  color: inherit;
+}
+
+.directionVertical .label {
+  padding: 0.5rem 0;
+  border-radius: 0;
+}
+
+.labelLeft .line:first-of-type {
+  flex: 0 1 32px;
+}
+
+.labelRight .line:last-of-type {
+  flex: 0 1 32px;
+}
+
+.directionVertical.labelLeft {
+  justify-content: flex-start;
+}
+
+.directionVertical.labelRight {
+  justify-content: flex-end;
+}
+
+.thicknessThin {
+  --dyn-divider-thickness: 1px;
+}
+
+.thicknessMedium {
+  --dyn-divider-thickness: 2px;
+}
+
+.thicknessThick {
+  --dyn-divider-thickness: 3px;
+}
+
+.lineStyleSolid {
+  --dyn-divider-line-style: solid;
+}
+
+.lineStyleDashed {
+  --dyn-divider-line-style: dashed;
+}
+
+.lineStyleDotted {
+  --dyn-divider-line-style: dotted;
+}
+
+.colorDefault {
+  --dyn-divider-color: var(--dyn-color-border, rgba(15, 23, 42, 0.12));
+  --dyn-divider-text-color: var(--dyn-color-text-secondary, #475569);
+}
+
+.colorPrimary {
+  --dyn-divider-color: var(--dyn-color-primary, #2563eb);
+  --dyn-divider-text-color: var(--dyn-color-primary, #2563eb);
+}
+
+.colorSecondary {
+  --dyn-divider-color: var(--dyn-color-secondary, #6b7280);
+  --dyn-divider-text-color: var(--dyn-color-secondary, #6b7280);
+}
+
+.colorMuted {
+  --dyn-divider-color: var(--dyn-color-muted, #e2e8f0);
+  --dyn-divider-text-color: var(--dyn-color-text-secondary, #475569);
+}
+
+.spacingNone {
+  --dyn-divider-spacing-block: 0;
+  --dyn-divider-spacing-inline: 0;
+}
+
+.spacingXs {
+  --dyn-divider-spacing-block: 0.25rem;
+  --dyn-divider-spacing-inline: 0.25rem;
+}
+
+.spacingSm {
+  --dyn-divider-spacing-block: 0.5rem;
+  --dyn-divider-spacing-inline: 0.5rem;
+}
+
+.spacingMd {
+  --dyn-divider-spacing-block: 1rem;
+  --dyn-divider-spacing-inline: 1rem;
+}
+
+.spacingLg {
+  --dyn-divider-spacing-block: 1.5rem;
+  --dyn-divider-spacing-inline: 1.5rem;
+}
+
+.spacingXl {
+  --dyn-divider-spacing-block: 2rem;
+  --dyn-divider-spacing-inline: 2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .label {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .root {
+    --dyn-divider-color: currentColor;
+    --dyn-divider-text-color: currentColor;
+  }
+}

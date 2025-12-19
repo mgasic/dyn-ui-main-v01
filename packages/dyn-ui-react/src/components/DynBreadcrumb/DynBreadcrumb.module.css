@@ -1,0 +1,311 @@
+/**
+ * DynBreadcrumb CSS Module
+ * Navigation breadcrumb component styled with design tokens
+ */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--dyn-spacing-sm);
+  font-family: var(--dyn-font-family);
+  font-size: var(--dyn-font-size-sm);
+  line-height: var(--dyn-line-height-normal);
+  color: var(--dyn-color-text-secondary);
+}
+
+.breadcrumbList {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--dyn-spacing-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xxs);
+  min-width: 0;
+}
+
+.breadcrumbItem:not(:last-child) {
+  max-width: min(100%, calc(var(--dyn-spacing-xl) * 8));
+}
+
+.breadcrumbLink,
+.breadcrumbCurrent {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xxs);
+  padding: var(--dyn-spacing-xxs) var(--dyn-spacing-xs);
+  border-radius: var(--dyn-border-radius-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.breadcrumbStatic {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xxs);
+  padding: var(--dyn-spacing-xxs) var(--dyn-spacing-xs);
+  border-radius: var(--dyn-border-radius-sm);
+  color: var(--dyn-color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+.breadcrumbLink {
+  color: var(--dyn-color-text-secondary);
+  text-decoration: none;
+  transition:
+    color var(--dyn-duration-fast) var(--dyn-timing-standard),
+    background-color var(--dyn-duration-fast) var(--dyn-timing-standard),
+    text-decoration-color var(--dyn-duration-fast) var(--dyn-timing-standard);
+}
+
+.breadcrumbLink:hover {
+  color: var(--dyn-color-primary);
+  background-color: var(--dyn-color-primary-alpha);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+.breadcrumbLink:focus-visible {
+  outline: var(--dyn-border-width-thin) solid var(--dyn-color-focus-ring);
+  outline-offset: var(--dyn-spacing-xxs);
+}
+
+.breadcrumbLink:active {
+  background-color: var(--dyn-color-primary-alpha-strong);
+}
+
+.breadcrumbCurrent {
+  color: var(--dyn-color-text-primary);
+  font-weight: var(--dyn-font-weight-medium);
+  cursor: default;
+}
+
+.breadcrumbText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.breadcrumbIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dyn-color-text-tertiary);
+  font-size: var(--dyn-font-size-sm);
+}
+
+.breadcrumbSeparator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-inline: var(--dyn-spacing-xxs);
+  color: var(--dyn-color-text-disabled);
+  font-size: var(--dyn-font-size-sm);
+  user-select: none;
+}
+
+.breadcrumbSeparator::before {
+  content: '/';
+}
+
+.breadcrumbSeparator--chevron::before {
+  content: '›';
+  font-size: var(--dyn-font-size-base);
+}
+
+.breadcrumbSeparator--arrow::before {
+  content: '→';
+}
+
+.breadcrumbSeparator--dot::before {
+  content: '•';
+}
+
+.breadcrumbSeparator--custom::before {
+  content: none;
+}
+
+.breadcrumbItem--ellipsis {
+  display: none;
+  color: var(--dyn-color-text-secondary);
+}
+
+.breadcrumbItem--ellipsis button,
+.breadcrumbItem--ellipsis > button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  padding: var(--dyn-spacing-xxs) var(--dyn-spacing-xs);
+  border-radius: var(--dyn-border-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-height: calc(var(--dyn-spacing-xl) * 1.5);
+  min-width: calc(var(--dyn-spacing-xl) * 1.25);
+  transition:
+    background-color var(--dyn-duration-fast) var(--dyn-timing-standard),
+    color var(--dyn-duration-fast) var(--dyn-timing-standard);
+}
+
+.breadcrumbItem--ellipsis button:hover,
+.breadcrumbItem--ellipsis > button:hover {
+  background-color: var(--dyn-color-surface-hover);
+  color: var(--dyn-color-text-primary);
+}
+
+.breadcrumbItem--ellipsis button:focus-visible,
+.breadcrumbItem--ellipsis > button:focus-visible {
+  outline: var(--dyn-border-width-thin) solid var(--dyn-color-focus-ring);
+  outline-offset: var(--dyn-spacing-xxs);
+}
+
+.breadcrumbItem--ellipsis button:active,
+.breadcrumbItem--ellipsis > button:active {
+  background-color: var(--dyn-color-primary-alpha);
+}
+
+.breadcrumbItem--show {
+  display: inline-flex;
+}
+
+.breadcrumb--small {
+  font-size: var(--dyn-font-size-xs);
+}
+
+.breadcrumb--small .breadcrumbList {
+  gap: var(--dyn-spacing-xxs);
+}
+
+.breadcrumb--small .breadcrumbLink,
+.breadcrumb--small .breadcrumbCurrent {
+  padding: var(--dyn-spacing-xxs) var(--dyn-spacing-xs);
+}
+
+.breadcrumb--large {
+  font-size: var(--dyn-font-size-base);
+}
+
+.breadcrumb--large .breadcrumbList {
+  gap: var(--dyn-spacing-sm);
+}
+
+.breadcrumb--large .breadcrumbLink,
+.breadcrumb--large .breadcrumbCurrent {
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+}
+
+.breadcrumb--collapsed .breadcrumbItem:not(:first-child):not(:last-child):not(.breadcrumbItem--show) {
+  display: none;
+}
+
+.breadcrumb--collapsed .breadcrumbItem--ellipsis {
+  display: inline-flex;
+}
+
+@media (max-width: 48rem) {
+  .breadcrumb {
+    font-size: var(--dyn-font-size-xs);
+    gap: var(--dyn-spacing-xs);
+  }
+
+  .breadcrumbList {
+    gap: var(--dyn-spacing-xxs);
+  }
+
+  .breadcrumbLink,
+  .breadcrumbCurrent {
+    padding: var(--dyn-spacing-xs);
+    min-height: calc(var(--dyn-spacing-xl) * 1.8333);
+  }
+
+  .breadcrumbItem:not(:last-child) {
+    max-width: min(100%, calc(var(--dyn-spacing-xl) * 5));
+  }
+
+  .breadcrumb:has(.breadcrumbList li:nth-child(4)) .breadcrumbItem:not(:first-child):not(:last-child):not(.breadcrumbItem--show) {
+    display: none;
+  }
+
+  .breadcrumb:has(.breadcrumbList li:nth-child(4)) .breadcrumbItem--ellipsis {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 30rem) {
+  .breadcrumb {
+    font-size: var(--dyn-font-size-xs);
+    gap: var(--dyn-spacing-xxs);
+  }
+
+  .breadcrumbLink,
+  .breadcrumbCurrent {
+    padding: var(--dyn-spacing-xxs) var(--dyn-spacing-xs);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .breadcrumb {
+    color: var(--dyn-color-text-secondary-dark);
+  }
+
+  .breadcrumbLink {
+    color: var(--dyn-color-text-secondary-dark);
+  }
+
+  .breadcrumbLink:hover {
+    background-color: var(--dyn-color-primary-alpha-strong);
+    color: var(--dyn-color-primary-light);
+  }
+
+  .breadcrumbCurrent {
+    color: var(--dyn-color-text-primary-dark);
+  }
+
+  .breadcrumbSeparator {
+    color: var(--dyn-color-text-tertiary);
+  }
+
+  .breadcrumbItem--ellipsis button:hover,
+  .breadcrumbItem--ellipsis > button:hover {
+    background-color: var(--dyn-color-surface-muted);
+    color: var(--dyn-color-text-primary-dark);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .breadcrumbLink {
+    border: var(--dyn-border-width-hairline) solid transparent;
+  }
+
+  .breadcrumbLink:hover,
+  .breadcrumbLink:focus-visible {
+    border-color: currentColor;
+  }
+
+  .breadcrumbCurrent {
+    border: var(--dyn-border-width-hairline) solid currentColor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumbLink,
+  .breadcrumbItem--ellipsis button,
+  .breadcrumbItem--ellipsis > button {
+    transition: none;
+  }
+}

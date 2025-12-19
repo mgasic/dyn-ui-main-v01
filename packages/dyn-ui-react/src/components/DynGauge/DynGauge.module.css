@@ -1,0 +1,214 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: var(--dyn-color-background);
+  border-radius: var(--dyn-border-radius-md);
+  border: 1px solid var(--dyn-color-border);
+  padding: 16px;
+  font-family: var(--dyn-font-family-base);
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--dyn-font-size-lg);
+  font-weight: var(--dyn-font-weight-semibold);
+  color: var(--dyn-color-text-primary);
+  line-height: var(--dyn-line-height-tight);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: var(--dyn-font-size-sm);
+  font-weight: var(--dyn-font-weight-normal);
+  color: var(--dyn-color-text-secondary);
+  line-height: var(--dyn-line-height-normal);
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvasContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas {
+  display: block;
+}
+
+.value {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.valueText {
+  font-size: var(--dyn-font-size-xl);
+  font-weight: var(--dyn-font-weight-bold);
+  color: var(--dyn-color-text-primary);
+  line-height: var(--dyn-line-height-tight);
+}
+
+.valueLabel {
+  font-size: var(--dyn-font-size-xs);
+  font-weight: var(--dyn-font-weight-medium);
+  color: var(--dyn-color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--dyn-font-size-xs);
+  color: var(--dyn-color-text-secondary);
+}
+
+.legendColor {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-weight: var(--dyn-font-weight-normal);
+  line-height: var(--dyn-line-height-normal);
+}
+
+.sizeSmall {
+  padding: 12px;
+}
+
+.sizeSmall .title {
+  font-size: var(--dyn-font-size-base);
+}
+
+.sizeSmall .subtitle {
+  font-size: var(--dyn-font-size-xs);
+}
+
+.sizeSmall .valueText {
+  font-size: var(--dyn-font-size-lg);
+}
+
+.sizeSmall .valueLabel {
+  font-size: var(--dyn-font-size-xs);
+}
+
+.sizeMedium {
+  /* Default styles */
+}
+
+.sizeLarge {
+  padding: 24px;
+}
+
+.sizeLarge .title {
+  font-size: var(--dyn-font-size-xl);
+}
+
+.sizeLarge .subtitle {
+  font-size: var(--dyn-font-size-base);
+}
+
+.sizeLarge .valueText {
+  font-size: var(--dyn-font-size-2xl);
+}
+
+.sizeLarge .valueLabel {
+  font-size: var(--dyn-font-size-sm);
+}
+
+.typeArc {
+  /* Reserved for arc specific styles */
+}
+
+.typeCircle {
+  /* Reserved for circle specific styles */
+}
+
+.typeLine {
+  /* Reserved for line specific styles */
+}
+
+.animated {
+  /* Animation handled in component */
+}
+
+.rounded {
+  /* Rounded line caps handled in canvas drawing */
+}
+
+@media (max-width: 768px) {
+  .root {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: var(--dyn-font-size-base);
+  }
+
+  .subtitle {
+    font-size: var(--dyn-font-size-xs);
+  }
+
+  .legend {
+    gap: 8px;
+  }
+
+  .legendItem {
+    gap: 4px;
+    font-size: var(--dyn-font-size-xs);
+  }
+}
+
+[data-theme='dark'] .root {
+  background: var(--dyn-color-background-dark);
+  border-color: var(--dyn-color-border-dark);
+}
+
+[data-theme='dark'] .title,
+[data-theme='dark'] .valueText {
+  color: var(--dyn-color-text-primary-dark);
+}

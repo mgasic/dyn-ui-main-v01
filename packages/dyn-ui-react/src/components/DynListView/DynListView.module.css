@@ -5,30 +5,30 @@
 
 :root {
   /* Color Tokens */
-  --dyn-listview-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-listview-border-color: var(--dyn-color-border, #d1d5db);
-  --dyn-listview-item-text: var(--dyn-color-text-primary, #111827);
-  --dyn-listview-item-text-secondary: var(--dyn-color-text-secondary, #6b7280);
-  --dyn-listview-item-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
+  --dyn-listview-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-listview-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-listview-item-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-listview-item-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-listview-item-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
   --dyn-listview-item-bg-selected: rgba(37, 99, 235, 0.1);
-  --dyn-listview-item-text-selected: var(--dyn-color-primary, #2563eb);
-  --dyn-listview-divider: var(--dyn-color-border, #d1d5db);
+  --dyn-listview-item-text-selected: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-listview-divider: var(--dyn-color-border, var(--color-border, #d1d5db));
 
   /* Size Tokens */
-  --dyn-listview-padding: var(--dyn-spacing-md, 16px);
-  --dyn-listview-item-padding: var(--dyn-spacing-md, 16px);
-  --dyn-listview-item-gap: var(--dyn-spacing-sm, 8px);
+  --dyn-listview-padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-listview-item-padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-listview-item-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   --dyn-listview-gap: 0;
-  --dyn-listview-border-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-listview-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
   --dyn-listview-item-min-height: 48px;
 
   /* Typography */
-  --dyn-listview-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-listview-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-listview-line-height: 1.5;
+  --dyn-listview-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-listview-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-listview-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   /* Transitions */
-  --dyn-listview-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-listview-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 .container {
@@ -54,7 +54,7 @@
   color: var(--dyn-listview-item-text);
   background-color: transparent;
   border: none;
-  border-radius: var(--dyn-border-radius-sm, 6px);
+  border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
   cursor: pointer;
   font-family: inherit;
   transition: all var(--dyn-listview-transition);
@@ -65,26 +65,31 @@
   background-color: var(--dyn-listview-item-bg-hover);
 }
 
+.item:focus-visible {
+  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  outline-offset: -2px;
+}
+
 .itemSelected {
   background-color: var(--dyn-listview-item-bg-selected);
   color: var(--dyn-listview-item-text-selected);
-  font-weight: var(--dyn-font-weight-medium, 500);
+  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
 }
 
 .itemContent {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--dyn-spacing-xs, 4px);
+  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
 .itemTitle {
-  font-weight: var(--dyn-font-weight-medium, 500);
+  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
 }
 
 .itemSubtitle {
   color: var(--dyn-listview-item-text-secondary);
-  font-size: var(--dyn-font-size-xs, 12px);
+  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
 }
 
 .itemIcon {
@@ -96,7 +101,7 @@
 .divider {
   height: 1px;
   background-color: var(--dyn-listview-divider);
-  margin: var(--dyn-spacing-xs, 4px) 0;
+  margin: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) 0;
   border: none;
 }
 
@@ -111,24 +116,36 @@
 
 @media (max-width: 767px) {
   .container {
-    padding: var(--dyn-spacing-sm, 8px);
+    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   }
 
   .item {
-    padding: var(--dyn-spacing-sm, 8px);
+    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
     min-height: 44px;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .item:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-listview-bg: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-listview-border-color: var(--dyn-color-border-dark, #334155);
-    --dyn-listview-item-text: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-listview-item-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-listview-item-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-listview-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-listview-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-listview-item-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-listview-item-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-listview-item-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
     --dyn-listview-item-bg-selected: rgba(59, 130, 246, 0.15);
-    --dyn-listview-item-text-selected: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-listview-divider: var(--dyn-color-border-dark, #334155);
+    --dyn-listview-item-text-selected: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-listview-divider: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
   }
 }

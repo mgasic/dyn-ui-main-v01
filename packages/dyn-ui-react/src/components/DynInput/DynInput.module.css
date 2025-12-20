@@ -27,7 +27,7 @@
   font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
   font-size: var(--dyn-font-size-base, var(--font-size-base, 1rem));
   line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  transition: var(--dyn-transition-base, border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease);
 }
 
 .input::placeholder {
@@ -52,6 +52,7 @@
   background: var(--dyn-input-disabled-bg);
   color: var(--dyn-input-disabled-color);
   cursor: not-allowed;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
 }
 
 /* Readonly */
@@ -83,6 +84,10 @@
 /* States */
 .input--error {
   border-color: var(--dyn-input-error);
+}
+
+.input--error:focus-visible {
+  box-shadow: 0 0 0 3px var(--dyn-color-danger-focus-ring, rgba(211, 47, 47, 0.35));
 }
 
 .input--focused {
@@ -122,7 +127,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease;
+  transition: var(--dyn-transition-base, background-color 0.18s ease, color 0.18s ease);
 }
 
 .clear-button:hover {
@@ -186,11 +191,11 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease;
+  transition: var(--dyn-transition-base, background-color 0.18s ease, color 0.18s ease);
 }
 
 .dyn-input-spin-button:disabled {
-  opacity: 0.5;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
   cursor: not-allowed;
 }
 
@@ -212,12 +217,68 @@
   .input--large {
     min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
   }
+
+  .input--small {
+    min-height: var(--dyn-size-touch-target-sm, var(--size-touch-target-sm, 40px));
+  }
+
+  .input--large {
+    min-height: var(--dyn-size-touch-target-lg, var(--size-touch-target-lg, 52px));
+  }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .input {
+  .input,
+  .clear-button,
+  .dyn-input-spin-button {
     transition: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .container {
+    --dyn-input-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-input-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
+    --dyn-input-border: var(--dyn-color-border-dark, var(--color-border-dark, #4b5563));
+    --dyn-input-border-hover: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #6b7280));
+    --dyn-input-border-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-input-focus-ring: var(--dyn-color-focus-ring-dark, var(--color-focus-ring-dark, rgba(59, 130, 246, 0.35)));
+    --dyn-input-placeholder: var(--dyn-color-text-placeholder-dark, var(--color-text-placeholder-dark, #9ca3af));
+    --dyn-input-disabled-bg: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #374151));
+    --dyn-input-disabled-color: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
+    --dyn-input-readonly-bg: var(--dyn-color-surface-readonly-dark, var(--color-surface-readonly-dark, #0f172a));
+    --dyn-input-error: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
+  }
+
+  .icon-container {
+    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  }
+
+  .clear-button {
+    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  }
+
+  .clear-button:hover {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
+    background-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  }
+
+  .dyn-input-currency-symbol,
+  .dyn-input-currency-code {
+    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  }
+
+  .dyn-input-spin-button {
+    border-color: var(--dyn-input-border, var(--color-border-dark, #4b5563));
+    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  }
+
+  .dyn-input-spin-button:not(:disabled):hover {
+    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
   }
 }
 
@@ -225,5 +286,18 @@
 @media (prefers-contrast: high) {
   .input {
     border-width: 2px;
+  }
+
+  .input:focus-visible {
+    outline-width: 4px;
+    outline-offset: 2px;
+  }
+
+  .clear-button:focus-visible {
+    outline-width: 3px;
+  }
+
+  .dyn-input-spin-button:focus-visible {
+    outline-width: 3px;
   }
 }

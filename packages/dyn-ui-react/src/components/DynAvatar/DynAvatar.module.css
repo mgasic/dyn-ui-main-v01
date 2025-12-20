@@ -129,17 +129,19 @@
   transform: scale(0.98);
 }
 
-/* Loading State - Spinner preko cijelog avatara */
-.loading {
+/* Loading State - Sakri SVE osim spinnera */
+.container.loading {
   pointer-events: none;
 }
 
-/* Samo slika je zamućena */
+/* Sakrij inicijale i slike tokom loadinga */
+.container.loading .initials,
 .container.loading .image {
-  opacity: 0.4;
+  opacity: 0;
+  visibility: hidden;
 }
 
-/* Spinner overlay */
+/* Samo spinner vidljiv */
 .container.loading::after {
   content: '';
   position: absolute;

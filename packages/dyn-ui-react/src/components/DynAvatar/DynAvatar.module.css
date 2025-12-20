@@ -129,17 +129,18 @@
   transform: scale(0.98);
 }
 
-/* Loading State */
+/* Loading State - Spinner preko cijelog avatara */
 .loading {
   pointer-events: none;
-  position: relative;
 }
 
-.loading .image {
+/* Samo slika je zamućena */
+.container.loading .image {
   opacity: 0.4;
 }
 
-.loading::after {
+/* Spinner overlay */
+.container.loading::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -153,7 +154,7 @@
   border-right-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
   border-radius: 50%;
   animation: avatarSpin 0.8s linear infinite;
-  z-index: 2;
+  z-index: 10;
 }
 
 @keyframes avatarSpin {
@@ -227,7 +228,7 @@
     transform: none;
   }
 
-  .loading::after {
+  .container.loading::after {
     animation: none;
     border-top-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
     border-right-color: transparent;
@@ -245,7 +246,7 @@
     border-width: 3px;
   }
 
-  .loading::after {
+  .container.loading::after {
     border-width: 3px;
   }
 }
@@ -263,7 +264,7 @@
     border-color: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #475569));
   }
 
-  .loading::after {
+  .container.loading::after {
     border-top-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
     border-right-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
   }

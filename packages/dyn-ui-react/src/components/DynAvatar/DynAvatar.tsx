@@ -35,13 +35,6 @@ const generateInitials = (name: string): string => {
     .join('');
 };
 
-/**
- * Safely access CSS module classes
- */
-const getStyleClass = (className: string): string => {
-  return (styles as Record<string, string>)[className] || '';
-};
-
 export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
   (
     {
@@ -111,14 +104,6 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       }
     };
 
-    // Generate CSS class names safely
-    const sizeClass = getStyleClass(`avatar--${size}`);
-    const shapeClass = getStyleClass(`avatar--${shape}`);
-    const statusClass = status ? getStyleClass(`avatar--${status}`) : '';
-    const clickableClass = getStyleClass('avatar--clickable');
-    const loadingClass = getStyleClass('avatar--loading');
-    const errorClass = getStyleClass('avatar--error');
-
     // Generate accessibility attributes
     const statusLabel = status ? DYN_AVATAR_STATUS_LABELS[status] : undefined;
     const accessibleLabelBase = ariaLabel || (isInteractive ? `Avatar for ${alt}` : alt);
@@ -127,28 +112,27 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       : accessibleLabelBase;
 
     const avatarClasses = cn(
-      getStyleClass('avatar'),
-      sizeClass,
-      shapeClass,
-      statusClass,
+      styles.container,
+      styles[size],
+      styles[shape],
       {
-        [clickableClass]: isInteractive && clickableClass,
-        [loadingClass]: isLoadingState && loadingClass,
-        [errorClass]: (error || imageError) && errorClass,
+        [styles.clickable]: isInteractive,
+        [styles.loading]: isLoadingState,
+        [styles.error]: error || imageError,
       },
       className
     );
 
-    // Generate image classes safely
-    const imageBaseClass = getStyleClass('avatar__image');
-    const imageLoadingClass = getStyleClass('avatar__image--loading');
-    const imageLoadedClass = getStyleClass('avatar__image--loaded');
+    const statusClasses = cn(
+      styles.status,
+      status && styles[`status${status.charAt(0).toUpperCase()}${status.slice(1)}`]
+    );
 
     const imageClasses = cn(
-      imageBaseClass,
+      styles.image,
       {
-        [imageLoadingClass]: !imageLoaded && imageLoadingClass,
-        [imageLoadedClass]: imageLoaded && imageLoadedClass,
+        [styles.imageLoading]: !imageLoaded,
+        [styles.imageLoaded]: imageLoaded,
       }
     );
 
@@ -186,21 +170,30 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
         {/* Fallback content */}
         {showFallback && (
           <div
-            className={getStyleClass('avatar__fallback')}
+            className={styles.initials}
             aria-hidden={showImage ? 'true' : undefined}
           >
             {fallback || children || (
               displayInitials ? (
-                <span className={getStyleClass('avatar__initials')}>
+                <span data-testid="dyn-avatar-initials">
                   {displayInitials}
                 </span>
               ) : (
-                <span className={getStyleClass('avatar__icon')}>
+                <span data-testid="dyn-avatar-icon">
                   <DefaultFallbackIcon />
                 </span>
               )
             )}
           </div>
+        )}
+
+        {/* Status Indicator */}
+        {status && (
+          <div
+            className={statusClasses}
+            aria-label={statusLabel}
+            data-testid="dyn-avatar-status"
+          />
         )}
 
         {/* Loading announcement for screen readers */}

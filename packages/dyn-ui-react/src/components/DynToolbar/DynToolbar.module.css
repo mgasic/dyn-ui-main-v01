@@ -5,25 +5,25 @@
 
 :root {
   /* Color Tokens */
-  --dyn-toolbar-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-toolbar-border-color: var(--dyn-color-border, #d1d5db);
-  --dyn-toolbar-text-color: var(--dyn-color-text-primary, #111827);
+  --dyn-toolbar-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-toolbar-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-toolbar-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
 
   /* Size Tokens */
   --dyn-toolbar-height: 56px;
-  --dyn-toolbar-padding-y: var(--dyn-spacing-md, 16px);
-  --dyn-toolbar-padding-x: var(--dyn-spacing-md, 16px);
-  --dyn-toolbar-gap: var(--dyn-spacing-md, 16px);
+  --dyn-toolbar-padding-y: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-toolbar-padding-x: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-toolbar-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-toolbar-border-radius: 0;
 
   /* Typography */
-  --dyn-toolbar-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-toolbar-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
 
   /* Transitions */
-  --dyn-toolbar-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-toolbar-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 
   /* Shadow */
-  --dyn-toolbar-shadow: var(--dyn-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --dyn-toolbar-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)));
 }
 
 .container {
@@ -64,14 +64,20 @@
 @media (max-width: 767px) {
   .container {
     height: 48px;
-    padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 16px);
+    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    transition: none;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-toolbar-bg: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-toolbar-border-color: var(--dyn-color-border-dark, #334155);
-    --dyn-toolbar-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-toolbar-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-toolbar-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-toolbar-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
   }
 }

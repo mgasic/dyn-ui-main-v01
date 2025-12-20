@@ -26,19 +26,19 @@
   --dyn-spaced-padding-bottom: 0;
   --dyn-spaced-padding-left: 0;
 
-  /* Spacing Variants */
+  /* Spacing Variants with fallbacks */
   --dyn-spaced-spacing-none: 0;
-  --dyn-spaced-spacing-xs: var(--dyn-spacing-xs, 4px);
-  --dyn-spaced-spacing-sm: var(--dyn-spacing-sm, 8px);
-  --dyn-spaced-spacing-md: var(--dyn-spacing-md, 16px);
-  --dyn-spaced-spacing-lg: var(--dyn-spacing-lg, 24px);
-  --dyn-spaced-spacing-xl: var(--dyn-spacing-xl, 32px);
+  --dyn-spaced-spacing-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-spaced-spacing-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-spaced-spacing-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-spaced-spacing-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-spaced-spacing-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
 
   /* Typography */
-  --dyn-spaced-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-spaced-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
 
   /* Transitions */
-  --dyn-spaced-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-spaced-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 /* ========================================================================
@@ -58,83 +58,28 @@
    Margin Variants - Individual
    ======================================================================== */
 
-.marginNone {
-  margin: var(--dyn-spaced-spacing-none);
-}
-
-.marginXs {
-  margin: var(--dyn-spaced-spacing-xs);
-}
-
-.marginSm {
-  margin: var(--dyn-spaced-spacing-sm);
-}
-
-.marginMd {
-  margin: var(--dyn-spaced-spacing-md);
-}
-
-.marginLg {
-  margin: var(--dyn-spaced-spacing-lg);
-}
-
-.marginXl {
-  margin: var(--dyn-spaced-spacing-xl);
-}
+.marginNone { margin: var(--dyn-spaced-spacing-none); }
+.marginXs { margin: var(--dyn-spaced-spacing-xs); }
+.marginSm { margin: var(--dyn-spaced-spacing-sm); }
+.marginMd { margin: var(--dyn-spaced-spacing-md); }
+.marginLg { margin: var(--dyn-spaced-spacing-lg); }
+.marginXl { margin: var(--dyn-spaced-spacing-xl); }
 
 /* ========================================================================
    Margin Variants - Horizontal/Vertical
    ======================================================================== */
 
-.marginXsX {
-  margin-left: var(--dyn-spaced-spacing-xs);
-  margin-right: var(--dyn-spaced-spacing-xs);
-}
+.marginXsX { margin-left: var(--dyn-spaced-spacing-xs); margin-right: var(--dyn-spaced-spacing-xs); }
+.marginSmX { margin-left: var(--dyn-spaced-spacing-sm); margin-right: var(--dyn-spaced-spacing-sm); }
+.marginMdX { margin-left: var(--dyn-spaced-spacing-md); margin-right: var(--dyn-spaced-spacing-md); }
+.marginLgX { margin-left: var(--dyn-spaced-spacing-lg); margin-right: var(--dyn-spaced-spacing-lg); }
+.marginXlX { margin-left: var(--dyn-spaced-spacing-xl); margin-right: var(--dyn-spaced-spacing-xl); }
 
-.marginSmX {
-  margin-left: var(--dyn-spaced-spacing-sm);
-  margin-right: var(--dyn-spaced-spacing-sm);
-}
-
-.marginMdX {
-  margin-left: var(--dyn-spaced-spacing-md);
-  margin-right: var(--dyn-spaced-spacing-md);
-}
-
-.marginLgX {
-  margin-left: var(--dyn-spaced-spacing-lg);
-  margin-right: var(--dyn-spaced-spacing-lg);
-}
-
-.marginXlX {
-  margin-left: var(--dyn-spaced-spacing-xl);
-  margin-right: var(--dyn-spaced-spacing-xl);
-}
-
-.marginXsY {
-  margin-top: var(--dyn-spaced-spacing-xs);
-  margin-bottom: var(--dyn-spaced-spacing-xs);
-}
-
-.marginSmY {
-  margin-top: var(--dyn-spaced-spacing-sm);
-  margin-bottom: var(--dyn-spaced-spacing-sm);
-}
-
-.marginMdY {
-  margin-top: var(--dyn-spaced-spacing-md);
-  margin-bottom: var(--dyn-spaced-spacing-md);
-}
-
-.marginLgY {
-  margin-top: var(--dyn-spaced-spacing-lg);
-  margin-bottom: var(--dyn-spaced-spacing-lg);
-}
-
-.marginXlY {
-  margin-top: var(--dyn-spaced-spacing-xl);
-  margin-bottom: var(--dyn-spaced-spacing-xl);
-}
+.marginXsY { margin-top: var(--dyn-spaced-spacing-xs); margin-bottom: var(--dyn-spaced-spacing-xs); }
+.marginSmY { margin-top: var(--dyn-spaced-spacing-sm); margin-bottom: var(--dyn-spaced-spacing-sm); }
+.marginMdY { margin-top: var(--dyn-spaced-spacing-md); margin-bottom: var(--dyn-spaced-spacing-md); }
+.marginLgY { margin-top: var(--dyn-spaced-spacing-lg); margin-bottom: var(--dyn-spaced-spacing-lg); }
+.marginXlY { margin-top: var(--dyn-spaced-spacing-xl); margin-bottom: var(--dyn-spaced-spacing-xl); }
 
 /* ========================================================================
    Margin Variants - Directional
@@ -168,83 +113,28 @@
    Padding Variants - Individual
    ======================================================================== */
 
-.paddingNone {
-  padding: var(--dyn-spaced-spacing-none);
-}
-
-.paddingXs {
-  padding: var(--dyn-spaced-spacing-xs);
-}
-
-.paddingSm {
-  padding: var(--dyn-spaced-spacing-sm);
-}
-
-.paddingMd {
-  padding: var(--dyn-spaced-spacing-md);
-}
-
-.paddingLg {
-  padding: var(--dyn-spaced-spacing-lg);
-}
-
-.paddingXl {
-  padding: var(--dyn-spaced-spacing-xl);
-}
+.paddingNone { padding: var(--dyn-spaced-spacing-none); }
+.paddingXs { padding: var(--dyn-spaced-spacing-xs); }
+.paddingSm { padding: var(--dyn-spaced-spacing-sm); }
+.paddingMd { padding: var(--dyn-spaced-spacing-md); }
+.paddingLg { padding: var(--dyn-spaced-spacing-lg); }
+.paddingXl { padding: var(--dyn-spaced-spacing-xl); }
 
 /* ========================================================================
    Padding Variants - Horizontal/Vertical
    ======================================================================== */
 
-.paddingXsX {
-  padding-left: var(--dyn-spaced-spacing-xs);
-  padding-right: var(--dyn-spaced-spacing-xs);
-}
+.paddingXsX { padding-left: var(--dyn-spaced-spacing-xs); padding-right: var(--dyn-spaced-spacing-xs); }
+.paddingSmX { padding-left: var(--dyn-spaced-spacing-sm); padding-right: var(--dyn-spaced-spacing-sm); }
+.paddingMdX { padding-left: var(--dyn-spaced-spacing-md); padding-right: var(--dyn-spaced-spacing-md); }
+.paddingLgX { padding-left: var(--dyn-spaced-spacing-lg); padding-right: var(--dyn-spaced-spacing-lg); }
+.paddingXlX { padding-left: var(--dyn-spaced-spacing-xl); padding-right: var(--dyn-spaced-spacing-xl); }
 
-.paddingSmX {
-  padding-left: var(--dyn-spaced-spacing-sm);
-  padding-right: var(--dyn-spaced-spacing-sm);
-}
-
-.paddingMdX {
-  padding-left: var(--dyn-spaced-spacing-md);
-  padding-right: var(--dyn-spaced-spacing-md);
-}
-
-.paddingLgX {
-  padding-left: var(--dyn-spaced-spacing-lg);
-  padding-right: var(--dyn-spaced-spacing-lg);
-}
-
-.paddingXlX {
-  padding-left: var(--dyn-spaced-spacing-xl);
-  padding-right: var(--dyn-spaced-spacing-xl);
-}
-
-.paddingXsY {
-  padding-top: var(--dyn-spaced-spacing-xs);
-  padding-bottom: var(--dyn-spaced-spacing-xs);
-}
-
-.paddingSmY {
-  padding-top: var(--dyn-spaced-spacing-sm);
-  padding-bottom: var(--dyn-spaced-spacing-sm);
-}
-
-.paddingMdY {
-  padding-top: var(--dyn-spaced-spacing-md);
-  padding-bottom: var(--dyn-spaced-spacing-md);
-}
-
-.paddingLgY {
-  padding-top: var(--dyn-spaced-spacing-lg);
-  padding-bottom: var(--dyn-spaced-spacing-lg);
-}
-
-.paddingXlY {
-  padding-top: var(--dyn-spaced-spacing-xl);
-  padding-bottom: var(--dyn-spaced-spacing-xl);
-}
+.paddingXsY { padding-top: var(--dyn-spaced-spacing-xs); padding-bottom: var(--dyn-spaced-spacing-xs); }
+.paddingSmY { padding-top: var(--dyn-spaced-spacing-sm); padding-bottom: var(--dyn-spaced-spacing-sm); }
+.paddingMdY { padding-top: var(--dyn-spaced-spacing-md); padding-bottom: var(--dyn-spaced-spacing-md); }
+.paddingLgY { padding-top: var(--dyn-spaced-spacing-lg); padding-bottom: var(--dyn-spaced-spacing-lg); }
+.paddingXlY { padding-top: var(--dyn-spaced-spacing-xl); padding-bottom: var(--dyn-spaced-spacing-xl); }
 
 /* ========================================================================
    Padding Variants - Directional

@@ -1,49 +1,79 @@
-/* DynTreeView Component Styles */
+/* ==========================================================================
+   DynTreeView Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-tree-view-bg: var(--dyn-color-background, var(--color-background, #ffffff));
+  --dyn-tree-view-bg-secondary: var(--dyn-color-background-secondary, var(--color-background-secondary, #f9fafb));
+  --dyn-tree-view-border: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-tree-view-text-primary: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-tree-view-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-tree-view-bg-hover: var(--dyn-color-background-hover, var(--color-background-hover, #f3f4f6));
+  --dyn-tree-view-bg-selected: rgba(37, 99, 235, 0.1);
+  --dyn-tree-view-primary: var(--dyn-color-primary, var(--color-primary, #2563eb));
+
+  /* Size Tokens */
+  --dyn-tree-view-border-radius-md: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  --dyn-tree-view-border-radius-sm: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
+  --dyn-tree-view-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-tree-view-node-min-height: 32px;
+  --dyn-tree-view-gap: 4px;
+
+  /* Typography */
+  --dyn-tree-view-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-tree-view-font-size-sm: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-tree-view-line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
+
+  /* Transitions */
+  --dyn-tree-view-transition: var(--dyn-transition-base, var(--transition-base, 0.2s ease));
+}
+
 .dyn-tree-view {
   display: flex;
   flex-direction: column;
-  background: var(--dyn-color-background);
-  border-radius: var(--dyn-border-radius-md);
-  border: 1px solid var(--dyn-color-border);
-  font-family: var(--dyn-font-family-base);
+  background: var(--dyn-tree-view-bg);
+  border-radius: var(--dyn-tree-view-border-radius-md);
+  border: 1px solid var(--dyn-tree-view-border);
+  font-family: var(--dyn-tree-view-font-family);
   overflow: hidden;
 }
 
-/* Search */
 .dyn-tree-view__search {
   padding: 12px;
-  border-bottom: 1px solid var(--dyn-color-border);
-  background: var(--dyn-color-background-secondary);
+  border-bottom: 1px solid var(--dyn-tree-view-border);
+  background: var(--dyn-tree-view-bg-secondary);
 }
 
 .dyn-tree-view__search-input {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid var(--dyn-color-border);
-  border-radius: var(--dyn-border-radius-sm);
-  font-size: var(--dyn-font-size-sm);
-  background: var(--dyn-color-background);
-  color: var(--dyn-color-text-primary);
+  border: 1px solid var(--dyn-tree-view-border);
+  border-radius: var(--dyn-tree-view-border-radius-sm);
+  font-size: var(--dyn-tree-view-font-size-sm);
+  background: var(--dyn-tree-view-bg);
+  color: var(--dyn-tree-view-text-primary);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--dyn-tree-view-transition);
 }
 
 .dyn-tree-view__search-input:focus {
-  border-color: var(--dyn-color-primary);
+  border-color: var(--dyn-tree-view-primary);
+  outline: 2px solid var(--dyn-tree-view-primary);
+  outline-offset: 2px;
 }
 
 .dyn-tree-view__search-input::placeholder {
-  color: var(--dyn-color-text-secondary);
+  color: var(--dyn-tree-view-text-secondary);
 }
 
-/* Content */
 .dyn-tree-view__content {
   flex: 1;
   overflow: auto;
   padding: 8px;
 }
 
-/* Tree Node */
 .dyn-tree-view__node {
   width: 100%;
 }
@@ -51,21 +81,21 @@
 .dyn-tree-view__node-content {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dyn-tree-view-gap);
   padding: 4px 8px;
-  border-radius: var(--dyn-border-radius-sm);
+  border-radius: var(--dyn-tree-view-border-radius-sm);
   cursor: default;
-  transition: background-color 0.2s ease;
-  min-height: 32px;
+  transition: background-color var(--dyn-tree-view-transition);
+  min-height: var(--dyn-tree-view-node-min-height);
 }
 
 .dyn-tree-view__node-content:hover {
-  background-color: var(--dyn-color-background-hover);
+  background-color: var(--dyn-tree-view-bg-hover);
 }
 
 .dyn-tree-view__node-content--selected {
-  background-color: var(--dyn-color-background-selected);
-  color: var(--dyn-color-primary);
+  background-color: var(--dyn-tree-view-bg-selected);
+  color: var(--dyn-tree-view-primary);
 }
 
 .dyn-tree-view__node-content--disabled {
@@ -77,7 +107,6 @@
   background-color: transparent;
 }
 
-/* Node Elements */
 .dyn-tree-view__node-switcher {
   display: flex;
   align-items: center;
@@ -85,12 +114,12 @@
   width: 16px;
   height: 16px;
   cursor: pointer;
-  border-radius: var(--dyn-border-radius-sm);
-  transition: background-color 0.2s ease;
+  border-radius: var(--dyn-tree-view-border-radius-sm);
+  transition: background-color var(--dyn-tree-view-transition);
 }
 
 .dyn-tree-view__node-switcher:hover {
-  background-color: var(--dyn-color-background-hover);
+  background-color: var(--dyn-tree-view-bg-hover);
 }
 
 .dyn-tree-view__node-switcher--leaf {
@@ -100,8 +129,8 @@
 
 .dyn-tree-view__expand-icon {
   font-size: 10px;
-  color: var(--dyn-color-text-secondary);
-  transition: color 0.2s ease, transform 0.2s ease;
+  color: var(--dyn-tree-view-text-secondary);
+  transition: color var(--dyn-tree-view-transition), transform var(--dyn-tree-view-transition);
 }
 
 .dyn-tree-view__node-checkbox {
@@ -121,15 +150,15 @@
 .dyn-tree-view__node-icon {
   display: flex;
   align-items: center;
-  color: var(--dyn-color-text-secondary);
-  font-size: var(--dyn-font-size-sm);
+  color: var(--dyn-tree-view-text-secondary);
+  font-size: var(--dyn-tree-view-font-size-sm);
 }
 
 .dyn-tree-view__node-title {
   flex: 1;
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-color-text-primary);
-  line-height: var(--dyn-line-height-normal);
+  font-size: var(--dyn-tree-view-font-size-sm);
+  color: var(--dyn-tree-view-text-primary);
+  line-height: var(--dyn-tree-view-line-height);
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
@@ -140,18 +169,13 @@
   cursor: pointer;
 }
 
-.dyn-tree-view__node-children {
-  /* Children are rendered with increased padding-left */
-}
-
-/* Connecting Lines */
 .dyn-tree-view--show-line .dyn-tree-view__line {
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
   width: 1px;
-  background: var(--dyn-color-border);
+  background: var(--dyn-tree-view-border);
   transform: translateX(-50%);
 }
 
@@ -162,11 +186,10 @@
   top: 50%;
   width: 8px;
   height: 1px;
-  background: var(--dyn-color-border);
+  background: var(--dyn-tree-view-border);
   transform: translate(-50%, -50%);
 }
 
-/* Empty State */
 .dyn-tree-view__empty {
   display: flex;
   flex-direction: column;
@@ -174,21 +197,11 @@
   justify-content: center;
   gap: 8px;
   padding: 40px 20px;
-  color: var(--dyn-color-text-secondary);
-  font-size: var(--dyn-font-size-sm);
+  color: var(--dyn-tree-view-text-secondary);
+  font-size: var(--dyn-tree-view-font-size-sm);
   text-align: center;
 }
 
-/* Variants */
-.dyn-tree-view--checkable {
-  /* Checkable variant styles */
-}
-
-.dyn-tree-view--selectable {
-  /* Selectable variant styles */
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
   .dyn-tree-view__node-content {
     padding: 8px;
@@ -209,42 +222,7 @@
   }
 }
 
-/* Dark Theme Support */
-[data-theme="dark"] .dyn-tree-view {
-  background: var(--dyn-color-background-dark);
-  border-color: var(--dyn-color-border-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__search {
-  background: var(--dyn-color-background-secondary-dark);
-  border-color: var(--dyn-color-border-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__search-input {
-  background: var(--dyn-color-background-dark);
-  border-color: var(--dyn-color-border-dark);
-  color: var(--dyn-color-text-primary-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__search-input::placeholder {
-  color: var(--dyn-color-text-secondary-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__node-title {
-  color: var(--dyn-color-text-primary-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__expand-icon,
-[data-theme="dark"] .dyn-tree-view__node-icon {
-  color: var(--dyn-color-text-secondary-dark);
-}
-
-[data-theme="dark"] .dyn-tree-view__empty {
-  color: var(--dyn-color-text-secondary-dark);
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .dyn-tree-view {
     border-width: 2px;
   }
@@ -254,21 +232,26 @@
   }
   
   .dyn-tree-view__node-content--selected {
-    border-color: var(--dyn-color-primary);
-  }
-  
-  .dyn-tree-view__search-input:focus {
-    outline: 2px solid var(--dyn-color-primary);
-    outline-offset: 2px;
+    border-color: var(--dyn-tree-view-primary);
   }
 }
 
-/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .dyn-tree-view__node-content,
   .dyn-tree-view__node-switcher,
   .dyn-tree-view__expand-icon,
   .dyn-tree-view__search-input {
     transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-tree-view-bg: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
+    --dyn-tree-view-bg-secondary: var(--dyn-color-background-secondary-dark, var(--color-background-secondary-dark, #111827));
+    --dyn-tree-view-border: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+    --dyn-tree-view-text-primary: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-tree-view-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-tree-view-bg-hover: var(--dyn-color-background-hover-dark, var(--color-background-hover-dark, #374151));
   }
 }

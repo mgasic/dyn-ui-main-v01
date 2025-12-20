@@ -5,30 +5,30 @@
 
 :root {
   /* Color Tokens */
-  --dyn-tabs-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-tabs-border-color: var(--dyn-color-border, #d1d5db);
-  --dyn-tabs-tab-text: var(--dyn-color-text-secondary, #6b7280);
-  --dyn-tabs-tab-text-active: var(--dyn-color-primary, #2563eb);
-  --dyn-tabs-tab-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
-  --dyn-tabs-tab-indicator: var(--dyn-color-primary, #2563eb);
-  --dyn-tabs-tab-disabled: var(--dyn-color-text-disabled, #9ca3af);
+  --dyn-tabs-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-tabs-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-tabs-tab-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-tabs-tab-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-tab-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  --dyn-tabs-tab-indicator: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-tab-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #9ca3af));
 
   /* Size Tokens */
   --dyn-tabs-gap: 0;
   --dyn-tabs-padding: 0;
-  --dyn-tabs-tab-padding-y: var(--dyn-spacing-md, 16px);
-  --dyn-tabs-tab-padding-x: var(--dyn-spacing-md, 16px);
+  --dyn-tabs-tab-padding-y: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-tabs-tab-padding-x: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-tabs-indicator-height: 2px;
-  --dyn-tabs-border-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-tabs-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
 
   /* Typography */
-  --dyn-tabs-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-tabs-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-tabs-font-weight: var(--dyn-font-weight-medium, 500);
-  --dyn-tabs-line-height: 1.5;
+  --dyn-tabs-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-tabs-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-tabs-font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  --dyn-tabs-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   /* Transitions */
-  --dyn-tabs-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-tabs-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 .container {
@@ -90,28 +90,34 @@
 .tabDisabled {
   color: var(--dyn-tabs-tab-disabled);
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.6));
 }
 
 .content {
-  padding: var(--dyn-spacing-md, 16px);
+  padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
 }
 
 @media (max-width: 767px) {
   .tab {
-    padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 16px);
-    font-size: var(--dyn-font-size-xs, 12px);
+    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
+    font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+  }
+}
+
+@media (prefers-contrast: more) {
+  .tab:focus-visible {
+    outline-width: 3px;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-tabs-bg: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-tabs-border-color: var(--dyn-color-border-dark, #334155);
-    --dyn-tabs-tab-text: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-tabs-tab-text-active: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-tabs-tab-bg-hover: var(--dyn-color-surface-hover-dark, #2d3748);
-    --dyn-tabs-tab-indicator: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-tabs-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-tabs-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-tabs-tab-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-tabs-tab-text-active: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-tabs-tab-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #2d3748));
+    --dyn-tabs-tab-indicator: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
   }
 }
 

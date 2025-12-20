@@ -1,66 +1,79 @@
-/**
- * Component Base: Interactive States
- * 
- * Provides reusable patterns for interactive states
- * (hover, focus, active, disabled, error)
- * 
- * Foundation References:
- * - Colors: state colors
- * - Animations: transition tokens
- * - Opacity: disabled opacity
- * - Shadows: focus shadow
- */
+/* ==========================================================================
+   Component Base Layer - Interactive States
+   Reusable state patterns for all interactive components
+   ========================================================================== */
 
-/* Hover state mixin pattern */
-.state-hover {
-  --dyn-state-hover-opacity: var(--dyn-opacity-hover);
-  --dyn-state-hover-shadow: none;
-}
+:root {
+  /* ========================================================================
+     Interactive State Tokens
+     Used by: All interactive components
+     ======================================================================== */
 
-/* Focus state mixin pattern */
-.state-focus {
-  --dyn-state-focus-outline: var(--dyn-focus-outline);
-  --dyn-state-focus-outline-offset: var(--dyn-focus-ring-offset);
-  --dyn-state-focus-shadow: var(--dyn-shadow-focus);
-}
+  /* Hover States */
+  --dyn-state-hover-opacity: 0.08;
+  --dyn-state-hover-bg: rgba(0, 0, 0, 0.04);
+  --dyn-state-hover-bg-dark: rgba(255, 255, 255, 0.08);
 
-/* Active state mixin pattern */
-.state-active {
-  --dyn-state-active-opacity: var(--dyn-opacity-active);
-  --dyn-state-active-shadow: var(--dyn-shadow-sm);
-}
+  /* Focus States */
+  --dyn-state-focus-ring-width: 3px;
+  --dyn-state-focus-ring-offset: 2px;
+  --dyn-state-focus-ring-color: rgba(37, 99, 235, 0.16);
+  --dyn-state-focus-ring-color-dark: rgba(59, 130, 246, 0.2);
+  --dyn-state-focus-outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
 
-/* Disabled state mixin pattern */
-.state-disabled {
-  --dyn-state-disabled-opacity: var(--dyn-opacity-disabled);
+  /* Active States */
+  --dyn-state-active-opacity: 0.16;
+  --dyn-state-active-bg: rgba(0, 0, 0, 0.08);
+  --dyn-state-active-bg-dark: rgba(255, 255, 255, 0.12);
+
+  /* Disabled States */
+  --dyn-state-disabled-opacity: var(--dyn-opacity-disabled, 0.5);
   --dyn-state-disabled-cursor: not-allowed;
-  --dyn-state-disabled-pointer-events: none;
-}
 
-/* Error state mixin pattern */
-.state-error {
-  --dyn-state-error-color: var(--dyn-color-error);
-  --dyn-state-error-bg: rgba(239, 68, 68, 0.08);
-  --dyn-state-error-border: var(--dyn-color-error);
-}
+  /* Selected States */
+  --dyn-state-selected-bg: rgba(37, 99, 235, 0.08);
+  --dyn-state-selected-bg-dark: rgba(59, 130, 246, 0.15);
+  --dyn-state-selected-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-state-selected-color-dark: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
 
-/* Success state mixin pattern */
-.state-success {
-  --dyn-state-success-color: var(--dyn-color-success);
-  --dyn-state-success-bg: rgba(16, 185, 129, 0.08);
-  --dyn-state-success-border: var(--dyn-color-success);
-}
-
-/* Warning state mixin pattern */
-.state-warning {
-  --dyn-state-warning-color: var(--dyn-color-warning);
-  --dyn-state-warning-bg: rgba(245, 158, 11, 0.08);
-  --dyn-state-warning-border: var(--dyn-color-warning);
-}
-
-/* Loading state mixin pattern */
-.state-loading {
+  /* Loading States */
   --dyn-state-loading-opacity: 0.7;
-  --dyn-state-loading-cursor: wait;
-  --dyn-state-loading-pointer-events: none;
+
+  /* Error States */
+  --dyn-state-error-color: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-state-error-bg: rgba(239, 68, 68, 0.08);
+  --dyn-state-error-bg-dark: rgba(239, 68, 68, 0.12);
+
+  /* Success States */
+  --dyn-state-success-color: var(--dyn-color-success, var(--color-success, #10b981));
+  --dyn-state-success-bg: rgba(16, 185, 129, 0.08);
+  --dyn-state-success-bg-dark: rgba(16, 185, 129, 0.12);
+
+  /* Warning States */
+  --dyn-state-warning-color: var(--dyn-color-warning, var(--color-warning, #f59e0b));
+  --dyn-state-warning-bg: rgba(245, 158, 11, 0.08);
+  --dyn-state-warning-bg-dark: rgba(245, 158, 11, 0.12);
+}
+
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-state-hover-bg: var(--dyn-state-hover-bg-dark);
+    --dyn-state-active-bg: var(--dyn-state-active-bg-dark);
+    --dyn-state-selected-bg: var(--dyn-state-selected-bg-dark);
+    --dyn-state-selected-color: var(--dyn-state-selected-color-dark);
+    --dyn-state-focus-ring-color: var(--dyn-state-focus-ring-color-dark);
+    --dyn-state-focus-outline: 2px solid var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-state-error-bg: var(--dyn-state-error-bg-dark);
+    --dyn-state-success-bg: var(--dyn-state-success-bg-dark);
+    --dyn-state-warning-bg: var(--dyn-state-warning-bg-dark);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: more) {
+  :root {
+    --dyn-state-focus-ring-width: 4px;
+    --dyn-state-focus-outline: 3px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  }
 }

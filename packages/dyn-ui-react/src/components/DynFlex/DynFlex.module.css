@@ -11,22 +11,22 @@
   --dyn-flex-min-height: 0;
 
   /* Spacing Tokens */
-  --dyn-flex-gap: var(--dyn-spacing-md, 16px);
+  --dyn-flex-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-flex-gap-none: 0;
-  --dyn-flex-gap-xs: var(--dyn-spacing-xs, 4px);
-  --dyn-flex-gap-sm: var(--dyn-spacing-sm, 8px);
-  --dyn-flex-gap-md: var(--dyn-spacing-md, 16px);
-  --dyn-flex-gap-lg: var(--dyn-spacing-lg, 24px);
-  --dyn-flex-gap-xl: var(--dyn-spacing-xl, 32px);
+  --dyn-flex-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-flex-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-flex-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-flex-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-flex-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
 
   /* Padding */
   --dyn-flex-padding: 0;
 
   /* Typography */
-  --dyn-flex-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-flex-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
 
   /* Transitions */
-  --dyn-flex-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-flex-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 /* ========================================================================

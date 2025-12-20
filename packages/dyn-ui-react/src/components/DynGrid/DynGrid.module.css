@@ -6,11 +6,11 @@
 :root {
   /* Color Tokens */
   --dyn-grid-bg: transparent;
-  --dyn-grid-border-color: var(--dyn-color-border, #d1d5db);
-  --dyn-grid-gap-horizontal: var(--dyn-spacing-md, 16px);
-  --dyn-grid-gap-vertical: var(--dyn-spacing-md, 16px);
-  --dyn-grid-column-gap: var(--dyn-spacing-md, 16px);
-  --dyn-grid-row-gap: var(--dyn-spacing-md, 16px);
+  --dyn-grid-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-grid-gap-horizontal: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-grid-gap-vertical: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-grid-column-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-grid-row-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-grid-padding: 0;
   --dyn-grid-padding-x: 0;
   --dyn-grid-padding-y: 0;
@@ -22,17 +22,17 @@
 
   /* Spacing Variants */
   --dyn-grid-gap-none: 0;
-  --dyn-grid-gap-xs: var(--dyn-spacing-xs, 4px);
-  --dyn-grid-gap-sm: var(--dyn-spacing-sm, 8px);
-  --dyn-grid-gap-md: var(--dyn-spacing-md, 16px);
-  --dyn-grid-gap-lg: var(--dyn-spacing-lg, 24px);
-  --dyn-grid-gap-xl: var(--dyn-spacing-xl, 32px);
+  --dyn-grid-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-grid-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-grid-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-grid-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-grid-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
 
   /* Typography */
-  --dyn-grid-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-grid-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
 
   /* Transitions */
-  --dyn-grid-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-grid-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 /* ========================================================================
@@ -134,7 +134,7 @@
 .span12 { grid-column: span 12; }
 
 /* ========================================================================
-   Responsive: Tablet (768px)
+   Responsive: Tablet (1024px and below)
    ======================================================================== */
 
 @media (max-width: 1024px) {
@@ -159,9 +159,9 @@
 
 @media (max-width: 767px) {
   .container {
-    gap: var(--dyn-grid-gap-sm) var(--dyn-grid-gap-sm);
-    --dyn-grid-gap-horizontal: var(--dyn-spacing-sm, 8px);
-    --dyn-grid-gap-vertical: var(--dyn-spacing-sm, 8px);
+    gap: var(--dyn-grid-gap-sm);
+    --dyn-grid-gap-horizontal: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+    --dyn-grid-gap-vertical: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   }
 
   .cols12,
@@ -223,6 +223,6 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-grid-border-color: var(--dyn-color-border-dark, #334155);
+    --dyn-grid-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
   }
 }

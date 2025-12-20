@@ -5,27 +5,27 @@
 
 :root {
   /* Color Tokens */
-  --dyn-checkbox-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-checkbox-bg-hover: var(--dyn-color-surface-hover, #f8fafc);
-  --dyn-checkbox-border: var(--dyn-color-border, #d0d5dd);
-  --dyn-checkbox-border-hover: var(--dyn-color-primary, #2563eb);
-  --dyn-checkbox-bg-checked: var(--dyn-color-primary, #2563eb);
-  --dyn-checkbox-border-checked: var(--dyn-color-primary, #2563eb);
-  --dyn-checkbox-checkmark-color: var(--dyn-color-surface, #ffffff);
+  --dyn-checkbox-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-checkbox-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f8fafc));
+  --dyn-checkbox-border: var(--dyn-color-border, var(--color-border, #d0d5dd));
+  --dyn-checkbox-border-hover: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-checkbox-bg-checked: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-checkbox-border-checked: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-checkbox-checkmark-color: var(--dyn-color-surface, var(--color-surface, #ffffff));
 
-  --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled, #f1f5f9);
-  --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled, #e2e8f0);
-  --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled, #94a3b8);
-  --dyn-checkbox-bg-checked-disabled: var(--dyn-color-text-disabled, #94a3b8);
+  --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled, var(--color-surface-disabled, #f1f5f9));
+  --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled, var(--color-border-disabled, #e2e8f0));
+  --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
+  --dyn-checkbox-bg-checked-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
 
-  --dyn-checkbox-border-error: var(--dyn-color-error, #ef4444);
-  --dyn-checkbox-bg-error-checked: var(--dyn-color-error, #ef4444);
-  --dyn-checkbox-border-error-checked: var(--dyn-color-error, #ef4444);
+  --dyn-checkbox-border-error: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-checkbox-bg-error-checked: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-checkbox-border-error-checked: var(--dyn-color-error, var(--color-error, #ef4444));
 
-  --dyn-checkbox-label-text-color: var(--dyn-color-text-primary, #111827);
-  --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled, #94a3b8);
-  --dyn-checkbox-required-indicator-color: var(--dyn-color-error, #ef4444);
-  --dyn-checkbox-optional-indicator-color: var(--dyn-color-text-secondary, #475569);
+  --dyn-checkbox-label-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
+  --dyn-checkbox-required-indicator-color: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-checkbox-optional-indicator-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
 
   /* Size Tokens */
   --dyn-checkbox-box-width: 18px;
@@ -36,35 +36,38 @@
   --dyn-checkbox-box-height-lg: 22px;
 
   /* Spacing Tokens */
-  --dyn-checkbox-gap: var(--dyn-spacing-sm, 8px);
+  --dyn-checkbox-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   --dyn-checkbox-box-margin-top: 1px;
 
   /* Typography Tokens */
-  --dyn-checkbox-label-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-checkbox-label-font-size: var(--dyn-font-size-base, 16px);
-  --dyn-checkbox-label-font-size-sm: var(--dyn-font-size-sm, 14px);
-  --dyn-checkbox-label-font-size-lg: var(--dyn-font-size-lg, 18px);
-  --dyn-checkbox-label-line-height: var(--dyn-line-height-base, 1.5);
+  --dyn-checkbox-label-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-checkbox-label-font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+  --dyn-checkbox-label-font-size-sm: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-checkbox-label-font-size-lg: var(--dyn-font-size-lg, var(--font-size-lg, 18px));
+  --dyn-checkbox-label-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   --dyn-checkbox-checkmark-font-size: 12px;
   --dyn-checkbox-checkmark-font-size-sm: 10px;
   --dyn-checkbox-checkmark-font-size-lg: 14px;
   --dyn-checkbox-checkmark-font-weight: bold;
 
-  --dyn-checkbox-optional-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-checkbox-optional-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
   --dyn-checkbox-required-font-weight: bold;
 
   /* Border Tokens */
-  --dyn-checkbox-border-radius: var(--dyn-border-radius-sm, 6px);
+  --dyn-checkbox-border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
   --dyn-checkbox-border-width: 2px;
   --dyn-checkbox-border-width-sm: 1px;
 
   /* Transition Tokens */
-  --dyn-checkbox-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-checkbox-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 
   /* Focus Ring */
-  --dyn-checkbox-focus-ring-color: var(--dyn-color-primary-alpha, rgba(37, 99, 235, 0.16));
-  --dyn-checkbox-focus-ring-width: 3px;
+  --dyn-checkbox-focus-ring-color: var(--dyn-color-primary-alpha, var(--color-primary-alpha, rgba(37, 99, 235, 0.16)));
+  --dyn-checkbox-focus-ring-width: var(--dyn-focus-ring-width, var(--focus-ring-width, 3px));
+
+  /* Opacity */
+  --dyn-checkbox-opacity-disabled: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
 }
 
 /* ========================================================================
@@ -77,7 +80,7 @@
 }
 
 .containerDisabled {
-  opacity: var(--dyn-opacity-disabled, 0.6);
+  opacity: var(--dyn-checkbox-opacity-disabled);
   cursor: not-allowed;
 }
 
@@ -268,7 +271,7 @@
   flex: 1;
   display: inline-flex;
   align-items: center;
-  gap: var(--dyn-spacing-xs, 4px);
+  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
 .containerDisabled .label {
@@ -333,23 +336,24 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-checkbox-bg: var(--dyn-color-surface-dark, #1e293b);
-    --dyn-checkbox-border: var(--dyn-color-border-dark, #334155);
-    --dyn-checkbox-border-hover: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-checkbox-bg-checked: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-checkbox-border-checked: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-checkbox-checkmark-color: var(--dyn-color-surface, #ffffff);
+    --dyn-checkbox-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+    --dyn-checkbox-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-checkbox-border-hover: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-checkbox-bg-checked: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-checkbox-border-checked: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-checkbox-checkmark-color: var(--dyn-color-surface, var(--color-surface, #ffffff));
 
-    --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled-dark, #334155);
-    --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled-dark, #475569);
-    --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+    --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #334155));
+    --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled-dark, var(--color-border-disabled-dark, #475569));
+    --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
+    --dyn-checkbox-bg-checked-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
 
-    --dyn-checkbox-border-error: var(--dyn-color-error-dark, #dc2626);
-    --dyn-checkbox-bg-error-checked: var(--dyn-color-error-dark, #dc2626);
-    --dyn-checkbox-border-error-checked: var(--dyn-color-error-dark, #dc2626);
+    --dyn-checkbox-border-error: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
+    --dyn-checkbox-bg-error-checked: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
+    --dyn-checkbox-border-error-checked: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
 
-    --dyn-checkbox-label-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+    --dyn-checkbox-label-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
     --dyn-checkbox-focus-ring-color: rgba(59, 130, 246, 0.2);
   }
 }
@@ -361,18 +365,18 @@
 @media (max-width: 767px) {
   .wrapper {
     /* Ensure touch-friendly spacing */
-    gap: var(--dyn-spacing-md, 12px);
-    min-height: 44px;  /* Touch target minimum */
+    gap: var(--dyn-spacing-md, var(--spacing-md, 12px));
+    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
   }
 
   .box {
-    min-width: 44px;  /* Touch target minimum */
-    min-height: 44px; /* Touch target minimum */
+    min-width: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
+    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
   }
 
   .label {
     font-size: var(--dyn-checkbox-label-font-size);
-    line-height: var(--dyn-line-height-base, 1.5);
+    line-height: var(--dyn-checkbox-label-line-height);
   }
 }
 

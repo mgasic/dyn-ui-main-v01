@@ -1,10 +1,72 @@
+/* ==========================================================================
+   DynTable Component Styles
+   Standardized with design tokens
+   ========================================================================== */
 
+:root {
+  /* Color Tokens */
+  --dyn-table-bg-color: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-table-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-table-border-color: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-table-header-bg-color: var(--dyn-color-surface-alt, var(--color-surface-alt, #f9fafb));
+  --dyn-table-header-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-table-header-border-color: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-table-row-hover-bg-color: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  --dyn-table-row-striped-bg-color: var(--dyn-color-surface-light, var(--color-surface-light, #f9fafb));
+  --dyn-table-row-selected-bg-color: rgba(37, 99, 235, 0.1);
+  --dyn-table-row-selected-striped-bg-color: rgba(37, 99, 235, 0.15);
+  --dyn-table-sortable-hover-bg-color: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  --dyn-table-sortable-active-bg-color: rgba(37, 99, 235, 0.1);
+  --dyn-table-sortable-active-text-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-table-empty-text-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-table-loading-text-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-table-pagination-bg-color: var(--dyn-color-surface-light, var(--color-surface-light, #f9fafb));
+  --dyn-table-pagination-border-color: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-table-button-bg-color: var(--dyn-color-surface-light, var(--color-surface-light, #f3f4f6));
+  --dyn-table-button-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-table-button-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-table-button-primary-bg-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-table-button-primary-text-color: #ffffff;
+  --dyn-table-button-primary-hover-bg-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #1d4ed8));
+  --dyn-table-button-danger-bg-color: var(--dyn-color-error, var(--color-error, #dc2626));
+  --dyn-table-button-danger-text-color: #ffffff;
+  --dyn-table-button-danger-hover-bg-color: var(--dyn-color-error-dark, var(--color-error-dark, #b91c1c));
+  --dyn-table-checkbox-focus-outline-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
-/* DynTable Component Styles with Design Tokens */
+  /* Size Tokens */
+  --dyn-table-size-small-padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-table-size-small-font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+  --dyn-table-size-medium-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-table-size-medium-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-table-size-large-padding: var(--dyn-spacing-md, var(--spacing-md, 16px)) var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-table-size-large-font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+  --dyn-table-header-border-width: 2px;
+  --dyn-table-checkbox-size: 18px;
+  --dyn-table-button-padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-table-button-border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
+  --dyn-table-empty-padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-table-loading-padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-table-pagination-padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-table-pagination-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
 
-/* ============================================ */
-/* 1. ROOT / TABLE CONTAINER */
-/* ============================================ */
+  /* Typography */
+  --dyn-table-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-table-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-table-header-font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
+  --dyn-table-header-text-transform: none;
+  --dyn-table-header-letter-spacing: normal;
+  --dyn-table-button-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-table-button-font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  --dyn-table-empty-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-table-loading-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-table-pagination-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+
+  /* Interactions */
+  --dyn-table-sortable-cursor: pointer;
+  --dyn-table-row-hover-transition: background-color 0.15s ease;
+  --dyn-table-button-transition: background-color 0.15s ease, border-color 0.15s ease;
+  --dyn-table-checkbox-focus-outline-width: 2px;
+}
 
 .dyn-table {
   width: 100%;
@@ -15,39 +77,28 @@
   background-color: var(--dyn-table-bg-color);
 }
 
-/* ============================================ */
-/* 2. SIZE VARIANTS */
-/* ============================================ */
-
-/* Small Size */
+/* Size Variants */
 .dyn-table--small .dyn-table__cell {
   padding: var(--dyn-table-size-small-padding);
   font-size: var(--dyn-table-size-small-font-size);
 }
 
-/* Medium Size (Default) */
 .dyn-table--medium .dyn-table__cell {
   padding: var(--dyn-table-size-medium-padding);
   font-size: var(--dyn-table-size-medium-font-size);
 }
 
-/* Large Size */
 .dyn-table--large .dyn-table__cell {
   padding: var(--dyn-table-size-large-padding);
   font-size: var(--dyn-table-size-large-font-size);
 }
 
-/* Default size (if not specified) */
 .dyn-table .dyn-table__cell {
   padding: var(--dyn-table-size-medium-padding);
   font-size: var(--dyn-table-size-medium-font-size);
 }
 
-/* ============================================ */
-/* 3. VARIANT OPTIONS */
-/* ============================================ */
-
-/* Bordered Variant */
+/* Variant Options */
 .dyn-table--bordered {
   border: 1px solid var(--dyn-table-border-color);
 }
@@ -60,12 +111,10 @@
   border-bottom: var(--dyn-table-header-border-width) solid var(--dyn-table-header-border-color);
 }
 
-/* Striped Variant */
 .dyn-table--striped tbody .dyn-table__row:nth-child(odd) {
   background-color: var(--dyn-table-row-striped-bg-color);
 }
 
-/* Hoverable Variant */
 .dyn-table--hoverable tbody .dyn-table__row {
   transition: var(--dyn-table-row-hover-transition);
 }
@@ -74,30 +123,14 @@
   background-color: var(--dyn-table-row-hover-bg-color);
 }
 
-/* Fixed Height (Scrollable) */
-.dyn-table--fixed-height {
-  display: table;
-  width: 100%;
-}
-
-.dyn-table--fixed-height tbody {
-  overflow-y: auto;
-}
-
-/* ============================================ */
-/* 4. TABLE CELLS */
-/* ============================================ */
-
+/* Table Cells */
 .dyn-table__cell {
   padding: var(--dyn-table-size-medium-padding);
   font-size: var(--dyn-table-size-medium-font-size);
   text-align: left;
 }
 
-/* ============================================ */
-/* 5. HEADER STYLES */
-/* ============================================ */
-
+/* Header Styles */
 .dyn-table__cell--header {
   background-color: var(--dyn-table-header-bg-color);
   color: var(--dyn-table-header-text-color);
@@ -108,7 +141,6 @@
   user-select: none;
 }
 
-/* Sortable Header Cell */
 .dyn-table__cell--sortable {
   cursor: var(--dyn-table-sortable-cursor);
   transition: background-color 0.15s ease;
@@ -118,16 +150,12 @@
   background-color: var(--dyn-table-sortable-hover-bg-color);
 }
 
-/* Sorted Header Cell */
 .dyn-table__cell--sorted {
   background-color: var(--dyn-table-sortable-active-bg-color);
   color: var(--dyn-table-sortable-active-text-color);
 }
 
-/* ============================================ */
-/* 6. ALIGNMENT CLASSES */
-/* ============================================ */
-
+/* Alignment */
 .dyn-table__cell--left {
   text-align: left;
 }
@@ -140,15 +168,11 @@
   text-align: right;
 }
 
-/* ============================================ */
-/* 7. ROW STYLES */
-/* ============================================ */
-
+/* Row Styles */
 .dyn-table__row {
   transition: background-color 0.15s ease;
 }
 
-/* Selected Row */
 .dyn-table__row--selected {
   background-color: var(--dyn-table-row-selected-bg-color);
 }
@@ -157,10 +181,7 @@
   background-color: var(--dyn-table-row-selected-striped-bg-color);
 }
 
-/* ============================================ */
-/* 8. CHECKBOX STYLES */
-/* ============================================ */
-
+/* Checkbox Styles */
 .dyn-table__checkbox {
   width: var(--dyn-table-checkbox-size);
   height: var(--dyn-table-checkbox-size);
@@ -169,16 +190,12 @@
   vertical-align: middle;
 }
 
-.dyn-table__checkbox:focus {
+.dyn-table__checkbox:focus-visible {
   outline: var(--dyn-table-checkbox-focus-outline-width) solid var(--dyn-table-checkbox-focus-outline-color);
   outline-offset: 2px;
 }
 
-/* ============================================ */
-/* 9. ACTION BUTTONS */
-/* ============================================ */
-
-/* Default Action Button */
+/* Action Buttons */
 .dyn-table__action-button {
   padding: var(--dyn-table-button-padding);
   border: 1px solid var(--dyn-table-button-border-color);
@@ -196,12 +213,16 @@
   border-color: var(--dyn-table-text-color);
 }
 
+.dyn-table__action-button:focus-visible {
+  outline: 2px solid var(--dyn-table-button-primary-bg-color);
+  outline-offset: 2px;
+}
+
 .dyn-table__action-button:disabled {
-  opacity: 0.5;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.5));
   cursor: not-allowed;
 }
 
-/* Primary Action Button */
 .dyn-table__action-button.primary {
   background-color: var(--dyn-table-button-primary-bg-color);
   color: var(--dyn-table-button-primary-text-color);
@@ -213,7 +234,6 @@
   border-color: var(--dyn-table-button-primary-hover-bg-color);
 }
 
-/* Danger Action Button */
 .dyn-table__action-button.danger {
   background-color: var(--dyn-table-button-danger-bg-color);
   color: var(--dyn-table-button-danger-text-color);
@@ -225,10 +245,7 @@
   border-color: var(--dyn-table-button-danger-hover-bg-color);
 }
 
-/* ============================================ */
-/* 10. EMPTY & LOADING STATES */
-/* ============================================ */
-
+/* Empty & Loading States */
 .dyn-table__empty-state {
   padding: var(--dyn-table-empty-padding);
   text-align: center;
@@ -243,10 +260,7 @@
   font-size: var(--dyn-table-loading-font-size);
 }
 
-/* ============================================ */
-/* 11. PAGINATION */
-/* ============================================ */
-
+/* Pagination */
 .dyn-table__pagination {
   display: flex;
   align-items: center;
@@ -274,7 +288,7 @@
 }
 
 .dyn-table__pagination-button:disabled {
-  opacity: 0.5;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.5));
   cursor: not-allowed;
 }
 
@@ -285,25 +299,59 @@
   padding: 0 8px;
 }
 
-/* ============================================ */
-/* 12. RESPONSIVE STYLES */
-/* ============================================ */
+/* Accessibility */
+@media (prefers-contrast: more) {
+  .dyn-table--bordered {
+    border-width: 2px;
+  }
 
-@media (max-width: 768px) {
+  .dyn-table--bordered .dyn-table__cell {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dyn-table__row,
+  .dyn-table__cell--sortable,
+  .dyn-table__action-button,
+  .dyn-table__pagination-button {
+    transition: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 767px) {
   .dyn-table {
     font-size: 13px;
   }
 
   .dyn-table .dyn-table__cell {
-    padding: 8px 12px;
+    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   }
 
   .dyn-table__action-button {
-    padding: 4px 8px;
+    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
     font-size: 11px;
   }
 
   .dyn-table__pagination {
     flex-wrap: wrap;
+  }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-table-bg-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-table-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-table-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+    --dyn-table-header-bg-color: var(--dyn-color-surface-alt-dark, var(--color-surface-alt-dark, #111827));
+    --dyn-table-header-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+    --dyn-table-row-hover-bg-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+    --dyn-table-row-striped-bg-color: var(--dyn-color-surface-light-dark, var(--color-surface-light-dark, #374151));
+    --dyn-table-sortable-hover-bg-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+    --dyn-table-pagination-bg-color: var(--dyn-color-surface-light-dark, var(--color-surface-light-dark, #374151));
+    --dyn-table-button-bg-color: var(--dyn-color-surface-light-dark, var(--color-surface-light-dark, #374151));
+    --dyn-table-button-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
   }
 }

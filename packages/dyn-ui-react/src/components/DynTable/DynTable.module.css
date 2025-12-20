@@ -1,5 +1,5 @@
-/* Import design tokens - FIX: Correct path for monorepo structure */
-@import '../../../../design-tokens/table.css';
+/* Import design tokens - Correct relative path for monorepo structure */
+@import '../../../design-tokens/table.css';
 
 /* DynTable Component Styles with Design Tokens */
 

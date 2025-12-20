@@ -1,0 +1,30 @@
+/**
+ * Foundation Layer Index
+ * Imports all foundation tokens in correct order
+ * 
+ * This is the base layer containing core design system values
+ * that never change within a theme.
+ * 
+ * Order:
+ * 1. Colors (needed by other tokens)
+ * 2. Typography (text styling)
+ * 3. Spacing (layout)
+ * 4. Sizing (component sizes)
+ * 5. Borders (shapes)
+ * 6. Shadows (elevation)
+ * 7. Animations (motion)
+ * 8. Opacity (transparency)
+ * 9. Z-Index (stacking)
+ * 10. Focus States (accessibility)
+ */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';
+@import './sizing.css';
+@import './borders.css';
+@import './shadows.css';
+@import './animations.css';
+@import './opacity.css';
+@import './zindex.css';
+@import './focus-states.css';

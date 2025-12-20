@@ -1,8 +1,8 @@
 # DYN UI - POČETNA TOČKA ZA IMPLEMENTACIJU
 
-**Project**: DYN UI Design System  
-**Status**: Ready for Implementation (Human or AI)  
-**Date**: December 20, 2025  
+**Project**: DYN UI Design System
+**Status**: Ready for Implementation (Human or AI)
+**Date**: December 20, 2025
 **Version**: 1.0 Final
 
 ---
@@ -20,7 +20,7 @@
 
 ## 👤 ODABERI SVOJU PUTANJU
 
-### AKO SI HUMAN DEVELOPER:
+### AKO SI HUMAN DEVELOPER
 
 ```
 1. Otvori: docs/TOKENS/00_README_START_HERE.md
@@ -33,7 +33,7 @@
 
 ---
 
-### AKO JE AI AGENT:
+### AKO JE AI AGENT
 
 ```
 1. Učitaj: docs/AI-SPECS/ (svi JSON fajlovi)
@@ -47,7 +47,7 @@
 
 ---
 
-### AKO JE TECH LEAD / PROJECT MANAGER:
+### AKO JE TECH LEAD / PROJECT MANAGER
 
 ```
 1. Otvori: docs/TOKENS/03_IMPLEMENTATION_CHECKLIST.md
@@ -124,7 +124,7 @@ verification-rules.json        ← QA rule-a kao JSON
 
 ## 🚀 BRZI START (CHOOSE ONE)
 
-### Za Human Developer (5 min setup):
+### Za Human Developer (5 min setup)
 
 ```bash
 # 1. Otvori početnu dokumentaciju
@@ -138,7 +138,7 @@ open docs/TOKENS/00_README_START_HERE.md
 
 ---
 
-### Za AI Agent (5 min setup):
+### Za AI Agent (5 min setup)
 
 ```bash
 # 1. Učitaj sve dokumentacije
@@ -155,7 +155,7 @@ docs/AI-SPECS/*
 
 ---
 
-### Za Tech Lead (30 min planning):
+### Za Tech Lead (30 min planning)
 
 ```bash
 # 1. Otvori: docs/TOKENS/03_IMPLEMENTATION_CHECKLIST.md
@@ -174,7 +174,7 @@ docs/AI-SPECS/*
 
 ## 📊 TIMELINE
 
-### Ako je Human Team (2 developera):
+### Ako je Human Team (2 developera)
 
 ```
 DAY 1:
@@ -191,13 +191,13 @@ DAY 2-8 (WEEK 1):
 WEEK 2-3 (36 sati):
   - Phase 2: Major refactors (30h)
   - Parallel: 18-19 komponenti done
-  
+
 TOTAL: 60 hours / 2 developers / ~10 days
 ```
 
 ---
 
-### Ako je AI Agent (1 agent, sequential):
+### Ako je AI Agent (1 agent, sequential)
 
 ```
 SETUP: 30 min
@@ -222,7 +222,7 @@ TOTAL: 12-16 hours / 1 AI / 1-2 days
 
 ## ✅ CHECKLIST: PRE START
 
-### Prije nego što kreniš:
+### Prije nego što kreniš
 
 - [ ] Iscitao sam dokumentaciju (točna sekcija za moju ulogu)
 - [ ] Razumijem šta je token (TOKENS/01)
@@ -236,7 +236,7 @@ TOTAL: 12-16 hours / 1 AI / 1-2 days
 
 ## 🔗 DETALJNE REFERENCE
 
-### Ako trebaš znati...
+### Ako trebaš znati
 
 | Trebam znati | Idi u | Sekcija |
 |--------------|-------|---------|
@@ -268,6 +268,7 @@ Vrijeme:    45 min po komponenti
 ```
 
 **Ključni dokumenti**:
+
 1. TOKENS/00 - Gdje početi
 2. CHECKLIST/03 - Pronađi komponentu
 3. TOKENS/02 - Pronađi template
@@ -287,6 +288,7 @@ Vrijeme:    15 min po komponenti
 ```
 
 **Ključni dokumenti**:
+
 1. GUIDES/00 - Setup
 2. AI-SPECS/ - JSON reference
 3. GUIDES/01 - Proces
@@ -306,6 +308,7 @@ Vrijeme:    10 min daily
 ```
 
 **Ključni dokumenti**:
+
 1. CHECKLIST/03 - Sve informacije
 2. TOKENS/00 - Za distribuiranje
 3. GUIDES/ - Za team edukaciju
@@ -314,7 +317,7 @@ Vrijeme:    10 min daily
 
 ## 🎓 LEARNING PATH PO ULOZI
 
-### Ako si **novi human developer**:
+### Ako si **novi human developer**
 
 ```
 PRVI DAN (3 sata):
@@ -333,7 +336,7 @@ DRUGI DAN (45 min):
 
 ---
 
-### Ako si **AI agent**:
+### Ako si **AI agent**
 
 ```
 INITIALIZATION (30 min):
@@ -377,24 +380,31 @@ PROCESSING (12h):
 ## 🆘 POMOĆ
 
 ### Trebam brzu pomoć?
+
 👉 **TOKENS/04_QUICK_REFERENCE_WALL_POSTER.md**
 
 ### Trebam razumjeti WHY?
+
 👉 **TOKENS/01_TOKENS_KNOWLEDGE_BASE.md**
 
 ### Trebam znati kako raditi?
+
 👉 **TOKENS/02_FOCUSED_TOKENS_IMPLEMENTATION.md**
 
 ### Trebam znati timeline?
+
 👉 **CHECKLIST/03_IMPLEMENTATION_CHECKLIST.md**
 
 ### Trebam znati gdje ide što?
+
 👉 **ARCHITECTURE/00_COMPONENT_STRUCTURE.md**
 
 ### Trebam znati gdje su moji tokeni?
+
 👉 **TOKENS/05_Design_Tokens_Standard_v1.md**
 
 ### Trebam znati što je AI trebam?
+
 👉 **GUIDES/00_AI_AGENT_SETUP.md**
 
 ---
@@ -409,7 +419,7 @@ Ako nešto nije jasno:
 
 ---
 
-## 🎉 GOTOV ZA VELIKI DAN!
+## 🎉 GOTOV ZA VELIKI DAN
 
 ```
 dyn-ui-mono/
@@ -424,21 +434,24 @@ dyn-ui-mono/
 
 ---
 
-## 🚀 KRENI SA:
+## 🚀 KRENI SA
 
-### Ako si human:
+### Ako si human
+
 ```
 open docs/TOKENS/00_README_START_HERE.md
 ```
 
-### Ako si AI:
+### Ako si AI
+
 ```
 load docs/AI-SPECS/*
 load docs/GUIDES/00_AI_AGENT_SETUP.md
 process 37 components
 ```
 
-### Ako si tech lead:
+### Ako si tech lead
+
 ```
 open docs/TOKENS/03_IMPLEMENTATION_CHECKLIST.md
 distribute docs/ to team
@@ -450,4 +463,3 @@ track Component Status Matrix
 **Status**: ✅ READY FOR IMPLEMENTATION
 
 **Next Step**: Odaberi svoju putanju gore ⬆️
-

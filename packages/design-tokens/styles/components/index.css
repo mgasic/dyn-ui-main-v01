@@ -1,20 +1,19 @@
-/**
- * Component Layer Index
- * Imports all component base tokens in correct order
- * 
- * This layer provides reusable component patterns by composing foundation tokens.
- * Each file defines tokens for a category of components.
- * 
- * Order:
- * 1. Button-like patterns
- * 2. Input-like patterns
- * 3. Layout patterns
- * 4. Interactive states
- * 5. Data display patterns
- */
+/* ==========================================================================
+   Component Base Layer - Central Import
+   Imports all component base CSS layers
+   ========================================================================== */
 
+/* Button-Like Components */
 @import './button-like.css';
+
+/* Input-Like Components */
 @import './input-like.css';
+
+/* Layout Components */
 @import './layout.css';
+
+/* Table-Like Components (Data Display) */
+@import './table-like.css';
+
+/* Interactive States */
 @import './interactive-states.css';
-@import './data-display.css';

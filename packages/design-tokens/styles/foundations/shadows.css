@@ -1,0 +1,32 @@
+/**
+ * Design Token: Shadows & Elevation
+ * Domain: shadow
+ * 
+ * Provides: Shadow tokens for elevation levels
+ * Used by: Cards, modals, dropdowns - any component needing elevation
+ * 
+ * Supports:
+ * - Dark mode: YES (different shadow values)
+ * - High contrast: N/A
+ * - Reduced motion: N/A
+ */
+
+:root {
+  /* ========== SHADOW SCALE (Light Mode) ========== */
+  --dyn-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --dyn-shadow-md: 0 3px 6px rgba(15, 23, 42, 0.12);
+  --dyn-shadow-lg: 0 10px 20px rgba(15, 23, 42, 0.16);
+
+  /* ========== FOCUS STATE SHADOW ========== */
+  --dyn-shadow-focus: 0 0 0 3px var(--dyn-color-focus-ring);
+}
+
+/* ========== DARK MODE OVERRIDES ========== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --dyn-shadow-md: 0 3px 6px rgba(0, 0, 0, 0.4);
+    --dyn-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.5);
+    --dyn-shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.35);
+  }
+}

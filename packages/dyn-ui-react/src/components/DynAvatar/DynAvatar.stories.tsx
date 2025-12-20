@@ -1,4 +1,4 @@
-﻿import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { DynAvatar } from './DynAvatar';
 import type { DynAvatarProps } from './DynAvatar.types';
 
@@ -15,6 +15,10 @@ const meta: Meta<typeof DynAvatar> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    alt: {
+      control: { type: 'text' },
+      description: 'Alt text for accessibility',
+    },
     size: {
       control: { type: 'select' },
       options: ['xs', 'sm', 'md', 'lg', 'xl'],
@@ -32,7 +36,7 @@ const meta: Meta<typeof DynAvatar> = {
     },
     loading: {
       control: { type: 'boolean' },
-      description: 'Loading state',
+      description: 'Loading state - shows only spinner',
     },
     error: {
       control: { type: 'boolean' },
@@ -71,9 +75,16 @@ export const Interactive: Story = {
 
 export const Loading: Story = {
   args: {
-    alt: 'Loading Avatar',
+    alt: 'Avatar',
     loading: true,
     size: 'md',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Loading state shows only the animated spinner. Initials and images are hidden.',
+      },
+    },
   },
 };
 
@@ -113,6 +124,25 @@ export const AllStatuses: Story = {
     docs: {
       description: {
         story: 'All status indicators with semantic meaning.',
+      },
+    },
+  },
+};
+
+export const LoadingStates: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+      <DynAvatar alt="Loading XS" loading size="xs" />
+      <DynAvatar alt="Loading SM" loading size="sm" />
+      <DynAvatar alt="Loading MD" loading size="md" />
+      <DynAvatar alt="Loading LG" loading size="lg" />
+      <DynAvatar alt="Loading XL" loading size="xl" />
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: 'Loading spinners across all sizes.',
       },
     },
   },

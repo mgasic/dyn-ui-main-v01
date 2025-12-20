@@ -6,34 +6,34 @@
 :root {
   /* Color Tokens */
   --dyn-modal-overlay-bg: rgba(0, 0, 0, 0.5);
-  --dyn-modal-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-modal-border-color: var(--dyn-color-border, #d1d5db);
-  --dyn-modal-text-color: var(--dyn-color-text-primary, #111827);
-  --dyn-modal-header-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-modal-footer-bg: var(--dyn-color-surface-light, #f9fafb);
-  --dyn-modal-close-btn-color: var(--dyn-color-text-secondary, #6b7280);
-  --dyn-modal-close-btn-hover: var(--dyn-color-text-primary, #111827);
+  --dyn-modal-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-modal-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-modal-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-modal-header-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-modal-footer-bg: var(--dyn-color-surface-light, var(--color-surface-light, #f9fafb));
+  --dyn-modal-close-btn-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-modal-close-btn-hover: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
 
   /* Size Tokens */
   --dyn-modal-max-width: 500px;
-  --dyn-modal-border-radius: var(--dyn-border-radius-lg, 12px);
-  --dyn-modal-padding: var(--dyn-spacing-lg, 24px);
-  --dyn-modal-header-padding: var(--dyn-spacing-lg, 24px);
-  --dyn-modal-footer-padding: var(--dyn-spacing-lg, 24px);
-  --dyn-modal-gap: var(--dyn-spacing-md, 16px);
+  --dyn-modal-border-radius: var(--dyn-border-radius-lg, var(--border-radius-lg, 12px));
+  --dyn-modal-padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-modal-header-padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-modal-footer-padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-modal-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
 
   /* Typography */
-  --dyn-modal-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-modal-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-modal-title-font-size: var(--dyn-font-size-lg, 18px);
-  --dyn-modal-title-font-weight: var(--dyn-font-weight-semibold, 600);
-  --dyn-modal-line-height: 1.5;
+  --dyn-modal-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-modal-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-modal-title-font-size: var(--dyn-font-size-lg, var(--font-size-lg, 18px));
+  --dyn-modal-title-font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
+  --dyn-modal-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   /* Transitions */
-  --dyn-modal-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-modal-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 
   /* Shadow */
-  --dyn-modal-shadow: var(--dyn-shadow-2xl, 0 25px 50px -12px rgba(0, 0, 0, 0.25));
+  --dyn-modal-shadow: var(--dyn-shadow-2xl, var(--shadow-2xl, 0 25px 50px -12px rgba(0, 0, 0, 0.25)));
 
   /* Z-index */
   --dyn-modal-z-index: 1000;
@@ -105,7 +105,7 @@
   height: 32px;
   background-color: transparent;
   border: none;
-  border-radius: var(--dyn-border-radius-sm, 6px);
+  border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
   color: var(--dyn-modal-close-btn-color);
   cursor: pointer;
   transition: all var(--dyn-modal-transition);
@@ -115,6 +115,11 @@
 .closeButton:hover {
   color: var(--dyn-modal-close-btn-hover);
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  outline-offset: 2px;
 }
 
 .content {
@@ -136,7 +141,7 @@
 @media (max-width: 767px) {
   :root {
     --dyn-modal-max-width: calc(100vw - 32px);
-    --dyn-modal-padding: var(--dyn-spacing-md, 16px);
+    --dyn-modal-padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
   }
 
   .modal {
@@ -146,20 +151,14 @@
   .header,
   .content,
   .footer {
-    padding: var(--dyn-spacing-md, 16px);
+    padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-modal-overlay-bg: rgba(0, 0, 0, 0.7);
-    --dyn-modal-bg: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-modal-border-color: var(--dyn-color-border-dark, #334155);
-    --dyn-modal-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-modal-header-bg: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-modal-footer-bg: var(--dyn-color-surface-darker, #111827);
-    --dyn-modal-close-btn-color: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-modal-close-btn-hover: var(--dyn-color-text-primary-dark, #f1f5f9);
+@media (prefers-contrast: more) {
+  .header,
+  .footer {
+    border-width: 2px;
   }
 }
 
@@ -168,5 +167,22 @@
   .modal,
   .closeButton {
     transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-modal-overlay-bg: rgba(0, 0, 0, 0.7);
+    --dyn-modal-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-modal-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-modal-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-modal-header-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-modal-footer-bg: var(--dyn-color-surface-darker, var(--color-surface-darker, #111827));
+    --dyn-modal-close-btn-color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-modal-close-btn-hover: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  }
+
+  .closeButton:hover {
+    background-color: rgba(255, 255, 255, 0.08);
   }
 }

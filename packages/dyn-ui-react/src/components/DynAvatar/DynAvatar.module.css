@@ -1,54 +1,26 @@
 /* ==========================================================================
    DynAvatar Component Styles
-   Standardized with design tokens
+   Uses design tokens from foundation layer
    ========================================================================== */
-
-:root {
-  /* Color Tokens */
-  --dyn-avatar-bg: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
-  --dyn-avatar-text: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-avatar-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
-  --dyn-avatar-status-online: var(--dyn-color-success, var(--color-success, #10b981));
-  --dyn-avatar-status-offline: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  --dyn-avatar-status-away: var(--dyn-color-warning, var(--color-warning, #f59e0b));
-  --dyn-avatar-status-busy: var(--dyn-color-danger, var(--color-danger, #ef4444));
-
-  /* Size Tokens */
-  --dyn-avatar-size-xs: 24px;
-  --dyn-avatar-size-sm: 32px;
-  --dyn-avatar-size-md: 40px;
-  --dyn-avatar-size-lg: 56px;
-  --dyn-avatar-size-xl: 80px;
-  --dyn-avatar-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-avatar-font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
-  --dyn-avatar-border-radius: 50%;
-  --dyn-avatar-border-width: 2px;
-  --dyn-avatar-status-size: 12px;
-
-  /* Typography */
-  --dyn-avatar-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-
-  /* Transitions */
-  --dyn-avatar-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
 
 .container {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-avatar-size-md);
-  height: var(--dyn-avatar-size-md);
-  background-color: var(--dyn-avatar-bg);
-  border: var(--dyn-avatar-border-width) solid var(--dyn-avatar-border-color);
-  border-radius: var(--dyn-avatar-border-radius);
-  color: var(--dyn-avatar-text);
-  font-family: var(--dyn-avatar-font-family);
-  font-size: var(--dyn-avatar-font-size);
-  font-weight: var(--dyn-avatar-font-weight);
+  width: var(--dyn-size-md, var(--size-md, 40px));
+  height: var(--dyn-size-md, var(--size-md, 40px));
+  background-color: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
+  border: 2px solid var(--dyn-color-border, var(--color-border, #d1d5db));
+  border-radius: 50%;
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
   overflow: hidden;
   user-select: none;
   flex-shrink: 0;
+  transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 .image {
@@ -67,26 +39,46 @@
 
 /* Size Variants */
 .xs {
-  --dyn-avatar-size-md: var(--dyn-avatar-size-xs);
+  width: var(--dyn-size-xs, var(--size-xs, 24px));
+  height: var(--dyn-size-xs, var(--size-xs, 24px));
   font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
 }
 
 .sm {
-  --dyn-avatar-size-md: var(--dyn-avatar-size-sm);
+  width: var(--dyn-size-sm, var(--size-sm, 32px));
+  height: var(--dyn-size-sm, var(--size-sm, 32px));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
 }
 
 .md {
-  --dyn-avatar-size-md: var(--dyn-avatar-size-md);
-}
-
-.lg {
-  --dyn-avatar-size-md: var(--dyn-avatar-size-lg);
+  width: var(--dyn-size-md, var(--size-md, 40px));
+  height: var(--dyn-size-md, var(--size-md, 40px));
   font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
 }
 
-.xl {
-  --dyn-avatar-size-md: var(--dyn-avatar-size-xl);
+.lg {
+  width: var(--dyn-size-lg, var(--size-lg, 56px));
+  height: var(--dyn-size-lg, var(--size-lg, 56px));
   font-size: var(--dyn-font-size-lg, var(--font-size-lg, 18px));
+}
+
+.xl {
+  width: var(--dyn-size-xl, var(--size-xl, 80px));
+  height: var(--dyn-size-xl, var(--size-xl, 80px));
+  font-size: var(--dyn-font-size-xl, var(--font-size-xl, 20px));
+}
+
+/* Shape Variants */
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 0;
+}
+
+.rounded {
+  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
 }
 
 /* Status Indicator */
@@ -94,23 +86,59 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: var(--dyn-avatar-status-size);
-  height: var(--dyn-avatar-status-size);
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  border: 2px solid var(--dyn-avatar-bg);
-  background-color: var(--dyn-avatar-status-offline);
+  border: 2px solid var(--dyn-color-surface, var(--color-surface, #ffffff));
+  background-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
 }
 
 .statusOnline {
-  background-color: var(--dyn-avatar-status-online);
+  background-color: var(--dyn-color-success, var(--color-success, #10b981));
 }
 
 .statusAway {
-  background-color: var(--dyn-avatar-status-away);
+  background-color: var(--dyn-color-warning, var(--color-warning, #f59e0b));
 }
 
 .statusBusy {
-  background-color: var(--dyn-avatar-status-busy);
+  background-color: var(--dyn-color-danger, var(--color-danger, #ef4444));
+}
+
+.statusOffline {
+  background-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+}
+
+/* Interactive State */
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  background-color: var(--dyn-color-surface-hover, var(--color-surface-hover, #f9fafb));
+  border-color: var(--dyn-color-border-hover, var(--color-border-hover, #9ca3af));
+  transform: scale(1.05);
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  outline-offset: 2px;
+}
+
+.clickable:active {
+  transform: scale(0.98);
+}
+
+/* Loading State */
+.loading {
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
+  pointer-events: none;
+}
+
+/* Error State */
+.error {
+  border-color: var(--dyn-color-danger, var(--color-danger, #ef4444));
+  background-color: var(--dyn-color-danger-light, rgba(239, 68, 68, 0.1));
 }
 
 /* Badge */
@@ -125,9 +153,9 @@
   height: 20px;
   padding: 0 4px;
   background-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  border: 2px solid var(--dyn-avatar-bg);
+  border: 2px solid var(--dyn-color-surface, var(--color-surface, #ffffff));
   border-radius: 50%;
-  color: #ffffff;
+  color: var(--dyn-color-text-inverse, var(--color-text-inverse, #ffffff));
   font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
   font-weight: var(--dyn-font-weight-bold, var(--font-weight-bold, 700));
 }
@@ -135,26 +163,45 @@
 /* Group Avatars */
 .group {
   display: flex;
-  gap: -8px;
   padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
 }
 
 .groupItem {
   margin-left: -8px;
   border-width: 3px;
-  border-color: var(--dyn-avatar-bg);
+  border-color: var(--dyn-color-surface, var(--color-surface, #ffffff));
 }
 
 .groupItem:first-child {
   margin-left: 0;
 }
 
+/* Accessibility */
+.dyn-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .container {
     transition: none;
   }
+
+  .clickable:hover,
+  .clickable:active {
+    transform: none;
+  }
 }
 
+/* High Contrast */
 @media (prefers-contrast: more) {
   .container {
     border-width: 3px;
@@ -166,14 +213,49 @@
   }
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-avatar-bg: var(--dyn-color-primary-light-dark, rgba(59, 130, 246, 0.15));
-    --dyn-avatar-text: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-    --dyn-avatar-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-    --dyn-avatar-status-online: var(--dyn-color-success-dark, var(--color-success-dark, #10b981));
-    --dyn-avatar-status-offline: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #6b7280));
-    --dyn-avatar-status-away: var(--dyn-color-warning-dark, var(--color-warning-dark, #f59e0b));
-    --dyn-avatar-status-busy: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
+  .container {
+    background-color: var(--dyn-color-primary-light-dark, rgba(59, 130, 246, 0.15));
+    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  }
+
+  .clickable:hover {
+    background-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #334155));
+    border-color: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #475569));
+  }
+
+  .status {
+    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+  }
+
+  .statusOnline {
+    background-color: var(--dyn-color-success-dark, var(--color-success-dark, #10b981));
+  }
+
+  .statusAway {
+    background-color: var(--dyn-color-warning-dark, var(--color-warning-dark, #f59e0b));
+  }
+
+  .statusBusy {
+    background-color: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
+  }
+
+  .statusOffline {
+    background-color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #6b7280));
+  }
+
+  .badge {
+    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+  }
+
+  .groupItem {
+    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+  }
+
+  .error {
+    border-color: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
+    background-color: rgba(239, 68, 68, 0.15);
   }
 }

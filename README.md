@@ -148,7 +148,7 @@ TOTAL: 12-16 hours / 1 AI / 1-2 days
 ### Ako trebaš znati
 
 | Trebam znati | Idi u | Sekcija |
-|--------------|-------|---------|
+| ------------ | ----- | --------- |
 | Gdje početi? | README.md (ovo) | "CHOOSE YOUR PATH" |
 | Što je token? | TOKENS/01 | "Why Design Tokens?" |
 | Kako je organizirano? | ARCHITECTURE/00 | "Component Structure" |

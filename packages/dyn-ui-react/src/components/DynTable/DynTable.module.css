@@ -1,342 +1,105 @@
-/* DynTable Component Styles */
-.dyn-table {
-  display: flex;
-  flex-direction: column;
-  background: var(--dyn-color-background);
-  border-radius: var(--dyn-border-radius-md);
-  border: 1px solid var(--dyn-color-border);
-  font-family: var(--dyn-font-family-base);
-  overflow: hidden;
+/* ==========================================================================
+   DynTable Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-table-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-table-border-color: var(--dyn-color-border, #d1d5db);
+  --dyn-table-header-bg: var(--dyn-color-surface-light, #f9fafb);
+  --dyn-table-header-text: var(--dyn-color-text-primary, #111827);
+  --dyn-table-row-text: var(--dyn-color-text-primary, #111827);
+  --dyn-table-row-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
+  --dyn-table-row-bg-stripe: var(--dyn-color-surface-light, #f9fafb);
+  --dyn-table-row-selected-bg: rgba(37, 99, 235, 0.1);
+  --dyn-table-cell-padding: var(--dyn-spacing-md, 16px);
+  --dyn-table-border-width: 1px;
+
+  /* Typography */
+  --dyn-table-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-table-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-table-header-font-weight: var(--dyn-font-weight-semibold, 600);
+  --dyn-table-line-height: 1.5;
+
+  /* Transitions */
+  --dyn-table-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Border Radius */
+  --dyn-table-border-radius: var(--dyn-border-radius-md, 8px);
 }
 
-.dyn-table__wrapper {
-  overflow: auto;
-  flex: 1;
+.container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--dyn-table-border-radius);
+  border: 1px solid var(--dyn-table-border-color);
 }
 
-.dyn-table--fixed-height .dyn-table__wrapper {
-  max-height: 400px;
-}
-
-/* Table */
-.dyn-table__table {
+.table {
   width: 100%;
   border-collapse: collapse;
-  border-spacing: 0;
+  background-color: var(--dyn-table-bg);
+  font-family: var(--dyn-table-font-family);
+  font-size: var(--dyn-table-font-size);
+  line-height: var(--dyn-table-line-height);
 }
 
-/* Table Head */
-.dyn-table__head {
-  background: var(--dyn-color-background-secondary);
+.thead {
+  background-color: var(--dyn-table-header-bg);
+  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
 }
 
-.dyn-table__head tr {
-  border-bottom: 2px solid var(--dyn-color-border);
-}
-
-/* Table Body */
-.dyn-table__body {
-  background: var(--dyn-color-background);
-}
-
-.dyn-table__row {
-  border-bottom: 1px solid var(--dyn-color-border-light);
-  transition: background-color 0.2s ease;
-}
-
-.dyn-table__row:last-child {
-  border-bottom: none;
-}
-
-.dyn-table--hoverable .dyn-table__row:hover {
-  background-color: var(--dyn-color-background-hover);
-}
-
-.dyn-table__row--selected {
-  background-color: var(--dyn-color-background-selected);
-}
-
-/* Striped variant */
-.dyn-table--striped .dyn-table__row:nth-child(even) {
-  background-color: var(--dyn-color-background-secondary);
-}
-
-.dyn-table--striped .dyn-table__row--selected {
-  background-color: var(--dyn-color-background-selected);
-}
-
-/* Table Cells */
-.dyn-table__cell {
-  padding: 12px 16px;
+.th {
+  padding: var(--dyn-table-cell-padding);
   text-align: left;
-  font-size: var(--dyn-font-size-sm);
-  line-height: var(--dyn-line-height-normal);
-  vertical-align: middle;
-  word-wrap: break-word;
+  font-weight: var(--dyn-table-header-font-weight);
+  color: var(--dyn-table-header-text);
+  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
 }
 
-.dyn-table__cell--header {
-  font-weight: var(--dyn-font-weight-semibold);
-  color: var(--dyn-color-text-primary);
-  background: var(--dyn-color-background-secondary);
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.tbody {
+  color: var(--dyn-table-row-text);
 }
 
-.dyn-table__cell--selection {
-  width: 40px;
-  text-align: center;
+.tr {
+  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
+  transition: background-color var(--dyn-table-transition);
 }
 
-.dyn-table__cell--actions {
-  width: auto;
-  white-space: nowrap;
+.tr:hover {
+  background-color: var(--dyn-table-row-bg-hover);
 }
 
-.dyn-table__cell--sortable {
-  cursor: pointer;
-  user-select: none;
-  transition: background-color 0.2s ease;
+.trStriped:nth-child(odd) {
+  background-color: var(--dyn-table-row-bg-stripe);
 }
 
-.dyn-table__cell--sortable:hover {
-  background-color: var(--dyn-color-background-hover);
+.trSelected {
+  background-color: var(--dyn-table-row-selected-bg);
 }
 
-.dyn-table__cell--sorted {
-  background-color: var(--dyn-color-background-selected);
+.td {
+  padding: var(--dyn-table-cell-padding);
+  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
 }
 
-/* Cell Alignment */
-.dyn-table__cell--left {
-  text-align: left;
-}
-
-.dyn-table__cell--center {
-  text-align: center;
-}
-
-.dyn-table__cell--right {
-  text-align: right;
-}
-
-/* Cell Content */
-.dyn-table__cell-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.dyn-table__sort-icons {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  margin-left: auto;
-}
-
-.dyn-table__sort-icon {
-  font-size: 10px;
-  color: var(--dyn-color-text-disabled);
-  transition: color 0.2s ease;
-}
-
-.dyn-table__sort-icon--active {
-  color: var(--dyn-color-primary);
-}
-
-.dyn-table__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Actions */
-.dyn-table-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.dyn-table__action-button {
-  background: var(--dyn-color-primary);
-  color: var(--dyn-color-background);
-  border: none;
-  border-radius: var(--dyn-border-radius-sm);
-  padding: 4px 8px;
-  font-size: var(--dyn-font-size-xs);
-  font-weight: var(--dyn-font-weight-medium);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.dyn-table__action-button:hover {
-  background: var(--dyn-color-primary-hover);
-}
-
-.dyn-table__action-button:disabled {
-  background: var(--dyn-color-disabled);
-  color: var(--dyn-color-text-disabled);
-  cursor: not-allowed;
-}
-
-/* Size Variants */
-.dyn-table--small .dyn-table__cell {
-  padding: 8px 12px;
-  font-size: var(--dyn-font-size-xs);
-}
-
-.dyn-table--large .dyn-table__cell {
-  padding: 16px 20px;
-  font-size: var(--dyn-font-size-base);
-}
-
-/* States */
-.dyn-table__loading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 40px 20px;
-  color: var(--dyn-color-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-}
-
-.dyn-table__empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 40px 20px;
-  color: var(--dyn-color-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-  text-align: center;
-}
-
-/* Pagination */
-.dyn-table__pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  border-top: 1px solid var(--dyn-color-border);
-  background: var(--dyn-color-background-secondary);
-}
-
-.dyn-table__pagination-info {
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-color-text-secondary);
-}
-
-.dyn-table__pagination-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.dyn-table__pagination-button {
-  background: var(--dyn-color-background);
-  color: var(--dyn-color-text-primary);
-  border: 1px solid var(--dyn-color-border);
-  border-radius: var(--dyn-border-radius-sm);
-  padding: 6px 12px;
-  font-size: var(--dyn-font-size-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dyn-table__pagination-button:hover:not(:disabled) {
-  background: var(--dyn-color-primary);
-  color: var(--dyn-color-background);
-  border-color: var(--dyn-color-primary);
-}
-
-.dyn-table__pagination-button:disabled {
-  background: var(--dyn-color-disabled);
-  color: var(--dyn-color-text-disabled);
-  border-color: var(--dyn-color-border-light);
-  cursor: not-allowed;
-}
-
-.dyn-table__pagination-current {
-  font-size: var(--dyn-font-size-sm);
-  font-weight: var(--dyn-font-weight-medium);
-  color: var(--dyn-color-text-primary);
-}
-
-/* Bordered variant */
-.dyn-table--bordered {
-  /* Already has border by default */
-}
-
-.dyn-table--bordered .dyn-table__cell {
-  border-right: 1px solid var(--dyn-color-border-light);
-}
-
-.dyn-table--bordered .dyn-table__cell:last-child {
-  border-right: none;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .dyn-table__cell {
-    padding: 8px 12px;
-    font-size: var(--dyn-font-size-xs);
-  }
-  
-  .dyn-table__pagination {
-    flex-direction: column;
-    gap: 8px;
-    align-items: stretch;
-  }
-  
-  .dyn-table__pagination-controls {
-    justify-content: center;
-  }
-  
-  .dyn-table-actions {
-    flex-direction: column;
-    gap: 4px;
-  }
-  
-  .dyn-table__action-button {
-    font-size: var(--dyn-font-size-xs);
-    padding: 4px 6px;
+@media (max-width: 767px) {
+  .th,
+  .td {
+    padding: var(--dyn-spacing-sm, 8px);
+    font-size: var(--dyn-font-size-xs, 12px);
   }
 }
 
-/* Dark Theme Support */
-[data-theme="dark"] .dyn-table {
-  background: var(--dyn-color-background-dark);
-  border-color: var(--dyn-color-border-dark);
-}
-
-[data-theme="dark"] .dyn-table__head {
-  background: var(--dyn-color-background-secondary-dark);
-}
-
-[data-theme="dark"] .dyn-table__cell--header {
-  color: var(--dyn-color-text-primary-dark);
-  background: var(--dyn-color-background-secondary-dark);
-}
-
-[data-theme="dark"] .dyn-table__pagination {
-  background: var(--dyn-color-background-secondary-dark);
-  border-color: var(--dyn-color-border-dark);
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  .dyn-table {
-    border-width: 2px;
-  }
-  
-  .dyn-table__row {
-    border-bottom-width: 2px;
-  }
-  
-  .dyn-table__head tr {
-    border-bottom-width: 3px;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-table-bg: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-table-border-color: var(--dyn-color-border-dark, #334155);
+    --dyn-table-header-bg: var(--dyn-color-surface-darker, #111827);
+    --dyn-table-header-text: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-table-row-text: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-table-row-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-table-row-bg-stripe: var(--dyn-color-surface-dark, #111827);
   }
 }

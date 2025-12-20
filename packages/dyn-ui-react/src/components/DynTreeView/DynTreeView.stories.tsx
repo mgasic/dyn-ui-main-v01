@@ -287,7 +287,9 @@ export const OrganizationChart: Story = {
     showIcon: true,
     defaultExpandAll: true,
     onSelect: (selectedKeys, info) => {
-      console.log('Employee selected:', info.node.title);
+      if (info?.node) {
+        console.log('Employee selected:', info.node.title);
+      }
     },
   },
 };

@@ -35,7 +35,7 @@ const meta: Meta<typeof DynInput> = {
     readonly: { control: 'boolean' },
     required: { control: 'boolean' },
     optional: { control: 'boolean' },
-    showClearButton: { control: 'boolean' },
+    showCleanButton: { control: 'boolean' },
     showSpinButtons: { control: 'boolean' },
     icon: { control: 'text', description: 'Ime ikone ili ReactNode' },
     placeholder: { control: 'text' },
@@ -61,7 +61,7 @@ export const Playground: Story = {
     label: 'Ime i prezime',
     placeholder: 'Unesite puno ime',
     help: 'Polje za identifikaciju korisnika',
-    showClearButton: true
+    showCleanButton: true
   }
 };
 
@@ -92,7 +92,7 @@ export const WithIconAndClear: Story = {
     label: 'Pretraga',
     icon: 'search',
     placeholder: 'Pretraži...',
-    showClearButton: true
+    showCleanButton: true
   }
 };
 
@@ -126,9 +126,8 @@ export const Currency: Story = {
     step: 50,
     min: 0,
     currencyConfig: {
-      symbol: 'R$',
-      currencyCode: 'BRL',
-      showCurrencyCode: true,
+      symbol: 'RS$',
+      currencyCode: 'RSD',
       decimalSeparator: ',',
       thousandSeparator: '.',
       precision: 2

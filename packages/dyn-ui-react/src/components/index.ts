@@ -48,7 +48,7 @@ export type * from './DynChart';
 export type * from './DynCheckbox';
 export type * from './DynContainer';
 export type * from './DynDatePicker';
-export type * from './DynDivider';
+//export type * from './DynDivider';
 export type * from './DynFieldContainer';
 export type * from './DynGauge';
 export type * from './DynGrid';

@@ -227,7 +227,7 @@ export const InteractiveTabs: Story = {
       if (activeTab === tabId) {
         const remainingTabs = items.filter(item => item.id !== tabId && !item.disabled);
         if (remainingTabs.length > 0) {
-          setActiveTab(remainingTabs[0].id);
+          setActiveTab(remainingTabs[0]?.id || 'home');
         }
       }
     };

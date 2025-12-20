@@ -1,233 +1,220 @@
-/**
- * DynMenu CSS Styles
- * Responsive navigation menu with collapse animations and hover effects
- */
+/* ==========================================================================
+   DynMenu Component Styles
+   Standardized with design tokens
+   ========================================================================== */
 
-/* Menu Container */
-.dyn-menu {
-  --menu-width: 280px;
-  --menu-width-collapsed: 64px;
-  --menu-bg: var(--color-neutral-light-00, #fff);
-  --menu-border: var(--color-neutral-light-20, #e0e0e0);
-  --menu-item-height: 44px;
-  --menu-item-color: var(--color-action-default, #0066cc);
-  --menu-item-bg-hover: var(--color-brand-01-lighter, #e6f3ff);
-  --menu-item-bg-active: var(--color-brand-01-light, #cce7ff);
-  
-  width: var(--menu-width);
-  height: 100vh;
-  background: var(--menu-bg);
-  border-right: 1px solid var(--menu-border);
+:root {
+  /* Color Tokens */
+  --dyn-menu-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-menu-border-color: var(--dyn-color-border, #d1d5db);
+  --dyn-menu-text-color: var(--dyn-color-text-primary, #111827);
+  --dyn-menu-text-secondary: var(--dyn-color-text-secondary, #6b7280);
+  --dyn-menu-text-disabled: var(--dyn-color-text-disabled, #9ca3af);
+  --dyn-menu-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
+  --dyn-menu-bg-active: var(--dyn-color-primary-light, #eff6ff);
+  --dyn-menu-text-active: var(--dyn-color-primary, #2563eb);
+  --dyn-menu-divider-color: var(--dyn-color-border, #d1d5db);
+
+  /* Size Tokens */
+  --dyn-menu-item-height: 40px;
+  --dyn-menu-item-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-menu-item-padding-x: var(--dyn-spacing-md, 16px);
+  --dyn-menu-padding: var(--dyn-spacing-sm, 8px);
+  --dyn-menu-border-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-menu-min-width: 200px;
+
+  /* Typography */
+  --dyn-menu-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-menu-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-menu-font-weight: var(--dyn-font-weight-normal, 400);
+  --dyn-menu-line-height: 1.5;
+
+  /* Transitions */
+  --dyn-menu-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Shadow */
+  --dyn-menu-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+/* ========================================================================
+   Menu Container
+   ======================================================================== */
+
+.container {
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 1000;
+  min-width: var(--dyn-menu-min-width);
+  background-color: var(--dyn-menu-bg);
+  border: 1px solid var(--dyn-menu-border-color);
+  border-radius: var(--dyn-menu-border-radius);
+  padding: var(--dyn-menu-padding);
+  box-shadow: var(--dyn-menu-shadow);
+  font-family: var(--dyn-menu-font-family);
+  font-size: var(--dyn-menu-font-size);
+  gap: var(--dyn-spacing-xs, 4px);
+  overflow: hidden;
 }
 
-.dyn-menu-collapsed {
-  width: var(--menu-width-collapsed);
-}
+/* ========================================================================
+   Menu Item
+   ======================================================================== */
 
-/* Header */
-.dyn-menu-header {
+.item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 1px solid var(--menu-border);
-  min-height: 64px;
-}
-
-.dyn-menu-logo {
-  flex: 1;
-}
-
-.dyn-menu-logo-image {
-  max-height: 32px;
-  max-width: 100%;
-}
-
-.dyn-menu-toggle {
-  background: none;
+  height: var(--dyn-menu-item-height);
+  padding: var(--dyn-menu-item-padding-y) var(--dyn-menu-item-padding-x);
+  color: var(--dyn-menu-text-color);
+  background-color: transparent;
   border: none;
-  padding: 0.5rem;
-  color: var(--color-neutral-mid-60, #999);
+  border-radius: var(--dyn-border-radius-sm, 6px);
   cursor: pointer;
-  border-radius: 50%;
+  transition: all var(--dyn-menu-transition);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--dyn-menu-font-weight);
+  line-height: var(--dyn-menu-line-height);
+  text-align: left;
+  white-space: nowrap;
 }
 
-.dyn-menu-toggle:hover {
-  background: var(--color-neutral-light-10, #f0f0f0);
+.item:hover:not(:disabled) {
+  background-color: var(--dyn-menu-bg-hover);
+  color: var(--dyn-menu-text-color);
 }
 
-/* Filter */
-.dyn-menu-filter {
-  padding: 1rem;
-  border-bottom: 1px solid var(--menu-border);
+.item:active:not(:disabled) {
+  background-color: var(--dyn-menu-bg-active);
+  color: var(--dyn-menu-text-active);
 }
 
-/* Content */
-.dyn-menu-content {
-  flex: 1;
-  overflow-y: auto;
-}
-
-.dyn-menu-items {
-  padding: 0.5rem 0;
-}
-
-/* Menu Item */
-.dyn-menu-item-container {
-  margin: 0;
-  position: relative;
-}
-
-.dyn-menu-item {
-  display: flex;
-  align-items: center;
-  height: var(--menu-item-height);
-  padding: 0 1rem;
-  color: var(--menu-item-color);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  user-select: none;
-}
-
-.dyn-menu-item:hover:not(.dyn-menu-item-disabled) {
-  background: var(--menu-item-bg-hover);
-}
-
-.dyn-menu-item-active {
-  background: var(--menu-item-bg-active);
-  font-weight: 600;
-}
-
-.dyn-menu-item-disabled {
-  color: var(--color-neutral-mid-60, #999);
+.item:disabled {
+  color: var(--dyn-menu-text-disabled);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.dyn-menu-item-content {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-}
-
-.dyn-menu-item-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.75rem;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dyn-menu-item-label {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 0.875rem;
-}
-
-.dyn-menu-collapsed .dyn-menu-item-label {
-  display: none;
-}
-
-.dyn-menu-item-badge {
-  margin-left: auto;
-  margin-right: 0.5rem;
-}
-
-.dyn-menu-collapsed .dyn-menu-item-badge {
-  display: none;
-}
-
-.dyn-menu-item-arrow {
-  margin-left: auto;
-  transition: transform 0.2s ease;
-}
-
-.dyn-menu-collapsed .dyn-menu-item-arrow {
-  display: none;
-}
-
-.dyn-menu-arrow-expanded {
-  transform: rotate(180deg);
-}
-
-/* Subitems */
-.dyn-menu-item-level-1 {
-  padding-left: 3rem;
-}
-
-.dyn-menu-item-level-2 {
-  padding-left: 4rem;
-}
-
-.dyn-menu-subitems {
-  background: var(--color-neutral-light-05, #f9f9f9);
-}
-
-/* Divider */
-.dyn-menu-divider {
-  height: 1px;
-  background: var(--menu-border);
-  margin: 0.5rem 1rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .dyn-menu {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
-  
-  .dyn-menu-open {
-    transform: translateX(0);
-  }
-}
-
-/* Focus states */
-.dyn-menu-item:focus-visible {
-  outline: 2px solid var(--color-action-focus, #0066cc);
+.item:focus-visible {
+  outline: 2px solid var(--dyn-menu-text-active);
   outline-offset: -2px;
 }
 
-/* Animation for collapsing */
-.dyn-menu-collapsed .dyn-menu-item-content {
+/* ========================================================================
+   Menu Item States
+   ======================================================================== */
+
+.itemActive {
+  background-color: var(--dyn-menu-bg-active);
+  color: var(--dyn-menu-text-active);
+  font-weight: var(--dyn-font-weight-medium, 500);
+}
+
+.itemDisabled {
+  cursor: not-allowed;
+  color: var(--dyn-menu-text-disabled);
+}
+
+/* ========================================================================
+   Menu Item Icon & Label
+   ======================================================================== */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-right: var(--dyn-spacing-sm, 8px);
+  flex-shrink: 0;
 }
 
-.dyn-menu-collapsed .dyn-menu-item {
-  padding: 0 1rem;
+.label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.submenuArrow {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform var(--dyn-menu-transition);
 }
 
-.dyn-menu-collapsed .dyn-menu-item-icon {
-  margin-right: 0;
+.itemWithSubmenu.open .submenuArrow {
+  transform: rotate(180deg);
 }
 
-/* Scrollbar styling */
-.dyn-menu-content::-webkit-scrollbar {
-  width: 6px;
+/* ========================================================================
+   Menu Divider
+   ======================================================================== */
+
+.divider {
+  height: 1px;
+  background-color: var(--dyn-menu-divider-color);
+  margin: var(--dyn-spacing-xs, 4px) 0;
+  border: none;
 }
 
-.dyn-menu-content::-webkit-scrollbar-track {
-  background: var(--color-neutral-light-10, #f0f0f0);
+/* ========================================================================
+   Submenu
+   ======================================================================== */
+
+.submenu {
+  display: none;
+  flex-direction: column;
+  padding-left: var(--dyn-spacing-md, 16px);
+  gap: var(--dyn-spacing-xs, 4px);
 }
 
-.dyn-menu-content::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-mid-40, #999);
-  border-radius: 3px;
+.itemWithSubmenu.open .submenu {
+  display: flex;
 }
 
-.dyn-menu-content::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-mid-60, #666);
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .submenuArrow {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Responsive: Mobile (767px and below)
+   ======================================================================== */
+
+@media (max-width: 767px) {
+  .container {
+    min-width: 100%;
+  }
+
+  .item {
+    height: 44px;
+    padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 16px);
+  }
+}
+
+/* ========================================================================
+   Dark Mode Support
+   ======================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-menu-bg: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-menu-border-color: var(--dyn-color-border-dark, #334155);
+    --dyn-menu-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-menu-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-menu-text-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+    --dyn-menu-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-menu-bg-active: rgba(59, 130, 246, 0.15);
+    --dyn-menu-text-active: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-menu-divider-color: var(--dyn-color-border-dark, #334155);
+  }
 }

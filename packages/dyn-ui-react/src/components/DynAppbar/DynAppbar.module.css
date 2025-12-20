@@ -1,0 +1,87 @@
+/* ==========================================================================
+   DynAppbar Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-appbar-bg: var(--dyn-color-primary, #2563eb);
+  --dyn-appbar-text-color: #ffffff;
+  --dyn-appbar-border-color: rgba(0, 0, 0, 0.1);
+
+  /* Size Tokens */
+  --dyn-appbar-height: 64px;
+  --dyn-appbar-padding-y: var(--dyn-spacing-md, 16px);
+  --dyn-appbar-padding-x: var(--dyn-spacing-lg, 24px);
+  --dyn-appbar-gap: var(--dyn-spacing-lg, 24px);
+  --dyn-appbar-border-radius: 0;
+
+  /* Typography */
+  --dyn-appbar-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-appbar-title-font-size: var(--dyn-font-size-lg, 18px);
+  --dyn-appbar-title-font-weight: var(--dyn-font-weight-semibold, 600);
+
+  /* Transitions */
+  --dyn-appbar-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Shadow */
+  --dyn-appbar-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  height: var(--dyn-appbar-height);
+  padding: var(--dyn-appbar-padding-y) var(--dyn-appbar-padding-x);
+  background-color: var(--dyn-appbar-bg);
+  border-bottom: 1px solid var(--dyn-appbar-border-color);
+  box-shadow: var(--dyn-appbar-shadow);
+  font-family: var(--dyn-appbar-font-family);
+  color: var(--dyn-appbar-text-color);
+  gap: var(--dyn-appbar-gap);
+}
+
+.title {
+  font-size: var(--dyn-appbar-title-font-size);
+  font-weight: var(--dyn-appbar-title-font-weight);
+  color: inherit;
+}
+
+.left,
+.center,
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-appbar-gap);
+}
+
+.left {
+  flex: 0 0 auto;
+}
+
+.center {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.right {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 767px) {
+  .container {
+    height: 56px;
+    padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 16px);
+    gap: var(--dyn-spacing-md, 16px);
+  }
+
+  .title {
+    font-size: var(--dyn-font-size-md, 14px);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-appbar-bg: var(--dyn-color-primary-dark, #1e40af);
+  }
+}

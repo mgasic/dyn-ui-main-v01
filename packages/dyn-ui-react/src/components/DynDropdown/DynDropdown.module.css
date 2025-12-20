@@ -1,0 +1,138 @@
+/* ==========================================================================
+   DynDropdown Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-dropdown-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-dropdown-border-color: var(--dyn-color-border, #d1d5db);
+  --dyn-dropdown-text-color: var(--dyn-color-text-primary, #111827);
+  --dyn-dropdown-text-secondary: var(--dyn-color-text-secondary, #6b7280);
+  --dyn-dropdown-item-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
+  --dyn-dropdown-item-bg-active: rgba(37, 99, 235, 0.1);
+  --dyn-dropdown-item-text-active: var(--dyn-color-primary, #2563eb);
+  --dyn-dropdown-divider-color: var(--dyn-color-border, #d1d5db);
+
+  /* Size Tokens */
+  --dyn-dropdown-min-width: 200px;
+  --dyn-dropdown-max-width: 400px;
+  --dyn-dropdown-padding: var(--dyn-spacing-sm, 8px);
+  --dyn-dropdown-item-height: 40px;
+  --dyn-dropdown-item-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-dropdown-item-padding-x: var(--dyn-spacing-md, 16px);
+  --dyn-dropdown-border-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-dropdown-offset: var(--dyn-spacing-sm, 8px);
+
+  /* Typography */
+  --dyn-dropdown-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-dropdown-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-dropdown-line-height: 1.5;
+
+  /* Transitions */
+  --dyn-dropdown-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Shadow */
+  --dyn-dropdown-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  --dyn-dropdown-z-index: 1000;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--dyn-dropdown-font-family);
+}
+
+.menu {
+  position: fixed;
+  min-width: var(--dyn-dropdown-min-width);
+  max-width: var(--dyn-dropdown-max-width);
+  background-color: var(--dyn-dropdown-bg);
+  border: 1px solid var(--dyn-dropdown-border-color);
+  border-radius: var(--dyn-dropdown-border-radius);
+  box-shadow: var(--dyn-dropdown-shadow);
+  padding: var(--dyn-dropdown-padding);
+  font-family: var(--dyn-dropdown-font-family);
+  font-size: var(--dyn-dropdown-font-size);
+  line-height: var(--dyn-dropdown-line-height);
+  color: var(--dyn-dropdown-text-color);
+  z-index: var(--dyn-dropdown-z-index);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--dyn-dropdown-transition);
+  pointer-events: none;
+}
+
+.menuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: var(--dyn-dropdown-item-height);
+  padding: var(--dyn-dropdown-item-padding-y) var(--dyn-dropdown-item-padding-x);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--dyn-border-radius-sm, 6px);
+  cursor: pointer;
+  color: var(--dyn-dropdown-text-color);
+  font-family: inherit;
+  font-size: inherit;
+  transition: all var(--dyn-dropdown-transition);
+  width: 100%;
+  text-align: left;
+}
+
+.item:hover {
+  background-color: var(--dyn-dropdown-item-bg-hover);
+}
+
+.itemActive {
+  background-color: var(--dyn-dropdown-item-bg-active);
+  color: var(--dyn-dropdown-item-text-active);
+  font-weight: var(--dyn-font-weight-medium, 500);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--dyn-dropdown-divider-color);
+  margin: var(--dyn-spacing-xs, 4px) 0;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .menu {
+    min-width: 100%;
+    width: calc(100vw - 2 * var(--dyn-spacing-md, 16px));
+    max-width: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-dropdown-bg: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-dropdown-border-color: var(--dyn-color-border-dark, #334155);
+    --dyn-dropdown-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-dropdown-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-dropdown-item-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-dropdown-item-bg-active: rgba(59, 130, 246, 0.15);
+    --dyn-dropdown-item-text-active: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-dropdown-divider-color: var(--dyn-color-border-dark, #334155);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .item {
+    transition: none;
+  }
+}

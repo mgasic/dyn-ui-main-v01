@@ -27,7 +27,7 @@
   --dyn-label-opacity-disabled: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.6));
 
   /* Transitions */
-  --dyn-label-transition: color var(--dyn-transition-base, 0.18s ease);
+  --dyn-label-transition: color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 /* ========================================================================
@@ -108,7 +108,6 @@
    States
    ======================================================================== */
 
-/* Disabled State */
 .dyn-label.dyn-label-disabled {
   color: var(--dyn-label-text-color-disabled);
   opacity: var(--dyn-label-opacity-disabled);
@@ -123,7 +122,6 @@
   color: var(--dyn-label-text-color-disabled);
 }
 
-/* Focus Within (Accessibility) */
 .dyn-label:focus-within .dyn-label-text {
   color: var(--dyn-label-text-color-focus);
 }
@@ -132,7 +130,7 @@
    Accessibility: High Contrast Mode
    ======================================================================== */
 
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .dyn-label {
     font-weight: 600;
   }

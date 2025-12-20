@@ -1,0 +1,193 @@
+{
+	"name": "Token Mappings Database",
+	"version": "1.0",
+	"date": "2025-12-20",
+	"purpose": "Complete token reference for AI agent",
+	"foundation_tokens": {
+		"colors": {
+			"primary": {
+				"light": "#2563eb",
+				"dark": "#1e3a8a",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			},
+			"secondary": {
+				"light": "#f3f4f6",
+				"dark": "#1f2937",
+				"contrast": "#1f2937",
+				"wcag_contrast": "12.6:1"
+			},
+			"success": {
+				"light": "#10b981",
+				"dark": "#059669",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			},
+			"warning": {
+				"light": "#f59e0b",
+				"dark": "#d97706",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			},
+			"error": {
+				"light": "#ef4444",
+				"dark": "#dc2626",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			},
+			"info": {
+				"light": "#3b82f6",
+				"dark": "#1d4ed8",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			},
+			"neutral": {
+				"light": "#6b7280",
+				"dark": "#9ca3af",
+				"contrast": "#ffffff",
+				"wcag_contrast": "4.5:1"
+			}
+		},
+		"spacing": {
+			"xs": "0.25rem",
+			"sm": "0.5rem",
+			"md": "0.75rem",
+			"lg": "1rem",
+			"xl": "1.5rem",
+			"2xl": "2rem"
+		},
+		"typography": {
+			"font_size": {
+				"xs": "0.75rem",
+				"sm": "0.875rem",
+				"base": "1rem",
+				"lg": "1.125rem",
+				"xl": "1.25rem"
+			},
+			"font_weight": {
+				"normal": "400",
+				"medium": "500",
+				"semibold": "600",
+				"bold": "700"
+			},
+			"line_height": {
+				"tight": "1.2",
+				"normal": "1.5",
+				"relaxed": "1.75"
+			}
+		},
+		"shadows": {
+			"xs": "0 1px 2px rgba(0, 0, 0, 0.05)",
+			"sm": "0 1px 3px rgba(0, 0, 0, 0.1)",
+			"md": "0 4px 6px rgba(0, 0, 0, 0.1)",
+			"lg": "0 10px 15px rgba(0, 0, 0, 0.1)",
+			"xl": "0 20px 25px rgba(0, 0, 0, 0.1)"
+		},
+		"radius": {
+			"none": "0",
+			"sm": "0.25rem",
+			"md": "0.5rem",
+			"lg": "0.75rem",
+			"xl": "1rem",
+			"full": "9999px"
+		},
+		"transitions": {
+			"fast": "150ms",
+			"base": "200ms",
+			"slow": "300ms",
+			"easing": "cubic-bezier(0.4, 0, 0.2, 1)"
+		},
+		"z_index": {
+			"dropdown": "1000",
+			"sticky": "1100",
+			"fixed": "1200",
+			"modal_backdrop": "1300",
+			"modal": "1400",
+			"popover": "1500",
+			"tooltip": "1600"
+		}
+	},
+	"component_tokens": {
+		"button": [
+			"--dyn-button-bg",
+			"--dyn-button-color",
+			"--dyn-button-border",
+			"--dyn-button-padding-y",
+			"--dyn-button-padding-x",
+			"--dyn-button-font-size",
+			"--dyn-button-font-weight",
+			"--dyn-button-border-radius",
+			"--dyn-button-shadow",
+			"--dyn-button-transition"
+		],
+		"input": [
+			"--dyn-input-bg",
+			"--dyn-input-color",
+			"--dyn-input-border",
+			"--dyn-input-border-hover",
+			"--dyn-input-border-focus",
+			"--dyn-input-placeholder",
+			"--dyn-input-padding-y",
+			"--dyn-input-padding-x",
+			"--dyn-input-font-size",
+			"--dyn-input-font-weight"
+		],
+		"flex": [
+			"--dyn-flex-gap",
+			"--dyn-flex-padding",
+			"--dyn-flex-align"
+		],
+		"grid": [
+			"--dyn-grid-gap",
+			"--dyn-grid-padding",
+			"--dyn-grid-columns"
+		],
+		"badge": [
+			"--dyn-badge-bg",
+			"--dyn-badge-color",
+			"--dyn-badge-padding-y",
+			"--dyn-badge-padding-x",
+			"--dyn-badge-font-size",
+			"--dyn-badge-border-radius"
+		],
+		"table": [
+			"--dyn-table-bg",
+			"--dyn-table-border",
+			"--dyn-table-header-bg",
+			"--dyn-table-row-hover-bg",
+			"--dyn-table-padding"
+		],
+		"modal": [
+			"--dyn-modal-bg",
+			"--dyn-modal-shadow",
+			"--dyn-modal-z-index",
+			"--dyn-modal-border-radius"
+		],
+		"tooltip": [
+			"--dyn-tooltip-bg",
+			"--dyn-tooltip-color",
+			"--dyn-tooltip-padding",
+			"--dyn-tooltip-z-index"
+		]
+	},
+	"dark_mode_overrides": {
+		"colors": {
+			"primary": "#1e3a8a",
+			"secondary": "#1f2937",
+			"success": "#059669",
+			"warning": "#d97706",
+			"error": "#dc2626"
+		},
+		"triggers": [
+			"@media (prefers-color-scheme: dark)",
+			"[data-color-scheme=\"dark\"]"
+		]
+	},
+	"accessibility_requirements": {
+		"minimum_touch_target": "44px",
+		"minimum_contrast_ratio": "4.5:1",
+		"focus_ring_size": "3px",
+		"reduced_motion_support": true,
+		"high_contrast_support": true
+	}
+}

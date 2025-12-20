@@ -1,5 +1,0 @@
-{
-  "$primary": "var(--dyn-colors-primary)",
-  "$text": "var(--dyn-colors-text)",
-  "$bg": "var(--dyn-colors-bg)"
-}

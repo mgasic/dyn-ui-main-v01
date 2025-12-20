@@ -3,6 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import DynTable from './DynTable';
 import { DynTableColumn, TableAction } from './DynTable.types';
+import styles from './DynTable.module.css';
 
 const sampleData = [
   { id: 1, name: 'John Doe', age: 30, email: 'john@example.com', active: true },

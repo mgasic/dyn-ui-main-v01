@@ -1,7 +1,7 @@
 /**
  * DynMenu Storybook Stories - FIXED VERSION
  * Interactive examples and documentation for navigation menu component
- * 
+ *
  * FIXED: Removed non-existent props like 'menus', 'collapsed', 'filter', etc.
  * Now using only the actual implemented props: 'items', 'orientation', 'onAction'
  */
@@ -262,11 +262,15 @@ export const WithActionHandler: Story = {
   args: {
     items: horizontalMenuItems,
     orientation: 'horizontal',
-    onAction: (action: string | (() => void)) => {
-      if (typeof action === 'function') {
-        action();
-      } else {
-        console.log('Menu action:', action);
+    onAction: (item: string | DynMenuItem) => {
+      if (typeof item === 'string') {
+        console.log('Menu action:', item);
+      } else if (item.action) {
+        if (typeof item.action === 'function') {
+          item.action();
+        } else {
+          console.log('Menu action:', item.action);
+        }
       }
     }
   }
@@ -287,7 +291,9 @@ export const SidebarMenu: Story = {
           items={verticalMenuItems}
           orientation="vertical"
           onAction={(action) => {
-            if (typeof action === 'function') action();
+            if (typeof action === 'function') {
+              (action as () => void)();
+            }
           }}
         />
       </aside>
@@ -311,8 +317,10 @@ export const NavigationBar: Story = {
         items={simpleMenuItems}
         orientation="horizontal"
         onAction={(action) => {
-          if (typeof action === 'function') action();
-        }}
+            if (typeof action === 'function') {
+              (action as () => void)();
+            }
+          }}
       />
     </nav>
   )

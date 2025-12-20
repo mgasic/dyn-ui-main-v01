@@ -1,0 +1,142 @@
+/* ==========================================================================
+   DynSidebar Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-sidebar-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-sidebar-border-color: var(--dyn-color-border, #d1d5db);
+  --dyn-sidebar-text-color: var(--dyn-color-text-primary, #111827);
+  --dyn-sidebar-item-text: var(--dyn-color-text-secondary, #6b7280);
+  --dyn-sidebar-item-text-active: var(--dyn-color-primary, #2563eb);
+  --dyn-sidebar-item-bg-hover: var(--dyn-color-surface-hover, #f3f4f6);
+  --dyn-sidebar-item-bg-active: rgba(37, 99, 235, 0.1);
+
+  /* Size Tokens */
+  --dyn-sidebar-width: 256px;
+  --dyn-sidebar-width-collapsed: 64px;
+  --dyn-sidebar-padding: var(--dyn-spacing-md, 16px);
+  --dyn-sidebar-item-height: 40px;
+  --dyn-sidebar-item-gap: var(--dyn-spacing-sm, 8px);
+  --dyn-sidebar-border-radius: var(--dyn-border-radius-md, 8px);
+
+  /* Typography */
+  --dyn-sidebar-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-sidebar-font-size: var(--dyn-font-size-sm, 14px);
+
+  /* Transitions */
+  --dyn-sidebar-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Shadow */
+  --dyn-sidebar-shadow: var(--dyn-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: var(--dyn-sidebar-width);
+  height: 100vh;
+  background-color: var(--dyn-sidebar-bg);
+  border-right: 1px solid var(--dyn-sidebar-border-color);
+  box-shadow: var(--dyn-sidebar-shadow);
+  padding: var(--dyn-sidebar-padding);
+  font-family: var(--dyn-sidebar-font-family);
+  font-size: var(--dyn-sidebar-font-size);
+  color: var(--dyn-sidebar-text-color);
+  overflow-y: auto;
+  transition: width var(--dyn-sidebar-transition);
+}
+
+.collapsed {
+  width: var(--dyn-sidebar-width-collapsed);
+}
+
+.header {
+  padding: var(--dyn-spacing-md, 16px) 0;
+  margin-bottom: var(--dyn-spacing-md, 16px);
+  border-bottom: 1px solid var(--dyn-sidebar-border-color);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dyn-sidebar-item-gap);
+}
+
+.footer {
+  padding: var(--dyn-spacing-md, 16px) 0;
+  margin-top: auto;
+  border-top: 1px solid var(--dyn-sidebar-border-color);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  height: var(--dyn-sidebar-item-height);
+  padding: 0 var(--dyn-spacing-md, 16px);
+  color: var(--dyn-sidebar-item-text);
+  background-color: transparent;
+  border: none;
+  border-radius: var(--dyn-sidebar-border-radius);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  transition: all var(--dyn-sidebar-transition);
+  gap: var(--dyn-sidebar-item-gap);
+}
+
+.item:hover {
+  background-color: var(--dyn-sidebar-item-bg-hover);
+}
+
+.itemActive {
+  background-color: var(--dyn-sidebar-item-bg-active);
+  color: var(--dyn-sidebar-item-text-active);
+  font-weight: var(--dyn-font-weight-medium, 500);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collapsed .label {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--dyn-sidebar-width);
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform var(--dyn-sidebar-transition);
+  }
+
+  .container.open {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-sidebar-bg: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-sidebar-border-color: var(--dyn-color-border-dark, #334155);
+    --dyn-sidebar-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-sidebar-item-text: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-sidebar-item-text-active: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-sidebar-item-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-sidebar-item-bg-active: rgba(59, 130, 246, 0.15);
+  }
+}

@@ -1,62 +1,53 @@
-/**
- * Component Base: Layout
- * 
- * Provides reusable layout patterns and spacing
- * Components: DynFlex, DynGrid, DynStack, DynBox, DynContainer
- * 
- * Foundation References:
- * - Spacing: gap, padding, margin tokens
- * - Typography: line-height for text flow
- * - Sizing: responsive sizes
- */
+/* ==========================================================================
+   Component Base Layer - Layout Components
+   Reusable token patterns for layout components
+   ========================================================================== */
 
-/* Base flex layout */
-.flex-base {
-  --dyn-flex-gap: var(--dyn-spacing-md);
-  --dyn-flex-padding: 0;
-  --dyn-flex-align-items: stretch;
-  --dyn-flex-justify-content: flex-start;
+:root {
+  /* ========================================================================
+     Layout Component Tokens
+     Used by: DynFlex, DynGrid, DynStack, DynBox, DynContainer
+     ======================================================================== */
+
+  /* Spacing */
+  --dyn-layout-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-layout-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-layout-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-layout-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-layout-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-layout-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
+
+  /* Padding */
+  --dyn-layout-padding: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-layout-padding-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-layout-padding-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-layout-padding-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-layout-padding-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
+  --dyn-layout-padding-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
+
+  /* Container */
+  --dyn-container-max-width: 1280px;
+  --dyn-container-max-width-sm: 640px;
+  --dyn-container-max-width-md: 768px;
+  --dyn-container-max-width-lg: 1024px;
+  --dyn-container-max-width-xl: 1280px;
+  --dyn-container-max-width-2xl: 1536px;
+
+  /* Grid */
+  --dyn-grid-columns: 12;
+  --dyn-grid-gutter: var(--dyn-spacing-md, var(--spacing-md, 16px));
+
+  /* Background */
+  --dyn-layout-bg: transparent;
+  --dyn-layout-bg-surface: var(--dyn-color-surface, var(--color-surface, #ffffff));
+
+  /* Border */
+  --dyn-layout-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
 }
 
-/* Grid layout */
-.grid-base {
-  --dyn-grid-gap: var(--dyn-spacing-md);
-  --dyn-grid-padding: 0;
-  --dyn-grid-columns: auto;
-  --dyn-grid-rows: auto;
-}
-
-/* Stack layout (vertical spacing) */
-.stack-base {
-  --dyn-stack-gap: var(--dyn-spacing-md);
-  --dyn-stack-padding: 0;
-}
-
-/* Box container */
-.box-base {
-  --dyn-box-padding: var(--dyn-spacing-md);
-  --dyn-box-margin: 0;
-  --dyn-box-border-radius: 0;
-  --dyn-box-background: transparent;
-}
-
-/* Container with responsive gutter */
-.container-base {
-  --dyn-container-max-width: 100%;
-  --dyn-container-padding: var(--dyn-spacing-gutter);
-  --dyn-container-margin: 0 auto;
-}
-
-/* Compact density variant */
-.density-compact {
-  --dyn-flex-gap: calc(var(--dyn-spacing-md) * 0.75);
-  --dyn-grid-gap: calc(var(--dyn-spacing-md) * 0.75);
-  --dyn-stack-gap: calc(var(--dyn-spacing-md) * 0.75);
-}
-
-/* Spacious density variant */
-.density-spacious {
-  --dyn-flex-gap: calc(var(--dyn-spacing-md) * 1.5);
-  --dyn-grid-gap: calc(var(--dyn-spacing-md) * 1.5);
-  --dyn-stack-gap: calc(var(--dyn-spacing-md) * 1.5);
+/* Dark Mode Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-layout-bg-surface: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+  }
 }

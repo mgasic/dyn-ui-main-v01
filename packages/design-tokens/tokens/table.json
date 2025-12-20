@@ -1,0 +1,263 @@
+{
+  "dyn": {
+    "table": {
+      "description": "Design tokens for DynTable component",
+      "root": {
+        "fontFamily": {
+          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif",
+          "description": "Default font family for table"
+        },
+        "fontSize": {
+          "value": "14px",
+          "description": "Default font size for table cells"
+        },
+        "backgroundColor": {
+          "value": "#ffffff",
+          "description": "Table background color"
+        },
+        "textColor": {
+          "value": "#333333",
+          "description": "Table text color"
+        }
+      },
+      "size": {
+        "small": {
+          "padding": {
+            "value": "6px 12px",
+            "description": "Small size cell padding"
+          },
+          "fontSize": {
+            "value": "12px",
+            "description": "Small size font size"
+          }
+        },
+        "medium": {
+          "padding": {
+            "value": "12px 16px",
+            "description": "Medium size cell padding (default)"
+          },
+          "fontSize": {
+            "value": "14px",
+            "description": "Medium size font size"
+          }
+        },
+        "large": {
+          "padding": {
+            "value": "16px 20px",
+            "description": "Large size cell padding"
+          },
+          "fontSize": {
+            "value": "16px",
+            "description": "Large size font size"
+          }
+        }
+      },
+      "header": {
+        "backgroundColor": {
+          "value": "#f5f5f5",
+          "description": "Header cell background color"
+        },
+        "textColor": {
+          "value": "#666666",
+          "description": "Header cell text color"
+        },
+        "fontWeight": {
+          "value": "600",
+          "description": "Header cell font weight"
+        },
+        "borderColor": {
+          "value": "#e0e0e0",
+          "description": "Header border color"
+        },
+        "borderWidth": {
+          "value": "2px",
+          "description": "Header bottom border width"
+        }
+      },
+      "border": {
+        "color": {
+          "value": "#e0e0e0",
+          "description": "Border color for bordered variant"
+        },
+        "width": {
+          "value": "1px",
+          "description": "Border width"
+        }
+      },
+      "row": {
+        "striped": {
+          "backgroundColor": {
+            "value": "#f9f9f9",
+            "description": "Striped row background color"
+          }
+        },
+        "hover": {
+          "backgroundColor": {
+            "value": "#f5f5f5",
+            "description": "Row hover background color"
+          },
+          "transition": {
+            "value": "background-color 0.15s ease",
+            "description": "Row hover transition"
+          }
+        },
+        "selected": {
+          "backgroundColor": {
+            "value": "#e3f2fd",
+            "description": "Selected row background color"
+          },
+          "stripedBackgroundColor": {
+            "value": "#bbdefb",
+            "description": "Selected striped row background color"
+          }
+        }
+      },
+      "sortable": {
+        "cursor": {
+          "value": "pointer",
+          "description": "Sortable cell cursor"
+        },
+        "hoverBackgroundColor": {
+          "value": "#ececec",
+          "description": "Sortable cell hover background"
+        },
+        "activeBackgroundColor": {
+          "value": "#e3f2fd",
+          "description": "Active sorted cell background"
+        },
+        "activeTextColor": {
+          "value": "#1976d2",
+          "description": "Active sorted cell text color"
+        }
+      },
+      "button": {
+        "default": {
+          "padding": {
+            "value": "6px 12px",
+            "description": "Default button padding"
+          },
+          "fontSize": {
+            "value": "12px",
+            "description": "Default button font size"
+          },
+          "fontWeight": {
+            "value": "500",
+            "description": "Default button font weight"
+          },
+          "backgroundColor": {
+            "value": "#ffffff",
+            "description": "Default button background"
+          },
+          "textColor": {
+            "value": "#333333",
+            "description": "Default button text color"
+          },
+          "borderColor": {
+            "value": "#dddddd",
+            "description": "Default button border color"
+          },
+          "borderRadius": {
+            "value": "4px",
+            "description": "Default button border radius"
+          },
+          "transition": {
+            "value": "all 0.2s ease",
+            "description": "Default button transition"
+          }
+        },
+        "primary": {
+          "backgroundColor": {
+            "value": "#1976d2",
+            "description": "Primary button background"
+          },
+          "textColor": {
+            "value": "#ffffff",
+            "description": "Primary button text color"
+          },
+          "hoverBackgroundColor": {
+            "value": "#1565c0",
+            "description": "Primary button hover background"
+          }
+        },
+        "danger": {
+          "backgroundColor": {
+            "value": "#d32f2f",
+            "description": "Danger button background"
+          },
+          "textColor": {
+            "value": "#ffffff",
+            "description": "Danger button text color"
+          },
+          "hoverBackgroundColor": {
+            "value": "#c62828",
+            "description": "Danger button hover background"
+          }
+        }
+      },
+      "pagination": {
+        "padding": {
+          "value": "16px",
+          "description": "Pagination padding"
+        },
+        "gap": {
+          "value": "12px",
+          "description": "Pagination gap between elements"
+        },
+        "backgroundColor": {
+          "value": "#fafafa",
+          "description": "Pagination background color"
+        },
+        "borderColor": {
+          "value": "#e0e0e0",
+          "description": "Pagination border color"
+        },
+        "fontSize": {
+          "value": "12px",
+          "description": "Pagination font size"
+        }
+      },
+      "checkbox": {
+        "size": {
+          "value": "18px",
+          "description": "Checkbox size"
+        },
+        "focusOutlineColor": {
+          "value": "#1976d2",
+          "description": "Checkbox focus outline color"
+        },
+        "focusOutlineWidth": {
+          "value": "2px",
+          "description": "Checkbox focus outline width"
+        }
+      },
+      "empty": {
+        "padding": {
+          "value": "40px 16px",
+          "description": "Empty state padding"
+        },
+        "textColor": {
+          "value": "#999999",
+          "description": "Empty state text color"
+        },
+        "fontSize": {
+          "value": "14px",
+          "description": "Empty state font size"
+        }
+      },
+      "loading": {
+        "padding": {
+          "value": "40px 16px",
+          "description": "Loading state padding"
+        },
+        "textColor": {
+          "value": "#666666",
+          "description": "Loading state text color"
+        },
+        "fontSize": {
+          "value": "14px",
+          "description": "Loading state font size"
+        }
+      }
+    }
+  }
+}

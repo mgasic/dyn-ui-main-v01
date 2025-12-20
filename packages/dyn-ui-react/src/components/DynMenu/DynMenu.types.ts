@@ -1,10 +1,16 @@
 /**
  * DynMenu TypeScript type definitions
  * Navigation component types for hierarchical menu system
+ * 
+ * SIMPLIFIED VERSION - Removed non-implemented props:
+ * - collapsed, collapsedIcon, filter, shortLogo, logo, literals, 
+ * - automaticToggle, onCollapse, onMenuClick
+ * 
+ * These were defined but not implemented in the actual component.
+ * Focus on what's actually working: items, orientation, onAction
  */
 
 import type { ReactNode } from 'react';
-import type { DynBadgeColor, DynBadgeVariant } from '../DynBadge/DynBadge.types';
 import type { BaseComponentProps, AccessibilityProps } from '../../types/theme';
 
 export interface MenuBadge {
@@ -18,10 +24,10 @@ export interface MenuBadge {
   label?: ReactNode;
 
   /** Visual color token */
-  color?: DynBadgeColor;
+  color?: string;
 
   /** Variant styling */
-  variant?: DynBadgeVariant;
+  variant?: string;
 
   /** Maximum count before `max+` is shown */
   maxCount?: number;
@@ -47,55 +53,23 @@ export interface MenuItem {
 // Alias for backward compatibility
 export type DynMenuItem = MenuItem;
 
-export interface MenuLiterals {
-  collapse: string;
-  expand: string;
-  search: string;
-}
-
 export type MenuOrientation = 'horizontal' | 'vertical';
 
+/**
+ * DynMenu component props
+ * Simple, focused props for horizontal/vertical navigation menus
+ */
 export interface DynMenuProps extends BaseComponentProps, AccessibilityProps {
-  /** Menu items array */
+  /** Menu items array - REQUIRED */
   items: MenuItem[];
   
   /** Legacy menu items prop (alias for items) */
   menus?: MenuItem[];
   
-  /** Menu orientation */
+  /** Menu orientation - horizontal or vertical */
   orientation?: MenuOrientation;
   
-  /** Whether menu is collapsed */
-  collapsed?: boolean;
-  
-  /** Icon for collapsed state */
-  collapsedIcon?: string | React.ReactNode;
-  
-  /** Enable filter/search */
-  filter?: boolean;
-  
-  /** Short logo for collapsed state */
-  shortLogo?: string;
-  
-  /** Full logo */
-  logo?: string;
-  
-  /** UI text literals */
-  literals?: Partial<MenuLiterals>;
-  
-  /** Auto-toggle on mobile */
-  automaticToggle?: boolean;
-  
-  /** Additional CSS classes */
-  className?: string;
-  
-  /** Collapse state change handler */
-  onCollapse?: (collapsed: boolean) => void;
-  
-  /** Menu item click handler */
-  onMenuClick?: (item: MenuItem) => void;
-  
-  /** Generic action handler (alias for onMenuClick) */
+  /** Generic action handler - called when menu item is clicked */
   onAction?: (item: MenuItem | string) => void;
   
   /** Menu ID for ARIA */
@@ -112,6 +86,9 @@ export interface DynMenuProps extends BaseComponentProps, AccessibilityProps {
   
   /** Test ID */
   'data-testid'?: string;
+  
+  /** Additional CSS classes */
+  className?: string;
 }
 
 export interface DynMenuRef {
@@ -119,10 +96,3 @@ export interface DynMenuRef {
   expand: () => void;
   toggle: () => void;
 }
-
-// Default literals
-export const DEFAULT_MENU_LITERALS: MenuLiterals = {
-  collapse: 'Retrair menu',
-  expand: 'Expandir menu',
-  search: 'Pesquisar'
-};

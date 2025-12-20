@@ -1,0 +1,62 @@
+/**
+ * Component Base: Layout
+ * 
+ * Provides reusable layout patterns and spacing
+ * Components: DynFlex, DynGrid, DynStack, DynBox, DynContainer
+ * 
+ * Foundation References:
+ * - Spacing: gap, padding, margin tokens
+ * - Typography: line-height for text flow
+ * - Sizing: responsive sizes
+ */
+
+/* Base flex layout */
+.flex-base {
+  --dyn-flex-gap: var(--dyn-spacing-md);
+  --dyn-flex-padding: 0;
+  --dyn-flex-align-items: stretch;
+  --dyn-flex-justify-content: flex-start;
+}
+
+/* Grid layout */
+.grid-base {
+  --dyn-grid-gap: var(--dyn-spacing-md);
+  --dyn-grid-padding: 0;
+  --dyn-grid-columns: auto;
+  --dyn-grid-rows: auto;
+}
+
+/* Stack layout (vertical spacing) */
+.stack-base {
+  --dyn-stack-gap: var(--dyn-spacing-md);
+  --dyn-stack-padding: 0;
+}
+
+/* Box container */
+.box-base {
+  --dyn-box-padding: var(--dyn-spacing-md);
+  --dyn-box-margin: 0;
+  --dyn-box-border-radius: 0;
+  --dyn-box-background: transparent;
+}
+
+/* Container with responsive gutter */
+.container-base {
+  --dyn-container-max-width: 100%;
+  --dyn-container-padding: var(--dyn-spacing-gutter);
+  --dyn-container-margin: 0 auto;
+}
+
+/* Compact density variant */
+.density-compact {
+  --dyn-flex-gap: calc(var(--dyn-spacing-md) * 0.75);
+  --dyn-grid-gap: calc(var(--dyn-spacing-md) * 0.75);
+  --dyn-stack-gap: calc(var(--dyn-spacing-md) * 0.75);
+}
+
+/* Spacious density variant */
+.density-spacious {
+  --dyn-flex-gap: calc(var(--dyn-spacing-md) * 1.5);
+  --dyn-grid-gap: calc(var(--dyn-spacing-md) * 1.5);
+  --dyn-stack-gap: calc(var(--dyn-spacing-md) * 1.5);
+}

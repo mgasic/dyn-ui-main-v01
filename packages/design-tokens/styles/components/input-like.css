@@ -1,0 +1,91 @@
+/**
+ * Component Base: Input-Like
+ * 
+ * Provides reusable patterns for all input-style components
+ * Components: DynInput, DynTextArea, DynSelect, DynDatePicker, DynCheckbox
+ * 
+ * Foundation References:
+ * - Colors: surface, text, border, primary, error colors
+ * - Spacing: input padding tokens
+ * - Typography: font families, sizes
+ * - Borders: border-radius-md, border-width-hairline
+ * - Animations: transition-base
+ * - Sizing: size tokens
+ */
+
+/* Base token definitions for input components */
+.input-base {
+  /* Color tokens */
+  --dyn-input-bg: var(--dyn-color-surface);
+  --dyn-input-color: var(--dyn-color-text-primary);
+  --dyn-input-border: var(--dyn-color-border);
+  --dyn-input-border-hover: var(--dyn-color-border-hover);
+  --dyn-input-border-focus: var(--dyn-color-primary);
+  --dyn-input-focus-ring: var(--dyn-color-focus-ring);
+  --dyn-input-placeholder: var(--dyn-color-text-placeholder);
+  --dyn-input-disabled-bg: var(--dyn-color-surface-disabled);
+  --dyn-input-disabled-color: var(--dyn-color-text-disabled);
+  --dyn-input-readonly-bg: var(--dyn-color-surface-readonly);
+  --dyn-input-error: var(--dyn-color-error);
+
+  /* Spacing tokens */
+  --dyn-input-padding-y: var(--dyn-spacing-sm);
+  --dyn-input-padding-x: var(--dyn-spacing-md);
+  --dyn-input-height: auto;
+
+  /* Typography tokens */
+  --dyn-input-font-family: var(--dyn-font-family-base);
+  --dyn-input-font-size: var(--dyn-font-size-base);
+  --dyn-input-font-weight: var(--dyn-font-weight-normal);
+  --dyn-input-line-height: var(--dyn-line-height-normal);
+
+  /* Effects tokens */
+  --dyn-input-border-radius: var(--dyn-border-radius-md);
+  --dyn-input-border-width: 1px;
+
+  /* Animation tokens */
+  --dyn-input-transition: var(--dyn-transition-base);
+}
+
+/* Size: Small */
+.input-small {
+  --dyn-input-height: 2.25rem;     /* 36px */
+  --dyn-input-padding-y: var(--dyn-spacing-xs);
+  --dyn-input-padding-x: var(--dyn-spacing-sm);
+  --dyn-input-font-size: var(--dyn-font-size-sm);
+}
+
+/* Size: Medium (default) */
+.input-medium {
+  --dyn-input-height: 2.5rem;      /* 40px */
+  --dyn-input-padding-y: var(--dyn-spacing-sm);
+  --dyn-input-padding-x: var(--dyn-spacing-md);
+  --dyn-input-font-size: var(--dyn-font-size-base);
+}
+
+/* Size: Large */
+.input-large {
+  --dyn-input-height: 3rem;        /* 48px */
+  --dyn-input-padding-y: var(--dyn-spacing-md);
+  --dyn-input-padding-x: var(--dyn-spacing-lg);
+  --dyn-input-font-size: var(--dyn-font-size-md);
+}
+
+/* State: Error */
+.input-error {
+  --dyn-input-border: var(--dyn-input-error);
+  --dyn-input-border-focus: var(--dyn-input-error);
+}
+
+/* State: Disabled */
+.input-disabled {
+  --dyn-input-bg: var(--dyn-input-disabled-bg);
+  --dyn-input-color: var(--dyn-input-disabled-color);
+  --dyn-input-border: var(--dyn-color-border-disabled);
+}
+
+/* State: ReadOnly */
+.input-readonly {
+  --dyn-input-bg: var(--dyn-input-readonly-bg);
+  --dyn-input-border: var(--dyn-color-border-light);
+}

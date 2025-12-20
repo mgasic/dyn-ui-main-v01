@@ -1,0 +1,202 @@
+/* ==========================================================================
+   DynStack Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Size Tokens */
+  --dyn-stack-width: 100%;
+  --dyn-stack-height: auto;
+
+  /* Spacing Tokens */
+  --dyn-stack-gap: var(--dyn-spacing-md, 16px);
+  --dyn-stack-gap-none: 0;
+  --dyn-stack-gap-xs: var(--dyn-spacing-xs, 4px);
+  --dyn-stack-gap-sm: var(--dyn-spacing-sm, 8px);
+  --dyn-stack-gap-md: var(--dyn-spacing-md, 16px);
+  --dyn-stack-gap-lg: var(--dyn-spacing-lg, 24px);
+  --dyn-stack-gap-xl: var(--dyn-spacing-xl, 32px);
+
+  /* Typography */
+  --dyn-stack-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+
+  /* Transitions */
+  --dyn-stack-transition: var(--dyn-transition-base, 0.18s ease);
+}
+
+/* ========================================================================
+   Stack Container
+   ======================================================================== */
+
+.container {
+  display: flex;
+  width: var(--dyn-stack-width);
+  height: var(--dyn-stack-height);
+  gap: var(--dyn-stack-gap);
+  font-family: var(--dyn-stack-font-family);
+  box-sizing: border-box;
+}
+
+/* ========================================================================
+   Direction Variants
+   ======================================================================== */
+
+.vertical {
+  flex-direction: column;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.reverse {
+  flex-direction: column-reverse;
+}
+
+.horizontal.reverse {
+  flex-direction: row-reverse;
+}
+
+/* ========================================================================
+   Alignment Variants
+   ======================================================================== */
+
+.alignStart {
+  align-items: flex-start;
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignEnd {
+  align-items: flex-end;
+}
+
+.alignStretch {
+  align-items: stretch;
+}
+
+.alignBaseline {
+  align-items: baseline;
+}
+
+/* ========================================================================
+   Justification Variants
+   ======================================================================== */
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.justifyAround {
+  justify-content: space-around;
+}
+
+.justifyEvenly {
+  justify-content: space-evenly;
+}
+
+/* ========================================================================
+   Gap Variants
+   ======================================================================== */
+
+.gapNone {
+  gap: var(--dyn-stack-gap-none);
+}
+
+.gapXs {
+  gap: var(--dyn-stack-gap-xs);
+}
+
+.gapSm {
+  gap: var(--dyn-stack-gap-sm);
+}
+
+.gapMd {
+  gap: var(--dyn-stack-gap-md);
+}
+
+.gapLg {
+  gap: var(--dyn-stack-gap-lg);
+}
+
+.gapXl {
+  gap: var(--dyn-stack-gap-xl);
+}
+
+/* ========================================================================
+   Wrap Variants
+   ======================================================================== */
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.noWrap {
+  flex-wrap: nowrap;
+}
+
+.wrapReverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* ========================================================================
+   Flex Grow/Shrink
+   ======================================================================== */
+
+.flex1 {
+  flex: 1 1 auto;
+}
+
+.flexGrow {
+  flex-grow: 1;
+}
+
+.flexShrink {
+  flex-shrink: 1;
+}
+
+.flexNone {
+  flex: none;
+}
+
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Responsive: Mobile (767px and below)
+   ======================================================================== */
+
+@media (max-width: 767px) {
+  .container {
+    --dyn-stack-gap: var(--dyn-stack-gap-sm);
+  }
+
+  .horizontal {
+    flex-direction: column;
+  }
+
+  .horizontal.reverse {
+    flex-direction: column-reverse;
+  }
+}

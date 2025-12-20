@@ -1,0 +1,284 @@
+/* ==========================================================================
+   DynFlex Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Size Tokens */
+  --dyn-flex-width: auto;
+  --dyn-flex-height: auto;
+  --dyn-flex-min-width: 0;
+  --dyn-flex-min-height: 0;
+
+  /* Spacing Tokens */
+  --dyn-flex-gap: var(--dyn-spacing-md, 16px);
+  --dyn-flex-gap-none: 0;
+  --dyn-flex-gap-xs: var(--dyn-spacing-xs, 4px);
+  --dyn-flex-gap-sm: var(--dyn-spacing-sm, 8px);
+  --dyn-flex-gap-md: var(--dyn-spacing-md, 16px);
+  --dyn-flex-gap-lg: var(--dyn-spacing-lg, 24px);
+  --dyn-flex-gap-xl: var(--dyn-spacing-xl, 32px);
+
+  /* Padding */
+  --dyn-flex-padding: 0;
+
+  /* Typography */
+  --dyn-flex-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+
+  /* Transitions */
+  --dyn-flex-transition: var(--dyn-transition-base, 0.18s ease);
+}
+
+/* ========================================================================
+   Flex Container
+   ======================================================================== */
+
+.container {
+  display: flex;
+  width: var(--dyn-flex-width);
+  height: var(--dyn-flex-height);
+  min-width: var(--dyn-flex-min-width);
+  min-height: var(--dyn-flex-min-height);
+  gap: var(--dyn-flex-gap);
+  padding: var(--dyn-flex-padding);
+  font-family: var(--dyn-flex-font-family);
+  box-sizing: border-box;
+}
+
+/* ========================================================================
+   Direction Variants
+   ======================================================================== */
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.rowReverse {
+  flex-direction: row-reverse;
+}
+
+.columnReverse {
+  flex-direction: column-reverse;
+}
+
+/* ========================================================================
+   Alignment Variants
+======================================== */
+
+.itemsStart {
+  align-items: flex-start;
+}
+
+.itemsCenter {
+  align-items: center;
+}
+
+.itemsEnd {
+  align-items: flex-end;
+}
+
+.itemsStretch {
+  align-items: stretch;
+}
+
+.itemsBaseline {
+  align-items: baseline;
+}
+
+/* ========================================================================
+   Justification Variants
+   ======================================================================== */
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.justifyCenter {
+  justify-content: center;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.justifyBetween {
+  justify-content: space-between;
+}
+
+.justifyAround {
+  justify-content: space-around;
+}
+
+.justifyEvenly {
+  justify-content: space-evenly;
+}
+
+/* ========================================================================
+   Content Alignment (Flex-wrap)
+   ======================================================================== */
+
+.contentStart {
+  align-content: flex-start;
+}
+
+.contentCenter {
+  align-content: center;
+}
+
+.contentEnd {
+  align-content: flex-end;
+}
+
+.contentBetween {
+  align-content: space-between;
+}
+
+.contentAround {
+  align-content: space-around;
+}
+
+.contentEvenly {
+  align-content: space-evenly;
+}
+
+.contentStretch {
+  align-content: stretch;
+}
+
+/* ========================================================================
+   Wrap Variants
+   ======================================================================== */
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.noWrap {
+  flex-wrap: nowrap;
+}
+
+.wrapReverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* ========================================================================
+   Gap Variants
+   ======================================================================== */
+
+.gapNone {
+  gap: var(--dyn-flex-gap-none);
+}
+
+.gapXs {
+  gap: var(--dyn-flex-gap-xs);
+}
+
+.gapSm {
+  gap: var(--dyn-flex-gap-sm);
+}
+
+.gapMd {
+  gap: var(--dyn-flex-gap-md);
+}
+
+.gapLg {
+  gap: var(--dyn-flex-gap-lg);
+}
+
+.gapXl {
+  gap: var(--dyn-flex-gap-xl);
+}
+
+/* ========================================================================
+   Flex Item
+   ======================================================================== */
+
+.item {
+  min-width: 0; /* Prevent content overflow */
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.item1 {
+  flex: 1 1 auto;
+}
+
+.item0 {
+  flex: 0 1 auto;
+}
+
+.itemNone {
+  flex: none;
+}
+
+.itemGrow {
+  flex-grow: 1;
+}
+
+.itemShrink {
+  flex-shrink: 1;
+}
+
+.itemNoGrow {
+  flex-grow: 0;
+}
+
+.itemNoShrink {
+  flex-shrink: 0;
+}
+
+/* ========================================================================
+   Self Alignment
+   ======================================================================== */
+
+.selfStart {
+  align-self: flex-start;
+}
+
+.selfCenter {
+  align-self: center;
+}
+
+.selfEnd {
+  align-self: flex-end;
+}
+
+.selfStretch {
+  align-self: stretch;
+}
+
+.selfAuto {
+  align-self: auto;
+}
+
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Responsive: Mobile (767px and below)
+   ======================================================================== */
+
+@media (max-width: 767px) {
+  .container {
+    --dyn-flex-gap: var(--dyn-flex-gap-sm);
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .rowReverse {
+    flex-direction: column-reverse;
+  }
+}

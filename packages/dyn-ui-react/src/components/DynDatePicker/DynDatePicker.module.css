@@ -1,12 +1,89 @@
-/**
- * DynDatePicker - CSS Styles
- * Part of DYN UI Form Components Group - SCOPE 6
- */
+/* ==========================================================================
+   DynDatePicker Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-date-picker-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-date-picker-border: var(--dyn-color-border, #d0d5dd);
+  --dyn-date-picker-border-hover: var(--dyn-color-border-hover, #9ca3af);
+  --dyn-date-picker-border-focus: var(--dyn-color-primary, #2563eb);
+  --dyn-date-picker-text-primary: var(--dyn-color-text-primary, #111827);
+  --dyn-date-picker-text-placeholder: var(--dyn-color-text-placeholder, #9ca3af);
+  --dyn-date-picker-text-secondary: var(--dyn-color-text-secondary, #475569);
+  --dyn-date-picker-text-disabled: var(--dyn-color-text-disabled, #94a3b8);
+
+  --dyn-date-picker-bg-disabled: var(--dyn-color-surface-disabled, #f1f5f9);
+  --dyn-date-picker-border-disabled: var(--dyn-color-border-disabled, #e2e8f0);
+  --dyn-date-picker-bg-readonly: var(--dyn-color-surface-readonly, #f8fafc);
+
+  --dyn-date-picker-bg-hover: var(--dyn-color-surface-hover, #f1f5f9);
+  --dyn-date-picker-bg-selected: var(--dyn-color-primary-light, #eff6ff);
+  --dyn-date-picker-text-selected: var(--dyn-color-primary, #2563eb);
+
+  --dyn-date-picker-border-error: var(--dyn-color-error, #ef4444);
+  --dyn-date-picker-error-alpha: rgba(239, 68, 68, 0.1);
+  --dyn-date-picker-focus-ring-color: rgba(37, 99, 235, 0.16);
+
+  /* Size Tokens */
+  --dyn-date-picker-height: 40px;
+  --dyn-date-picker-height-sm: 32px;
+  --dyn-date-picker-height-lg: 48px;
+  --dyn-date-picker-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-date-picker-padding-x: var(--dyn-spacing-md, 12px);
+  --dyn-date-picker-padding-y-sm: var(--dyn-spacing-xs, 6px);
+  --dyn-date-picker-padding-x-sm: var(--dyn-spacing-sm, 8px);
+  --dyn-date-picker-padding-y-lg: var(--dyn-spacing-md, 12px);
+  --dyn-date-picker-padding-x-lg: var(--dyn-spacing-lg, 16px);
+
+  /* Button Size */
+  --dyn-date-picker-button-size: 28px;
+  --dyn-date-picker-button-offset: var(--dyn-spacing-xl, 80px);
+  --dyn-date-picker-button-offset-lg: var(--dyn-spacing-xl, 90px);
+  --dyn-date-picker-clear-button-offset: 4px;
+
+  /* Dropdown */
+  --dyn-date-picker-dropdown-padding: var(--dyn-spacing-md, 16px);
+  --dyn-date-picker-dropdown-offset: var(--dyn-spacing-xs, 4px);
+
+  /* Spacing */
+  --dyn-date-picker-gap: var(--dyn-spacing-sm, 8px);
+
+  /* Typography */
+  --dyn-date-picker-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-date-picker-font-size: var(--dyn-font-size-base, 16px);
+  --dyn-date-picker-font-size-sm: var(--dyn-font-size-sm, 14px);
+  --dyn-date-picker-font-size-lg: var(--dyn-font-size-lg, 18px);
+  --dyn-date-picker-line-height: 1.5;
+
+  /* Border */
+  --dyn-date-picker-border-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-date-picker-border-radius-sm: var(--dyn-border-radius-sm, 6px);
+  --dyn-date-picker-border-width: 1px;
+
+  /* Transition */
+  --dyn-date-picker-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Shadow */
+  --dyn-date-picker-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+
+  /* Focus outline */
+  --dyn-date-picker-focus-outline: 2px solid var(--dyn-date-picker-border-focus);
+}
+
+/* ========================================================================
+   Container
+   ======================================================================== */
 
 .container {
   position: relative;
   width: 100%;
 }
+
+/* ========================================================================
+   Input Container
+   ======================================================================== */
 
 .inputContainer {
   position: relative;
@@ -14,74 +91,80 @@
   align-items: center;
 }
 
+/* ========================================================================
+   Input Field
+   ======================================================================== */
+
 .input {
   flex: 1;
   width: 100%;
-  height: 40px;
-  padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-xl, 80px) var(--dyn-spacing-sm, 8px)
-    var(--dyn-spacing-md, 12px);
-  font-family: var(--dyn-font-family, system-ui, -apple-system, sans-serif);
-  font-size: var(--dyn-font-size-base, 16px);
-  line-height: 1.5;
-  color: var(--dyn-color-text-primary, #333);
-  background-color: var(--dyn-color-surface, #fff);
-  border: 1px solid var(--dyn-color-border, #d1d5db);
-  border-radius: var(--dyn-border-radius-md, 6px);
-  transition: all 0.2s ease-in-out;
+  height: var(--dyn-date-picker-height);
+  padding: var(--dyn-date-picker-padding-y) var(--dyn-date-picker-button-offset) var(--dyn-date-picker-padding-y)
+    var(--dyn-date-picker-padding-x);
+  font-family: var(--dyn-date-picker-font-family);
+  font-size: var(--dyn-date-picker-font-size);
+  line-height: var(--dyn-date-picker-line-height);
+  color: var(--dyn-date-picker-text-primary);
+  background-color: var(--dyn-date-picker-bg);
+  border: var(--dyn-date-picker-border-width) solid var(--dyn-date-picker-border);
+  border-radius: var(--dyn-date-picker-border-radius);
+  transition: all var(--dyn-date-picker-transition);
 }
 
 .input::placeholder {
-  color: var(--dyn-color-text-placeholder, #9ca3af);
+  color: var(--dyn-date-picker-text-placeholder);
   opacity: 1;
 }
 
 .input:hover:not(:disabled):not(:read-only) {
-  border-color: var(--dyn-color-border-hover, #9ca3af);
+  border-color: var(--dyn-date-picker-border-hover);
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--dyn-color-primary, #0066cc);
-  box-shadow: 0 0 0 3px var(--dyn-color-primary-alpha, rgba(0, 102, 204, 0.1));
+  border-color: var(--dyn-date-picker-border-focus);
+  box-shadow: 0 0 0 3px var(--dyn-date-picker-focus-ring-color);
 }
 
 .input:disabled {
-  background-color: var(--dyn-color-surface-disabled, #f3f4f6);
-  color: var(--dyn-color-text-disabled, #9ca3af);
+  background-color: var(--dyn-date-picker-bg-disabled);
+  color: var(--dyn-date-picker-text-disabled);
   cursor: not-allowed;
-  border-color: var(--dyn-color-border-disabled, #e5e7eb);
+  border-color: var(--dyn-date-picker-border-disabled);
 }
 
 .input:read-only {
-  background-color: var(--dyn-color-surface-readonly, #f9fafb);
+  background-color: var(--dyn-date-picker-bg-readonly);
   cursor: default;
 }
 
+/* Size variants */
 .sizeSmall {
-  font-size: var(--dyn-font-size-sm, 14px);
-  height: 32px;
-  padding: var(--dyn-spacing-xs, 6px) var(--dyn-spacing-xl, 70px) var(--dyn-spacing-xs, 6px)
-    var(--dyn-spacing-sm, 8px);
+  font-size: var(--dyn-date-picker-font-size-sm);
+  height: var(--dyn-date-picker-height-sm);
+  padding: var(--dyn-date-picker-padding-y-sm) 70px var(--dyn-date-picker-padding-y-sm)
+    var(--dyn-date-picker-padding-x-sm);
 }
 
 .sizeLarge {
-  font-size: var(--dyn-font-size-lg, 18px);
-  height: 48px;
-  padding: var(--dyn-spacing-md, 12px) var(--dyn-spacing-xl, 90px) var(--dyn-spacing-md, 12px)
-    var(--dyn-spacing-lg, 16px);
+  font-size: var(--dyn-date-picker-font-size-lg);
+  height: var(--dyn-date-picker-height-lg);
+  padding: var(--dyn-date-picker-padding-y-lg) var(--dyn-date-picker-button-offset-lg)
+    var(--dyn-date-picker-padding-y-lg) var(--dyn-date-picker-padding-x-lg);
 }
 
+/* States */
 .stateFocused,
 .stateOpen {
-  border-color: var(--dyn-color-primary, #0066cc);
+  border-color: var(--dyn-date-picker-border-focus);
 }
 
 .stateError {
-  border-color: var(--dyn-color-error, #f44336);
+  border-color: var(--dyn-date-picker-border-error);
 }
 
 .stateError:focus {
-  box-shadow: 0 0 0 3px var(--dyn-color-error-alpha, rgba(244, 67, 54, 0.1));
+  box-shadow: 0 0 0 3px var(--dyn-date-picker-error-alpha);
 }
 
 .stateDisabled {
@@ -92,6 +175,10 @@
   cursor: default;
 }
 
+/* ========================================================================
+   Buttons
+   ======================================================================== */
+
 .calendarButton,
 .clearButton {
   position: absolute;
@@ -100,49 +187,58 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: var(--dyn-date-picker-button-size);
+  height: var(--dyn-date-picker-button-size);
   padding: var(--dyn-spacing-xs, 4px);
   background: none;
   border: none;
-  border-radius: var(--dyn-border-radius-sm, 3px);
-  color: var(--dyn-color-text-secondary, #666);
+  border-radius: var(--dyn-date-picker-border-radius-sm);
+  color: var(--dyn-date-picker-text-secondary);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--dyn-date-picker-transition);
+  font-family: var(--dyn-date-picker-font-family);
 }
 
 .calendarButton:hover:not(:disabled),
 .clearButton:hover:not(:disabled) {
-  color: var(--dyn-color-text-primary, #333);
-  background-color: var(--dyn-color-surface-hover, #f3f4f6);
+  color: var(--dyn-date-picker-text-primary);
+  background-color: var(--dyn-date-picker-bg-hover);
 }
 
 .calendarButton:focus,
 .clearButton:focus {
-  outline: 2px solid var(--dyn-color-primary, #0066cc);
+  outline: var(--dyn-date-picker-focus-outline);
   outline-offset: 2px;
 }
 
 .calendarButton:disabled,
 .clearButton:disabled {
-  color: var(--dyn-color-text-disabled, #9ca3af);
+  color: var(--dyn-date-picker-text-disabled);
   cursor: not-allowed;
 }
 
 .calendarButton {
-  right: var(--dyn-spacing-xl, 32px);
+  right: var(--dyn-date-picker-button-offset);
 }
 
 .clearButton {
-  right: var(--dyn-spacing-xs, 4px);
+  right: var(--dyn-date-picker-clear-button-offset);
 }
 
+/* ========================================================================
+   Relative Text
+   ======================================================================== */
+
 .relativeText {
-  margin-top: var(--dyn-spacing-xs, 4px);
-  font-size: var(--dyn-font-size-sm, 14px);
+  margin-top: var(--dyn-date-picker-padding-y-sm);
+  font-size: var(--dyn-date-picker-font-size-sm);
   font-style: italic;
-  color: var(--dyn-color-text-secondary, #666);
+  color: var(--dyn-date-picker-text-secondary);
 }
+
+/* ========================================================================
+   Dropdown
+   ======================================================================== */
 
 .dropdown {
   position: absolute;
@@ -150,48 +246,59 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  margin-top: var(--dyn-spacing-xs, 4px);
-  padding: var(--dyn-spacing-md, 16px);
-  background-color: var(--dyn-color-surface, #fff);
-  border: 1px solid var(--dyn-color-border, #d1d5db);
-  border-radius: var(--dyn-border-radius-md, 6px);
-  box-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+  margin-top: var(--dyn-date-picker-dropdown-offset);
+  padding: var(--dyn-date-picker-dropdown-padding);
+  background-color: var(--dyn-date-picker-bg);
+  border: var(--dyn-date-picker-border-width) solid var(--dyn-date-picker-border);
+  border-radius: var(--dyn-date-picker-border-radius);
+  box-shadow: var(--dyn-date-picker-shadow);
+  font-family: var(--dyn-date-picker-font-family);
 }
+
+/* ========================================================================
+   Shortcuts
+   ======================================================================== */
 
 .shortcuts {
   display: flex;
-  gap: var(--dyn-spacing-sm, 8px);
-  margin-bottom: var(--dyn-spacing-md, 16px);
-  padding-bottom: var(--dyn-spacing-md, 16px);
-  border-bottom: 1px solid var(--dyn-color-border, #d1d5db);
+  gap: var(--dyn-date-picker-gap);
+  margin-bottom: var(--dyn-date-picker-dropdown-padding);
+  padding-bottom: var(--dyn-date-picker-dropdown-padding);
+  border-bottom: var(--dyn-date-picker-border-width) solid var(--dyn-date-picker-border);
+  flex-wrap: wrap;
 }
 
 .shortcut {
-  padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 12px);
-  font-size: var(--dyn-font-size-sm, 14px);
-  color: var(--dyn-color-text-primary, #333);
+  padding: var(--dyn-date-picker-padding-y) var(--dyn-date-picker-padding-x);
+  font-size: var(--dyn-date-picker-font-size-sm);
+  color: var(--dyn-date-picker-text-primary);
   background: none;
-  border: 1px solid var(--dyn-color-border, #d1d5db);
-  border-radius: var(--dyn-border-radius-md, 6px);
+  border: var(--dyn-date-picker-border-width) solid var(--dyn-date-picker-border);
+  border-radius: var(--dyn-date-picker-border-radius);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--dyn-date-picker-transition);
+  font-family: var(--dyn-date-picker-font-family);
 }
 
 .shortcut:hover {
-  background-color: var(--dyn-color-surface-hover, #f3f4f6);
-  border-color: var(--dyn-color-primary, #0066cc);
+  background-color: var(--dyn-date-picker-bg-hover);
+  border-color: var(--dyn-date-picker-border-focus);
 }
 
 .shortcut:focus {
-  outline: 2px solid var(--dyn-color-primary, #0066cc);
+  outline: var(--dyn-date-picker-focus-outline);
   outline-offset: 2px;
 }
 
+/* ========================================================================
+   Help Section
+   ======================================================================== */
+
 .helpTitle {
   margin-bottom: var(--dyn-spacing-sm, 8px);
-  font-size: var(--dyn-font-size-sm, 14px);
+  font-size: var(--dyn-date-picker-font-size-sm);
   font-weight: var(--dyn-font-weight-medium, 500);
-  color: var(--dyn-color-text-primary, #333);
+  color: var(--dyn-date-picker-text-primary);
 }
 
 .helpList {
@@ -203,18 +310,104 @@
 .helpListItem {
   position: relative;
   margin-bottom: var(--dyn-spacing-xs, 4px);
-  padding-left: var(--dyn-spacing-md, 16px);
-  font-size: var(--dyn-font-size-sm, 14px);
-  color: var(--dyn-color-text-secondary, #666);
+  padding-left: var(--dyn-date-picker-padding-x);
+  font-size: var(--dyn-date-picker-font-size-sm);
+  color: var(--dyn-date-picker-text-secondary);
+  line-height: var(--dyn-date-picker-line-height);
 }
 
 .helpListItem::before {
   content: '•';
   position: absolute;
   left: 0;
-  color: var(--dyn-color-primary, #0066cc);
+  color: var(--dyn-date-picker-border-focus);
 }
 
 .helpListItem:last-child {
   margin-bottom: 0;
+}
+
+/* ========================================================================
+   Accessibility: High Contrast Mode
+   ======================================================================== */
+
+@media (prefers-contrast: high) {
+  .input:focus {
+    box-shadow:
+      0 0 0 3px var(--dyn-date-picker-focus-ring-color),
+      0 0 0 6px var(--dyn-date-picker-border);
+    outline: var(--dyn-date-picker-focus-outline);
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .calendarButton,
+  .clearButton,
+  .shortcut {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Dark Mode Support
+   ======================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-date-picker-bg: var(--dyn-color-surface-dark, #1e293b);
+    --dyn-date-picker-border: var(--dyn-color-border-dark, #334155);
+    --dyn-date-picker-border-hover: var(--dyn-color-border-dark-hover, #475569);
+    --dyn-date-picker-border-focus: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-date-picker-text-primary: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-date-picker-text-placeholder: var(--dyn-color-text-placeholder-dark, #6b7280);
+    --dyn-date-picker-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-date-picker-text-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+
+    --dyn-date-picker-bg-disabled: var(--dyn-color-surface-disabled-dark, #334155);
+    --dyn-date-picker-border-disabled: var(--dyn-color-border-disabled-dark, #475569);
+    --dyn-date-picker-bg-readonly: var(--dyn-color-surface-readonly-dark, #2d3748);
+
+    --dyn-date-picker-bg-hover: var(--dyn-color-surface-hover-dark, #2d3748);
+    --dyn-date-picker-bg-selected: rgba(59, 130, 246, 0.2);
+    --dyn-date-picker-text-selected: var(--dyn-color-primary-dark, #3b82f6);
+
+    --dyn-date-picker-focus-ring-color: rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* ========================================================================
+   Responsive Design: Mobile
+   ======================================================================== */
+
+@media (max-width: 767px) {
+  .input {
+    height: 44px;
+  }
+
+  .sizeSmall {
+    height: 40px;
+  }
+
+  .sizeLarge {
+    height: 52px;
+  }
+
+  .dropdown {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .shortcuts {
+    flex-direction: column;
+  }
+
+  .shortcut {
+    width: 100%;
+  }
 }

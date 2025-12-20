@@ -1,0 +1,725 @@
+{
+	"name": "Component Checklist",
+	"version": "1.0",
+	"date": "2025-12-20",
+	"total_components": 37,
+	"categories": 8,
+	"components": [
+		{
+			"id": 1,
+			"name": "DynButton",
+			"category": "button-like",
+			"priority": 1,
+			"status": "95%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-button-bg",
+				"--dyn-button-color",
+				"--dyn-button-padding-y",
+				"--dyn-button-padding-x",
+				"--dyn-button-font-size",
+				"--dyn-button-font-weight",
+				"--dyn-button-border-radius",
+				"--dyn-button-shadow"
+			],
+			"variants": [
+				"primary",
+				"secondary",
+				"tertiary",
+				"disabled"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Specification complete, awaiting implementation"
+		},
+		{
+			"id": 2,
+			"name": "DynIconButton",
+			"category": "button-like",
+			"priority": 2,
+			"status": "90%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-button-*"
+			],
+			"variants": [
+				"primary",
+				"secondary",
+				"icon-only"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "CSS template ready"
+		},
+		{
+			"id": 3,
+			"name": "DynInput",
+			"category": "input-like",
+			"priority": 1,
+			"status": "95%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-input-bg",
+				"--dyn-input-color",
+				"--dyn-input-border",
+				"--dyn-input-border-focus",
+				"--dyn-input-placeholder",
+				"--dyn-input-padding"
+			],
+			"variants": [
+				"default",
+				"error",
+				"disabled",
+				"focus"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Full specification"
+		},
+		{
+			"id": 4,
+			"name": "DynTextarea",
+			"category": "input-like",
+			"priority": 3,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-input-*"
+			],
+			"variants": [
+				"default",
+				"error",
+				"disabled"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template in progress"
+		},
+		{
+			"id": 5,
+			"name": "DynSelect",
+			"category": "input-like",
+			"priority": 4,
+			"status": "80%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-input-*"
+			],
+			"variants": [
+				"default",
+				"error",
+				"disabled"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Needs custom styling"
+		},
+		{
+			"id": 6,
+			"name": "DynCheckbox",
+			"category": "input-like",
+			"priority": 5,
+			"status": "75%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-input-*"
+			],
+			"variants": [
+				"default",
+				"checked",
+				"indeterminate",
+				"disabled"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 7,
+			"name": "DynRadio",
+			"category": "input-like",
+			"priority": 6,
+			"status": "75%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-input-*"
+			],
+			"variants": [
+				"default",
+				"selected",
+				"disabled"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 8,
+			"name": "DynToggle",
+			"category": "input-like",
+			"priority": 7,
+			"status": "70%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-toggle-*"
+			],
+			"variants": [
+				"on",
+				"off",
+				"disabled"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 9,
+			"name": "DynFlex",
+			"category": "layout",
+			"priority": 1,
+			"status": "100%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-flex-gap",
+				"--dyn-flex-padding"
+			],
+			"variants": [
+				"row",
+				"column",
+				"wrap"
+			],
+			"estimate_hours": 1,
+			"assigned_to": null,
+			"status_detailed": "Ready to implement"
+		},
+		{
+			"id": 10,
+			"name": "DynGrid",
+			"category": "layout",
+			"priority": 2,
+			"status": "100%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-grid-gap",
+				"--dyn-grid-columns"
+			],
+			"variants": [
+				"2-col",
+				"3-col",
+				"auto"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Ready to implement"
+		},
+		{
+			"id": 11,
+			"name": "DynStack",
+			"category": "layout",
+			"priority": 3,
+			"status": "95%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-flex-*"
+			],
+			"variants": [
+				"vertical",
+				"horizontal"
+			],
+			"estimate_hours": 1,
+			"assigned_to": null,
+			"status_detailed": "Minor tweaks needed"
+		},
+		{
+			"id": 12,
+			"name": "DynContainer",
+			"category": "layout",
+			"priority": 4,
+			"status": "90%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-container-padding"
+			],
+			"variants": [
+				"full",
+				"max-width"
+			],
+			"estimate_hours": 1,
+			"assigned_to": null,
+			"status_detailed": "Responsive rules pending"
+		},
+		{
+			"id": 13,
+			"name": "DynBadge",
+			"category": "display",
+			"priority": 1,
+			"status": "95%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-badge-bg",
+				"--dyn-badge-color",
+				"--dyn-badge-padding"
+			],
+			"variants": [
+				"success",
+				"error",
+				"warning",
+				"info"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Full specification"
+		},
+		{
+			"id": 14,
+			"name": "DynTag",
+			"category": "display",
+			"priority": 2,
+			"status": "90%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-badge-*"
+			],
+			"variants": [
+				"default",
+				"removable"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Minor tweaks"
+		},
+		{
+			"id": 15,
+			"name": "DynAlert",
+			"category": "display",
+			"priority": 3,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-alert-*"
+			],
+			"variants": [
+				"success",
+				"error",
+				"warning",
+				"info"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template ready"
+		},
+		{
+			"id": 16,
+			"name": "DynLabel",
+			"category": "display",
+			"priority": 4,
+			"status": "100%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-label-*"
+			],
+			"variants": [
+				"required",
+				"optional"
+			],
+			"estimate_hours": 0.5,
+			"assigned_to": null,
+			"status_detailed": "Simple component"
+		},
+		{
+			"id": 17,
+			"name": "DynTable",
+			"category": "data",
+			"priority": 1,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-table-*"
+			],
+			"variants": [
+				"striped",
+				"hover",
+				"compact"
+			],
+			"estimate_hours": 3,
+			"assigned_to": null,
+			"status_detailed": "Complex component"
+		},
+		{
+			"id": 18,
+			"name": "DynPagination",
+			"category": "data",
+			"priority": 2,
+			"status": "80%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-pagination-*"
+			],
+			"variants": [
+				"default",
+				"compact"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 19,
+			"name": "DynList",
+			"category": "data",
+			"priority": 3,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-list-*"
+			],
+			"variants": [
+				"ordered",
+				"unordered",
+				"custom"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template ready"
+		},
+		{
+			"id": 20,
+			"name": "DynNav",
+			"category": "navigation",
+			"priority": 1,
+			"status": "90%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-nav-*"
+			],
+			"variants": [
+				"horizontal",
+				"vertical"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Specification complete"
+		},
+		{
+			"id": 21,
+			"name": "DynBreadcrumb",
+			"category": "navigation",
+			"priority": 2,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-breadcrumb-*"
+			],
+			"variants": [
+				"default",
+				"collapsed"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Minor tweaks"
+		},
+		{
+			"id": 22,
+			"name": "DynTabs",
+			"category": "navigation",
+			"priority": 3,
+			"status": "80%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-tabs-*"
+			],
+			"variants": [
+				"horizontal",
+				"vertical"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 23,
+			"name": "DynSidebar",
+			"category": "navigation",
+			"priority": 4,
+			"status": "75%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-sidebar-*"
+			],
+			"variants": [
+				"collapsible",
+				"fixed"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 24,
+			"name": "DynModal",
+			"category": "overlay",
+			"priority": 1,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-modal-*"
+			],
+			"variants": [
+				"default",
+				"alert",
+				"confirmation"
+			],
+			"estimate_hours": 2.5,
+			"assigned_to": null,
+			"status_detailed": "Template ready"
+		},
+		{
+			"id": 25,
+			"name": "DynTooltip",
+			"category": "overlay",
+			"priority": 2,
+			"status": "80%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-tooltip-*"
+			],
+			"variants": [
+				"top",
+				"right",
+				"bottom",
+				"left"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 26,
+			"name": "DynPopover",
+			"category": "overlay",
+			"priority": 3,
+			"status": "75%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-popover-*"
+			],
+			"variants": [
+				"top",
+				"right",
+				"bottom",
+				"left"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 27,
+			"name": "DynCard",
+			"category": "specialized",
+			"priority": 1,
+			"status": "95%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-card-*"
+			],
+			"variants": [
+				"default",
+				"elevated",
+				"outlined"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Near complete"
+		},
+		{
+			"id": 28,
+			"name": "DynProgress",
+			"category": "specialized",
+			"priority": 2,
+			"status": "85%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-progress-*"
+			],
+			"variants": [
+				"linear",
+				"circular"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template ready"
+		},
+		{
+			"id": 29,
+			"name": "DynSpinner",
+			"category": "specialized",
+			"priority": 3,
+			"status": "80%",
+			"phase": 1,
+			"tokens_required": [
+				"--dyn-spinner-*"
+			],
+			"variants": [
+				"small",
+				"medium",
+				"large"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 30,
+			"name": "DynAvatar",
+			"category": "specialized",
+			"priority": 4,
+			"status": "75%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-avatar-*"
+			],
+			"variants": [
+				"image",
+				"initial",
+				"icon"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 31,
+			"name": "DynImage",
+			"category": "specialized",
+			"priority": 5,
+			"status": "70%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-image-*"
+			],
+			"variants": [
+				"responsive",
+				"fixed"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 32,
+			"name": "DynVideo",
+			"category": "specialized",
+			"priority": 6,
+			"status": "60%",
+			"phase": 3,
+			"tokens_required": [
+				"--dyn-video-*"
+			],
+			"variants": [
+				"responsive",
+				"fixed"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Needs research"
+		},
+		{
+			"id": 33,
+			"name": "DynSearchInput",
+			"category": "input-like",
+			"priority": 8,
+			"status": "70%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-input-*"
+			],
+			"variants": [
+				"default",
+				"with-suggestions"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		},
+		{
+			"id": 34,
+			"name": "DynDropdown",
+			"category": "overlay",
+			"priority": 4,
+			"status": "70%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-dropdown-*"
+			],
+			"variants": [
+				"default",
+				"with-icons"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Early planning"
+		},
+		{
+			"id": 35,
+			"name": "DynAccordion",
+			"category": "navigation",
+			"priority": 5,
+			"status": "65%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-accordion-*"
+			],
+			"variants": [
+				"single",
+				"multi"
+			],
+			"estimate_hours": 2,
+			"assigned_to": null,
+			"status_detailed": "Needs specification"
+		},
+		{
+			"id": 36,
+			"name": "DynCarousel",
+			"category": "specialized",
+			"priority": 7,
+			"status": "60%",
+			"phase": 3,
+			"tokens_required": [
+				"--dyn-carousel-*"
+			],
+			"variants": [
+				"auto",
+				"manual"
+			],
+			"estimate_hours": 3,
+			"assigned_to": null,
+			"status_detailed": "Complex planning"
+		},
+		{
+			"id": 37,
+			"name": "DynRating",
+			"category": "display",
+			"priority": 5,
+			"status": "65%",
+			"phase": 2,
+			"tokens_required": [
+				"--dyn-rating-*"
+			],
+			"variants": [
+				"readonly",
+				"interactive"
+			],
+			"estimate_hours": 1.5,
+			"assigned_to": null,
+			"status_detailed": "Template outline"
+		}
+	],
+	"summary": {
+		"total": 37,
+		"phase_1": 16,
+		"phase_2": 14,
+		"phase_3": 7,
+		"completion_pct": 82
+	}
+}

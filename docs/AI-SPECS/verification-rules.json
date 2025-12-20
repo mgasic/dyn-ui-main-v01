@@ -1,0 +1,224 @@
+{
+	"name": "Verification Rules",
+	"version": "1.0",
+	"date": "2025-12-20",
+	"total_checks": 24,
+	"verification_levels": {
+		"critical": 6,
+		"important": 12,
+		"nice_to_have": 6
+	},
+	"rules": {
+		"css_validation": {
+			"category": "Critical/Important",
+			"checks": [
+				{
+					"id": "CSS_001",
+					"level": "critical",
+					"description": "No hardcoded values (except fallbacks in var())",
+					"example": "CORRECT: color: var(--dyn-button-color, #1f2937);",
+					"check_method": "Verify no hex colors outside var() fallback"
+				},
+				{
+					"id": "CSS_002",
+					"level": "critical",
+					"description": "3-level fallback present",
+					"example": "var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))",
+					"check_method": "Verify nested var with hardcoded fallback"
+				},
+				{
+					"id": "CSS_003",
+					"level": "critical",
+					"description": "Token definitions at :root level ONLY",
+					"example": ":root { --dyn-button-bg: ... }",
+					"check_method": "Search for custom properties outside :root"
+				},
+				{
+					"id": "CSS_004",
+					"level": "important",
+					"description": "Dark mode section exists",
+					"example": "@media (prefers-color-scheme: dark) { ... }",
+					"check_method": "Search for prefers-color-scheme dark"
+				},
+				{
+					"id": "CSS_005",
+					"level": "important",
+					"description": "Responsive section exists",
+					"example": "@media (min-width: 768px) or @media (max-width: 767px)",
+					"check_method": "Search for media queries with breakpoints"
+				},
+				{
+					"id": "CSS_006",
+					"level": "important",
+					"description": "Accessibility rules present",
+					"example": "@media (prefers-reduced-motion: reduce) { ... }",
+					"check_method": "Search for a11y media queries"
+				},
+				{
+					"id": "CSS_007",
+					"level": "important",
+					"description": "Max 300 lines per file",
+					"example": "Length: 180-250 lines",
+					"check_method": "Count total lines"
+				},
+				{
+					"id": "CSS_008",
+					"level": "important",
+					"description": "Variants override tokens ONLY",
+					"example": ".buttonSecondary { --dyn-button-bg: ... }",
+					"check_method": "Check no duplicate properties in variants"
+				},
+				{
+					"id": "CSS_009",
+					"level": "important",
+					"description": "Naming convention correct",
+					"example": "--dyn-button-bg, --dyn-button-bg-hover",
+					"check_method": "Verify pattern: --dyn-[domain]-[property]-[state]"
+				},
+				{
+					"id": "CSS_010",
+					"level": "important",
+					"description": "All tokens from foundation",
+					"example": "var(--dyn-color-primary)",
+					"check_method": "Cross-check with token-mappings.json"
+				}
+			]
+		},
+		"code_validation": {
+			"category": "Important",
+			"checks": [
+				{
+					"id": "CODE_001",
+					"level": "important",
+					"description": "Component exports from index.ts",
+					"example": "export { DynButton } from './DynButton';",
+					"check_method": "Check index.ts"
+				},
+				{
+					"id": "CODE_002",
+					"level": "important",
+					"description": "Types in separate .types.ts",
+					"example": "DynButton.types.ts exists",
+					"check_method": "File check"
+				},
+				{
+					"id": "CODE_003",
+					"level": "important",
+					"description": "JSDoc comments on exports",
+					"example": "/** Component description */",
+					"check_method": "Check JSDoc present"
+				},
+				{
+					"id": "CODE_004",
+					"level": "important",
+					"description": "ForwardRef for HTML elements",
+					"example": "React.forwardRef<HTMLButtonElement, Props>",
+					"check_method": "Search for forwardRef"
+				}
+			]
+		},
+		"test_validation": {
+			"category": "Important",
+			"checks": [
+				{
+					"id": "TEST_001",
+					"level": "important",
+					"description": "Token tests for variants",
+					"example": "test('applies primary variant')",
+					"check_method": "Count variant tests"
+				},
+				{
+					"id": "TEST_002",
+					"level": "important",
+					"description": "Dark mode tests",
+					"example": "test('renders dark mode')",
+					"check_method": "Check dark mode test"
+				},
+				{
+					"id": "TEST_003",
+					"level": "important",
+					"description": "Responsive tests",
+					"example": "test('adjusts on mobile')",
+					"check_method": "Check responsive test"
+				},
+				{
+					"id": "TEST_004",
+					"level": "important",
+					"description": "Accessibility tests",
+					"example": "test('has focus visible')",
+					"check_method": "Check a11y test"
+				},
+				{
+					"id": "TEST_005",
+					"level": "important",
+					"description": "Coverage >= 80%",
+					"example": "80% coverage",
+					"check_method": "Coverage report"
+				},
+				{
+					"id": "TEST_006",
+					"level": "critical",
+					"description": "All tests passing",
+					"example": "PASS all tests",
+					"check_method": "Test suite run"
+				}
+			]
+		},
+		"storybook_validation": {
+			"category": "Important",
+			"checks": [
+				{
+					"id": "STORY_001",
+					"level": "important",
+					"description": "All variants as stories",
+					"example": "export const Primary, Secondary, etc",
+					"check_method": "Count stories"
+				},
+				{
+					"id": "STORY_002",
+					"level": "important",
+					"description": "Dark mode story",
+					"example": "export const DarkMode",
+					"check_method": "Check dark mode story"
+				},
+				{
+					"id": "STORY_003",
+					"level": "important",
+					"description": "Token docs in JSDoc",
+					"example": "Uses --dyn-button-bg",
+					"check_method": "Check documentation"
+				},
+				{
+					"id": "STORY_004",
+					"level": "important",
+					"description": "Clear description",
+					"example": "Meta description field",
+					"check_method": "Check description"
+				}
+			]
+		}
+	},
+	"summary": {
+		"total_checks": 24,
+		"critical_count": 6,
+		"important_count": 12,
+		"nice_to_have_count": 6,
+		"pass_criteria": "All critical + 90% important = PASS",
+		"pass_score_minimum": 22
+	},
+	"automation": {
+		"type": "Automated and Manual",
+		"tools": [
+			"ESLint",
+			"Prettier",
+			"Jest",
+			"Storybook",
+			"Axe"
+		]
+	},
+	"escalation": {
+		"critical_fail": "Block merge",
+		"important_fail": "Request review",
+		"nice_to_have_fail": "Create issue"
+	}
+}

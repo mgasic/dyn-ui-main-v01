@@ -6,30 +6,30 @@
 :root {
   /* Color Tokens */
   --dyn-stepper-bg: transparent;
-  --dyn-stepper-step-bg-pending: var(--dyn-color-surface, #ffffff);
-  --dyn-stepper-step-bg-active: var(--dyn-color-primary, #2563eb);
-  --dyn-stepper-step-bg-completed: var(--dyn-color-primary, #2563eb);
-  --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary, #6b7280);
-  --dyn-stepper-step-text-active: var(--dyn-color-primary, #2563eb);
-  --dyn-stepper-step-text-completed: var(--dyn-color-primary, #2563eb);
-  --dyn-stepper-step-border: var(--dyn-color-border, #d1d5db);
-  --dyn-stepper-connector-bg: var(--dyn-color-border, #d1d5db);
-  --dyn-stepper-connector-active: var(--dyn-color-primary, #2563eb);
+  --dyn-stepper-step-bg-pending: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-stepper-step-bg-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-bg-completed: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-stepper-step-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-text-completed: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-border: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-stepper-connector-bg: var(--dyn-color-border, var(--color-border, #d1d5db));
+  --dyn-stepper-connector-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
   /* Size Tokens */
   --dyn-stepper-step-size: 40px;
-  --dyn-stepper-step-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-stepper-step-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
   --dyn-stepper-step-padding: 0;
-  --dyn-stepper-gap: var(--dyn-spacing-md, 16px);
-  --dyn-stepper-label-gap: var(--dyn-spacing-sm, 8px);
+  --dyn-stepper-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-stepper-label-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
 
   /* Typography */
-  --dyn-stepper-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-stepper-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-stepper-line-height: 1.5;
+  --dyn-stepper-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-stepper-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-stepper-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   /* Transitions */
-  --dyn-stepper-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-stepper-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 .container {
@@ -66,7 +66,7 @@
   border: 2px solid var(--dyn-stepper-step-border);
   border-radius: 50%;
   color: var(--dyn-stepper-step-text-pending);
-  font-weight: var(--dyn-font-weight-medium, 500);
+  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
   transition: all var(--dyn-stepper-transition);
   flex-shrink: 0;
 }
@@ -90,7 +90,7 @@
 }
 
 .stepTitle {
-  font-weight: var(--dyn-font-weight-medium, 500);
+  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
   color: var(--dyn-stepper-step-text-pending);
 }
 
@@ -106,7 +106,7 @@
   flex: 1;
   height: 2px;
   background-color: var(--dyn-stepper-connector-bg);
-  margin: 0 var(--dyn-spacing-sm, 8px);
+  margin: 0 var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   transition: all var(--dyn-stepper-transition);
 }
 
@@ -118,7 +118,7 @@
 .vertical .connector {
   width: 2px;
   height: 30px;
-  margin: var(--dyn-spacing-sm, 8px) 0;
+  margin: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) 0;
 }
 
 @media (max-width: 767px) {
@@ -127,16 +127,13 @@
   }
 
   .container {
-    gap: var(--dyn-spacing-sm, 8px);
+    gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-stepper-step-bg-pending: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-stepper-step-border: var(--dyn-color-border-dark, #334155);
-    --dyn-stepper-connector-bg: var(--dyn-color-border-dark, #334155);
+@media (prefers-contrast: more) {
+  .stepNumber {
+    border-width: 3px;
   }
 }
 
@@ -144,5 +141,14 @@
   .stepNumber,
   .connector {
     transition: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-stepper-step-bg-pending: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-stepper-step-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-stepper-connector-bg: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
   }
 }

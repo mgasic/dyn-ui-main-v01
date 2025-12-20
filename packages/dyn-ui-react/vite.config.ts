@@ -71,7 +71,8 @@ export default defineConfig({
       '@components': resolve(__dirname, 'src/components'),
       '@styles': resolve(__dirname, 'src/styles'),
       '@utils': resolve(__dirname, 'src/utils'),
-      '@types': resolve(__dirname, 'src/types')
+      '@types': resolve(__dirname, 'src/types'),
+      '@design-tokens': resolve(__dirname, '../../packages/design-tokens')
     }
   }
 });

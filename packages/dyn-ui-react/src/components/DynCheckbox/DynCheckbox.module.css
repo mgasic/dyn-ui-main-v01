@@ -1,10 +1,83 @@
+/* ==========================================================================
+   DynCheckbox Component Styles
+   Standardized with design tokens
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --dyn-checkbox-bg: var(--dyn-color-surface, #ffffff);
+  --dyn-checkbox-bg-hover: var(--dyn-color-surface-hover, #f8fafc);
+  --dyn-checkbox-border: var(--dyn-color-border, #d0d5dd);
+  --dyn-checkbox-border-hover: var(--dyn-color-primary, #2563eb);
+  --dyn-checkbox-bg-checked: var(--dyn-color-primary, #2563eb);
+  --dyn-checkbox-border-checked: var(--dyn-color-primary, #2563eb);
+  --dyn-checkbox-checkmark-color: var(--dyn-color-surface, #ffffff);
+
+  --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled, #f1f5f9);
+  --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled, #e2e8f0);
+  --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled, #94a3b8);
+  --dyn-checkbox-bg-checked-disabled: var(--dyn-color-text-disabled, #94a3b8);
+
+  --dyn-checkbox-border-error: var(--dyn-color-error, #ef4444);
+  --dyn-checkbox-bg-error-checked: var(--dyn-color-error, #ef4444);
+  --dyn-checkbox-border-error-checked: var(--dyn-color-error, #ef4444);
+
+  --dyn-checkbox-label-text-color: var(--dyn-color-text-primary, #111827);
+  --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled, #94a3b8);
+  --dyn-checkbox-required-indicator-color: var(--dyn-color-error, #ef4444);
+  --dyn-checkbox-optional-indicator-color: var(--dyn-color-text-secondary, #475569);
+
+  /* Size Tokens */
+  --dyn-checkbox-box-width: 18px;
+  --dyn-checkbox-box-height: 18px;
+  --dyn-checkbox-box-width-sm: 14px;
+  --dyn-checkbox-box-height-sm: 14px;
+  --dyn-checkbox-box-width-lg: 22px;
+  --dyn-checkbox-box-height-lg: 22px;
+
+  /* Spacing Tokens */
+  --dyn-checkbox-gap: var(--dyn-spacing-sm, 8px);
+  --dyn-checkbox-box-margin-top: 1px;
+
+  /* Typography Tokens */
+  --dyn-checkbox-label-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
+  --dyn-checkbox-label-font-size: var(--dyn-font-size-base, 16px);
+  --dyn-checkbox-label-font-size-sm: var(--dyn-font-size-sm, 14px);
+  --dyn-checkbox-label-font-size-lg: var(--dyn-font-size-lg, 18px);
+  --dyn-checkbox-label-line-height: var(--dyn-line-height-base, 1.5);
+
+  --dyn-checkbox-checkmark-font-size: 12px;
+  --dyn-checkbox-checkmark-font-size-sm: 10px;
+  --dyn-checkbox-checkmark-font-size-lg: 14px;
+  --dyn-checkbox-checkmark-font-weight: bold;
+
+  --dyn-checkbox-optional-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-checkbox-required-font-weight: bold;
+
+  /* Border Tokens */
+  --dyn-checkbox-border-radius: var(--dyn-border-radius-sm, 6px);
+  --dyn-checkbox-border-width: 2px;
+  --dyn-checkbox-border-width-sm: 1px;
+
+  /* Transition Tokens */
+  --dyn-checkbox-transition: var(--dyn-transition-base, 0.18s ease);
+
+  /* Focus Ring */
+  --dyn-checkbox-focus-ring-color: var(--dyn-color-primary-alpha, rgba(37, 99, 235, 0.16));
+  --dyn-checkbox-focus-ring-width: 3px;
+}
+
+/* ========================================================================
+   Container
+   ======================================================================== */
+
 .container {
   display: inline-flex;
   flex-direction: column;
 }
 
 .containerDisabled {
-  opacity: 0.6;
+  opacity: var(--dyn-opacity-disabled, 0.6);
   cursor: not-allowed;
 }
 
@@ -12,17 +85,22 @@
   pointer-events: none;
 }
 
+/* ========================================================================
+   Wrapper
+   ======================================================================== */
+
 .wrapper {
   display: inline-flex;
   align-items: flex-start;
-  gap: var(--dyn-spacing-sm, 8px);
+  gap: var(--dyn-checkbox-gap);
   cursor: pointer;
-  font-family: var(--dyn-font-family, system-ui, -apple-system, sans-serif);
-  line-height: 1.5;
+  font-family: var(--dyn-checkbox-label-font-family);
+  line-height: var(--dyn-checkbox-label-line-height);
+  transition: all var(--dyn-checkbox-transition);
 }
 
 .wrapper:hover .box {
-  border-color: var(--dyn-color-primary, #0066cc);
+  border-color: var(--dyn-checkbox-border-hover);
 }
 
 .wrapperDisabled {
@@ -30,13 +108,17 @@
 }
 
 .wrapperDisabled:hover .box {
-  border-color: var(--dyn-color-border, #d1d5db);
+  border-color: var(--dyn-checkbox-border-disabled);
 }
 
 .wrapperReadonly {
   cursor: default;
   pointer-events: none;
 }
+
+/* ========================================================================
+   Hidden Input
+   ======================================================================== */
 
 .input {
   position: absolute;
@@ -48,86 +130,106 @@
 }
 
 .input:focus + .box {
-  box-shadow: 0 0 0 3px var(--dyn-color-primary-alpha, rgba(0, 102, 204, 0.1));
+  box-shadow: 0 0 0 var(--dyn-checkbox-focus-ring-width) var(--dyn-checkbox-focus-ring-color);
 }
 
 .input:focus:not(:focus-visible) + .box {
   box-shadow: none;
 }
 
+/* ========================================================================
+   Box (Checkbox Container)
+   ======================================================================== */
+
 .box {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  background-color: var(--dyn-color-surface, #fff);
-  border: 2px solid var(--dyn-color-border, #d1d5db);
-  border-radius: var(--dyn-border-radius-sm, 3px);
-  transition: all 0.2s ease;
+  width: var(--dyn-checkbox-box-width);
+  height: var(--dyn-checkbox-box-height);
+  background-color: var(--dyn-checkbox-bg);
+  border: var(--dyn-checkbox-border-width) solid var(--dyn-checkbox-border);
+  border-radius: var(--dyn-checkbox-border-radius);
+  transition: all var(--dyn-checkbox-transition);
   flex-shrink: 0;
-  margin-top: 1px;
+  margin-top: var(--dyn-checkbox-box-margin-top);
 }
 
+/* Checked and Indeterminate States */
 .box.boxChecked,
 .box.boxIndeterminate {
-  background-color: var(--dyn-color-primary, #0066cc);
-  border-color: var(--dyn-color-primary, #0066cc);
+  background-color: var(--dyn-checkbox-bg-checked);
+  border-color: var(--dyn-checkbox-border-checked);
 }
 
+/* Error State */
 .box.boxError {
-  border-color: var(--dyn-color-error, #f44336);
+  border-color: var(--dyn-checkbox-border-error);
 }
 
 .box.boxError.boxChecked,
 .box.boxError.boxIndeterminate {
-  background-color: var(--dyn-color-error, #f44336);
-  border-color: var(--dyn-color-error, #f44336);
+  background-color: var(--dyn-checkbox-bg-error-checked);
+  border-color: var(--dyn-checkbox-border-error-checked);
 }
 
+/* Disabled State */
 .box.boxDisabled {
-  background-color: var(--dyn-color-surface-disabled, #f3f4f6);
-  border-color: var(--dyn-color-border-disabled, #e5e7eb);
+  background-color: var(--dyn-checkbox-bg-disabled);
+  border-color: var(--dyn-checkbox-border-disabled);
   cursor: not-allowed;
 }
 
 .box.boxDisabled.boxChecked,
 .box.boxDisabled.boxIndeterminate {
-  background-color: var(--dyn-color-text-disabled, #9ca3af);
-  border-color: var(--dyn-color-text-disabled, #9ca3af);
+  background-color: var(--dyn-checkbox-bg-checked-disabled);
+  border-color: var(--dyn-checkbox-border-disabled);
 }
 
+/* Readonly State */
 .box.boxReadonly {
   cursor: default;
 }
 
+/* ========================================================================
+   Size Variants: Small
+   ======================================================================== */
+
 .boxSmall {
-  width: 14px;
-  height: 14px;
-  border-width: 1px;
+  width: var(--dyn-checkbox-box-width-sm);
+  height: var(--dyn-checkbox-box-height-sm);
+  border-width: var(--dyn-checkbox-border-width-sm);
 }
 
 .boxSmall .checkMark {
-  font-size: 10px;
+  font-size: var(--dyn-checkbox-checkmark-font-size-sm);
 }
 
 .boxSmall .indeterminateMark {
-  font-size: 12px;
+  font-size: var(--dyn-checkbox-checkmark-font-size-sm);
 }
 
+/* ========================================================================
+   Size Variants: Large
+   ======================================================================== */
+
 .boxLarge {
-  width: 22px;
-  height: 22px;
+  width: var(--dyn-checkbox-box-width-lg);
+  height: var(--dyn-checkbox-box-height-lg);
 }
 
 .boxLarge .checkMark {
-  font-size: 14px;
+  font-size: var(--dyn-checkbox-checkmark-font-size-lg);
 }
 
 .boxLarge .indeterminateMark {
-  font-size: 16px;
+  font-size: var(--dyn-checkbox-checkmark-font-size-lg);
 }
+
+/* ========================================================================
+   Checkmark
+   ======================================================================== */
 
 .checkmark {
   position: absolute;
@@ -142,22 +244,26 @@
 }
 
 .checkMark {
-  color: var(--dyn-color-surface, #fff);
-  font-size: 12px;
-  font-weight: bold;
+  color: var(--dyn-checkbox-checkmark-color);
+  font-size: var(--dyn-checkbox-checkmark-font-size);
+  font-weight: var(--dyn-checkbox-checkmark-font-weight);
   line-height: 1;
 }
 
 .indeterminateMark {
-  color: var(--dyn-color-surface, #fff);
-  font-size: 14px;
-  font-weight: bold;
+  color: var(--dyn-checkbox-checkmark-color);
+  font-size: var(--dyn-checkbox-checkmark-font-size);
+  font-weight: var(--dyn-checkbox-checkmark-font-weight);
   line-height: 1;
 }
 
+/* ========================================================================
+   Label
+   ======================================================================== */
+
 .label {
-  color: var(--dyn-color-text-primary, #333);
-  font-size: var(--dyn-font-size-base, 16px);
+  color: var(--dyn-checkbox-label-text-color);
+  font-size: var(--dyn-checkbox-label-font-size);
   user-select: none;
   flex: 1;
   display: inline-flex;
@@ -166,23 +272,130 @@
 }
 
 .containerDisabled .label {
-  color: var(--dyn-color-text-disabled, #9ca3af);
+  color: var(--dyn-checkbox-label-text-color-disabled);
 }
 
 .boxSmall ~ .label {
-  font-size: var(--dyn-font-size-sm, 14px);
+  font-size: var(--dyn-checkbox-label-font-size-sm);
 }
 
 .boxLarge ~ .label {
-  font-size: var(--dyn-font-size-lg, 18px);
+  font-size: var(--dyn-checkbox-label-font-size-lg);
 }
 
+/* ========================================================================
+   Indicators (Required/Optional)
+   ======================================================================== */
+
 .requiredIndicator {
-  color: var(--dyn-color-error, #f44336);
-  font-weight: bold;
+  color: var(--dyn-checkbox-required-indicator-color);
+  font-weight: var(--dyn-checkbox-required-font-weight);
 }
 
 .optionalIndicator {
-  color: var(--dyn-color-text-secondary, #666);
-  font-size: var(--dyn-font-size-sm, 14px);
+  color: var(--dyn-checkbox-optional-indicator-color);
+  font-size: var(--dyn-checkbox-optional-font-size);
+}
+
+/* ========================================================================
+   Accessibility: High Contrast Mode
+   ======================================================================== */
+
+@media (prefers-contrast: high) {
+  .box {
+    border-width: 2px;
+  }
+
+  .input:focus + .box {
+    box-shadow:
+      0 0 0 3px var(--dyn-checkbox-focus-ring-color),
+      0 0 0 6px var(--dyn-checkbox-border);
+    outline: 2px solid var(--dyn-checkbox-border-hover);
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper,
+  .box,
+  .wrapper:hover .box {
+    transition: none;
+  }
+}
+
+/* ========================================================================
+   Dark Mode Support
+   ======================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-checkbox-bg: var(--dyn-color-surface-dark, #1e293b);
+    --dyn-checkbox-border: var(--dyn-color-border-dark, #334155);
+    --dyn-checkbox-border-hover: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-checkbox-bg-checked: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-checkbox-border-checked: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-checkbox-checkmark-color: var(--dyn-color-surface, #ffffff);
+
+    --dyn-checkbox-bg-disabled: var(--dyn-color-surface-disabled-dark, #334155);
+    --dyn-checkbox-border-disabled: var(--dyn-color-border-disabled-dark, #475569);
+    --dyn-checkbox-text-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+
+    --dyn-checkbox-border-error: var(--dyn-color-error-dark, #dc2626);
+    --dyn-checkbox-bg-error-checked: var(--dyn-color-error-dark, #dc2626);
+    --dyn-checkbox-border-error-checked: var(--dyn-color-error-dark, #dc2626);
+
+    --dyn-checkbox-label-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-checkbox-label-text-color-disabled: var(--dyn-color-text-disabled-dark, #6b7280);
+    --dyn-checkbox-focus-ring-color: rgba(59, 130, 246, 0.2);
+  }
+}
+
+/* ========================================================================
+   Responsive Design: Mobile
+   ======================================================================== */
+
+@media (max-width: 767px) {
+  .wrapper {
+    /* Ensure touch-friendly spacing */
+    gap: var(--dyn-spacing-md, 12px);
+    min-height: 44px;  /* Touch target minimum */
+  }
+
+  .box {
+    min-width: 44px;  /* Touch target minimum */
+    min-height: 44px; /* Touch target minimum */
+  }
+
+  .label {
+    font-size: var(--dyn-checkbox-label-font-size);
+    line-height: var(--dyn-line-height-base, 1.5);
+  }
+}
+
+/* ========================================================================
+   Print Styles
+   ======================================================================== */
+
+@media print {
+  .label {
+    color: black !important;
+  }
+
+  .requiredIndicator,
+  .optionalIndicator {
+    color: #666 !important;
+  }
+
+  .box {
+    border-color: black !important;
+  }
+
+  .box.boxChecked {
+    background-color: black !important;
+    border-color: black !important;
+  }
 }

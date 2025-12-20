@@ -5,34 +5,34 @@
 
 :root {
   /* Color Tokens */
-  --dyn-field-container-label-text: var(--dyn-color-text-primary, #111827);
-  --dyn-field-container-label-text-error: var(--dyn-color-error, #ef4444);
-  --dyn-field-container-help-text: var(--dyn-color-text-secondary, #475569);
-  --dyn-field-container-required-text: var(--dyn-color-error, #ef4444);
-  --dyn-field-container-optional-text: var(--dyn-color-text-secondary, #475569);
-  --dyn-field-container-error-text: var(--dyn-color-error, #ef4444);
+  --dyn-field-container-label-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-field-container-label-text-error: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-field-container-help-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-field-container-required-text: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-field-container-optional-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-field-container-error-text: var(--dyn-color-error, var(--color-error, #ef4444));
 
   /* Typography Tokens */
-  --dyn-field-container-label-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-field-container-label-font-weight: var(--dyn-font-weight-medium, 500);
-  --dyn-field-container-help-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-field-container-required-font-weight: var(--dyn-font-weight-semibold, 600);
-  --dyn-field-container-optional-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-field-container-label-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-field-container-label-font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  --dyn-field-container-help-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-field-container-required-font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
+  --dyn-field-container-optional-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
   --dyn-field-container-optional-font-style: italic;
-  --dyn-field-container-error-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-field-container-line-height: 1.4;
+  --dyn-field-container-error-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-field-container-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.4));
 
   /* Spacing Tokens */
-  --dyn-field-container-gap: var(--dyn-spacing-xs, 4px);
-  --dyn-field-container-margin-bottom: var(--dyn-spacing-md, 16px);
-  --dyn-field-container-label-margin-bottom: var(--dyn-spacing-xs, 4px);
-  --dyn-field-container-feedback-gap: var(--dyn-spacing-xs, 4px);
-  --dyn-field-container-indicator-margin-left: var(--dyn-spacing-xs, 4px);
-  --dyn-field-container-error-margin-top: var(--dyn-spacing-xs, 4px);
-  --dyn-field-container-help-margin-top: var(--dyn-spacing-xs, 4px);
+  --dyn-field-container-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-margin-bottom: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-field-container-label-margin-bottom: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-feedback-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-indicator-margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-error-margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-help-margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 
   /* Transition */
-  --dyn-field-container-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-field-container-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
 /* ========================================================================
@@ -158,14 +158,25 @@
    Accessibility: High Contrast Mode
    ======================================================================== */
 
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .label {
-    font-weight: var(--dyn-font-weight-bold, 700);
+    font-weight: var(--dyn-font-weight-bold, var(--font-weight-bold, 700));
   }
 
   .error {
     border-left: 2px solid var(--dyn-field-container-error-text);
-    padding-left: var(--dyn-spacing-sm, 8px);
+    padding-left: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  }
+}
+
+/* ========================================================================
+   Accessibility: Reduced Motion
+   ======================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .label,
+  .containerError .label {
+    transition: none;
   }
 }
 
@@ -175,11 +186,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-field-container-label-text: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-field-container-label-text-error: var(--dyn-color-error-dark, #dc2626);
-    --dyn-field-container-help-text: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-field-container-optional-text: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-field-container-error-text: var(--dyn-color-error-dark, #dc2626);
+    --dyn-field-container-label-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-field-container-label-text-error: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
+    --dyn-field-container-help-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-field-container-optional-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-field-container-error-text: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
   }
 }
 
@@ -189,7 +200,7 @@
 
 @media (max-width: 767px) {
   .container {
-    margin-bottom: var(--dyn-spacing-lg, 24px);
+    margin-bottom: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
   }
 
   .label {
@@ -197,6 +208,6 @@
   }
 
   .feedback {
-    gap: var(--dyn-spacing-xs, 6px);
+    gap: var(--dyn-spacing-xs, var(--spacing-xs, 6px));
   }
 }

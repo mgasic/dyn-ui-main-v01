@@ -26,7 +26,7 @@
   font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
   font-size: var(--dyn-font-size-base, var(--font-size-base, 1rem));
   line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  transition: var(--dyn-transition-base, border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease);
   resize: vertical;
 }
 
@@ -40,6 +40,8 @@
 
 .textarea:focus-visible {
   outline: none;
+  border-color: var(--dyn-textarea-border-focus);
+  box-shadow: 0 0 0 3px var(--dyn-textarea-focus-ring);
 }
 
 .textareaFocused {
@@ -51,6 +53,7 @@
   background-color: var(--dyn-textarea-disabled-bg);
   color: var(--dyn-textarea-disabled-color);
   cursor: not-allowed;
+  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
 }
 
 .textareaReadonly {
@@ -59,6 +62,10 @@
 
 .textareaError {
   border-color: var(--dyn-textarea-error);
+}
+
+.textareaError:focus-visible {
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.35);
 }
 
 .textareaResizeNone {
@@ -73,20 +80,45 @@
   resize: both;
 }
 
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .container {
+    --dyn-textarea-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-textarea-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
+    --dyn-textarea-border: var(--dyn-color-border-dark, var(--color-border-dark, #4b5563));
+    --dyn-textarea-border-hover: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #6b7280));
+    --dyn-textarea-border-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-textarea-focus-ring: var(--dyn-color-focus-ring-dark, var(--color-focus-ring-dark, rgba(59, 130, 246, 0.35)));
+    --dyn-textarea-placeholder: var(--dyn-color-text-placeholder-dark, var(--color-text-placeholder-dark, #9ca3af));
+    --dyn-textarea-disabled-bg: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #374151));
+    --dyn-textarea-disabled-color: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
+    --dyn-textarea-readonly-bg: var(--dyn-color-surface-readonly-dark, var(--color-surface-readonly-dark, #0f172a));
+    --dyn-textarea-error: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
+  }
+}
+
+/* Mobile touch target */
 @media (max-width: 767px) {
   .textarea {
     min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
   }
 }
 
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .textarea {
     transition: none;
   }
 }
 
+/* High contrast mode */
 @media (prefers-contrast: high) {
   .textarea {
     border-width: 2px;
+  }
+
+  .textarea:focus-visible {
+    outline-width: 4px;
+    outline-offset: 2px;
   }
 }

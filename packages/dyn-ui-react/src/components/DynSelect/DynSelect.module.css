@@ -5,73 +5,79 @@
 
 :root {
   /* Color Tokens */
-  --dyn-select-bg: var(--dyn-color-surface, #ffffff);
-  --dyn-select-border: var(--dyn-color-border, #d0d5dd);
-  --dyn-select-border-hover: var(--dyn-color-border-hover, #9ca3af);
-  --dyn-select-border-focus: var(--dyn-color-primary, #2563eb);
-  --dyn-select-text-primary: var(--dyn-color-text-primary, #111827);
-  --dyn-select-text-placeholder: var(--dyn-color-text-placeholder, #9ca3af);
-  --dyn-select-text-secondary: var(--dyn-color-text-secondary, #475569);
-  --dyn-select-text-disabled: var(--dyn-color-text-disabled, #94a3b8);
+  --dyn-select-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-select-border: var(--dyn-color-border, var(--color-border, #d0d5dd));
+  --dyn-select-border-hover: var(--dyn-color-border-hover, var(--color-border-hover, #9ca3af));
+  --dyn-select-border-focus: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-select-text-primary: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-select-text-placeholder: var(--dyn-color-text-placeholder, var(--color-text-placeholder, #9ca3af));
+  --dyn-select-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-select-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
 
-  --dyn-select-bg-disabled: var(--dyn-color-surface-disabled, #f1f5f9);
-  --dyn-select-border-disabled: var(--dyn-color-border-disabled, #e2e8f0);
-  --dyn-select-bg-readonly: var(--dyn-color-surface-readonly, #f8fafc);
+  --dyn-select-bg-disabled: var(--dyn-color-surface-disabled, var(--color-surface-disabled, #f1f5f9));
+  --dyn-select-border-disabled: var(--dyn-color-border-disabled, var(--color-border-disabled, #e2e8f0));
+  --dyn-select-bg-readonly: var(--dyn-color-surface-readonly, var(--color-surface-readonly, #f8fafc));
 
-  --dyn-select-bg-hover: var(--dyn-color-surface-hover, #f1f5f9);
-  --dyn-select-bg-selected: var(--dyn-color-primary-light, #eff6ff);
-  --dyn-select-text-selected: var(--dyn-color-primary, #2563eb);
+  --dyn-select-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f1f5f9));
+  --dyn-select-bg-selected: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
+  --dyn-select-text-selected: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
-  --dyn-select-border-error: var(--dyn-color-error, #ef4444);
+  --dyn-select-border-error: var(--dyn-color-error, var(--color-error, #ef4444));
   --dyn-select-error-alpha: rgba(239, 68, 68, 0.1);
   --dyn-select-focus-ring-color: rgba(37, 99, 235, 0.16);
 
   /* Tag Colors */
-  --dyn-select-tag-bg: var(--dyn-color-primary-light, #eff6ff);
-  --dyn-select-tag-text: var(--dyn-color-primary, #2563eb);
-  --dyn-select-tag-border: var(--dyn-color-primary, #2563eb);
+  --dyn-select-tag-bg: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
+  --dyn-select-tag-text: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-select-tag-border: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
   /* Size Tokens */
-  --dyn-select-height: 40px;
-  --dyn-select-height-sm: 32px;
-  --dyn-select-height-lg: 48px;
-  --dyn-select-padding-y: var(--dyn-spacing-sm, 8px);
-  --dyn-select-padding-x: var(--dyn-spacing-md, 12px);
-  --dyn-select-padding-y-sm: var(--dyn-spacing-xs, 6px);
-  --dyn-select-padding-x-sm: var(--dyn-spacing-sm, 8px);
-  --dyn-select-padding-y-lg: var(--dyn-spacing-md, 12px);
-  --dyn-select-padding-x-lg: var(--dyn-spacing-lg, 16px);
+  --dyn-select-height: var(--dyn-size-md, var(--size-md, 40px));
+  --dyn-select-height-sm: var(--dyn-size-sm, var(--size-sm, 32px));
+  --dyn-select-height-lg: var(--dyn-size-lg, var(--size-lg, 48px));
+  --dyn-select-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-select-padding-x: var(--dyn-spacing-md, var(--spacing-md, 12px));
+  --dyn-select-padding-y-sm: var(--dyn-spacing-xs, var(--spacing-xs, 6px));
+  --dyn-select-padding-x-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-select-padding-y-lg: var(--dyn-spacing-md, var(--spacing-md, 12px));
+  --dyn-select-padding-x-lg: var(--dyn-spacing-lg, var(--spacing-lg, 16px));
 
   /* Dropdown */
   --dyn-select-dropdown-max-height: 300px;
   --dyn-select-dropdown-options-max-height: 240px;
-  --dyn-select-dropdown-offset: var(--dyn-spacing-xs, 4px);
-  --dyn-select-dropdown-padding: var(--dyn-spacing-md, 12px);
+  --dyn-select-dropdown-offset: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-select-dropdown-padding: var(--dyn-spacing-md, var(--spacing-md, 12px));
 
   /* Spacing */
-  --dyn-select-gap: var(--dyn-spacing-sm, 8px);
-  --dyn-select-tag-gap: var(--dyn-spacing-xs, 4px);
+  --dyn-select-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-select-tag-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 
   /* Typography */
-  --dyn-select-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-select-font-size: var(--dyn-font-size-base, 16px);
-  --dyn-select-font-size-sm: var(--dyn-font-size-sm, 14px);
-  --dyn-select-font-size-lg: var(--dyn-font-size-lg, 18px);
-  --dyn-select-line-height: 1.5;
+  --dyn-select-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-select-font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+  --dyn-select-font-size-sm: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  --dyn-select-font-size-lg: var(--dyn-font-size-lg, var(--font-size-lg, 18px));
+  --dyn-select-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
   /* Border */
-  --dyn-select-border-radius: var(--dyn-border-radius-md, 8px);
-  --dyn-select-border-radius-sm: var(--dyn-border-radius-sm, 6px);
+  --dyn-select-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  --dyn-select-border-radius-sm: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
   --dyn-select-border-width: 1px;
 
   /* Transition */
-  --dyn-select-transition: var(--dyn-transition-base, 0.18s ease);
+  --dyn-select-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 
   /* Shadow */
-  --dyn-select-shadow: var(--dyn-shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05));
+  --dyn-select-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)));
 
   /* Arrow */
-  --dyn-select-arrow-margin: var(--dyn-spacing-sm, 8px);
+  --dyn-select-arrow-margin: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+
+  /* Z-index */
+  --dyn-select-dropdown-zindex: var(--dyn-zindex-dropdown, var(--zindex-dropdown, 1000));
+
+  /* Opacity */
+  --dyn-select-opacity-disabled: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
 }
 
 /* ========================================================================
@@ -132,6 +138,7 @@
   color: var(--dyn-select-text-disabled);
   cursor: not-allowed;
   border-color: var(--dyn-select-border-disabled);
+  opacity: var(--dyn-select-opacity-disabled);
 }
 
 .dyn-select--readonly {
@@ -192,7 +199,7 @@
   align-items: center;
   background-color: var(--dyn-select-tag-bg);
   color: var(--dyn-select-tag-text);
-  padding: var(--dyn-spacing-xs, 4px) var(--dyn-spacing-sm, 8px);
+  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   border-radius: var(--dyn-select-border-radius-sm);
   font-size: var(--dyn-select-font-size-sm);
   line-height: 1.2;
@@ -245,7 +252,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: var(--dyn-select-dropdown-zindex);
   margin-top: var(--dyn-select-dropdown-offset);
   background-color: var(--dyn-select-bg);
   border: var(--dyn-select-border-width) solid var(--dyn-select-border);
@@ -275,11 +282,17 @@
   outline: none;
   font-family: var(--dyn-select-font-family);
   transition: all var(--dyn-select-transition);
+  color: var(--dyn-select-text-primary);
+  background-color: var(--dyn-select-bg);
 }
 
 .dyn-select-search-input:focus {
   border-color: var(--dyn-select-border-focus);
   box-shadow: 0 0 0 2px var(--dyn-select-focus-ring-color);
+}
+
+.dyn-select-search-input::placeholder {
+  color: var(--dyn-select-text-placeholder);
 }
 
 /* ========================================================================
@@ -316,6 +329,7 @@
 .dyn-select-option--disabled {
   color: var(--dyn-select-text-disabled);
   cursor: not-allowed;
+  opacity: var(--dyn-select-opacity-disabled);
 }
 
 .dyn-select-option-text {
@@ -350,7 +364,7 @@
    ======================================================================== */
 
 .dyn-select-empty {
-  padding: var(--dyn-spacing-lg, 24px) var(--dyn-select-padding-x);
+  padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px)) var(--dyn-select-padding-x);
   text-align: center;
   color: var(--dyn-select-text-secondary);
   font-size: var(--dyn-select-font-size-sm);
@@ -370,6 +384,11 @@
     outline: 2px solid var(--dyn-select-border-focus);
     outline-offset: 2px;
   }
+
+  .dyn-select-search-input:focus {
+    outline: 2px solid var(--dyn-select-border-focus);
+    outline-offset: 2px;
+  }
 }
 
 /* ========================================================================
@@ -380,7 +399,8 @@
   .dyn-select,
   .dyn-select-arrow,
   .dyn-select-option,
-  .dyn-select-tag-remove {
+  .dyn-select-tag-remove,
+  .dyn-select-search-input {
     transition: none;
   }
 }
@@ -391,24 +411,25 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-select-bg: var(--dyn-color-surface-dark, #1e293b);
-    --dyn-select-border: var(--dyn-color-border-dark, #334155);
-    --dyn-select-border-hover: var(--dyn-color-border-dark-hover, #475569);
-    --dyn-select-border-focus: var(--dyn-color-primary-dark, #3b82f6);
-    --dyn-select-text-primary: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-select-text-placeholder: var(--dyn-color-text-placeholder-dark, #6b7280);
-    --dyn-select-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-select-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
+    --dyn-select-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-select-border-hover: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #475569));
+    --dyn-select-border-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+    --dyn-select-text-primary: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-select-text-placeholder: var(--dyn-color-text-placeholder-dark, var(--color-text-placeholder-dark, #6b7280));
+    --dyn-select-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+    --dyn-select-text-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
 
-    --dyn-select-bg-disabled: var(--dyn-color-surface-disabled-dark, #334155);
-    --dyn-select-border-disabled: var(--dyn-color-border-disabled-dark, #475569);
-    --dyn-select-bg-readonly: var(--dyn-color-surface-readonly-dark, #2d3748);
+    --dyn-select-bg-disabled: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #334155));
+    --dyn-select-border-disabled: var(--dyn-color-border-disabled-dark, var(--color-border-disabled-dark, #475569));
+    --dyn-select-bg-readonly: var(--dyn-color-surface-readonly-dark, var(--color-surface-readonly-dark, #2d3748));
 
-    --dyn-select-bg-hover: var(--dyn-color-surface-hover-dark, #2d3748);
+    --dyn-select-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #2d3748));
     --dyn-select-bg-selected: var(--dyn-color-primary-light-dark, rgba(59, 130, 246, 0.2));
-    --dyn-select-text-selected: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-select-text-selected: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
 
     --dyn-select-tag-bg: rgba(59, 130, 246, 0.15);
-    --dyn-select-tag-text: var(--dyn-color-primary-dark, #3b82f6);
+    --dyn-select-tag-text: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
 
     --dyn-select-focus-ring-color: rgba(59, 130, 246, 0.2);
   }
@@ -420,7 +441,7 @@
 
 @media (max-width: 767px) {
   .dyn-select {
-    min-height: 44px;
+    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
   }
 
   .dyn-select-dropdown {
@@ -428,14 +449,14 @@
   }
 
   .dyn-select-options {
-    max-height: calc(50vh - var(--dyn-spacing-lg, 24px));
+    max-height: calc(50vh - var(--dyn-spacing-lg, var(--spacing-lg, 24px)));
   }
 
   .dyn-select--small {
-    min-height: 40px;
+    min-height: var(--dyn-size-touch-target-sm, var(--size-touch-target-sm, 40px));
   }
 
   .dyn-select--large {
-    min-height: 52px;
+    min-height: var(--dyn-size-touch-target-lg, var(--size-touch-target-lg, 52px));
   }
 }

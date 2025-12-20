@@ -15,9 +15,7 @@
   white-space: nowrap;
   vertical-align: middle;
   gap: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
-  transition:
-    var(--dyn-transition-colors, var(--transition-colors, color 150ms ease, background-color 150ms ease, border-color 150ms ease)),
-    var(--dyn-transition-transform, var(--transition-transform, transform 150ms ease));
+  transition: var(--dyn-transition-colors, var(--transition-colors, color 150ms ease, background-color 150ms ease, border-color 150ms ease)), var(--dyn-transition-transform, var(--transition-transform, transform 150ms ease));
   border: 1px solid transparent;
   min-width: var(--dyn-spacing-xl, var(--spacing-xl, 2rem));
   background-color: transparent;
@@ -223,11 +221,7 @@
 
 @supports (color: color-mix(in srgb, black 10%, transparent)) {
   .badge {
-    --badge-soft-fallback: color-mix(
-      in srgb,
-      var(--badge-accent) var(--badge-soft-strength, 18%),
-      transparent
-    );
+    --badge-soft-fallback: color-mix(in srgb, var(--badge-accent) var(--badge-soft-strength, 18%), transparent);
   }
 
   .badge--secondary {

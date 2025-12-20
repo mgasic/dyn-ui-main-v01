@@ -2,7 +2,7 @@
   display: var(--dyn-box-display, block);
   position: var(--dyn-box-position, relative);
   box-sizing: border-box;
-  font-family: var(--dyn-font-family-primary, inherit);
+  font-family: var(--dyn-font-family-primary, var(--font-family-primary, inherit));
 
   width: var(--dyn-box-width, auto);
   height: var(--dyn-box-height, auto);
@@ -23,25 +23,12 @@
   margin-bottom: var(--dyn-box-margin-bottom, var(--dyn-box-margin, 0));
   margin-left: var(--dyn-box-margin-left, var(--dyn-box-margin, 0));
 
-  background-color: var(
-    --dyn-box-bg,
-    var(--dyn-color-surface, var(--color-surface, #ffffff))
-  );
-  border: var(
-    --dyn-box-border,
-    calc(var(--dyn-border-width, 1px) * 0) solid
-      var(--dyn-color-border-muted, var(--color-border, rgba(15, 23, 42, 0.12)))
-  );
-  border-radius: var(
-    --dyn-box-radius,
-    var(--dyn-border-radius-md, var(--radius-md, 0.375rem))
-  );
+  background-color: var(--dyn-box-bg, var(--dyn-color-surface, var(--color-surface, #ffffff)));
+  border: var(--dyn-box-border, calc(var(--dyn-border-width, 1px) * 0) solid var(--dyn-color-border-muted, var(--color-border, rgba(15, 23, 42, 0.12))));
+  border-radius: var(--dyn-box-radius, var(--dyn-border-radius-md, var(--radius-md, 0.375rem)));
   box-shadow: var(--dyn-box-shadow, var(--dyn-shadow-none, none));
 
-  color: var(
-    --dyn-box-color,
-    var(--dyn-color-text-primary, var(--color-text-primary, #1f293b))
-  );
+  color: var(--dyn-box-color, var(--dyn-color-text-primary, var(--color-text-primary, #1f293b)));
   text-align: var(--dyn-box-text-align, inherit);
   overflow: var(--dyn-box-overflow, visible);
   overflow-x: var(--dyn-box-overflow-x, var(--dyn-box-overflow, visible));
@@ -51,10 +38,7 @@
   row-gap: var(--dyn-box-row-gap, var(--dyn-box-gap, 0));
   column-gap: var(--dyn-box-column-gap, var(--dyn-box-gap, 0));
 
-  transition: var(
-    --dyn-box-transition,
-    var(--dyn-transition-base, var(--transition-base, 150ms ease-in-out))
-  );
+  transition: var(--dyn-box-transition, var(--dyn-transition-base, var(--transition-base, 150ms ease-in-out)));
 }
 
 .box--inline {
@@ -194,18 +178,12 @@
 }
 
 .box--bg-primary {
-  --dyn-box-bg: var(
-    --dyn-color-primary,
-    var(--color-primary, #2563eb)
-  );
+  --dyn-box-bg: var(--dyn-color-primary, var(--color-primary, #2563eb));
   --dyn-box-color: var(--dyn-color-primary-text, var(--color-primary-contrast, #ffffff));
 }
 
 .box--bg-secondary {
-  --dyn-box-bg: var(
-    --dyn-color-secondary,
-    var(--color-secondary, #64748b)
-  );
+  --dyn-box-bg: var(--dyn-color-secondary, var(--color-secondary, #64748b));
   --dyn-box-color: var(--dyn-color-secondary-text, var(--color-secondary-contrast, #ffffff));
 }
 
@@ -230,28 +208,23 @@
 }
 
 .box--border {
-  --dyn-box-border: var(--dyn-border-width, 1px) solid
-    var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+  --dyn-box-border: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
 }
 
 .box--border-top {
-  border-top: var(--dyn-border-width, 1px) solid
-    var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+  border-top: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
 }
 
 .box--border-right {
-  border-right: var(--dyn-border-width, 1px) solid
-    var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+  border-right: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
 }
 
 .box--border-bottom {
-  border-bottom: var(--dyn-border-width, 1px) solid
-    var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+  border-bottom: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
 }
 
 .box--border-left {
-  border-left: var(--dyn-border-width, 1px) solid
-    var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+  border-left: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
 }
 
 .box--rounded-none {
@@ -287,10 +260,7 @@
 }
 
 .box--shadow-lg {
-  --dyn-box-shadow: var(
-    --dyn-shadow-lg,
-    var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1))
-  );
+  --dyn-box-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1)));
 }
 
 .box--text-left {
@@ -396,12 +366,10 @@
 }
 
 .box--interactive:focus-visible {
-  outline: var(--dyn-focus-ring-width, 2px) solid
-    var(--dyn-color-focus, var(--color-primary, #2563eb));
+  outline: var(--dyn-focus-ring-width, 2px) solid var(--dyn-color-focus, var(--color-primary, #2563eb));
   outline-offset: var(--dyn-focus-ring-offset, 2px);
 }
 
-/* Standardized screen reader utility class - following DynAvatar gold standard */
 .dyn-sr-only {
   position: absolute;
   width: 1px;
@@ -416,11 +384,20 @@
 
 @media (prefers-contrast: more) {
   .box {
-    --dyn-box-border: var(--dyn-border-width, 1px) solid
-      var(--dyn-color-border-strong, var(--color-border-strong, #111827));
+    --dyn-box-border: var(--dyn-border-width, 1px) solid var(--dyn-color-border-strong, var(--color-border-strong, #111827));
   }
 
   .box--interactive:focus-visible {
     outline-width: max(3px, var(--dyn-focus-ring-width, 2px));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box {
+    transition: none;
+  }
+
+  .box--interactive {
+    transition: none;
   }
 }

@@ -15,6 +15,11 @@ const meta: Meta<typeof DynCheckbox> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],

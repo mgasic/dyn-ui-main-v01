@@ -267,6 +267,18 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
     return selectedCount > 0 && selectedCount < sortedData.length;
   }, [selectionMode, sortedData, getRowKey, selectedRows]);
 
+  const totalPages = pagination ? Math.ceil(pagination.total / pagination.pageSize) : 1;
+  const canGoPrevious = pagination ? pagination.current > 1 : false;
+  const canGoNext = pagination ? pagination.current < totalPages : false;
+
+  const handlePageChange = useCallback(
+    (newPage: number) => {
+      if (!pagination?.onChange) return;
+      pagination.onChange(newPage, pagination.pageSize);
+    },
+    [pagination]
+  );
+
   const gridClassName = cn(
     styles.root,
     sizeClassNameMap[effectiveSize],
@@ -422,9 +434,41 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
             )}
           </div>
           <div className={styles.paginationControls}>
-            <span>
-              Page {pagination.current} of {Math.ceil(pagination.total / pagination.pageSize)}
+            <button
+              className={styles.paginationButton}
+              onClick={() => handlePageChange(1)}
+              disabled={!canGoPrevious}
+              aria-label="First page"
+            >
+              «
+            </button>
+            <button
+              className={styles.paginationButton}
+              onClick={() => handlePageChange(pagination.current - 1)}
+              disabled={!canGoPrevious}
+              aria-label="Previous page"
+            >
+              ‹
+            </button>
+            <span className={styles.paginationText}>
+              Page {pagination.current} of {totalPages}
             </span>
+            <button
+              className={styles.paginationButton}
+              onClick={() => handlePageChange(pagination.current + 1)}
+              disabled={!canGoNext}
+              aria-label="Next page"
+            >
+              ›
+            </button>
+            <button
+              className={styles.paginationButton}
+              onClick={() => handlePageChange(totalPages)}
+              disabled={!canGoNext}
+              aria-label="Last page"
+            >
+              »
+            </button>
           </div>
         </div>
       )}

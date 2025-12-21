@@ -1,228 +1,332 @@
 /* ==========================================================================
-   DynGrid Component Styles
-   Standardized with design tokens
+   DynGrid Component Styles (Data Table)
+   Fully aligned with design tokens system
    ========================================================================== */
 
-:root {
-  /* Color Tokens */
-  --dyn-grid-bg: transparent;
-  --dyn-grid-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
-  --dyn-grid-gap-horizontal: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-grid-gap-vertical: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-grid-column-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-grid-row-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-grid-padding: 0;
-  --dyn-grid-padding-x: 0;
-  --dyn-grid-padding-y: 0;
-
-  /* Size Tokens */
-  --dyn-grid-columns: 12;
-  --dyn-grid-max-width: 100%;
-  --dyn-grid-min-column-width: auto;
-
-  /* Spacing Variants */
-  --dyn-grid-gap-none: 0;
-  --dyn-grid-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-grid-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-grid-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-grid-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
-  --dyn-grid-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
-
-  /* Typography */
-  --dyn-grid-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-
-  /* Transitions */
-  --dyn-grid-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
-
-/* ========================================================================
-   Grid Container
-   ======================================================================== */
-
-.container {
-  display: grid;
+.root {
   width: 100%;
-  max-width: var(--dyn-grid-max-width);
-  gap: var(--dyn-grid-gap-vertical) var(--dyn-grid-gap-horizontal);
-  padding: var(--dyn-grid-padding-y) var(--dyn-grid-padding-x);
-  background-color: var(--dyn-grid-bg);
-  font-family: var(--dyn-grid-font-family);
-  box-sizing: border-box;
+  background: var(--dyn-color-background, var(--color-background, #ffffff));
+  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  overflow: hidden;
 }
 
-/* ========================================================================
-   Grid Columns (12-column system)
-   ======================================================================== */
-
-.cols1 { grid-template-columns: repeat(1, 1fr); }
-.cols2 { grid-template-columns: repeat(2, 1fr); }
-.cols3 { grid-template-columns: repeat(3, 1fr); }
-.cols4 { grid-template-columns: repeat(4, 1fr); }
-.cols5 { grid-template-columns: repeat(5, 1fr); }
-.cols6 { grid-template-columns: repeat(6, 1fr); }
-.cols7 { grid-template-columns: repeat(7, 1fr); }
-.cols8 { grid-template-columns: repeat(8, 1fr); }
-.cols9 { grid-template-columns: repeat(9, 1fr); }
-.cols10 { grid-template-columns: repeat(10, 1fr); }
-.cols11 { grid-template-columns: repeat(11, 1fr); }
-.cols12 { grid-template-columns: repeat(12, 1fr); }
-
-/* ========================================================================
-   Gap Variants
-   ======================================================================== */
-
-.gapNone {
-  gap: var(--dyn-grid-gap-none);
+.root.bordered {
+  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
 }
 
-.gapXs {
-  gap: var(--dyn-grid-gap-xs);
+.wrapper {
+  overflow-x: auto;
 }
 
-.gapSm {
-  gap: var(--dyn-grid-gap-sm);
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-.gapMd {
-  gap: var(--dyn-grid-gap-md);
+/* Header Styles */
+.header {
+  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
 }
 
-.gapLg {
-  gap: var(--dyn-grid-gap-lg);
+.headerRow {
+  border-bottom: 2px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
 }
 
-.gapXl {
-  gap: var(--dyn-grid-gap-xl);
+.headerCell {
+  padding: var(--dyn-spacing-md, var(--spacing-md, 12px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  text-align: left;
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
+  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
+  white-space: nowrap;
 }
 
-/* ========================================================================
-   Auto Flow
-   ======================================================================== */
-
-.autoFlowRow {
-  grid-auto-flow: row;
+.headerCellSortable {
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
 }
 
-.autoFlowColumn {
-  grid-auto-flow: column;
+.headerCellSortable:hover {
+  background-color: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
 }
 
-.autoFlowDense {
-  grid-auto-flow: dense;
+.headerCellSorted {
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
 }
 
-/* ========================================================================
-   Grid Item (Column Span)
-   ======================================================================== */
-
-.item {
-  min-width: 0; /* Prevent content overflow */
-  box-sizing: border-box;
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
-.span1 { grid-column: span 1; }
-.span2 { grid-column: span 2; }
-.span3 { grid-column: span 3; }
-.span4 { grid-column: span 4; }
-.span5 { grid-column: span 5; }
-.span6 { grid-column: span 6; }
-.span7 { grid-column: span 7; }
-.span8 { grid-column: span 8; }
-.span9 { grid-column: span 9; }
-.span10 { grid-column: span 10; }
-.span11 { grid-column: span 11; }
-.span12 { grid-column: span 12; }
-
-/* ========================================================================
-   Responsive: Tablet (1024px and below)
-   ======================================================================== */
-
-@media (max-width: 1024px) {
-  .cols12 { grid-template-columns: repeat(8, 1fr); }
-  .cols11 { grid-template-columns: repeat(8, 1fr); }
-  .cols10 { grid-template-columns: repeat(8, 1fr); }
-  .cols9 { grid-template-columns: repeat(6, 1fr); }
-  .cols8 { grid-template-columns: repeat(6, 1fr); }
-  .cols7 { grid-template-columns: repeat(6, 1fr); }
-  
-  .span12 { grid-column: span 6; }
-  .span11 { grid-column: span 6; }
-  .span10 { grid-column: span 6; }
-  .span9 { grid-column: span 6; }
-  .span8 { grid-column: span 4; }
-  .span7 { grid-column: span 4; }
+.sortIndicator {
+  font-size: 12px;
+  opacity: 0.6;
 }
 
-/* ========================================================================
-   Responsive: Mobile (767px and below)
-   ======================================================================== */
+.headerCellAlignCenter {
+  text-align: center;
+}
 
-@media (max-width: 767px) {
-  .container {
-    gap: var(--dyn-grid-gap-sm);
-    --dyn-grid-gap-horizontal: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-    --dyn-grid-gap-vertical: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+.headerCellAlignRight {
+  text-align: right;
+}
+
+/* Body Styles */
+.body {
+}
+
+.row {
+  border-bottom: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  transition: background-color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.hoverable .row:hover {
+  background-color: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+}
+
+.striped .rowOdd {
+  background-color: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+}
+
+.rowSelected {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+.cell {
+  padding: var(--dyn-spacing-md, var(--spacing-md, 12px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
+}
+
+.cellAlignCenter {
+  text-align: center;
+}
+
+.cellAlignRight {
+  text-align: right;
+}
+
+/* Selection Cell */
+.selectionCell {
+  width: 48px;
+  text-align: center;
+  padding-left: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  padding-right: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+}
+
+.checkbox {
+  cursor: pointer;
+  accent-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+}
+
+/* Size Variants */
+.sizeSmall .headerCell {
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+}
+
+.sizeSmall .cell {
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+}
+
+.sizeLarge .headerCell {
+  padding: var(--dyn-spacing-lg, var(--spacing-lg, 16px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
+  font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+}
+
+.sizeLarge .cell {
+  padding: var(--dyn-spacing-lg, var(--spacing-lg, 16px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
+  font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+}
+
+/* Loading State */
+.loading {
+  min-height: 200px;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dyn-spacing-md, var(--spacing-md, 12px));
+  padding: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
+  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  border-top-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
+  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  text-align: center;
+  min-height: 200px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dyn-spacing-md, var(--spacing-md, 12px));
+  border-top: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+}
+
+.paginationInfo {
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .headerCell,
+  .cell {
+    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+    font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
   }
 
-  .cols12,
-  .cols11,
-  .cols10,
-  .cols9,
-  .cols8,
-  .cols7,
-  .cols6 {
-    grid-template-columns: repeat(2, 1fr);
+  .selectionCell {
+    width: 40px;
   }
 
-  .cols5,
-  .cols4,
-  .cols3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .cols2,
-  .cols1 {
-    grid-template-columns: 1fr;
-  }
-
-  .span12,
-  .span11,
-  .span10,
-  .span9,
-  .span8,
-  .span7,
-  .span6 {
-    grid-column: span 2;
-  }
-
-  .span5,
-  .span4,
-  .span3,
-  .span2 {
-    grid-column: span 2;
-  }
-
-  .span1 {
-    grid-column: span 1;
+  .pagination {
+    flex-direction: column;
+    gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   }
 }
 
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
+/* Accessibility */
+@media (prefers-contrast: more) {
+  .root.bordered {
+    border-width: 2px;
+  }
+
+  .headerRow {
+    border-bottom-width: 3px;
+  }
+
+  .row {
+    border-bottom-width: 2px;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .container {
+  .row,
+  .headerCellSortable,
+  .spinner {
     transition: none;
+    animation: none;
   }
 }
 
-/* ========================================================================
-   Dark Mode Support
-   ======================================================================== */
-
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-grid-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  .root {
+    background: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
+  }
+
+  .root.bordered {
+    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .header {
+    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
+  }
+
+  .headerRow {
+    border-bottom-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .headerCell {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  }
+
+  .headerCellSortable:hover {
+    background-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  }
+
+  .headerCellSorted {
+    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+  }
+
+  .row {
+    border-bottom-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .hoverable .row:hover {
+    background-color: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  }
+
+  .striped .rowOdd {
+    background-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
+  }
+
+  .rowSelected {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+  }
+
+  .cell {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  }
+
+  .loadingState,
+  .emptyState,
+  .paginationInfo {
+    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  }
+
+  .spinner {
+    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+    border-top-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+  }
+
+  .pagination {
+    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
+    border-top-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .paginationControls {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
   }
 }

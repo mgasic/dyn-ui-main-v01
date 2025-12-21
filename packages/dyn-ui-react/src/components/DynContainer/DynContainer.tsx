@@ -74,17 +74,17 @@ const DynContainerComponent = (
   {
     title,
     subtitle,
-    direction = DYN_CONTAINER_DEFAULT_PROPS.direction,
+    direction,
     align,
     justify,
-    spacing = DYN_CONTAINER_DEFAULT_PROPS.spacing,
-    size = DYN_CONTAINER_DEFAULT_PROPS.size,
-    bordered = DYN_CONTAINER_DEFAULT_PROPS.bordered,
-    shadow = DYN_CONTAINER_DEFAULT_PROPS.shadow,
-    background = DYN_CONTAINER_DEFAULT_PROPS.background,
+    spacing,
+    size,
+    bordered,
+    shadow,
+    background,
     height,
     maxWidth,
-    layout = DYN_CONTAINER_DEFAULT_PROPS.layout,
+    layout,
     padding,
     margin,
     noBorder,
@@ -92,12 +92,22 @@ const DynContainerComponent = (
     className,
     children,
     style,
-    'data-testid': dataTestId = DYN_CONTAINER_DEFAULT_PROPS['data-testid'],
+    'data-testid': dataTestId,
     ...rest
   }: DynContainerProps,
   ref: ForwardedRef<DynContainerRef>
 ) => {
-  const resolvedBordered = noBorder ? false : bordered;
+  // Apply defaults only when undefined
+  const effectiveDirection = direction ?? DYN_CONTAINER_DEFAULT_PROPS.direction;
+  const effectiveSpacing = spacing ?? DYN_CONTAINER_DEFAULT_PROPS.spacing;
+  const effectiveSize = size ?? DYN_CONTAINER_DEFAULT_PROPS.size;
+  const effectiveBackground = background ?? DYN_CONTAINER_DEFAULT_PROPS.background;
+  const effectiveBordered = bordered ?? DYN_CONTAINER_DEFAULT_PROPS.bordered;
+  const effectiveShadow = shadow ?? DYN_CONTAINER_DEFAULT_PROPS.shadow;
+  const effectiveLayout = layout ?? DYN_CONTAINER_DEFAULT_PROPS.layout;
+  const effectiveDataTestId = dataTestId ?? DYN_CONTAINER_DEFAULT_PROPS['data-testid'];
+
+  const resolvedBordered = noBorder ? false : effectiveBordered;
   const hasTitleContent = Boolean(title || subtitle);
   const resolvedMaxWidth = resolveMaxWidth(maxWidth);
   const resolvedPadding = resolveSpacingValue(padding);
@@ -112,31 +122,31 @@ const DynContainerComponent = (
       next.height = height;
     }
 
-    if (resolvedMaxWidth) {
+    if (resolvedMaxWidth !== undefined) {
       next.maxWidth = resolvedMaxWidth;
       next['--dyn-container-max-width'] = resolvedMaxWidth;
     }
 
-    if (resolvedPadding) {
+    if (resolvedPadding !== undefined) {
       next['--dyn-container-padding'] = resolvedPadding;
     }
 
-    if (resolvedMargin) {
+    if (resolvedMargin !== undefined) {
       next['--dyn-container-margin'] = resolvedMargin;
     }
 
     return Object.keys(next).length > 0 ? next : undefined;
   }, [height, resolvedMargin, resolvedMaxWidth, resolvedPadding, style]);
 
-  const directionClass = styles[`direction${toPascalCase(direction)}` as keyof typeof styles];
-  const spacingClass = spacing
-    ? styles[`spacing${toPascalCase(spacing)}` as keyof typeof styles]
+  const directionClass = styles[`direction${toPascalCase(effectiveDirection)}` as keyof typeof styles];
+  const spacingClass = effectiveSpacing
+    ? styles[`spacing${toPascalCase(effectiveSpacing)}` as keyof typeof styles]
     : undefined;
-  const sizeClass = size
-    ? styles[`size${toPascalCase(size)}` as keyof typeof styles]
+  const sizeClass = effectiveSize
+    ? styles[`size${toPascalCase(effectiveSize)}` as keyof typeof styles]
     : undefined;
-  const backgroundClass = background
-    ? styles[`background${toPascalCase(background)}` as keyof typeof styles]
+  const backgroundClass = effectiveBackground
+    ? styles[`background${toPascalCase(effectiveBackground)}` as keyof typeof styles]
     : undefined;
   const alignClass = align
     ? styles[`align${toPascalCase(align)}` as keyof typeof styles]
@@ -153,9 +163,9 @@ const DynContainerComponent = (
     backgroundClass,
     alignClass,
     justifyClass,
-    layout === 'fixed' && styles.layoutFixed,
+    effectiveLayout === 'fixed' && styles.layoutFixed,
     resolvedBordered && styles.bordered,
-    shadow && styles.shadow,
+    effectiveShadow && styles.shadow,
     noPadding && styles.noPadding,
     hasTitleContent && styles.withTitle,
     className
@@ -166,7 +176,7 @@ const DynContainerComponent = (
       ref={ref}
       className={containerClassName}
       style={containerStyle}
-      data-testid={dataTestId}
+      data-testid={effectiveDataTestId}
       {...rest}
     >
       {hasTitleContent && (

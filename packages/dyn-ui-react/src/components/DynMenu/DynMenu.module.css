@@ -16,10 +16,14 @@
 
 .menubar[aria-orientation="vertical"] {
   flex-direction: column;
+  width: fit-content;
+  min-width: 200px;
+  max-width: 280px;
 }
 
 .menubar[aria-orientation="horizontal"] {
   flex-direction: row;
+  width: fit-content;
 }
 
 /* Menubar Item Wrapper */
@@ -32,6 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
   border: none;
   border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
@@ -64,11 +69,8 @@
 /* Dropdown Menu (Submenu) */
 .menu {
   position: absolute;
-  top: 100%;
-  left: 0;
   z-index: 1000;
   min-width: 180px;
-  margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
   padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
   background: var(--dyn-color-background, var(--color-background, #ffffff));
   border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
@@ -76,10 +78,17 @@
   box-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)));
 }
 
+/* Horizontal orientation: dropdown below */
+.menubar[aria-orientation="horizontal"] .menu {
+  top: 100%;
+  left: 0;
+  margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+}
+
+/* Vertical orientation: dropdown to the right */
 .menubar[aria-orientation="vertical"] .menu {
   top: 0;
   left: 100%;
-  margin-top: 0;
   margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
@@ -121,6 +130,11 @@
 @media (max-width: 768px) {
   .menubar {
     padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  }
+
+  .menubar[aria-orientation="vertical"] {
+    min-width: 160px;
+    max-width: 200px;
   }
 
   .menubar__button {

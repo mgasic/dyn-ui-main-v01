@@ -131,9 +131,57 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const activeSort = sortBy ?? internalSort ?? undefined;
 
+  // Sort data internally if sortable is enabled
+  const sortedData = useMemo(() => {
+    if (!activeSort || !sortable) {
+      return data;
+    }
+
+    const sorted = [...data].sort((a, b) => {
+      const aValue = a[activeSort.column];
+      const bValue = b[activeSort.column];
+
+      // Handle null/undefined
+      if (aValue == null && bValue == null) return 0;
+      if (aValue == null) return 1;
+      if (bValue == null) return -1;
+
+      // String comparison
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        const comparison = aValue.localeCompare(bValue);
+        return activeSort.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Number comparison
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return activeSort.direction === 'asc' ? aValue - bValue : bValue - aValue;
+      }
+
+      // Boolean comparison
+      if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
+        const comparison = aValue === bValue ? 0 : aValue ? 1 : -1;
+        return activeSort.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Date comparison
+      if (aValue instanceof Date && bValue instanceof Date) {
+        const comparison = aValue.getTime() - bValue.getTime();
+        return activeSort.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Fallback: convert to string
+      const aStr = String(aValue);
+      const bStr = String(bValue);
+      const comparison = aStr.localeCompare(bStr);
+      return activeSort.direction === 'asc' ? comparison : -comparison;
+    });
+
+    return sorted;
+  }, [data, activeSort, sortable]);
+
   const rowKeys = useMemo(
-    () => data.map((row, index) => getRowKey(row, index, rowKey)),
-    [data, rowKey]
+    () => sortedData.map((row, index) => getRowKey(row, index, rowKey)),
+    [sortedData, rowKey]
   );
 
   const domProps = useMemo(
@@ -168,7 +216,7 @@ export const DynTable: React.FC<DynTableProps> = ({
     if (onSelectionChange) {
       const rows = keys.map(key => {
         const index = rowKeys.indexOf(key);
-        return index >= 0 ? data[index] : undefined;
+        return index >= 0 ? sortedData[index] : undefined;
       }).filter(Boolean);
       onSelectionChange(keys, rows as any[]);
     }
@@ -401,7 +449,7 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const renderBody = () => (
     <tbody className={cn(getStyleClass('dyn-table__body'), 'dyn-table__body')}>
-      {data.map((row, rowIndex) => {
+      {sortedData.map((row, rowIndex) => {
         const key = rowKeys[rowIndex];
         return (
           <tr
@@ -521,7 +569,7 @@ export const DynTable: React.FC<DynTableProps> = ({
           {renderBody()}
         </table>
       </div>
-      {loading ? renderLoadingState() : data.length === 0 ? renderEmptyState() : null}
+      {loading ? renderLoadingState() : sortedData.length === 0 ? renderEmptyState() : null}
       {renderPagination()}
     </div>
   );

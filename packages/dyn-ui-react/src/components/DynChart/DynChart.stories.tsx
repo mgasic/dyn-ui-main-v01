@@ -50,6 +50,11 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
     type: {
       control: { type: 'select' },
       options: ['line', 'bar', 'pie', 'area'],

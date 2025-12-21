@@ -16,6 +16,11 @@ const meta: Meta<typeof DynDatePicker> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
@@ -114,8 +119,8 @@ export const DifferentFormats: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '300px' }}>
       <DynDatePicker
-        name="br-format"
-        label="Brazilian Format (dd/MM/yyyy)"
+        name="dd-mm-format"
+        label="European Format (dd/MM/yyyy)"
         format="dd/MM/yyyy"
         value={new Date('2023-12-25')}
       />
@@ -154,7 +159,7 @@ export const InteractiveExample: Story = {
         <DynDatePicker
           name="interactive-date"
           label="Interactive Date Picker"
-          help="Try typing: 'hoje', 'amanhã', '25/12/2023', or any natural date"
+          help="Try typing: 'today', 'tomorrow', '25/12/2023', or any natural date"
           value={selectedDate}
           onChange={setSelectedDate}
         />
@@ -163,7 +168,7 @@ export const InteractiveExample: Story = {
           <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
             <strong>Selected Date:</strong><br />
             <code>{selectedDate.toISOString().split('T')[0]}</code><br />
-            <small>{selectedDate.toLocaleDateString('pt-BR', {
+            <small>{selectedDate.toLocaleDateString('en-US', {
               weekday: 'long',
               year: 'numeric',
               month: 'long',

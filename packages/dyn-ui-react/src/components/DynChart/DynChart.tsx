@@ -714,7 +714,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
         {children}
 
         {ariaDescription && (
-          <figcaption id={descriptionId} className={styles.visuallyHidden}>
+          <figcaption id={descriptionId} className={styles.description}>
             {ariaDescription}
           </figcaption>
         )}

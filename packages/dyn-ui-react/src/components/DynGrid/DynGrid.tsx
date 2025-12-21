@@ -36,42 +36,54 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
   const {
     columns,
     data,
-    loading = DYN_GRID_DEFAULT_PROPS.loading,
-    size = DYN_GRID_DEFAULT_PROPS.size,
-    bordered = DYN_GRID_DEFAULT_PROPS.bordered,
-    striped = DYN_GRID_DEFAULT_PROPS.striped,
-    hoverable = DYN_GRID_DEFAULT_PROPS.hoverable,
-    sortable = DYN_GRID_DEFAULT_PROPS.sortable,
-    filterable = DYN_GRID_DEFAULT_PROPS.filterable,
-    selectable = DYN_GRID_DEFAULT_PROPS.selectable,
+    loading,
+    size,
+    bordered,
+    striped,
+    hoverable,
+    sortable,
+    filterable,
+    selectable,
     selectedKeys,
     onSelectionChange,
     onSort,
     onFilter,
     pagination,
-    emptyText = DYN_GRID_DEFAULT_PROPS.emptyText,
+    emptyText,
     className,
     id,
-    'data-testid': dataTestId = DYN_GRID_DEFAULT_PROPS['data-testid'],
+    'data-testid': dataTestId,
     ...rest
   } = props;
 
+  // Apply defaults only when undefined
+  const effectiveLoading = loading ?? DYN_GRID_DEFAULT_PROPS.loading;
+  const effectiveSize = size ?? DYN_GRID_DEFAULT_PROPS.size;
+  const effectiveBordered = bordered ?? DYN_GRID_DEFAULT_PROPS.bordered;
+  const effectiveStriped = striped ?? DYN_GRID_DEFAULT_PROPS.striped;
+  const effectiveHoverable = hoverable ?? DYN_GRID_DEFAULT_PROPS.hoverable;
+  const effectiveSortable = sortable ?? DYN_GRID_DEFAULT_PROPS.sortable;
+  const effectiveFilterable = filterable ?? DYN_GRID_DEFAULT_PROPS.filterable;
+  const effectiveSelectable = selectable ?? DYN_GRID_DEFAULT_PROPS.selectable;
+  const effectiveEmptyText = emptyText ?? DYN_GRID_DEFAULT_PROPS.emptyText;
+  const effectiveDataTestId = dataTestId ?? DYN_GRID_DEFAULT_PROPS['data-testid'];
+
   const selectionName = useId();
 
-  void filterable;
+  void effectiveFilterable;
   void onFilter;
 
   const selectionMode: 'none' | 'single' | 'multiple' = useMemo(() => {
-    if (selectable === 'single') {
+    if (effectiveSelectable === 'single') {
       return 'single';
     }
 
-    if (selectable === 'multiple' || selectable === true) {
+    if (effectiveSelectable === 'multiple' || effectiveSelectable === true) {
       return 'multiple';
     }
 
     return 'none';
-  }, [selectable]);
+  }, [effectiveSelectable]);
 
   const [sortConfig, setSortConfig] = useState<{
     key: string;
@@ -109,7 +121,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
 
   const handleSort = useCallback(
     (columnKey: string) => {
-      if (!sortable) {
+      if (!effectiveSortable) {
         return;
       }
 
@@ -127,7 +139,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
       setSortConfig({ key: columnKey, direction });
       onSort?.(columnKey, direction);
     },
-    [sortable, visibleColumns, sortConfig, onSort]
+    [effectiveSortable, visibleColumns, sortConfig, onSort]
   );
 
   const getSelectedRowData = useCallback(
@@ -209,17 +221,17 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
 
   const gridClassName = cn(
     styles.root,
-    sizeClassNameMap[size],
-    bordered && styles.bordered,
-    striped && styles.striped,
-    hoverable && styles.hoverable,
-    loading && styles.loading,
+    sizeClassNameMap[effectiveSize],
+    effectiveBordered && styles.bordered,
+    effectiveStriped && styles.striped,
+    effectiveHoverable && styles.hoverable,
+    effectiveLoading && styles.loading,
     className
   );
 
-  if (loading) {
+  if (effectiveLoading) {
     return (
-      <div ref={ref} className={gridClassName} id={id} data-testid={dataTestId} {...rest}>
+      <div ref={ref} className={gridClassName} id={id} data-testid={effectiveDataTestId} {...rest}>
         <div className={styles.loadingState} role="status" aria-live="polite">
           <div className={styles.spinner} aria-hidden="true" />
           <span>Loading data…</span>
@@ -230,12 +242,12 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
 
   if (data.length === 0) {
     return (
-      <div ref={ref} className={gridClassName} id={id} data-testid={dataTestId} {...rest}>
+      <div ref={ref} className={gridClassName} id={id} data-testid={effectiveDataTestId} {...rest}>
         <div className={styles.emptyState}>
-          {typeof emptyText === 'string' ? (
-            <span>{emptyText}</span>
+          {typeof effectiveEmptyText === 'string' ? (
+            <span>{effectiveEmptyText}</span>
           ) : (
-            emptyText
+            effectiveEmptyText
           )}
         </div>
       </div>
@@ -243,7 +255,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
   }
 
   return (
-    <div ref={ref} className={gridClassName} id={id} data-testid={dataTestId} {...rest}>
+    <div ref={ref} className={gridClassName} id={id} data-testid={effectiveDataTestId} {...rest}>
       <div className={styles.wrapper}>
         <table className={styles.table} role="table">
           <thead className={styles.header}>
@@ -274,13 +286,13 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
                     className={cn(
                       styles.headerCell,
                       headerAlignmentClass,
-                      column.sortable && sortable && styles.headerCellSortable,
+                      column.sortable && effectiveSortable && styles.headerCellSortable,
                       isSorted && styles.headerCellSorted
                     )}
                     style={{ width: column.width, minWidth: column.minWidth }}
                     onClick={() => column.sortable && handleSort(column.key)}
                     aria-sort={
-                      column.sortable && sortable
+                      column.sortable && effectiveSortable
                         ? direction === 'asc'
                           ? 'ascending'
                           : direction === 'desc'
@@ -292,7 +304,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
                   >
                     <div className={styles.headerContent}>
                       <span>{column.title}</span>
-                      {column.sortable && sortable && (
+                      {column.sortable && effectiveSortable && (
                         <span className={styles.sortIndicator} aria-hidden="true">
                           {isSorted ? (direction === 'asc' ? '↑' : '↓') : '↕'}
                         </span>

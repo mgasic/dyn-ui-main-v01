@@ -83,7 +83,7 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
     [internalExpandedKeys, onExpand]
   );
 
-  // Handle node selection
+  // Handle node selection (for clickable title)
   const handleSelect = useCallback(
     (node: DynTreeNode, selected: boolean) => {
       if (!selectable || node.disabled) return;
@@ -95,17 +95,17 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
           ? [...internalSelectedKeys, node.key]
           : internalSelectedKeys.filter(k => k !== node.key);
       } else {
+        // Single selection: deselect all others
         newSelectedKeys = selected ? [node.key] : [];
       }
 
       setInternalSelectedKeys(newSelectedKeys);
-      // Call onSelect with selected keys only to match test expectations
       onSelect?.(newSelectedKeys);
     },
     [selectable, multiple, internalSelectedKeys, onSelect]
   );
 
-  // Handle node checking with parent-child relationship
+  // Handle node checking (for checkboxes)
   const handleCheck = useCallback(
     (node: DynTreeNode, checked: boolean) => {
       if (!checkable || node.disabled) return;
@@ -124,9 +124,16 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
       }
 
       if (checked) {
-        // Check node and all descendants
-        const descendantKeys = getDescendantKeys(node);
-        descendantKeys.forEach(key => newCheckedKeys.add(key));
+        // Respect multiple prop for checkboxes
+        if (multiple) {
+          // Multiple selection: check node and all descendants
+          const descendantKeys = getDescendantKeys(node);
+          descendantKeys.forEach(key => newCheckedKeys.add(key));
+        } else {
+          // Single selection: clear all and check only this node
+          newCheckedKeys.clear();
+          newCheckedKeys.add(node.key);
+        }
       } else {
         // Uncheck node and all descendants
         const descendantKeys = getDescendantKeys(node);
@@ -137,7 +144,7 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
       setInternalCheckedKeys(finalCheckedKeys);
       onCheck?.(finalCheckedKeys, { checked, node });
     },
-    [checkable, internalCheckedKeys, onCheck]
+    [checkable, multiple, internalCheckedKeys, onCheck]
   );
 
   // Handle search

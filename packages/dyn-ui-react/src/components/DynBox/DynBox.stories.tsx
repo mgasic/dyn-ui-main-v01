@@ -15,27 +15,38 @@ const meta: Meta<typeof DynBox> = {
   argTypes: {
     as: {
       control: { type: 'select' },
-      options: ['div', 'section', 'article', 'main', 'aside', 'header', 'footer', 'nav'],
+      options: ['div', 'section', 'article', 'main', 'aside', 'header', 'footer', 'nav', 'button'],
       description: 'The HTML element to render',
     },
     p: {
       control: { type: 'select' },
-      options: ['0', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+      options: [undefined, '0', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'],
       description: 'Padding on all sides using design tokens',
     },
     m: {
       control: { type: 'select' },
-      options: ['0', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'auto'],
+      options: [undefined, '0', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', 'auto'],
       description: 'Margin on all sides using design tokens',
     },
     bg: {
-      control: { type: 'text' },
-      description: 'Background color variant or custom CSS color',
+      control: { type: 'select' },
+      options: [undefined, 'primary', 'secondary', 'tertiary', 'success', 'warning', 'danger'],
+      description: 'Background color variant',
     },
     display: {
       control: { type: 'select' },
-      options: ['block', 'inline', 'inline-block', 'flex', 'inline-flex', 'grid', 'inline-grid', 'none'],
+      options: [undefined, 'block', 'inline', 'inline-block', 'flex', 'inline-flex', 'grid', 'inline-grid', 'none'],
       description: 'CSS display property',
+    },
+    borderRadius: {
+      control: { type: 'select' },
+      options: [undefined, 'none', 'sm', 'md', 'lg', 'xl', 'full'],
+      description: 'Border radius using design tokens',
+    },
+    shadow: {
+      control: { type: 'select' },
+      options: [undefined, 'sm', 'md', 'lg'],
+      description: 'Box shadow using design tokens',
     },
     interactive: {
       control: { type: 'boolean' },
@@ -51,6 +62,27 @@ const meta: Meta<typeof DynBox> = {
 export default meta;
 
 type Story = StoryObj<typeof DynBox>;
+
+/**
+ * Playground story - full control over all DynBox properties.
+ * Use this to test display, as, and all other props interactively.
+ */
+export const Playground: Story = {
+  args: {
+    as: 'div',
+    display: 'flex',
+    p: 'md',
+    bg: 'tertiary',
+    borderRadius: 'md',
+    shadow: 'sm',
+    children: (
+      <>
+        <strong style={{ marginRight: '0.5rem' }}>DynBox Playground</strong>
+        <span>Change controls to test behavior</span>
+      </>
+    ),
+  },
+};
 
 /**
  * Default DynBox configuration showing basic usage with design tokens

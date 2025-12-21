@@ -12,35 +12,15 @@ import React, {
   useMemo,
   useCallback
 } from 'react';
-
-function classNames(
-  ...args: Array<string | Record<string, boolean> | undefined | null | any[]>
-): string {
-  const classes: string[] = [];
-  for (const arg of args) {
-    if (!arg) continue;
-    if (typeof arg === 'string') {
-      classes.push(arg);
-    } else if (Array.isArray(arg)) {
-      const inner = classNames(...arg);
-      if (inner) classes.push(inner);
-    } else if (typeof arg === 'object') {
-      for (const key in arg) {
-        if (Object.prototype.hasOwnProperty.call(arg, key) && (arg as any)[key]) {
-          classes.push(key);
-        }
-      }
-    }
-  }
-  return classes.join(' ');
-}
-
+import { cn } from '../../utils/classNames';
 import type { DynInputProps, DynFieldRef, CurrencyInputConfig } from '../../types/field.types';
 import type { DynCurrencyConfig } from '../../utils/dynFormatters';
 import { DynFieldContainer } from '../DynFieldContainer';
 import { useDynFieldValidation } from '../../hooks/useDynFieldValidation';
 import { useDynMask } from '../../hooks/useDynMask';
 import { DynIcon } from '../DynIcon';
+import styles from './DynInput.module.css';
+
 // NOTE: DynInput implements its own formatting helpers; do not import formatCurrencyValue
 // from utils to avoid name collision with local implementations.
 
@@ -107,7 +87,6 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
     );
     const [focused, setFocused] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
-    // generate stable id for the input when not provided
     const generatedIdRef = useRef<string>(`dyn-input-${Math.random().toString(36).slice(2, 9)}`);
     const inputId = id ?? name ?? generatedIdRef.current;
 
@@ -380,26 +359,22 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
 
     if (!visible) return null;
 
-    const inputClasses = classNames(
-      'dyn-input',
-      `dyn-input--${size}`,
+    const inputClasses = cn(
+      styles.input,
+      styles[`input--${size}`],
       {
-        'dyn-input--focused': focused,
-        'dyn-input--error': !!error,
-        'dyn-input--disabled': disabled,
-        'dyn-input--readonly': readonly,
-        'dyn-input--with-icon': !!icon,
-        'dyn-input--cleanable': !!(showCleanButton && inputValue && !readonly && !disabled)
+        [styles['input--focused']]: focused,
+        [styles['input--error']]: !!error,
+        [styles['input--disabled']]: disabled,
+        [styles['input--readonly']]: readonly,
+        [styles['input--with-icon']]: !!icon,
+        [styles['input--clearable']]: !!(showCleanButton && inputValue && !readonly && !disabled)
       }
     );
 
     const displayValue = mask ? maskedValue : inputValue;
 
-    const containerDivClass = classNames('dyn-input-container', className, {
-      'dyn-input-container--currency': type === 'currency',
-      'dyn-input-container--with-spin-buttons':
-        showSpinButtons && (type === 'number' || type === 'currency')
-    });
+    const containerDivClass = cn(styles.container, className);
 
     const showSpin = showSpinButtons && (type === 'number' || type === 'currency');
 
@@ -416,13 +391,13 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
       >
         <div className={containerDivClass}>
           {type === 'currency' && resolvedCurrencyConfig.symbol && (
-            <span className="dyn-input-currency-symbol" aria-hidden="true">
+            <span className={styles['dyn-input-currency-symbol']} aria-hidden="true">
               {resolvedCurrencyConfig.symbol}
             </span>
           )}
 
           {icon && (
-            <div className="dyn-input-icon-container">
+            <div className={styles['icon-container']}>
               <DynIcon icon={icon} />
             </div>
           )}
@@ -457,20 +432,20 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
           {showCleanButton && inputValue && !readonly && !disabled && (
             <button
               type="button"
-              className="dyn-input-clean-button"
+              className={styles['clear-button']}
               onClick={handleClean}
               tabIndex={-1}
-              aria-label="Limpar campo"
+              aria-label="Clear field"
             >
               <DynIcon icon="dyn-icon-close" />
             </button>
           )}
 
           {showSpin && (
-            <div className="dyn-input-spin-buttons" aria-hidden={disabled || readonly}>
+            <div className={styles['dyn-input-spin-buttons']} aria-hidden={disabled || readonly}>
               <button
                 type="button"
-                className="dyn-input-spin-button dyn-input-spin-button--increment"
+                className={styles['dyn-input-spin-button']}
                 onClick={() => handleStepChange(1)}
                 tabIndex={-1}
                 aria-label="Increase value"
@@ -480,7 +455,7 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
               </button>
               <button
                 type="button"
-                className="dyn-input-spin-button dyn-input-spin-button--decrement"
+                className={styles['dyn-input-spin-button']}
                 onClick={() => handleStepChange(-1)}
                 tabIndex={-1}
                 aria-label="Decrease value"
@@ -548,7 +523,6 @@ function initializeInputValue(
     }
 
     const normalizedValue = roundToPrecision(numericValue, config.precision);
-    // Input should not include the currency symbol (it's rendered separately)
     return config.autoFormat
       ? formatCurrencyValue(normalizedValue, { ...config, showSymbol: false })
       : formatPlainCurrencyValue(normalizedValue, config);

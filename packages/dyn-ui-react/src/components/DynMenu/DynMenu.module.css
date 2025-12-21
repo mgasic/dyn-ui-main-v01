@@ -1,230 +1,201 @@
 /* ==========================================================================
-   DynMenu Component Styles
-   Standardized with design tokens
+   DynMenu Component Styles (Menubar with Dropdowns)
+   Fully aligned with design tokens system
    ========================================================================== */
 
-:root {
-  /* Color Tokens */
-  --dyn-menu-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
-  --dyn-menu-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
-  --dyn-menu-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  --dyn-menu-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  --dyn-menu-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #9ca3af));
-  --dyn-menu-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
-  --dyn-menu-bg-active: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
-  --dyn-menu-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-menu-divider-color: var(--dyn-color-border, var(--color-border, #d1d5db));
-
-  /* Size Tokens */
-  --dyn-menu-item-height: 40px;
-  --dyn-menu-item-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-menu-item-padding-x: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-menu-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-menu-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
-  --dyn-menu-min-width: 200px;
-
-  /* Typography */
-  --dyn-menu-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-  --dyn-menu-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-menu-font-weight: var(--dyn-font-weight-normal, var(--font-weight-normal, 400));
-  --dyn-menu-line-height: 1.5;
-
-  /* Transitions */
-  --dyn-menu-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-
-  /* Shadow */
-  --dyn-menu-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1)));
-}
-
-/* ========================================================================
-   Menu Container
-   ======================================================================== */
-
-.container {
+/* Menubar Container */
+.menubar {
   display: flex;
-  flex-direction: column;
-  min-width: var(--dyn-menu-min-width);
-  background-color: var(--dyn-menu-bg);
-  border: 1px solid var(--dyn-menu-border-color);
-  border-radius: var(--dyn-menu-border-radius);
-  padding: var(--dyn-menu-padding);
-  box-shadow: var(--dyn-menu-shadow);
-  font-family: var(--dyn-menu-font-family);
-  font-size: var(--dyn-menu-font-size);
   gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  overflow: hidden;
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
 }
 
-/* ========================================================================
-   Menu Item
-   ======================================================================== */
+.menubar[aria-orientation="vertical"] {
+  flex-direction: column;
+}
 
-.item {
+.menubar[aria-orientation="horizontal"] {
+  flex-direction: row;
+}
+
+/* Menubar Item Wrapper */
+.menubar__item {
+  position: relative;
+}
+
+/* Menubar Button (Top Level Items) */
+.menubar__button {
   display: flex;
   align-items: center;
-  height: var(--dyn-menu-item-height);
-  padding: var(--dyn-menu-item-padding-y) var(--dyn-menu-item-padding-x);
-  color: var(--dyn-menu-text-color);
-  background-color: transparent;
+  justify-content: space-between;
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
   border: none;
   border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
-  cursor: pointer;
-  transition: all var(--dyn-menu-transition);
+  background: transparent;
+  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
   font-family: inherit;
-  font-size: inherit;
-  font-weight: var(--dyn-menu-font-weight);
-  line-height: var(--dyn-menu-line-height);
+  line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
+  cursor: pointer;
+  transition: all var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  white-space: nowrap;
+  user-select: none;
+}
+
+.menubar__button:hover {
+  background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+}
+
+.menubar__button:focus-visible {
+  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  outline-offset: 2px;
+}
+
+.menubar__button--open {
+  background: var(--dyn-color-primary-light, var(--color-primary-light, rgba(37, 99, 235, 0.1)));
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+}
+
+/* Dropdown Menu (Submenu) */
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 180px;
+  margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  background: var(--dyn-color-background, var(--color-background, #ffffff));
+  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  box-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)));
+}
+
+.menubar[aria-orientation="vertical"] .menu {
+  top: 0;
+  left: 100%;
+  margin-top: 0;
+  margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+}
+
+/* Menu Items (Dropdown Options) */
+.menu__item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
+  border: none;
+  border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
+  background: transparent;
+  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  font-weight: var(--dyn-font-weight-normal, var(--font-weight-normal, 400));
+  font-family: inherit;
+  line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
   text-align: left;
+  cursor: pointer;
+  transition: all var(--dyn-transition-base, var(--transition-base, 0.18s ease));
   white-space: nowrap;
 }
 
-.item:hover:not(:disabled) {
-  background-color: var(--dyn-menu-bg-hover);
-  color: var(--dyn-menu-text-color);
+.menu__item:hover {
+  background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
 }
 
-.item:active:not(:disabled) {
-  background-color: var(--dyn-menu-bg-active);
-  color: var(--dyn-menu-text-active);
-}
-
-.item:disabled {
-  color: var(--dyn-menu-text-disabled);
-  cursor: not-allowed;
-  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.6));
-}
-
-.item:focus-visible {
-  outline: 2px solid var(--dyn-menu-text-active);
+.menu__item:focus-visible {
+  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
   outline-offset: -2px;
 }
 
-/* ========================================================================
-   Menu Item States
-   ======================================================================== */
-
-.itemActive {
-  background-color: var(--dyn-menu-bg-active);
-  color: var(--dyn-menu-text-active);
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+.menu__item:active {
+  background: var(--dyn-color-primary-light, var(--color-primary-light, rgba(37, 99, 235, 0.1)));
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
 }
 
-.itemDisabled {
-  cursor: not-allowed;
-  color: var(--dyn-menu-text-disabled);
+/* Responsive */
+@media (max-width: 768px) {
+  .menubar {
+    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  }
+
+  .menubar__button {
+    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+    font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+  }
+
+  .menu {
+    min-width: 160px;
+  }
+
+  .menu__item {
+    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+    font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+  }
 }
 
-/* ========================================================================
-   Menu Item Icon & Label
-   ======================================================================== */
-
-.icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  flex-shrink: 0;
-}
-
-.label {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.submenuArrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-left: auto;
-  flex-shrink: 0;
-  transition: transform var(--dyn-menu-transition);
-}
-
-.itemWithSubmenu.open .submenuArrow {
-  transform: rotate(180deg);
-}
-
-/* ========================================================================
-   Menu Divider
-   ======================================================================== */
-
-.divider {
-  height: 1px;
-  background-color: var(--dyn-menu-divider-color);
-  margin: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) 0;
-  border: none;
-}
-
-/* ========================================================================
-   Submenu
-   ======================================================================== */
-
-.submenu {
-  display: none;
-  flex-direction: column;
-  padding-left: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-}
-
-.itemWithSubmenu.open .submenu {
-  display: flex;
-}
-
-/* ========================================================================
-   Accessibility: High Contrast Mode
-   ======================================================================== */
-
+/* Accessibility */
 @media (prefers-contrast: more) {
-  .item:focus-visible {
+  .menubar {
+    border-width: 2px;
+  }
+
+  .menu {
+    border-width: 2px;
+  }
+
+  .menubar__button:focus-visible,
+  .menu__item:focus-visible {
     outline-width: 3px;
   }
 }
 
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
-
 @media (prefers-reduced-motion: reduce) {
-  .item,
-  .submenuArrow {
+  .menubar__button,
+  .menu__item {
     transition: none;
   }
 }
 
-/* ========================================================================
-   Responsive: Mobile (767px and below)
-   ======================================================================== */
-
-@media (max-width: 767px) {
-  .container {
-    min-width: 100%;
-  }
-
-  .item {
-    height: 44px;
-    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
-  }
-}
-
-/* ========================================================================
-   Dark Mode Support
-   ======================================================================== */
-
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-menu-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
-    --dyn-menu-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-    --dyn-menu-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-    --dyn-menu-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-menu-text-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
-    --dyn-menu-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
-    --dyn-menu-bg-active: rgba(59, 130, 246, 0.15);
-    --dyn-menu-text-active: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-    --dyn-menu-divider-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  .menubar {
+    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
+    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .menubar__button {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  }
+
+  .menubar__button:hover {
+    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  }
+
+  .menubar__button--open {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+  }
+
+  .menu {
+    background: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
+    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+  }
+
+  .menu__item {
+    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  }
+
+  .menu__item:hover {
+    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  }
+
+  .menu__item:active {
+    background: rgba(59, 130, 246, 0.15);
+    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
   }
 }

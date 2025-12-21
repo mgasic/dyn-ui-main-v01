@@ -71,6 +71,14 @@ const meta: Meta<typeof DynBadge> = {
     'aria-label': {
       control: 'text',
       description: 'Accessible label for screen readers'
+    },
+    startIcon: {
+      control: false,
+      description: 'Icon element to display before badge text (use WithIcons story for examples)'
+    },
+    endIcon: {
+      control: false,
+      description: 'Icon element to display after badge text (use WithIcons story for examples)'
     }
   },
   args: {

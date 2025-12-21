@@ -11,12 +11,12 @@ import React, {
   useEffect,
   useMemo
 } from 'react';
-import classNames from 'classnames';
+import { cn } from '../../utils/classNames';
 import type { DynSelectProps, DynFieldRef, SelectOption } from '../../types/field.types';
 import { DynFieldContainer } from '../DynFieldContainer';
 import { useDynFieldValidation } from '../../hooks/useDynFieldValidation';
 import { DynIcon } from '../DynIcon';
-import './DynSelect.module.css';
+import styles from './DynSelect.module.css';
 
 export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
   (
@@ -24,7 +24,7 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
       name,
       label,
       help,
-      placeholder = 'Selecione...',
+      placeholder = 'Select...',
       disabled = false,
       readonly = false,
       required = false,
@@ -189,26 +189,26 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
 
     const resolvedError = errorMessage ?? (error || undefined);
 
-    const selectClasses = classNames(
-      'dyn-select',
-      `dyn-select--${size}`,
+    const selectClasses = cn(
+      styles['dyn-select'],
+      styles[`dyn-select--${size}`],
       {
-        'dyn-select--open': isOpen,
-        'dyn-select--focused': focused,
-        'dyn-select--error': Boolean(resolvedError),
-        'dyn-select--disabled': disabled,
-        'dyn-select--readonly': readonly,
-        'dyn-select--searchable': searchable,
-        'dyn-select--multiple': multiple,
-        'dyn-select--loading': loading
+        [styles['dyn-select--open']]: isOpen,
+        [styles['dyn-select--focused']]: focused,
+        [styles['dyn-select--error']]: Boolean(resolvedError),
+        [styles['dyn-select--disabled']]: disabled,
+        [styles['dyn-select--readonly']]: readonly,
+        [styles['dyn-select--searchable']]: searchable,
+        [styles['dyn-select--multiple']]: multiple,
+        [styles['dyn-select--loading']]: loading
       }
     );
 
     const getDisplayText = () => {
-      if (loading) return 'Carregando...';
+      if (loading) return 'Loading...';
 
       if (multiple && Array.isArray(selectedOptions) && selectedOptions.length > 0) {
-        return `${selectedOptions.length} selecionado(s)`;
+        return `${selectedOptions.length} selected`;
       } else if (!multiple && selectedOptions) {
         return (selectedOptions as SelectOption).label;
       }
@@ -229,7 +229,7 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
         className={className}
         htmlFor={name}
       >
-        <div ref={selectRef} className="dyn-select-container">
+        <div ref={selectRef} className={styles['dyn-select-container']}>
           <div
             className={selectClasses}
             onClick={handleToggle}
@@ -253,17 +253,17 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
               value={multiple && Array.isArray(value) ? value.join(',') : value || ''}
             />
 
-            <div className="dyn-select-content">
+            <div className={styles['dyn-select-content']}>
               {multiple && Array.isArray(selectedOptions) && selectedOptions.length > 0 ? (
-                <div className="dyn-select-tags">
+                <div className={styles['dyn-select-tags']}>
                   {selectedOptions.map((option) => (
-                    <span key={option.value} className="dyn-select-tag">
+                    <span key={option.value} className={styles['dyn-select-tag']}>
                       {option.label}
                       <button
                         type="button"
-                        className="dyn-select-tag-remove"
+                        className={styles['dyn-select-tag-remove']}
                         onClick={(e) => handleRemoveOption(option.value, e)}
-                        aria-label={`Remover ${option.label}`}
+                        aria-label={`Remove ${option.label}`}
                       >
                         <DynIcon icon="dyn-icon-close" />
                       </button>
@@ -271,42 +271,42 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
                   ))}
                 </div>
               ) : (
-                <span className={classNames('dyn-select-text', {
-                  'dyn-select-placeholder': showPlaceholder
+                <span className={cn(styles['dyn-select-text'], {
+                  [styles['dyn-select-placeholder']]: showPlaceholder
                 })}>
                   {getDisplayText()}
                 </span>
               )}
             </div>
 
-            <div className="dyn-select-arrow">
+            <div className={styles['dyn-select-arrow']}>
               <DynIcon
                 icon={loading ? "dyn-icon-loading" : "dyn-icon-arrow-down"}
-                className={classNames({
-                  'dyn-select-arrow--up': isOpen && !loading
+                className={cn({
+                  [styles['dyn-select-arrow--up']]: isOpen && !loading
                 })}
               />
             </div>
           </div>
 
           {isOpen && (
-            <div className="dyn-select-dropdown">
+            <div className={styles['dyn-select-dropdown']}>
               {searchable && (
-                <div className="dyn-select-search">
+                <div className={styles['dyn-select-search']}>
                   <input
                     type="text"
-                    placeholder="Pesquisar..."
+                    placeholder="Search..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="dyn-select-search-input"
+                    className={styles['dyn-select-search-input']}
                   />
                 </div>
               )}
 
-              <div className="dyn-select-options" role="listbox">
+              <div className={styles['dyn-select-options']} role="listbox">
                 {filteredOptions.length === 0 ? (
-                  <div className="dyn-select-empty">
-                    {searchTerm ? 'Nenhum resultado encontrado' : 'Nenhuma opção disponível'}
+                  <div className={styles['dyn-select-empty']}>
+                    {searchTerm ? 'No results found' : 'No options available'}
                   </div>
                 ) : (
                   filteredOptions.map((option) => {
@@ -317,22 +317,22 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
                     return (
                       <div
                         key={option.value}
-                        className={classNames('dyn-select-option', {
-                          'dyn-select-option--selected': isSelected,
-                          'dyn-select-option--disabled': option.disabled
+                        className={cn(styles['dyn-select-option'], {
+                          [styles['dyn-select-option--selected']]: isSelected,
+                          [styles['dyn-select-option--disabled']]: option.disabled
                         })}
                         role="option"
                         aria-selected={isSelected}
                         onClick={() => handleOptionSelect(option)}
                       >
                         {multiple && (
-                          <span className={classNames('dyn-select-checkbox', {
-                            'dyn-select-checkbox--checked': isSelected
+                          <span className={cn(styles['dyn-select-checkbox'], {
+                            [styles['dyn-select-checkbox--checked']]: isSelected
                           })}>
                             {isSelected && <DynIcon icon="dyn-icon-check" />}
                           </span>
                         )}
-                        <span className="dyn-select-option-text">{option.label}</span>
+                        <span className={styles['dyn-select-option-text']}>{option.label}</span>
                       </div>
                     );
                   })

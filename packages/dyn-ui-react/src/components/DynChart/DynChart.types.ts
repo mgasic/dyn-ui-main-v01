@@ -57,7 +57,7 @@ export interface DynChartProps extends BaseComponentProps, DynChartOptions {
   /** Y axis configuration */
   yAxis?: ChartAxis;
 
-  /** Accessible description for assistive technologies */
+  /** Chart description - visible caption displayed below the chart and accessible to assistive technologies */
   ariaDescription?: string;
 }
 

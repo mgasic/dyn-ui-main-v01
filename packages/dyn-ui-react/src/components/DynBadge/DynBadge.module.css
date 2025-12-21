@@ -156,13 +156,13 @@
 
 .badge--positioned {
   position: absolute;
-  transform: translate(50%, -50%);
   z-index: var(--dyn-z-dropdown, var(--z-dropdown, 1000));
 }
 
 .badge--topRight {
   top: 0;
   right: 0;
+  transform: translate(50%, -50%);
 }
 
 .badge--topLeft {
@@ -181,6 +181,12 @@
   bottom: 0;
   left: 0;
   transform: translate(-50%, 50%);
+}
+
+.badge--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .badge--count {

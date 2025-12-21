@@ -20,7 +20,7 @@ export const DYN_BADGE_COLORS = [
 export type DynBadgeSemanticColor = (typeof DYN_BADGE_COLORS)[number];
 export type DynBadgeVariant = 'solid' | 'soft' | 'outline' | 'dot';
 export type DynBadgeColor = DynBadgeSemanticColor | (string & {});
-export type DynBadgePosition = 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft';
+export type DynBadgePosition = 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft' | 'center';
 
 
 

@@ -28,6 +28,11 @@ const meta: Meta<typeof DynSelect> = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],

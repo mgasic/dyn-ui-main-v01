@@ -12,11 +12,6 @@ const meta: Meta<typeof DynBox> = {
       },
     },
   },
-  args: {
-    as: 'div',
-    p: 'md',
-    borderRadius: 'md',
-  },
   argTypes: {
     as: {
       control: { type: 'select' },
@@ -62,6 +57,8 @@ type Story = StoryObj<typeof DynBox>;
  */
 export const Default: Story = {
   args: {
+    p: 'md',
+    borderRadius: 'md',
     bg: 'tertiary',
     shadow: 'sm',
     children: (
@@ -114,7 +111,6 @@ export const Variants: Story = {
   args: {
     p: 'lg',
     borderRadius: 'lg',
-    shadow: undefined,
   },
   parameters: {
     docs: {

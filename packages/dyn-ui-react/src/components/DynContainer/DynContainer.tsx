@@ -97,7 +97,8 @@ const DynContainerComponent = (
   }: DynContainerProps,
   ref: ForwardedRef<DynContainerRef>
 ) => {
-  // Apply defaults only when undefined
+  // ✅ Apply defaults only for CSS class generation
+  // Do NOT create variables that are always truthy
   const effectiveDirection = direction ?? DYN_CONTAINER_DEFAULT_PROPS.direction;
   const effectiveSpacing = spacing ?? DYN_CONTAINER_DEFAULT_PROPS.spacing;
   const effectiveSize = size ?? DYN_CONTAINER_DEFAULT_PROPS.size;
@@ -113,30 +114,37 @@ const DynContainerComponent = (
   const resolvedPadding = resolveSpacingValue(padding);
   const resolvedMargin = resolveSpacingValue(margin);
 
+  // ✅ Only add inline styles when props are explicitly provided
   const containerStyle = useMemo<CSSProperties | undefined>(() => {
     const next: CSSVarProperties = { ...(style as CSSVarProperties) };
 
-    if (typeof height === 'number') {
-      next.height = `${height}px`;
-    } else if (typeof height === 'string') {
-      next.height = height;
+    // Only add height if explicitly provided
+    if (height !== undefined) {
+      if (typeof height === 'number') {
+        next.height = `${height}px`;
+      } else if (typeof height === 'string') {
+        next.height = height;
+      }
     }
 
-    if (resolvedMaxWidth !== undefined) {
+    // Only add maxWidth if explicitly provided
+    if (maxWidth !== undefined && resolvedMaxWidth !== undefined) {
       next.maxWidth = resolvedMaxWidth;
       next['--dyn-container-max-width'] = resolvedMaxWidth;
     }
 
-    if (resolvedPadding !== undefined) {
+    // Only add padding if explicitly provided
+    if (padding !== undefined && resolvedPadding !== undefined) {
       next['--dyn-container-padding'] = resolvedPadding;
     }
 
-    if (resolvedMargin !== undefined) {
+    // Only add margin if explicitly provided
+    if (margin !== undefined && resolvedMargin !== undefined) {
       next['--dyn-container-margin'] = resolvedMargin;
     }
 
     return Object.keys(next).length > 0 ? next : undefined;
-  }, [height, resolvedMargin, resolvedMaxWidth, resolvedPadding, style]);
+  }, [height, margin, maxWidth, padding, resolvedMargin, resolvedMaxWidth, resolvedPadding, style]);
 
   const directionClass = styles[`direction${toPascalCase(effectiveDirection)}` as keyof typeof styles];
   const spacingClass = effectiveSpacing

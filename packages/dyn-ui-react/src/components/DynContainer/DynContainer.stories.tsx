@@ -36,17 +36,17 @@ const meta: Meta<typeof DynContainer> = {
     },
     direction: {
       control: 'radio',
-      options: ['vertical', 'horizontal'],
+      options: [undefined, 'vertical', 'horizontal'],
       description: 'Layout direction for the content area',
     },
     spacing: {
       control: 'select',
-      options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+      options: [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Spacing token applied between content elements',
     },
     size: {
       control: 'radio',
-      options: ['small', 'medium', 'large'],
+      options: [undefined, 'small', 'medium', 'large'],
       description: 'Size variant that controls padding',
     },
     bordered: {
@@ -59,22 +59,22 @@ const meta: Meta<typeof DynContainer> = {
     },
     background: {
       control: 'radio',
-      options: ['none', 'surface', 'card'],
+      options: [undefined, 'none', 'surface', 'card'],
       description: 'Background style variant',
     },
     layout: {
       control: 'radio',
-      options: ['fluid', 'fixed'],
+      options: [undefined, 'fluid', 'fixed'],
       description: 'Layout behavior controlling how the container width is constrained',
     },
     align: {
       control: 'radio',
-      options: ['start', 'center', 'end', 'stretch'],
+      options: [undefined, 'start', 'center', 'end', 'stretch'],
       description: 'Cross-axis alignment for content',
     },
     justify: {
       control: 'radio',
-      options: ['start', 'center', 'end', 'between', 'around', 'evenly'],
+      options: [undefined, 'start', 'center', 'end', 'between', 'around', 'evenly'],
       description: 'Main-axis alignment for content',
     },
     height: {
@@ -88,12 +88,12 @@ const meta: Meta<typeof DynContainer> = {
     },
     padding: {
       control: 'select',
-      options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+      options: [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Override internal padding using spacing tokens',
     },
     margin: {
       control: 'select',
-      options: ['none', 'xs', 'sm', 'md', 'lg', 'xl'],
+      options: [undefined, 'none', 'xs', 'sm', 'md', 'lg', 'xl'],
       description: 'Apply outer margin using spacing tokens',
     },
     className: {
@@ -101,19 +101,41 @@ const meta: Meta<typeof DynContainer> = {
       description: 'Additional CSS classes',
     },
   },
-  args: {
-    spacing: 'md',
-    size: 'medium',
-    bordered: true,
-    background: 'surface',
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * Playground story - full control over all DynContainer properties.
+ * Use this to test spacing, sizing, background, and layout props interactively.
+ */
+export const Playground: Story = {
+  args: {
+    title: 'DynContainer Playground',
+    subtitle: 'Change controls to test behavior',
+    direction: 'vertical',
+    spacing: 'md',
+    size: 'medium',
+    bordered: true,
+    shadow: false,
+    background: 'surface',
+    layout: 'fluid',
+    children: (
+      <div>
+        <p>This is a container with full control over all properties.</p>
+        <DynButton label="Sample Button" kind="primary" />
+      </div>
+    ),
+  },
+};
+
 export const Default: Story = {
   args: {
+    spacing: 'md',
+    size: 'medium',
+    bordered: true,
+    background: 'surface',
     children: (
       <div>
         <p>This is the default container with standard styling, borders, and padding.</p>
@@ -127,6 +149,10 @@ export const WithTitle: Story = {
   args: {
     title: 'Container Title',
     subtitle: 'Optional supporting information',
+    spacing: 'md',
+    size: 'medium',
+    bordered: true,
+    background: 'surface',
     children: (
       <div>
         <p>This container includes both a title and subtitle in the header area.</p>
@@ -315,7 +341,7 @@ export const Showcase: Story = {
         width: '100%',
       }}
     >
-      <DynContainer title="Default Container">
+      <DynContainer title="Default Container" spacing="md" size="medium" bordered background="surface">
         <p>Standard container with all default settings.</p>
         <DynButton label="Default" kind="primary" />
       </DynContainer>

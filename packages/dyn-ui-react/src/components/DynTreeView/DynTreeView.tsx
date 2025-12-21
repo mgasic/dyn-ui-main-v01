@@ -196,7 +196,12 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
                 </span>
               </div>
             ) : (
-              <div className={classNames(styles['dyn-tree-view__node-switcher'], styles['dyn-tree-view__node-switcher--leaf'])}>
+              <div 
+                className={classNames(
+                  styles['dyn-tree-view__node-switcher'], 
+                  styles['dyn-tree-view__node-switcher--leaf']
+                )}
+              >
                 {showLine && <div className={styles['dyn-tree-view__line']} />}
               </div>
             )}
@@ -286,7 +291,7 @@ const DynTreeView: React.FC<DynTreeViewProps> = ({
         <div className={styles['dyn-tree-view__search']}>
           <input
             type="text"
-            placeholder="Buscar..."
+            placeholder="Search..."
             value={searchValue}
             onChange={(e) => handleSearch(e.target.value)}
             className={styles['dyn-tree-view__search-input']}

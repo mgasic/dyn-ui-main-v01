@@ -119,8 +119,8 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
 
   const rootClasses = cn(
     getStyleClass('root'),
-    size === 'small' && 'dyn-list-view--small',
-    size === 'large' && 'dyn-list-view--large',
+    size === 'small' && getStyleClass('rootSmall'),
+    size === 'large' && getStyleClass('rootLarge'),
     bordered && getStyleClass('bordered'),
     className
   );
@@ -149,7 +149,11 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
       {...rest}
     >
       {(multiSelect || selectable) && (
-        <div className={getStyleClass('option')}
+        <div className={cn(
+          getStyleClass('option'),
+          size === 'small' && getStyleClass('optionSmall'),
+          size === 'large' && getStyleClass('optionLarge')
+        )}
              role="option"
              aria-selected={allChecked}
         >
@@ -159,8 +163,13 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
             aria-checked={allChecked}
             checked={allChecked}
             onChange={() => commit(allChecked ? [] : allKeys)}
+            className={getStyleClass('option__checkbox')}
           />
-          <span className={getStyleClass('option__label')}>Select All</span>
+          <span className={cn(
+            getStyleClass('option__label'),
+            size === 'small' && getStyleClass('option__label--small'),
+            size === 'large' && getStyleClass('option__label--large')
+          )}>Select All</span>
         </div>
       )}
 
@@ -188,6 +197,8 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
               aria-selected={selectedState}
               className={cn(
                 getStyleClass('option'),
+                size === 'small' && getStyleClass('optionSmall'),
+                size === 'large' && getStyleClass('optionLarge'),
                 selectedState && getStyleClass('option--selected'),
                 i === activeIndex && getStyleClass('option--active'),
                 item.disabled && getStyleClass('option--disabled')
@@ -214,11 +225,19 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
                   renderItem(item, i)
                 ) : (
                   <>
-                    <span className={getStyleClass('option__label')}>
+                    <span className={cn(
+                      getStyleClass('option__label'),
+                      size === 'small' && getStyleClass('option__label--small'),
+                      size === 'large' && getStyleClass('option__label--large')
+                    )}>
                       {title}
                     </span>
                     {desc && (
-                      <span className={getStyleClass('option__description')}>
+                      <span className={cn(
+                        getStyleClass('option__description'),
+                        size === 'small' && getStyleClass('option__description--small'),
+                        size === 'large' && getStyleClass('option__description--large')
+                      )}>
                         {desc}
                       </span>
                     )}

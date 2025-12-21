@@ -119,6 +119,54 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
     return index.toString();
   }, []);
 
+  // Sort data internally if sortable is enabled
+  const sortedData = useMemo(() => {
+    if (!sortConfig || !effectiveSortable) {
+      return data;
+    }
+
+    const sorted = [...data].sort((a, b) => {
+      const aValue = a[sortConfig.key];
+      const bValue = b[sortConfig.key];
+
+      // Handle null/undefined
+      if (aValue == null && bValue == null) return 0;
+      if (aValue == null) return 1;
+      if (bValue == null) return -1;
+
+      // String comparison
+      if (typeof aValue === 'string' && typeof bValue === 'string') {
+        const comparison = aValue.localeCompare(bValue);
+        return sortConfig.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Number comparison
+      if (typeof aValue === 'number' && typeof bValue === 'number') {
+        return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue;
+      }
+
+      // Boolean comparison
+      if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
+        const comparison = aValue === bValue ? 0 : aValue ? 1 : -1;
+        return sortConfig.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Date comparison
+      if (aValue instanceof Date && bValue instanceof Date) {
+        const comparison = aValue.getTime() - bValue.getTime();
+        return sortConfig.direction === 'asc' ? comparison : -comparison;
+      }
+
+      // Fallback: convert to string
+      const aStr = String(aValue);
+      const bStr = String(bValue);
+      const comparison = aStr.localeCompare(bStr);
+      return sortConfig.direction === 'asc' ? comparison : -comparison;
+    });
+
+    return sorted;
+  }, [data, sortConfig, effectiveSortable]);
+
   const handleSort = useCallback(
     (columnKey: string) => {
       if (!effectiveSortable) {
@@ -146,11 +194,11 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
     (keys: string[]): Record<string, unknown>[] =>
       keys
         .map(key => {
-          const rowIndex = data.findIndex((record, index) => getRowKey(record, index) === key);
-          return rowIndex >= 0 ? data[rowIndex] : undefined;
+          const rowIndex = sortedData.findIndex((record, index) => getRowKey(record, index) === key);
+          return rowIndex >= 0 ? sortedData[rowIndex] : undefined;
         })
         .filter((record): record is Record<string, unknown> => Boolean(record)),
-    [data, getRowKey]
+    [sortedData, getRowKey]
   );
 
   const handleRowSelect = useCallback(
@@ -181,13 +229,13 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
         return;
       }
 
-      const allKeys = data.map((record, index) => getRowKey(record, index));
+      const allKeys = sortedData.map((record, index) => getRowKey(record, index));
       const newSelection = selected ? allKeys : [];
 
       setSelectedRows(newSelection);
-      onSelectionChange?.(newSelection, selected ? data : []);
+      onSelectionChange?.(newSelection, selected ? sortedData : []);
     },
-    [selectionMode, data, getRowKey, onSelectionChange]
+    [selectionMode, sortedData, getRowKey, onSelectionChange]
   );
 
   const renderCell = useCallback(
@@ -202,22 +250,22 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
   );
 
   const isAllSelected = useMemo(() => {
-    if (selectionMode !== 'multiple' || data.length === 0) {
+    if (selectionMode !== 'multiple' || sortedData.length === 0) {
       return false;
     }
 
-    const allKeys = data.map((record, index) => getRowKey(record, index));
+    const allKeys = sortedData.map((record, index) => getRowKey(record, index));
     return allKeys.every(key => selectedRows.includes(key));
-  }, [selectionMode, data, getRowKey, selectedRows]);
+  }, [selectionMode, sortedData, getRowKey, selectedRows]);
 
   const isSelectionIndeterminate = useMemo(() => {
-    if (selectionMode !== 'multiple' || data.length === 0) {
+    if (selectionMode !== 'multiple' || sortedData.length === 0) {
       return false;
     }
 
-    const selectedCount = data.filter((record, index) => selectedRows.includes(getRowKey(record, index))).length;
-    return selectedCount > 0 && selectedCount < data.length;
-  }, [selectionMode, data, getRowKey, selectedRows]);
+    const selectedCount = sortedData.filter((record, index) => selectedRows.includes(getRowKey(record, index))).length;
+    return selectedCount > 0 && selectedCount < sortedData.length;
+  }, [selectionMode, sortedData, getRowKey, selectedRows]);
 
   const gridClassName = cn(
     styles.root,
@@ -240,7 +288,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
     );
   }
 
-  if (data.length === 0) {
+  if (sortedData.length === 0) {
     return (
       <div ref={ref} className={gridClassName} id={id} data-testid={effectiveDataTestId} {...rest}>
         <div className={styles.emptyState}>
@@ -316,7 +364,7 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
             </tr>
           </thead>
           <tbody className={styles.body}>
-            {data.map((record, rowIndex) => {
+            {sortedData.map((record, rowIndex) => {
               const rowKey = getRowKey(record, rowIndex);
               const isSelected = selectedRows.includes(rowKey);
 

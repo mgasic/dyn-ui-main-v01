@@ -21,9 +21,18 @@
   outline-offset: 2px;
 }
 
+/* Root Variants */
 .bordered {
   border-width: 2px;
   border-color: var(--dyn-color-border, var(--color-border, #e5e7eb));
+}
+
+.rootSmall {
+  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+}
+
+.rootLarge {
+  padding: var(--dyn-spacing-md, var(--spacing-md, 12px));
 }
 
 /* Option (List Item) Styles */
@@ -62,6 +71,19 @@
   pointer-events: none;
 }
 
+/* Option Size Variants */
+.optionSmall {
+  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  min-height: 40px;
+  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+}
+
+.optionLarge {
+  padding: var(--dyn-spacing-lg, var(--spacing-lg, 16px));
+  min-height: 56px;
+  gap: var(--dyn-spacing-md, var(--spacing-md, 12px));
+}
+
 /* Checkbox Styles */
 .option__checkbox {
   width: 18px;
@@ -94,6 +116,15 @@
   white-space: nowrap;
 }
 
+/* Label Size Variants */
+.option__label--small {
+  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+}
+
+.option__label--large {
+  font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
+}
+
 .option__description {
   font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
   font-weight: var(--dyn-font-weight-normal, var(--font-weight-normal, 400));
@@ -102,6 +133,15 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Description Size Variants */
+.option__description--small {
+  font-size: 11px;
+}
+
+.option__description--large {
+  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
 }
 
 /* Expand Button */

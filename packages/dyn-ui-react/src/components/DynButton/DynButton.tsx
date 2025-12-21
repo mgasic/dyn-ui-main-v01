@@ -108,14 +108,8 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
       return trimmed || DYN_BUTTON_DEFAULT_PROPS.loadingText;
     }, [loadingText]);
 
-    // Icon size mapping
-    const iconSizeToken = useMemo(() => {
-      switch (size) {
-        case 'small': return 'small';
-        case 'large': return 'large';
-        default: return 'medium';
-      }
-    }, [size]);
+    // Icon size - direct mapping (size is already 'small' | 'medium' | 'large')
+    const iconSizeToken = size;
 
     // Render icon element
     const iconElement = useMemo(() => {
@@ -214,7 +208,7 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
         onKeyDown={handleKeyDown}
         {...rest}
       >
-        <span className={getStyleClass('content')} style={{ opacity: loading ? 0 : undefined }}>
+        <span className={getStyleClass('content')}>
           {iconElement}
           {labelElement}
           {childrenContent}
@@ -229,7 +223,7 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
                 will be announced by assistive tech is rendered *outside*
                 the button below. */}
             <span
-              className="dyn-sr-only"
+              className={getStyleClass('visuallyHidden')}
               role="status"
               aria-live="polite"
               aria-atomic="true"
@@ -246,7 +240,7 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
             hidden via the same SR-only class. */}
         {loading && (
           <span
-            className="dyn-sr-only"
+            className={getStyleClass('visuallyHidden')}
             role="status"
             aria-live="polite"
             aria-atomic="true"

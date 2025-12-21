@@ -59,38 +59,65 @@ const meta = {
       control: { type: 'select' },
       options: ['line', 'bar', 'pie', 'area'],
       description: 'Select the chart visualisation variant.',
+      table: {
+        category: 'Appearance',
+      },
     },
     title: {
       control: 'text',
       description: 'Chart title used for visual and accessible labelling.',
+      table: {
+        category: 'Content',
+      },
     },
     subtitle: {
       control: 'text',
       description: 'Optional subtitle displayed below the title.',
+      table: {
+        category: 'Content',
+      },
     },
     ariaDescription: {
       control: 'text',
       description: 'Descriptive text exposed to assistive technologies via figcaption.',
+      table: {
+        category: 'Accessibility',
+      },
     },
     width: {
       control: { type: 'number', min: 200, max: 1000 },
       description: 'Canvas width in pixels.',
+      table: {
+        category: 'Layout',
+      },
     },
     height: {
       control: { type: 'number', min: 150, max: 600 },
       description: 'Canvas height in pixels.',
+      table: {
+        category: 'Layout',
+      },
     },
     showLegend: {
       control: 'boolean',
       description: 'Toggle the legend visibility.',
+      table: {
+        category: 'Appearance',
+      },
     },
     showTooltip: {
       control: 'boolean',
       description: 'Toggle tooltip interactions.',
+      table: {
+        category: 'Appearance',
+      },
     },
     showGrid: {
       control: 'boolean',
       description: 'Toggle axis grid rendering (non-pie charts).',
+      table: {
+        category: 'Appearance',
+      },
     },
   },
   args: {

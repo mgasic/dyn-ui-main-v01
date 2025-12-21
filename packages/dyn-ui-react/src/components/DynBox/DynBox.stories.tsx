@@ -180,11 +180,12 @@ export const Interactive: Story = {
   args: {
     p: 'md',
     borderRadius: 'md',
+    display: 'flex',
   },
   parameters: {
     docs: {
       description: {
-        story: 'Shows interactive DynBox components with proper keyboard navigation, ARIA attributes, and screen reader support. Try using Tab, Enter, and Space keys.',
+        story: 'Shows interactive DynBox components with proper keyboard navigation, ARIA attributes, and screen reader support. Try using Tab, Enter, and Space keys. Use the display control to change layout behavior.',
       },
     },
   },

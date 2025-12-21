@@ -40,7 +40,8 @@ const positionClassNameMap = {
   topRight: styles['badge--topRight'],
   topLeft: styles['badge--topLeft'],
   bottomRight: styles['badge--bottomRight'],
-  bottomLeft: styles['badge--bottomLeft']
+  bottomLeft: styles['badge--bottomLeft'],
+  center: styles['badge--center']
 } as const;
 
 const DEFAULT_MAX_COUNT = 99;

@@ -53,7 +53,7 @@ const meta: Meta<typeof DynBadge> = {
     },
     position: {
       control: 'select',
-      options: ['topRight', 'topLeft', 'bottomRight', 'bottomLeft'],
+      options: ['topRight', 'topLeft', 'bottomRight', 'bottomLeft', 'center'],
       description: 'Position of the badge when used as an overlay'
     },
     animated: {
@@ -201,12 +201,16 @@ export const StatusIndicators: Story = {
         <DynBadge count={3} color="danger" position="topRight" countDescription="Alerts" />
         <span style={{ position: 'absolute', bottom: 4, left: 4, fontSize: '0.75rem' }}>Alerts</span>
       </div>
+      <div style={{ position: 'relative', width: 64, height: 64, background: '#f0f0f0', borderRadius: 8 }}>
+        <DynBadge variant="dot" color="warning" position="center" />
+        <span style={{ position: 'absolute', bottom: 4, left: 4, fontSize: '0.75rem' }}>Center</span>
+      </div>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Positioned badges for status indicators and notification overlays.'
+        story: 'Positioned badges for status indicators and notification overlays. Includes center position.'
       }
     }
   }

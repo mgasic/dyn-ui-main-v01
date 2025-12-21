@@ -178,33 +178,33 @@
 }
 
 .box--bg-primary {
-  --dyn-box-bg: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-box-color: var(--dyn-color-primary-text, var(--color-primary-contrast, #ffffff));
+  --dyn-box-bg: var(--dyn-color-primary, var(--color-theme-primary, #007bff));
+  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
 }
 
 .box--bg-secondary {
-  --dyn-box-bg: var(--dyn-color-secondary, var(--color-secondary, #64748b));
-  --dyn-box-color: var(--dyn-color-secondary-text, var(--color-secondary-contrast, #ffffff));
+  --dyn-box-bg: var(--dyn-color-secondary, var(--color-theme-secondary, #6c757d));
+  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
 }
 
 .box--bg-tertiary {
-  --dyn-box-bg: var(--dyn-color-tertiary, var(--color-surface, #f8fafc));
-  --dyn-box-color: var(--dyn-color-tertiary-text, var(--color-text-primary, #1e293b));
+  --dyn-box-bg: var(--dyn-color-neutral-10, var(--color-neutral-light-10, #f8fafc));
+  --dyn-box-color: var(--dyn-color-neutral-90, var(--color-neutral-dark-90, #1e293b));
 }
 
 .box--bg-success {
-  --dyn-box-bg: var(--dyn-color-success, var(--color-success, #059669));
-  --dyn-box-color: var(--dyn-color-text-on-primary, #ffffff);
+  --dyn-box-bg: var(--dyn-color-feedback-positive, var(--color-feedback-positive, #4caf50));
+  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
 }
 
 .box--bg-warning {
-  --dyn-box-bg: var(--dyn-color-warning, var(--color-warning, #d97706));
-  --dyn-box-color: var(--dyn-color-text-on-primary, #ffffff);
+  --dyn-box-bg: var(--dyn-color-feedback-warning, var(--color-feedback-warning, #ff9800));
+  --dyn-box-color: var(--dyn-color-neutral-90, var(--color-neutral-dark-90, #333333));
 }
 
 .box--bg-danger {
-  --dyn-box-bg: var(--dyn-color-danger, var(--color-danger, #dc2626));
-  --dyn-box-color: var(--dyn-color-text-on-primary, #ffffff);
+  --dyn-box-bg: var(--dyn-color-feedback-negative, var(--color-feedback-negative-default, #f44336));
+  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
 }
 
 .box--border {
@@ -341,20 +341,6 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .box--bg-primary {
-    --dyn-box-bg: var(--dyn-color-neutral-800, #1f2937);
-  }
-
-  .box--bg-secondary {
-    --dyn-box-bg: var(--dyn-color-neutral-700, #374151);
-  }
-
-  .box--bg-tertiary {
-    --dyn-box-bg: var(--dyn-color-neutral-600, #4b5563);
-  }
-}
-
 .box--interactive {
   cursor: pointer;
   transition: var(--dyn-transition-fast, var(--transition-fast, 150ms ease));
@@ -366,7 +352,7 @@
 }
 
 .box--interactive:focus-visible {
-  outline: var(--dyn-focus-ring-width, 2px) solid var(--dyn-color-focus, var(--color-primary, #2563eb));
+  outline: var(--dyn-focus-ring-width, 2px) solid var(--dyn-color-focus, var(--color-primary, #007bff));
   outline-offset: var(--dyn-focus-ring-offset, 2px);
 }
 

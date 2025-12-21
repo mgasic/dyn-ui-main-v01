@@ -137,7 +137,7 @@
 
 /* Description Size Variants */
 .option__description--small {
-  font-size: 11px;
+  font-size: var(--dyn-font-size-2xs, var(--font-size-2xs, 11px));
 }
 
 .option__description--large {
@@ -296,7 +296,7 @@
   }
 
   .option__description {
-    font-size: 11px;
+    font-size: var(--dyn-font-size-2xs, var(--font-size-2xs, 11px));
   }
 
   .option__actions {

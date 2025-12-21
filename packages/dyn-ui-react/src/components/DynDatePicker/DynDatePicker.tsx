@@ -36,7 +36,7 @@ export const DynDatePicker = forwardRef<DynFieldRef, DynDatePickerProps>((props,
     name,
     label,
     help,
-    placeholder = 'dd/mm/aaaa',
+    placeholder = 'dd/mm/yyyy',
     disabled = false,
     readonly = false,
     required = false,
@@ -47,7 +47,7 @@ export const DynDatePicker = forwardRef<DynFieldRef, DynDatePickerProps>((props,
     validation,
     className,
     format = 'dd/MM/yyyy',
-    locale = 'pt-BR',
+    locale = 'en-US',
     minDate,
     maxDate,
     customParser,
@@ -306,7 +306,7 @@ export const DynDatePicker = forwardRef<DynFieldRef, DynDatePickerProps>((props,
             onClick={handleCalendarToggle}
             disabled={disabled}
             tabIndex={-1}
-            aria-label="Abrir calendário"
+            aria-label="Open calendar"
             aria-expanded={isOpen}
             aria-controls={isOpen ? dropdownId : undefined}
           >
@@ -319,7 +319,7 @@ export const DynDatePicker = forwardRef<DynFieldRef, DynDatePickerProps>((props,
               className={styles.clearButton}
               onClick={handleClearClick}
               tabIndex={-1}
-              aria-label="Limpar data"
+              aria-label="Clear date"
             >
               <DynIcon icon="dyn-icon-close" />
             </button>
@@ -332,19 +332,19 @@ export const DynDatePicker = forwardRef<DynFieldRef, DynDatePickerProps>((props,
           <div id={dropdownId} className={styles.dropdown} role="dialog">
             <div className={styles.shortcuts}>
               <button type="button" className={styles.shortcut} onClick={handleTodayClick}>
-                Hoje
+                Today
               </button>
               <button type="button" className={styles.shortcut} onClick={handleClearClick}>
-                Limpar
+                Clear
               </button>
             </div>
 
             <div>
-              <div className={styles.helpTitle}>Formatos aceitos:</div>
+              <div className={styles.helpTitle}>Accepted formats:</div>
               <ul className={styles.helpList}>
-                <li className={styles.helpListItem}>dd/mm/aaaa (ex: 25/12/2023)</li>
-                <li className={styles.helpListItem}>hoje, amanhã, ontem</li>
-                <li className={styles.helpListItem}>Texto natural</li>
+                <li className={styles.helpListItem}>dd/mm/yyyy (e.g., 25/12/2023)</li>
+                <li className={styles.helpListItem}>today, tomorrow, yesterday</li>
+                <li className={styles.helpListItem}>Natural language</li>
               </ul>
             </div>
           </div>

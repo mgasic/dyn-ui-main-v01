@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import styles from './DynTable.module.css';
@@ -94,15 +94,17 @@ export const DynTable: React.FC<DynTableProps> = ({
   }, [selectedKeys]);
 
   const [internalSort, setInternalSort] = useState(sortBy ?? null);
+  const userHasInteracted = useRef(false);
   
-  // Update internal sort when sortBy prop changes
+  // Update internal sort when sortBy prop changes ONLY if user hasn't interacted
   useEffect(() => {
-    if (sortBy !== undefined) {
+    if (sortBy !== undefined && !userHasInteracted.current) {
       setInternalSort(sortBy);
     }
   }, [sortBy?.column, sortBy?.direction]);
 
-  const activeSort = sortBy ?? internalSort ?? undefined;
+  // Use internal sort after user interaction, otherwise use prop
+  const activeSort = userHasInteracted.current ? internalSort : (sortBy ?? internalSort ?? undefined);
 
   // Sort data internally if sortable is enabled
   const sortedData = useMemo(() => {
@@ -221,7 +223,10 @@ export const DynTable: React.FC<DynTableProps> = ({
     const isCurrentlySorted = activeSort?.column === columnKey;
     const nextDirection: TableSortDirection = isCurrentlySorted && activeSort?.direction === 'asc' ? 'desc' : 'asc';
 
-    // Always update internal state for sorting to work
+    // Mark that user has interacted
+    userHasInteracted.current = true;
+
+    // Update internal state for sorting to work
     setInternalSort({ column: columnKey, direction: nextDirection });
 
     // Call external callback if provided

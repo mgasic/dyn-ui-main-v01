@@ -56,6 +56,7 @@ build/ts/
 - ✅ Dark theme support via media queries
 - ✅ Separate files per component
 - ✅ JavaScript/TypeScript output
+- ✅ **Shade-aware dark theme detection** (see below)
 
 ### Custom Transform: Shorter Names
 
@@ -143,15 +144,50 @@ npm run tokens:build
 
 ## 🎨 Dark Theme Support
 
-### Automatic Dark Mode
+### ⚠️ IMPORTANT: Shade Names vs Dark Theme
 
-**JSON Structure:**
+**Our system distinguishes between:**
+
+1. **Shade names** (e.g., `dark`, `darker`) - color variations within the SAME theme
+2. **Dark theme tokens** (under `darkTheme` branch) - alternative values for dark MODE
+
+#### ✅ Correct: Shade Names in Light Theme
+
+```json
+{
+  "color": {
+    "neutral": {
+      "dark": {
+        "70": { "value": "#666666" }  // ← Shade name, NOT dark theme!
+      }
+    },
+    "feedback": {
+      "negative": {
+        "dark": { "value": "#d32f2f" },    // ← Shade name
+        "darker": { "value": "#b71c1c" }  // ← Shade name
+      }
+    }
+  }
+}
+```
+
+**Generated CSS (in `:root`, not media query):**
+```css
+:root {
+  --color-neutral-dark-70: #666666;        /* ✅ In light theme */
+  --color-feedback-negative-dark: #d32f2f;  /* ✅ In light theme */
+  --color-feedback-negative-darker: #b71c1c; /* ✅ In light theme */
+}
+```
+
+#### ✅ Correct: Dark Theme Branch
+
 ```json
 {
   "dyn": {
     "button": {
       "color": { "value": "#0066cc" },
-      "darkTheme": {
+      "darkTheme": {                    // ← Explicit keyword!
         "color": { "value": "#3399ff" }
       }
     }
@@ -162,15 +198,20 @@ npm run tokens:build
 **Generated CSS:**
 ```css
 :root {
-  --dyn-button-color: #0066cc;
+  --dyn-button-color: #0066cc;  /* ✅ Light theme default */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-button-color: #3399ff;
+    --dyn-button-color: #3399ff;  /* ✅ Dark theme override */
   }
 }
 ```
+
+### Key Rule
+
+✅ **Only tokens under `darkTheme` branch go into media query**  
+✅ **All other tokens (including shade names like `dark`) stay in `:root`**
 
 ---
 
@@ -323,12 +364,21 @@ Check JSON structure:
 }
 ```
 
+### Shade Tokens Missing from Light Theme?
+
+If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
+
+1. **Verify they're NOT under `darkTheme` branch**
+2. **Check the `isDarkThemeToken()` function in config**
+3. **See:** `docs/DARK-THEME-STRATEGY.md` for details
+
 ---
 
 ## 📚 Resources
 
 - **Style Dictionary Docs:** https://amzn.github.io/style-dictionary/
-- **Our Analysis:** `docs/DESIGN-TOKENS-ANALYSIS.md`
+- **Dark Theme Strategy:** `docs/DARK-THEME-STRATEGY.md`
+- **Full Analysis:** `docs/DESIGN-TOKENS-ANALYSIS.md`
 - **Main README:** `packages/design-tokens/README.md`
 
 ---
@@ -337,12 +387,14 @@ Check JSON structure:
 
 - [ ] Create JSON file in `tokens/my-component.json`
 - [ ] Add component tokens (light theme)
-- [ ] Add dark theme tokens under `darkTheme`
+- [ ] Add dark theme tokens under `darkTheme` (optional)
 - [ ] Add filter to `style-dictionary.config.v2.js`
 - [ ] Run `npm run tokens:build`
 - [ ] Verify output in `styles/generated/my-component.css`
+- [ ] Check shade tokens are in `:root` (not in media query)
+- [ ] Check `darkTheme` tokens are in media query
 - [ ] Import in `styles/index.css`
-- [ ] Test in Storybook
+- [ ] Test in Storybook (light + dark mode)
 - [ ] Commit JSON + config (NOT generated CSS)
 
 ---

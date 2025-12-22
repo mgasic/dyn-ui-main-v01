@@ -1,0 +1,207 @@
+{
+  "dyn": {
+    "responsiveTabs": {
+      "description": "Design tokens for DynResponsiveTabs component",
+      "color": {
+        "background": {
+          "inactive": {
+            "value": "#E0D78C",
+            "description": "Background color for inactive tabs - Light theme"
+          },
+          "active": {
+            "value": "#FFFEF7",
+            "description": "Background color for active tab - Light theme"
+          },
+          "hover": {
+            "value": "#EDE8B0",
+            "description": "Background color on hover for inactive tabs - Light theme"
+          },
+          "border": {
+            "value": "#9C905C",
+            "description": "Border color for tabs"
+          },
+          "content": {
+            "value": "#FFFFFF",
+            "description": "Background color for content area"
+          }
+        },
+        "text": {
+          "inactive": {
+            "value": "#666666",
+            "description": "Text color for inactive tabs"
+          },
+          "active": {
+            "value": "#333333",
+            "description": "Text color for active tab"
+          }
+        },
+        "accordion": {
+          "header": {
+            "value": "#E0D78C",
+            "description": "Accordion header background color"
+          },
+          "headerActive": {
+            "value": "#B5AC5F",
+            "description": "Accordion header background color when active"
+          }
+        },
+        "nested": {
+          "backgroundInactive": {
+            "value": "#D8D299",
+            "description": "Background color for nested/child tabs - inactive"
+          },
+          "backgroundActive": {
+            "value": "#F0EDD8",
+            "description": "Background color for nested/child tabs - active"
+          },
+          "border": {
+            "value": "#A89B60",
+            "description": "Border color for nested/child tabs"
+          }
+        },
+        "darkTheme": {
+          "background": {
+            "inactive": {
+              "value": "#2E2E24",
+              "description": "Background color for inactive tabs - Dark theme"
+            },
+            "active": {
+              "value": "#3A3A2E",
+              "description": "Background color for active tab - Dark theme"
+            },
+            "hover": {
+              "value": "#343428",
+              "description": "Background color on hover - Dark theme"
+            },
+            "border": {
+              "value": "#B5AC5F",
+              "description": "Border color for tabs - Dark theme"
+            },
+            "content": {
+              "value": "#2A2A20",
+              "description": "Background color for content area - Dark theme"
+            }
+          },
+          "text": {
+            "inactive": {
+              "value": "#C4BC87",
+              "description": "Text color for inactive tabs - Dark theme"
+            },
+            "active": {
+              "value": "#F0EDD8",
+              "description": "Text color for active tab - Dark theme"
+            }
+          },
+          "accordion": {
+            "header": {
+              "value": "#2E2E24",
+              "description": "Accordion header background color - Dark theme"
+            },
+            "headerActive": {
+              "value": "#3A3A2E",
+              "description": "Accordion header background color when active - Dark theme"
+            }
+          },
+          "nested": {
+            "backgroundInactive": {
+              "value": "#2A2A20",
+              "description": "Background color for nested tabs - inactive - Dark theme"
+            },
+            "backgroundActive": {
+              "value": "#3A3A2E",
+              "description": "Background color for nested tabs - active - Dark theme"
+            },
+            "border": {
+              "value": "#7A7454",
+              "description": "Border color for nested tabs - Dark theme"
+            }
+          }
+        }
+      },
+      "border": {
+        "width": {
+          "value": "2px",
+          "description": "Border width for tabs and panels"
+        },
+        "radius": {
+          "value": "8px",
+          "description": "Border radius for tabs and accordion headers"
+        }
+      },
+      "spacing": {
+        "tab": {
+          "padding": {
+            "value": "0.75rem 1.5rem",
+            "description": "Padding for default tab size"
+          },
+          "paddingSm": {
+            "value": "0.6rem 1rem",
+            "description": "Padding for small tab size (tablet)"
+          },
+          "paddingXs": {
+            "value": "0.5rem 0.75rem",
+            "description": "Padding for extra small tab size (mobile)"
+          },
+          "gap": {
+            "value": "4px",
+            "description": "Gap between tabs in list"
+          }
+        },
+        "panel": {
+          "padding": {
+            "value": "1.5rem",
+            "description": "Padding for content panel"
+          },
+          "minHeight": {
+            "value": "200px",
+            "description": "Minimum height for content panel"
+          }
+        },
+        "accordion": {
+          "headerPadding": {
+            "value": "1rem 1.5rem",
+            "description": "Padding for accordion header"
+          },
+          "headerGap": {
+            "value": "1rem",
+            "description": "Gap between label and icon in accordion header"
+          }
+        }
+      },
+      "typography": {
+        "fontSize": {
+          "value": "14px",
+          "description": "Default font size for tabs"
+        },
+        "fontSizeSm": {
+          "value": "12px",
+          "description": "Small font size for responsive and nested tabs"
+        },
+        "fontWeight": {
+          "inactive": {
+            "value": "400",
+            "description": "Font weight for inactive tabs"
+          },
+          "active": {
+            "value": "600",
+            "description": "Font weight for active tabs"
+          }
+        },
+        "fontFamily": {
+          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+          "description": "Font family for tabs component"
+        }
+      },
+      "animation": {
+        "transition": {
+          "value": "all 0.3s ease",
+          "description": "Transition for color and style changes"
+        },
+        "transitionFast": {
+          "value": "all 0.15s ease",
+          "description": "Fast transition for quick interactions"
+        }
+      }
+    }
+  }
+}

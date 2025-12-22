@@ -1,0 +1,18 @@
+/* ============================================
+   DESIGN TOKENS - Global Import
+   ============================================
+   This file imports CSS variables generated from
+   @dyn-ui/design-tokens package.
+   
+   Import this file in your app's main entry point
+   or in Storybook preview.tsx
+   ============================================ */
+
+/* Import generated responsive tabs tokens */
+@import url('../../design-tokens/styles/generated/responsive-tabs.css');
+
+/* Import generated table tokens */
+@import url('../../design-tokens/styles/generated/table.css');
+
+/* Import foundation tokens */
+@import url('../../design-tokens/styles/generated/foundations.css');

@@ -1,0 +1,18 @@
+# Generated token files
+styles/generated/
+build/js/
+build/ts/
+
+# Keep build/css for legacy compatibility (for now)
+# build/css/
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db

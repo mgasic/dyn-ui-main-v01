@@ -1,131 +1,191 @@
 {
   "dyn": {
     "responsiveTabs": {
-      "description": "Design tokens for DynResponsiveTabs component",
+      "description": "Design tokens for DynResponsiveTabs component - Updated to match design spec",
       "color": {
         "background": {
           "inactive": {
-            "value": "#E0D78C",
-            "description": "Background color for inactive tabs - Light theme"
+            "value": "#F5F5F5",
+            "description": "Background color for inactive tabs - Light gray (from design)"
           },
           "active": {
-            "value": "#FFFEF7",
-            "description": "Background color for active tab - Light theme"
+            "value": "#E0F7FF",
+            "description": "Background color for active tab - Light blue (from design)"
           },
           "hover": {
-            "value": "#EDE8B0",
-            "description": "Background color on hover for inactive tabs - Light theme"
-          },
-          "border": {
-            "value": "#9C905C",
-            "description": "Border color for tabs"
+            "value": "#E8E8E8",
+            "description": "Background color on hover for inactive tabs - Slightly darker gray"
           },
           "content": {
             "value": "#FFFFFF",
-            "description": "Background color for content area"
+            "description": "Background color for content area - White"
+          }
+        },
+        "border": {
+          "default": {
+            "value": "#E0E0E0",
+            "description": "Default border color for inactive tabs - Light gray"
+          },
+          "active": {
+            "value": "#4DB8E8",
+            "description": "Border color for active tab - Medium blue (from design)"
+          },
+          "content": {
+            "value": "#4DB8E8",
+            "description": "Border color for content panel - Medium blue (from design)"
           }
         },
         "text": {
           "inactive": {
             "value": "#666666",
-            "description": "Text color for inactive tabs"
+            "description": "Text color for inactive tabs - Medium gray"
           },
           "active": {
             "value": "#333333",
-            "description": "Text color for active tab"
+            "description": "Text color for active tab - Dark gray"
           }
         },
         "accordion": {
           "header": {
-            "value": "#E0D78C",
-            "description": "Accordion header background color"
+            "value": "#F5F5F5",
+            "description": "Accordion header background color - Light gray"
           },
           "headerActive": {
-            "value": "#B5AC5F",
-            "description": "Accordion header background color when active"
+            "value": "#E0F7FF",
+            "description": "Accordion header background color when active - Light blue"
+          },
+          "border": {
+            "value": "#4DB8E8",
+            "description": "Accordion border color - Medium blue"
           }
         },
         "nested": {
           "backgroundInactive": {
-            "value": "#D8D299",
-            "description": "Background color for nested/child tabs - inactive"
+            "value": "#FAFAFA",
+            "description": "Background color for nested/child tabs - inactive - Very light gray"
           },
           "backgroundActive": {
-            "value": "#F0EDD8",
-            "description": "Background color for nested/child tabs - active"
+            "value": "#F0FBFF",
+            "description": "Background color for nested/child tabs - active - Very light blue"
           },
           "border": {
-            "value": "#A89B60",
-            "description": "Border color for nested/child tabs"
+            "value": "#80D0ED",
+            "description": "Border color for nested/child tabs - Lighter blue"
           }
         },
         "darkTheme": {
           "background": {
             "inactive": {
-              "value": "#2E2E24",
+              "value": "#2A2A2A",
               "description": "Background color for inactive tabs - Dark theme"
             },
             "active": {
-              "value": "#3A3A2E",
-              "description": "Background color for active tab - Dark theme"
+              "value": "#1E4A5F",
+              "description": "Background color for active tab - Dark blue"
             },
             "hover": {
-              "value": "#343428",
+              "value": "#333333",
               "description": "Background color on hover - Dark theme"
             },
-            "border": {
-              "value": "#B5AC5F",
-              "description": "Border color for tabs - Dark theme"
+            "content": {
+              "value": "#1A1A1A",
+              "description": "Background color for content area - Dark theme"
+            }
+          },
+          "border": {
+            "default": {
+              "value": "#3A3A3A",
+              "description": "Default border color - Dark theme"
+            },
+            "active": {
+              "value": "#4DB8E8",
+              "description": "Border color for active tab - Dark theme (same blue)"
             },
             "content": {
-              "value": "#2A2A20",
-              "description": "Background color for content area - Dark theme"
+              "value": "#4DB8E8",
+              "description": "Border color for content panel - Dark theme"
             }
           },
           "text": {
             "inactive": {
-              "value": "#C4BC87",
+              "value": "#AAAAAA",
               "description": "Text color for inactive tabs - Dark theme"
             },
             "active": {
-              "value": "#F0EDD8",
+              "value": "#E0F7FF",
               "description": "Text color for active tab - Dark theme"
             }
           },
           "accordion": {
             "header": {
-              "value": "#2E2E24",
-              "description": "Accordion header background color - Dark theme"
+              "value": "#2A2A2A",
+              "description": "Accordion header background - Dark theme"
             },
             "headerActive": {
-              "value": "#3A3A2E",
-              "description": "Accordion header background color when active - Dark theme"
+              "value": "#1E4A5F",
+              "description": "Accordion header background when active - Dark theme"
+            },
+            "border": {
+              "value": "#4DB8E8",
+              "description": "Accordion border color - Dark theme"
             }
           },
           "nested": {
             "backgroundInactive": {
-              "value": "#2A2A20",
-              "description": "Background color for nested tabs - inactive - Dark theme"
+              "value": "#222222",
+              "description": "Nested tabs inactive background - Dark theme"
             },
             "backgroundActive": {
-              "value": "#3A3A2E",
-              "description": "Background color for nested tabs - active - Dark theme"
+              "value": "#1A3D4F",
+              "description": "Nested tabs active background - Dark theme"
             },
             "border": {
-              "value": "#7A7454",
-              "description": "Border color for nested tabs - Dark theme"
+              "value": "#3A7A9B",
+              "description": "Nested tabs border - Dark theme"
             }
           }
         }
       },
       "border": {
         "width": {
-          "value": "2px",
-          "description": "Border width for tabs and panels"
+          "default": {
+            "value": "2px",
+            "description": "Default border width for content panel"
+          },
+          "active": {
+            "value": "4px",
+            "description": "Border width for active tab (left side in vertical mode)"
+          },
+          "thin": {
+            "value": "1px",
+            "description": "Thin border width for inactive tabs"
+          }
         },
         "radius": {
-          "value": "8px",
-          "description": "Border radius for tabs and accordion headers"
+          "default": {
+            "value": "8px",
+            "description": "Default border radius for tabs and panels"
+          },
+          "horizontal": {
+            "tab": {
+              "value": "8px 8px 0 0",
+              "description": "Border radius for horizontal tabs (rounded top, flat bottom)"
+            },
+            "panel": {
+              "value": "0 0 8px 8px",
+              "description": "Border radius for horizontal content panel (flat top, rounded bottom)"
+            }
+          },
+          "vertical": {
+            "tab": {
+              "value": "8px 0 0 8px",
+              "description": "Border radius for vertical tabs (rounded left, flat right)"
+            },
+            "panel": {
+              "value": "0 8px 8px 0",
+              "description": "Border radius for vertical content panel (flat left, rounded right)"
+            }
+          }
         }
       },
       "spacing": {

@@ -1,6 +1,6 @@
 /* ==========================================================================
    DynTable Component Styles
-   Standardized with design tokens - FIXED VERSION
+   Fully aligned with DynGrid design system
    ========================================================================== */
 
 /* ==========================================================================
@@ -54,37 +54,6 @@
   gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
-.dyn-table__sort-button {
-  display: flex;
-  align-items: center;
-  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  border: none;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-  width: 100%;
-}
-
-.dyn-table__sort-icons {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-}
-
-.dyn-table__sort-icon {
-  font-size: 10px;
-  opacity: 0.3;
-  line-height: 1;
-}
-
-.dyn-table__sort-icon--active {
-  opacity: 1;
-  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
-}
-
 .dyn-table__cell--sortable {
   cursor: pointer;
   transition: background-color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
@@ -96,6 +65,12 @@
 
 .dyn-table__cell--sorted {
   color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+}
+
+.dyn-table__sort-indicator {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
 }
 
 /* ==========================================================================
@@ -389,10 +364,6 @@
   }
 
   .dyn-table__cell--sorted {
-    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-  }
-
-  .dyn-table__sort-icon--active {
     color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
   }
 

@@ -1,10 +1,10 @@
 /* ============================================
    DYN RESPONSIVE TABS - COMPONENT STYLES
-   Using Design Tokens (Responsive Tabs)
+   HYBRID: Uses Design Tokens with Fallback Colors
    ============================================ */
 
 .container {
-  font-family: var(--dyn-responsive-tabs-font-family);
+  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
   position: relative;
   width: 100%;
 }
@@ -12,8 +12,8 @@
 /* ===== TAB LIST ===== */
 .tabList {
   display: flex;
-  gap: var(--dyn-responsive-tabs-tab-gap);
-  border-bottom: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  gap: var(--dyn-responsive-tabs-tab-gap, 4px);
+  border-bottom: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   background: transparent;
   padding: 0;
   margin: 0;
@@ -23,32 +23,32 @@
 
 /* ===== INDIVIDUAL TAB ===== */
 .tab {
-  background: var(--dyn-responsive-tabs-bg-inactive);
-  border: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  background: var(--dyn-responsive-tabs-bg-inactive, #E0D78C);
+  border: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   border-bottom: none;
-  border-radius: var(--dyn-responsive-tabs-border-radius) var(--dyn-responsive-tabs-border-radius) 0 0;
-  padding: var(--dyn-responsive-tabs-tab-padding);
-  font-size: var(--dyn-responsive-tabs-font-size);
-  font-weight: var(--dyn-responsive-tabs-font-weight-inactive);
-  font-family: var(--dyn-responsive-tabs-font-family);
-  color: var(--dyn-responsive-tabs-text-inactive);
+  border-radius: var(--dyn-responsive-tabs-border-radius, 8px) var(--dyn-responsive-tabs-border-radius, 8px) 0 0;
+  padding: var(--dyn-responsive-tabs-tab-padding, 0.75rem 1.5rem);
+  font-size: var(--dyn-responsive-tabs-font-size, 14px);
+  font-weight: var(--dyn-responsive-tabs-font-weight-inactive, 400);
+  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  color: var(--dyn-responsive-tabs-text-inactive, #666666);
   cursor: pointer;
-  transition: var(--dyn-responsive-tabs-transition);
+  transition: var(--dyn-responsive-tabs-transition, all 0.3s ease);
   position: relative;
-  margin-bottom: calc(var(--dyn-responsive-tabs-border-width) * -1);
+  margin-bottom: calc(var(--dyn-responsive-tabs-border-width, 2px) * -1);
   text-align: center;
   white-space: nowrap;
 }
 
 .tab:hover:not(.disabledTab) {
-  background: var(--dyn-responsive-tabs-bg-hover);
+  background: var(--dyn-responsive-tabs-bg-hover, #EDE8B0);
 }
 
 .activeTab {
-  background: var(--dyn-responsive-tabs-bg-active);
-  border-color: var(--dyn-responsive-tabs-border-color);
-  color: var(--dyn-responsive-tabs-text-active);
-  font-weight: var(--dyn-responsive-tabs-font-weight-active);
+  background: var(--dyn-responsive-tabs-bg-active, #FFFEF7);
+  border-color: var(--dyn-responsive-tabs-border-color, #9C905C);
+  color: var(--dyn-responsive-tabs-text-active, #333333);
+  font-weight: var(--dyn-responsive-tabs-font-weight-active, 600);
   z-index: 2;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--dyn-responsive-tabs-border-color);
+  outline: 2px solid var(--dyn-responsive-tabs-border-color, #9C905C);
   outline-offset: 2px;
 }
 
@@ -73,11 +73,11 @@
 
 /* ===== CONTENT PANEL ===== */
 .tabPanel {
-  background: var(--dyn-responsive-tabs-content-bg);
-  border: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  background: var(--dyn-responsive-tabs-content-bg, #FFFFFF);
+  border: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   border-top: none;
-  padding: var(--dyn-responsive-tabs-content-padding);
-  min-height: var(--dyn-responsive-tabs-content-min-height);
+  padding: var(--dyn-responsive-tabs-content-padding, 1.5rem);
+  min-height: var(--dyn-responsive-tabs-content-min-height, 200px);
   animation: fadeIn 0.2s ease;
 }
 
@@ -100,33 +100,33 @@
 .orientation-vertical .tabList {
   flex-direction: column;
   border-bottom: none;
-  border-right: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  border-right: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   min-width: 200px;
   margin-right: 0;
 }
 
 .orientation-vertical .tab {
-  border-radius: var(--dyn-responsive-tabs-border-radius) 0 0 var(--dyn-responsive-tabs-border-radius);
+  border-radius: var(--dyn-responsive-tabs-border-radius, 8px) 0 0 var(--dyn-responsive-tabs-border-radius, 8px);
   border-right: none;
-  border-bottom: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  border-bottom: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   margin-bottom: 0;
-  margin-right: calc(var(--dyn-responsive-tabs-border-width) * -1);
+  margin-right: calc(var(--dyn-responsive-tabs-border-width, 2px) * -1);
   text-align: left;
 }
 
 .orientation-vertical .tab:last-child {
-  border-bottom: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  border-bottom: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
 }
 
 .orientation-vertical .activeTab {
   border-right: none;
-  margin-right: calc(var(--dyn-responsive-tabs-border-width) * -1);
+  margin-right: calc(var(--dyn-responsive-tabs-border-width, 2px) * -1);
 }
 
 .orientation-vertical .tabPanel {
   flex: 1;
   border-left: none;
-  border-top: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  border-top: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
 }
 
 /* ===== ACCORDION MODE ===== */
@@ -135,48 +135,48 @@
 }
 
 .accordion .accordionHeader {
-  background: var(--dyn-responsive-tabs-accordion-header-bg);
-  border: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
-  border-radius: var(--dyn-responsive-tabs-border-radius);
-  padding: var(--dyn-responsive-tabs-accordion-header-padding);
+  background: var(--dyn-responsive-tabs-accordion-header-bg, #E0D78C);
+  border: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
+  border-radius: var(--dyn-responsive-tabs-border-radius, 8px);
+  padding: var(--dyn-responsive-tabs-accordion-header-padding, 1rem 1.5rem);
   margin-bottom: 0.5rem;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  font-size: var(--dyn-responsive-tabs-font-size);
-  font-weight: var(--dyn-responsive-tabs-font-weight-inactive);
-  font-family: var(--dyn-responsive-tabs-font-family);
-  color: var(--dyn-responsive-tabs-text-inactive);
-  transition: var(--dyn-responsive-tabs-transition);
+  font-size: var(--dyn-responsive-tabs-font-size, 14px);
+  font-weight: var(--dyn-responsive-tabs-font-weight-inactive, 400);
+  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  color: var(--dyn-responsive-tabs-text-inactive, #666666);
+  transition: var(--dyn-responsive-tabs-transition, all 0.3s ease);
   user-select: none;
 }
 
 .accordion .accordionHeader:hover {
-  background: var(--dyn-responsive-tabs-bg-hover);
+  background: var(--dyn-responsive-tabs-bg-hover, #EDE8B0);
 }
 
 .accordion .accordionHeader:focus-visible {
-  outline: 2px solid var(--dyn-responsive-tabs-border-color);
+  outline: 2px solid var(--dyn-responsive-tabs-border-color, #9C905C);
   outline-offset: 2px;
 }
 
 .accordion .accordionHeaderActive {
-  background: var(--dyn-responsive-tabs-accordion-header-active-bg);
-  border-color: var(--dyn-responsive-tabs-border-color);
-  color: var(--dyn-responsive-tabs-text-active);
-  font-weight: var(--dyn-responsive-tabs-font-weight-active);
-  border-radius: var(--dyn-responsive-tabs-border-radius) var(--dyn-responsive-tabs-border-radius) 0 0;
+  background: var(--dyn-responsive-tabs-accordion-header-active-bg, #B5AC5F);
+  border-color: var(--dyn-responsive-tabs-border-color, #9C905C);
+  color: var(--dyn-responsive-tabs-text-active, #333333);
+  font-weight: var(--dyn-responsive-tabs-font-weight-active, 600);
+  border-radius: var(--dyn-responsive-tabs-border-radius, 8px) var(--dyn-responsive-tabs-border-radius, 8px) 0 0;
   margin-bottom: 0;
 }
 
 .accordion .accordionPanel {
-  background: var(--dyn-responsive-tabs-content-bg);
-  border: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+  background: var(--dyn-responsive-tabs-content-bg, #FFFFFF);
+  border: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
   border-top: none;
-  border-radius: 0 0 var(--dyn-responsive-tabs-border-radius) var(--dyn-responsive-tabs-border-radius);
-  padding: var(--dyn-responsive-tabs-content-padding);
+  border-radius: 0 0 var(--dyn-responsive-tabs-border-radius, 8px) var(--dyn-responsive-tabs-border-radius, 8px);
+  padding: var(--dyn-responsive-tabs-content-padding, 1.5rem);
   margin-bottom: 0.5rem;
   animation: slideDown 0.3s ease;
 }
@@ -205,27 +205,27 @@
 
 /* ===== NESTED TABS ===== */
 .nested .tab {
-  background: var(--dyn-responsive-tabs-child-bg-inactive);
-  border-color: var(--dyn-responsive-tabs-child-border);
-  padding: var(--dyn-responsive-tabs-tab-padding-sm);
-  font-size: var(--dyn-responsive-tabs-font-size-sm);
+  background: var(--dyn-responsive-tabs-child-bg-inactive, #D8D299);
+  border-color: var(--dyn-responsive-tabs-child-border, #A89B60);
+  padding: var(--dyn-responsive-tabs-tab-padding-sm, 0.6rem 1rem);
+  font-size: var(--dyn-responsive-tabs-font-size-sm, 12px);
 }
 
 .nested .activeTab {
-  background: var(--dyn-responsive-tabs-child-bg-active);
-  border-color: var(--dyn-responsive-tabs-child-border);
-  color: var(--dyn-responsive-tabs-text-active);
+  background: var(--dyn-responsive-tabs-child-bg-active, #F0EDD8);
+  border-color: var(--dyn-responsive-tabs-child-border, #A89B60);
+  color: var(--dyn-responsive-tabs-text-active, #333333);
 }
 
 .nested .tabPanel {
-  border-color: var(--dyn-responsive-tabs-child-border);
+  border-color: var(--dyn-responsive-tabs-child-border, #A89B60);
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .tab {
-    padding: var(--dyn-responsive-tabs-tab-padding-sm);
-    font-size: var(--dyn-responsive-tabs-font-size-sm);
+    padding: var(--dyn-responsive-tabs-tab-padding-sm, 0.6rem 1rem);
+    font-size: var(--dyn-responsive-tabs-font-size-sm, 12px);
   }
   
   .tabPanel {
@@ -239,7 +239,7 @@
 
 @media (max-width: 480px) {
   .tab {
-    padding: var(--dyn-responsive-tabs-tab-padding-xs);
+    padding: var(--dyn-responsive-tabs-tab-padding-xs, 0.5rem 0.75rem);
     font-size: 11px;
   }
   
@@ -262,13 +262,13 @@
   
   .orientation-vertical .tabList {
     border-right: none;
-    border-bottom: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+    border-bottom: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
     min-width: auto;
   }
   
   .orientation-vertical .tab {
     border-right: none;
-    border-bottom: var(--dyn-responsive-tabs-border-width) solid var(--dyn-responsive-tabs-border-color);
+    border-bottom: var(--dyn-responsive-tabs-border-width, 2px) solid var(--dyn-responsive-tabs-border-color, #9C905C);
     border-radius: 0;
     margin-right: 0;
   }
@@ -282,5 +282,23 @@
     border-left: none;
     border-top: none;
     border-radius: 0;
+  }
+}
+
+/* ===== DARK THEME FALLBACK ===== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-responsive-tabs-bg-inactive: #2E2E24;
+    --dyn-responsive-tabs-bg-active: #3A3A2E;
+    --dyn-responsive-tabs-bg-hover: #343428;
+    --dyn-responsive-tabs-border-color: #B5AC5F;
+    --dyn-responsive-tabs-text-inactive: #C4BC87;
+    --dyn-responsive-tabs-text-active: #F0EDD8;
+    --dyn-responsive-tabs-content-bg: #2A2A20;
+    --dyn-responsive-tabs-accordion-header-bg: #2E2E24;
+    --dyn-responsive-tabs-accordion-header-active-bg: #3A3A2E;
+    --dyn-responsive-tabs-child-bg-inactive: #2A2A20;
+    --dyn-responsive-tabs-child-bg-active: #3A3A2E;
+    --dyn-responsive-tabs-child-border: #7A7454;
   }
 }

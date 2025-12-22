@@ -48,37 +48,6 @@ const isColumnSortable = (sortable: boolean, columnSortable?: boolean) => {
   return true;
 };
 
-const SortIcons: React.FC<{ direction?: TableSortDirection; isActive: boolean }> = ({ direction, isActive }) => {
-  return (
-    <span className={cn(getStyleClass('dyn-table__sort-icons'), 'dyn-table__sort-icons')} aria-hidden="true">
-      <span
-        className={cn(
-          getStyleClass('dyn-table__sort-icon'),
-          'dyn-table__sort-icon',
-          isActive && direction === 'asc' && [
-            getStyleClass('dyn-table__sort-icon--active'),
-            'dyn-table__sort-icon--active'
-          ]
-        )}
-      >
-        ▲
-      </span>
-      <span
-        className={cn(
-          getStyleClass('dyn-table__sort-icon'),
-          'dyn-table__sort-icon',
-          isActive && direction === 'desc' && [
-            getStyleClass('dyn-table__sort-icon--active'),
-            'dyn-table__sort-icon--active'
-          ]
-        )}
-      >
-        ▼
-      </span>
-    </span>
-  );
-};
-
 const useStableId = (id?: string) => {
   const [value] = useState(() => id || generateId('table'));
   return value;
@@ -297,6 +266,7 @@ export const DynTable: React.FC<DynTableProps> = ({
   const renderHeaderCells = () => columns.map(column => {
     const headerLabel = column.title ?? column.header ?? column.key;
     const isSorted = activeSort?.column === column.key;
+    const direction = isSorted ? activeSort?.direction : undefined;
     const sortableColumn = isColumnSortable(sortable, column.sortable);
     const thClasses = cn(
       getStyleClass('dyn-table__cell'),
@@ -322,30 +292,25 @@ export const DynTable: React.FC<DynTableProps> = ({
         key={column.key}
         role="columnheader"
         scope="col"
-        aria-sort={isSorted ? (activeSort?.direction === 'asc' ? 'ascending' : 'descending') : undefined}
+        aria-sort={
+          sortableColumn
+            ? direction === 'asc'
+              ? 'ascending'
+              : direction === 'desc'
+              ? 'descending'
+              : 'none'
+            : undefined
+        }
         className={thClasses}
         style={widthStyle}
-        onClick={sortableColumn ? (event) => {
-          if ((event.target as HTMLElement)?.closest('button')) return;
-          handleSortClick(column.key);
-        } : undefined}
+        onClick={sortableColumn ? () => handleSortClick(column.key) : undefined}
       >
         <div className={cn(getStyleClass('dyn-table__cell-content'), 'dyn-table__cell-content')}>
-          {sortableColumn ? (
-            <button
-              type="button"
-              className={cn(getStyleClass('dyn-table__sort-button'), 'dyn-table__sort-button')}
-              onClick={(event) => {
-                event.stopPropagation();
-                handleSortClick(column.key);
-              }}
-              aria-label={`Sort by ${headerLabel}`}
-            >
-              <span>{headerLabel}</span>
-              <SortIcons direction={activeSort?.direction} isActive={isSorted} />
-            </button>
-          ) : (
-            <span>{headerLabel}</span>
+          <span>{headerLabel}</span>
+          {sortableColumn && (
+            <span className={cn(getStyleClass('dyn-table__sort-indicator'), 'dyn-table__sort-indicator')} aria-hidden="true">
+              {isSorted ? (direction === 'asc' ? '↑' : '↓') : '↕'}
+            </span>
           )}
         </div>
       </th>

@@ -199,7 +199,6 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
         {/* Loading announcement for screen readers */}
         {isLoadingState && (
           <span className="dyn-sr-only" aria-live="polite">
-            Loading avatar
           </span>
         )}
 

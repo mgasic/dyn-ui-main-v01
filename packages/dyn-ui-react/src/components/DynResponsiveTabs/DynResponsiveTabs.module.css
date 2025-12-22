@@ -1,0 +1,314 @@
+/* Design tokens with triple fallback */
+:root {
+  --dyn-tabs-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-tabs-border: var(--dyn-color-border-subtle, var(--color-border-subtle, #e5e7eb));
+  --dyn-tabs-fg: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-tabs-fg-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-tabs-active-bg: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-active-fg: var(--dyn-color-on-primary, var(--color-on-primary, #ffffff));
+  --dyn-tabs-hover-bg: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  --dyn-tabs-disabled-fg: var(--dyn-color-text-disabled, var(--color-text-disabled, #9ca3af));
+  --dyn-tabs-focus-ring: var(--dyn-color-focus-ring, var(--color-focus-ring, #3b82f6));
+
+  --dyn-spacing-xs: var(--dyn-space-xs, var(--space-xs, 0.25rem));
+  --dyn-spacing-sm: var(--dyn-space-sm, var(--space-sm, 0.5rem));
+  --dyn-spacing-md: var(--dyn-space-md, var(--space-md, 1rem));
+  --dyn-spacing-lg: var(--dyn-space-lg, var(--space-lg, 1.5rem));
+
+  --dyn-radius-sm: var(--dyn-border-radius-sm, var(--border-radius-sm, 0.25rem));
+  --dyn-radius-md: var(--dyn-border-radius-md, var(--border-radius-md, 0.375rem));
+
+  --dyn-transition-fast: var(--dyn-duration-fast, var(--duration-fast, 150ms));
+}
+
+/* Container */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Horizontal orientation */
+.orientation-horizontal .tabList {
+  flex-direction: row;
+  border-bottom: 1px solid var(--dyn-tabs-border);
+}
+
+/* Vertical orientation */
+.orientation-vertical {
+  flex-direction: row;
+}
+
+.orientation-vertical .tabList {
+  flex-direction: column;
+  border-right: 1px solid var(--dyn-tabs-border);
+  min-width: 200px;
+}
+
+/* Tab list */
+.tabList {
+  display: flex;
+  background-color: var(--dyn-tabs-bg);
+  gap: var(--dyn-spacing-xs);
+}
+
+/* Individual tab */
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm);
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--dyn-tabs-fg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dyn-transition-fast) ease;
+  white-space: nowrap;
+}
+
+.orientation-vertical .tab {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tab:hover:not(:disabled) {
+  background-color: var(--dyn-tabs-hover-bg);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--dyn-tabs-focus-ring);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* Active tab */
+.activeTab {
+  color: var(--dyn-tabs-active-bg);
+  border-bottom-color: var(--dyn-tabs-active-bg);
+  font-weight: 600;
+}
+
+.orientation-vertical .activeTab {
+  border-bottom-color: transparent;
+  border-right-color: var(--dyn-tabs-active-bg);
+}
+
+/* Disabled tab */
+.disabledTab {
+  color: var(--dyn-tabs-disabled-fg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Tab icon */
+.tabIcon {
+  display: flex;
+  align-items: center;
+}
+
+/* Panel container */
+.panelContainer {
+  flex: 1;
+}
+
+/* Panel wrapper */
+.panelWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Panel content */
+.panel {
+  padding: var(--dyn-spacing-md);
+  background-color: var(--dyn-tabs-bg);
+  border-top: 1px solid var(--dyn-tabs-border);
+}
+
+.orientation-vertical .panel {
+  border-top: none;
+  border-left: 1px solid var(--dyn-tabs-border);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.activePanel {
+  animation: fadeIn var(--dyn-transition-fast) ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Accordion mode */
+.accordion .tabList {
+  display: none;
+}
+
+.accordion .panel {
+  border-top: none;
+  border-left: none;
+}
+
+/* Accordion header */
+.accordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--dyn-spacing-md);
+  background-color: var(--dyn-tabs-bg);
+  border: 1px solid var(--dyn-tabs-border);
+  border-radius: var(--dyn-radius-sm);
+  color: var(--dyn-tabs-fg);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--dyn-transition-fast) ease;
+  margin-bottom: var(--dyn-spacing-xs);
+}
+
+.accordionHeader:hover:not(:disabled) {
+  background-color: var(--dyn-tabs-hover-bg);
+}
+
+.accordionHeader:focus-visible {
+  outline: 2px solid var(--dyn-tabs-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Active accordion */
+.activeAccordion {
+  background-color: var(--dyn-tabs-active-bg);
+  color: var(--dyn-tabs-active-fg);
+  border-color: var(--dyn-tabs-active-bg);
+}
+
+/* Disabled accordion */
+.disabledAccordion {
+  color: var(--dyn-tabs-disabled-fg);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Accordion label */
+.accordionLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm);
+  flex: 1;
+}
+
+/* Accordion icon */
+.accordionIcon {
+  display: flex;
+  align-items: center;
+}
+
+/* Accordion toggle icon */
+.accordionToggle {
+  display: flex;
+  align-items: center;
+  transition: transform var(--dyn-transition-fast) ease;
+}
+
+.activeAccordion .accordionToggle {
+  transform: rotate(180deg);
+}
+
+/* Nested tabs support */
+.nested {
+  margin: 0;
+}
+
+/* Parent horizontal tabs */
+.orientation-horizontal .tabList {
+  background-color: var(--dyn-tabs-bg);
+  border-bottom: 2px solid var(--dyn-tabs-border);
+}
+
+/* Nested vertical tabs inside horizontal parent */
+.orientation-horizontal .panel .orientation-vertical {
+  margin-top: var(--dyn-spacing-md);
+}
+
+.orientation-horizontal .panel .orientation-vertical .tabList {
+  border-bottom: none;
+  border-right: 2px solid var(--dyn-tabs-border);
+  background-color: transparent;
+}
+
+/* Child tabs styling */
+.orientation-vertical.nested .tabList {
+  min-width: 180px;
+  background-color: var(--dyn-color-surface-secondary, var(--color-surface-secondary, #f9fafb));
+}
+
+.orientation-vertical.nested .tab {
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+  font-size: 0.8125rem;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.orientation-vertical.nested .activeTab {
+  background-color: var(--dyn-tabs-bg);
+  border-right-color: var(--dyn-tabs-active-bg);
+  font-weight: 600;
+}
+
+.orientation-vertical.nested .panel {
+  padding: var(--dyn-spacing-md);
+  border-left: 1px solid var(--dyn-tabs-border);
+  min-height: 200px;
+}
+
+/* Spacing adjustments for nested content */
+.panel .container {
+  margin-top: 0;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-tabs-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+    --dyn-tabs-border: var(--dyn-color-border-subtle-dark, var(--color-border-subtle-dark, #374151));
+    --dyn-tabs-fg: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f9fafb));
+    --dyn-tabs-fg-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #d1d5db));
+    --dyn-tabs-active-bg: var(--dyn-color-primary-dark, var(--color-primary-dark, #60a5fa));
+    --dyn-tabs-active-fg: var(--dyn-color-on-primary-dark, var(--color-on-primary-dark, #1e3a8a));
+    --dyn-tabs-hover-bg: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+    --dyn-tabs-disabled-fg: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
+  }
+
+  .orientation-vertical.nested .tabList {
+    background-color: var(--dyn-color-surface-secondary-dark, var(--color-surface-secondary-dark, #111827));
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .accordion .accordionHeader {
+    padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+    font-size: 0.8125rem;
+  }
+
+  .accordion .panel {
+    padding: var(--dyn-spacing-sm);
+  }
+}

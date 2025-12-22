@@ -5,7 +5,15 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.mjs",
+    "tokens:build": "style-dictionary build",
+    "tokens:watch": "nodemon --watch tokens --exec npm run tokens:build",
+    "tokens:clean": "rm -rf styles/generated build/css/*.css",
+    "build": "npm run tokens:build && rollup -c rollup.config.mjs",
+    "build:tokens-only": "npm run tokens:build",
     "test": "vitest run --passWithNoTests"
+  },
+  "devDependencies": {
+    "style-dictionary": "^3.9.0",
+    "nodemon": "^3.0.0"
   }
 }

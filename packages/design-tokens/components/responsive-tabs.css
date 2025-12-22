@@ -1,0 +1,114 @@
+/* ============================================
+   DYN RESPONSIVE TABS - DESIGN TOKENS
+   ============================================
+   
+   Tokens za DynResponsiveTabs komponentu.
+   Koristi se za tab background, border, text boje
+   i layout dimenzije.
+*/
+
+/* ============================================
+   LIGHT THEME (Default)
+   ============================================ */
+
+:root {
+  /* ===== TAB BACKGROUND COLORS ===== */
+  --dyn-responsive-tabs-bg-inactive: #E0D78C;
+  --dyn-responsive-tabs-bg-active: #FFFEF7;
+  --dyn-responsive-tabs-bg-hover: #EDE8B0;
+  
+  /* ===== TAB BORDER ===== */
+  --dyn-responsive-tabs-border-color: #9C905C;
+  --dyn-responsive-tabs-border-width: 2px;
+  --dyn-responsive-tabs-border-radius: 8px;
+  
+  /* ===== TAB TEXT COLORS ===== */
+  --dyn-responsive-tabs-text-inactive: #666666;
+  --dyn-responsive-tabs-text-active: #333333;
+  
+  /* ===== CONTENT AREA ===== */
+  --dyn-responsive-tabs-content-bg: #FFFFFF;
+  --dyn-responsive-tabs-content-padding: 1.5rem;
+  --dyn-responsive-tabs-content-min-height: 200px;
+  
+  /* ===== ACCORDION MODE ===== */
+  --dyn-responsive-tabs-accordion-header-bg: #E0D78C;
+  --dyn-responsive-tabs-accordion-header-active-bg: #B5AC5F;
+  --dyn-responsive-tabs-accordion-header-padding: 1rem 1.5rem;
+  --dyn-responsive-tabs-accordion-header-text: #333333;
+  
+  /* ===== NESTED/CHILD TABS ===== */
+  --dyn-responsive-tabs-child-bg-inactive: #D8D299;
+  --dyn-responsive-tabs-child-bg-active: #F0EDD8;
+  --dyn-responsive-tabs-child-border: #A89B60;
+  
+  /* ===== TYPOGRAPHY (Referencing Global Tokens) ===== */
+  --dyn-responsive-tabs-font-size: 14px;
+  --dyn-responsive-tabs-font-size-sm: 12px;
+  --dyn-responsive-tabs-font-weight-inactive: 400;
+  --dyn-responsive-tabs-font-weight-active: 600;
+  --dyn-responsive-tabs-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* ===== SPACING ===== */
+  --dyn-responsive-tabs-tab-padding: 0.75rem 1.5rem;
+  --dyn-responsive-tabs-tab-padding-sm: 0.6rem 1rem;
+  --dyn-responsive-tabs-tab-padding-xs: 0.5rem 0.75rem;
+  --dyn-responsive-tabs-tab-gap: 4px;
+  
+  /* ===== TRANSITIONS & ANIMATIONS ===== */
+  --dyn-responsive-tabs-transition: all 0.3s ease;
+  --dyn-responsive-tabs-transition-fast: all 0.15s ease;
+}
+
+/* ============================================
+   DARK THEME (prefers-color-scheme)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ===== TAB BACKGROUND COLORS ===== */
+    --dyn-responsive-tabs-bg-inactive: #2E2E24;
+    --dyn-responsive-tabs-bg-active: #3A3A2E;
+    --dyn-responsive-tabs-bg-hover: #343428;
+    
+    /* ===== TAB BORDER ===== */
+    --dyn-responsive-tabs-border-color: #B5AC5F;
+    
+    /* ===== TAB TEXT COLORS ===== */
+    --dyn-responsive-tabs-text-inactive: #C4BC87;
+    --dyn-responsive-tabs-text-active: #F0EDD8;
+    
+    /* ===== CONTENT AREA ===== */
+    --dyn-responsive-tabs-content-bg: #2A2A20;
+    
+    /* ===== ACCORDION MODE ===== */
+    --dyn-responsive-tabs-accordion-header-bg: #2E2E24;
+    --dyn-responsive-tabs-accordion-header-active-bg: #3A3A2E;
+    --dyn-responsive-tabs-accordion-header-text: #F0EDD8;
+    
+    /* ===== NESTED/CHILD TABS ===== */
+    --dyn-responsive-tabs-child-bg-inactive: #2A2A20;
+    --dyn-responsive-tabs-child-bg-active: #3A3A2E;
+    --dyn-responsive-tabs-child-border: #7A7454;
+  }
+}
+
+/* ============================================
+   DARK THEME (data-theme attribute)
+   ============================================ */
+
+[data-theme="dark"] {
+  --dyn-responsive-tabs-bg-inactive: #2E2E24;
+  --dyn-responsive-tabs-bg-active: #3A3A2E;
+  --dyn-responsive-tabs-bg-hover: #343428;
+  --dyn-responsive-tabs-border-color: #B5AC5F;
+  --dyn-responsive-tabs-text-inactive: #C4BC87;
+  --dyn-responsive-tabs-text-active: #F0EDD8;
+  --dyn-responsive-tabs-content-bg: #2A2A20;
+  --dyn-responsive-tabs-accordion-header-bg: #2E2E24;
+  --dyn-responsive-tabs-accordion-header-active-bg: #3A3A2E;
+  --dyn-responsive-tabs-accordion-header-text: #F0EDD8;
+  --dyn-responsive-tabs-child-bg-inactive: #2A2A20;
+  --dyn-responsive-tabs-child-bg-active: #3A3A2E;
+  --dyn-responsive-tabs-child-border: #7A7454;
+}

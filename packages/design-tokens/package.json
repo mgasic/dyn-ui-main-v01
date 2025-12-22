@@ -1,9 +1,15 @@
 {
   "name": "@dyn-ui/design-tokens",
   "version": "0.1.0",
+  "description": "Design tokens for DYN UI component library",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "styles",
+    "build"
+  ],
   "scripts": {
     "tokens:build": "style-dictionary build -c style-dictionary.config.v2.js",
     "tokens:build:old": "style-dictionary build -c style-dictionary.config.js",
@@ -11,10 +17,26 @@
     "tokens:clean": "rm -rf styles/generated build/js build/ts",
     "build": "npm run tokens:build && rollup -c rollup.config.mjs",
     "build:tokens-only": "npm run tokens:build",
+    "dev": "npm run tokens:watch",
     "test": "vitest run --passWithNoTests"
   },
+  "dependencies": {},
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "nodemon": "^3.0.2",
+    "rollup": "^4.9.1",
     "style-dictionary": "^3.9.0",
-    "nodemon": "^3.0.0"
-  }
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  },
+  "peerDependencies": {},
+  "keywords": [
+    "design-tokens",
+    "design-system",
+    "css-variables",
+    "style-dictionary"
+  ],
+  "author": "DYN UI Team",
+  "license": "MIT"
 }

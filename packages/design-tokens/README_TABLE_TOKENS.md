@@ -18,8 +18,7 @@ This folder contains design tokens (CSS custom properties) for the DynTable comp
 
 ### Token Categories
 
-```
-Colors (24 tokens)
+```Colors (24 tokens)
 ├─ Header: bg, text, font-weight, border
 ├─ Row states: striped, hover, selected
 ├─ Buttons: default, primary, danger
@@ -92,11 +91,11 @@ This processes `tokens/table.json` and generates `table.css`.
 
 ## 📚 Token Naming Convention
 
-```
---dyn-table-[component]-[property]
+```--dyn-table-[component]-[property]
 ```
 
 **Examples:**
+
 - `--dyn-table-header-bg-color` - Header background
 - `--dyn-table-button-padding` - Button padding
 - `--dyn-table-row-selected-bg-color` - Selected row background

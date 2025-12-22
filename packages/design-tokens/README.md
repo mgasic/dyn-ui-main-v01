@@ -1,7 +1,7 @@
 # DYN UI Design Tokens
 
-**Version:** 1.0.0  
-**Status:** Complete Implementation  
+**Version:** 1.0.0
+**Status:** Complete Implementation
 **Last Updated:** December 20, 2025
 
 ## Overview
@@ -75,6 +75,7 @@ styles/foundations/
 ```
 
 **Examples:**
+
 ```css
 --dyn-color-primary: #2563eb;
 --dyn-spacing-md: 0.75rem;     /* 12px */
@@ -97,6 +98,7 @@ styles/components/
 ```
 
 **Examples:**
+
 ```css
 --dyn-button-bg: var(--dyn-color-primary);
 --dyn-button-padding-y: var(--dyn-spacing-sm);
@@ -115,6 +117,7 @@ styles/themes/
 ```
 
 **Automatic switching:**
+
 ```css
 /* Light mode (default) */
 --dyn-color-primary: #2563eb;
@@ -189,6 +192,7 @@ styles/themes/
 ```
 
 **Testing in DevTools:**
+
 ```javascript
 // Chrome/Firefox console
 document.documentElement.style.colorScheme = 'dark';
@@ -321,21 +325,25 @@ CSS custom properties are supported in all modern browsers.
 ### ✅ DO
 
 1. **Use tokens for all design values**
+
    ```css
    color: var(--dyn-color-primary);  /* Good */
    ```
 
 2. **Use component tokens in components**
+
    ```css
    background: var(--dyn-button-bg);  /* Good */
    ```
 
 3. **Include fallbacks for older browsers**
+
    ```css
    color: var(--dyn-color-primary, #2563eb);
    ```
 
 4. **Respect user preferences**
+
    ```css
    transition: var(--dyn-transition-base);  /* Respects reduced-motion */
    ```
@@ -343,16 +351,19 @@ CSS custom properties are supported in all modern browsers.
 ### ❌ DON'T
 
 1. **Hardcode color values**
+
    ```css
    color: #2563eb;  /* Bad */
    ```
 
 2. **Override tokens in components**
+
    ```css
    --dyn-spacing-md: 20px;  /* Bad - don't override */
    ```
 
 3. **Mix tokens and hardcoded values**
+
    ```css
    padding: var(--dyn-spacing-md) 10px;  /* Mixed - avoid */
    ```
@@ -401,6 +412,7 @@ MIT
 ## Support
 
 For questions or issues:
+
 1. Check the documentation in `docs/`
 2. Review examples in `TOKEN_USAGE_GUIDE.md`
 3. See the full specification in `05_Design_Tokens_Standard_v1.md`

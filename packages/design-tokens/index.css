@@ -5,3 +5,6 @@
 @import './shadows.css';
 @import './borders.css';
 @import './animations.css';
+
+/* Component-specific tokens */
+@import './components/responsive-tabs.css';

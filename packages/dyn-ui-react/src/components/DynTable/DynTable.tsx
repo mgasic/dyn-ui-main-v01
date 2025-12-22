@@ -94,8 +94,12 @@ export const DynTable: React.FC<DynTableProps> = ({
   }, [selectedKeys]);
 
   const [internalSort, setInternalSort] = useState(sortBy ?? null);
+  
+  // Update internal sort when sortBy prop changes
   useEffect(() => {
-    if (sortBy) setInternalSort(sortBy);
+    if (sortBy !== undefined) {
+      setInternalSort(sortBy);
+    }
   }, [sortBy?.column, sortBy?.direction]);
 
   const activeSort = sortBy ?? internalSort ?? undefined;
@@ -217,10 +221,10 @@ export const DynTable: React.FC<DynTableProps> = ({
     const isCurrentlySorted = activeSort?.column === columnKey;
     const nextDirection: TableSortDirection = isCurrentlySorted && activeSort?.direction === 'asc' ? 'desc' : 'asc';
 
-    if (!sortBy) {
-      setInternalSort({ column: columnKey, direction: nextDirection });
-    }
+    // Always update internal state for sorting to work
+    setInternalSort({ column: columnKey, direction: nextDirection });
 
+    // Call external callback if provided
     onSort?.(columnKey, nextDirection);
   };
 

@@ -2,7 +2,7 @@
    DYN RESPONSIVE TABS - COMPONENT STYLES
    Uses Design Tokens from @dyn-ui/design-tokens
    Updated: Dec 2025 - Blue/Gray Color Scheme
-   Complete Border on Active Tab
+   Complete Border on Active Tab (except right side in vertical)
    ============================================ */
 
 .container {
@@ -136,19 +136,21 @@
   border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
 }
 
-/* KLJUČNA PROMENA: Active tab ima kompletan border */
+/* KLJUČNA PROMENA: Active tab BEZ desnog border-a za seamless spoj */
 .orientation-vertical .activeTab {
-  /* Puni border sa svih strana */
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  /* Deblji levi border za naglasak */
-  border-left-width: var(--dyn-responsive-tabs-border-width-active, 4px);
-  /* Kompenzacija za deblji border - da ne pomera tab */
+  /* Border levo, gore, dole - ALI NE DESNO */
+  border-top: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  border-left: var(--dyn-responsive-tabs-border-width-active, 4px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  border-right: none; /* ✅ SEAMLESS CONNECTION */
+  
+  /* Kompenzacija za deblji levi border */
   padding-left: calc(0.75rem - 2px);
-  /* Overlap sa content panel-om */
-  margin-right: calc(var(--dyn-responsive-tabs-border-width-default, 2px) * -1);
+  
   /* Border radius - zaobljen samo sa leve strane */
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
-  /* Z-index da bude ispred content panel-a */
+  
+  /* Z-index da bude ispred */
   position: relative;
   z-index: 3;
 }
@@ -160,7 +162,7 @@
 .orientation-vertical .panel {
   /* Border sa svih strana */
   border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
-  /* Levi border postoji ali je ispod active tab-a (zbog z-index) */
+  /* Border radius samo sa desne strane */
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
 }
 

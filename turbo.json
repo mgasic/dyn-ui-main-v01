@@ -1,8 +1,14 @@
 {
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": ["^build", "@dyn-ui/design-tokens#build"],
+      "outputs": ["dist/**", ".next/**", "styles/generated/**"],
+      "cache": true
+    },
+    "@dyn-ui/design-tokens#build": {
+      "outputs": ["styles/generated/**", "build/**", "dist/**"],
+      "cache": true,
+      "inputs": ["tokens/**"]
     },
     "dev": {
       "cache": false,

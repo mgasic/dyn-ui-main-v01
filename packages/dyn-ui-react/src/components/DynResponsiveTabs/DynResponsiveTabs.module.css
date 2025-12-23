@@ -2,7 +2,7 @@
    DYN RESPONSIVE TABS - COMPONENT STYLES
    Uses Design Tokens from @dyn-ui/design-tokens
    Updated: Dec 2025 - Blue/Gray Color Scheme
-   Complete Border on Active Tab (except right side in vertical)
+   ALL VALUES FROM DESIGN TOKENS - NO HARDCODED VALUES
    ============================================ */
 
 .container {
@@ -126,7 +126,7 @@
 .orientation-vertical .tab {
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
   border: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
-  border-right: none;
+  border-right: var(--dyn-responsive-tabs-border-vertical-inactive-tab-right, none);
   margin-bottom: 0;
   margin-right: 0;
   text-align: left;
@@ -136,21 +136,15 @@
   border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
 }
 
-/* KLJUČNA PROMENA: Active tab BEZ desnog border-a za seamless spoj */
+/* VERTICAL ACTIVE TAB - USING DESIGN TOKENS ONLY */
 .orientation-vertical .activeTab {
-  /* Border levo, gore, dole - ALI NE DESNO */
-  border-top: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-left: var(--dyn-responsive-tabs-border-width-active, 4px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-right: none; /* ✅ SEAMLESS CONNECTION */
+  border-top: var(--dyn-responsive-tabs-border-vertical-active-tab-top, 2px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  border-right: var(--dyn-responsive-tabs-border-vertical-active-tab-right, none);
+  border-bottom: var(--dyn-responsive-tabs-border-vertical-active-tab-bottom, 2px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  border-left: var(--dyn-responsive-tabs-border-vertical-active-tab-left, 4px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
   
-  /* Kompenzacija za deblji levi border */
-  padding-left: calc(0.75rem - 2px);
-  
-  /* Border radius - zaobljen samo sa leve strane */
+  padding-left: calc(0.75rem - var(--dyn-responsive-tabs-border-width-default, 2px));
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
-  
-  /* Z-index da bude ispred */
   position: relative;
   z-index: 3;
 }
@@ -160,9 +154,7 @@
 }
 
 .orientation-vertical .panel {
-  /* Border sa svih strana */
   border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
-  /* Border radius samo sa desne strane */
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
 }
 
@@ -274,23 +266,18 @@
   border-color: var(--dyn-responsive-tabs-nested-border, #80D0ED);
 }
 
-/* ===== NESTED TABS - VERTICAL LAYOUT ===== */
-/* JAČA SPECIFIČNOST - koristi više selektora */
+/* ===== NESTED TABS - VERTICAL LAYOUT (USING TOKENS) ===== */
 .container .nested.orientation-vertical .tab {
-  border-right: none;
+  border-right: var(--dyn-responsive-tabs-border-vertical-inactive-tab-right, none);
 }
 
 .container .nested.orientation-vertical .tab.activeTab {
-  /* Border levo, gore, dole - ALI NE DESNO */
-  border-top: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-left: var(--dyn-responsive-tabs-border-width-active, 4px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-right: none !important; /* ✅ FORCE NO RIGHT BORDER */
+  border-top: var(--dyn-responsive-tabs-border-vertical-active-tab-top, 2px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
+  border-right: var(--dyn-responsive-tabs-border-vertical-active-tab-right, none) !important;
+  border-bottom: var(--dyn-responsive-tabs-border-vertical-active-tab-bottom, 2px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
+  border-left: var(--dyn-responsive-tabs-border-vertical-active-tab-left, 4px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
   
-  /* Kompenzacija za deblji levi border */
-  padding-left: calc(0.6rem - 2px);
-  
-  /* Border radius samo levo */
+  padding-left: calc(0.6rem - var(--dyn-responsive-tabs-border-width-default, 2px));
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px) !important;
 }
 

@@ -186,6 +186,26 @@
               "description": "Border radius for vertical content panel (flat left, rounded right)"
             }
           }
+        },
+        "verticalActiveTabTop": {
+          "value": "2px solid",
+          "description": "Top border for active vertical tab - 2px solid (color applied separately)"
+        },
+        "verticalActiveTabRight": {
+          "value": "none",
+          "description": "Right border for active vertical tab - NONE for seamless connection with panel"
+        },
+        "verticalActiveTabBottom": {
+          "value": "2px solid",
+          "description": "Bottom border for active vertical tab - 2px solid (color applied separately)"
+        },
+        "verticalActiveTabLeft": {
+          "value": "4px solid",
+          "description": "Left border for active vertical tab - 4px solid for emphasis (color applied separately)"
+        },
+        "verticalInactiveTabRight": {
+          "value": "none",
+          "description": "Right border for inactive vertical tabs - NONE"
         }
       },
       "spacing": {

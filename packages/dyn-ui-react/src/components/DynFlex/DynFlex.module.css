@@ -9,35 +9,29 @@
 
 /* ============================================
    COMPONENT TOKENS - Default (Light Mode)
+   Uses global foundation tokens from:
+   packages/design-tokens/styles/foundations/spacing.css
    ============================================ */
 
 :root {
   /* Base tokens - DynFlex */
   --dyn-flex-display: flex;
   --dyn-flex-flex-direction: row;
-  --dyn-flex-gap: var(--dyn-spacing-3, 12px);
-  --dyn-flex-padding: var(--dyn-spacing-2, 8px);
+  --dyn-flex-gap: var(--dyn-spacing-md);
+  --dyn-flex-padding: var(--dyn-spacing-sm);
   --dyn-flex-align-items: stretch;
   --dyn-flex-justify-content: flex-start;
   --dyn-flex-flex-wrap: nowrap;
 
   /* Column variant */
   --dyn-flex-column-direction: column;
-  --dyn-flex-column-gap: var(--dyn-spacing-3, 12px);
+  --dyn-flex-column-gap: var(--dyn-spacing-md);
 
   /* Wrap variant */
   --dyn-flex-wrap-wrap: wrap;
 
   /* Inline variant */
   --dyn-flex-inline-display: inline-flex;
-
-  /* Spacing tokens */
-  --dyn-spacing-1: 4px;
-  --dyn-spacing-2: 8px;
-  --dyn-spacing-3: 12px;
-  --dyn-spacing-4: 16px;
-  --dyn-spacing-5: 20px;
-  --dyn-spacing-6: 24px;
 }
 
 /* ============================================
@@ -68,8 +62,8 @@
 .flex {
   display: var(--dyn-flex-display, flex);
   flex-direction: var(--dyn-flex-flex-direction, row);
-  gap: var(--dyn-flex-gap, 12px);
-  padding: var(--dyn-flex-padding, 8px);
+  gap: var(--dyn-flex-gap);
+  padding: var(--dyn-flex-padding);
   align-items: var(--dyn-flex-align-items, stretch);
   justify-content: var(--dyn-flex-justify-content, flex-start);
   flex-wrap: var(--dyn-flex-flex-wrap, nowrap);
@@ -82,7 +76,7 @@
 
 .flexColumn {
   --dyn-flex-flex-direction: var(--dyn-flex-column-direction, column);
-  --dyn-flex-gap: var(--dyn-flex-column-gap, 12px);
+  --dyn-flex-gap: var(--dyn-flex-column-gap);
 }
 
 /* ============================================
@@ -103,30 +97,31 @@
 
 /* ============================================
    GAP UTILITIES
+   Uses global foundation spacing tokens
    ============================================ */
 
 .gapXSmall {
-  --dyn-flex-gap: var(--dyn-spacing-1, 4px);
+  --dyn-flex-gap: var(--dyn-spacing-xs);
 }
 
 .gapSmall {
-  --dyn-flex-gap: var(--dyn-spacing-2, 8px);
+  --dyn-flex-gap: var(--dyn-spacing-sm);
 }
 
 .gapMedium {
-  --dyn-flex-gap: var(--dyn-spacing-3, 12px);
+  --dyn-flex-gap: var(--dyn-spacing-md);
 }
 
 .gapLarge {
-  --dyn-flex-gap: var(--dyn-spacing-4, 16px);
+  --dyn-flex-gap: var(--dyn-spacing-lg);
 }
 
 .gapXLarge {
-  --dyn-flex-gap: var(--dyn-spacing-5, 20px);
+  --dyn-flex-gap: var(--dyn-spacing-xl);
 }
 
 .gap2XLarge {
-  --dyn-flex-gap: var(--dyn-spacing-6, 24px);
+  --dyn-flex-gap: var(--dyn-spacing-2xl);
 }
 
 /* ============================================
@@ -197,8 +192,8 @@
 @media (max-width: 480px) {
   .flex {
     /* Manji gap na jako malim ekranima */
-    --dyn-flex-gap: var(--dyn-spacing-2, 8px);
-    --dyn-flex-padding: var(--dyn-spacing-1, 4px);
+    --dyn-flex-gap: var(--dyn-spacing-sm);
+    --dyn-flex-padding: var(--dyn-spacing-xs);
   }
 }
 

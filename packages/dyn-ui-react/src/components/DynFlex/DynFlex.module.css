@@ -1,284 +1,221 @@
-/* ==========================================================================
-   DynFlex Component Styles
-   Standardized with design tokens
-   ========================================================================== */
+/**
+ * DynFlex Component Styles - 100% Design Token Compliance
+ * 
+ * Varijante: row, column, wrap, inline-flex
+ * Stanja: default, responsive
+ * Dark mode: Podržan
+ * A11y: Uključen
+ */
+
+/* ============================================
+   COMPONENT TOKENS - Default (Light Mode)
+   ============================================ */
 
 :root {
-  /* Size Tokens */
-  --dyn-flex-width: auto;
-  --dyn-flex-height: auto;
-  --dyn-flex-min-width: 0;
-  --dyn-flex-min-height: 0;
+  /* Base tokens - DynFlex */
+  --dyn-flex-display: flex;
+  --dyn-flex-flex-direction: row;
+  --dyn-flex-gap: var(--dyn-spacing-3, 12px);
+  --dyn-flex-padding: var(--dyn-spacing-2, 8px);
+  --dyn-flex-align-items: stretch;
+  --dyn-flex-justify-content: flex-start;
+  --dyn-flex-flex-wrap: nowrap;
 
-  /* Spacing Tokens */
-  --dyn-flex-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-flex-gap-none: 0;
-  --dyn-flex-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-flex-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-flex-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-flex-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
-  --dyn-flex-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
+  /* Column variant */
+  --dyn-flex-column-direction: column;
+  --dyn-flex-column-gap: var(--dyn-spacing-3, 12px);
 
-  /* Padding */
-  --dyn-flex-padding: 0;
+  /* Wrap variant */
+  --dyn-flex-wrap-wrap: wrap;
 
-  /* Typography */
-  --dyn-flex-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  /* Inline variant */
+  --dyn-flex-inline-display: inline-flex;
 
-  /* Transitions */
-  --dyn-flex-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  /* Spacing tokens */
+  --dyn-spacing-1: 4px;
+  --dyn-spacing-2: 8px;
+  --dyn-spacing-3: 12px;
+  --dyn-spacing-4: 16px;
+  --dyn-spacing-5: 20px;
+  --dyn-spacing-6: 24px;
 }
 
-/* ========================================================================
-   Flex Container
-   ======================================================================== */
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
 
-.container {
-  display: flex;
-  width: var(--dyn-flex-width);
-  height: var(--dyn-flex-height);
-  min-width: var(--dyn-flex-min-width);
-  min-height: var(--dyn-flex-min-height);
-  gap: var(--dyn-flex-gap);
-  padding: var(--dyn-flex-padding);
-  font-family: var(--dyn-flex-font-family);
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode - nema specifičnog override-a za flex
+       jer su flex svojstva agnostična prema temi */
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: more) {
+  :root {
+    /* Flex je strukturalna komponenta, nema boja za contrast */
+  }
+}
+
+/* ============================================
+   BASE FLEX CONTAINER
+   ============================================ */
+
+.flex {
+  display: var(--dyn-flex-display, flex);
+  flex-direction: var(--dyn-flex-flex-direction, row);
+  gap: var(--dyn-flex-gap, 12px);
+  padding: var(--dyn-flex-padding, 8px);
+  align-items: var(--dyn-flex-align-items, stretch);
+  justify-content: var(--dyn-flex-justify-content, flex-start);
+  flex-wrap: var(--dyn-flex-flex-wrap, nowrap);
   box-sizing: border-box;
 }
 
-/* ========================================================================
-   Direction Variants
-   ======================================================================== */
+/* ============================================
+   VARIANT: COLUMN
+   ============================================ */
 
-.row {
-  flex-direction: row;
+.flexColumn {
+  --dyn-flex-flex-direction: var(--dyn-flex-column-direction, column);
+  --dyn-flex-gap: var(--dyn-flex-column-gap, 12px);
 }
 
-.column {
-  flex-direction: column;
+/* ============================================
+   VARIANT: WRAP
+   ============================================ */
+
+.flexWrap {
+  --dyn-flex-flex-wrap: var(--dyn-flex-wrap-wrap, wrap);
 }
 
-.rowReverse {
-  flex-direction: row-reverse;
+/* ============================================
+   VARIANT: INLINE-FLEX
+   ============================================ */
+
+.flexInline {
+  --dyn-flex-display: var(--dyn-flex-inline-display, inline-flex);
 }
 
-.columnReverse {
-  flex-direction: column-reverse;
+/* ============================================
+   GAP UTILITIES
+   ============================================ */
+
+.gapXSmall {
+  --dyn-flex-gap: var(--dyn-spacing-1, 4px);
 }
 
-/* ========================================================================
-   Alignment Variants
-======================================== */
-
-.itemsStart {
-  align-items: flex-start;
+.gapSmall {
+  --dyn-flex-gap: var(--dyn-spacing-2, 8px);
 }
 
-.itemsCenter {
-  align-items: center;
+.gapMedium {
+  --dyn-flex-gap: var(--dyn-spacing-3, 12px);
 }
 
-.itemsEnd {
-  align-items: flex-end;
+.gapLarge {
+  --dyn-flex-gap: var(--dyn-spacing-4, 16px);
 }
 
-.itemsStretch {
-  align-items: stretch;
+.gapXLarge {
+  --dyn-flex-gap: var(--dyn-spacing-5, 20px);
 }
 
-.itemsBaseline {
-  align-items: baseline;
+.gap2XLarge {
+  --dyn-flex-gap: var(--dyn-spacing-6, 24px);
 }
 
-/* ========================================================================
-   Justification Variants
-   ======================================================================== */
+/* ============================================
+   ALIGNMENT UTILITIES
+   ============================================ */
+
+.alignCenter {
+  --dyn-flex-align-items: center;
+}
+
+.alignStart {
+  --dyn-flex-align-items: flex-start;
+}
+
+.alignEnd {
+  --dyn-flex-align-items: flex-end;
+}
+
+.alignStretch {
+  --dyn-flex-align-items: stretch;
+}
+
+.alignBaseline {
+  --dyn-flex-align-items: baseline;
+}
+
+/* ============================================
+   JUSTIFY UTILITIES
+   ============================================ */
 
 .justifyStart {
-  justify-content: flex-start;
+  --dyn-flex-justify-content: flex-start;
 }
 
 .justifyCenter {
-  justify-content: center;
+  --dyn-flex-justify-content: center;
 }
 
 .justifyEnd {
-  justify-content: flex-end;
+  --dyn-flex-justify-content: flex-end;
 }
 
 .justifyBetween {
-  justify-content: space-between;
+  --dyn-flex-justify-content: space-between;
 }
 
 .justifyAround {
-  justify-content: space-around;
+  --dyn-flex-justify-content: space-around;
 }
 
 .justifyEvenly {
-  justify-content: space-evenly;
+  --dyn-flex-justify-content: space-evenly;
 }
 
-/* ========================================================================
-   Content Alignment (Flex-wrap)
-   ======================================================================== */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
-.contentStart {
-  align-content: flex-start;
+@media (max-width: 768px) {
+  .flex {
+    /* Stack na mobilnim uređajima */
+    min-width: 0;
+    /* Omogući flex children da se prelamaju */
+    flex-wrap: var(--dyn-flex-wrap-wrap, wrap);
+  }
 }
 
-.contentCenter {
-  align-content: center;
+@media (max-width: 480px) {
+  .flex {
+    /* Manji gap na jako malim ekranima */
+    --dyn-flex-gap: var(--dyn-spacing-2, 8px);
+    --dyn-flex-padding: var(--dyn-spacing-1, 4px);
+  }
 }
 
-.contentEnd {
-  align-content: flex-end;
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* Focus ring za keyboard navigation kroz flex items */
+.flex > :focus-visible {
+  outline: 2px solid var(--dyn-focus-ring-color, #007ACC);
+  outline-offset: 2px;
 }
 
-.contentBetween {
-  align-content: space-between;
-}
-
-.contentAround {
-  align-content: space-around;
-}
-
-.contentEvenly {
-  align-content: space-evenly;
-}
-
-.contentStretch {
-  align-content: stretch;
-}
-
-/* ========================================================================
-   Wrap Variants
-   ======================================================================== */
-
-.wrap {
-  flex-wrap: wrap;
-}
-
-.noWrap {
-  flex-wrap: nowrap;
-}
-
-.wrapReverse {
-  flex-wrap: wrap-reverse;
-}
-
-/* ========================================================================
-   Gap Variants
-   ======================================================================== */
-
-.gapNone {
-  gap: var(--dyn-flex-gap-none);
-}
-
-.gapXs {
-  gap: var(--dyn-flex-gap-xs);
-}
-
-.gapSm {
-  gap: var(--dyn-flex-gap-sm);
-}
-
-.gapMd {
-  gap: var(--dyn-flex-gap-md);
-}
-
-.gapLg {
-  gap: var(--dyn-flex-gap-lg);
-}
-
-.gapXl {
-  gap: var(--dyn-flex-gap-xl);
-}
-
-/* ========================================================================
-   Flex Item
-   ======================================================================== */
-
-.item {
-  min-width: 0; /* Prevent content overflow */
-  min-height: 0;
-  box-sizing: border-box;
-}
-
-.item1 {
-  flex: 1 1 auto;
-}
-
-.item0 {
-  flex: 0 1 auto;
-}
-
-.itemNone {
-  flex: none;
-}
-
-.itemGrow {
-  flex-grow: 1;
-}
-
-.itemShrink {
-  flex-shrink: 1;
-}
-
-.itemNoGrow {
-  flex-grow: 0;
-}
-
-.itemNoShrink {
-  flex-shrink: 0;
-}
-
-/* ========================================================================
-   Self Alignment
-   ======================================================================== */
-
-.selfStart {
-  align-self: flex-start;
-}
-
-.selfCenter {
-  align-self: center;
-}
-
-.selfEnd {
-  align-self: flex-end;
-}
-
-.selfStretch {
-  align-self: stretch;
-}
-
-.selfAuto {
-  align-self: auto;
-}
-
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
-
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .container {
-    transition: none;
-  }
-}
-
-/* ========================================================================
-   Responsive: Mobile (767px and below)
-   ======================================================================== */
-
-@media (max-width: 767px) {
-  .container {
-    --dyn-flex-gap: var(--dyn-flex-gap-sm);
-  }
-
-  .row {
-    flex-direction: column;
-  }
-
-  .rowReverse {
-    flex-direction: column-reverse;
+  .flex > * {
+    animation: none !important;
+    transition: none !important;
   }
 }

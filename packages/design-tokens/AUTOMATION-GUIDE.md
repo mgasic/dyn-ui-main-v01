@@ -3,18 +3,21 @@
 ## 📋 Quick Start
 
 ### Generate Tokens
+
 ```bash
 cd packages/design-tokens
 npm run tokens:build
 ```
 
 ### Watch Mode (Development)
+
 ```bash
 npm run tokens:watch
 # Automatically regenerates on JSON changes
 ```
 
 ### Clean Generated Files
+
 ```bash
 npm run tokens:clean
 ```
@@ -23,7 +26,8 @@ npm run tokens:clean
 
 ## 🎯 What Gets Generated
 
-### From JSON Source:
+### From JSON Source
+
 ```
 tokens/
 ├── responsive-tabs.json  → styles/generated/responsive-tabs.css
@@ -31,7 +35,8 @@ tokens/
 └── color/, animation/... → styles/generated/foundations.css
 ```
 
-### Output Structure:
+### Output Structure
+
 ```
 styles/generated/
 ├── responsive-tabs.css   ✅ AUTO-GENERATED
@@ -52,6 +57,7 @@ build/ts/
 ### Main Config: `style-dictionary.config.v2.js`
 
 **Features:**
+
 - ✅ Custom transform for shorter names
 - ✅ Dark theme support via media queries
 - ✅ Separate files per component
@@ -61,6 +67,7 @@ build/ts/
 ### Custom Transform: Shorter Names
 
 **Input (JSON):**
+
 ```json
 {
   "dyn": {
@@ -76,11 +83,13 @@ build/ts/
 ```
 
 **Output (CSS):**
+
 ```css
 --dyn-responsive-tabs-bg-inactive: #E0D78C;
 ```
 
 **Not:**
+
 ```css
 --dyn-responsive-tabs-color-background-inactive: #E0D78C; /* ❌ Too long */
 ```
@@ -92,6 +101,7 @@ build/ts/
 ### Step 1: Create/Edit JSON
 
 **Example:** `tokens/my-component.json`
+
 ```json
 {
   "dyn": {
@@ -116,6 +126,7 @@ build/ts/
 ### Step 2: Add to Config
 
 **Edit:** `style-dictionary.config.v2.js`
+
 ```javascript
 files: [
   // ... existing files
@@ -130,11 +141,13 @@ files: [
 ```
 
 ### Step 3: Build
+
 ```bash
 npm run tokens:build
 ```
 
 ### Step 4: Import in App
+
 ```css
 /* styles/index.css */
 @import './generated/my-component.css';
@@ -172,6 +185,7 @@ npm run tokens:build
 ```
 
 **Generated CSS (in `:root`, not media query):**
+
 ```css
 :root {
   --color-neutral-dark-70: #666666;        /* ✅ In light theme */
@@ -196,6 +210,7 @@ npm run tokens:build
 ```
 
 **Generated CSS:**
+
 ```css
 :root {
   --dyn-button-color: #0066cc;  /* ✅ Light theme default */
@@ -210,7 +225,7 @@ npm run tokens:build
 
 ### Key Rule
 
-✅ **Only tokens under `darkTheme` branch go into media query**  
+✅ **Only tokens under `darkTheme` branch go into media query**
 ✅ **All other tokens (including shade names like `dark`) stay in `:root`**
 
 ---
@@ -218,6 +233,7 @@ npm run tokens:build
 ## 🔄 Migration from Manual CSS
 
 ### Current State (Hybrid)
+
 ```
 ✅ tokens/responsive-tabs.json (source)
 ✅ styles/components/responsive-tabs.css (manual)
@@ -225,6 +241,7 @@ npm run tokens:build
 ```
 
 ### After Migration
+
 ```
 ✅ tokens/responsive-tabs.json (source)
 ✅ styles/generated/responsive-tabs.css (auto-generated)
@@ -234,31 +251,36 @@ npm run tokens:build
 ### Migration Steps
 
 1. **Generate tokens:**
+
    ```bash
    npm run tokens:build
    ```
 
 2. **Verify output:**
+
    ```bash
    cat styles/generated/responsive-tabs.css
    # Should match manual CSS values
    ```
 
 3. **Update imports:**
+
    ```css
    /* OLD */
    @import './components/responsive-tabs.css';
-   
+
    /* NEW */
    @import './generated/responsive-tabs.css';
    ```
 
 4. **Test in Storybook:**
+
    ```bash
    npm run storybook
    ```
 
 5. **Remove manual file:**
+
    ```bash
    rm styles/components/responsive-tabs.css
    ```
@@ -293,6 +315,7 @@ jobs:
 ## 📊 File Naming Convention
 
 ### JSON Sources
+
 ```
 tokens/
 ├── responsive-tabs.json    (component)
@@ -302,6 +325,7 @@ tokens/
 ```
 
 ### Generated CSS
+
 ```
 styles/generated/
 ├── responsive-tabs.css     (from responsive-tabs.json)
@@ -316,12 +340,14 @@ styles/generated/
 ### Tokens Not Generated?
 
 1. **Check file path:**
+
    ```bash
    ls tokens/responsive-tabs.json
    # Should exist
    ```
 
 2. **Check config filter:**
+
    ```javascript
    filter: (token) => {
      console.log(token.filePath); // Debug
@@ -330,6 +356,7 @@ styles/generated/
    ```
 
 3. **Run with verbose:**
+
    ```bash
    style-dictionary build -c style-dictionary.config.v2.js --verbose
    ```
@@ -337,6 +364,7 @@ styles/generated/
 ### Names Don't Match?
 
 Check custom transform in `style-dictionary.config.v2.js`:
+
 ```javascript
 StyleDictionary.registerTransform({
   name: 'name/dyn/short',
@@ -351,6 +379,7 @@ StyleDictionary.registerTransform({
 ### Dark Theme Not Working?
 
 Check JSON structure:
+
 ```json
 {
   "dyn": {
@@ -376,7 +405,7 @@ If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
 
 ## 📚 Resources
 
-- **Style Dictionary Docs:** https://amzn.github.io/style-dictionary/
+- **Style Dictionary Docs:** <https://amzn.github.io/style-dictionary/>
 - **Dark Theme Strategy:** `docs/DARK-THEME-STRATEGY.md`
 - **Full Analysis:** `docs/DESIGN-TOKENS-ANALYSIS.md`
 - **Main README:** `packages/design-tokens/README.md`
@@ -399,5 +428,5 @@ If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
 
 ---
 
-**Status:** 🟢 Ready for Use  
+**Status:** 🟢 Ready for Use
 **Next:** Run `npm run tokens:build` and verify output!

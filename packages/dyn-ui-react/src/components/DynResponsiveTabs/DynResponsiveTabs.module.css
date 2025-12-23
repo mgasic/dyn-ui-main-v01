@@ -275,23 +275,26 @@
 }
 
 /* ===== NESTED TABS - VERTICAL LAYOUT ===== */
-/* Apply same seamless connection for nested vertical tabs */
-.nested.orientation-vertical .tab {
+/* JAČA SPECIFIČNOST - koristi više selektora */
+.container .nested.orientation-vertical .tab {
   border-right: none;
 }
 
-.nested.orientation-vertical .activeTab {
+.container .nested.orientation-vertical .tab.activeTab {
   /* Border levo, gore, dole - ALI NE DESNO */
   border-top: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
   border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
   border-left: var(--dyn-responsive-tabs-border-width-active, 4px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-right: none !important; /* ✅ FORCE SEAMLESS CONNECTION for nested */
+  border-right: none !important; /* ✅ FORCE NO RIGHT BORDER */
   
   /* Kompenzacija za deblji levi border */
   padding-left: calc(0.6rem - 2px);
+  
+  /* Border radius samo levo */
+  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px) !important;
 }
 
-.nested.orientation-vertical .panel {
+.container .nested.orientation-vertical .panel {
   border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
 }

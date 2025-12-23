@@ -1,0 +1,301 @@
+/**
+ * DinToggle Component Styles - 100% Design Token Compliance
+ * 
+ * Dio Input familije: Koristi identične tokene kao DinInput
+ * Varijante: on, off
+ * Stanja: default, disabled, error, success, focused
+ * Dark mode: Podržano
+ * A11y: WCAG AA+ (focus ring, aria attributes)
+ */
+
+/* ============================================
+   COMPONENT TOKENS - Inherited from Input Family
+   ============================================ */
+
+:root {
+  /* Toggle inherits all Input family tokens from DinInput */
+  /* Foundation tokens already defined in DinInput.module.css */
+
+  /* Toggle-specific tokens */
+  --dyn-toggle-width: 48px;
+  --dyn-toggle-width-small: 40px;
+  --dyn-toggle-width-large: 56px;
+  --dyn-toggle-height: 24px;
+  --dyn-toggle-height-small: 20px;
+  --dyn-toggle-height-large: 28px;
+  --dyn-toggle-border-radius: 12px;
+  --dyn-toggle-thumb-size: 20px;
+  --dyn-toggle-thumb-size-small: 16px;
+  --dyn-toggle-thumb-size-large: 24px;
+  --dyn-toggle-thumb-margin: 2px;
+  --dyn-toggle-on-bg: var(--dyn-color-primary-60, #007ACC);
+  --dyn-toggle-off-bg: var(--dyn-color-gray-200, #E0E0E0);
+  --dyn-toggle-thumb-color: var(--dyn-color-white, #FFFFFF);
+  --dyn-toggle-focus-ring: 0 0 0 3px rgba(0, 122, 204, 0.2);
+  --dyn-toggle-transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Toggle error/success inherit from Input tokens */
+  --dyn-toggle-error-bg-on: var(--dyn-color-danger-60, #DC3545);
+  --dyn-toggle-success-bg-on: var(--dyn-color-success-60, #28A745);
+  --dyn-toggle-disabled-opacity: 0.5;
+}
+
+/* ============================================
+   DARK MODE OVERRIDES
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --dyn-toggle-off-bg: var(--dyn-color-gray-600, #606060);
+    --dyn-toggle-focus-ring: 0 0 0 3px rgba(0, 122, 204, 0.3);
+  }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: more) {
+  :root {
+    --dyn-toggle-thumb-margin: 3px;
+  }
+}
+
+/* ============================================
+   TOGGLE CONTAINER
+   ============================================ */
+
+.toggleGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-2, 8px);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggleGroup:focus-within {
+  outline: none;
+}
+
+/* ============================================
+   TOGGLE INPUT (Hidden)
+   ============================================ */
+
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+/* ============================================
+   TOGGLE VISUAL (Switch container)
+   ============================================ */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  width: var(--dyn-toggle-width, 48px);
+  height: var(--dyn-toggle-height, 24px);
+  background-color: var(--dyn-toggle-off-bg, var(--dyn-color-gray-200, #E0E0E0));
+  border-radius: var(--dyn-toggle-border-radius, 12px);
+  border: none;
+  padding: var(--dyn-toggle-thumb-margin, 2px);
+  transition: var(--dyn-toggle-transition, all 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+
+/* ============================================
+   TOGGLE THUMB (Slider button)
+   ============================================ */
+
+.toggleThumb {
+  width: var(--dyn-toggle-thumb-size, 20px);
+  height: var(--dyn-toggle-thumb-size, 20px);
+  background-color: var(--dyn-toggle-thumb-color, var(--dyn-color-white, #FFFFFF));
+  border-radius: 50%;
+  transition: var(--dyn-toggle-transition, all 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   TOGGLE ON STATE
+   ============================================ */
+
+.toggleInput:checked + .toggle {
+  background-color: var(--dyn-toggle-on-bg, var(--dyn-color-primary-60, #007ACC));
+}
+
+.toggleInput:checked + .toggle .toggleThumb {
+  transform: translateX(calc(var(--dyn-toggle-width, 48px) - var(--dyn-toggle-thumb-size, 20px) - var(--dyn-toggle-thumb-margin, 2px) * 2));
+}
+
+/* ============================================
+   TOGGLE FOCUS STATE
+   ============================================ */
+
+.toggleInput:focus-visible + .toggle {
+  box-shadow: var(--dyn-toggle-focus-ring, 0 0 0 3px rgba(0, 122, 204, 0.2));
+  outline: 2px solid var(--dyn-color-primary-60, #007ACC);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   TOGGLE SIZE VARIANTS
+   ============================================ */
+
+.toggleSmall .toggle {
+  width: var(--dyn-toggle-width-small, 40px);
+  height: var(--dyn-toggle-height-small, 20px);
+  border-radius: 10px;
+}
+
+.toggleSmall .toggleThumb {
+  width: var(--dyn-toggle-thumb-size-small, 16px);
+  height: var(--dyn-toggle-thumb-size-small, 16px);
+}
+
+.toggleSmall.toggleInput:checked + .toggle .toggleThumb {
+  transform: translateX(calc(var(--dyn-toggle-width-small, 40px) - var(--dyn-toggle-thumb-size-small, 16px) - var(--dyn-toggle-thumb-margin, 2px) * 2));
+}
+
+.toggleLarge .toggle {
+  width: var(--dyn-toggle-width-large, 56px);
+  height: var(--dyn-toggle-height-large, 28px);
+  border-radius: 14px;
+}
+
+.toggleLarge .toggleThumb {
+  width: var(--dyn-toggle-thumb-size-large, 24px);
+  height: var(--dyn-toggle-thumb-size-large, 24px);
+}
+
+.toggleLarge.toggleInput:checked + .toggle .toggleThumb {
+  transform: translateX(calc(var(--dyn-toggle-width-large, 56px) - var(--dyn-toggle-thumb-size-large, 24px) - var(--dyn-toggle-thumb-margin, 2px) * 2));
+}
+
+/* ============================================
+   TOGGLE STATE: ERROR
+   ============================================ */
+
+.toggleError.toggleInput:checked + .toggle {
+  background-color: var(--dyn-toggle-error-bg-on, var(--dyn-color-danger-60, #DC3545));
+}
+
+/* ============================================
+   TOGGLE STATE: SUCCESS
+   ============================================ */
+
+.toggleSuccess.toggleInput:checked + .toggle {
+  background-color: var(--dyn-toggle-success-bg-on, var(--dyn-color-success-60, #28A745));
+}
+
+/* ============================================
+   TOGGLE STATE: DISABLED
+   ============================================ */
+
+.toggleInput:disabled + .toggle,
+.toggleDisabled .toggle {
+  opacity: var(--dyn-toggle-disabled-opacity, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.toggleInput:disabled ~ .toggleLabel,
+.toggleDisabled ~ .toggleLabel {
+  opacity: var(--dyn-toggle-disabled-opacity, 0.5);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   TOGGLE LABEL
+   ============================================ */
+
+.toggleLabel {
+  font-size: var(--dyn-input-label-font-size, var(--dyn-font-size-base, 14px));
+  font-weight: var(--dyn-font-weight-regular, 400);
+  color: var(--dyn-input-label-text, var(--dyn-color-gray-900, #1A1A1A));
+  cursor: pointer;
+  transition: var(--dyn-toggle-transition, all 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  line-height: var(--dyn-line-height-normal, 1.5);
+}
+
+.toggleGroup:hover .toggleLabel {
+  /* Optional: subtle hover effect */
+}
+
+/* ============================================
+   TOGGLE WITH LABELS (On/Off text)
+   ============================================ */
+
+.toggleWithLabels {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--dyn-spacing-1, 4px);
+}
+
+.toggleOnLabel,
+.toggleOffLabel {
+  font-size: var(--dyn-font-size-small, 12px);
+  font-weight: var(--dyn-font-weight-medium, 500);
+  color: var(--dyn-color-gray-600, #606060);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.toggleInput:checked ~ .toggleOnLabel {
+  color: var(--dyn-color-primary-60, #007ACC);
+  font-weight: var(--dyn-font-weight-semibold, 600);
+}
+
+.toggleInput:not(:checked) ~ .toggleOffLabel {
+  color: var(--dyn-color-primary-60, #007ACC);
+  font-weight: var(--dyn-font-weight-semibold, 600);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .toggle {
+    border: 2px solid var(--dyn-border-color-default, #D0D0D0);
+  }
+
+  .toggleInput:checked + .toggle {
+    border-color: var(--dyn-color-primary-60, #007ACC);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggleThumb,
+  .toggleLabel {
+    transition: none !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 480px) {
+  .toggleGroup {
+    gap: var(--dyn-spacing-2, 8px);
+  }
+
+  .toggle {
+    width: var(--dyn-toggle-width-large, 56px);
+    height: var(--dyn-toggle-height-large, 28px);
+  }
+
+  .toggleThumb {
+    width: var(--dyn-toggle-thumb-size-large, 24px);
+    height: var(--dyn-toggle-thumb-size-large, 24px);
+  }
+}

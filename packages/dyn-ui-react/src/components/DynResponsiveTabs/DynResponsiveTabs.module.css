@@ -2,6 +2,7 @@
    DYN RESPONSIVE TABS - COMPONENT STYLES
    Uses Design Tokens from @dyn-ui/design-tokens
    Updated: Dec 2025 - Blue/Gray Color Scheme
+   Complete Border on Active Tab
    ============================================ */
 
 .container {
@@ -116,17 +117,18 @@
 .orientation-vertical .tabList {
   flex-direction: column;
   border-bottom: none;
-  border-right: none; /* No border on tab list side */
+  border-right: none;
   min-width: 200px;
   margin-right: 0;
+  gap: 4px;
 }
 
 .orientation-vertical .tab {
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
-  border-right: none; /* No right border on tabs */
-  border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+  border: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+  border-right: none;
   margin-bottom: 0;
-  margin-right: calc(var(--dyn-responsive-tabs-border-width-default, 2px) * -1);
+  margin-right: 0;
   text-align: left;
 }
 
@@ -134,13 +136,21 @@
   border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
 }
 
+/* KLJUČNA PROMENA: Active tab ima kompletan border */
 .orientation-vertical .activeTab {
-  border-left: var(--dyn-responsive-tabs-border-width-active, 4px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-right: none;
-  border-top: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
-  border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+  /* Puni border sa svih strana */
+  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  /* Deblji levi border za naglasak */
+  border-left-width: var(--dyn-responsive-tabs-border-width-active, 4px);
+  /* Kompenzacija za deblji border - da ne pomera tab */
+  padding-left: calc(0.75rem - 2px);
+  /* Overlap sa content panel-om */
   margin-right: calc(var(--dyn-responsive-tabs-border-width-default, 2px) * -1);
-  padding-left: calc(0.75rem - 2px); /* Adjust for thicker left border */
+  /* Border radius - zaobljen samo sa leve strane */
+  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
+  /* Z-index da bude ispred content panel-a */
+  position: relative;
+  z-index: 3;
 }
 
 .orientation-vertical .panelContainer {
@@ -148,9 +158,10 @@
 }
 
 .orientation-vertical .panel {
-  border-left: none; /* No left border on panel */
+  /* Border sa svih strana */
+  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
+  /* Levi border postoji ali je ispod active tab-a (zbog z-index) */
   border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
-  border-top: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
 }
 
 /* ===== ACCORDION MODE ===== */
@@ -305,17 +316,17 @@
   .orientation-vertical .tab {
     border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-tab, 8px 8px 0 0);
     margin-right: 0;
+    border-right: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
   }
   
   .orientation-vertical .activeTab {
-    border-left: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
-    border-right: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+    border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+    border-bottom: none;
     margin-right: 0;
-    padding-left: calc(0.5rem - 1px);
+    padding-left: 0.5rem;
   }
   
   .orientation-vertical .panel {
-    border-left: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
     border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-panel, 0 0 8px 8px);
   }
 }

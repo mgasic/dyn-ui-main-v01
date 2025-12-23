@@ -159,6 +159,20 @@
           "thin": {
             "value": "1px",
             "description": "Thin border width for inactive tabs"
+          },
+          "none": {
+            "value": "0",
+            "description": "No border - used for seamless connections"
+          }
+        },
+        "style": {
+          "solid": {
+            "value": "solid",
+            "description": "Solid border style"
+          },
+          "none": {
+            "value": "none",
+            "description": "No border style - for seamless connections"
           }
         },
         "radius": {
@@ -181,9 +195,53 @@
               "value": "8px 0 0 8px",
               "description": "Border radius for vertical tabs (rounded left, flat right)"
             },
+            "tabActive": {
+              "top": {
+                "value": "2px",
+                "description": "Top border width for active vertical tab"
+              },
+              "right": {
+                "value": "0",
+                "description": "Right border width for active vertical tab - NONE for seamless connection"
+              },
+              "bottom": {
+                "value": "2px",
+                "description": "Bottom border width for active vertical tab"
+              },
+              "left": {
+                "value": "4px",
+                "description": "Left border width for active vertical tab - emphasis"
+              }
+            },
             "panel": {
               "value": "0 8px 8px 0",
               "description": "Border radius for vertical content panel (flat left, rounded right)"
+            }
+          }
+        },
+        "vertical": {
+          "activeTab": {
+            "top": {
+              "value": "2px solid",
+              "description": "Top border for active vertical tab"
+            },
+            "right": {
+              "value": "none",
+              "description": "Right border for active vertical tab - NONE for seamless connection"
+            },
+            "bottom": {
+              "value": "2px solid",
+              "description": "Bottom border for active vertical tab"
+            },
+            "left": {
+              "value": "4px solid",
+              "description": "Left border for active vertical tab - emphasis"
+            }
+          },
+          "inactiveTab": {
+            "right": {
+              "value": "none",
+              "description": "Right border for inactive vertical tab - NONE"
             }
           }
         }

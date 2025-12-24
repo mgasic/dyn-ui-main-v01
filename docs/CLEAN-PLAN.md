@@ -1,4 +1,5 @@
 # DYN UI - Design System
+
 ## Čist, Fokusirani Plan
 
 ---
@@ -24,16 +25,19 @@ Nije ništa više. Nije ništa manje.
 ## 🔴 P0 - HITNO (3 komponente, 11 sati)
 
 ### 1. DinFlex
+
 - **Problem:** Globalni tokeni → curenja stilova
 - **Rješenje:** Prebaci u `.dynFlex` scope
 - **Sati:** 3
 
 ### 2. DinBadge
+
 - **Problem:** Pogrešna imena tokena (`--badge-accent`)
 - **Rješenje:** Koristi `--dyn-badge-primary-bg`
 - **Sati:** 4
 
 ### 3. DinModal
+
 - **Problem:** Hard-kodirane vrijednosti (`rgba(0,0,0,0.5)`, `500px`)
 - **Rješenje:** Prebaci u tokene (`--dyn-overlay-bg`, `--dyn-modal-max-width`)
 - **Sati:** 4
@@ -43,6 +47,7 @@ Nije ništa više. Nije ništa manje.
 ## 🟡 P1 - VAŽNO (5+ komponenti, 18 sati)
 
 **Input familija - sve trebaju isti strukturirani tokeni:**
+
 - DinInput
 - DinCheckbox
 - DinRadio
@@ -65,23 +70,27 @@ Nije ništa više. Nije ništa manje.
 ## 🚀 Kako Početi
 
 ### 1. Kopiraj Template
+
 ```bash
 cp TEMPLATE-* src/components/DinYourComponent/
 ```
 
 ### 2. Pretvori u Tvoju Komponentu
+
 ```bash
 sed -i 's/ComponentTemplate/YourComponent/g' *
 sed -i 's/componentTemplate/yourComponent/g' *
 ```
 
 ### 3. Unesi Logiku
+
 - Uredi `.tsx` fajl
 - Uredi `.module.css` - koristi tokene!
 - Uredi `.stories.tsx` - sve varijante
 - Uredi `.test.tsx` - 80% coverage
 
 ### 4. Testiraj
+
 ```bash
 npm test              # Jest
 npm run storybook     # Visual
@@ -132,6 +141,7 @@ npm run a11y-audit    # Accessibility
 ## 📝 Šta Trebalo Biti u Repo-u
 
 ### Templates (6 fajlova)
+
 - ✅ `TEMPLATE-DinComponentTemplate.tsx`
 - ✅ `TEMPLATE-DinComponentTemplate.types.ts`
 - ✅ `TEMPLATE-DinComponentTemplate.module.css`
@@ -140,9 +150,11 @@ npm run a11y-audit    # Accessibility
 - ✅ `COMPONENT-TEMPLATES-README.md`
 
 ### Dokumentacija (1 fajl)
+
 - ✅ `IMPLEMENTATION-PLAN.md`
 
 ### Što Trebalo Biti Izbrisano
+
 - ❌ Stari nepotrebni dokumenti
 - ❌ Duplikati
 - ❌ Zamršeni planovi

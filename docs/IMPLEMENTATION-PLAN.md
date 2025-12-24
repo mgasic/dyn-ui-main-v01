@@ -1,14 +1,17 @@
 # DYN UI - Finalni Plan Implementacije
+
 ## Verzija 2.0 - Čišćen i Fokusiran
 
 ---
 
 ## 🎯 CILJ
+
 Transformacija DYN UI sistema u **enterprise-ready, 100% design token compliant** sistem.
 
 ---
 
 ## 📊 SITUACIJA
+
 - ✅ 82% compliance (37 komponenti)
 - ❌ 3 KRITIČNA problema (P0): DinFlex, DinBadge, DinModal
 - ⚠️ 5 VAŽNIH problema (P1): DinInput i input varijante
@@ -19,16 +22,19 @@ Transformacija DYN UI sistema u **enterprise-ready, 100% design token compliant*
 ## 🔴 KRITIČNI ZADACI (P0) - 11 sati
 
 ### 1. DinFlex - Lokalni Scope
+
 **Problem:** Globalni tokeni → curenja
 **Rješenje:** Prebaci u `.dynFlex` scope
 **Procjena:** 3 sata
 
 ### 2. DinBadge - Ispravka Imenovanja
+
 **Problem:** `--badge-accent` → trebalo `--dyn-badge-primary-bg`
 **Rješenje:** Standardizuj sve tokene
 **Procjena:** 4 sata
 
 ### 3. DinModal - Hard-kodirane Vrijednosti
+
 **Problem:** `rgba(0,0,0,0.5)`, `500px` → trebalo tokeni
 **Rješenje:** Prebaci u `--dyn-overlay-bg`, `--dyn-modal-max-width`
 **Procjena:** 4 sata
@@ -38,6 +44,7 @@ Transformacija DYN UI sistema u **enterprise-ready, 100% design token compliant*
 ## 🟡 VAŽNI ZADACI (P1) - 18 sati
 
 ### Input Familie - Standardizacija
+
 - DinInput: spin buttons, error icon
 - DinCheckbox, DinRadio, DinToggle, DinSelect: sve trebaju struktuirani tokeni
 - **Procjena:** 18 sati

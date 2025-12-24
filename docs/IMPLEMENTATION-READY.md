@@ -1,4 +1,5 @@
 # ✅ IMPLEMENTACIJA JE KRENULA
+
 ## DYN UI - 100% Design Token Compliance Journey
 
 ---
@@ -6,6 +7,7 @@
 ## 📦 RESURSI NA MJESTU
 
 ### 🎯 Dokumentacija (5 fajlova)
+
 1. ✅ **START-HERE.md** - Pregled i brzi start
 2. ✅ **CLEAN-PLAN.md** - Fokusirani cilj i prioriteti
 3. ✅ **IMPLEMENTATION-PLAN.md** - Detaljni timeline (6 nedelja)
@@ -13,6 +15,7 @@
 5. ✅ **COMPONENT-TEMPLATES-README.md** - Kako koristiti template-e
 
 ### 🔧 Template Fajlovi (5 fajlova)
+
 - ✅ TEMPLATE-DinComponentTemplate.tsx
 - ✅ TEMPLATE-DinComponentTemplate.types.ts
 - ✅ TEMPLATE-DinComponentTemplate.module.css
@@ -23,7 +26,7 @@
 
 ## 🚀 SLJEDEĆI KORAK - OD SADA
 
-### ZA DEVELOPMENT TIM:
+### ZA DEVELOPMENT TIM
 
 1. **Preuzmite sve fajlove** iz workspace-a
 2. **Stavite u `/docs` folder** u repozitoriju
@@ -33,6 +36,7 @@
    - P0-REFACTOR-START.md (15 min)
 
 4. **Pocnite sa P0 Refactor-om:**
+
    ```bash
    git checkout -b feat/refactor-dyn-flex
    # Slijedi upute iz P0-REFACTOR-START.md
@@ -95,7 +99,7 @@ Dokumentacija (Nedelja 6): 4 sata
 
 ## 🎓 KAKO JE RADITI
 
-### Za Dev-a na P0 Komponenti:
+### Za Dev-a na P0 Komponenti
 
 ```
 1. Pročitaj P0-REFACTOR-START.md (15 min)
@@ -109,7 +113,7 @@ Dokumentacija (Nedelja 6): 4 sata
 9. Merge kada je approved
 ```
 
-### Za QA:
+### Za QA
 
 ```
 1. Pročitaj Checklist iz P0-REFACTOR-START.md
@@ -122,23 +126,24 @@ Dokumentacija (Nedelja 6): 4 sata
    - Jest testovi
 ```
 
-
-
 ---
 
 ## 📞 KAKO PITATI/RADITI
 
-### Ako nešto nije jasno:
+### Ako nešto nije jasno
+
 1. Pročitaj relevantnu sekciju iz dokumentacije
 2. Pogledaj template kao primjer
 3. Sledi Checklist tačno kako je napisan
 
-### Ako greška:
+### Ako greška
+
 1. Pogledaj Checklist - šta je preskočeno?
 2. Standardizuj prema template-u
 3. Re-test i re-commit
 
-### Ako feature zahtjev:
+### Ako feature zahtjev
+
 1. Pogledaj P1 ili P2 lista
 2. Čekaj završetak P0 i P1
 3. Sljedna faza je nove komponente
@@ -148,22 +153,26 @@ Dokumentacija (Nedelja 6): 4 sata
 ## ✅ KOLIKO TREBALO BITI GOTOVO ZA SUCCESS
 
 ### P0 Complete (Nedelje 1-2)
+
 - ✅ DynFlex - 100% token compliant
 - ✅ DynBadge - Ispravljena imena
 - ✅ DynModal - Nema hard-kodiranih vrijednosti
 - ✅ Sve testirane i dokumentovane
 
 ### P1 Complete (Nedelje 3-4)
+
 - ✅ DinInput familija standardizirana
 - ✅ Sve input komponente koriste iste tokene
 - ✅ Dark mode radi na svim
 
 ### QA Complete (Nedelja 5)
+
 - ✅ 80% Jest coverage
 - ✅ WCAG AA+ na svim
 - ✅ Storybook kompletan
 
 ### Dokumentacija Complete (Nedelja 6)
+
 - ✅ README za sve komponente
 - ✅ Token registry
 - ✅ Migration guide za v1→v2

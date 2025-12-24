@@ -1,4 +1,5 @@
 # COMPONENT TEMPLATE FILES
+
 ## Kako koristiti ovaj folder
 
 Ovaj folder sadrži **šablone za sve nove i refaktorovane komponente** u DYN UI sistemu.
@@ -25,16 +26,19 @@ src/components/DinComponentName/
 ## 📝 Korišćenje Šablona
 
 ### 1. Kopiraj Template Fajlove
+
 ```bash
 cp -r templates/DinComponentTemplate src/components/DinYourComponent
 ```
 
 ### 2. Pretvori u Tvoju Komponentu
+
 - Zamijeni `DinComponentTemplate` sa `DinYourComponent`
 - Zamijeni `componentTemplate` sa `yourComponent`
 - Unesi specifičnu logiku
 
 ### 3. Sledi Checklist
+
 - ✅ Svi tokeni koriste `--dyn-` prefiks
 - ✅ Trostruki fallback na svim tokenima
 - ✅ Dark mode override implementiran
@@ -91,6 +95,7 @@ npm run storybook
 ## 📚 Reference Komponente
 
 Koristite ove kao reference za best practices:
+
 - **DinButton** - Button varijante i stanja
 - **DinInput** - Form handling
 - **DinTable** - Kompleksna komponenta sa svim slojevima

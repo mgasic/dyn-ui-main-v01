@@ -7,11 +7,13 @@
 ## 🔽 TLDR (30 Seconds)
 
 **Token Pattern**:
+
 ```css
 --dyn-[component]-[property]-[state]
 ```
 
 **Example**:
+
 ```css
 --dyn-button-bg         /* primary token */
 --dyn-button-bg-hover   /* with state */
@@ -19,6 +21,7 @@
 ```
 
 **3-Level Fallback** (REQUIRED):
+
 ```css
 var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
      ↑                     ↑                     ↑
@@ -38,6 +41,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
    - Section: "Implementation Workflow" (step-by-step)
 
 2. **Copy** (5 min):
+
    ```bash
    cp -r docs/TEMPLATES/TEMPLATE-Component src/components/DynMyComponent
    ```
@@ -51,6 +55,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
    - Ensure all items checked
 
 5. **Commit**:
+
    ```bash
    git add .
    git commit -m "feat(DynMyComponent): 100% design token compliance"
@@ -59,16 +64,18 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ### Option 2: I'm an AI Agent
 
 1. **Parse**:
+
    ```
    File: docs/COMPLETE_KNOWLEDGE_BASE.md
    Sections to load:
    - Three-Layer Token System
-   - Naming Conventions  
+   - Naming Conventions
    - Component Structure
    - Implementation Workflow
    ```
 
 2. **Template**:
+
    ```bash
    Find: docs/TEMPLATES/TEMPLATE-Component.*
    Copy: to src/components/DynNew
@@ -89,6 +96,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ## 🗐️ FOUNDATION TOKENS (Memorize These)
 
 ### Colors
+
 ```css
 --dyn-color-primary: #2563eb
 --dyn-color-secondary: #f3f4f6
@@ -103,6 +111,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ```
 
 ### Spacing
+
 ```css
 --dyn-spacing-xs: 0.25rem    /* 4px */
 --dyn-spacing-sm: 0.5rem     /* 8px */
@@ -114,6 +123,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ```
 
 ### Typography
+
 ```css
 /* Font Sizes */
 --dyn-font-size-xs: 0.75rem    /* 12px */
@@ -136,16 +146,19 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ## ✅ NAMING RULES (COPY-PASTE THESE)
 
 ### Pattern
+
 ```
 --dyn-[component]-[property]-[state]
 ```
 
 ### Components
+
 - Singular: `button` not `buttons`
 - Lowercase: `button` not `Button`
 - No abbreviations: `button` not `btn`
 
 ### Properties
+
 ```css
 --dyn-button-bg           /* background */
 --dyn-button-color        /* text color */
@@ -159,6 +172,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ```
 
 ### States (Optional)
+
 ```css
 --dyn-button-bg-hover     /* on hover */
 --dyn-button-bg-active    /* on click */
@@ -170,6 +184,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ### Examples (Check These)
 
 ✅ **Correct**:
+
 ```css
 --dyn-button-bg
 --dyn-button-bg-hover
@@ -179,6 +194,7 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 ```
 
 ❌ **Wrong**:
+
 ```css
 --btn-bg                    /* abbreviated domain */
 --dyn-buttons-bg            /* plural */
@@ -208,6 +224,7 @@ DynMyComponent/
 ## 📚 CSS PATTERN (Most Important)
 
 ### Structure
+
 ```css
 /* ===== COMPONENT TOKENS (at top) ===== */
 :root {
@@ -278,14 +295,17 @@ DynMyComponent/
 ## 🚀 NEXT STEPS
 
 ### P0 (Next 2 Weeks)
+
 1. **DynFlex** (3h) - Move to component scope, add --dyn- prefix
 2. **DynBadge** (4h) - Fix token naming
 3. **DynModal** (4h) - Replace hard-coded values with tokens
 
 ### For Full Details
+
 See: `docs/COMPLETE_KNOWLEDGE_BASE.md` (all sections)
 
 ### For Troubleshooting
+
 See: `docs/COMPLETE_KNOWLEDGE_BASE.md` section "Troubleshooting"
 
 ---

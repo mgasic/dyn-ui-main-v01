@@ -1,9 +1,10 @@
 # DYN UI - COMPLETE KNOWLEDGE BASE v2.0
+
 ## Unified Documentation (All-in-One)
 
-**Status**: ✅ READY FOR IMPLEMENTATION  
-**Version**: 2.0 - Unified & Standardized  
-**Date**: December 24, 2025  
+**Status**: ✅ READY FOR IMPLEMENTATION
+**Version**: 2.0 - Unified & Standardized
+**Date**: December 24, 2025
 **Purpose**: Single, consolidated source of truth
 
 ---
@@ -28,6 +29,7 @@
 ### What This Is
 
 This document consolidates **19 scattered files** into **1 unified knowledge base**:
+
 - ✅ CLEAN-PLAN.md
 - ✅ P0-REFACTOR-START.md
 - ✅ IMPLEMENTATION-READY.md
@@ -64,6 +66,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 **Rule**: Never reference other tokens, only hardcoded values
 
 #### Colors
+
 ```css
 --dyn-color-primary: #2563eb
 --dyn-color-secondary: #f3f4f6
@@ -80,6 +83,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Spacing
+
 ```css
 --dyn-spacing-xs: 0.25rem    /* 4px */
 --dyn-spacing-sm: 0.5rem     /* 8px */
@@ -91,6 +95,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Typography
+
 ```css
 /* Font Sizes */
 --dyn-font-size-xs: 0.75rem    /* 12px */
@@ -112,6 +117,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Shadows
+
 ```css
 --dyn-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05)
 --dyn-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1)
@@ -121,6 +127,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Border Radius
+
 ```css
 --dyn-radius-none: 0
 --dyn-radius-sm: 0.25rem     /* 4px */
@@ -131,6 +138,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Transitions
+
 ```css
 --dyn-transition-fast: 150ms
 --dyn-transition-base: 200ms
@@ -139,6 +147,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Z-Index
+
 ```css
 --dyn-z-index-dropdown: 1000
 --dyn-z-index-sticky: 1100
@@ -158,6 +167,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 **Rule**: MUST reference foundation tokens with 3-level fallback
 
 #### Button Example
+
 ```css
 :root {
   /* Base tokens */
@@ -171,7 +181,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
   --dyn-button-shadow: none;
   --dyn-button-transition: all var(--dyn-transition-base, 200ms) var(--dyn-transition-easing);
   --dyn-button-touch-target: var(--dyn-spacing-xl, 2.75rem);
-  
+
   /* State variants */
   --dyn-button-bg-hover: var(--dyn-color-primary-hover, #1d4ed8);
   --dyn-button-bg-active: var(--dyn-color-primary-active, #1e40af);
@@ -180,6 +190,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### Input Example
+
 ```css
 :root {
   --dyn-input-bg: var(--dyn-color-surface, var(--legacy-input-bg, #ffffff));
@@ -203,6 +214,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 **Rule**: Only change what's different, component tokens inherit automatically
 
 #### Dark Mode Example
+
 ```css
 @media (prefers-color-scheme: dark) {
   :root {
@@ -213,7 +225,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
     --dyn-color-surface: #1e293b;
     --dyn-color-text: #f9fafb;
     --dyn-color-border: rgba(255, 255, 255, 0.1);
-    
+
     /* Component tokens automatically use new values */
     /* No need to redefine component tokens */
   }
@@ -221,6 +233,7 @@ This document consolidates **19 scattered files** into **1 unified knowledge bas
 ```
 
 #### High Contrast Example
+
 ```css
 @media (prefers-contrast: more) {
   :root {
@@ -425,11 +438,13 @@ DynComponent/
 ### Step-by-Step
 
 #### Step 1: Copy Template
+
 ```bash
 cp -r docs/TEMPLATES/TEMPLATE-Component src/components/DynNewComponent
 ```
 
 #### Step 2: Rename Files
+
 ```bash
 cd src/components/DynNewComponent
 sed -i 's/DinComponentTemplate/DynNewComponent/g' *
@@ -439,6 +454,7 @@ sed -i 's/componentTemplate/newComponent/g' *
 #### Step 3: Implement Component Logic
 
 **DynNewComponent.tsx** - React component
+
 ```typescript
 import React from 'react';
 import styles from './DynNewComponent.module.css';
@@ -467,6 +483,7 @@ DynNewComponent.displayName = 'DynNewComponent';
 ```
 
 **DynNewComponent.types.ts** - TypeScript types
+
 ```typescript
 import { ReactNode } from 'react';
 
@@ -494,6 +511,7 @@ export interface DynNewComponentProps
 **DynNewComponent.module.css** - Styles with tokens (see CSS Module Structure above)
 
 **DynNewComponent.stories.tsx** - Storybook
+
 ```typescript
 import type { Meta, StoryObj } from '@storybook/react';
 import { DynNewComponent } from './DynNewComponent';
@@ -522,6 +540,7 @@ export const DarkMode: Story = {
 ```
 
 **DynNewComponent.test.tsx** - Jest tests (80%+ coverage)
+
 ```typescript
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -558,12 +577,14 @@ describe('DynNewComponent', () => {
 ```
 
 **index.ts** - Exports
+
 ```typescript
 export { DynNewComponent } from './DynNewComponent';
 export type { DynNewComponentProps } from './DynNewComponent.types';
 ```
 
 #### Step 4: Test Locally
+
 ```bash
 npm test DynNewComponent
 npm run storybook
@@ -571,9 +592,11 @@ npm run a11y-audit
 ```
 
 #### Step 5: Verify Against Checklist
+
 See Verification Checklist section below
 
 #### Step 6: Commit & Push
+
 ```bash
 git add .
 git commit -m "feat(DynNewComponent): implement with 100% design token compliance"
@@ -581,6 +604,7 @@ git push origin feat/new-component
 ```
 
 #### Step 7: Create PR
+
 Include full checklist in PR description
 
 ---
@@ -593,9 +617,11 @@ Include full checklist in PR description
 - [ ] Pattern: `--dyn-[component]-[property]-[state]`
 - [ ] No hardcoded values (except in fallback)
 - [ ] 3-level fallback on ALL tokens:
+
   ```css
   var(--dyn-component, var(--legacy-component, fallback-value))
   ```
+
 - [ ] All variants override tokens only (not CSS properties)
 - [ ] Dark mode: `@media (prefers-color-scheme: dark)` present
 - [ ] Responsive: `@media (max-width: 767px)` present
@@ -666,6 +692,7 @@ Include full checklist in PR description
 ```
 
 **Solution**:
+
 1. Move token definitions from global `:root` to component `.flex` scope
 2. Rename tokens: `--flex-*` → `--dyn-flex-*`
 3. Add 3-level fallback to all tokens
@@ -689,6 +716,7 @@ Include full checklist in PR description
 ```
 
 **Solution**:
+
 1. Rename all tokens to `--dyn-badge-*`
 2. Follow: `--dyn-badge-[property]-[state]`
 3. Reference foundation tokens
@@ -728,6 +756,7 @@ Include full checklist in PR description
 ```
 
 **Solution**:
+
 1. Identify all hard-coded values
 2. Create component tokens for each
 3. Add 3-level fallback
@@ -794,12 +823,14 @@ Include full checklist in PR description
 **Symptom**: CSS property doesn't show the token value
 
 **Diagnosis**:
+
 1. Check token is defined
 2. Check CSS property references token
 3. Check 3-level fallback is correct
 4. Check component scope (not global)
 
 **Solution**:
+
 ```css
 /* Wrong */
 var(--dyn-button-bg)
@@ -813,11 +844,13 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 **Symptom**: Colors don't change in dark mode
 
 **Diagnosis**:
+
 1. Check `@media (prefers-color-scheme: dark)` exists
 2. Check tokens are overridden inside media query
 3. Check browser supports color scheme preference
 
 **Solution**:
+
 ```css
 @media (prefers-color-scheme: dark) {
   :root {
@@ -832,11 +865,13 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 **Symptom**: Changes to one component affect others
 
 **Diagnosis**:
+
 1. Check tokens defined in component `.module.css`, not global CSS
 2. Check `:root` is not setting global scope
 3. Check CSS Module is being imported
 
 **Solution**:
+
 ```css
 /* ❌ Wrong - in global style.css */
 :root { --flex-gap: 12px; }  /* affects all */
@@ -850,11 +885,13 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 **Symptom**: Tokens don't follow standard pattern
 
 **Diagnosis**:
+
 1. Check pattern: `--dyn-[component]-[property]-[state]`
 2. Check domain is singular (button, not buttons)
 3. Check property is not camelCase
 
 **Solution**:
+
 ```css
 /* Wrong */
 --btn-bg
@@ -883,8 +920,8 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 
 ---
 
-**VERSION 2.0**  
-**Unified, Consolidated, Complete**  
+**VERSION 2.0**
+**Unified, Consolidated, Complete**
 **December 24, 2025**
 
 **Status**: ✅ **READY FOR IMPLEMENTATION**

@@ -1,4 +1,5 @@
 # 🚀 P0 REFACTOR - POČNI OVDJE
+
 ## DynFlex, DynBadge, DynModal → 100% Design Token Compliance
 
 ---
@@ -21,11 +22,13 @@ main branch
 ## 🎯 P0 - TRI KRITIČNA KOMPONENTE
 
 ### 1️⃣ DynFlex (3 sata)
+
 **Lokacija:** `packages/dyn-ui-react/src/components/DynFlex/`
 
 **Problem:** Koristi globalne tokene → curenja stilova između komponenti
 
 **Šta Trebalo Biti Refaktorovano:**
+
 ```css
 /* ❌ PRIJE - Globalni tokeni */
 :root {
@@ -41,6 +44,7 @@ main branch
 ```
 
 **Koraci:**
+
 1. Otvori `DynFlex.module.css`
 2. Prebaci sve globalne varijable u `.flex` scope
 3. Dodaj `--dyn-` prefiks na sve tokene
@@ -50,11 +54,13 @@ main branch
 ---
 
 ### 2️⃣ DynBadge (4 sata)
+
 **Lokacija:** `packages/dyn-ui-react/src/components/DynBadge/`
 
 **Problem:** Pogrešna konvencija imenovanja tokena
 
 **Šta Trebalo Biti Refaktorovano:**
+
 ```css
 /* ❌ PRIJE - Pogrešna imena */
 --badge-accent
@@ -69,11 +75,13 @@ main branch
 ```
 
 **Naming Convention:**
+
 - Format: `--dyn-[component]-[property]-[state]`
 - Property: `bg`, `text`, `border`, `shadow`
 - State: `default`, `hover`, `active`, `disabled`
 
 **Koraci:**
+
 1. Otvori `DynBadge.module.css`
 2. Preimenuj sve tokene u `--dyn-badge-*`
 3. Koristi Foundation tokene za vrijednosti
@@ -83,11 +91,13 @@ main branch
 ---
 
 ### 3️⃣ DynModal (4 sata)
+
 **Lokacija:** `packages/dyn-ui-react/src/components/DynModal/`
 
 **Problem:** Hard-kodirane vrijednosti umjesto tokena
 
 **Šta Trebalo Biti Refaktorovano:**
+
 ```css
 /* ❌ PRIJE - Hard-kodirane vrijednosti */
 .modal {
@@ -107,6 +117,7 @@ main branch
 ```
 
 **Koraci:**
+
 1. Otvori `DynModal.module.css`
 2. Identifikuj sve hard-kodirane vrijednosti
 3. Prebaci ih u tokene sa trostrukim fallback-om
@@ -118,6 +129,7 @@ main branch
 ## ✅ CHECKLIST ZA SVAKI COMMIT
 
 ### Prije Commit-a
+
 - [ ] Sve klase koriste `--dyn-` prefiks
 - [ ] Naming: `--dyn-component-property-state`
 - [ ] Fallback: `var(--dyn-component, var(--dyn-foundation, #hardcoded))`
@@ -125,12 +137,14 @@ main branch
 - [ ] Nema hard-kodiranih vrijednosti
 
 ### CSS Standards
+
 - [ ] Foundation tokeni se ne referenciraju
 - [ ] Component tokeni samo Foundation + fallback
 - [ ] Theme samo override boja za dark mode
 - [ ] Responsive design je uključen
 
 ### Testing
+
 - [ ] Storybook priče su ažurirane
 - [ ] Dark mode je testiran
 - [ ] Responsive je testiran
@@ -138,6 +152,7 @@ main branch
 - [ ] Jest testovi su pass-uju
 
 ### Git
+
 - [ ] Branch: `feat/refactor-dyn{Component}`
 - [ ] Commit message: `refactor(Dyn{Component}): 100% design token compliance`
 - [ ] PR sa checklist-om iz START-HERE.md
@@ -158,10 +173,10 @@ Koristi ovu strukturu za svaku komponentu:
   --dyn-component-bg: var(--dyn-color-white, #FFFFFF);
   --dyn-component-text: var(--dyn-color-gray-1000, #000000);
   --dyn-component-border: var(--dyn-color-gray-300, #D0D0D0);
-  
+
   /* State: Hover */
   --dyn-component-bg-hover: var(--dyn-color-gray-100, #F5F5F5);
-  
+
   /* Variant: Primary */
   --dyn-component-primary-bg: var(--dyn-color-primary-60, #007ACC);
   --dyn-component-primary-text: var(--dyn-color-white, #FFFFFF);
@@ -198,7 +213,7 @@ Koristi ovu strukturu za svaku komponentu:
 Nedelja 1:
   Mon-Tue:  DynFlex (3h)
   Wed-Thu:  DynBadge (4h)
-  
+
 Nedelja 2:
   Mon-Tue:  DynModal (4h)
   Wed-Thu:  Testing & Code Review
@@ -210,18 +225,21 @@ Nedelja 2:
 ## 🎯 Success Criteria P0
 
 ✅ **DynFlex**
+
 - [ ] Nema globalnih tokena
 - [ ] Svi tokeni u `.flex` scope
 - [ ] Dark mode radi
 - [ ] Storybook je ažurirat
 
 ✅ **DynBadge**
+
 - [ ] Svi tokeni kreću sa `--dyn-badge-`
 - [ ] Konvencija: `--dyn-badge-[property]-[state]`
 - [ ] Dark mode radi
 - [ ] A11y je provjeren
 
 ✅ **DynModal**
+
 - [ ] Nema hard-kodiranih vrijednosti
 - [ ] Sve vrijednosti su tokeni
 - [ ] Trostruki fallback je implementiran
@@ -270,20 +288,26 @@ Fixes: #125
 
 1. **Pročitaj** `CLEAN-PLAN.md` (10 min)
 2. **Kreiraj branch:**
+
    ```bash
    git checkout -b feat/refactor-dyn-flex
    ```
+
 3. **Otvori komponentes CSS:**
+
    ```bash
    code packages/dyn-ui-react/src/components/DynFlex/DynFlex.module.css
    ```
+
 4. **Slijedi Checklist** iz ovog dokumenta
 5. **Commit & Push:**
+
    ```bash
    git add .
    git commit -m "refactor(DynFlex): 100% design token compliance"
    git push origin feat/refactor-dyn-flex
    ```
+
 6. **Napravi PR** sa checklist-om iz `START-HERE.md`
 
 ---

@@ -7,13 +7,13 @@ export type DynSpacingScale = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type DynComponentSize = DynSpacingScale;
 
 // Spacing token mapping for avatar sizes
-export const DYN_SPACING_TOKENS = {
-  xs: 'var(--dyn-spacing-2xl, 2rem)',    // 32px
-  sm: 'var(--dyn-spacing-3xl, 3rem)',    // 48px
-  md: '4rem',                             // 64px
-  lg: '5rem',                             // 80px
-  xl: '6rem'                              // 96px
-} as const;
+export const DYN_SPACING_TOKENS: {
+  readonly xs: string;
+  readonly sm: string;
+  readonly md: string;
+  readonly lg: string;
+  readonly xl: string;
+};
 
 // Status types
 export type DynStatusType = 'online' | 'offline' | 'away' | 'busy';

@@ -2,12 +2,20 @@
 
 ## 📋 Quick Start
 
-### Generate Tokens
+### Validate Tokens
 
 ```bash
 cd packages/design-tokens
+npm run tokens:validate
+```
+
+### Generate Tokens
+
+```bash
 npm run tokens:build
 ```
+
+**Note:** Validation runs automatically before build.
 
 ### Watch Mode (Development)
 
@@ -20,6 +28,104 @@ npm run tokens:watch
 
 ```bash
 npm run tokens:clean
+```
+
+---
+
+## ✅ PHASE 1: Validation & CI/CD
+
+### Token Validation Rules
+
+`npm run tokens:validate` enforces:
+
+1. **Valid JSON Syntax**
+   - All JSON files must parse correctly
+   - No trailing commas or missing quotes
+
+2. **Token Values Required**
+   - Every token must have a `value` property
+   - Value cannot be null, undefined, or empty
+   
+   ```json
+   ❌ { "color": {} }                    // Missing value
+   ❌ { "color": { "value": null } }    // Null value
+   ✅ { "color": { "value": "#000" } }  // Valid
+   ```
+
+3. **Naming Conventions**
+   - Keys must use `camelCase` or `kebab-case`
+   - No spaces, special chars, or SCREAMING_SNAKE_CASE
+   
+   ```json
+   ❌ "My Color": {}           // Space
+   ❌ "MY_COLOR": {}           // SCREAMING_SNAKE_CASE
+   ✅ "myColor": {}            // camelCase
+   ✅ "my-color": {}           // kebab-case
+   ```
+
+4. **No Duplicate Tokens**
+   - Token names must be unique across all files
+   - Prevents accidental overrides
+   
+   ```
+   ❌ tokens/color.json has --dyn-color-primary
+   ❌ tokens/button.json ALSO has --dyn-color-primary
+   ```
+
+### GitHub Actions Workflow
+
+**File:** `.github/workflows/design-tokens-generate.yml`
+
+**Triggers on:**
+- Push to `main` or `develop` branches
+- Changes to `packages/design-tokens/tokens/**`
+- Changes to `packages/design-tokens/style-dictionary.config.v2.js`
+- Manual trigger via GitHub UI
+
+**Workflow steps:**
+
+```
+1. Checkout code
+2. Setup Node.js 18
+3. Install dependencies
+4. 🔍 Validate tokens (npm run tokens:validate)
+5. 🎨 Generate CSS (npm run tokens:build)
+6. 🧪 Run tests (npm run test)
+7. 📝 Auto-commit generated files
+8. 📊 Generate workflow summary
+```
+
+**Auto-commit behavior:**
+- Only commits if files changed
+- Commits to: `packages/design-tokens/styles/generated/**`
+- Commit message: `chore: regenerate design tokens`
+- Author: `Design Tokens Bot`
+
+### Development Workflow
+
+```bash
+# 1. Edit token JSON
+vim packages/design-tokens/tokens/my-component.json
+
+# 2. Validate locally (optional, CI/CD also validates)
+npm run tokens:validate
+
+# 3. Generate CSS locally
+npm run tokens:build
+
+# 4. Test in Storybook
+npm run storybook
+
+# 5. Commit token changes (NOT generated files)
+git add packages/design-tokens/tokens/
+git commit -m "feat: update button token colors"
+git push
+
+# 6. GitHub Actions automatically:
+#    - Validates tokens
+#    - Generates CSS
+#    - Commits generated files
+#    - Sends notification
 ```
 
 ---
@@ -140,13 +246,19 @@ files: [
 ]
 ```
 
-### Step 3: Build
+### Step 3: Validate
+
+```bash
+npm run tokens:validate
+```
+
+### Step 4: Build
 
 ```bash
 npm run tokens:build
 ```
 
-### Step 4: Import in App
+### Step 5: Import in App
 
 ```css
 /* styles/index.css */
@@ -225,14 +337,14 @@ npm run tokens:build
 
 ### Key Rule
 
-✅ **Only tokens under `darkTheme` branch go into media query**
+✅ **Only tokens under `darkTheme` branch go into media query**  
 ✅ **All other tokens (including shade names like `dark`) stay in `:root`**
 
 ---
 
 ## 🔄 Migration from Manual CSS
 
-### Current State (Hybrid)
+### Current State (Hybrid - Before Phase 1)
 
 ```
 ✅ tokens/responsive-tabs.json (source)
@@ -240,7 +352,7 @@ npm run tokens:build
 ❌ styles/generated/responsive-tabs.css (missing)
 ```
 
-### After Migration
+### After Phase 1 (Single Source of Truth)
 
 ```
 ✅ tokens/responsive-tabs.json (source)
@@ -287,31 +399,6 @@ npm run tokens:build
 
 ---
 
-## 🚀 CI/CD Integration
-
-### GitHub Actions (Future)
-
-```yaml
-name: Generate Design Tokens
-on:
-  push:
-    paths:
-      - 'packages/design-tokens/tokens/**'
-
-jobs:
-  generate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - run: npm install
-      - run: npm run tokens:build
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: 'chore: regenerate design tokens'
-```
-
----
-
 ## 📊 File Naming Convention
 
 ### JSON Sources
@@ -336,6 +423,35 @@ styles/generated/
 ---
 
 ## 🐛 Troubleshooting
+
+### Validation Errors
+
+**Error:** `Token has no value`
+
+```bash
+Fix: Add "value" property to token
+
+❌ { "color": { } }
+✅ { "color": { "value": "#000" } }
+```
+
+**Error:** `Duplicate token names`
+
+```bash
+Fix: Rename one of the duplicate tokens
+
+Check: grep -r "--dyn-color-primary" tokens/
+```
+
+**Error:** `Invalid JSON syntax`
+
+```bash
+Fix: Check for:
+  - Missing closing braces/brackets
+  - Trailing commas
+  - Unquoted strings
+  - Invalid characters
+```
 
 ### Tokens Not Generated?
 
@@ -401,13 +517,26 @@ If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
 2. **Check the `isDarkThemeToken()` function in config**
 3. **See:** `docs/DARK-THEME-STRATEGY.md` for details
 
+### CI/CD Workflow Failed?
+
+Check GitHub Actions logs:
+
+1. Go to: https://github.com/mgasic/dyn-ui-main-v01/actions
+2. Click on failed workflow
+3. Expand failed step for error details
+4. Common issues:
+   - Validation errors (fix tokens)
+   - Node version mismatch (check setup-node action)
+   - Missing dependencies (check npm ci)
+
 ---
 
 ## 📚 Resources
 
-- **Style Dictionary Docs:** <https://amzn.github.io/style-dictionary/>
+- **Style Dictionary Docs:** https://amzn.github.io/style-dictionary/
 - **Dark Theme Strategy:** `docs/DARK-THEME-STRATEGY.md`
 - **Full Analysis:** `docs/DESIGN-TOKENS-ANALYSIS.md`
+- **Phase 1 Migration:** `docs/PHASE-1-MIGRATION.md`
 - **Main README:** `packages/design-tokens/README.md`
 
 ---
@@ -417,6 +546,7 @@ If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
 - [ ] Create JSON file in `tokens/my-component.json`
 - [ ] Add component tokens (light theme)
 - [ ] Add dark theme tokens under `darkTheme` (optional)
+- [ ] Run `npm run tokens:validate` (no errors)
 - [ ] Add filter to `style-dictionary.config.v2.js`
 - [ ] Run `npm run tokens:build`
 - [ ] Verify output in `styles/generated/my-component.css`
@@ -424,9 +554,22 @@ If you see tokens like `--color-neutral-dark-70` missing from `:root`, check:
 - [ ] Check `darkTheme` tokens are in media query
 - [ ] Import in `styles/index.css`
 - [ ] Test in Storybook (light + dark mode)
-- [ ] Commit JSON + config (NOT generated CSS)
+- [ ] Commit only JSON + config (NOT generated CSS)
+- [ ] GitHub Actions auto-commits generated files
 
 ---
 
-**Status:** 🟢 Ready for Use
-**Next:** Run `npm run tokens:build` and verify output!
+## 🚀 Phase 1 Status
+
+✅ **Validation Script:** Implemented  
+✅ **GitHub Actions Workflow:** Active  
+✅ **NPM Scripts:** Updated  
+✅ **Documentation:** Complete  
+
+**Next:** Phase 2 (Tests + Usage Guide)
+
+---
+
+**Status:** 🟢 Ready for Use  
+**Last Updated:** December 25, 2025  
+**Version:** 1.0 (Phase 1)

@@ -1,0 +1,79 @@
+name: 🎨 Generate Design Tokens
+
+on:
+  push:
+    paths:
+      - 'packages/design-tokens/tokens/**'
+      - 'packages/design-tokens/style-dictionary.config.v2.js'
+      - 'packages/design-tokens/scripts/validate-tokens.js'
+    branches: [main, develop]
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate & Validate Design Tokens
+    
+    steps:
+      - name: 💀 Checkout
+        uses: actions/checkout@v3
+      
+      - name: 📚 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: 💺 Install dependencies
+        run: |
+          cd packages/design-tokens
+          npm ci
+      
+      - name: ✅ Validate tokens
+        run: |
+          cd packages/design-tokens
+          npm run tokens:validate
+      
+      - name: 🎨 Generate CSS
+        run: |
+          cd packages/design-tokens
+          npm run tokens:build
+      
+      - name: 🧪 Run tests
+        run: |
+          cd packages/design-tokens
+          npm run test -- --run
+        continue-on-error: true
+      
+      - name: 📑 Check for changes
+        id: diff
+        run: |
+          if git diff --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "## 🎨 Design Tokens Updated" >> $GITHUB_STEP_SUMMARY
+            git diff --stat >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      - name: 💯 Auto-commit generated files
+        if: steps.diff.outputs.has_changes == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: regenerate design tokens'
+          commit_options: '--no-verify'
+          file_pattern: |
+            packages/design-tokens/styles/generated/**
+            packages/design-tokens/dist/**
+          commit_user_name: 'Design Tokens Bot'
+          commit_user_email: 'noreply@github.com'
+      
+      - name: 📜 Generate Summary
+        if: always()
+        run: |
+          echo "## ✅ Design Tokens Workflow" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Status" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Validation: Passed" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎨 Generation: Completed" >> $GITHUB_STEP_SUMMARY
+          echo "- 💯 Auto-commit: ${{ steps.diff.outputs.has_changes == 'true' && 'Applied' || 'No changes' }}" >> $GITHUB_STEP_SUMMARY

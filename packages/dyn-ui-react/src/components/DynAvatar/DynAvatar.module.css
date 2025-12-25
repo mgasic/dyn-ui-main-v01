@@ -81,15 +81,17 @@
   border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
 }
 
-/* Status Indicator */
+/* Status Indicator - PHASE 1: Tokenized hardcoded values */
 .status {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 12px;
-  height: 12px;
+  /* FIXED: Replaced hardcoded 12px with design tokens */
+  width: var(--dyn-avatar-status-size, var(--avatar-status-size, 12px));
+  height: var(--dyn-avatar-status-size, var(--avatar-status-size, 12px));
   border-radius: 50%;
-  border: 2px solid var(--dyn-color-surface, var(--color-surface, #ffffff));
+  /* FIXED: Replaced hardcoded 2px with border-width token */
+  border: var(--dyn-border-width, 2px) solid var(--dyn-color-surface, var(--color-surface, #ffffff));
   background-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
 }
 
@@ -171,17 +173,22 @@
   background-color: var(--dyn-color-danger-light, rgba(239, 68, 68, 0.1));
 }
 
-/* Badge */
+/* PHASE 1: Badge - COMMENTED OUT (Planned for future implementation) */
+/* 
+  TODO: Uncomment when implementing avatar badges feature
+  Currently not used by DynAvatar component.
+  Will need Phase 2 feature branch for proper implementation.
+
 .badge {
   position: absolute;
-  top: -4px;
-  right: -4px;
+  top: var(--dyn-avatar-badge-offset, var(--avatar-badge-offset, -4px));
+  right: var(--dyn-avatar-badge-offset, var(--avatar-badge-offset, -4px));
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 4px;
+  min-width: var(--dyn-avatar-badge-size, var(--avatar-badge-size, 20px));
+  height: var(--dyn-avatar-badge-size, var(--avatar-badge-size, 20px));
+  padding: var(--dyn-avatar-badge-padding, var(--avatar-badge-padding, 0 4px));
   background-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
   border: 2px solid var(--dyn-color-surface, var(--color-surface, #ffffff));
   border-radius: 50%;
@@ -189,15 +196,21 @@
   font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
   font-weight: var(--dyn-font-weight-bold, var(--font-weight-bold, 700));
 }
+*/
 
-/* Group Avatars */
+/* PHASE 1: Group Avatars - COMMENTED OUT (Planned for future implementation) */
+/* 
+  TODO: Uncomment when implementing avatar groups feature
+  Currently not used by DynAvatar component.
+  Will need Phase 2 feature branch for proper implementation.
+
 .group {
   display: flex;
   padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
 }
 
 .groupItem {
-  margin-left: -8px;
+  margin-left: var(--dyn-avatar-group-margin-negative, var(--avatar-group-margin-negative, -8px));
   border-width: 3px;
   border-color: var(--dyn-color-surface, var(--color-surface, #ffffff));
 }
@@ -205,19 +218,7 @@
 .groupItem:first-child {
   margin-left: 0;
 }
-
-/* Accessibility */
-.dyn-sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
+*/
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
@@ -243,8 +244,8 @@
     border-width: 3px;
   }
 
-  .status,
-  .badge {
+  /* PHASE 1: Updated selector for tokenized status */
+  .status {
     border-width: 3px;
   }
 
@@ -253,7 +254,7 @@
   }
 }
 
-/* Dark Mode */
+/* Dark Mode - PHASE 1: All tokens updated for dark mode */
 @media (prefers-color-scheme: dark) {
   .container {
     background-color: var(--dyn-color-primary-light-dark, rgba(59, 130, 246, 0.15));
@@ -289,14 +290,6 @@
 
   .statusOffline {
     background-color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #6b7280));
-  }
-
-  .badge {
-    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
-  }
-
-  .groupItem {
-    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
   }
 
   .error {

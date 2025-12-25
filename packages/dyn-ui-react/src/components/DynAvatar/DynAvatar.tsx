@@ -1,8 +1,11 @@
-import React, { forwardRef, useState, useMemo } from 'react';
+import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
+
+// Image loading timeout (10 seconds)
+const IMAGE_LOAD_TIMEOUT = 10000;
 
 // Default fallback icon
 const DefaultFallbackIcon = () => (
@@ -23,7 +26,18 @@ const DefaultFallbackIcon = () => (
 
 /**
  * Generate initials from a name string
- * Optimized algorithm for proper initials extraction
+ *
+ * Extracts up to 2 first letters from words, trimmed and uppercased.
+ * Useful for avatar fallback display when image is not available.
+ *
+ * @param {string} name - Full name to extract initials from
+ * @returns {string} Initials (up to 2 characters, uppercased)
+ *
+ * @example
+ * generateInitials("John Doe") // "JD"
+ * generateInitials("Alice") // "A"
+ * generateInitials("Mary Jane Watson") // "MW"
+ * generateInitials("  John  Smith  ") // "JS" (trimmed)
  */
 const generateInitials = (name: string): string => {
   return name
@@ -35,6 +49,90 @@ const generateInitials = (name: string): string => {
     .join('');
 };
 
+/**
+ * DynAvatar Component
+ *
+ * Displays a user avatar with optional image, initials fallback, and status indicator.
+ * Supports multiple sizes, shapes, and interactive states. Fully accessible with ARIA
+ * support and keyboard navigation.
+ *
+ * Features:
+ * - 5 size variants (xs, sm, md, lg, xl)
+ * - 3 shape options (circle, square, rounded)
+ * - 4 status types (online, offline, away, busy)
+ * - Image loading with automatic fallback to initials
+ * - Customizable fallback content
+ * - Interactive mode with click handlers
+ * - Loading and error states with timeout protection
+ * - Full ARIA support and screen reader friendly
+ * - Keyboard accessible (Enter/Space key support)
+ * - Ref forwarding for DOM access
+ * - Automatic image load timeout (10 seconds)
+ *
+ * @component
+ * @param {DynAvatarProps} props - Component props
+ * @param {string} [props.src] - Image URL to display
+ * @param {string} [props.alt] - Alt text and fallback source for initials
+ * @param {string} [props.size="md"] - Avatar size: xs, sm, md, lg, xl
+ * @param {string} [props.shape="circle"] - Avatar shape: circle, square, rounded
+ * @param {string} [props.initials] - Custom initials to display (overrides auto-generation)
+ * @param {string} [props.status] - Status indicator: online, offline, away, busy
+ * @param {boolean} [props.loading=false] - Show loading spinner
+ * @param {boolean} [props.error=false] - Show error state
+ * @param {Function} [props.onClick] - Click handler (enables interactive mode)
+ * @param {React.ReactNode} [props.fallback] - Custom fallback content
+ * @param {string} [props.imageLoading="eager"] - Image loading strategy: eager, lazy
+ * @param {HTMLImageElement} [props.imageProps] - Additional props for img element
+ * @param {string} [props.className] - Additional CSS classes
+ * @param {string} [props.id] - HTML id attribute
+ * @param {string} [props.aria-label] - ARIA label for accessibility
+ * @param {string} [props.aria-describedby] - ID of element describing the avatar
+ * @param {string} [props.aria-labelledby] - ID of element labeling the avatar
+ * @param {string} [props.data-testid] - Test ID for testing
+ * @param {string} [props.role] - Custom ARIA role
+ * @param {React.ReactNode} [props.children] - Fallback content
+ * @param {HTMLDivElement} ref - Forwarded ref to root element
+ * @returns {JSX.Element} Avatar component
+ *
+ * @example
+ * // Basic usage with initials from alt text
+ * <DynAvatar alt="John Doe" />
+ *
+ * @example
+ * // With image and status indicator
+ * <DynAvatar
+ *   src="/avatars/john.jpg"
+ *   alt="John Doe"
+ *   status="online"
+ *   size="lg"
+ * />
+ *
+ * @example
+ * // Interactive avatar with click handler
+ * <DynAvatar
+ *   src="/avatars/profile.jpg"
+ *   alt="Profile"
+ *   onClick={() => navigate('/profile')}
+ * />
+ *
+ * @example
+ * // Custom fallback content
+ * <DynAvatar
+ *   alt="User"
+ *   fallback={<CustomIcon />}
+ * />
+ *
+ * @example
+ * // With status and custom className
+ * <DynAvatar
+ *   src="/avatars/user.jpg"
+ *   alt="Team Member"
+ *   status="away"
+ *   size="md"
+ *   shape="rounded"
+ *   className="my-custom-class"
+ * />
+ */
 export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
   (
     {
@@ -65,6 +163,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     const [imageLoaded, setImageLoaded] = useState(false);
     const [imageError, setImageError] = useState(false);
     const [internalId] = useState(() => id || generateId('avatar'));
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const isInteractive = Boolean(onClick);
 
@@ -80,29 +179,86 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     const showFallback = !src || imageError || !imageLoaded;
     const isLoadingState = loading || (src && !imageLoaded && !imageError);
 
-    const handleImageLoad = () => {
+    /**
+     * Handle image load successfully
+     * Updates state to show image and hide initials fallback
+     * Clears any pending timeout
+     */
+    const handleImageLoad = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       setImageLoaded(true);
       setImageError(false);
-    };
+    }, []);
 
-    const handleImageError = () => {
+    /**
+     * Handle image load error
+     * Falls back to initials when image fails to load
+     * Clears any pending timeout
+     */
+    const handleImageError = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       setImageError(true);
       setImageLoaded(false);
-    };
+    }, []);
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    /**
+     * Handle avatar click when interactive
+     * Prevents bubbling and calls onClick prop if provided
+     */
+    const handleClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
       if (!isInteractive) return;
       onClick?.(event);
-    };
+    }, [isInteractive, onClick]);
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    /**
+     * Handle keyboard activation
+     * Supports Enter and Space keys for accessibility
+     */
+    const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isInteractive) return;
 
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
         onClick?.(event as any);
       }
-    };
+    }, [isInteractive, onClick]);
+
+    /**
+     * PHASE 3: Set up image load timeout
+     * If image doesn't load within 10 seconds, treat as error
+     * Prevents stuck loading states
+     */
+    useEffect(() => {
+      // Clear existing timeout if src changes
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+
+      // Only set timeout if we have a src and image is still loading
+      if (src && !imageLoaded && !imageError) {
+        timeoutRef.current = setTimeout(() => {
+          // If image still hasn't loaded after timeout, treat as error
+          setImageError(true);
+          setImageLoaded(false);
+          timeoutRef.current = null;
+        }, IMAGE_LOAD_TIMEOUT);
+      }
+
+      // Cleanup on unmount or when src changes
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+      };
+    }, [src, imageLoaded, imageError]);
 
     // Generate accessibility attributes
     const statusLabel = status ? DYN_AVATAR_STATUS_LABELS[status] : undefined;

@@ -11,7 +11,8 @@
     "build"
   ],
   "scripts": {
-    "tokens:build": "style-dictionary build -c style-dictionary.config.v2.js",
+    "tokens:validate": "node scripts/validate-tokens.js",
+    "tokens:build": "npm run tokens:validate && style-dictionary build -c style-dictionary.config.v2.js",
     "tokens:build:old": "style-dictionary build -c style-dictionary.config.js",
     "tokens:watch": "nodemon --watch tokens --exec npm run tokens:build",
     "tokens:clean": "npx rimraf styles/generated build/js build/ts",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "catalog:",
     "@rollup/plugin-typescript": "catalog:",
+    "chalk": "^5.3.0",
     "nodemon": "catalog:",
     "rollup": "catalog:",
     "style-dictionary": "catalog:",

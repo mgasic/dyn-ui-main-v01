@@ -1,8 +1,11 @@
-import React, { forwardRef, useState, useMemo, useCallback } from 'react';
+import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
+
+// Image loading timeout (10 seconds)
+const IMAGE_LOAD_TIMEOUT = 10000;
 
 // Default fallback icon
 const DefaultFallbackIcon = () => (
@@ -60,10 +63,11 @@ const generateInitials = (name: string): string => {
  * - Image loading with automatic fallback to initials
  * - Customizable fallback content
  * - Interactive mode with click handlers
- * - Loading and error states
+ * - Loading and error states with timeout protection
  * - Full ARIA support and screen reader friendly
  * - Keyboard accessible (Enter/Space key support)
  * - Ref forwarding for DOM access
+ * - Automatic image load timeout (10 seconds)
  *
  * @component
  * @param {DynAvatarProps} props - Component props
@@ -159,6 +163,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     const [imageLoaded, setImageLoaded] = useState(false);
     const [imageError, setImageError] = useState(false);
     const [internalId] = useState(() => id || generateId('avatar'));
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const isInteractive = Boolean(onClick);
 
@@ -177,8 +182,13 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     /**
      * Handle image load successfully
      * Updates state to show image and hide initials fallback
+     * Clears any pending timeout
      */
     const handleImageLoad = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       setImageLoaded(true);
       setImageError(false);
     }, []);
@@ -186,8 +196,13 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     /**
      * Handle image load error
      * Falls back to initials when image fails to load
+     * Clears any pending timeout
      */
     const handleImageError = useCallback(() => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       setImageError(true);
       setImageLoaded(false);
     }, []);
@@ -213,6 +228,37 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
         onClick?.(event as any);
       }
     }, [isInteractive, onClick]);
+
+    /**
+     * PHASE 3: Set up image load timeout
+     * If image doesn't load within 10 seconds, treat as error
+     * Prevents stuck loading states
+     */
+    useEffect(() => {
+      // Clear existing timeout if src changes
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+
+      // Only set timeout if we have a src and image is still loading
+      if (src && !imageLoaded && !imageError) {
+        timeoutRef.current = setTimeout(() => {
+          // If image still hasn't loaded after timeout, treat as error
+          setImageError(true);
+          setImageLoaded(false);
+          timeoutRef.current = null;
+        }, IMAGE_LOAD_TIMEOUT);
+      }
+
+      // Cleanup on unmount or when src changes
+      return () => {
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+          timeoutRef.current = null;
+        }
+      };
+    }, [src, imageLoaded, imageError]);
 
     // Generate accessibility attributes
     const statusLabel = status ? DYN_AVATAR_STATUS_LABELS[status] : undefined;

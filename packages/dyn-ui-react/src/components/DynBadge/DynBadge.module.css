@@ -176,7 +176,7 @@
 }
 
 /* ============================================
-   DARK MODE OVERRIDES
+   BASE BADGE STYLES
    ============================================ */
 
 @media (prefers-color-scheme: dark) {
@@ -197,7 +197,7 @@
 }
 
 /* ============================================
-   HIGH CONTRAST MODE
+   VARIANT: SOLID (Default)
    ============================================ */
 
 @media (prefers-contrast: more) {
@@ -207,9 +207,9 @@
   }
 }
 
-/* ============================================
-   BASE BADGE
-   ============================================ */
+.badge.solid.primary:hover {
+  background-color: var(--badge-bg-primary-solid-hover);
+}
 
 .badge {
   display: inline-flex;
@@ -639,6 +639,10 @@
 @media (prefers-contrast: more) {
   .badge {
     border-width: var(--dyn-badge-border-width-default, 2px);
+  }
+  
+  .badge.outline {
+    border-width: 2px;
   }
 }
 

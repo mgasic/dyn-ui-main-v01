@@ -1,6 +1,7 @@
 import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
+import { DynBadge } from '../DynBadge';
 import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
 
@@ -279,11 +280,6 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       className
     );
 
-    const statusClasses = cn(
-      styles.status,
-      status && styles[`status${status.charAt(0).toUpperCase()}${status.slice(1)}`]
-    );
-
     const imageClasses = cn(
       styles.image,
       {
@@ -291,6 +287,9 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
         [styles.imageLoaded]: imageLoaded,
       }
     );
+
+    // Map avatar size to badge size
+    const badgeSize = size === 'xs' || size === 'sm' ? 'sm' : size === 'xl' ? 'lg' : size;
 
     return (
       <div
@@ -345,10 +344,15 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
 
         {/* Status Indicator */}
         {status && (
-          <div
-            className={statusClasses}
+          <DynBadge
+            variant="dot"
+            color={status}
+            position="topRight"
+            size={badgeSize}
             aria-label={statusLabel}
+            aria-live="off"
             data-testid="dyn-avatar-status"
+            className={styles.status}
           />
         )}
 

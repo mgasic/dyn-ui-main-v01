@@ -1,5 +1,6 @@
 ﻿import { type ImgHTMLAttributes, type ReactNode } from 'react';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
+import type { DynBadgeProps } from '../DynBadge/DynBadge.types';
 
 // Direct type definitions - no external dependencies
 export type DynAvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -16,6 +17,17 @@ export const AVATAR_SIZES = {
   lg: '5rem',
   xl: '6rem',
 } as const satisfies Record<DynAvatarSize, string>;
+
+/**
+ * Badge configuration for avatar badge overlay
+ * Accepts either a React node or full DynBadge props for customization
+ */
+export type DynAvatarBadgeConfig = 
+  | ReactNode
+  | (Omit<DynBadgeProps, 'position'> & {
+      /** Badge content (number, text, or icon) */
+      content?: ReactNode;
+    });
 
 /**
  * Props interface for DynAvatar component
@@ -43,6 +55,28 @@ export interface DynAvatarProps extends
 
   /** Status indicator */
   status?: DynAvatarStatus;
+
+  /**
+   * Badge overlay configuration
+   * 
+   * Can be used for:
+   * - Notification counts
+   * - Status indicators
+   * - Icons or custom content
+   * 
+   * @example
+   * // Simple count badge
+   * <DynAvatar badge={5} />
+   * 
+   * @example
+   * // Custom badge with DynBadge props
+   * <DynAvatar badge={{ content: "3", color: "danger", variant: "solid" }} />
+   * 
+   * @example
+   * // Custom React node
+   * <DynAvatar badge={<CustomIcon />} />
+   */
+  badge?: DynAvatarBadgeConfig;
 
   /** Loading state */
   loading?: boolean;

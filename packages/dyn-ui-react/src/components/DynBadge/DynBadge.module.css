@@ -682,6 +682,10 @@
 
 @media (prefers-contrast: more) {
   .badge {
+    border-width: var(--dyn-badge-border-width-default, 2px);
+  }
+  
+  .badge.outline {
     border-width: 2px;
   }
   
@@ -709,6 +713,15 @@
   
   .badge--animated {
     animation: none;
+  }
+  
+  .badge--pulse,
+  .badge--animated {
+    animation: none !important;
+  }
+  
+  .badge--clickable:active {
+    transform: none !important;
   }
 }
 

@@ -173,12 +173,8 @@
   background-color: var(--dyn-color-danger-light, rgba(239, 68, 68, 0.1));
 }
 
-/* PHASE 1: Badge - COMMENTED OUT (Planned for future implementation) */
-/* 
-  TODO: Uncomment when implementing avatar badges feature
-  Currently not used by DynAvatar component.
-  Will need Phase 2 feature branch for proper implementation.
-
+/* PHASE 2: Badge - IMPLEMENTED (Avatar badge overlay) */
+/* Integrated with DynBadge component for notification counts and status */
 .badge {
   position: absolute;
   top: var(--dyn-avatar-badge-offset, var(--avatar-badge-offset, -4px));
@@ -195,14 +191,22 @@
   color: var(--dyn-color-text-inverse, var(--color-text-inverse, #ffffff));
   font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
   font-weight: var(--dyn-font-weight-bold, var(--font-weight-bold, 700));
+  z-index: var(--dyn-z-index-badge, var(--z-index-badge, 1));
 }
-*/
 
-/* PHASE 1: Group Avatars - COMMENTED OUT (Planned for future implementation) */
+/* Badge positioned wrapper - DynBadge will handle its own positioning */
+.badgeContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: var(--dyn-z-index-badge, var(--z-index-badge, 1));
+}
+
+/* PHASE 2: Group Avatars - COMMENTED OUT (Planned for future implementation) */
 /* 
   TODO: Uncomment when implementing avatar groups feature
   Currently not used by DynAvatar component.
-  Will need Phase 2 feature branch for proper implementation.
+  Will need Phase 3 feature branch for proper implementation.
 
 .group {
   display: flex;
@@ -246,6 +250,10 @@
 
   /* PHASE 1: Updated selector for tokenized status */
   .status {
+    border-width: 3px;
+  }
+
+  .badge {
     border-width: 3px;
   }
 
@@ -295,5 +303,9 @@
   .error {
     border-color: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
     background-color: rgba(239, 68, 68, 0.15);
+  }
+
+  .badge {
+    border-color: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
   }
 }

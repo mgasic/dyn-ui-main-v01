@@ -62,7 +62,7 @@ import styles from './DynBadge.module.css';
  * @param {React.ReactNode} [props.children] - Content to display in badge
  * @param {string} [props.className] - Additional CSS classes
  * @param {number | string} [props.count] - Counter value (replaces children if provided)
- * @param {number} [props.max=99] - Maximum count value (shows 99+ when exceeded)
+ * @param {number} [props.maxCount=99] - Maximum count value (shows 99+ when exceeded)
  * @param {string} [props.size="md"] - Badge size: xs, sm, md, lg, xl
  * @param {DynBadgeVariant} [props.variant="solid"] - Style variant: solid, soft, outline, dot
  * @param {DynBadgeSemanticColor} [props.color="primary"] - Color: primary, secondary, success, danger, warning, info, neutral
@@ -86,7 +86,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       // Content props
       children,
       count,
-      max = 99,
+      maxCount = 99,
       fallback = null,
       
       // Style props
@@ -98,14 +98,18 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       // Interaction props
       invisible = false,
       icon,
+      startIcon,
+      endIcon,
       animated = false,
       pulse = false,
+      showZero = false,
       
       // Accessibility props
       id,
       'aria-label': ariaLabel,
       'aria-live': ariaLive = 'polite',
       role = 'status',
+      countDescription,
       
       // HTML props
       className,
@@ -148,7 +152,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      * Validate size is supported
      * Falls back to 'md' if invalid size provided
      */
-    const validSize = DYN_BADGE_SIZES.includes(size) ? size : 'md';
+    const validSize = DYN_BADGE_SIZES.includes(size as any) ? size : 'md';
     
     // ====================================
     // PHASE 2: Content Computation
@@ -159,14 +163,19 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      * Priority: count > children > icon > fallback
      * 
      * Returns formatted count if provided:
-     * - "99+" if count exceeds max
+     * - "99+" if count exceeds maxCount
      * - String representation otherwise
      */
     const displayContent = useMemo(() => {
       // Show count if provided
       if (normalizedCount !== undefined) {
-        if (normalizedCount > max) {
-          return `${max}+`;
+        // Don't show if count is 0 and showZero is false
+        if (normalizedCount === 0 && !showZero) {
+          return null;
+        }
+        
+        if (normalizedCount > maxCount) {
+          return `${maxCount}+`;
         }
         return String(normalizedCount);
       }
@@ -183,7 +192,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       
       // Fallback to fallback prop or empty
       return fallback;
-    }, [normalizedCount, max, children, icon, fallback]);
+    }, [normalizedCount, maxCount, children, icon, fallback, showZero]);
     
     /**
      * Determine if badge should be visible
@@ -213,13 +222,14 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       
       // Add content
       if (normalizedCount !== undefined) {
-        label += `${displayContent} ${normalizedCount === 1 ? 'item' : 'items'}`;
+        const description = countDescription || (normalizedCount === 1 ? 'item' : 'items');
+        label += `${displayContent} ${description}`;
       } else if (typeof displayContent === 'string') {
         label += displayContent;
       }
       
       return label || undefined;
-    }, [ariaLabel, validColor, displayContent, normalizedCount]);
+    }, [ariaLabel, validColor, displayContent, normalizedCount, countDescription]);
     
     // ====================================
     // PHASE 4: Class Computation
@@ -310,8 +320,15 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
         {/* Badge content container */}
         {displayContent && (
           <span className={styles['badge__content']}>
-            {/* Icon if provided */}
-            {icon && (
+            {/* Start icon if provided */}
+            {startIcon && (
+              <span className={styles['badge__icon']} aria-hidden="true">
+                {startIcon}
+              </span>
+            )}
+            
+            {/* Icon if provided (legacy support) */}
+            {icon && !startIcon && (
               <span className={styles['badge__icon']} aria-hidden="true">
                 {icon}
               </span>
@@ -324,6 +341,13 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
               </span>
             ) : (
               displayContent
+            )}
+            
+            {/* End icon if provided */}
+            {endIcon && (
+              <span className={styles['badge__icon']} aria-hidden="true">
+                {endIcon}
+              </span>
             )}
           </span>
         )}

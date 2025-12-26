@@ -2,457 +2,565 @@
  * DynBadge Component Styles - 100% Design Token Compliance
  * 
  * Variants: solid, soft, outline, dot
- * Colors: primary, secondary, success, warning, danger, info
+ * Colors: primary, secondary, success, warning, danger, info, neutral
  * Sizes: small, medium, large
- * States: default, hover, active, disabled
- * Dark mode: Full support
- * A11y: Complete accessibility
+ * States: default, hover, disabled
+ * Dark mode: Supported
+ * Accessibility: Full support
  * 
- * Token Pattern: --dyn-badge-[property]-[variant]-[state]
- * Fallback Pattern: var(--dyn-*, var(--legacy-*, fallback))
+ * Design Token Pattern: --dyn-badge-[property]-[variant]-[state]
+ * 3-Level Fallback: var(--dyn-*, var(--legacy-*, fallback-value))
  */
 
 /* ============================================
-   FOUNDATION TOKENS - Component Scoped
+   COMPONENT TOKENS - Default (Light Mode)
+   Using 3-Level Fallback Pattern
    ============================================ */
 
-.badge {
-  /* Base Badge Tokens with 3-level fallback */
-  --badge-padding-default: var(--dyn-spacing-xs-md, var(--legacy-spacing-xs-md, 4px 8px));
-  --badge-font-size-default: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 12px));
-  --badge-font-weight-default: var(--dyn-font-weight-medium, var(--legacy-font-weight-medium, 500));
-  --badge-border-radius-default: var(--dyn-radius-pill, var(--legacy-radius-pill, 12px));
-  --badge-line-height-default: 1;
-  --badge-text-transform-default: uppercase;
-  --badge-letter-spacing-default: 0.5px;
-  --badge-transition-default: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+:root {
+  /* ========== BASE TOKENS ========== */
+  
+  /* Badge Base Dimensions with 3-level fallback */
+  --dyn-badge-padding-default: var(--dyn-spacing-sm, var(--legacy-spacing-sm, 4px 8px));
+  --dyn-badge-font-size-default: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 12px));
+  --dyn-badge-font-weight-default: var(--dyn-font-weight-medium, var(--legacy-font-weight-medium, 500));
+  --dyn-badge-border-radius-default: var(--dyn-radius-lg, var(--legacy-radius-lg, 12px));
+  --dyn-badge-border-width-default: var(--dyn-border-width, var(--legacy-border-width, 1px));
+  --dyn-badge-text-transform-default: uppercase;
+  --dyn-badge-letter-spacing-default: 0.5px;
+  --dyn-badge-transition-default: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
   /* Badge Size Tokens */
-  --badge-padding-small: var(--dyn-spacing-xxs-sm, var(--legacy-spacing-xxs-sm, 2px 6px));
-  --badge-font-size-small: var(--dyn-font-size-xxs, var(--legacy-font-size-xxs, 10px));
+  --dyn-badge-padding-small: var(--dyn-spacing-xs, var(--legacy-spacing-xs, 2px 6px));
+  --dyn-badge-font-size-small: var(--dyn-font-size-2xs, var(--legacy-font-size-2xs, 10px));
   
-  --badge-padding-medium: var(--dyn-spacing-xs-md, var(--legacy-spacing-xs-md, 4px 8px));
-  --badge-font-size-medium: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 12px));
+  --dyn-badge-padding-medium: var(--dyn-spacing-sm, var(--legacy-spacing-sm, 4px 8px));
+  --dyn-badge-font-size-medium: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 12px));
   
-  --badge-padding-large: var(--dyn-spacing-sm-lg, var(--legacy-spacing-sm-lg, 6px 12px));
-  --badge-font-size-large: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 14px));
-
-  /* Badge Primary Colors */
-  --badge-bg-primary-solid: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --badge-text-primary-solid: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --badge-border-primary-solid: transparent;
-  --badge-bg-primary-solid-hover: var(--dyn-color-primary-70, var(--legacy-color-primary-70, #005A9E));
+  --dyn-badge-padding-large: var(--dyn-spacing-md, var(--legacy-spacing-md, 6px 12px));
+  --dyn-badge-font-size-large: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 14px));
   
-  --badge-bg-primary-soft: var(--dyn-color-primary-100, var(--legacy-color-primary-100, #E3F2FD));
-  --badge-text-primary-soft: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --badge-bg-primary-soft-hover: var(--dyn-color-primary-200, var(--legacy-color-primary-200, #BBDEFB));
-  
-  --badge-border-primary-outline: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --badge-text-primary-outline: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --badge-bg-primary-outline-hover: var(--dyn-color-primary-alpha-8, rgba(0, 122, 204, 0.08));
-
-  /* Badge Secondary Colors */
-  --badge-bg-secondary-solid: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #F0F0F0));
-  --badge-text-secondary-solid: var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #1A1A1A));
-  --badge-border-secondary-solid: var(--dyn-color-neutral-300, var(--legacy-color-neutral-300, #D0D0D0));
-  --badge-bg-secondary-solid-hover: var(--dyn-color-neutral-200, var(--legacy-color-neutral-200, #E0E0E0));
-  
-  --badge-bg-secondary-soft: var(--dyn-color-neutral-50, var(--legacy-color-neutral-50, #F5F5F5));
-  --badge-text-secondary-soft: var(--dyn-color-neutral-700, var(--legacy-color-neutral-700, #4A4A4A));
-  --badge-bg-secondary-soft-hover: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #E8E8E8));
-  
-  --badge-border-secondary-outline: var(--dyn-color-neutral-400, var(--legacy-color-neutral-400, #9CA3AF));
-  --badge-text-secondary-outline: var(--dyn-color-neutral-700, var(--legacy-color-neutral-700, #4A4A4A));
-  --badge-bg-secondary-outline-hover: var(--dyn-color-neutral-alpha-8, rgba(156, 163, 175, 0.08));
-
-  /* Badge Success Colors */
-  --badge-bg-success-solid: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --badge-text-success-solid: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --badge-border-success-solid: transparent;
-  --badge-bg-success-solid-hover: var(--dyn-color-success-70, var(--legacy-color-success-70, #1E7E34));
-  
-  --badge-bg-success-soft: var(--dyn-color-success-100, var(--legacy-color-success-100, #E8F5E9));
-  --badge-text-success-soft: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --badge-bg-success-soft-hover: var(--dyn-color-success-200, var(--legacy-color-success-200, #C8E6C9));
-  
-  --badge-border-success-outline: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --badge-text-success-outline: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --badge-bg-success-outline-hover: var(--dyn-color-success-alpha-8, rgba(40, 167, 69, 0.08));
-
-  /* Badge Warning Colors */
-  --badge-bg-warning-solid: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
-  --badge-text-warning-solid: var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #1A1A1A));
-  --badge-border-warning-solid: transparent;
-  --badge-bg-warning-solid-hover: var(--dyn-color-warning-70, var(--legacy-color-warning-70, #CC8400));
-  
-  --badge-bg-warning-soft: var(--dyn-color-warning-100, var(--legacy-color-warning-100, #FFF3E0));
-  --badge-text-warning-soft: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
-  --badge-bg-warning-soft-hover: var(--dyn-color-warning-200, var(--legacy-color-warning-200, #FFE0B2));
-  
-  --badge-border-warning-outline: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
-  --badge-text-warning-outline: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
-  --badge-bg-warning-outline-hover: var(--dyn-color-warning-alpha-8, rgba(255, 165, 0, 0.08));
-
-  /* Badge Danger Colors */
-  --badge-bg-danger-solid: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --badge-text-danger-solid: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --badge-border-danger-solid: transparent;
-  --badge-bg-danger-solid-hover: var(--dyn-color-danger-70, var(--legacy-color-danger-70, #A02830));
-  
-  --badge-bg-danger-soft: var(--dyn-color-danger-100, var(--legacy-color-danger-100, #FFEBEE));
-  --badge-text-danger-soft: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --badge-bg-danger-soft-hover: var(--dyn-color-danger-200, var(--legacy-color-danger-200, #FFCDD2));
-  
-  --badge-border-danger-outline: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --badge-text-danger-outline: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --badge-bg-danger-outline-hover: var(--dyn-color-danger-alpha-8, rgba(220, 53, 69, 0.08));
-
-  /* Badge Info Colors */
-  --badge-bg-info-solid: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --badge-text-info-solid: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --badge-border-info-solid: transparent;
-  --badge-bg-info-solid-hover: var(--dyn-color-info-70, var(--legacy-color-info-70, #117A8B));
-  
-  --badge-bg-info-soft: var(--dyn-color-info-100, var(--legacy-color-info-100, #E0F7FA));
-  --badge-text-info-soft: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --badge-bg-info-soft-hover: var(--dyn-color-info-200, var(--legacy-color-info-200, #B2EBF2));
-  
-  --badge-border-info-outline: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --badge-text-info-outline: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --badge-bg-info-outline-hover: var(--dyn-color-info-alpha-8, rgba(23, 162, 184, 0.08));
-
   /* Badge State Tokens */
-  --badge-opacity-disabled: 0.5;
-  --badge-focus-ring-color: var(--dyn-color-focus-ring, var(--legacy-color-focus-ring, #007ACC));
-  --badge-focus-ring-width: 2px;
-  --badge-focus-ring-offset: 2px;
-
-  /* Badge Positioning Tokens */
-  --badge-position-offset: var(--dyn-spacing-xs, var(--legacy-spacing-xs, -8px));
-  --badge-z-index-overlay: var(--dyn-z-index-badge, var(--legacy-z-index-badge, 1000));
-
-  /* Badge Dot Variant Tokens */
-  --badge-dot-size-small: 8px;
-  --badge-dot-size-medium: 12px;
-  --badge-dot-size-large: 16px;
-
-  /* Badge Icon Sizing */
-  --badge-icon-size: 1em;
-  --badge-icon-gap: var(--dyn-spacing-xxs, var(--legacy-spacing-xxs, 4px));
+  --dyn-badge-opacity-disabled: var(--dyn-opacity-disabled, var(--legacy-opacity-disabled, 0.5));
+  
+  /* ========== SOLID VARIANT TOKENS ========== */
+  
+  /* Primary Solid */
+  --dyn-badge-bg-solid-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
+  --dyn-badge-text-solid-primary: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
+  --dyn-badge-border-solid-primary: transparent;
+  --dyn-badge-bg-solid-primary-hover: var(--dyn-color-primary-80, var(--legacy-color-primary-80, #005A9E));
+  
+  /* Secondary/Neutral Solid */
+  --dyn-badge-bg-solid-secondary: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #F0F0F0));
+  --dyn-badge-text-solid-secondary: var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #000000));
+  --dyn-badge-border-solid-secondary: var(--dyn-color-neutral-300, var(--legacy-color-neutral-300, #D0D0D0));
+  --dyn-badge-bg-solid-secondary-hover: var(--dyn-color-neutral-200, var(--legacy-color-neutral-200, #E0E0E0));
+  
+  /* Success Solid */
+  --dyn-badge-bg-solid-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
+  --dyn-badge-text-solid-success: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
+  --dyn-badge-border-solid-success: transparent;
+  --dyn-badge-bg-solid-success-hover: var(--dyn-color-success-80, var(--legacy-color-success-80, #1E7E34));
+  
+  /* Warning Solid */
+  --dyn-badge-bg-solid-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
+  --dyn-badge-text-solid-warning: var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #000000));
+  --dyn-badge-border-solid-warning: transparent;
+  --dyn-badge-bg-solid-warning-hover: var(--dyn-color-warning-80, var(--legacy-color-warning-80, #CC8400));
+  
+  /* Danger Solid */
+  --dyn-badge-bg-solid-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
+  --dyn-badge-text-solid-danger: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
+  --dyn-badge-border-solid-danger: transparent;
+  --dyn-badge-bg-solid-danger-hover: var(--dyn-color-danger-80, var(--legacy-color-danger-80, #A02830));
+  
+  /* Info Solid */
+  --dyn-badge-bg-solid-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
+  --dyn-badge-text-solid-info: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
+  --dyn-badge-border-solid-info: transparent;
+  --dyn-badge-bg-solid-info-hover: var(--dyn-color-info-80, var(--legacy-color-info-80, #117A8B));
+  
+  /* ========== SOFT VARIANT TOKENS ========== */
+  
+  /* Primary Soft */
+  --dyn-badge-bg-soft-primary: var(--dyn-color-primary-100, var(--legacy-color-primary-100, #E3F2FD));
+  --dyn-badge-text-soft-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
+  --dyn-badge-border-soft-primary: transparent;
+  --dyn-badge-bg-soft-primary-hover: var(--dyn-color-primary-200, var(--legacy-color-primary-200, #BBDEFB));
+  
+  /* Secondary/Neutral Soft */
+  --dyn-badge-bg-soft-secondary: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #F5F5F5));
+  --dyn-badge-text-soft-secondary: var(--dyn-color-neutral-700, var(--legacy-color-neutral-700, #374151));
+  --dyn-badge-border-soft-secondary: transparent;
+  --dyn-badge-bg-soft-secondary-hover: var(--dyn-color-neutral-200, var(--legacy-color-neutral-200, #EEEEEE));
+  
+  /* Success Soft */
+  --dyn-badge-bg-soft-success: var(--dyn-color-success-100, var(--legacy-color-success-100, #E8F5E9));
+  --dyn-badge-text-soft-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
+  --dyn-badge-border-soft-success: transparent;
+  --dyn-badge-bg-soft-success-hover: var(--dyn-color-success-200, var(--legacy-color-success-200, #C8E6C9));
+  
+  /* Warning Soft */
+  --dyn-badge-bg-soft-warning: var(--dyn-color-warning-100, var(--legacy-color-warning-100, #FFF3E0));
+  --dyn-badge-text-soft-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
+  --dyn-badge-border-soft-warning: transparent;
+  --dyn-badge-bg-soft-warning-hover: var(--dyn-color-warning-200, var(--legacy-color-warning-200, #FFE0B2));
+  
+  /* Danger Soft */
+  --dyn-badge-bg-soft-danger: var(--dyn-color-danger-100, var(--legacy-color-danger-100, #FFEBEE));
+  --dyn-badge-text-soft-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
+  --dyn-badge-border-soft-danger: transparent;
+  --dyn-badge-bg-soft-danger-hover: var(--dyn-color-danger-200, var(--legacy-color-danger-200, #FFCDD2));
+  
+  /* Info Soft */
+  --dyn-badge-bg-soft-info: var(--dyn-color-info-100, var(--legacy-color-info-100, #E0F7FA));
+  --dyn-badge-text-soft-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
+  --dyn-badge-border-soft-info: transparent;
+  --dyn-badge-bg-soft-info-hover: var(--dyn-color-info-200, var(--legacy-color-info-200, #B2EBF2));
+  
+  /* ========== OUTLINE VARIANT TOKENS ========== */
+  
+  /* Primary Outline */
+  --dyn-badge-bg-outline-primary: transparent;
+  --dyn-badge-text-outline-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
+  --dyn-badge-border-outline-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
+  --dyn-badge-bg-outline-primary-hover: var(--dyn-color-primary-100, var(--legacy-color-primary-100, rgba(0, 122, 204, 0.08)));
+  
+  /* Secondary/Neutral Outline */
+  --dyn-badge-bg-outline-secondary: transparent;
+  --dyn-badge-text-outline-secondary: var(--dyn-color-neutral-700, var(--legacy-color-neutral-700, #374151));
+  --dyn-badge-border-outline-secondary: var(--dyn-color-neutral-300, var(--legacy-color-neutral-300, #D1D5DB));
+  --dyn-badge-bg-outline-secondary-hover: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #F9FAFB));
+  
+  /* Success Outline */
+  --dyn-badge-bg-outline-success: transparent;
+  --dyn-badge-text-outline-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
+  --dyn-badge-border-outline-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
+  --dyn-badge-bg-outline-success-hover: var(--dyn-color-success-100, var(--legacy-color-success-100, rgba(40, 167, 69, 0.08)));
+  
+  /* Warning Outline */
+  --dyn-badge-bg-outline-warning: transparent;
+  --dyn-badge-text-outline-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
+  --dyn-badge-border-outline-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFA500));
+  --dyn-badge-bg-outline-warning-hover: var(--dyn-color-warning-100, var(--legacy-color-warning-100, rgba(255, 165, 0, 0.08)));
+  
+  /* Danger Outline */
+  --dyn-badge-bg-outline-danger: transparent;
+  --dyn-badge-text-outline-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
+  --dyn-badge-border-outline-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
+  --dyn-badge-bg-outline-danger-hover: var(--dyn-color-danger-100, var(--legacy-color-danger-100, rgba(220, 53, 69, 0.08)));
+  
+  /* Info Outline */
+  --dyn-badge-bg-outline-info: transparent;
+  --dyn-badge-text-outline-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
+  --dyn-badge-border-outline-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
+  --dyn-badge-bg-outline-info-hover: var(--dyn-color-info-100, var(--legacy-color-info-100, rgba(23, 162, 184, 0.08)));
+  
+  /* ========== DOT VARIANT TOKENS ========== */
+  
+  --dyn-badge-dot-size-small: var(--dyn-size-2, var(--legacy-size-2, 8px));
+  --dyn-badge-dot-size-medium: var(--dyn-size-3, var(--legacy-size-3, 12px));
+  --dyn-badge-dot-size-large: var(--dyn-size-4, var(--legacy-size-4, 16px));
+  
+  /* ========== POSITION TOKENS ========== */
+  
+  --dyn-badge-position-offset: var(--dyn-spacing-2, var(--legacy-spacing-2, -8px));
+  --dyn-badge-z-index: var(--dyn-z-index-badge, var(--legacy-z-index-badge, 1000));
+  
+  /* ========== FOCUS & ACCESSIBILITY ========== */
+  
+  --dyn-badge-focus-ring-color: var(--dyn-color-focus-ring, var(--legacy-color-focus-ring, #007ACC));
+  --dyn-badge-focus-ring-width: var(--dyn-focus-ring-width, var(--legacy-focus-ring-width, 2px));
+  --dyn-badge-focus-ring-offset: var(--dyn-focus-ring-offset, var(--legacy-focus-ring-offset, 2px));
 }
 
 /* ============================================
    BASE BADGE STYLES
    ============================================ */
 
-.badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--badge-icon-gap);
-  padding: var(--badge-padding-default);
-  font-size: var(--badge-font-size-default);
-  font-weight: var(--badge-font-weight-default);
-  border-radius: var(--badge-border-radius-default);
-  text-transform: var(--badge-text-transform-default);
-  letter-spacing: var(--badge-letter-spacing-default);
-  white-space: nowrap;
-  line-height: var(--badge-line-height-default);
-  transition: var(--badge-transition-default);
-  user-select: none;
-  border: none;
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode specific token overrides */
+    --dyn-badge-bg-solid-secondary: var(--dyn-color-neutral-800-dark, var(--legacy-color-neutral-800, #2D2D2D));
+    --dyn-badge-text-solid-secondary: var(--dyn-color-neutral-50-dark, var(--legacy-color-neutral-50, #F5F5F5));
+    --dyn-badge-bg-solid-secondary-hover: var(--dyn-color-neutral-700-dark, var(--legacy-color-neutral-700, #404040));
+    
+    /* Soft variants in dark mode */
+    --dyn-badge-bg-soft-primary: var(--dyn-color-primary-900-dark, var(--legacy-color-primary-900, #1A3A52));
+    --dyn-badge-bg-soft-success: var(--dyn-color-success-900-dark, var(--legacy-color-success-900, #1B3A26));
+    --dyn-badge-bg-soft-warning: var(--dyn-color-warning-900-dark, var(--legacy-color-warning-900, #3A2F1A));
+    --dyn-badge-bg-soft-danger: var(--dyn-color-danger-900-dark, var(--legacy-color-danger-900, #3A1B1E));
+    --dyn-badge-bg-soft-info: var(--dyn-color-info-900-dark, var(--legacy-color-info-900, #1A2F35));
+    --dyn-badge-bg-soft-secondary: var(--dyn-color-neutral-800-dark, var(--legacy-color-neutral-800, #2D2D2D));
+  }
 }
 
 /* ============================================
    VARIANT: SOLID (Default)
    ============================================ */
 
-.badge.solid.primary {
-  background-color: var(--badge-bg-primary-solid);
-  color: var(--badge-text-primary-solid);
-  border: var(--badge-border-primary-solid);
+@media (prefers-contrast: more) {
+  :root {
+    --dyn-badge-border-width-default: var(--dyn-border-width-high-contrast, var(--legacy-border-width-high-contrast, 2px));
+    --dyn-badge-border-solid-secondary: 2px solid var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #000000));
+  }
 }
 
 .badge.solid.primary:hover {
   background-color: var(--badge-bg-primary-solid-hover);
 }
 
-.badge.solid.secondary {
-  background-color: var(--badge-bg-secondary-solid);
-  color: var(--badge-text-secondary-solid);
-  border: 1px solid var(--badge-border-secondary-solid);
-}
-
-.badge.solid.secondary:hover {
-  background-color: var(--badge-bg-secondary-solid-hover);
-}
-
-.badge.solid.success {
-  background-color: var(--badge-bg-success-solid);
-  color: var(--badge-text-success-solid);
-  border: var(--badge-border-success-solid);
-}
-
-.badge.solid.success:hover {
-  background-color: var(--badge-bg-success-solid-hover);
-}
-
-.badge.solid.warning {
-  background-color: var(--badge-bg-warning-solid);
-  color: var(--badge-text-warning-solid);
-  border: var(--badge-border-warning-solid);
-}
-
-.badge.solid.warning:hover {
-  background-color: var(--badge-bg-warning-solid-hover);
-}
-
-.badge.solid.danger {
-  background-color: var(--badge-bg-danger-solid);
-  color: var(--badge-text-danger-solid);
-  border: var(--badge-border-danger-solid);
-}
-
-.badge.solid.danger:hover {
-  background-color: var(--badge-bg-danger-solid-hover);
-}
-
-.badge.solid.info {
-  background-color: var(--badge-bg-info-solid);
-  color: var(--badge-text-info-solid);
-  border: var(--badge-border-info-solid);
-}
-
-.badge.solid.info:hover {
-  background-color: var(--badge-bg-info-solid-hover);
-}
-
-/* ============================================
-   VARIANT: SOFT (Light Background)
-   ============================================ */
-
-.badge.soft {
-  border: none;
-}
-
-.badge.soft.primary {
-  background-color: var(--badge-bg-primary-soft);
-  color: var(--badge-text-primary-soft);
-}
-
-.badge.soft.primary:hover {
-  background-color: var(--badge-bg-primary-soft-hover);
-}
-
-.badge.soft.secondary {
-  background-color: var(--badge-bg-secondary-soft);
-  color: var(--badge-text-secondary-soft);
-}
-
-.badge.soft.secondary:hover {
-  background-color: var(--badge-bg-secondary-soft-hover);
-}
-
-.badge.soft.success {
-  background-color: var(--badge-bg-success-soft);
-  color: var(--badge-text-success-soft);
-}
-
-.badge.soft.success:hover {
-  background-color: var(--badge-bg-success-soft-hover);
-}
-
-.badge.soft.warning {
-  background-color: var(--badge-bg-warning-soft);
-  color: var(--badge-text-warning-soft);
-}
-
-.badge.soft.warning:hover {
-  background-color: var(--badge-bg-warning-soft-hover);
-}
-
-.badge.soft.danger {
-  background-color: var(--badge-bg-danger-soft);
-  color: var(--badge-text-danger-soft);
-}
-
-.badge.soft.danger:hover {
-  background-color: var(--badge-bg-danger-soft-hover);
-}
-
-.badge.soft.info {
-  background-color: var(--badge-bg-info-soft);
-  color: var(--badge-text-info-soft);
-}
-
-.badge.soft.info:hover {
-  background-color: var(--badge-bg-info-soft-hover);
-}
-
-/* ============================================
-   VARIANT: OUTLINE (Bordered)
-   ============================================ */
-
-.badge.outline {
-  background-color: transparent;
-  border-width: 1px;
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dyn-spacing-1, var(--legacy-spacing-1, 4px));
+  padding: var(--dyn-badge-padding-default, 4px 8px);
+  font-size: var(--dyn-badge-font-size-default, 12px);
+  font-weight: var(--dyn-badge-font-weight-default, 500);
+  border-radius: var(--dyn-badge-border-radius-default, 12px);
+  text-transform: var(--dyn-badge-text-transform-default, uppercase);
+  letter-spacing: var(--dyn-badge-letter-spacing-default, 0.5px);
+  white-space: nowrap;
+  line-height: 1;
+  transition: var(--dyn-badge-transition-default, all 250ms cubic-bezier(0.4, 0, 0.2, 1));
+  user-select: none;
   border-style: solid;
+  border-width: var(--dyn-badge-border-width-default, 1px);
 }
 
-.badge.outline.primary {
-  border-color: var(--badge-border-primary-outline);
-  color: var(--badge-text-primary-outline);
+/* Badge content container */
+.badge__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dyn-spacing-1, var(--legacy-spacing-1, 4px));
 }
 
-.badge.outline.primary:hover {
-  background-color: var(--badge-bg-primary-outline-hover);
-}
-
-.badge.outline.secondary {
-  border-color: var(--badge-border-secondary-outline);
-  color: var(--badge-text-secondary-outline);
-}
-
-.badge.outline.secondary:hover {
-  background-color: var(--badge-bg-secondary-outline-hover);
-}
-
-.badge.outline.success {
-  border-color: var(--badge-border-success-outline);
-  color: var(--badge-text-success-outline);
-}
-
-.badge.outline.success:hover {
-  background-color: var(--badge-bg-success-outline-hover);
-}
-
-.badge.outline.warning {
-  border-color: var(--badge-border-warning-outline);
-  color: var(--badge-text-warning-outline);
-}
-
-.badge.outline.warning:hover {
-  background-color: var(--badge-bg-warning-outline-hover);
-}
-
-.badge.outline.danger {
-  border-color: var(--badge-border-danger-outline);
-  color: var(--badge-text-danger-outline);
-}
-
-.badge.outline.danger:hover {
-  background-color: var(--badge-bg-danger-outline-hover);
-}
-
-.badge.outline.info {
-  border-color: var(--badge-border-info-outline);
-  color: var(--badge-text-info-outline);
-}
-
-.badge.outline.info:hover {
-  background-color: var(--badge-bg-info-outline-hover);
-}
-
-/* ============================================
-   VARIANT: DOT (Circular)
-   ============================================ */
-
-.badge.dot {
-  width: var(--badge-dot-size-medium);
-  height: var(--badge-dot-size-medium);
-  padding: 0;
-  border-radius: 50%;
+/* Badge icon styling */
+.badge__icon {
+  display: inline-flex;
+  align-items: center;
+  width: 1em;
+  height: 1em;
   flex-shrink: 0;
 }
 
-.badge.dot.small {
-  width: var(--badge-dot-size-small);
-  height: var(--badge-dot-size-small);
-}
-
-.badge.dot.large {
-  width: var(--badge-dot-size-large);
-  height: var(--badge-dot-size-large);
-}
-
-/* Dot inherits solid colors */
-.badge.dot.primary {
-  background-color: var(--badge-bg-primary-solid);
-}
-
-.badge.dot.secondary {
-  background-color: var(--badge-bg-secondary-solid);
-}
-
-.badge.dot.success {
-  background-color: var(--badge-bg-success-solid);
-}
-
-.badge.dot.warning {
-  background-color: var(--badge-bg-warning-solid);
-}
-
-.badge.dot.danger {
-  background-color: var(--badge-bg-danger-solid);
-}
-
-.badge.dot.info {
-  background-color: var(--badge-bg-info-solid);
+/* Badge text styling */
+.badge__text {
+  line-height: 1;
 }
 
 /* ============================================
    SIZE VARIANTS
    ============================================ */
 
-.badge.small {
-  padding: var(--badge-padding-small);
-  font-size: var(--badge-font-size-small);
+.badge--small {
+  padding: var(--dyn-badge-padding-small, 2px 6px);
+  font-size: var(--dyn-badge-font-size-small, 10px);
 }
 
-.badge.medium {
-  padding: var(--badge-padding-medium);
-  font-size: var(--badge-font-size-medium);
+.badge--medium {
+  padding: var(--dyn-badge-padding-medium, 4px 8px);
+  font-size: var(--dyn-badge-font-size-medium, 12px);
 }
 
-.badge.large {
-  padding: var(--badge-padding-large);
-  font-size: var(--badge-font-size-large);
+.badge--large {
+  padding: var(--dyn-badge-padding-large, 6px 12px);
+  font-size: var(--dyn-badge-font-size-large, 14px);
 }
 
 /* ============================================
-   POSITIONING STYLES
+   VARIANT: SOLID (DEFAULT)
    ============================================ */
 
-.badge.positioned {
-  position: absolute;
-  z-index: var(--badge-z-index-overlay);
+.badge--solid.badge--primary {
+  background-color: var(--dyn-badge-bg-solid-primary, #007ACC);
+  color: var(--dyn-badge-text-solid-primary, #FFFFFF);
+  border-color: var(--dyn-badge-border-solid-primary, transparent);
 }
 
-.badge.topRight {
-  top: var(--badge-position-offset);
-  right: var(--badge-position-offset);
+.badge--solid.badge--primary:hover {
+  background-color: var(--dyn-badge-bg-solid-primary-hover, #005A9E);
+}
+
+.badge--solid.badge--secondary,
+.badge--solid.badge--neutral {
+  background-color: var(--dyn-badge-bg-solid-secondary, #F0F0F0);
+  color: var(--dyn-badge-text-solid-secondary, #000000);
+  border-color: var(--dyn-badge-border-solid-secondary, #D0D0D0);
+}
+
+.badge--solid.badge--secondary:hover,
+.badge--solid.badge--neutral:hover {
+  background-color: var(--dyn-badge-bg-solid-secondary-hover, #E0E0E0);
+}
+
+.badge--solid.badge--success {
+  background-color: var(--dyn-badge-bg-solid-success, #28A745);
+  color: var(--dyn-badge-text-solid-success, #FFFFFF);
+  border-color: var(--dyn-badge-border-solid-success, transparent);
+}
+
+.badge--solid.badge--success:hover {
+  background-color: var(--dyn-badge-bg-solid-success-hover, #1E7E34);
+}
+
+.badge--solid.badge--warning {
+  background-color: var(--dyn-badge-bg-solid-warning, #FFA500);
+  color: var(--dyn-badge-text-solid-warning, #000000);
+  border-color: var(--dyn-badge-border-solid-warning, transparent);
+}
+
+.badge--solid.badge--warning:hover {
+  background-color: var(--dyn-badge-bg-solid-warning-hover, #CC8400);
+}
+
+.badge--solid.badge--danger {
+  background-color: var(--dyn-badge-bg-solid-danger, #DC3545);
+  color: var(--dyn-badge-text-solid-danger, #FFFFFF);
+  border-color: var(--dyn-badge-border-solid-danger, transparent);
+}
+
+.badge--solid.badge--danger:hover {
+  background-color: var(--dyn-badge-bg-solid-danger-hover, #A02830);
+}
+
+.badge--solid.badge--info {
+  background-color: var(--dyn-badge-bg-solid-info, #17A2B8);
+  color: var(--dyn-badge-text-solid-info, #FFFFFF);
+  border-color: var(--dyn-badge-border-solid-info, transparent);
+}
+
+.badge--solid.badge--info:hover {
+  background-color: var(--dyn-badge-bg-solid-info-hover, #117A8B);
+}
+
+/* ============================================
+   VARIANT: SOFT
+   ============================================ */
+
+.badge--soft.badge--primary {
+  background-color: var(--dyn-badge-bg-soft-primary, #E3F2FD);
+  color: var(--dyn-badge-text-soft-primary, #007ACC);
+  border-color: var(--dyn-badge-border-soft-primary, transparent);
+}
+
+.badge--soft.badge--primary:hover {
+  background-color: var(--dyn-badge-bg-soft-primary-hover, #BBDEFB);
+}
+
+.badge--soft.badge--secondary,
+.badge--soft.badge--neutral {
+  background-color: var(--dyn-badge-bg-soft-secondary, #F5F5F5);
+  color: var(--dyn-badge-text-soft-secondary, #374151);
+  border-color: var(--dyn-badge-border-soft-secondary, transparent);
+}
+
+.badge--soft.badge--secondary:hover,
+.badge--soft.badge--neutral:hover {
+  background-color: var(--dyn-badge-bg-soft-secondary-hover, #EEEEEE);
+}
+
+.badge--soft.badge--success {
+  background-color: var(--dyn-badge-bg-soft-success, #E8F5E9);
+  color: var(--dyn-badge-text-soft-success, #28A745);
+  border-color: var(--dyn-badge-border-soft-success, transparent);
+}
+
+.badge--soft.badge--success:hover {
+  background-color: var(--dyn-badge-bg-soft-success-hover, #C8E6C9);
+}
+
+.badge--soft.badge--warning {
+  background-color: var(--dyn-badge-bg-soft-warning, #FFF3E0);
+  color: var(--dyn-badge-text-soft-warning, #FFA500);
+  border-color: var(--dyn-badge-border-soft-warning, transparent);
+}
+
+.badge--soft.badge--warning:hover {
+  background-color: var(--dyn-badge-bg-soft-warning-hover, #FFE0B2);
+}
+
+.badge--soft.badge--danger {
+  background-color: var(--dyn-badge-bg-soft-danger, #FFEBEE);
+  color: var(--dyn-badge-text-soft-danger, #DC3545);
+  border-color: var(--dyn-badge-border-soft-danger, transparent);
+}
+
+.badge--soft.badge--danger:hover {
+  background-color: var(--dyn-badge-bg-soft-danger-hover, #FFCDD2);
+}
+
+.badge--soft.badge--info {
+  background-color: var(--dyn-badge-bg-soft-info, #E0F7FA);
+  color: var(--dyn-badge-text-soft-info, #17A2B8);
+  border-color: var(--dyn-badge-border-soft-info, transparent);
+}
+
+.badge--soft.badge--info:hover {
+  background-color: var(--dyn-badge-bg-soft-info-hover, #B2EBF2);
+}
+
+/* ============================================
+   VARIANT: OUTLINE
+   ============================================ */
+
+.badge--outline {
+  border-width: var(--dyn-badge-border-width-default, 1px);
+}
+
+.badge--outline.badge--primary {
+  background-color: var(--dyn-badge-bg-outline-primary, transparent);
+  color: var(--dyn-badge-text-outline-primary, #007ACC);
+  border-color: var(--dyn-badge-border-outline-primary, #007ACC);
+}
+
+.badge--outline.badge--primary:hover {
+  background-color: var(--dyn-badge-bg-outline-primary-hover, rgba(0, 122, 204, 0.08));
+}
+
+.badge--outline.badge--secondary,
+.badge--outline.badge--neutral {
+  background-color: var(--dyn-badge-bg-outline-secondary, transparent);
+  color: var(--dyn-badge-text-outline-secondary, #374151);
+  border-color: var(--dyn-badge-border-outline-secondary, #D1D5DB);
+}
+
+.badge--outline.badge--secondary:hover,
+.badge--outline.badge--neutral:hover {
+  background-color: var(--dyn-badge-bg-outline-secondary-hover, #F9FAFB);
+}
+
+.badge--outline.badge--success {
+  background-color: var(--dyn-badge-bg-outline-success, transparent);
+  color: var(--dyn-badge-text-outline-success, #28A745);
+  border-color: var(--dyn-badge-border-outline-success, #28A745);
+}
+
+.badge--outline.badge--success:hover {
+  background-color: var(--dyn-badge-bg-outline-success-hover, rgba(40, 167, 69, 0.08));
+}
+
+.badge--outline.badge--warning {
+  background-color: var(--dyn-badge-bg-outline-warning, transparent);
+  color: var(--dyn-badge-text-outline-warning, #FFA500);
+  border-color: var(--dyn-badge-border-outline-warning, #FFA500);
+}
+
+.badge--outline.badge--warning:hover {
+  background-color: var(--dyn-badge-bg-outline-warning-hover, rgba(255, 165, 0, 0.08));
+}
+
+.badge--outline.badge--danger {
+  background-color: var(--dyn-badge-bg-outline-danger, transparent);
+  color: var(--dyn-badge-text-outline-danger, #DC3545);
+  border-color: var(--dyn-badge-border-outline-danger, #DC3545);
+}
+
+.badge--outline.badge--danger:hover {
+  background-color: var(--dyn-badge-bg-outline-danger-hover, rgba(220, 53, 69, 0.08));
+}
+
+.badge--outline.badge--info {
+  background-color: var(--dyn-badge-bg-outline-info, transparent);
+  color: var(--dyn-badge-text-outline-info, #17A2B8);
+  border-color: var(--dyn-badge-border-outline-info, #17A2B8);
+}
+
+.badge--outline.badge--info:hover {
+  background-color: var(--dyn-badge-bg-outline-info-hover, rgba(23, 162, 184, 0.08));
+}
+
+/* ============================================
+   VARIANT: DOT
+   ============================================ */
+
+.badge--dot {
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge--dot.badge--small {
+  width: var(--dyn-badge-dot-size-small, 8px);
+  height: var(--dyn-badge-dot-size-small, 8px);
+}
+
+.badge--dot.badge--medium {
+  width: var(--dyn-badge-dot-size-medium, 12px);
+  height: var(--dyn-badge-dot-size-medium, 12px);
+}
+
+.badge--dot.badge--large {
+  width: var(--dyn-badge-dot-size-large, 16px);
+  height: var(--dyn-badge-dot-size-large, 16px);
+}
+
+/* Dot color variants */
+.badge--dot.badge--primary {
+  background-color: var(--dyn-badge-bg-solid-primary, #007ACC);
+}
+
+.badge--dot.badge--secondary,
+.badge--dot.badge--neutral {
+  background-color: var(--dyn-badge-bg-solid-secondary, #F0F0F0);
+}
+
+.badge--dot.badge--success {
+  background-color: var(--dyn-badge-bg-solid-success, #28A745);
+}
+
+.badge--dot.badge--warning {
+  background-color: var(--dyn-badge-bg-solid-warning, #FFA500);
+}
+
+.badge--dot.badge--danger {
+  background-color: var(--dyn-badge-bg-solid-danger, #DC3545);
+}
+
+.badge--dot.badge--info {
+  background-color: var(--dyn-badge-bg-solid-info, #17A2B8);
+}
+
+/* ============================================
+   POSITIONING
+   ============================================ */
+
+.badge--positioned {
+  position: absolute;
+  z-index: var(--dyn-badge-z-index, 1000);
+}
+
+.badge--topRight {
+  top: var(--dyn-badge-position-offset, -8px);
+  right: var(--dyn-badge-position-offset, -8px);
   transform: translate(50%, -50%);
 }
 
-.badge.topLeft {
-  top: var(--badge-position-offset);
-  left: var(--badge-position-offset);
+.badge--topLeft {
+  top: var(--dyn-badge-position-offset, -8px);
+  left: var(--dyn-badge-position-offset, -8px);
   transform: translate(-50%, -50%);
 }
 
-.badge.bottomRight {
-  bottom: var(--badge-position-offset);
-  right: var(--badge-position-offset);
+.badge--bottomRight {
+  bottom: var(--dyn-badge-position-offset, -8px);
+  right: var(--dyn-badge-position-offset, -8px);
   transform: translate(50%, 50%);
 }
 
-.badge.bottomLeft {
-  bottom: var(--badge-position-offset);
-  left: var(--badge-position-offset);
+.badge--bottomLeft {
+  bottom: var(--dyn-badge-position-offset, -8px);
+  left: var(--dyn-badge-position-offset, -8px);
   transform: translate(-50%, 50%);
 }
 
-.badge.center {
+.badge--center {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -482,42 +590,37 @@
   }
 }
 
-.badge.pulse {
+.badge--pulse {
   animation: badgePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.badge.animated {
-  animation: badgeScale 300ms var(--badge-transition-default);
+.badge--animated {
+  animation: badgeScale 300ms var(--dyn-badge-transition-default, ease-in-out);
 }
 
 /* ============================================
-   ICON & TEXT CONTENT
+   INTERACTIVE STATE
    ============================================ */
 
-.badgeIcon {
-  display: inline-flex;
-  align-items: center;
-  width: var(--badge-icon-size);
-  height: var(--badge-icon-size);
-  flex-shrink: 0;
+.badge--clickable {
+  cursor: pointer;
 }
 
-.badgeText {
-  line-height: 1;
+.badge--clickable:hover {
+  opacity: 0.9;
 }
 
-.badgeContent {
-  display: flex;
-  align-items: center;
-  gap: var(--badge-icon-gap);
+.badge--clickable:active {
+  transform: scale(0.96);
 }
 
 /* ============================================
-   STATE: DISABLED
+   DISABLED STATE
    ============================================ */
 
-.badge.disabled {
-  opacity: var(--badge-opacity-disabled);
+.badge:disabled,
+.badge[aria-disabled="true"] {
+  opacity: var(--dyn-badge-opacity-disabled, 0.5);
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -528,14 +631,14 @@
 
 /* Focus ring for keyboard navigation */
 .badge:focus-visible {
-  outline: var(--badge-focus-ring-width) solid var(--badge-focus-ring-color);
-  outline-offset: var(--badge-focus-ring-offset);
+  outline: var(--dyn-badge-focus-ring-width, 2px) solid var(--dyn-badge-focus-ring-color, #007ACC);
+  outline-offset: var(--dyn-badge-focus-ring-offset, 2px);
 }
 
-/* High contrast mode */
+/* High contrast mode borders */
 @media (prefers-contrast: more) {
   .badge {
-    border-width: 2px;
+    border-width: var(--dyn-badge-border-width-default, 2px);
   }
   
   .badge.outline {
@@ -549,31 +652,13 @@
     transition: none !important;
   }
   
-  .badge.pulse,
-  .badge.animated {
+  .badge--pulse,
+  .badge--animated {
     animation: none !important;
   }
-}
-
-/* ============================================
-   DARK MODE
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  .badge {
-    /* Dark mode token overrides */
-    --badge-bg-primary-soft: var(--dyn-color-primary-900-alpha, rgba(0, 122, 204, 0.2));
-    --badge-bg-secondary-solid: var(--dyn-color-neutral-800, #2D2D2D);
-    --badge-text-secondary-solid: var(--dyn-color-neutral-100, #F5F5F5);
-    --badge-bg-secondary-solid-hover: var(--dyn-color-neutral-700, #404040);
-    
-    --badge-bg-success-soft: var(--dyn-color-success-900-alpha, rgba(40, 167, 69, 0.2));
-    --badge-bg-warning-soft: var(--dyn-color-warning-900-alpha, rgba(255, 165, 0, 0.2));
-    --badge-bg-danger-soft: var(--dyn-color-danger-900-alpha, rgba(220, 53, 69, 0.2));
-    --badge-bg-info-soft: var(--dyn-color-info-900-alpha, rgba(23, 162, 184, 0.2));
-    
-    /* Enhanced contrast for warning in dark mode */
-    --badge-text-warning-solid: var(--dyn-color-neutral-900, #1A1A1A);
+  
+  .badge--clickable:active {
+    transform: none !important;
   }
 }
 
@@ -582,8 +667,9 @@
    ============================================ */
 
 @media (max-width: 480px) {
-  .badge:not(.large) {
-    padding: var(--badge-padding-small);
-    font-size: var(--badge-font-size-small);
+  .badge {
+    /* Slightly smaller on mobile */
+    padding: var(--dyn-badge-padding-small, 2px 6px);
+    font-size: var(--dyn-badge-font-size-small, 10px);
   }
 }

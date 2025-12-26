@@ -253,6 +253,9 @@ importers:
       '@rollup/plugin-typescript':
         specifier: 'catalog:'
         version: 12.3.0(rollup@4.54.0)(tslib@2.8.1)(typescript@5.9.3)
+      chalk:
+        specifier: ^5.3.0
+        version: 5.6.2
       nodemon:
         specifier: 'catalog:'
         version: 3.1.11

@@ -90,8 +90,8 @@
   width: var(--dyn-avatar-status-size, var(--avatar-status-size, 12px));
   height: var(--dyn-avatar-status-size, var(--avatar-status-size, 12px));
   border-radius: 50%;
-  /* FIXED: Replaced hardcoded 2px with border-width token */
-  border: var(--dyn-border-width, 2px) solid var(--dyn-color-surface, var(--color-surface, #ffffff));
+  /* FIXED: Replaced hardcoded 1x with border-width token */
+  border: var(--dyn-border-width, 1px) solid var(--dyn-color-surface, var(--color-surface, #ffffff));
   background-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
 }
 
@@ -174,7 +174,7 @@
 }
 
 /* PHASE 1: Badge - COMMENTED OUT (Planned for future implementation) */
-/* 
+/*
   TODO: Uncomment when implementing avatar badges feature
   Currently not used by DynAvatar component.
   Will need Phase 2 feature branch for proper implementation.
@@ -199,7 +199,7 @@
 */
 
 /* PHASE 1: Group Avatars - COMMENTED OUT (Planned for future implementation) */
-/* 
+/*
   TODO: Uncomment when implementing avatar groups feature
   Currently not used by DynAvatar component.
   Will need Phase 2 feature branch for proper implementation.

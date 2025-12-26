@@ -1,9 +1,9 @@
 # 🚀 DynAvatar Action Plan
 
-**Audit Score**: 72% (FAIR)  
-**Target Score**: 85%+ (GOOD)  
-**Total Time**: 4-5 hours  
-**Complexity**: Medium  
+**Audit Score**: 72% (FAIR)
+**Target Score**: 85%+ (GOOD)
+**Total Time**: 4-5 hours
+**Complexity**: Medium
 
 ---
 
@@ -30,6 +30,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 #### 1.1.1 Status Indicator Size
 
 **Current**:
+
 ```css
 .status {
   width: 12px;
@@ -39,6 +40,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 ```
 
 **New**:
+
 ```css
 .status {
   width: var(--dyn-avatar-status-size, var(--avatar-status-size, 12px));
@@ -50,6 +52,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 #### 1.1.2 Badge Size and Position
 
 **Current**:
+
 ```css
 .badge {
   top: -4px;
@@ -61,6 +64,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 ```
 
 **New**:
+
 ```css
 .badge {
   top: var(--dyn-avatar-badge-offset, var(--avatar-badge-offset, -4px));
@@ -74,6 +78,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 #### 1.1.3 Group Item Margins
 
 **Current**:
+
 ```css
 .groupItem {
   margin-left: -8px;
@@ -86,6 +91,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 ```
 
 **New**:
+
 ```css
 .groupItem {
   margin-left: var(--dyn-avatar-group-margin-negative, var(--avatar-group-margin-negative, -8px));
@@ -100,6 +106,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 #### 1.1.4 Accessibility SR-Only
 
 **Current**:
+
 ```css
 .dyn-sr-only {
   position: absolute !important;
@@ -131,6 +138,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 **File**: `packages/dyn-ui-react/src/components/DynAvatar/DynAvatar.module.css`
 
 **Classes to Remove**:
+
 - `.badge` (if not planned for immediate use)
 - `.group` (if not planned for immediate use)
 - `.groupItem` (if not planned for immediate use)
@@ -138,9 +146,9 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 **Action**: Comment them out with explanation or remove entirely
 
 ```css
-/* 
+/*
   TODO: Uncomment when implementing avatar groups
-  
+
 .badge {
   ...
 }
@@ -162,6 +170,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 **Check**: Dark mode section at bottom
 
 **Current Dark Mode**:
+
 ```css
 @media (prefers-color-scheme: dark) {
   .container {
@@ -172,6 +181,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 ```
 
 **Verify**: All dark mode tokens follow the same pattern:
+
 - Use `--dyn-color-*-dark` naming
 - Include 3-level fallback
 - Test in dark mode
@@ -185,6 +195,7 @@ DynAvatar needs 3 phases of fixes to reach production-ready status:
 **File**: `packages/dyn-ui-react/src/components/DynAvatar/DynAvatar.tsx`
 
 **Add Before Export**:
+
 ```tsx
 /**
  * DynAvatar Component
@@ -231,6 +242,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
 **File**: Same file
 
 **Add to `generateInitials`**:
+
 ```tsx
 /**
  * Generate initials from a name string
@@ -251,6 +263,7 @@ const generateInitials = (name: string): string => {
 ```
 
 **Add to Handlers**:
+
 ```tsx
 /**
  * Handle image load successfully
@@ -293,6 +306,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 ```
 
 ### With Image
+
 ```tsx
 <DynAvatar
   src="/avatars/john.jpg"
@@ -303,6 +317,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 ## Variants
 
 ### Sizes
+
 ```tsx
 <DynAvatar alt="Test" size="xs" />
 <DynAvatar alt="Test" size="sm" />
@@ -312,6 +327,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 ```
 
 ### Shapes
+
 ```tsx
 <DynAvatar alt="Test" shape="circle" />    {/* Default */}
 <DynAvatar alt="Test" shape="square" />
@@ -319,6 +335,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 ```
 
 ### Status
+
 ```tsx
 <DynAvatar alt="Test" status="online" />
 <DynAvatar alt="Test" status="offline" />
@@ -329,11 +346,13 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 ## States
 
 ### Loading
+
 ```tsx
 <DynAvatar src="/avatar.jpg" alt="Loading" loading />
 ```
 
 ### Error
+
 ```tsx
 <DynAvatar alt="Error" error />
 ```
@@ -347,6 +366,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
   onClick={() => navigate('/profile')}
 />
 ```
+
 ```
 
 ---
@@ -357,7 +377,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { /* ... *
 
 **File**: `packages/dyn-ui-react/src/components/DynAvatar/DynAvatar.tsx`
 
-**Current**: 
+**Current**:
 ```tsx
 const [imageLoaded, setImageLoaded] = useState(false);
 const [imageError, setImageError] = useState(false);
@@ -400,6 +420,7 @@ useEffect(() => {
 ### Task 3.2: Optimize with useCallback (0.5 hour)
 
 **Wrap functions**:
+
 ```tsx
 import { useCallback } from 'react';
 
@@ -425,6 +446,7 @@ const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) =
 ## ✅ Testing After Each Phase
 
 ### After Phase 1
+
 ```bash
 # Run tests to ensure CSS changes don't break components
 npm test DynAvatar.test.tsx
@@ -434,6 +456,7 @@ npm test DynAvatar.test.tsx
 ```
 
 ### After Phase 2
+
 ```bash
 # Verify no TypeScript errors
 npm run type-check
@@ -443,6 +466,7 @@ npm run docs
 ```
 
 ### After Phase 3
+
 ```bash
 # Full test suite
 npm test
@@ -479,5 +503,5 @@ npm run a11y-audit
 
 ---
 
-**Estimated Completion**: 4-5 hours  
+**Estimated Completion**: 4-5 hours
 **Expected Result**: 85%+ (GOOD)

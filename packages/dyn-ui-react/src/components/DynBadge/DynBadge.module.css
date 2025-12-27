@@ -47,6 +47,12 @@
   --dyn-badge-border-default: none;
   --dyn-badge-border-outline: 1px solid;
   
+  /* Gap between elements inside badge (icon + text) */
+  --dyn-badge-gap-default: var(--dyn-spacing-1, var(--legacy-spacing-1, 4px));
+  --dyn-badge-gap-sm: var(--dyn-spacing-0, var(--legacy-spacing-0, 2px));
+  --dyn-badge-gap-md: var(--dyn-spacing-2, var(--legacy-spacing-2, 6px));
+  --dyn-badge-gap-lg: var(--dyn-spacing-3, var(--legacy-spacing-3, 8px));
+  
   /* Z-index for positioned badges (used in DynAvatar) */
   --dyn-badge-z-index-positioned: var(--dyn-z-index-elevated, var(--legacy-z-index-elevated, 100));
   
@@ -218,7 +224,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2, 2px);
+  gap: var(--dyn-badge-gap-default);
   
   padding: var(--dyn-badge-padding-default);
   font-size: var(--dyn-badge-font-size-default);

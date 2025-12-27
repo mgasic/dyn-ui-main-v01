@@ -1,126 +1,151 @@
-import type {
-  HTMLAttributes,
-  MouseEvent as ReactMouseEvent,
-  ReactNode
-} from 'react';
-import type { BaseComponentProps, AccessibilityProps } from '../../types';
-
-export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+import { ReactNode, CSSProperties } from 'react';
 
 /**
- * Supported badge colors
- * Semantic colors for status, alerts, and notifications
+ * Available visual variants for the badge
  */
-export const DYN_BADGE_COLORS = [
-  'primary',
-  'secondary',
-  'success',
-  'warning',
-  'danger',
-  'info',
-  'neutral'
-] as const;
+export type DynBadgeVariant = 'solid' | 'soft' | 'outline' | 'dot' | 'ghost';
 
 /**
- * Supported badge sizes
- * Used for sizing the badge component
+ * Available semantic colors for the badge
  */
-export const DYN_BADGE_SIZES: ComponentSize[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+export type DynBadgeColor = 
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'neutral'
+  | 'online'
+  | 'offline'
+  | 'away'
+  | 'busy';
 
 /**
- * Supported badge variants
- * Visual style variants for different use cases
+ * Available sizes for the badge
  */
-export const DYN_BADGE_VARIANTS = ['solid', 'soft', 'outline', 'dot'] as const;
+export type DynBadgeSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**
- * Supported badge positions
- * Used for overlay badges (e.g., on avatars)
+ * Available positions for the badge relative to parent
  */
-export const DYN_BADGE_POSITIONS = ['topRight', 'topLeft', 'bottomRight', 'bottomLeft', 'center'] as const;
-
-export type DynBadgeSemanticColor = (typeof DYN_BADGE_COLORS)[number];
-export type DynBadgeVariant = (typeof DYN_BADGE_VARIANTS)[number];
-export type DynBadgeColor = DynBadgeSemanticColor | (string & {});
-export type DynBadgePosition = (typeof DYN_BADGE_POSITIONS)[number];
+export type DynBadgePosition = 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft' | 'center';
 
 /**
- * Props interface for DynBadge component
- * Clean TypeScript implementation following DynAvatar gold standard
+ * Props for the DynBadge component
  */
-export interface DynBadgeProps
-  extends BaseComponentProps,
-    AccessibilityProps,
-    Omit<HTMLAttributes<HTMLSpanElement>, keyof BaseComponentProps | keyof AccessibilityProps | 'color' | 'children'> {
-  /** Badge content */
+export interface DynBadgeProps {
+  /**
+   * Content to be displayed inside the badge.
+   * If `count` is provided, this is ignored.
+   */
   children?: ReactNode;
 
-  /** Badge variant style */
-  variant?: DynBadgeVariant;
-
-  /** Semantic color */
-  color?: DynBadgeColor;
-
-  /** Size variant */
-  size?: ComponentSize;
-
-  /** Position when used as overlay */
-  position?: DynBadgePosition;
-
-  /** Click handler (makes badge interactive) */
-  onClick?: (event: ReactMouseEvent<HTMLSpanElement>) => void;
-
-  /** Icon before text */
-  startIcon?: ReactNode;
-
-  /** Icon after text */
-  endIcon?: ReactNode;
-
-  /** Max count before showing + */
-  maxCount?: number;
-
-  /** Numeric value (for count badges) */
+  /**
+   * Numeric value to be displayed.
+   * If provided, overrides `children`.
+   */
   count?: number;
 
   /**
-   * @deprecated Use `count` instead. Legacy alias maintained for backward compatibility.
+   * Legacy prop for count, kept for backward compatibility.
+   * @deprecated Use `count` instead.
    */
   value?: number;
 
-  /** Show badge even when count is 0 */
-  showZero?: boolean;
+  /**
+   * Visual style variant of the badge.
+   * @default 'solid'
+   */
+  variant?: DynBadgeVariant;
 
-  /** Animate appearance */
+  /**
+   * Semantic color of the badge.
+   * @default 'primary'
+   */
+  color?: DynBadgeColor;
+
+  /**
+   * Size of the badge.
+   * @default 'md'
+   */
+  size?: DynBadgeSize;
+
+  /**
+   * Maximum number to display before showing suffix (e.g. 99+).
+   * Only applies when `count` or `value` is used.
+   * @default 99
+   */
+  max?: number;
+
+  /**
+   * Optional icon to display before the text/count.
+   */
+  icon?: ReactNode;
+
+  /**
+   * Whether the badge should have an entrance animation.
+   * @default false
+   */
   animated?: boolean;
 
-  /** Pulse animation for notifications */
+  /**
+   * Whether the badge should have a pulsing animation.
+   * @default false
+   */
   pulse?: boolean;
 
-  /** Accessible description for count */
-  countDescription?: string;
-  
-  /** Hide badge while keeping DOM accessible */
-  invisible?: boolean;
-  
-  /** Optional icon element */
-  icon?: ReactNode;
-  
-  /** Fallback content if no children/count */
+  /**
+   * Absolute position of the badge relative to its parent container.
+   * Parent container must have `position: relative`.
+   */
+  position?: DynBadgePosition;
+
+  /**
+   * Additional CSS class names.
+   */
+  className?: string;
+
+  /**
+   * Inline styles.
+   */
+  style?: CSSProperties;
+
+  /**
+   * Content to display when count is 0 and showZero is false (or undefined).
+   * Usually undefined to hide the badge, or a specific fallback content.
+   */
   fallback?: ReactNode;
+
+  /**
+   * Whether to display the badge when count is 0.
+   * @default false
+   */
+  showZero?: boolean;
+
+  /**
+   * Accessible label for the badge.
+   * If not provided, one may be generated based on color/variant.
+   */
+  'aria-label'?: string;
+  
+  /**
+   * ID for testing purposes
+   */
+  'data-testid'?: string;
+
+  /**
+   * Accessibility live region behavior
+   */
+  'aria-live'?: 'off' | 'assertive' | 'polite';
+  
+  /**
+   * Role attribute
+   */
+  role?: string;
+
+  /**
+   * Click handler
+   */
+  onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
 }
-
-/**
- * Ref type for DynBadge component
- */
-export type DynBadgeRef = HTMLSpanElement;
-
-/**
- * Avatar status labels for accessibility
- * Used in DynAvatar integration
- */
-export const DYN_BADGE_STATUS_LABELS = {
-  online: 'Online',
-  offline: 'Offline',
-  away: 'Away',
-  busy: 'Busy'
-} as const;

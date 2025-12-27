@@ -1,0 +1,181 @@
+{
+  "avatar": {
+    "description": "Avatar component tokens",
+    "size": {
+      "xs": {
+        "value": "24px",
+        "description": "Extra small avatar size"
+      },
+      "sm": {
+        "value": "32px",
+        "description": "Small avatar size"
+      },
+      "md": {
+        "value": "40px",
+        "description": "Medium avatar size (default)"
+      },
+      "lg": {
+        "value": "56px",
+        "description": "Large avatar size"
+      },
+      "xl": {
+        "value": "80px",
+        "description": "Extra large avatar size"
+      }
+    },
+    "border": {
+      "width": {
+        "value": "2px",
+        "description": "Avatar border width"
+      },
+      "color": {
+        "value": "#FFFFFF",
+        "description": "Avatar border color"
+      },
+      "radius": {
+        "circle": {
+          "value": "50%",
+          "description": "Circular avatar border radius"
+        },
+        "rounded": {
+          "value": "8px",
+          "description": "Rounded avatar border radius"
+        },
+        "square": {
+          "value": "0px",
+          "description": "Square avatar border radius"
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "value": "#E8E8E8",
+        "description": "Avatar background color"
+      },
+      "text": {
+        "value": "#212529",
+        "description": "Avatar text color"
+      }
+    },
+    "status": {
+      "indicator": {
+        "size": {
+          "sm": {
+            "value": "6px",
+            "description": "Small status indicator size"
+          },
+          "md": {
+            "value": "8px",
+            "description": "Medium status indicator size"
+          },
+          "lg": {
+            "value": "12px",
+            "description": "Large status indicator size"
+          }
+        },
+        "offset": {
+          "value": "-2px",
+          "description": "Status indicator offset from edge"
+        },
+        "border": {
+          "width": {
+            "value": "2px",
+            "description": "Status indicator border width"
+          },
+          "color": {
+            "value": "#FFFFFF",
+            "description": "Status indicator border color"
+          }
+        },
+        "online": {
+          "backgroundColor": {
+            "value": "#28A745",
+            "description": "Online status color"
+          }
+        },
+        "offline": {
+          "backgroundColor": {
+            "value": "#6C757D",
+            "description": "Offline status color"
+          }
+        },
+        "away": {
+          "backgroundColor": {
+            "value": "#FFC107",
+            "description": "Away status color"
+          }
+        },
+        "busy": {
+          "backgroundColor": {
+            "value": "#DC3545",
+            "description": "Busy status color"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "padding": {
+        "value": "0px",
+        "description": "Avatar padding"
+      }
+    },
+    "typography": {
+      "fontSize": {
+        "xs": {
+          "value": "8px",
+          "description": "Font size for extra small avatar"
+        },
+        "sm": {
+          "value": "11px",
+          "description": "Font size for small avatar"
+        },
+        "md": {
+          "value": "14px",
+          "description": "Font size for medium avatar"
+        },
+        "lg": {
+          "value": "18px",
+          "description": "Font size for large avatar"
+        },
+        "xl": {
+          "value": "24px",
+          "description": "Font size for extra large avatar"
+        }
+      },
+      "fontWeight": {
+        "value": 600,
+        "description": "Avatar font weight"
+      }
+    },
+    "shadow": {
+      "value": "0 2px 8px rgba(0, 0, 0, 0.15)",
+      "description": "Avatar shadow"
+    },
+    "darkMode": {
+      "backgroundColor": {
+        "value": "#424242",
+        "description": "Avatar background color in dark mode"
+      },
+      "textColor": {
+        "value": "#FFFFFF",
+        "description": "Avatar text color in dark mode"
+      },
+      "borderColor": {
+        "value": "#212121",
+        "description": "Avatar border color in dark mode"
+      }
+    },
+    "animation": {
+      "transition": {
+        "duration": {
+          "value": "200ms",
+          "description": "Avatar transition duration"
+        },
+        "timingFunction": {
+          "value": "ease-in-out",
+          "description": "Avatar transition timing function"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "badge": {
+    "description": "Badge component tokens",
+    "color": {
+      "primary": {
+        "background": {
+          "value": "#007ACC",
+          "description": "Primary badge background color"
+        },
+        "text": {
+          "value": "#FFFFFF",
+          "description": "Primary badge text color"
+        }
+      },
+      "secondary": {
+        "background": {
+          "value": "#6C757D",
+          "description": "Secondary badge background color"
+        },
+        "text": {
+          "value": "#FFFFFF",
+          "description": "Secondary badge text color"
+        }
+      },
+      "success": {
+        "background": {
+          "value": "#28A745",
+          "description": "Success badge background color"
+        },
+        "text": {
+          "value": "#FFFFFF",
+          "description": "Success badge text color"
+        }
+      },
+      "danger": {
+        "background": {
+          "value": "#DC3545",
+          "description": "Danger badge background color"
+        },
+        "text": {
+          "value": "#FFFFFF",
+          "description": "Danger badge text color"
+        }
+      },
+      "warning": {
+        "background": {
+          "value": "#FFC107",
+          "description": "Warning badge background color"
+        },
+        "text": {
+          "value": "#000000",
+          "description": "Warning badge text color"
+        }
+      },
+      "info": {
+        "background": {
+          "value": "#17A2B8",
+          "description": "Info badge background color"
+        },
+        "text": {
+          "value": "#FFFFFF",
+          "description": "Info badge text color"
+        }
+      },
+      "neutral": {
+        "background": {
+          "value": "#F8F9FA",
+          "description": "Neutral badge background color"
+        },
+        "text": {
+          "value": "#212529",
+          "description": "Neutral badge text color"
+        }
+      }
+    },
+    "status": {
+      "online": {
+        "background": {
+          "value": "#28A745",
+          "description": "Online status indicator color (green)"
+        }
+      },
+      "offline": {
+        "background": {
+          "value": "#6C757D",
+          "description": "Offline status indicator color (gray)"
+        }
+      },
+      "away": {
+        "background": {
+          "value": "#FFC107",
+          "description": "Away status indicator color (yellow)"
+        }
+      },
+      "busy": {
+        "background": {
+          "value": "#DC3545",
+          "description": "Busy status indicator color (red)"
+        }
+      }
+    },
+    "variant": {
+      "solid": {
+        "description": "Solid badge variant with filled background"
+      },
+      "soft": {
+        "description": "Soft badge variant with light background",
+        "opacity": {
+          "value": 0.15,
+          "description": "Opacity for soft badge background"
+        }
+      },
+      "outline": {
+        "description": "Outline badge variant with border",
+        "borderWidth": {
+          "value": "1px",
+          "description": "Border width for outline variant"
+        }
+      },
+      "dot": {
+        "description": "Dot variant - circular status indicator",
+        "size": {
+          "value": "12px",
+          "description": "Base size for dot variant"
+        }
+      }
+    },
+    "size": {
+      "sm": {
+        "value": "8px",
+        "description": "Small badge size"
+      },
+      "md": {
+        "value": "12px",
+        "description": "Medium badge size (default)"
+      },
+      "lg": {
+        "value": "16px",
+        "description": "Large badge size"
+      }
+    },
+    "position": {
+      "topRight": {
+        "offset": {
+          "value": "-8px",
+          "description": "Position offset for top-right placement"
+        },
+        "zIndex": {
+          "value": 100,
+          "description": "Z-index for positioned badge"
+        }
+      },
+      "topLeft": {
+        "offset": {
+          "value": "-8px",
+          "description": "Position offset for top-left placement"
+        },
+        "zIndex": {
+          "value": 100,
+          "description": "Z-index for positioned badge"
+        }
+      },
+      "bottomRight": {
+        "offset": {
+          "value": "-8px",
+          "description": "Position offset for bottom-right placement"
+        },
+        "zIndex": {
+          "value": 100,
+          "description": "Z-index for positioned badge"
+        }
+      },
+      "bottomLeft": {
+        "offset": {
+          "value": "-8px",
+          "description": "Position offset for bottom-left placement"
+        },
+        "zIndex": {
+          "value": 100,
+          "description": "Z-index for positioned badge"
+        }
+      },
+      "center": {
+        "offset": {
+          "value": "0px",
+          "description": "Position offset for center placement"
+        },
+        "zIndex": {
+          "value": 100,
+          "description": "Z-index for positioned badge"
+        }
+      }
+    },
+    "spacing": {
+      "padding": {
+        "value": "4px 8px",
+        "description": "Badge padding"
+      },
+      "borderRadius": {
+        "value": "12px",
+        "description": "Badge border radius"
+      },
+      "dotRadius": {
+        "value": "50%",
+        "description": "Border radius for dot variant"
+      }
+    },
+    "typography": {
+      "fontSize": {
+        "value": "12px",
+        "description": "Badge font size"
+      },
+      "fontWeight": {
+        "value": 600,
+        "description": "Badge font weight"
+      },
+      "lineHeight": {
+        "value": 1.4,
+        "description": "Badge line height"
+      }
+    },
+    "animation": {
+      "pulse": {
+        "duration": {
+          "value": "2000ms",
+          "description": "Pulse animation duration"
+        },
+        "opacity": {
+          "min": {
+            "value": 0.7,
+            "description": "Minimum opacity for pulse"
+          },
+          "max": {
+            "value": 1,
+            "description": "Maximum opacity for pulse"
+          }
+        }
+      },
+      "transition": {
+        "duration": {
+          "value": "150ms",
+          "description": "Default transition duration"
+        },
+        "timingFunction": {
+          "value": "ease-in-out",
+          "description": "Default transition timing function"
+        }
+      }
+    },
+    "accessibility": {
+      "highContrast": {
+        "borderWidth": {
+          "value": "2px",
+          "description": "Border width in high contrast mode"
+        }
+      },
+      "reducedMotion": {
+        "animationDuration": {
+          "value": "0ms",
+          "description": "Animation duration in reduced motion mode"
+        }
+      }
+    }
+  }
+}

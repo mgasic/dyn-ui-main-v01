@@ -6,9 +6,20 @@ import { ReactNode, CSSProperties } from 'react';
 export type DynBadgeVariant = 'solid' | 'soft' | 'outline' | 'dot' | 'ghost';
 
 /**
+ * Array of all available badge variants
+ */
+export const DYN_BADGE_VARIANTS: DynBadgeVariant[] = [
+  'solid',
+  'soft',
+  'outline',
+  'dot',
+  'ghost'
+];
+
+/**
  * Available semantic colors for the badge
  */
-export type DynBadgeColor = 
+export type DynBadgeColor =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -22,14 +33,53 @@ export type DynBadgeColor =
   | 'busy';
 
 /**
+ * Array of all available badge colors
+ */
+export const DYN_BADGE_COLORS: DynBadgeColor[] = [
+  'primary',
+  'secondary',
+  'success',
+  'danger',
+  'warning',
+  'info',
+  'neutral',
+  'online',
+  'offline',
+  'away',
+  'busy'
+];
+
+/**
  * Available sizes for the badge
  */
 export type DynBadgeSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 /**
+ * Array of all available badge sizes
+ */
+export const DYN_BADGE_SIZES: DynBadgeSize[] = [
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl'
+];
+
+/**
  * Available positions for the badge relative to parent
  */
 export type DynBadgePosition = 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft' | 'center';
+
+/**
+ * Array of all available badge positions
+ */
+export const DYN_BADGE_POSITIONS: DynBadgePosition[] = [
+  'topRight',
+  'topLeft',
+  'bottomRight',
+  'bottomLeft',
+  'center'
+];
 
 /**
  * Props for the DynBadge component
@@ -128,7 +178,7 @@ export interface DynBadgeProps {
    * If not provided, one may be generated based on color/variant.
    */
   'aria-label'?: string;
-  
+
   /**
    * ID for testing purposes
    */
@@ -138,7 +188,7 @@ export interface DynBadgeProps {
    * Accessibility live region behavior
    */
   'aria-live'?: 'off' | 'assertive' | 'polite';
-  
+
   /**
    * Role attribute
    */

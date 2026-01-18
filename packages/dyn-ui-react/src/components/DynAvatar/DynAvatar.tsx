@@ -5,8 +5,8 @@ import { DynBadge } from '../DynBadge';
 import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
 
-// Image loading timeout (10 seconds)
-const IMAGE_LOAD_TIMEOUT = 10000;
+// Default image loading timeout (10 seconds)
+const DEFAULT_LOAD_TIMEOUT = 10000;
 
 // Default fallback icon
 const DefaultFallbackIcon = () => (
@@ -143,12 +143,15 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       shape = 'circle',
       initials,
       status,
+      badge,
       loading = false,
       error = false,
       onClick,
       fallback,
       imageLoading = 'eager',
       imageProps,
+      loadTimeout = DEFAULT_LOAD_TIMEOUT,
+      onImageError,
       className,
       id,
       'aria-label': ariaLabel,
@@ -197,16 +200,19 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     /**
      * Handle image load error
      * Falls back to initials when image fails to load
-     * Clears any pending timeout
+     * Clears any pending timeout and calls onImageError callback
      */
-    const handleImageError = useCallback(() => {
+    const handleImageError = useCallback((event?: React.SyntheticEvent<HTMLImageElement>) => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
       setImageError(true);
       setImageLoaded(false);
-    }, []);
+      if (event && onImageError) {
+        onImageError(event);
+      }
+    }, [onImageError]);
 
     /**
      * Handle avatar click when interactive
@@ -231,8 +237,9 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
     }, [isInteractive, onClick]);
 
     /**
-     * PHASE 3: Set up image load timeout
-     * If image doesn't load within 10 seconds, treat as error
+     * Set up image load timeout
+     * Uses configurable loadTimeout prop (default 10 seconds)
+     * If image doesn't load within timeout, treat as error
      * Prevents stuck loading states
      */
     useEffect(() => {
@@ -249,7 +256,11 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
           setImageError(true);
           setImageLoaded(false);
           timeoutRef.current = null;
-        }, IMAGE_LOAD_TIMEOUT);
+          // Call onImageError with timeout indicator
+          if (onImageError) {
+            onImageError({ type: 'timeout' });
+          }
+        }, loadTimeout);
       }
 
       // Cleanup on unmount or when src changes
@@ -259,7 +270,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
           timeoutRef.current = null;
         }
       };
-    }, [src, imageLoaded, imageError]);
+    }, [src, imageLoaded, imageError, loadTimeout, onImageError]);
 
     // Generate accessibility attributes
     const statusLabel = status ? DYN_AVATAR_STATUS_LABELS[status] : undefined;
@@ -354,6 +365,40 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
             data-testid="dyn-avatar-status"
             className={styles.status}
           />
+        )}
+
+        {/* Custom Badge Overlay */}
+        {badge && (
+          <div
+            className={styles.badgeContainer}
+            data-testid="dyn-avatar-badge"
+          >
+            {React.isValidElement(badge) ? (
+              // Direct React element passed
+              badge
+            ) : typeof badge === 'object' && badge !== null && 'content' in badge ? (
+              // DynBadge configuration object
+              <DynBadge
+                variant={(badge as any).variant || 'solid'}
+                color={(badge as any).color || 'primary'}
+                size={badgeSize}
+                className={styles.customBadge}
+                aria-label={(badge as any)['aria-label']}
+              >
+                {(badge as any).content}
+              </DynBadge>
+            ) : (
+              // Simple content (number, string, etc.)
+              <DynBadge
+                variant="solid"
+                color="primary"
+                size={badgeSize}
+                className={styles.customBadge}
+              >
+                {badge as React.ReactNode}
+              </DynBadge>
+            )}
+          </div>
         )}
 
         {/* Loading announcement for screen readers */}

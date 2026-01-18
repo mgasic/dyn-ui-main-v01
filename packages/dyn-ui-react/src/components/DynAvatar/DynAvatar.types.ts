@@ -100,6 +100,30 @@ export interface DynAvatarProps extends
   imageProps?: Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt' | 'loading'> & {
     'data-testid'?: string;
   };
+
+  /**
+   * Maximum time (ms) to wait for image to load before falling back
+   * If the image doesn't load within this time, it will be treated as an error
+   * and the fallback content will be shown.
+   * 
+   * @default 10000 (10 seconds)
+   * @example
+   * // Quick timeout for critical UI
+   * <DynAvatar loadTimeout={3000} />
+   */
+  loadTimeout?: number;
+
+  /**
+   * Callback when the image fails to load or times out
+   * Useful for logging, analytics, or showing custom error states
+   * 
+   * @example
+   * <DynAvatar 
+   *   src="/avatar.jpg"
+   *   onError={(e) => console.log('Avatar failed:', e)}
+   * />
+   */
+  onImageError?: (event: React.SyntheticEvent<HTMLImageElement> | { type: 'timeout' }) => void;
 }
 
 /**

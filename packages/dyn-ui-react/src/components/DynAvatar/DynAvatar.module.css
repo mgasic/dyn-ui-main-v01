@@ -40,44 +40,44 @@
   --dyn-avatar-size-md: var(--dyn-size-md, var(--legacy-size-md, 40px));
   --dyn-avatar-size-lg: var(--dyn-size-lg, var(--legacy-size-lg, 56px));
   --dyn-avatar-size-xl: var(--dyn-size-xl, var(--legacy-size-xl, 80px));
-  
+
   /* ===== FONT SIZE TOKENS ===== */
   --dyn-avatar-font-size-xs: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 10px));
   --dyn-avatar-font-size-sm: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 12px));
   --dyn-avatar-font-size-md: var(--dyn-font-size-base, var(--legacy-font-size-base, 14px));
   --dyn-avatar-font-size-lg: var(--dyn-font-size-lg, var(--legacy-font-size-lg, 16px));
   --dyn-avatar-font-size-xl: var(--dyn-font-size-xl, var(--legacy-font-size-xl, 20px));
-  
+
   /* ===== BORDER TOKENS ===== */
   --dyn-avatar-border-width: var(--dyn-border-width-default, var(--legacy-border-width, 2px));
   --dyn-avatar-border-color: var(--dyn-color-border-default, var(--legacy-color-border, #d1d5db));
   --dyn-avatar-border-color-hover: var(--dyn-color-border-hover, var(--legacy-color-border-hover, #9ca3af));
-  
+
   /* ===== BORDER RADIUS TOKENS ===== */
   --dyn-avatar-radius-circle: 50%;
   --dyn-avatar-radius-square: 0;
   --dyn-avatar-radius-rounded: var(--dyn-radius-md, var(--legacy-radius-md, 8px));
-  
+
   /* ===== BACKGROUND COLOR TOKENS ===== */
   --dyn-avatar-bg-default: var(--dyn-color-primary-50, var(--legacy-color-primary-light, #eff6ff));
   --dyn-avatar-bg-hover: var(--dyn-color-surface-hover, var(--legacy-color-surface-hover, #f9fafb));
   --dyn-avatar-bg-error: var(--dyn-color-danger-50, rgba(239, 68, 68, 0.1));
-  
+
   /* ===== TEXT COLOR TOKENS ===== */
   --dyn-avatar-text-default: var(--dyn-color-primary-700, var(--legacy-color-primary, #2563eb));
   --dyn-avatar-text-inverse: var(--dyn-color-neutral-0, var(--legacy-color-text-inverse, #ffffff));
-  
+
   /* ===== STATUS INDICATOR TOKENS ===== */
   --dyn-avatar-status-size: var(--dyn-spacing-3, var(--legacy-spacing-3, 12px));
   --dyn-avatar-status-border-width: var(--dyn-border-width-default, var(--legacy-border-width, 2px));
   --dyn-avatar-status-border-color: var(--dyn-color-surface, var(--legacy-color-surface, #ffffff));
-  
+
   /* Status colors */
   --dyn-avatar-status-online: var(--dyn-color-status-online, var(--legacy-color-success, #10b981));
   --dyn-avatar-status-away: var(--dyn-color-status-away, var(--legacy-color-warning, #f59e0b));
   --dyn-avatar-status-busy: var(--dyn-color-status-busy, var(--legacy-color-danger, #ef4444));
   --dyn-avatar-status-offline: var(--dyn-color-status-offline, var(--legacy-color-text-secondary, #6b7280));
-  
+
   /* ===== BADGE OVERLAY TOKENS ===== */
   --dyn-avatar-badge-offset: var(--dyn-spacing-0, var(--legacy-spacing-0, -4px));
   --dyn-avatar-badge-size: var(--dyn-spacing-5, var(--legacy-spacing-5, 20px));
@@ -86,25 +86,25 @@
   --dyn-avatar-badge-border-width: var(--dyn-border-width-default, var(--legacy-border-width, 2px));
   --dyn-avatar-badge-border-color: var(--dyn-color-surface, var(--legacy-color-surface, #ffffff));
   --dyn-avatar-badge-text: var(--dyn-color-neutral-0, var(--legacy-color-text-inverse, #ffffff));
-  
+
   /* ===== FOCUS STATE TOKENS ===== */
   --dyn-avatar-focus-ring-color: var(--dyn-color-focus-ring, var(--legacy-color-primary, #2563eb));
   --dyn-avatar-focus-ring-width: var(--dyn-border-width-thick, var(--legacy-border-width-thick, 2px));
   --dyn-avatar-focus-ring-offset: var(--dyn-spacing-1, var(--legacy-spacing-1, 2px));
-  
+
   /* ===== LOADING SPINNER TOKENS ===== */
   --dyn-avatar-spinner-color: var(--dyn-color-primary-600, var(--legacy-color-primary, #2563eb));
   --dyn-avatar-spinner-width: var(--dyn-border-width-default, var(--legacy-border-width, 2px));
   --dyn-avatar-spinner-size: 50%;
-  
+
   /* ===== TRANSITION TOKENS ===== */
   --dyn-avatar-transition-duration: var(--dyn-transition-duration, var(--legacy-transition-duration, 180ms));
   --dyn-avatar-transition-timing: var(--dyn-transition-timing, var(--legacy-transition-timing, ease));
-  
+
   /* ===== TRANSFORM TOKENS ===== */
   --dyn-avatar-scale-hover: 1.05;
   --dyn-avatar-scale-active: 0.98;
-  
+
   /* ===== Z-INDEX TOKENS ===== */
   --dyn-avatar-z-index-badge: var(--dyn-z-index-elevated, var(--legacy-z-index-badge, 1));
   --dyn-avatar-z-index-spinner: var(--dyn-z-index-elevated, var(--legacy-z-index-elevated, 10));
@@ -131,7 +131,7 @@
   overflow: hidden;
   user-select: none;
   flex-shrink: 0;
-  transition: 
+  transition:
     background-color var(--dyn-avatar-transition-duration) var(--dyn-avatar-transition-timing),
     border-color var(--dyn-avatar-transition-duration) var(--dyn-avatar-transition-timing),
     transform var(--dyn-avatar-transition-duration) var(--dyn-avatar-transition-timing);
@@ -374,6 +374,12 @@
   z-index: var(--dyn-avatar-z-index-badge);
 }
 
+/* Custom badge styling with shadow ring for visual separation */
+.customBadge {
+  box-shadow: 0 0 0 2px var(--dyn-color-background,
+      var(--color-background, #ffffff));
+}
+
 /* Responsive badge sizes */
 .xs .badge {
   min-width: var(--dyn-spacing-3, var(--legacy-spacing-3, 14px));
@@ -408,6 +414,7 @@
    ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
+
   .container,
   .image,
   .initials {
@@ -472,6 +479,11 @@
     border-color: var(--dyn-color-danger-400, var(--legacy-color-danger-dark, #ef4444));
     background-color: rgba(239, 68, 68, 0.15);
   }
+
+  .customBadge {
+    box-shadow: 0 0 0 2px var(--dyn-color-surface-dark,
+        var(--color-surface-dark, #1e293b));
+  }
 }
 
 /* ============================================
@@ -480,6 +492,7 @@
    ============================================ */
 
 @media (max-width: 640px) {
+
   /* Scale down larger avatars on mobile */
   .xl {
     width: var(--dyn-avatar-size-lg);

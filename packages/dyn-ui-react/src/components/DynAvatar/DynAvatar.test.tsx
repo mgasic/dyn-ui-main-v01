@@ -77,7 +77,7 @@ describe('DynAvatar', () => {
     });
 
     it('has proper role when interactive', () => {
-      render(<DynAvatar alt="Profile picture" onClick={() => {}} />);
+      render(<DynAvatar alt="Profile picture" onClick={() => { }} />);
       expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Avatar for Profile picture');
     });
 
@@ -156,14 +156,14 @@ describe('DynAvatar', () => {
     });
 
     it('has proper focus indicators', () => {
-      render(<DynAvatar alt="Focusable" onClick={() => {}} />);
+      render(<DynAvatar alt="Focusable" onClick={() => { }} />);
       const avatar = screen.getByRole('button');
       avatar.focus();
       expect(avatar).toHaveFocus();
     });
 
     it('has proper tabIndex for interactive avatars', () => {
-      render(<DynAvatar alt="Interactive" onClick={() => {}} />);
+      render(<DynAvatar alt="Interactive" onClick={() => { }} />);
       expect(screen.getByRole('button')).toHaveAttribute('tabIndex', '0');
     });
 
@@ -354,6 +354,138 @@ describe('DynAvatar', () => {
     it('forwards additional props', () => {
       render(<DynAvatar alt="Test" data-custom="value" />);
       expect(screen.getByRole('img')).toHaveAttribute('data-custom', 'value');
+    });
+  });
+
+  describe('Badge Prop', () => {
+    it('renders simple badge content (number)', () => {
+      render(<DynAvatar alt="User" badge={5} />);
+      expect(screen.getByTestId('dyn-avatar-badge')).toBeInTheDocument();
+      expect(screen.getByText('5')).toBeInTheDocument();
+    });
+
+    it('renders simple badge content (string)', () => {
+      render(<DynAvatar alt="User" badge="New" />);
+      expect(screen.getByTestId('dyn-avatar-badge')).toBeInTheDocument();
+      expect(screen.getByText('New')).toBeInTheDocument();
+    });
+
+    it('renders badge with DynBadge config object', () => {
+      render(
+        <DynAvatar
+          alt="User"
+          badge={{ content: '99+', color: 'danger', variant: 'solid' }}
+        />
+      );
+      expect(screen.getByTestId('dyn-avatar-badge')).toBeInTheDocument();
+      expect(screen.getByText('99+')).toBeInTheDocument();
+    });
+
+    it('renders custom React element as badge', () => {
+      render(
+        <DynAvatar
+          alt="User"
+          badge={<span data-testid="custom-badge-element">✓</span>}
+        />
+      );
+      expect(screen.getByTestId('dyn-avatar-badge')).toBeInTheDocument();
+      expect(screen.getByTestId('custom-badge-element')).toBeInTheDocument();
+    });
+
+    it('does not render badge when badge prop is undefined', () => {
+      render(<DynAvatar alt="User" />);
+      expect(screen.queryByTestId('dyn-avatar-badge')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('loadTimeout and onImageError Props', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('uses custom loadTimeout', async () => {
+      const onImageError = vi.fn();
+      render(
+        <DynAvatar
+          src="slow-loading.jpg"
+          alt="Test"
+          loadTimeout={5000}
+          onImageError={onImageError}
+        />
+      );
+
+      // Advance time less than timeout - should not trigger error
+      vi.advanceTimersByTime(4000);
+      expect(onImageError).not.toHaveBeenCalled();
+
+      // Advance past timeout - should trigger error
+      vi.advanceTimersByTime(2000);
+      expect(onImageError).toHaveBeenCalledWith({ type: 'timeout' });
+    });
+
+    it('calls onImageError on image load failure', async () => {
+      const onImageError = vi.fn();
+      render(
+        <DynAvatar
+          src="invalid.jpg"
+          alt="Test"
+          onImageError={onImageError}
+        />
+      );
+
+      const img = getImageElement();
+      fireEvent.error(img);
+
+      await waitFor(() => {
+        expect(onImageError).toHaveBeenCalled();
+      });
+    });
+
+    it('clears timeout on successful image load', async () => {
+      const onImageError = vi.fn();
+      render(
+        <DynAvatar
+          src="valid.jpg"
+          alt="Test"
+          loadTimeout={5000}
+          onImageError={onImageError}
+        />
+      );
+
+      const img = getImageElement();
+
+      // Simulate successful load before timeout
+      vi.advanceTimersByTime(2000);
+      fireEvent.load(img);
+
+      // Advance past original timeout
+      vi.advanceTimersByTime(5000);
+
+      // Should not have called error handler since image loaded successfully
+      expect(onImageError).not.toHaveBeenCalled();
+    });
+
+    it('defaults to 10000ms timeout when loadTimeout not specified', async () => {
+      const onImageError = vi.fn();
+      render(
+        <DynAvatar
+          src="slow.jpg"
+          alt="Test"
+          onImageError={onImageError}
+        />
+      );
+
+      // At 9.9 seconds, should not trigger
+      vi.advanceTimersByTime(9900);
+      expect(onImageError).not.toHaveBeenCalled();
+
+      // At 10+ seconds, should trigger
+      vi.advanceTimersByTime(200);
+      expect(onImageError).toHaveBeenCalledWith({ type: 'timeout' });
     });
   });
 });

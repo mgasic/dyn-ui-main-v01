@@ -1,213 +1,89 @@
-/* ==========================================================================
-   DynFieldContainer Component Styles
-   Standardized with design tokens
-   ========================================================================== */
-
-:root {
+.container {
   /* Color Tokens */
-  --dyn-field-container-label-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  --dyn-field-container-label-text-error: var(--dyn-color-error, var(--color-error, #ef4444));
-  --dyn-field-container-help-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
-  --dyn-field-container-required-text: var(--dyn-color-error, var(--color-error, #ef4444));
-  --dyn-field-container-optional-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
-  --dyn-field-container-error-text: var(--dyn-color-error, var(--color-error, #ef4444));
+  --dyn-field-container-label-text: var(--dyn-neutral-dark-900, #111827);
+  --dyn-field-container-label-text-error: var(--dyn-feedback-negative-default, #f44336);
+  --dyn-field-container-help-text: var(--dyn-neutral-mid-400, #666666);
+  --dyn-field-container-required-text: var(--dyn-feedback-negative-default, #f44336);
+  --dyn-field-container-optional-text: var(--dyn-neutral-mid-400, #666666);
+  --dyn-field-container-error-text: var(--dyn-feedback-negative-default, #f44336);
 
   /* Typography Tokens */
-  --dyn-field-container-label-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-field-container-label-font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
-  --dyn-field-container-help-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-field-container-required-font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
-  --dyn-field-container-optional-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-field-container-optional-font-style: italic;
-  --dyn-field-container-error-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-field-container-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.4));
+  --dyn-field-container-label-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-field-container-label-font-weight: var(--dyn-font-weight-medium, 500);
+  --dyn-field-container-help-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-field-container-error-font-size: var(--dyn-font-size-sm, 14px);
 
   /* Spacing Tokens */
-  --dyn-field-container-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-field-container-margin-bottom: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-field-container-label-margin-bottom: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-field-container-feedback-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-field-container-indicator-margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-field-container-error-margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-field-container-help-margin-top: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  --dyn-field-container-gap: var(--dyn-spacing-xs, 4px);
+  --dyn-field-container-margin-bottom: var(--dyn-spacing-md, 16px);
+  --dyn-field-container-label-margin-bottom: var(--dyn-spacing-xs, 4px);
 
   /* Transition */
-  --dyn-field-container-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
+  --dyn-field-container-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
 
-/* ========================================================================
-   Container
-   ======================================================================== */
-
-.container {
   display: flex;
   flex-direction: column;
   gap: var(--dyn-field-container-gap);
   margin-bottom: var(--dyn-field-container-margin-bottom);
 }
 
-/* ========================================================================
-   Error State
-   ======================================================================== */
-
 .containerError .label {
   color: var(--dyn-field-container-label-text-error);
   transition: color var(--dyn-field-container-transition);
 }
-
-/* ========================================================================
-   Required State
-   ======================================================================== */
-
-.containerRequired .required {
-  color: var(--dyn-field-container-required-text);
-  margin-left: var(--dyn-field-container-indicator-margin-left);
-  font-weight: var(--dyn-field-container-required-font-weight);
-  display: inline-block;
-}
-
-/* ========================================================================
-   Optional State
-   ======================================================================== */
-
-.containerOptional .optional {
-  color: var(--dyn-field-container-optional-text);
-  margin-left: var(--dyn-field-container-indicator-margin-left);
-  font-size: var(--dyn-field-container-optional-font-size);
-  font-style: var(--dyn-field-container-optional-font-style);
-  display: inline-block;
-}
-
-/* ========================================================================
-   Label
-   ======================================================================== */
 
 .label {
   font-size: var(--dyn-field-container-label-font-size);
   font-weight: var(--dyn-field-container-label-font-weight);
   color: var(--dyn-field-container-label-text);
   margin-bottom: var(--dyn-field-container-label-margin-bottom);
-  line-height: var(--dyn-field-container-line-height);
+  line-height: 1.4;
   transition: color var(--dyn-field-container-transition);
 }
-
-/* ========================================================================
-   Feedback (Error and Help)
-   ======================================================================== */
 
 .feedback {
   display: flex;
   flex-direction: column;
-  gap: var(--dyn-field-container-feedback-gap);
+  gap: var(--dyn-field-container-gap);
 }
-
-/* ========================================================================
-   Error Message
-   ======================================================================== */
 
 .error {
   font-size: var(--dyn-field-container-error-font-size);
   color: var(--dyn-field-container-error-text);
-  line-height: var(--dyn-field-container-line-height);
-  margin-top: var(--dyn-field-container-error-margin-top);
+  line-height: 1.4;
+  margin-top: var(--dyn-field-container-gap);
   display: flex;
-  align-items: flex-start;
-  gap: var(--dyn-field-container-indicator-margin-left);
-}
-
-.error::before {
-  content: '⚠';
-  display: inline-flex;
   align-items: center;
-  flex-shrink: 0;
-  margin-right: var(--dyn-field-container-indicator-margin-left);
+  gap: 4px;
 }
-
-/* ========================================================================
-   Help Text
-   ======================================================================== */
 
 .help {
   font-size: var(--dyn-field-container-help-font-size);
   color: var(--dyn-field-container-help-text);
-  line-height: var(--dyn-field-container-line-height);
-  margin-top: var(--dyn-field-container-help-margin-top);
+  line-height: 1.4;
+  margin-top: var(--dyn-field-container-gap);
 }
-
-/* ========================================================================
-   Required Indicator
-   ======================================================================== */
 
 .required {
   display: inline-block;
   color: var(--dyn-field-container-required-text);
-  font-weight: var(--dyn-field-container-required-font-weight);
+  font-weight: 600;
+  margin-left: 2px;
 }
-
-/* ========================================================================
-   Optional Indicator
-   ======================================================================== */
 
 .optional {
   display: inline-block;
   color: var(--dyn-field-container-optional-text);
-  font-style: var(--dyn-field-container-optional-font-style);
+  font-style: italic;
+  font-size: 0.9em;
+  margin-left: 4px;
 }
 
-/* ========================================================================
-   Accessibility: High Contrast Mode
-   ======================================================================== */
-
-@media (prefers-contrast: more) {
-  .label {
-    font-weight: var(--dyn-font-weight-bold, var(--font-weight-bold, 700));
-  }
-
-  .error {
-    border-left: 2px solid var(--dyn-field-container-error-text);
-    padding-left: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  }
-}
-
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .label,
-  .containerError .label {
-    transition: none;
-  }
-}
-
-/* ========================================================================
-   Dark Mode Support
-   ======================================================================== */
-
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-field-container-label-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-    --dyn-field-container-label-text-error: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
-    --dyn-field-container-help-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-field-container-optional-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-field-container-error-text: var(--dyn-color-error-dark, var(--color-error-dark, #dc2626));
-  }
-}
-
-/* ========================================================================
-   Responsive Design: Mobile
-   ======================================================================== */
-
-@media (max-width: 767px) {
   .container {
-    margin-bottom: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
-  }
-
-  .label {
-    font-size: var(--dyn-field-container-label-font-size);
-  }
-
-  .feedback {
-    gap: var(--dyn-spacing-xs, var(--spacing-xs, 6px));
+    --dyn-field-container-label-text: var(--dyn-neutral-light-100, #f3f4f6);
+    --dyn-field-container-help-text: var(--dyn-neutral-mid-400, #9ca3af);
+    --dyn-field-container-error-text: var(--dyn-feedback-negative-default, #ef4444);
   }
 }

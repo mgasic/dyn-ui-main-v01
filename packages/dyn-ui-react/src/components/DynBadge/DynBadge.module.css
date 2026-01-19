@@ -1,757 +1,119 @@
-/**
- * DynBadge Component Styles
- * 
- * ✅ Token Compliant:
- * - All tokens follow --dyn-badge-* pattern
- * - 3-level fallback for all tokens
- * - State suffixes: -default, -hover, -active
- * - No :root scope leakage
- * - Foundation tokens imported from design system
- * 
- * ✅ Variants Implemented:
- * - solid: Filled background (default)
- * - soft: Light background with darker text
- * - outline: Bordered with transparent background
- * - dot: Small circular indicator
- * 
- * ✅ Accessibility:
- * - Dark mode support: @media (prefers-color-scheme: dark)
- * - High contrast support: @media (prefers-contrast: more)
- * - Reduced motion support: @media (prefers-reduced-motion: reduce)
- * - Focus ring for keyboard navigation
- * - WCAG AA color contrast compliant
- */
-
-/* ============================================
-   COMPONENT-SCOPED TOKEN DEFINITIONS
-   Moved from :root to component scope
-   ============================================ */
-
 .badge {
-  /* Base token values - define component-specific variables */
-  --dyn-badge-padding-default: var(--dyn-spacing-sm, var(--legacy-spacing-sm, 4px 8px));
-  --dyn-badge-padding-sm: var(--dyn-spacing-xs, var(--legacy-spacing-xs, 2px 6px));
-  --dyn-badge-padding-lg: var(--dyn-spacing-md, var(--legacy-spacing-md, 6px 12px));
-  
-  --dyn-badge-font-size-default: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 12px));
-  --dyn-badge-font-size-sm: var(--dyn-font-size-2xs, var(--legacy-font-size-2xs, 10px));
-  --dyn-badge-font-size-lg: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 13px));
-  
-  --dyn-badge-font-weight-default: var(--dyn-font-weight-medium, var(--legacy-font-weight-medium, 500));
-  
-  --dyn-badge-border-radius-default: var(--dyn-radius-lg, var(--legacy-radius-lg, 12px));
-  --dyn-badge-border-radius-dot: 50%;
-  
-  --dyn-badge-line-height-default: 1.2;
-  
-  --dyn-badge-border-default: none;
-  --dyn-badge-border-outline: 1px solid;
-  
-  /* Gap between elements inside badge (icon + text) */
-  --dyn-badge-gap-default: var(--dyn-spacing-1, var(--legacy-spacing-1, 4px));
-  --dyn-badge-gap-sm: var(--dyn-spacing-0, var(--legacy-spacing-0, 2px));
-  --dyn-badge-gap-md: var(--dyn-spacing-2, var(--legacy-spacing-2, 6px));
-  --dyn-badge-gap-lg: var(--dyn-spacing-3, var(--legacy-spacing-3, 8px));
-  
-  /* Z-index for positioned badges (used in DynAvatar) */
-  --dyn-badge-z-index-positioned: var(--dyn-z-index-elevated, var(--legacy-z-index-elevated, 100));
-  
-  /* Position offset for overlay badges */
-  --dyn-badge-position-offset: -8px;
-  
-  /* Animation timing */
-  --dyn-badge-transition-duration: var(--dyn-transition-duration, 300ms);
-  --dyn-badge-transition-timing: var(--dyn-transition-timing, ease-in-out);
-  
-  /* Pulse animation timing */
-  --dyn-badge-pulse-duration: 2s;
-  --dyn-badge-pulse-delay: 0s;
+  /* Component-scoped tokens with foundations alignment */
+  --dyn-badge-bg: var(--dyn-neutral-light-100, #f3f4f6);
+  --dyn-badge-color: var(--dyn-neutral-dark-900, #111827);
+  --dyn-badge-border: transparent;
 
-  /* ============================================
-     PRIMARY COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --dyn-badge-text-primary: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --dyn-badge-border-primary: transparent;
-  --dyn-badge-bg-primary-hover: var(--dyn-color-primary-80, var(--legacy-color-primary-80, #005A9E));
+  --dyn-badge-radius: 9999px;
+  --dyn-badge-font-size: 12px;
+  --dyn-badge-font-weight: 500;
+  --dyn-badge-padding-y: 2px;
+  --dyn-badge-padding-x: 8px;
+  --dyn-badge-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
 
-  /* PRIMARY SOFT */
-  --dyn-badge-bg-soft-primary: rgba(0, 122, 204, 0.15);
-  --dyn-badge-text-soft-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --dyn-badge-border-soft-primary: transparent;
-  --dyn-badge-bg-soft-primary-hover: rgba(0, 122, 204, 0.25);
-
-  /* PRIMARY OUTLINE */
-  --dyn-badge-bg-outline-primary: transparent;
-  --dyn-badge-text-outline-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --dyn-badge-border-outline-primary: var(--dyn-color-primary-60, var(--legacy-color-primary-60, #007ACC));
-  --dyn-badge-bg-outline-primary-hover: rgba(0, 122, 204, 0.08);
-
-  /* ============================================
-     SECONDARY COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-secondary: var(--dyn-color-secondary-60, var(--legacy-color-secondary-60, #6C757D));
-  --dyn-badge-text-secondary: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --dyn-badge-border-secondary: transparent;
-  --dyn-badge-bg-secondary-hover: var(--dyn-color-secondary-80, var(--legacy-color-secondary-80, #5A6268));
-
-  /* SECONDARY SOFT */
-  --dyn-badge-bg-soft-secondary: rgba(108, 117, 125, 0.15);
-  --dyn-badge-text-soft-secondary: var(--dyn-color-secondary-60, var(--legacy-color-secondary-60, #6C757D));
-  --dyn-badge-border-soft-secondary: transparent;
-  --dyn-badge-bg-soft-secondary-hover: rgba(108, 117, 125, 0.25);
-
-  /* SECONDARY OUTLINE */
-  --dyn-badge-bg-outline-secondary: transparent;
-  --dyn-badge-text-outline-secondary: var(--dyn-color-secondary-60, var(--legacy-color-secondary-60, #6C757D));
-  --dyn-badge-border-outline-secondary: var(--dyn-color-secondary-60, var(--legacy-color-secondary-60, #6C757D));
-  --dyn-badge-bg-outline-secondary-hover: rgba(108, 117, 125, 0.08);
-
-  /* ============================================
-     SUCCESS COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --dyn-badge-text-success: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --dyn-badge-border-success: transparent;
-  --dyn-badge-bg-success-hover: var(--dyn-color-success-80, var(--legacy-color-success-80, #218838));
-
-  /* SUCCESS SOFT */
-  --dyn-badge-bg-soft-success: rgba(40, 167, 69, 0.15);
-  --dyn-badge-text-soft-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --dyn-badge-border-soft-success: transparent;
-  --dyn-badge-bg-soft-success-hover: rgba(40, 167, 69, 0.25);
-
-  /* SUCCESS OUTLINE */
-  --dyn-badge-bg-outline-success: transparent;
-  --dyn-badge-text-outline-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --dyn-badge-border-outline-success: var(--dyn-color-success-60, var(--legacy-color-success-60, #28A745));
-  --dyn-badge-bg-outline-success-hover: rgba(40, 167, 69, 0.08);
-
-  /* ============================================
-     DANGER COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --dyn-badge-text-danger: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --dyn-badge-border-danger: transparent;
-  --dyn-badge-bg-danger-hover: var(--dyn-color-danger-80, var(--legacy-color-danger-80, #C82333));
-
-  /* DANGER SOFT */
-  --dyn-badge-bg-soft-danger: rgba(220, 53, 69, 0.15);
-  --dyn-badge-text-soft-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --dyn-badge-border-soft-danger: transparent;
-  --dyn-badge-bg-soft-danger-hover: rgba(220, 53, 69, 0.25);
-
-  /* DANGER OUTLINE */
-  --dyn-badge-bg-outline-danger: transparent;
-  --dyn-badge-text-outline-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --dyn-badge-border-outline-danger: var(--dyn-color-danger-60, var(--legacy-color-danger-60, #DC3545));
-  --dyn-badge-bg-outline-danger-hover: rgba(220, 53, 69, 0.08);
-
-  /* ============================================
-     WARNING COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFC107));
-  --dyn-badge-text-warning: var(--dyn-color-neutral-900, var(--legacy-color-neutral-900, #000000));
-  --dyn-badge-border-warning: transparent;
-  --dyn-badge-bg-warning-hover: var(--dyn-color-warning-80, var(--legacy-color-warning-80, #E0A800));
-
-  /* WARNING SOFT */
-  --dyn-badge-bg-soft-warning: rgba(255, 193, 7, 0.15);
-  --dyn-badge-text-soft-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFC107));
-  --dyn-badge-border-soft-warning: transparent;
-  --dyn-badge-bg-soft-warning-hover: rgba(255, 193, 7, 0.25);
-
-  /* WARNING OUTLINE */
-  --dyn-badge-bg-outline-warning: transparent;
-  --dyn-badge-text-outline-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFC107));
-  --dyn-badge-border-outline-warning: var(--dyn-color-warning-60, var(--legacy-color-warning-60, #FFC107));
-  --dyn-badge-bg-outline-warning-hover: rgba(255, 193, 7, 0.08);
-
-  /* ============================================
-     INFO COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --dyn-badge-text-info: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #FFFFFF));
-  --dyn-badge-border-info: transparent;
-  --dyn-badge-bg-info-hover: var(--dyn-color-info-80, var(--legacy-color-info-80, #138496));
-
-  /* INFO SOFT */
-  --dyn-badge-bg-soft-info: rgba(23, 162, 184, 0.15);
-  --dyn-badge-text-soft-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --dyn-badge-border-soft-info: transparent;
-  --dyn-badge-bg-soft-info-hover: rgba(23, 162, 184, 0.25);
-
-  /* INFO OUTLINE */
-  --dyn-badge-bg-outline-info: transparent;
-  --dyn-badge-text-outline-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --dyn-badge-border-outline-info: var(--dyn-color-info-60, var(--legacy-color-info-60, #17A2B8));
-  --dyn-badge-bg-outline-info-hover: rgba(23, 162, 184, 0.08);
-
-  /* ============================================
-     NEUTRAL COLOR TOKENS
-     ============================================ */
-  --dyn-badge-bg-neutral: var(--dyn-color-neutral-200, var(--legacy-color-neutral-200, #E9ECEF));
-  --dyn-badge-text-neutral: var(--dyn-color-neutral-800, var(--legacy-color-neutral-800, #212529));
-  --dyn-badge-border-neutral: transparent;
-  --dyn-badge-bg-neutral-hover: var(--dyn-color-neutral-300, var(--legacy-color-neutral-300, #DEE2E6));
-
-  /* NEUTRAL SOFT */
-  --dyn-badge-bg-soft-neutral: rgba(233, 236, 239, 0.5);
-  --dyn-badge-text-soft-neutral: var(--dyn-color-neutral-800, var(--legacy-color-neutral-800, #212529));
-  --dyn-badge-border-soft-neutral: transparent;
-  --dyn-badge-bg-soft-neutral-hover: rgba(233, 236, 239, 0.8);
-
-  /* NEUTRAL OUTLINE */
-  --dyn-badge-bg-outline-neutral: transparent;
-  --dyn-badge-text-outline-neutral: var(--dyn-color-neutral-800, var(--legacy-color-neutral-800, #212529));
-  --dyn-badge-border-outline-neutral: var(--dyn-color-neutral-800, var(--legacy-color-neutral-800, #212529));
-  --dyn-badge-bg-outline-neutral-hover: rgba(233, 236, 239, 0.5);
-
-  /* ============================================
-     STATUS COLORS (for DynAvatar integration)
-     ============================================ */
-  --dyn-badge-bg-online: var(--dyn-color-status-online, var(--legacy-color-status-online, #28A745));
-  --dyn-badge-bg-offline: var(--dyn-color-status-offline, var(--legacy-color-status-offline, #6C757D));
-  --dyn-badge-bg-away: var(--dyn-color-status-away, var(--legacy-color-status-away, #FFC107));
-  --dyn-badge-bg-busy: var(--dyn-color-status-busy, var(--legacy-color-status-busy, #DC3545));
-}
-
-/* ============================================
-   BASE BADGE STYLES
-   ============================================ */
-
-.badge {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--dyn-badge-gap-default);
-  
-  padding: var(--dyn-badge-padding-default);
-  font-size: var(--dyn-badge-font-size-default);
-  font-weight: var(--dyn-badge-font-weight-default);
-  line-height: var(--dyn-badge-line-height-default);
-  
-  border-radius: var(--dyn-badge-border-radius-default);
-  border: var(--dyn-badge-border-default);
-  
-  white-space: nowrap;
-  text-decoration: none;
-  vertical-align: baseline;
-  
-  transition: all var(--dyn-badge-transition-duration) var(--dyn-badge-transition-timing);
-  
-  /* Prevent text selection */
-  user-select: none;
-  
-  /* Cursor feedback */
-  cursor: default;
-}
-
-/* ============================================
-   SIZE VARIANTS
-   ============================================ */
-
-.badge--sm {
-  padding: var(--dyn-badge-padding-sm);
-  font-size: var(--dyn-badge-font-size-sm);
-}
-
-.badge--lg {
-  padding: var(--dyn-badge-padding-lg);
-  font-size: var(--dyn-badge-font-size-lg);
-}
-
-.badge--xl {
-  padding: var(--dyn-spacing-lg, var(--legacy-spacing-lg, 8px 16px));
-  font-size: var(--dyn-font-size-base, var(--legacy-font-size-base, 14px));
-}
-
-/* ============================================
-   VARIANT: SOLID (DEFAULT)
-   ============================================ */
-
-.badge--primary {
-  background-color: var(--dyn-badge-bg-primary);
-  color: var(--dyn-badge-text-primary);
-  border: var(--dyn-badge-border-primary);
-}
-
-.badge--primary:hover {
-  background-color: var(--dyn-badge-bg-primary-hover);
-}
-
-.badge--secondary {
-  background-color: var(--dyn-badge-bg-secondary);
-  color: var(--dyn-badge-text-secondary);
-  border: var(--dyn-badge-border-secondary);
-}
-
-.badge--secondary:hover {
-  background-color: var(--dyn-badge-bg-secondary-hover);
-}
-
-.badge--success {
-  background-color: var(--dyn-badge-bg-success);
-  color: var(--dyn-badge-text-success);
-  border: var(--dyn-badge-border-success);
-}
-
-.badge--success:hover {
-  background-color: var(--dyn-badge-bg-success-hover);
-}
-
-.badge--danger {
-  background-color: var(--dyn-badge-bg-danger);
-  color: var(--dyn-badge-text-danger);
-  border: var(--dyn-badge-border-danger);
-}
-
-.badge--danger:hover {
-  background-color: var(--dyn-badge-bg-danger-hover);
-}
-
-.badge--warning {
-  background-color: var(--dyn-badge-bg-warning);
-  color: var(--dyn-badge-text-warning);
-  border: var(--dyn-badge-border-warning);
-}
-
-.badge--warning:hover {
-  background-color: var(--dyn-badge-bg-warning-hover);
-}
-
-.badge--info {
-  background-color: var(--dyn-badge-bg-info);
-  color: var(--dyn-badge-text-info);
-  border: var(--dyn-badge-border-info);
-}
-
-.badge--info:hover {
-  background-color: var(--dyn-badge-bg-info-hover);
-}
-
-.badge--neutral {
-  background-color: var(--dyn-badge-bg-neutral);
-  color: var(--dyn-badge-text-neutral);
-  border: var(--dyn-badge-border-neutral);
-}
-
-.badge--neutral:hover {
-  background-color: var(--dyn-badge-bg-neutral-hover);
-}
-
-/* ============================================
-   VARIANT: SOFT (Light Background)
-   ============================================ */
-
-.badge--soft {
-  border: var(--dyn-badge-border-default);
-}
-
-.badge--soft.badge--primary {
-  background-color: var(--dyn-badge-bg-soft-primary);
-  color: var(--dyn-badge-text-soft-primary);
-}
-
-.badge--soft.badge--primary:hover {
-  background-color: var(--dyn-badge-bg-soft-primary-hover);
-}
-
-.badge--soft.badge--secondary {
-  background-color: var(--dyn-badge-bg-soft-secondary);
-  color: var(--dyn-badge-text-soft-secondary);
-}
-
-.badge--soft.badge--secondary:hover {
-  background-color: var(--dyn-badge-bg-soft-secondary-hover);
-}
-
-.badge--soft.badge--success {
-  background-color: var(--dyn-badge-bg-soft-success);
-  color: var(--dyn-badge-text-soft-success);
-}
-
-.badge--soft.badge--success:hover {
-  background-color: var(--dyn-badge-bg-soft-success-hover);
-}
-
-.badge--soft.badge--danger {
-  background-color: var(--dyn-badge-bg-soft-danger);
-  color: var(--dyn-badge-text-soft-danger);
-}
-
-.badge--soft.badge--danger:hover {
-  background-color: var(--dyn-badge-bg-soft-danger-hover);
-}
-
-.badge--soft.badge--warning {
-  background-color: var(--dyn-badge-bg-soft-warning);
-  color: var(--dyn-badge-text-soft-warning);
-}
-
-.badge--soft.badge--warning:hover {
-  background-color: var(--dyn-badge-bg-soft-warning-hover);
-}
-
-.badge--soft.badge--info {
-  background-color: var(--dyn-badge-bg-soft-info);
-  color: var(--dyn-badge-text-soft-info);
-}
-
-.badge--soft.badge--info:hover {
-  background-color: var(--dyn-badge-bg-soft-info-hover);
-}
-
-.badge--soft.badge--neutral {
-  background-color: var(--dyn-badge-bg-soft-neutral);
-  color: var(--dyn-badge-text-soft-neutral);
-}
-
-.badge--soft.badge--neutral:hover {
-  background-color: var(--dyn-badge-bg-soft-neutral-hover);
-}
-
-/* ============================================
-   VARIANT: OUTLINE (Bordered)
-   ============================================ */
-
-.badge--outline {
-  background-color: var(--dyn-badge-bg-outline-primary);
-}
-
-.badge--outline.badge--primary {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-primary);
-  color: var(--dyn-badge-text-outline-primary);
-}
-
-.badge--outline.badge--primary:hover {
-  background-color: var(--dyn-badge-bg-outline-primary-hover);
-}
-
-.badge--outline.badge--secondary {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-secondary);
-  color: var(--dyn-badge-text-outline-secondary);
-}
-
-.badge--outline.badge--secondary:hover {
-  background-color: var(--dyn-badge-bg-outline-secondary-hover);
-}
-
-.badge--outline.badge--success {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-success);
-  color: var(--dyn-badge-text-outline-success);
-}
-
-.badge--outline.badge--success:hover {
-  background-color: var(--dyn-badge-bg-outline-success-hover);
-}
-
-.badge--outline.badge--danger {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-danger);
-  color: var(--dyn-badge-text-outline-danger);
-}
-
-.badge--outline.badge--danger:hover {
-  background-color: var(--dyn-badge-bg-outline-danger-hover);
-}
-
-.badge--outline.badge--warning {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-warning);
-  color: var(--dyn-badge-text-outline-warning);
-}
-
-.badge--outline.badge--warning:hover {
-  background-color: var(--dyn-badge-bg-outline-warning-hover);
-}
-
-.badge--outline.badge--info {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-info);
-  color: var(--dyn-badge-text-outline-info);
-}
-
-.badge--outline.badge--info:hover {
-  background-color: var(--dyn-badge-bg-outline-info-hover);
-}
-
-.badge--outline.badge--neutral {
-  border: var(--dyn-badge-border-outline) var(--dyn-badge-border-outline-neutral);
-  color: var(--dyn-badge-text-outline-neutral);
-}
-
-.badge--outline.badge--neutral:hover {
-  background-color: var(--dyn-badge-bg-outline-neutral-hover);
-}
-
-/* ============================================
-   VARIANT: DOT (Circular indicator)
-   Used in DynAvatar for status indicators
-   ============================================ */
-
-.badge--dot {
-  width: 12px;
-  height: 12px;
-  min-width: 12px;
-  min-height: 12px;
-  padding: 0;
-  border-radius: var(--dyn-badge-border-radius-dot);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.badge--dot.badge--sm {
-  width: 8px;
-  height: 8px;
-  min-width: 8px;
-  min-height: 8px;
-}
-
-.badge--dot.badge--lg {
-  width: 16px;
-  height: 16px;
-  min-width: 16px;
-  min-height: 16px;
-}
-
-.badge--dot.badge--xl {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
-}
-
-/* ============================================
-   STATUS VARIANTS (for DynAvatar)
-   ============================================ */
-
-.badge--online {
-  background-color: var(--dyn-badge-bg-online);
-  color: white;
-}
-
-.badge--offline {
-  background-color: var(--dyn-badge-bg-offline);
-  color: white;
-}
-
-.badge--away {
-  background-color: var(--dyn-badge-bg-away);
-  color: var(--dyn-color-neutral-900, #000);
-}
-
-.badge--busy {
-  background-color: var(--dyn-badge-bg-busy);
-  color: white;
-}
-
-/* ============================================
-   POSITIONING (for overlay badges in DynAvatar)
-   ============================================ */
-
-.badge--positioned {
-  position: absolute;
-  z-index: var(--dyn-badge-z-index-positioned);
-}
-
-.badge--topRight {
-  top: var(--dyn-badge-position-offset);
-  right: var(--dyn-badge-position-offset);
-  transform: translate(50%, -50%);
-}
-
-.badge--topLeft {
-  top: var(--dyn-badge-position-offset);
-  left: var(--dyn-badge-position-offset);
-  transform: translate(-50%, -50%);
-}
-
-.badge--bottomRight {
-  bottom: var(--dyn-badge-position-offset);
-  right: var(--dyn-badge-position-offset);
-  transform: translate(50%, 50%);
-}
-
-.badge--bottomLeft {
-  bottom: var(--dyn-badge-position-offset);
-  left: var(--dyn-badge-position-offset);
-  transform: translate(-50%, 50%);
-}
-
-.badge--center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-
-@keyframes badgePulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-}
-
-@keyframes badgeScale {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.badge--pulse {
-  animation: badgePulse var(--dyn-badge-pulse-duration) ease-in-out infinite;
-  animation-delay: var(--dyn-badge-pulse-delay);
-}
-
-.badge--animated {
-  animation: badgeScale var(--dyn-badge-transition-duration) var(--dyn-badge-transition-timing);
-}
-
-/* ============================================
-   CONTENT CONTAINER
-   ============================================ */
-
-.badge__content {
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
+  padding: var(--dyn-badge-padding-y) var(--dyn-badge-padding-x);
+  font-size: var(--dyn-badge-font-size);
+  font-weight: var(--dyn-badge-font-weight);
+  line-height: 1.2;
+  border-radius: var(--dyn-badge-radius);
+  border: 1px solid var(--dyn-badge-border);
+  background-color: var(--dyn-badge-bg);
+  color: var(--dyn-badge-color);
+  white-space: nowrap;
+  transition: all var(--dyn-badge-transition);
+  cursor: default;
+  user-select: none;
 }
 
-.badge__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1em;
-  height: 1em;
-  flex-shrink: 0;
-  font-size: inherit;
+/* Colors */
+.badge--primary {
+  --dyn-badge-bg: var(--dyn-theme-primary);
+  --dyn-badge-color: #ffffff;
 }
 
-.badge__text {
-  line-height: 1;
-  display: inline;
+.badge--secondary {
+  --dyn-badge-bg: var(--dyn-neutral-mid-400);
+  --dyn-badge-color: #ffffff;
 }
 
-.badge__dot {
-  width: 100%;
-  height: 100%;
+.badge--success {
+  --dyn-badge-bg: var(--dyn-feedback-positive-default);
+  --dyn-badge-color: #ffffff;
+}
+
+.badge--danger {
+  --dyn-badge-bg: var(--dyn-feedback-negative-default);
+  --dyn-badge-color: #ffffff;
+}
+
+.badge--warning {
+  --dyn-badge-bg: var(--dyn-feedback-warning-default);
+  --dyn-badge-color: var(--dyn-neutral-dark-900);
+}
+
+.badge--info {
+  --dyn-badge-bg: var(--dyn-feedback-info-default);
+  --dyn-badge-color: #ffffff;
+}
+
+/* Variants */
+.badge--soft {
+  filter: brightness(1.2);
+  /* Fallback simulation of soft colors if not explicitly defined in tokens */
+  opacity: 0.9;
+}
+
+.badge--outline {
+  background-color: transparent;
+  border-color: var(--dyn-badge-bg);
+  color: var(--dyn-badge-bg);
+}
+
+/* Sizes */
+.badge--sm {
+  --dyn-badge-font-size: 10px;
+  --dyn-badge-padding-x: 6px;
+}
+
+.badge--lg {
+  --dyn-badge-font-size: 14px;
+  --dyn-badge-padding-y: 4px;
+  --dyn-badge-padding-x: 12px;
+}
+
+/* Dot */
+.badge--dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
   border-radius: 50%;
-  display: block;
+  min-width: 10px;
 }
 
-/* ============================================
-   STATE STYLES
-   ============================================ */
-
-.badge--invisible {
-  visibility: hidden;
+/* Positioned overlay */
+.badge--positioned {
   position: absolute;
-  pointer-events: none;
+  z-index: 10;
 }
 
-/* ============================================
-   DARK MODE SUPPORT
-   ============================================ */
+.badge--topRight {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
 
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .badge {
-    /* Dark mode adjustments for token values */
-    --dyn-badge-text-neutral: var(--dyn-color-neutral-100, var(--legacy-color-neutral-100, #F0F0F0));
+    --dyn-badge-bg: var(--dyn-neutral-dark-700);
+    --dyn-badge-color: var(--dyn-neutral-light-100);
   }
-  
-  /* Soft variants need adjustment in dark mode */
-  .badge--soft.badge--primary {
-    background-color: rgba(100, 200, 255, 0.2);
-    color: var(--dyn-color-primary-300, #64C8FF);
-  }
-  
-  .badge--soft.badge--danger {
-    background-color: rgba(255, 100, 120, 0.2);
-    color: var(--dyn-color-danger-300, #FF6478);
-  }
-}
 
-/* ============================================
-   HIGH CONTRAST SUPPORT
-   ============================================ */
-
-@media (prefers-contrast: more) {
-  .badge {
-    border-width: var(--dyn-badge-border-width-default, 2px);
-  }
-  
-  .badge.outline {
-    border-width: 2px;
-  }
-  
-  .badge--outline {
-    border-width: 2px;
-  }
-  
   .badge--primary {
-    border: 2px solid var(--dyn-badge-text-primary);
-  }
-}
-
-/* ============================================
-   REDUCED MOTION SUPPORT
-   ============================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .badge {
-    transition: none;
-  }
-  
-  .badge--pulse {
-    animation: none;
-  }
-  
-  .badge--animated {
-    animation: none;
-  }
-  
-  .badge--pulse,
-  .badge--animated {
-    animation: none !important;
-  }
-  
-  .badge--clickable:active {
-    transform: none !important;
-  }
-}
-
-/* ============================================
-   FOCUS STATE (for accessibility)
-   ============================================ */
-
-.badge:focus-visible {
-  outline: 2px solid var(--dyn-color-focus-ring, #007ACC);
-  outline-offset: 2px;
-}
-
-/* ============================================
-   RESPONSIVE ADJUSTMENTS
-   ============================================ */
-
-@media (max-width: 640px) {
-  .badge {
-    padding: var(--dyn-badge-padding-sm);
-    font-size: var(--dyn-badge-font-size-sm);
-  }
-  
-  .badge--lg {
-    padding: var(--dyn-badge-padding-default);
-    font-size: var(--dyn-badge-font-size-default);
+    --dyn-badge-bg: var(--dyn-theme-primary);
   }
 }

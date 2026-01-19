@@ -118,12 +118,14 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
 
     useImperativeHandle(ref, () => ({
       focus: () => inputRef.current?.focus(),
+      blur: () => inputRef.current?.blur(),
       validate: () => validate(),
       clear: () => {
         setInputValue('');
         onChange?.('');
         clearError();
       },
+      clearError: () => clearError(),
       getValue: () => {
         if (isCurrencyType) {
           const numericValue = parseCurrencyLikeValue(inputValue, resolvedCurrencyConfig);
@@ -155,7 +157,8 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
         const stringValue = newValue == null ? '' : String(newValue);
         setInputValue(stringValue);
         onChange?.(stringValue);
-      }
+      },
+      getElement: () => inputRef.current
     }));
 
     const mergedCurrencyConfig = useMemo<Required<DynCurrencyConfig> & {
@@ -452,7 +455,8 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
               tabIndex={-1}
               aria-label="Clear field"
             >
-              <DynIcon icon="dyn-icon-close" />
+              <DynIcon icon="close" />
+
             </button>
           )}
 

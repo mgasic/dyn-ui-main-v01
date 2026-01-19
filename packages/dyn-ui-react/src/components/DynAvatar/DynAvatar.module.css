@@ -400,6 +400,8 @@
   top: 0;
   right: 0;
   z-index: var(--dyn-avatar-z-index-badge);
+  /* Push badge outwards so it hangs off the edge rather than sitting inside */
+  transform: translate(25%, -25%);
 }
 
 /* Custom badge styling with shadow ring for visual separation */
@@ -423,17 +425,17 @@
 }
 
 .lg .badge {
-  min-width: var(--dyn-spacing-6, var(--legacy-spacing-6, 24px));
-  height: var(--dyn-spacing-6, var(--legacy-spacing-6, 24px));
-  font-size: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 13px));
-  padding: var(--dyn-spacing-1, var(--legacy-spacing-1, 0 6px));
+  min-width: var(--dyn-spacing-5, var(--legacy-spacing-5, 20px));
+  height: var(--dyn-spacing-5, var(--legacy-spacing-5, 20px));
+  font-size: var(--dyn-font-size-xs, var(--legacy-font-size-xs, 11px));
+  padding: var(--dyn-spacing-0, var(--legacy-spacing-0, 0 4px));
 }
 
 .xl .badge {
-  min-width: var(--dyn-spacing-8, var(--legacy-spacing-8, 32px));
-  height: var(--dyn-spacing-8, var(--legacy-spacing-8, 32px));
-  font-size: var(--dyn-font-size-base, var(--legacy-font-size-base, 14px));
-  padding: var(--dyn-spacing-2, var(--legacy-spacing-2, 0 8px));
+  min-width: var(--dyn-spacing-6, var(--legacy-spacing-6, 24px));
+  height: var(--dyn-spacing-6, var(--legacy-spacing-6, 24px));
+  font-size: var(--dyn-font-size-sm, var(--legacy-font-size-sm, 12px));
+  padding: var(--dyn-spacing-1, var(--legacy-spacing-1, 0 4px));
 }
 
 /* ============================================

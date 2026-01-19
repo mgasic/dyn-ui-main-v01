@@ -8,17 +8,17 @@
    or in Storybook preview.tsx
    ============================================ */
 
-/* Import generated badge component tokens */
-@import url('../../design-tokens/styles/generated/dyn-badge.css');
+/* 1. Import foundation tokens (colors, spacing, typography, etc.) */
+@import url('../../design-tokens/styles/foundations/index.css');
 
-/* Import generated avatar component tokens */
-@import url('../../design-tokens/styles/generated/dyn-avatar.css');
+/* 2. Import component-specific tokens */
+@import url('../../design-tokens/styles/components/badge.css');
+@import url('../../design-tokens/styles/components/avatar.css');
+@import url('../../design-tokens/styles/components/responsive-tabs.css');
+@import url('../../design-tokens/styles/components/table.css');
 
-/* Import generated responsive tabs tokens */
-@import url('../../design-tokens/styles/generated/responsive-tabs.css');
-
-/* Import generated table tokens */
-@import url('../../design-tokens/styles/generated/table.css');
-
-/* Import foundation tokens */
-@import url('../../design-tokens/styles/generated/foundations.css');
+/* 
+   Note: If you have a build system (like Vite or PostCSS), 
+   you can also import these via the package name:
+   @import '@dyn-ui/design-tokens/styles/foundations/index.css';
+*/

@@ -17,9 +17,14 @@ export const DYN_BADGE_VARIANTS: DynBadgeVariant[] = [
 ];
 
 /**
+ * Reference type for the badge element
+ */
+export type DynBadgeRef = HTMLSpanElement;
+
+/**
  * Available semantic colors for the badge
  */
-export type DynBadgeColor =
+export type DynBadgeSemanticColor =
   | 'primary'
   | 'secondary'
   | 'success'
@@ -35,7 +40,7 @@ export type DynBadgeColor =
 /**
  * Array of all available badge colors
  */
-export const DYN_BADGE_COLORS: DynBadgeColor[] = [
+export const DYN_BADGE_COLORS: DynBadgeSemanticColor[] = [
   'primary',
   'secondary',
   'success',
@@ -113,7 +118,7 @@ export interface DynBadgeProps {
    * Semantic color of the badge.
    * @default 'primary'
    */
-  color?: DynBadgeColor;
+  color?: DynBadgeSemanticColor;
 
   /**
    * Size of the badge.
@@ -126,12 +131,28 @@ export interface DynBadgeProps {
    * Only applies when `count` or `value` is used.
    * @default 99
    */
+  maxCount?: number;
+
+  /**
+   * Legacy prop for maxCount
+   * @deprecated Use `maxCount` instead.
+   */
   max?: number;
 
   /**
    * Optional icon to display before the text/count.
    */
   icon?: ReactNode;
+
+  /**
+   * Icon to display before content
+   */
+  startIcon?: ReactNode;
+
+  /**
+   * Icon to display after content
+   */
+  endIcon?: ReactNode;
 
   /**
    * Whether the badge should have an entrance animation.
@@ -174,10 +195,30 @@ export interface DynBadgeProps {
   showZero?: boolean;
 
   /**
+   * Whether the badge is invisible but still in DOM
+   */
+  invisible?: boolean;
+
+  /**
+   * Accessible description for the count (e.g. "unread messages")
+   */
+  countDescription?: string;
+
+  /**
+   * HTML ID attribute
+   */
+  id?: string;
+
+  /**
    * Accessible label for the badge.
    * If not provided, one may be generated based on color/variant.
    */
   'aria-label'?: string;
+
+  /**
+   * Accessible description ID
+   */
+  'aria-describedby'?: string;
 
   /**
    * ID for testing purposes
@@ -198,4 +239,9 @@ export interface DynBadgeProps {
    * Click handler
    */
   onClick?: (e: React.MouseEvent<HTMLSpanElement>) => void;
+
+  /**
+   * Key down handler
+   */
+  onKeyDown?: (e: React.KeyboardEvent<HTMLSpanElement>) => void;
 }

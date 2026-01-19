@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { cn } from '../../utils/classNames';
 import type { DynLabelProps } from './DynLabel.types';
 import { DYN_LABEL_DEFAULT_PROPS } from './DynLabel.types';
@@ -8,7 +8,7 @@ import styles from './DynLabel.module.css';
  * DynLabel Component
  * Standardized label component for forms with requirement indicators and help text.
  */
-export const DynLabel: React.FC<DynLabelProps> = ({
+export const DynLabel = forwardRef<HTMLLabelElement, DynLabelProps>(({
   children,
   htmlFor,
   disabled = DYN_LABEL_DEFAULT_PROPS.disabled,
@@ -18,7 +18,7 @@ export const DynLabel: React.FC<DynLabelProps> = ({
   className,
   style,
   ...rest
-}) => {
+}, ref) => {
   const containerClasses = cn(
     styles['dyn-label-container']
   );
@@ -75,7 +75,8 @@ export const DynLabel: React.FC<DynLabelProps> = ({
     className: labelClasses,
     ...(htmlFor && { htmlFor }),
     ...(helpText && htmlFor && { 'aria-describedby': `${htmlFor}-help` }),
-    ...rest
+    ...rest,
+    ref
   };
 
   return (
@@ -85,14 +86,14 @@ export const DynLabel: React.FC<DynLabelProps> = ({
           {labelContent}
         </label>
       ) : (
-        <span {...elementProps}>
+        <span {...(elementProps as any)}>
           {labelContent}
         </span>
       )}
       {renderHelpText()}
     </div>
   );
-};
+});
 
 DynLabel.displayName = 'DynLabel';
 

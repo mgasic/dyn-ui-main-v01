@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import type { ChangeEvent, KeyboardEvent } from 'react';
+import type { ChangeEvent, KeyboardEvent, FocusEvent } from 'react';
 import { cn } from '../../utils/classNames';
 import type {
   DynDatePickerProps,
@@ -168,16 +168,16 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
       inputRef.current?.focus();
     }, [emitChange, clearError]);
 
-    const handleBlur = useCallback(() => {
+    const handleBlur = useCallback((e: FocusEvent<HTMLInputElement>) => {
       setFocused(false);
       validate();
-      onBlur?.();
+      onBlur?.(e);
     }, [validate, onBlur]);
 
-    const handleFocus = useCallback(() => {
+    const handleFocus = useCallback((e: FocusEvent<HTMLInputElement>) => {
       setFocused(true);
       clearError();
-      onFocus?.();
+      onFocus?.(e);
     }, [clearError, onFocus]);
 
     const handleKeyDown = useCallback(
@@ -240,7 +240,10 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
             isOpen={isOpen}
             onOpenChange={setIsOpen}
             disabled={disabled}
+            triggerWrapper="div"
+            triggerRole="presentation"
             trigger={
+
 
               <div className={styles.inputContainer}>
                 <input
@@ -248,6 +251,7 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
                   id={inputId}
                   name={name ?? inputId}
                   type="text"
+                  role="combobox"
                   className={inputClasses}
                   placeholder={placeholder}
                   value={displayValue}
@@ -259,8 +263,10 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
                   onFocus={handleFocus}
                   onKeyDown={handleKeyDown}
                   aria-invalid={Boolean(fieldError)}
+                  aria-haspopup="dialog"
                   aria-expanded={isOpen}
                   aria-controls={isOpen ? dropdownId : undefined}
+                  aria-autocomplete="none"
                   maxLength={MAX_DATE_LENGTH}
                   data-size={size}
                   {...rest}

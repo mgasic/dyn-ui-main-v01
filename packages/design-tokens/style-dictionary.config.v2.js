@@ -29,7 +29,26 @@ StyleDictionary.registerTransform({
       name = name.replace(long, short);
     });
 
-    return `--dyn-${name}`;
+    return `dyn-${name}`;
+  }
+});
+
+// ============================================
+// CUSTOM TRANSFORM: Size with PX (Skip Weight)
+// ============================================
+StyleDictionary.registerTransform({
+  name: 'size/px/clean',
+  type: 'value',
+  matcher: (token) => {
+    // Only apply to size category, but NOT to font weights
+    return token.path[0] === 'size' && !token.path.includes('weight');
+  },
+  transformer: (token) => {
+    // If it's a number, add px. If it's already a string with units, leave it.
+    const val = token.value;
+    if (typeof val === 'number') return `${val}px`;
+    if (typeof val === 'string' && /^\d+$/.test(val)) return `${val}px`;
+    return val;
   }
 });
 
@@ -73,7 +92,7 @@ StyleDictionary.registerFormat({
       if (token.comment) {
         output += `  /* ${token.comment} */\n`;
       }
-      output += `  ${token.name}: ${token.value};\n`;
+      output += `  --${token.name}: ${token.value};\n`;
     });
     output += `}\n\n`;
 
@@ -89,7 +108,7 @@ StyleDictionary.registerFormat({
         if (token.comment) {
           output += `    /* ${token.comment} */\n`;
         }
-        output += `    ${lightName}: ${token.value};\n`;
+        output += `    --${lightName}: ${token.value};\n`;
       });
       output += `  }\n`;
       output += `}\n`;
@@ -114,7 +133,7 @@ module.exports = {
         'name/dyn/short',
         'time/seconds',
         'content/icon',
-        'size/rem',
+        'size/px/clean',
         'color/css'
       ],
       buildPath: 'styles/components/',
@@ -150,7 +169,7 @@ module.exports = {
         'name/dyn/short',
         'time/seconds',
         'content/icon',
-        'size/rem',
+        'size/px/clean',
         'color/css'
       ],
       buildPath: 'styles/foundations/',
@@ -161,9 +180,9 @@ module.exports = {
           filter: (token) => {
             // All foundation tokens (not component-specific)
             return !token.filePath.includes('badge.json') &&
-                   !token.filePath.includes('avatar.json') &&
-                   !token.filePath.includes('responsive-tabs.json') &&
-                   !token.filePath.includes('table.json');
+              !token.filePath.includes('avatar.json') &&
+              !token.filePath.includes('responsive-tabs.json') &&
+              !token.filePath.includes('table.json');
           }
         }
       ]

@@ -20,6 +20,7 @@
     "test:box": "vitest --environment=jsdom src/components/DynBox"
   },
   "dependencies": {
+    "@dyn-ui/design-tokens": "workspace:*",
     "classnames": "^2.5.1"
   },
   "devDependencies": {

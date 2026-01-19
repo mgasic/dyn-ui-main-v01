@@ -1,0 +1,55 @@
+.container {
+    display: inline-flex;
+    border: 1px solid var(--dyn-color-border, #e5e7eb);
+    overflow: hidden;
+    background: var(--dyn-color-muted, #f9fafb);
+    transition: all 0.2s ease;
+}
+
+.rounded-sm {
+    border-radius: 4px;
+}
+
+.rounded-md {
+    border-radius: 6px;
+}
+
+.rounded-lg {
+    border-radius: 8px;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.button {
+    appearance: none;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--dyn-color-foreground, #374151);
+    font-weight: 500;
+    line-height: 1.2;
+    transition: all 0.2s ease;
+    min-width: 60px;
+}
+
+.button:hover:not(.active) {
+    background: var(--dyn-color-border, #f3f4f6);
+}
+
+.active {
+    background: var(--dyn-color-primary, #3b82f6);
+    color: white;
+    font-weight: 600;
+}
+
+.size-sm {
+    padding: 6px 12px;
+    font-size: 0.875rem;
+}
+
+.size-md {
+    padding: 8px 16px;
+    font-size: 1rem;
+}

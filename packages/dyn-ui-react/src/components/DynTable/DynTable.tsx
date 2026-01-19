@@ -3,56 +3,12 @@ import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import styles from './DynTable.module.css';
 import type { DynTableProps, TableSortDirection } from './DynTable.types';
+import { DynIcon } from '../DynIcon';
 
-const getStyleClass = (n: string) => (styles as Record<string, string>)[n] || '';
-
-const NON_DOM_PROPS = new Set([
-  'columns',
-  'data',
-  'actions',
-  'loading',
-  'size',
-  'bordered',
-  'striped',
-  'hoverable',
-  'selectable',
-  'selectedKeys',
-  'rowKey',
-  'pagination',
-  'sortBy',
-  'sortable',
-  'onSort',
-  'onSelectionChange',
-  'emptyText',
-  'height'
-]);
-
-const formatBoolean = (value: unknown) => (value ? 'Yes' : 'No');
-
-const formatCellValue = (value: unknown) => {
-  if (value === null || value === undefined) return '';
-  return String(value);
-};
-
-const getRowKey = (row: any, index: number, rowKey?: DynTableProps['rowKey']) => {
-  if (typeof rowKey === 'function') return rowKey(row);
-  if (typeof rowKey === 'string' && rowKey in row) return String(row[rowKey]);
-  if ('id' in row) return String(row.id);
-  if ('key' in row) return String(row.key);
-  return String(index);
-};
-
-const isColumnSortable = (sortable: boolean, columnSortable?: boolean) => {
-  if (!sortable) return false;
-  if (columnSortable === false) return false;
-  return true;
-};
-
-const useStableId = (id?: string) => {
-  const [value] = useState(() => id || generateId('table'));
-  return value;
-};
-
+/**
+ * DynTable Component
+ * Standardized with Design Tokens & CSS Modules
+ */
 export const DynTable: React.FC<DynTableProps> = ({
   columns,
   data,
@@ -80,7 +36,7 @@ export const DynTable: React.FC<DynTableProps> = ({
   'data-testid': dataTestId,
   ...rest
 }) => {
-  const internalId = useStableId(id);
+  const [internalId] = useState(() => id || generateId('table'));
 
   const selectionMode = selectable === true ? 'multiple' : selectable === false ? undefined : selectable;
   const isSelectable = selectionMode === 'multiple' || selectionMode === 'single';
@@ -95,18 +51,15 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const [internalSort, setInternalSort] = useState(sortBy ?? null);
   const userHasInteracted = useRef(false);
-  
-  // Update internal sort when sortBy prop changes ONLY if user hasn't interacted
+
   useEffect(() => {
     if (sortBy !== undefined && !userHasInteracted.current) {
       setInternalSort(sortBy);
     }
   }, [sortBy?.column, sortBy?.direction]);
 
-  // Use internal sort after user interaction, otherwise use prop
   const activeSort = userHasInteracted.current ? internalSort : (sortBy ?? internalSort ?? undefined);
 
-  // Sort data internally if sortable is enabled
   const sortedData = useMemo(() => {
     if (!activeSort || !sortable) {
       return data;
@@ -116,35 +69,24 @@ export const DynTable: React.FC<DynTableProps> = ({
       const aValue = a[activeSort.column];
       const bValue = b[activeSort.column];
 
-      // Handle null/undefined
       if (aValue == null && bValue == null) return 0;
       if (aValue == null) return 1;
       if (bValue == null) return -1;
 
-      // String comparison
       if (typeof aValue === 'string' && typeof bValue === 'string') {
         const comparison = aValue.localeCompare(bValue);
         return activeSort.direction === 'asc' ? comparison : -comparison;
       }
 
-      // Number comparison
       if (typeof aValue === 'number' && typeof bValue === 'number') {
         return activeSort.direction === 'asc' ? aValue - bValue : bValue - aValue;
       }
 
-      // Boolean comparison
       if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
         const comparison = aValue === bValue ? 0 : aValue ? 1 : -1;
         return activeSort.direction === 'asc' ? comparison : -comparison;
       }
 
-      // Date comparison
-      if (aValue instanceof Date && bValue instanceof Date) {
-        const comparison = aValue.getTime() - bValue.getTime();
-        return activeSort.direction === 'asc' ? comparison : -comparison;
-      }
-
-      // Fallback: convert to string
       const aStr = String(aValue);
       const bStr = String(bValue);
       const comparison = aStr.localeCompare(bStr);
@@ -154,34 +96,32 @@ export const DynTable: React.FC<DynTableProps> = ({
     return sorted;
   }, [data, activeSort, sortable]);
 
+  const getRowKeyInternal = (row: any, index: number) => {
+    if (typeof rowKey === 'function') return rowKey(row);
+    if (typeof rowKey === 'string' && rowKey in row) return String(row[rowKey]);
+    if ('id' in row) return String(row.id);
+    return String(index);
+  };
+
   const rowKeys = useMemo(
-    () => sortedData.map((row, index) => getRowKey(row, index, rowKey)),
+    () => sortedData.map((row, index) => getRowKeyInternal(row, index)),
     [sortedData, rowKey]
   );
 
-  const domProps = useMemo(
-    () => Object.fromEntries(Object.entries(rest).filter(([key]) => !NON_DOM_PROPS.has(key))),
-    [rest]
-  );
-
-  const { style: inlineStyle, ...otherDomProps } = domProps as Record<string, unknown> & { style?: React.CSSProperties };
-
   const rootClasses = cn(
-    getStyleClass('dyn-table'),
-    'dyn-table',
-    bordered && [getStyleClass('dyn-table--bordered'), 'dyn-table--bordered'],
-    striped && [getStyleClass('dyn-table--striped'), 'dyn-table--striped'],
-    hoverable && [getStyleClass('dyn-table--hoverable'), 'dyn-table--hoverable'],
-    height !== undefined && [getStyleClass('dyn-table--fixed-height'), 'dyn-table--fixed-height'],
-    size === 'small' && [getStyleClass('dyn-table--small'), 'dyn-table--small'],
-    size === 'large' && [getStyleClass('dyn-table--large'), 'dyn-table--large'],
+    styles.root,
+    bordered && styles.bordered,
+    striped && styles.striped,
+    hoverable && styles.hoverable,
+    height !== undefined && styles.fixedHeight,
+    styles[`size-${size}`],
     className
   );
 
   const rootStyle = {
     ...(height !== undefined ? { height: typeof height === 'number' ? `${height}px` : String(height) } : {}),
-    ...(inlineStyle as React.CSSProperties | undefined)
-  } as React.CSSProperties | undefined;
+    ...(rest.style as React.CSSProperties | undefined)
+  };
 
   const handleSelectionChange = (keys: string[]) => {
     if (!selectedKeys) {
@@ -199,7 +139,6 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const toggleRowSelection = (key: string) => {
     if (!isSelectable) return;
-
     if (isMultiSelect) {
       const exists = internalSelectedKeys.includes(key);
       const next = exists ? internalSelectedKeys.filter(k => k !== key) : [...internalSelectedKeys, key];
@@ -217,108 +156,57 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const handleSortClick = (columnKey: string) => {
     const column = columns.find(col => col.key === columnKey);
-    if (!column) return;
-    if (!isColumnSortable(sortable, column.sortable)) return;
+    if (!column || column.sortable === false || !sortable) return;
 
     const isCurrentlySorted = activeSort?.column === columnKey;
     const nextDirection: TableSortDirection = isCurrentlySorted && activeSort?.direction === 'asc' ? 'desc' : 'asc';
 
-    // Mark that user has interacted
     userHasInteracted.current = true;
-
-    // Update internal state for sorting to work
     setInternalSort({ column: columnKey, direction: nextDirection });
-
-    // Call external callback if provided
     onSort?.(columnKey, nextDirection);
   };
 
   const renderSelectionHeader = () => {
     if (!isSelectable) return null;
-    if (!isMultiSelect) {
-      return (
-        <th
-          role="columnheader"
-          className={cn(
-            getStyleClass('dyn-table__cell'),
-            'dyn-table__cell',
-            getStyleClass('dyn-table__cell--selection'),
-            'dyn-table__cell--selection'
-          )}
-        />
-      );
-    }
-
-    const allSelected = rowKeys.length > 0 && rowKeys.every(key => internalSelectedKeys.includes(key));
-
     return (
-      <th
-        role="columnheader"
-        scope="col"
-        className={cn(
-          getStyleClass('dyn-table__cell'),
-          'dyn-table__cell',
-          getStyleClass('dyn-table__cell--selection'),
-          'dyn-table__cell--selection'
+      <th className={cn(styles.cellHeader, styles.cellSelection)}>
+        {isMultiSelect && (
+          <input
+            type="checkbox"
+            checked={rowKeys.length > 0 && rowKeys.every(key => internalSelectedKeys.includes(key))}
+            onChange={toggleSelectAll}
+            aria-label="Select all rows"
+          />
         )}
-      >
-        <input
-          type="checkbox"
-          aria-label="Select all rows"
-          checked={allSelected}
-          onChange={toggleSelectAll}
-        />
       </th>
     );
   };
 
   const renderHeaderCells = () => columns.map(column => {
-    const headerLabel = column.title ?? column.header ?? column.key;
     const isSorted = activeSort?.column === column.key;
-    const direction = isSorted ? activeSort?.direction : undefined;
-    const sortableColumn = isColumnSortable(sortable, column.sortable);
-    const thClasses = cn(
-      getStyleClass('dyn-table__cell'),
-      'dyn-table__cell',
-      getStyleClass('dyn-table__cell--header'),
-      'dyn-table__cell--header',
-      column.align && [
-        getStyleClass(`dyn-table__cell--${column.align}`),
-        `dyn-table__cell--${column.align}`
-      ],
-      sortableColumn && 'dyn-table__cell--sortable',
-      sortableColumn && getStyleClass('dyn-table__cell--sortable'),
-      sortableColumn && isSorted && [
-        getStyleClass('dyn-table__cell--sorted'),
-        'dyn-table__cell--sorted'
-      ]
-    );
-
-    const widthStyle = column.width ? { width: typeof column.width === 'number' ? `${column.width}px` : String(column.width) } : undefined;
+    const sortableColumn = sortable && column.sortable !== false;
 
     return (
       <th
         key={column.key}
-        role="columnheader"
-        scope="col"
-        aria-sort={
-          sortableColumn
-            ? direction === 'asc'
-              ? 'ascending'
-              : direction === 'desc'
-              ? 'descending'
-              : 'none'
-            : undefined
-        }
-        className={thClasses}
-        style={widthStyle}
+        className={cn(
+          styles.cellHeader,
+          sortableColumn && styles.cellHeaderSortable,
+          isSorted && styles.cellHeaderSorted,
+          column.align && styles[`cell${column.align.charAt(0).toUpperCase() + column.align.slice(1)}`]
+        )}
+        style={column.width ? { width: column.width } : undefined}
         onClick={sortableColumn ? () => handleSortClick(column.key) : undefined}
       >
-        <div className={cn(getStyleClass('dyn-table__cell-content'), 'dyn-table__cell-content')}>
-          <span>{headerLabel}</span>
+        <div className={styles.cellContent}>
+          <span>{column.title ?? column.header ?? column.key}</span>
           {sortableColumn && (
-            <span className={cn(getStyleClass('dyn-table__sort-indicator'), 'dyn-table__sort-indicator')} aria-hidden="true">
-              {isSorted ? (direction === 'asc' ? '↑' : '↓') : '↕'}
+            <span className={styles.sortIndicator}>
+              <DynIcon
+                icon={isSorted ? (activeSort.direction === 'asc' ? 'chevron-up' : 'chevron-down') : 'chevron-down'}
+                size="small"
+                style={{ opacity: isSorted ? 1 : 0.3 }}
+              />
             </span>
           )}
         </div>
@@ -328,52 +216,21 @@ export const DynTable: React.FC<DynTableProps> = ({
 
   const renderActionsHeader = () => {
     if (!actions.length) return null;
-    return (
-      <th
-        role="columnheader"
-        scope="col"
-        className={cn(
-          getStyleClass('dyn-table__cell'),
-          'dyn-table__cell',
-          getStyleClass('dyn-table__cell--actions'),
-          'dyn-table__cell--actions'
-        )}
-      >
-        <span>Actions</span>
-      </th>
-    );
+    return <th className={cn(styles.cellHeader, styles.cellActions)}>Actions</th>;
   };
 
   const renderSelectionCell = (key: string) => {
     if (!isSelectable) return null;
     const checked = internalSelectedKeys.includes(key);
-
     return (
-      <td
-        className={cn(
-          getStyleClass('dyn-table__cell'),
-          'dyn-table__cell',
-          getStyleClass('dyn-table__cell--selection'),
-          'dyn-table__cell--selection'
-        )}
-        role="cell"
-      >
-        {isMultiSelect ? (
-          <input
-            type="checkbox"
-            aria-label="Select row"
-            checked={checked}
-            onChange={() => toggleRowSelection(key)}
-          />
-        ) : (
-          <input
-            type="radio"
-            aria-label="Select row"
-            name={`${internalId}-selection`}
-            checked={checked}
-            onChange={() => toggleRowSelection(key)}
-          />
-        )}
+      <td className={cn(styles.cell, styles.cellSelection)}>
+        <input
+          type={isMultiSelect ? 'checkbox' : 'radio'}
+          name={!isMultiSelect ? `${internalId}-selection` : undefined}
+          checked={checked}
+          onChange={() => toggleRowSelection(key)}
+          aria-label="Select row"
+        />
       </td>
     );
   };
@@ -381,25 +238,17 @@ export const DynTable: React.FC<DynTableProps> = ({
   const renderActionsCell = (row: any, rowIndex: number) => {
     if (!actions.length) return null;
     return (
-      <td
-        className={cn(
-          getStyleClass('dyn-table__cell'),
-          'dyn-table__cell',
-          getStyleClass('dyn-table__cell--actions'),
-          'dyn-table__cell--actions'
-        )}
-        role="cell"
-      >
-        <div className={cn(getStyleClass('dyn-table-actions'), 'dyn-table-actions')}>
+      <td className={cn(styles.cell, styles.cellActions)}>
+        <div className={styles.actionsContainer}>
           {actions
-            .filter(action => action.visible ? action.visible(row) : true)
+            .filter(action => !action.visible || action.visible(row))
             .map(action => (
               <button
                 key={action.key}
                 type="button"
-                className={cn(getStyleClass('dyn-table__action-button'), 'dyn-table__action-button')}
+                className={styles.actionButton}
                 onClick={() => action.onClick(row, rowIndex)}
-                disabled={action.disabled ? action.disabled(row) : false}
+                disabled={action.disabled?.(row)}
               >
                 {action.title}
               </button>
@@ -409,142 +258,80 @@ export const DynTable: React.FC<DynTableProps> = ({
     );
   };
 
-  const renderCellContent = (column: typeof columns[number], row: any, rowIndex: number) => {
-    if (column.render) return column.render(row[column.key], row, rowIndex);
-    if (column.type === 'boolean') return formatBoolean(row[column.key]);
-    if (column.type === 'link') {
-      const href = row[column.key];
-      return href ? (
-        <a href={String(href)}>{String(row[column.key])}</a>
-      ) : '';
-    }
-    return formatCellValue(row[column.key]);
-  };
-
-  const renderBody = () => (
-    <tbody className={cn(getStyleClass('dyn-table__body'), 'dyn-table__body')}>
-      {sortedData.map((row, rowIndex) => {
-        const key = rowKeys[rowIndex];
-        return (
-          <tr
-            key={key}
-            role="row"
-            aria-selected={isSelectable ? internalSelectedKeys.includes(key) : undefined}
-            className={cn(
-              getStyleClass('dyn-table__row'),
-              'dyn-table__row',
-              isSelectable && internalSelectedKeys.includes(key) && [
-                getStyleClass('dyn-table__row--selected'),
-                'dyn-table__row--selected'
-              ]
-            )}
-          >
-            {renderSelectionCell(key)}
-            {columns.map(column => (
-              <td
-                key={column.key}
-                role="cell"
-                className={cn(
-                  getStyleClass('dyn-table__cell'),
-                  'dyn-table__cell',
-                  column.align && [
-                    getStyleClass(`dyn-table__cell--${column.align}`),
-                    `dyn-table__cell--${column.align}`
-                  ]
-                )}
-              >
-                {renderCellContent(column, row, rowIndex)}
-              </td>
-            ))}
-            {renderActionsCell(row, rowIndex)}
-          </tr>
-        );
-      })}
-    </tbody>
-  );
-
-  const renderEmptyState = () => (
-    <div className={cn(getStyleClass('dyn-table__empty'), 'dyn-table__empty')} role="note">
-      {emptyText}
-    </div>
-  );
-
-  const renderLoadingState = () => (
-    <div className={cn(getStyleClass('dyn-table__loading'), 'dyn-table__loading')} role="status" aria-live="polite">
-      Loading...
-    </div>
-  );
-
-  const renderPagination = () => {
-    if (!pagination) return null;
-    const totalPages = Math.max(1, Math.ceil(pagination.total / pagination.pageSize));
-    const currentPage = Math.min(Math.max(1, pagination.current), totalPages);
-
-    const goToPage = (page: number) => {
-      const next = Math.min(Math.max(page, 1), totalPages);
-      if (next !== currentPage) {
-        pagination.onChange?.(next, pagination.pageSize);
-      }
-    };
-
-    return (
-      <div className={cn(getStyleClass('dyn-table__pagination'), 'dyn-table__pagination')} role="navigation" aria-label="Table pagination">
-        <div className={cn(getStyleClass('dyn-table__pagination-controls'), 'dyn-table__pagination-controls')}>
-          <button
-            type="button"
-            className={cn(getStyleClass('dyn-table__pagination-button'), 'dyn-table__pagination-button')}
-            onClick={() => goToPage(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </button>
-          <span className={cn(getStyleClass('dyn-table__pagination-info'), 'dyn-table__pagination-info')}>
-            Page {currentPage}
-          </span>
-          <button
-            type="button"
-            className={cn(getStyleClass('dyn-table__pagination-button'), 'dyn-table__pagination-button')}
-            onClick={() => goToPage(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </button>
-        </div>
-      </div>
-    );
+  const renderCellContent = (column: any, row: any, rowIndex: number) => {
+    const value = row[column.key];
+    if (column.render) return column.render(value, row, rowIndex);
+    if (column.type === 'boolean') return value ? 'Yes' : 'No';
+    if (column.type === 'link') return <a href={String(value)}>{String(value)}</a>;
+    return value == null ? '' : String(value);
   };
 
   return (
-    <div
-      id={internalId}
-      className={rootClasses}
-      data-testid={dataTestId || 'dyn-table'}
-      style={rootStyle}
-      {...otherDomProps}
-    >
-      <div className={cn(getStyleClass('dyn-table__wrapper'), 'dyn-table__wrapper')}>
-        <table
-          role="table"
-          className={cn(getStyleClass('dyn-table__table'), 'dyn-table__table')}
-          aria-label={ariaLabel}
-          aria-labelledby={ariaLabelledBy}
-          aria-describedby={ariaDescribedBy}
-        >
-          <thead className={cn(getStyleClass('dyn-table__head'), 'dyn-table__head')}>
-            <tr
-              role="row"
-              className={cn(getStyleClass('dyn-table__row'), 'dyn-table__row')}
-            >
+    <div id={internalId} className={rootClasses} style={rootStyle} data-testid={dataTestId || 'dyn-table'}>
+      <div className={styles.wrapper}>
+        <table className={styles.tableContainer} {...rest}>
+          <thead className={styles.head}>
+            <tr className={styles.row}>
               {renderSelectionHeader()}
               {renderHeaderCells()}
               {renderActionsHeader()}
             </tr>
           </thead>
-          {renderBody()}
+          <tbody className={styles.body}>
+            {sortedData.map((row, rowIndex) => {
+              const key = rowKeys[rowIndex];
+              const isSelected = internalSelectedKeys.includes(key);
+              return (
+                <tr key={key} className={cn(styles.row, isSelected && styles.rowSelected)}>
+                  {renderSelectionCell(key)}
+                  {columns.map(column => (
+                    <td
+                      key={column.key}
+                      className={cn(
+                        styles.cell,
+                        column.align && styles[`cell${column.align.charAt(0).toUpperCase() + column.align.slice(1)}`]
+                      )}
+                    >
+                      {renderCellContent(column, row, rowIndex)}
+                    </td>
+                  ))}
+                  {renderActionsCell(row, rowIndex)}
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
-      {loading ? renderLoadingState() : sortedData.length === 0 ? renderEmptyState() : null}
-      {renderPagination()}
+      {loading && (
+        <div className={styles.loading}>
+          <DynIcon icon="loading" className={styles.loadingSpinner} size="large" />
+          <span>Loading...</span>
+        </div>
+      )}
+      {!loading && sortedData.length === 0 && (
+        <div className={styles.empty}>{emptyText}</div>
+      )}
+      {pagination && (
+        <div className={styles.pagination}>
+          <div className={styles.paginationControls}>
+            <button
+              className={styles.paginationButton}
+              disabled={pagination.current <= 1}
+              onClick={() => pagination.onChange?.(pagination.current - 1, pagination.pageSize)}
+            >
+              Previous
+            </button>
+            <span className={styles.paginationInfo}>Page {pagination.current}</span>
+            <button
+              className={styles.paginationButton}
+              disabled={pagination.current >= Math.ceil(pagination.total / pagination.pageSize)}
+              onClick={() => pagination.onChange?.(pagination.current + 1, pagination.pageSize)}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

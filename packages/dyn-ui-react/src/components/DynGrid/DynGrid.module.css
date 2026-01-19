@@ -78,8 +78,7 @@
 }
 
 /* Body Styles */
-.body {
-}
+.body {}
 
 .row {
   border-bottom: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
@@ -119,7 +118,7 @@
 
 /* Selection Cell */
 .selectionCell {
-  width: 48px;
+  width: var(--dyn-grid-selection-width, 48px);
   text-align: center;
   padding-left: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   padding-right: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
@@ -153,7 +152,7 @@
 
 /* Loading State */
 .loading {
-  min-height: 200px;
+  min-height: var(--dyn-grid-loading-height, 200px);
 }
 
 .loadingState {
@@ -168,8 +167,8 @@
 }
 
 .spinner {
-  width: 32px;
-  height: 32px;
+  width: var(--dyn-grid-spinner-size, 32px);
+  height: var(--dyn-grid-spinner-size, 32px);
   border: 3px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
   border-top-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
   border-radius: 50%;
@@ -222,8 +221,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
+  min-width: var(--dyn-grid-pagination-size, 32px);
+  height: var(--dyn-grid-pagination-size, 32px);
   padding: 0 var(--dyn-spacing-xs, var(--spacing-xs, 4px));
   border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
   border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
@@ -260,6 +259,7 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+
   .headerCell,
   .cell {
     padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
@@ -301,6 +301,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .row,
   .headerCellSortable,
   .spinner,

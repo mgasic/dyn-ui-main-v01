@@ -13,26 +13,38 @@
    packages/design-tokens/styles/foundations/spacing.css
    ============================================ */
 
-:root {
+/* Base Flex Container */
+.flex {
   /* Base tokens - DynFlex */
   --dyn-flex-display: flex;
   --dyn-flex-flex-direction: row;
-  --dyn-flex-gap: var(--dyn-spacing-md);
-  --dyn-flex-padding: var(--dyn-spacing-sm);
+  --dyn-flex-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
+  --dyn-flex-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   --dyn-flex-align-items: stretch;
   --dyn-flex-justify-content: flex-start;
   --dyn-flex-flex-wrap: nowrap;
 
   /* Column variant */
   --dyn-flex-column-direction: column;
-  --dyn-flex-column-gap: var(--dyn-spacing-md);
+  --dyn-flex-column-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
 
   /* Wrap variant */
   --dyn-flex-wrap-wrap: wrap;
 
   /* Inline variant */
   --dyn-flex-inline-display: inline-flex;
+
+  /* Properties */
+  display: var(--dyn-flex-display, flex);
+  flex-direction: var(--dyn-flex-flex-direction, row);
+  gap: var(--dyn-flex-gap);
+  padding: var(--dyn-flex-padding);
+  align-items: var(--dyn-flex-align-items, stretch);
+  justify-content: var(--dyn-flex-justify-content, flex-start);
+  flex-wrap: var(--dyn-flex-flex-wrap, nowrap);
+  box-sizing: border-box;
 }
+
 
 /* ============================================
    DARK MODE OVERRIDES
@@ -202,14 +214,14 @@
    ============================================ */
 
 /* Focus ring za keyboard navigation kroz flex items */
-.flex > :focus-visible {
+.flex> :focus-visible {
   outline: 2px solid var(--dyn-focus-ring-color, #007ACC);
   outline-offset: 2px;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .flex > * {
+  .flex>* {
     animation: none !important;
     transition: none !important;
   }

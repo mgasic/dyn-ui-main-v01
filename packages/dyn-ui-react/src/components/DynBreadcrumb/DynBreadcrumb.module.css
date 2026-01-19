@@ -5,7 +5,8 @@
 
 /* Design Tokens
    ========================================================================== */
-:root {
+/* Component tokens scoped to breadcrumb */
+.breadcrumb {
   /* Color Tokens */
   --dyn-breadcrumb-color-text: var(--dyn-color-text-secondary, #64748b);
   --dyn-breadcrumb-color-text-current: var(--dyn-color-text-primary, #0f172a);
@@ -38,16 +39,14 @@
 
   /* Transitions */
   --dyn-breadcrumb-transition: var(--dyn-transition-base, 0.18s ease);
-}
 
-/* Base Breadcrumb Container
-   ========================================================================== */
-.breadcrumb {
   display: block;
   font-family: var(--dyn-breadcrumb-font-family);
   font-size: var(--dyn-breadcrumb-font-size-medium);
   line-height: var(--dyn-breadcrumb-line-height);
 }
+
+
 
 /* Breadcrumb List
    ========================================================================== */
@@ -274,6 +273,7 @@
 /* Accessibility: Reduced Motion
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
+
   .breadcrumbLink,
   .breadcrumbItem--ellipsis {
     transition: none;

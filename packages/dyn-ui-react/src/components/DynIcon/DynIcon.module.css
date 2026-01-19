@@ -1,4 +1,13 @@
 .dynIcon {
+  /* Component-scoped tokens with foundations alignment */
+  --dyn-icon-color-success: var(--dyn-feedback-positive, #4caf50);
+  --dyn-icon-color-warning: var(--dyn-feedback-warning, #ff9800);
+  --dyn-icon-color-danger: var(--dyn-feedback-negative-default, #f44336);
+  --dyn-icon-color-info: var(--dyn-feedback-info, #2196f3);
+  --dyn-icon-radius: var(--dyn-border-radius-sm, 4px);
+  --dyn-icon-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
+  --dyn-icon-focus-ring: var(--dyn-action-focus, #0066cc);
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -15,46 +24,23 @@
   display: block;
 }
 
-/* Custom React component icons */
-.dynIconCustom {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* SVG icons from registry */
-.dynIconSvg {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Fallback text icons */
 .dynIconFallback {
   font-size: 0.75em;
   opacity: 0.7;
   font-weight: bold;
-  font-family: var(--dyn-font-family-mono, var(--font-family-mono, monospace));
-}
-
-/* Interactive icons */
-.dynIcon:hover {
-  opacity: 0.8;
 }
 
 .iconClickable {
   cursor: pointer;
-  border-radius: var(--dyn-border-radius-sm, 4px);
+  border-radius: var(--dyn-icon-radius);
   padding: 2px;
   margin: -2px;
-  transition: var(--dyn-transition-base, 0.2s ease);
+  transition: all var(--dyn-icon-transition);
 }
-
 
 .iconClickable:hover {
   background-color: rgba(0, 0, 0, 0.05);
   transform: scale(1.1);
-  opacity: 0.7;
 }
 
 .iconClickable:active {
@@ -62,57 +48,46 @@
 }
 
 .iconClickable:focus-visible {
-  outline: 2px solid var(--dyn-color-primary, #3b82f6);
+  outline: 2px solid var(--dyn-icon-focus-ring);
   outline-offset: 2px;
 }
 
-
 /* Size variants */
 .sizeSmall {
-  font-size: var(--dyn-font-size-sm, 0.875rem);
-  width: 1em;
-  height: 1em;
-  min-width: 14px;
-  min-height: 14px;
+  width: 14px;
+  height: 14px;
 }
 
 .sizeMedium {
-  font-size: var(--dyn-font-size-base, 1rem);
-  width: 1em;
-  height: 1em;
-  min-width: 16px;
-  min-height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .sizeLarge {
-  font-size: var(--dyn-font-size-lg, 1.25rem);
-  width: 1em;
-  height: 1em;
-  min-width: 18px;
-  min-height: 18px;
+  width: 20px;
+  height: 20px;
 }
-
 
 /* State colors */
 .success {
-  color: var(--dyn-color-success, var(--color-success, #059669));
+  color: var(--dyn-icon-color-success);
 }
 
 .warning {
-  color: var(--dyn-color-warning, var(--color-warning, #d97706));
+  color: var(--dyn-icon-color-warning);
 }
 
 .danger {
-  color: var(--dyn-color-danger, var(--color-danger, #dc2626));
+  color: var(--dyn-icon-color-danger);
 }
 
 .info {
-  color: var(--dyn-color-info, var(--color-info, #0891b2));
+  color: var(--dyn-icon-color-info);
 }
 
 /* Disabled state */
 .disabled {
-  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.5));
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -132,64 +107,9 @@
   }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .dyn-icon-clickable {
-    transition: none;
-  }
-
-  .dyn-icon-clickable:hover {
-    transform: none;
-  }
-
-  .dyn-icon-clickable:active {
-    transform: none;
-  }
-
-  .spinning {
-    animation: none;
-  }
-}
-
-/* High contrast */
-@media (prefers-contrast: more) {
-  .dyn-icon-clickable:focus-visible {
-    outline-width: 3px;
-  }
-}
-
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  .dyn-icon-clickable:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .success {
-    color: var(--dyn-color-success-dark, var(--color-success-dark, #10b981));
-  }
-
-  .warning {
-    color: var(--dyn-color-warning-dark, var(--color-warning-dark, #f59e0b));
-  }
-
-  .danger {
-    color: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
-  }
-
-  .info {
-    color: var(--dyn-color-info-dark, var(--color-info-dark, #06b6d4));
-  }
-}
-
-/* Print styles */
-@media print {
-  .dynIcon {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
-  }
-
-  .dyn-icon-clickable {
-    background: none !important;
-    transform: none !important;
+  .iconClickable:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }

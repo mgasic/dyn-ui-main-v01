@@ -3,7 +3,8 @@
    Standardized with design tokens
    ========================================================================== */
 
-:root {
+/* Stack Container */
+.container {
   /* Size Tokens */
   --dyn-stack-width: 100%;
   --dyn-stack-height: auto;
@@ -22,13 +23,7 @@
 
   /* Transitions */
   --dyn-stack-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
 
-/* ========================================================================
-   Stack Container
-   ======================================================================== */
-
-.container {
   display: flex;
   width: var(--dyn-stack-width);
   height: var(--dyn-stack-height);

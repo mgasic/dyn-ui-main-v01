@@ -3,22 +3,26 @@
    Standardized with design tokens
    ========================================================================== */
 
-:root {
+.container {
+  /* ==========================================================================
+     COMPONENT-SCOPED TOKEN DEFINITIONS
+     ========================================================================== */
+
   /* Color Tokens */
   --dyn-dropdown-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
   --dyn-dropdown-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
   --dyn-dropdown-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
   --dyn-dropdown-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
   --dyn-dropdown-item-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
-  --dyn-dropdown-item-bg-active: rgba(37, 99, 235, 0.1);
+  --dyn-dropdown-item-bg-active: var(--dyn-color-primary-alpha, rgba(37, 99, 235, 0.1));
   --dyn-dropdown-item-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
   --dyn-dropdown-divider-color: var(--dyn-color-border, var(--color-border, #d1d5db));
 
   /* Size Tokens */
-  --dyn-dropdown-min-width: 200px;
-  --dyn-dropdown-max-width: 400px;
+  --dyn-dropdown-min-width: var(--dyn-size-width-xs, 200px);
+  --dyn-dropdown-max-width: var(--dyn-size-width-md, 400px);
   --dyn-dropdown-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-dropdown-item-height: 40px;
+  --dyn-dropdown-item-height: var(--dyn-size-md, 40px);
   --dyn-dropdown-item-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   --dyn-dropdown-item-padding-x: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-dropdown-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
@@ -129,6 +133,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .menu,
   .item {
     transition: none;
@@ -136,14 +141,26 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  .container {
     --dyn-dropdown-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
     --dyn-dropdown-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
     --dyn-dropdown-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
     --dyn-dropdown-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
     --dyn-dropdown-item-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
-    --dyn-dropdown-item-bg-active: rgba(59, 130, 246, 0.15);
+    --dyn-dropdown-item-bg-active: var(--dyn-color-primary-dark-alpha, rgba(59, 130, 246, 0.15));
     --dyn-dropdown-item-text-active: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
     --dyn-dropdown-divider-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
   }
+}
+
+:global(.theme-dark) .container,
+:global([data-theme='dark']) .container {
+  --dyn-dropdown-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
+  --dyn-dropdown-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  --dyn-dropdown-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  --dyn-dropdown-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  --dyn-dropdown-item-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
+  --dyn-dropdown-item-bg-active: var(--dyn-color-primary-dark-alpha, rgba(59, 130, 246, 0.15));
+  --dyn-dropdown-item-text-active: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
+  --dyn-dropdown-divider-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
 }

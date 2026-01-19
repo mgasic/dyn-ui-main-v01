@@ -1,63 +1,38 @@
-/* ==========================================================================
-   DynLabel Component Styles
-   Standardized with design tokens
-   ========================================================================== */
-
-:root {
+.dyn-label-container {
   /* Color Tokens */
-  --dyn-label-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  --dyn-label-text-color-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  --dyn-label-text-color-required: var(--dyn-color-danger, var(--color-danger, #d32f2f));
-  --dyn-label-text-color-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #9ca3af));
-  --dyn-label-text-color-focus: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-label-text-color: var(--dyn-neutral-dark-900, #111827);
+  --dyn-label-text-color-secondary: var(--dyn-neutral-mid-400, #666666);
+  --dyn-label-text-color-required: var(--dyn-feedback-negative-default, #f44336);
+  --dyn-label-text-color-disabled: var(--dyn-neutral-mid-400, #999999);
+  --dyn-label-text-color-focus: var(--dyn-theme-primary, #007bff);
 
   /* Typography Tokens */
-  --dyn-label-font-family: var(--dyn-font-family-base, var(--font-family-base, inherit));
-  --dyn-label-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 0.875rem));
-  --dyn-label-font-size-help: var(--dyn-font-size-xs, var(--font-size-xs, 0.75rem));
-  --dyn-label-font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
-  --dyn-label-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.4));
+  --dyn-label-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-label-font-size-help: var(--dyn-font-size-xs, 12px);
+  --dyn-label-font-weight: var(--dyn-font-weight-medium, 500);
 
   /* Spacing Tokens */
-  --dyn-label-gap: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
-  --dyn-label-margin-bottom: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
-  --dyn-label-requirement-gap: var(--dyn-spacing-xs, var(--spacing-xs, 0.125rem));
-
-  /* Opacity Tokens */
-  --dyn-label-opacity-disabled: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.6));
+  --dyn-label-gap: var(--dyn-spacing-xs, 4px);
+  --dyn-label-margin-bottom: var(--dyn-spacing-xs, 4px);
+  --dyn-label-requirement-gap: var(--dyn-spacing-xs, 4px);
 
   /* Transitions */
-  --dyn-label-transition: color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
+  --dyn-label-transition: color var(--dyn-transition-normal, 0.2s ease-in-out);
 
-/* ========================================================================
-   Container
-   ======================================================================== */
-
-.dyn-label-container {
   display: flex;
   flex-direction: column;
   gap: var(--dyn-label-gap);
 }
 
-/* ========================================================================
-   Base Label Styles
-   ======================================================================== */
-
 .dyn-label {
   display: inline-block;
   margin-bottom: 0;
-  font-family: var(--dyn-label-font-family);
+  font-family: inherit;
   font-weight: var(--dyn-label-font-weight);
   font-size: var(--dyn-label-font-size);
-  line-height: var(--dyn-label-line-height);
   color: var(--dyn-label-text-color);
   transition: var(--dyn-label-transition);
 }
-
-/* ========================================================================
-   Sub-elements
-   ======================================================================== */
 
 .dyn-label-text {
   display: flex;
@@ -83,105 +58,28 @@
   font-weight: normal;
 }
 
-/* ========================================================================
-   Help Text
-   ======================================================================== */
-
 .dyn-label-help-text {
   font-size: var(--dyn-label-font-size-help);
   color: var(--dyn-label-text-color-secondary);
-  line-height: var(--dyn-label-line-height);
+  line-height: 1.5;
   margin-top: var(--dyn-label-requirement-gap);
 }
 
-/* ========================================================================
-   Field-specific Styling
-   ======================================================================== */
-
-.dyn-label-field {
-  margin-bottom: var(--dyn-label-margin-bottom);
-  font-size: var(--dyn-label-font-size);
-  font-weight: var(--dyn-label-font-weight);
-}
-
-/* ========================================================================
-   States
-   ======================================================================== */
-
 .dyn-label.dyn-label-disabled {
   color: var(--dyn-label-text-color-disabled);
-  opacity: var(--dyn-label-opacity-disabled);
+  opacity: 0.6;
   cursor: not-allowed;
-}
-
-.dyn-label.dyn-label-disabled .dyn-label-required-asterisk {
-  color: var(--dyn-label-text-color-disabled);
-}
-
-.dyn-label.dyn-label-disabled .dyn-label-optional-text {
-  color: var(--dyn-label-text-color-disabled);
 }
 
 .dyn-label:focus-within .dyn-label-text {
   color: var(--dyn-label-text-color-focus);
 }
 
-/* ========================================================================
-   Accessibility: High Contrast Mode
-   ======================================================================== */
-
-@media (prefers-contrast: more) {
-  .dyn-label {
-    font-weight: 600;
-  }
-
-  .dyn-label-required-asterisk {
-    font-weight: 900;
-  }
-
-  .dyn-label-text {
-    font-weight: 600;
-  }
-}
-
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .dyn-label {
-    transition: none;
-  }
-}
-
-/* ========================================================================
-   Dark Mode Support
-   ======================================================================== */
-
+/* Dark Mode Support */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-label-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
-    --dyn-label-text-color-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-label-text-color-required: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
-    --dyn-label-text-color-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
-    --dyn-label-text-color-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-  }
-}
-
-/* ========================================================================
-   Print Styles
-   ======================================================================== */
-
-@media print {
-  .dyn-label {
-    color: black !important;
-  }
-
-  .dyn-label-help-text {
-    color: #666 !important;
-  }
-
-  .dyn-label-required-asterisk {
-    color: black !important;
+  .dyn-label-container {
+    --dyn-label-text-color: var(--dyn-neutral-light-100, #f3f4f6);
+    --dyn-label-text-color-secondary: var(--dyn-neutral-mid-400, #9ca3af);
+    --dyn-label-text-color-focus: var(--dyn-theme-primary, #3b82f6);
   }
 }

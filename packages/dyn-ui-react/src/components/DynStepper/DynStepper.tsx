@@ -5,7 +5,7 @@ import styles from './DynStepper.module.css';
 import { DynIcon } from '../DynIcon';
 import type { DynStepperProps, DynStepperRef, DynStep, StepItem } from './DynStepper.types';
 
-const getStyleClass = (n: string) => (styles as Record<string, string>)[n] || '';
+
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
@@ -46,11 +46,11 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
       onStepChange,
       onStepClick,
       clickableSteps = true,
-  orientation = 'horizontal',
-  variant = 'tabs',
+      orientation = 'horizontal',
+      variant = 'tabs',
       size = 'medium',
-  showLabels = true,
-  showDescription = false,
+      showLabels = true,
+      showDescription = false,
       className,
       contentClassName,
       renderStepContent,
@@ -223,56 +223,56 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
     };
 
     const getRootClassName = () => {
-      const classes = [getStyleClass('root')];
+      const classes = [styles.root];
 
       // Add semantic classes for tests
-      if (orientation) classes.push(`orientation-${orientation}`);
-      if (variant) classes.push(`variant-${variant}`);
-      if (size) classes.push(`size-${size}`);
+      if (orientation) classes.push(styles[`orientation-${orientation}`]);
+      if (variant) classes.push(styles[`variant-${variant}`]);
+      if (size) classes.push(styles[`size-${size}`]);
       if (className) classes.push(className);
 
       return cn(...classes);
     };
 
     const getItemClassName = (index: number) => {
-      const classes = [getStyleClass('item'), 'step'];
+      const classes = [styles.item, 'step'];
       const step = steps[index];
 
       if (index === clampedActiveStep) {
-        classes.push(getStyleClass('item--current'), 'item--current', 'status-active');
+        classes.push(styles.itemCurrent, 'item--current', 'status-active');
       }
       if (step?.completed || step?.state === 'completed' || index < clampedActiveStep) {
-        classes.push(getStyleClass('item--completed'), 'item--completed', 'status-completed');
+        classes.push(styles.itemCompleted, 'item--completed', 'status-completed');
       }
       if (step?.error || step?.state === 'error') {
-        classes.push(getStyleClass('item--error'), 'item--error', 'status-error');
+        classes.push(styles.itemError, 'item--error', 'status-error');
       }
       if (step?.disabled || isStepDisabled(index)) {
-        classes.push(getStyleClass('item--disabled'), 'item--disabled');
+        classes.push(styles.itemDisabled, 'item--disabled');
       }
 
       return cn(...classes);
     };
 
     const getButtonClassName = (index: number) => {
-      const classes = [getStyleClass('button')];
+      const classes = [styles.button];
 
       if (stepClassName) classes.push(stepClassName);
 
       if (isStepDisabled(index)) {
-        classes.push(getStyleClass('button--disabled'), 'button--disabled');
+        classes.push(styles.buttonDisabled, 'button--disabled');
       }
 
       return cn(...classes);
     };
 
     const getPanelClassName = (index: number) => {
-      const classes = [getStyleClass('panel')];
-      if (index !== clampedActiveStep) classes.push(getStyleClass('panel--hidden'));
+      const classes = [styles.panel];
+      if (index !== clampedActiveStep) classes.push(styles.panelHidden);
       return cn(...classes);
     };
 
-  const getStepId = (index: number) => `${internalId}-step-${index}`;
+    const getStepId = (index: number) => `${internalId}-step-${index}`;
     const getPanelId = (index: number) => `${internalId}-panel-${index}`;
     const getStepDescId = (index: number) => `${internalId}-step-${index}-desc`;
 
@@ -323,7 +323,7 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
         onKeyDown={handleKeyDown}
         {...rest}
       >
-        <ol className={getStyleClass('list')} role={variant === 'tabs' ? 'presentation' : undefined}>
+        <ol className={styles.list} role={variant === 'tabs' ? 'presentation' : undefined}>
           {steps.map((step, index) => (
             <li key={step.id || index} className={getItemClassName(index)}>
               <button
@@ -342,14 +342,14 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
                   <>
                     {/* Render icon from step data when provided */}
                     {step.icon && typeof step.icon === 'string' ? (
-                      <DynIcon icon={step.icon} className={getStyleClass('icon')} />
+                      <DynIcon icon={step.icon} className={styles.icon} />
                     ) : null}
 
-                    <span aria-hidden="true" className={getStyleClass('button__index')}>
+                    <span aria-hidden="true" className={styles.stepIndex}>
                       {index + 1}
                     </span>
                     {showLabels && (
-                      <span className={getStyleClass('button__label')}>
+                      <span className={styles.stepLabel}>
                         {step.title || step.label || `Step ${index + 1}`}
                       </span>
                     )}
@@ -357,12 +357,12 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
                 )}
               </button>
               {step.description && showDescription && (
-                <div className={getStyleClass('description')} id={getStepDescId(index)}>
+                <div className={styles.description} id={getStepDescId(index)}>
                   {step.description}
                 </div>
               )}
               {step.optional && (
-                <span className={getStyleClass('optional')}>(optional)</span>
+                <span className={styles.optional}>(optional)</span>
               )}
             </li>
           ))}
@@ -374,10 +374,10 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
             aria-valuenow={Math.round(((clampedActiveStep + 1) / steps.length) * 100)}
             aria-valuemin={0}
             aria-valuemax={100}
-            className={getStyleClass('progressBar')}
+            className={styles.progressBar}
           >
             <div
-              className={getStyleClass('progressFill')}
+              className={styles.progressFill}
               style={{ width: `${((clampedActiveStep + 1) / steps.length) * 100}%` }}
             />
           </div>

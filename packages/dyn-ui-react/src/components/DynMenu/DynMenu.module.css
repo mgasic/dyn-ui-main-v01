@@ -4,7 +4,19 @@
    ========================================================================== */
 
 /* Menubar Container */
+/* Menubar Container */
 .menubar {
+  /* Component Tokens */
+  --dyn-menu-min-width: 200px;
+  --dyn-menu-max-width: 280px;
+  --dyn-menu-dropdown-min-width: 180px;
+  --dyn-menu-focus-ring-width: var(--dyn-focus-ring-width, 2px);
+
+  /* Mobile Tokens */
+  --dyn-menu-min-width-sm: 160px;
+  --dyn-menu-max-width-sm: 200px;
+
+
   display: flex;
   gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
   padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
@@ -17,8 +29,8 @@
 .menubar[aria-orientation="vertical"] {
   flex-direction: column;
   width: fit-content;
-  min-width: 200px;
-  max-width: 280px;
+  min-width: var(--dyn-menu-min-width);
+  max-width: var(--dyn-menu-max-width);
 }
 
 .menubar[aria-orientation="horizontal"] {
@@ -57,7 +69,7 @@
 }
 
 .menubar__button:focus-visible {
-  outline: 2px solid var(--dyn-color-primary, var(--color-primary, #2563eb));
+  outline: var(--dyn-menu-focus-ring-width) solid var(--dyn-color-primary, var(--color-primary, #2563eb));
   outline-offset: 2px;
 }
 
@@ -66,11 +78,59 @@
   color: var(--dyn-color-primary, var(--color-primary, #2563eb));
 }
 
+.menubar__button-content {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+}
+
+.menubar__icon,
+.menu__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+}
+
+.menubar__button--open .menubar__icon {
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+}
+
+.menubar__chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--dyn-spacing-md, var(--spacing-md, 12px));
+  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  transition: transform var(--dyn-transition-base, 0.18s ease);
+}
+
+.menubar__button--open .menubar__chevron {
+  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+}
+
+.menubar[aria-orientation="horizontal"] .menubar__button--open .menubar__chevron {
+  transform: rotate(180deg);
+}
+
+.menubar[aria-orientation="vertical"] .menubar__button--open .menubar__chevron {
+  transform: rotate(90deg);
+}
+
+.menubar__label,
+.menu__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 /* Dropdown Menu (Submenu) */
 .menu {
   position: absolute;
   z-index: 1000;
-  min-width: 180px;
+  min-width: var(--dyn-menu-dropdown-min-width);
   padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
   background: var(--dyn-color-background, var(--color-background, #ffffff));
   border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
@@ -96,6 +156,7 @@
 .menu__item {
   display: flex;
   align-items: center;
+  gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
   width: 100%;
   padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
   border: none;
@@ -111,6 +172,7 @@
   transition: all var(--dyn-transition-base, var(--transition-base, 0.18s ease));
   white-space: nowrap;
 }
+
 
 .menu__item:hover {
   background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
@@ -133,8 +195,8 @@
   }
 
   .menubar[aria-orientation="vertical"] {
-    min-width: 160px;
-    max-width: 200px;
+    min-width: var(--dyn-menu-min-width-sm, 160px);
+    max-width: var(--dyn-menu-max-width-sm, 200px);
   }
 
   .menubar__button {
@@ -169,6 +231,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .menubar__button,
   .menu__item {
     transition: none;

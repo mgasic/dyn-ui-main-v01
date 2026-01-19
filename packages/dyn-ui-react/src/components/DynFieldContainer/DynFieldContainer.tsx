@@ -49,15 +49,16 @@ export const DynFieldContainer = forwardRef<HTMLDivElement, DynFieldContainerPro
           <label className={styles.label} htmlFor={htmlFor}>
             {label}
             {required && (
-              <span className={styles.required} aria-label="obrigatório">
+              <span className={styles.required} aria-hidden="true">
                 *
               </span>
             )}
             {optional && (
-              <span className={styles.optional} aria-label="opcional">
-                (opcional)
+              <span className={styles.optional}>
+                (optional)
               </span>
             )}
+
           </label>
         )}
 

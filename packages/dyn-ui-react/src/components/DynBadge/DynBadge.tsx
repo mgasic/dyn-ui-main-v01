@@ -88,13 +88,13 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       count,
       maxCount = 99,
       fallback = null,
-      
+
       // Style props
       size = 'md',
       variant = 'solid',
       color = 'primary',
       position,
-      
+
       // Interaction props
       invisible = false,
       icon,
@@ -103,35 +103,36 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       animated = false,
       pulse = false,
       showZero = false,
-      
+
       // Accessibility props
       id,
       'aria-label': ariaLabel,
       'aria-live': ariaLive = 'polite',
       role = 'status',
       countDescription,
-      
+
       // HTML props
       className,
       'data-testid': dataTestId,
-      
+
       // Legacy prop support
       value,
+      onClick,
       ...rest
     },
     ref
   ) => {
-  
+
     // ====================================
     // PHASE 1: Input Validation & Fallback
     // ====================================
-    
+
     /**
      * Handle legacy 'value' prop for backward compatibility
      * Newer code should use 'count' prop instead
      */
     const normalizedCount = count ?? value;
-    
+
     /**
      * Validate variant is supported
      * Falls back to 'solid' if invalid variant provided
@@ -139,7 +140,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     const validVariant: DynBadgeVariant = (
       DYN_BADGE_VARIANTS.includes(variant as any) ? variant : 'solid'
     );
-    
+
     /**
      * Validate color is supported
      * Falls back to 'primary' if invalid color provided
@@ -147,17 +148,17 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     const validColor: DynBadgeSemanticColor = (
       DYN_BADGE_COLORS.includes(color as any) ? color : 'primary'
     );
-    
+
     /**
      * Validate size is supported
      * Falls back to 'md' if invalid size provided
      */
     const validSize = DYN_BADGE_SIZES.includes(size as any) ? size : 'md';
-    
+
     // ====================================
     // PHASE 2: Content Computation
     // ====================================
-    
+
     /**
      * Compute final badge content with memoization for performance
      * Priority: count > children > icon > fallback
@@ -173,53 +174,53 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
         if (normalizedCount === 0 && !showZero) {
           return null;
         }
-        
+
         if (normalizedCount > maxCount) {
           return `${maxCount}+`;
         }
         return String(normalizedCount);
       }
-      
+
       // Show children if provided
       if (children) {
         return children;
       }
-      
+
       // Show icon if provided and no text
       if (icon) {
         return icon;
       }
-      
+
       // Fallback to fallback prop or empty
       return fallback;
     }, [normalizedCount, maxCount, children, icon, fallback, showZero]);
-    
+
     /**
      * Determine if badge should be visible
      * invisible prop takes precedence
      */
     const isVisible = !invisible && displayContent !== null;
-    
+
     // ====================================
     // PHASE 3: Accessibility Attributes
     // ====================================
-    
+
     /**
      * Generate appropriate ARIA label if not provided
      * Describes badge content and purpose for screen readers
      */
     const computedAriaLabel = useMemo(() => {
       if (ariaLabel) return ariaLabel;
-      
+
       // Build context-aware label
       let label = '';
-      
+
       // Add status/role context
       if (validColor === 'danger') label += 'Alert: ';
       if (validColor === 'success') label += 'Success: ';
       if (validColor === 'warning') label += 'Warning: ';
       if (validColor === 'info') label += 'Information: ';
-      
+
       // Add content
       if (normalizedCount !== undefined) {
         const description = countDescription || (normalizedCount === 1 ? 'item' : 'items');
@@ -227,14 +228,14 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       } else if (typeof displayContent === 'string') {
         label += displayContent;
       }
-      
+
       return label || undefined;
     }, [ariaLabel, validColor, displayContent, normalizedCount, countDescription]);
-    
+
     // ====================================
     // PHASE 4: Class Computation
     // ====================================
-    
+
     /**
      * Compute root element classes
      * Combines module styles with variant, color, size, and custom classes
@@ -249,36 +250,37 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     const badgeClasses = useMemo(() => {
       return cn(
         styles.badge,
-        
+
         // Variant styles
         validVariant !== 'solid' && styles[`badge--${validVariant}`],
-        
+
         // Color styles - follows --dyn-badge-[color]-* token pattern
         styles[`badge--${validColor}`],
-        
+
         // Size styles - follows --dyn-badge-[size]-* token pattern
         styles[`badge--${validSize}`],
-        
+
         // Position styles (for overlay badges in DynAvatar, etc.)
         position && styles[`badge--${position}`],
         position && styles['badge--positioned'],
-        
+
         // State classes
         {
           [styles['badge--invisible']]: invisible,
           [styles['badge--animated']]: animated,
           [styles['badge--pulse']]: pulse,
+          [styles['badge--clickable']]: !!onClick,
         },
-        
+
         // Custom classes
         className
       );
-    }, [validVariant, validColor, validSize, position, invisible, animated, pulse, className]);
-    
+    }, [validVariant, validColor, validSize, position, invisible, animated, pulse, onClick, className]);
+
     // ====================================
     // PHASE 5: Event Handlers
     // ====================================
-    
+
     /**
      * Prevent click propagation on badge
      * Useful when badge is within clickable parent
@@ -286,20 +288,21 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     const handleClick = useCallback(
       (e: React.MouseEvent<HTMLSpanElement>) => {
         e.stopPropagation();
+        onClick?.(e);
       },
-      []
+      [onClick]
     );
-    
+
     // ====================================
     // PHASE 6: Render
     // ====================================
-    
+
     // Don't render if invisible AND no need to keep in DOM
     // (return null keeps component in React tree but hidden visually)
     if (!isVisible && invisible) {
       return null;
     }
-    
+
     return (
       <span
         ref={ref}
@@ -326,14 +329,14 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
                 {startIcon}
               </span>
             )}
-            
+
             {/* Icon if provided (legacy support) */}
             {icon && !startIcon && (
               <span className={styles['badge__icon']} aria-hidden="true">
                 {icon}
               </span>
             )}
-            
+
             {/* Text content */}
             {typeof displayContent === 'string' ? (
               <span className={styles['badge__text']}>
@@ -342,7 +345,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
             ) : (
               displayContent
             )}
-            
+
             {/* End icon if provided */}
             {endIcon && (
               <span className={styles['badge__icon']} aria-hidden="true">
@@ -351,11 +354,11 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
             )}
           </span>
         )}
-        
+
         {/* Empty badge (dot variant without text) */}
         {!displayContent && validVariant === 'dot' && (
-          <span 
-            className={styles['badge__dot']} 
+          <span
+            className={styles['badge__dot']}
             aria-label={computedAriaLabel}
           />
         )}

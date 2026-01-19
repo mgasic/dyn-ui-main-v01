@@ -43,29 +43,19 @@ These components have CSS/Architecture defined but no React code.
 ## 📂 Detailed Component Status
 
 ### 🏆 Excellent / ✅ Good
-*   DynAvatar, DynBadge, DynBox, DynBreadcrumb, DynButton, DynChart, DynCheckbox (functional), DynDivider, DynFieldContainer, DynGauge, DynGrid, DynIcon, DynInput, DynListView, DynMenu, DynResponsiveTabs, DynStepper, DynTable, DynTabs, DynTextArea, DynToolbar, DynTreeView.
+*   DynAppbar, DynAvatar, DynBadge, DynBox, DynBreadcrumb, DynButton, DynChart, DynCheckbox, DynContainer, DynDatePicker, DynDivider, DynDropdown, DynFieldContainer, DynFlex, DynGauge, DynGrid, DynIcon, DynInput, DynLabel, DynLayout, DynListView, DynMenu, DynPage, DynResponsiveTabs, DynSelect, DynSidebar, DynStack, DynStepper, DynTable, DynTabs, DynTextArea, DynToolbar, DynTreeView.
 
 ### ⚠️ Needs Improvement
-*   **DynPage**: Too basic, needs richer API.
-*   **DynContainer**: Minor cleanup of duplicate CSS.
+*   **ThemeSwitcher**: Needs refactor from inline styles to CSS Modules.
 
 ### 🔴 Critical Rewrites
-*   **DynSelect**: Types missing.
-*   **DynDatePicker**: Types missing.
-*   **DynLabel**: Types missing.
-*   **ThemeSwitcher**: Implementation poor (Inline styles).
+*   **DynModal**: Missing implementation (CSS only).
 
 ### 🚧 To Implement (Stubs)
-*   DynDropdown
-*   DynModal
-*   DynFlex
-*   DynStack
-*   DynAppbar
-*   DynSidebar
+*   None.
 
 ### 🗑️ To Delete
-*   `DinCheckbox`
-*   `DynSpaced`
+*   `DynSpaced` (Legacy wrapper)
 
 ---
 

@@ -81,76 +81,94 @@ type Story = StoryObj<typeof DynMenu>;
 const horizontalMenuItems: DynMenuItem[] = [
   {
     label: 'File',
+    icon: 'file',
     children: [
       {
         label: 'New',
+        icon: 'plus',
         action: () => console.log('File > New')
       },
       {
         label: 'Open',
+        icon: 'folder-open',
         action: () => console.log('File > Open')
       },
       {
         label: 'Save',
+        icon: 'save',
         action: () => console.log('File > Save')
       },
       {
         label: 'Exit',
+        icon: 'close',
         action: () => console.log('File > Exit')
       }
     ]
   },
   {
     label: 'Edit',
+    icon: 'edit',
     children: [
       {
         label: 'Undo',
+        icon: 'undo',
         action: () => console.log('Edit > Undo')
       },
       {
         label: 'Redo',
+        icon: 'redo',
         action: () => console.log('Edit > Redo')
       },
       {
         label: 'Cut',
+        icon: 'cut',
         action: () => console.log('Edit > Cut')
       },
       {
         label: 'Copy',
+        icon: 'copy',
         action: () => console.log('Edit > Copy')
       },
       {
         label: 'Paste',
+        icon: 'paste',
         action: () => console.log('Edit > Paste')
       }
     ]
   },
   {
     label: 'View',
+    icon: 'eye',
     children: [
       {
         label: 'Zoom In',
+        icon: 'zoom-in',
         action: () => console.log('View > Zoom In')
       },
       {
         label: 'Zoom Out',
+        icon: 'zoom-out',
         action: () => console.log('View > Zoom Out')
       },
       {
         label: 'Reset Zoom',
+        icon: 'refresh',
         action: () => console.log('View > Reset Zoom')
       }
     ]
   },
   {
     label: 'Help',
+    icon: 'help',
     children: [
       {
         label: 'Documentation',
+        icon: 'file-text',
         action: () => console.log('Help > Documentation')
       },
       {
         label: 'About',
+        icon: 'info',
         action: () => console.log('Help > About')
       }
     ]
@@ -161,47 +179,58 @@ const horizontalMenuItems: DynMenuItem[] = [
 const verticalMenuItems: DynMenuItem[] = [
   {
     label: 'Dashboard',
+    icon: 'home',
     action: () => console.log('Dashboard')
   },
   {
     label: 'Products',
+    icon: 'box',
     children: [
       {
         label: 'All Products',
+        icon: 'list',
         action: () => console.log('All Products')
       },
       {
         label: 'Categories',
+        icon: 'folder',
         action: () => console.log('Categories')
       },
       {
         label: 'Inventory',
+        icon: 'archive',
         action: () => console.log('Inventory')
       }
     ]
   },
   {
     label: 'Orders',
+    icon: 'shopping-cart',
     children: [
       {
         label: 'Pending Orders',
+        icon: 'clock',
         action: () => console.log('Pending Orders')
       },
       {
         label: 'Completed Orders',
+        icon: 'check-circle',
         action: () => console.log('Completed Orders')
       }
     ]
   },
   {
     label: 'Customers',
+    icon: 'users',
     action: () => console.log('Customers')
   },
   {
     label: 'Settings',
+    icon: 'settings',
     action: () => console.log('Settings')
   }
 ];
+
 
 // Simple menu without submenus
 const simpleMenuItems: DynMenuItem[] = [
@@ -317,10 +346,10 @@ export const NavigationBar: Story = {
         items={simpleMenuItems}
         orientation="horizontal"
         onAction={(action) => {
-            if (typeof action === 'function') {
-              (action as () => void)();
-            }
-          }}
+          if (typeof action === 'function') {
+            (action as () => void)();
+          }
+        }}
       />
     </nav>
   )

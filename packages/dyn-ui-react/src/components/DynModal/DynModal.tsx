@@ -38,30 +38,67 @@ export const DynModal: React.FC<DynModalProps> = ({
     const bodyId = `${modalId}-body`;
     const modalRef = useRef<HTMLDivElement>(null);
 
-    // Handle Escape key
-    const handleKeyDown = useCallback(
-        (event: KeyboardEvent) => {
-            if (closeOnEsc && event.key === 'Escape') {
-                onClose();
-            }
-        },
-        [closeOnEsc, onClose]
-    );
+    const previousFocus = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         if (isOpen) {
-            document.addEventListener('keydown', handleKeyDown);
-            // Logic for scroll lock could be added here
+            previousFocus.current = document.activeElement as HTMLElement;
+
+            // Focus the modal content for accessibility
+            requestAnimationFrame(() => {
+                modalRef.current?.focus();
+            });
+
             document.body.style.overflow = 'hidden';
-        } else {
-            document.removeEventListener('keydown', handleKeyDown);
-            document.body.style.overflow = '';
+
+            const handleKeyDown = (event: KeyboardEvent) => {
+                if (!isOpen) return;
+
+                // Handle Escape
+                if (closeOnEsc && event.key === 'Escape') {
+                    event.preventDefault();
+                    onClose();
+                    return;
+                }
+
+                // Handle Focus Trap (Tab)
+                if (event.key === 'Tab' && modalRef.current) {
+                    const focusables = modalRef.current.querySelectorAll<HTMLElement>(
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+
+                    if (focusables.length === 0) return;
+
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+
+                    if (event.shiftKey) {
+                        if (document.activeElement === first) {
+                            last.focus();
+                            event.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === last) {
+                            first.focus();
+                            event.preventDefault();
+                        }
+                    }
+                }
+            };
+
+            document.addEventListener('keydown', handleKeyDown);
+
+            return () => {
+                document.removeEventListener('keydown', handleKeyDown);
+                document.body.style.overflow = '';
+                // Restore focus
+                if (previousFocus.current) {
+                    previousFocus.current.focus();
+                }
+            };
         }
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown);
-            document.body.style.overflow = '';
-        };
-    }, [isOpen, handleKeyDown]);
+        return undefined;
+    }, [isOpen, closeOnEsc, onClose]);
 
     const handleBackdropClick = (event: React.MouseEvent) => {
         if (closeOnBackdropClick && event.target === event.currentTarget) {
@@ -92,6 +129,7 @@ export const DynModal: React.FC<DynModalProps> = ({
                 id={modalId}
                 className={modalClasses}
                 style={style}
+                tabIndex={-1}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={title ? titleId : ariaLabelledBy}
@@ -113,7 +151,8 @@ export const DynModal: React.FC<DynModalProps> = ({
                                 onClick={onClose}
                                 aria-label="Close modal"
                             >
-                                <DynIcon icon="dyn-icon-close" size="medium" />
+                                <DynIcon icon="close" size="medium" />
+
                             </button>
                         )}
                     </header>

@@ -1,30 +1,63 @@
 /**
- * Foundation Layer Index
- * Imports all foundation tokens in correct order
- * 
- * This is the base layer containing core design system values
- * that never change within a theme.
- * 
- * Order:
- * 1. Colors (needed by other tokens)
- * 2. Typography (text styling)
- * 3. Spacing (layout)
- * 4. Sizing (component sizes)
- * 5. Borders (shapes)
- * 6. Shadows (elevation)
- * 7. Animations (motion)
- * 8. Opacity (transparency)
- * 9. Z-Index (stacking)
- * 10. Focus States (accessibility)
+ * Do not edit directly
+ * Generated on Mon, 19 Jan 2026 21:05:08 GMT
  */
 
-@import './colors.css';
-@import './typography.css';
-@import './spacing.css';
-@import './sizing.css';
-@import './borders.css';
-@import './shadows.css';
-@import './animations.css';
-@import './opacity.css';
-@import './zindex.css';
-@import './focus-states.css';
+:root {
+  --dyn-transition-all: all 0.2s ease-in-out;
+  --dyn-transition-colors: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  --dyn-transition-fast: 0.15s ease;
+  --dyn-transition-normal: 0.2s ease-in-out;
+  --dyn-transition-slow: 0.3s ease-in-out;
+  --dyn-action-default: #0066cc;
+  --dyn-action-hover: #0052a3;
+  --dyn-action-pressed: #003d7a;
+  --dyn-action-disabled: #cccccc;
+  --dyn-action-focus: #0066cc;
+  --dyn-base-white: #ffffff;
+  --dyn-base-black: #000000;
+  --dyn-feedback-positive: #4caf50;
+  --dyn-feedback-negative-default: #f44336;
+  --dyn-feedback-negative-dark: #d32f2f;
+  --dyn-feedback-negative-darker: #b71c1c;
+  --dyn-feedback-warning: #ff9800;
+  --dyn-feedback-info: #2196f3;
+  --dyn-neutral-light-50: #f9f9f9;
+  --dyn-neutral-light-100: #f0f0f0;
+  --dyn-neutral-light-200: #e0e0e0;
+  --dyn-neutral-light-white: #ffffff;
+  --dyn-neutral-mid-400: #999999;
+  --dyn-neutral-mid-600: #666666;
+  --dyn-neutral-dark-700: #444444;
+  --dyn-neutral-dark-900: #111111;
+  --dyn-neutral-dark-black: #000000;
+  --dyn-semantic-background: #ffffff;
+  --dyn-semantic-text: #000000;
+  --dyn-theme-primary: #007bff;
+  --dyn-theme-secondary: #6c757d;
+  --dyn-elevation-low: 0 1px 3px rgba(0,0,0,0.12);
+  --dyn-elevation-medium: 0 3px 6px rgba(0,0,0,0.16);
+  --dyn-elevation-high: 0 10px 20px rgba(0,0,0,0.19);
+  --dyn-border-width-sm: 1px;
+  --dyn-border-width-md: 2px;
+  --dyn-border-width-lg: 3px;
+  --dyn-border-radius-sm: 2px;
+  --dyn-border-radius-md: 4px;
+  --dyn-border-radius-lg: 8px;
+  --dyn-font-size-2xs: 10px;
+  --dyn-font-size-xs: 12px;
+  --dyn-font-size-sm: 14px;
+  --dyn-font-size-md: 16px;
+  --dyn-font-size-lg: 18px;
+  --dyn-font-size-xl: 20px;
+  --dyn-font-size-2xl: 24px;
+  --dyn-font-weight-light: 300;
+  --dyn-font-weight-normal: 400;
+  --dyn-font-weight-medium: 500;
+  --dyn-font-weight-semibold: 600;
+  --dyn-font-weight-bold: 700;
+  --dyn-spacing-xs: 4px;
+  --dyn-spacing-sm: 8px;
+  --dyn-spacing-md: 16px;
+  --dyn-spacing-lg: 24px;
+}

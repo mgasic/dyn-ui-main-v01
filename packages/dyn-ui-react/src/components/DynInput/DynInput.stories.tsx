@@ -24,12 +24,12 @@ const meta: Meta<typeof DynInput> = {
     size: {
       control: 'radio',
       options: ['small', 'medium', 'large'],
-      description: 'Size varijanta'
+      description: 'Size variant'
     },
     mask: {
       control: 'select',
       options: [undefined, ...Object.values(MASK_PATTERNS)],
-      description: 'Mask šablon'
+      description: 'Mask pattern'
     },
     disabled: { control: 'boolean' },
     readonly: { control: 'boolean' },
@@ -37,13 +37,13 @@ const meta: Meta<typeof DynInput> = {
     optional: { control: 'boolean' },
     showCleanButton: { control: 'boolean' },
     showSpinButtons: { control: 'boolean' },
-    icon: { control: 'text', description: 'Ime ikone ili ReactNode' },
+    icon: { control: 'text', description: 'Icon name or ReactNode' },
     placeholder: { control: 'text' },
     help: { control: 'text' },
     value: { control: 'text' },
     currencyConfig: {
       control: 'object',
-      description: 'Podešavanja formatiranja valute'
+      description: 'Currency formatting configuration'
     }
   },
   args: {
@@ -58,9 +58,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    label: 'Ime i prezime',
-    placeholder: 'Unesite puno ime',
-    help: 'Polje za identifikaciju korisnika',
+    label: 'Full Name',
+    placeholder: 'Enter full name',
+    help: 'User identification field',
     showCleanButton: true
   }
 };
@@ -68,9 +68,9 @@ export const Playground: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 480 }}>
-      <DynInput label="Malo" size="small" placeholder="Small" />
-      <DynInput label="Srednje" size="medium" placeholder="Medium" />
-      <DynInput label="Veliko" size="large" placeholder="Large" />
+      <DynInput label="Small" size="small" placeholder="Small" />
+      <DynInput label="Medium" size="medium" placeholder="Medium" />
+      <DynInput label="Large" size="large" placeholder="Large" />
     </div>
   )
 };
@@ -78,20 +78,20 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 480 }}>
-      <DynInput label="Obavezno" required placeholder="Obavezno polje" />
-      <DynInput label="Opcionalno" optional placeholder="Opcionalno polje" />
-      <DynInput label="Sa greškom" errorMessage="Neispravan unos" />
-      <DynInput label="Disabled" disabled value="Onemogućeno" />
-      <DynInput label="Readonly" readonly value="Samo za čitanje" />
+      <DynInput label="Required" required placeholder="Required field" />
+      <DynInput label="Optional" optional placeholder="Optional field" />
+      <DynInput label="With Error" errorMessage="Invalid input" />
+      <DynInput label="Disabled" disabled value="Disabled" />
+      <DynInput label="Readonly" readonly value="Read only" />
     </div>
   )
 };
 
 export const WithIconAndClear: Story = {
   args: {
-    label: 'Pretraga',
+    label: 'Search',
     icon: 'search',
-    placeholder: 'Pretraži...',
+    placeholder: 'Search...',
     showCleanButton: true
   }
 };
@@ -99,9 +99,9 @@ export const WithIconAndClear: Story = {
 export const Masking: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 480 }}>
-      <DynInput label="Telefon" mask={MASK_PATTERNS.phone} placeholder="(11) 9999-9999" />
+      <DynInput label="Phone" mask={MASK_PATTERNS.phone} placeholder="(11) 9999-9999" />
       <DynInput label="CPF" mask={MASK_PATTERNS.cpf} placeholder="000.000.000-00" />
-      <DynInput label="Kreditna kartica" mask={MASK_PATTERNS.creditCard} placeholder="0000 0000 0000 0000" />
+      <DynInput label="Credit Card" mask={MASK_PATTERNS.creditCard} placeholder="0000 0000 0000 0000" />
     </div>
   )
 };
@@ -109,27 +109,27 @@ export const Masking: Story = {
 export const Types: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 480 }}>
-      <DynInput label="Email" type="email" placeholder="email@primer.com" />
-      <DynInput label="Lozinka" type="password" placeholder="••••••••" />
-      <DynInput label="Godine" type="number" placeholder="18" min={0} max={120} />
-      <DynInput label="Telefon" type="tel" placeholder="" />
+      <DynInput label="Email" type="email" placeholder="email@example.com" />
+      <DynInput label="Password" type="password" placeholder="••••••••" />
+      <DynInput label="Age" type="number" placeholder="18" min={0} max={120} />
+      <DynInput label="Phone" type="tel" placeholder="" />
     </div>
   )
 };
 
 export const Currency: Story = {
   args: {
-    label: 'Iznos',
+    label: 'Amount',
     type: 'currency',
     value: 1234.56,
     showSpinButtons: true,
     step: 50,
     min: 0,
     currencyConfig: {
-      symbol: 'RS$',
-      currencyCode: 'RSD',
-      decimalSeparator: ',',
-      thousandSeparator: '.',
+      symbol: '$',
+      currencyCode: 'USD',
+      decimalSeparator: '.',
+      thousandSeparator: ',',
       precision: 2
     }
   }
@@ -137,7 +137,7 @@ export const Currency: Story = {
 
 export const NumberWithSpinButtons: Story = {
   args: {
-    label: 'Količina',
+    label: 'Quantity',
     type: 'number',
     value: 2,
     step: 1,
@@ -154,10 +154,11 @@ export const DarkTheme: Story = {
   render: () => (
     <div data-theme="dark" style={{ padding: '2rem', background: '#1a1a1a', borderRadius: 8 }}>
       <div style={{ display: 'grid', gap: '1rem', maxWidth: 480 }}>
-        <DynInput label="Email" type="email" placeholder="email@primer.com" />
-        <DynInput label="Sa greškom" errorMessage="Greška" />
-        <DynInput label="Readonly" readonly value="Samo čitanje" />
+        <DynInput label="Email" type="email" placeholder="email@example.com" />
+        <DynInput label="With Error" errorMessage="Error" />
+        <DynInput label="Readonly" readonly value="Read only" />
       </div>
     </div>
   )
 };
+

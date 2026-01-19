@@ -1,9 +1,46 @@
 {
   "size": {
     "font": {
-      "small": { "value": "12px" },
-      "medium": { "value": "16px" },
-      "large": { "value": "20px" }
+      "size": {
+        "2xs": {
+          "value": "10px"
+        },
+        "xs": {
+          "value": "12px"
+        },
+        "sm": {
+          "value": "14px"
+        },
+        "md": {
+          "value": "16px"
+        },
+        "lg": {
+          "value": "18px"
+        },
+        "xl": {
+          "value": "20px"
+        },
+        "2xl": {
+          "value": "24px"
+        }
+      },
+      "weight": {
+        "light": {
+          "value": "300"
+        },
+        "normal": {
+          "value": "400"
+        },
+        "medium": {
+          "value": "500"
+        },
+        "semibold": {
+          "value": "600"
+        },
+        "bold": {
+          "value": "700"
+        }
+      }
     }
   }
 }

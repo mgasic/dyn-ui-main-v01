@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
 
-export interface DynSelectOption {
-  value: string | number;
+export interface DynSelectOption<T = string | number> {
+  value: T;
   label: string;
   disabled?: boolean;
   icon?: ReactNode;
@@ -12,21 +12,21 @@ export interface DynSelectOption {
 
 export type DynSelectSize = 'small' | 'medium' | 'large';
 
-export interface DynSelectProps extends BaseComponentProps, AccessibilityProps {
+export interface DynSelectProps<T = string | number> extends BaseComponentProps, AccessibilityProps {
   /** Input name */
   name?: string;
 
   /** Current value */
-  value?: string | number | (string | number)[];
+  value?: T | T[];
 
   /** Default value for uncontrolled usage */
-  defaultValue?: string | number | (string | number)[];
+  defaultValue?: T | T[];
 
   /** Callback on value change */
-  onChange?: (value: string | number | (string | number)[]) => void;
+  onChange?: (value: T | T[]) => void;
 
   /** Options to display */
-  options?: DynSelectOption[];
+  options?: DynSelectOption<T>[];
 
   /** Groups for categorized options */
   groups?: string[];
@@ -56,7 +56,7 @@ export interface DynSelectProps extends BaseComponentProps, AccessibilityProps {
   disabled?: boolean;
 
   /** Whether the field is readonly */
-  readonly?: boolean;
+  readOnly?: boolean;
 
   /** Size variant */
   size?: DynSelectSize;
@@ -71,7 +71,7 @@ export interface DynSelectProps extends BaseComponentProps, AccessibilityProps {
   clearable?: boolean;
 
   /** Custom filter function for search */
-  filterOption?: (option: DynSelectOption, searchText: string) => boolean;
+  filterOption?: (option: DynSelectOption<T>, searchText: string) => boolean;
 
   /** Add search placeholder */
   searchPlaceholder?: string;
@@ -89,7 +89,7 @@ export interface DynSelectProps extends BaseComponentProps, AccessibilityProps {
   visible?: boolean;
 }
 
-export interface DynSelectRef {
+export interface DynSelectRef<T = string | number> {
   /** Focus the input */
   focus: () => void;
   /** Blur the input */
@@ -101,7 +101,7 @@ export interface DynSelectRef {
   /** Close the dropdown */
   close: () => void;
   /** Get current value */
-  getValue: () => string | number | (string | number)[] | undefined;
+  getValue: () => T | T[] | undefined;
 }
 
 export const DYN_SELECT_DEFAULT_PROPS = {

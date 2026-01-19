@@ -1,7 +1,14 @@
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, FocusEventHandler } from 'react';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
 
 export type DynDatePickerSize = 'small' | 'medium' | 'large';
+
+// Placeholder (should import from validation hook if exported)
+export interface ValidationRule {
+    type: string;
+    message: string;
+    [key: string]: any;
+}
 
 export interface DynDatePickerProps extends BaseComponentProps, AccessibilityProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'value' | 'onChange' | 'onBlur' | 'onFocus' | keyof BaseComponentProps | keyof AccessibilityProps> {
     /** Input name */
@@ -17,16 +24,16 @@ export interface DynDatePickerProps extends BaseComponentProps, AccessibilityPro
     onChange?: (value: string) => void;
 
     /** Blur callback */
-    onBlur?: () => void;
+    onBlur?: FocusEventHandler<HTMLInputElement>;
 
     /** Focus callback */
-    onFocus?: () => void;
+    onFocus?: FocusEventHandler<HTMLInputElement>;
 
     /** Whether the field is optional (shows "Optional" label) */
     optional?: boolean;
 
     /** Validation rules */
-    validation?: any[];
+    validation?: ValidationRule[];
 
     /** Label for the field */
     label?: string;

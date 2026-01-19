@@ -1,11 +1,19 @@
 .root {
+  /* Component Tokens */
+  --dyn-chart-bg: var(--dyn-color-background, var(--color-background, #ffffff));
+  --dyn-chart-border: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-chart-text-primary: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-chart-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-chart-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  --dyn-chart-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+
   display: flex;
   flex-direction: column;
-  background: var(--dyn-color-background, var(--color-background, #ffffff));
-  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
-  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  background: var(--dyn-chart-bg);
+  border-radius: var(--dyn-chart-radius);
+  border: 1px solid var(--dyn-chart-border);
   padding: 16px;
-  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  font-family: var(--dyn-chart-font-family);
   gap: 16px;
 }
 
@@ -26,7 +34,7 @@
   margin: 0;
   font-size: var(--dyn-font-size-lg, var(--font-size-lg, 16px));
   font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  color: var(--dyn-chart-text-primary);
   line-height: var(--dyn-line-height-tight, var(--line-height-tight, 1.3));
 }
 
@@ -34,7 +42,7 @@
   margin: 0;
   font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
   font-weight: var(--dyn-font-weight-normal, var(--font-weight-normal, 400));
-  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  color: var(--dyn-chart-text-secondary);
   line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
 }
 
@@ -250,10 +258,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-color-background: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
-    --dyn-color-border: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-    --dyn-color-text-primary: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-    --dyn-color-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
+  .root {
+    --dyn-chart-bg: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
+    --dyn-chart-border: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
+    --dyn-chart-text-primary: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+    --dyn-chart-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
   }
 }

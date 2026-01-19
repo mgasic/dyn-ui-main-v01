@@ -32,7 +32,7 @@ const meta: Meta<typeof DynBadge> = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['sm', 'md', 'lg'],
       description: 'Badge size variant'
     },
     count: {
@@ -64,6 +64,10 @@ const meta: Meta<typeof DynBadge> = {
       control: 'boolean',
       description: 'Apply pulse animation for notifications'
     },
+    role: {
+      control: 'text',
+      description: 'ARIA role for the badge'
+    },
     onClick: {
       action: 'clicked',
       description: 'Click handler for interactive badges'
@@ -85,7 +89,7 @@ const meta: Meta<typeof DynBadge> = {
     children: 'New',
     variant: 'solid',
     color: 'primary',
-    size: 'medium',
+    size: 'md',
     maxCount: 99
   }
 };
@@ -122,9 +126,9 @@ export const Sizes: Story = {
   name: 'Size Variants',
   render: () => (
     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-      <DynBadge size="small">Small</DynBadge>
-      <DynBadge size="medium">Medium</DynBadge>
-      <DynBadge size="large">Large</DynBadge>
+      <DynBadge size="sm">Small</DynBadge>
+      <DynBadge size="md">Medium</DynBadge>
+      <DynBadge size="lg">Large</DynBadge>
     </div>
   ),
   parameters: {
@@ -307,7 +311,7 @@ export const Accessibility: Story = {
         You have 12 unread messages in your inbox.
       </p>
       <DynBadge aria-label="Active status indicator">Active</DynBadge>
-      <DynBadge 
+      <DynBadge
         onClick={() => alert('Accessible click!')}
         aria-label="Interactive badge with keyboard support"
         onKeyDown={(e) => console.log('Key pressed:', e.key)}

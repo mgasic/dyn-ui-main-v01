@@ -1,32 +1,46 @@
 .container {
-  --dyn-textarea-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
-  --dyn-textarea-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  --dyn-textarea-border: var(--dyn-color-border, var(--color-border, #d1d5db));
-  --dyn-textarea-border-hover: var(--dyn-color-border-hover, var(--color-border-hover, #9ca3af));
-  --dyn-textarea-border-focus: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-textarea-focus-ring: var(--dyn-color-focus-ring, var(--color-focus-ring, rgba(37, 99, 235, 0.35)));
-  --dyn-textarea-placeholder: var(--dyn-color-text-placeholder, var(--color-text-placeholder, #9ca3af));
-  --dyn-textarea-disabled-bg: var(--dyn-color-surface-disabled, var(--color-surface-disabled, #f3f4f6));
-  --dyn-textarea-disabled-color: var(--dyn-color-text-disabled, var(--color-text-disabled, #9ca3af));
-  --dyn-textarea-readonly-bg: var(--dyn-color-surface-readonly, var(--color-surface-readonly, #f9fafb));
-  --dyn-textarea-error: var(--dyn-color-danger, var(--color-danger, #d32f2f));
+  /* Component tokens with fallbacks to system tokens */
+  --dyn-textarea-bg: var(--dyn-neutral-light-white, var(--legacy-color-surface, #ffffff));
+  --dyn-textarea-color: var(--dyn-neutral-dark-900, var(--legacy-color-text-primary, #111827));
+  --dyn-textarea-border: var(--dyn-neutral-light-200, var(--legacy-color-border, #d1d5db));
+  --dyn-textarea-border-hover: var(--dyn-neutral-mid-400, var(--legacy-color-border-hover, #9ca3af));
+  --dyn-textarea-border-focus: var(--dyn-theme-primary, var(--legacy-color-primary, #2563eb));
+  --dyn-textarea-focus-ring: var(--dyn-action-focus, var(--legacy-color-focus-ring, rgba(37, 99, 235, 0.35)));
+  --dyn-textarea-placeholder: var(--dyn-neutral-mid-400, var(--legacy-color-text-placeholder, #9ca3af));
+  --dyn-textarea-disabled-bg: var(--dyn-neutral-light-100, var(--legacy-color-surface-disabled, #f3f4f6));
+  --dyn-textarea-disabled-color: var(--dyn-neutral-mid-400, var(--legacy-color-text-disabled, #9ca3af));
+  --dyn-textarea-readonly-bg: var(--dyn-neutral-light-50, var(--legacy-color-surface-readonly, #f9fafb));
+  --dyn-textarea-error: var(--dyn-feedback-negative-default, var(--legacy-color-danger, #d32f2f));
+
+  --dyn-textarea-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-textarea-padding: var(--dyn-spacing-sm, 12px);
+  --dyn-textarea-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-textarea-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
 
   display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .textarea {
   width: 100%;
   min-height: 6rem;
-  padding: var(--dyn-spacing-sm, var(--spacing-sm, 0.75rem));
-  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 0.5rem));
+  padding: var(--dyn-textarea-padding);
+  border-radius: var(--dyn-textarea-radius);
   border: 1px solid var(--dyn-textarea-border);
   background-color: var(--dyn-textarea-bg);
   color: var(--dyn-textarea-color);
-  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-  font-size: var(--dyn-font-size-base, var(--font-size-base, 1rem));
-  line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
-  transition: var(--dyn-transition-base, border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease);
+  font-family: inherit;
+  font-size: var(--dyn-textarea-font-size);
+  line-height: 1.5;
+  transition: border-color var(--dyn-textarea-transition), box-shadow var(--dyn-textarea-transition);
   resize: vertical;
 }
 
@@ -38,13 +52,8 @@
   border-color: var(--dyn-textarea-border-hover);
 }
 
-.textarea:focus-visible {
-  outline: none;
-  border-color: var(--dyn-textarea-border-focus);
-  box-shadow: 0 0 0 3px var(--dyn-textarea-focus-ring);
-}
-
 .textareaFocused {
+  outline: none;
   border-color: var(--dyn-textarea-border-focus);
   box-shadow: 0 0 0 3px var(--dyn-textarea-focus-ring);
 }
@@ -53,7 +62,7 @@
   background-color: var(--dyn-textarea-disabled-bg);
   color: var(--dyn-textarea-disabled-color);
   cursor: not-allowed;
-  opacity: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
+  opacity: 0.6;
 }
 
 .textareaReadonly {
@@ -64,8 +73,9 @@
   border-color: var(--dyn-textarea-error);
 }
 
-.textareaError:focus-visible {
-  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.35);
+.textareaAutoResize {
+  resize: none;
+  overflow: hidden;
 }
 
 .textareaResizeNone {
@@ -80,45 +90,28 @@
   resize: both;
 }
 
+.characterCount {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 11px;
+  color: var(--dyn-textarea-placeholder);
+  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .container {
-    --dyn-textarea-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
-    --dyn-textarea-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f3f4f6));
-    --dyn-textarea-border: var(--dyn-color-border-dark, var(--color-border-dark, #4b5563));
-    --dyn-textarea-border-hover: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #6b7280));
-    --dyn-textarea-border-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-    --dyn-textarea-focus-ring: var(--dyn-color-focus-ring-dark, var(--color-focus-ring-dark, rgba(59, 130, 246, 0.35)));
-    --dyn-textarea-placeholder: var(--dyn-color-text-placeholder-dark, var(--color-text-placeholder-dark, #9ca3af));
-    --dyn-textarea-disabled-bg: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #374151));
-    --dyn-textarea-disabled-color: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
-    --dyn-textarea-readonly-bg: var(--dyn-color-surface-readonly-dark, var(--color-surface-readonly-dark, #0f172a));
-    --dyn-textarea-error: var(--dyn-color-danger-dark, var(--color-danger-dark, #ef4444));
-  }
-}
-
-/* Mobile touch target */
-@media (max-width: 767px) {
-  .textarea {
-    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .textarea {
-    transition: none;
-  }
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .textarea {
-    border-width: 2px;
+    --dyn-textarea-bg: var(--dyn-neutral-dark-900, #1f2937);
+    --dyn-textarea-color: var(--dyn-neutral-light-100, #f3f4f6);
+    --dyn-textarea-border: var(--dyn-neutral-dark-700, #4b5563);
+    --dyn-textarea-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
   }
 
-  .textarea:focus-visible {
-    outline-width: 4px;
-    outline-offset: 2px;
+  .characterCount {
+    background-color: rgba(31, 41, 55, 0.8);
   }
 }

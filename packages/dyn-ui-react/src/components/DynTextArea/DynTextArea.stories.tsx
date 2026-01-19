@@ -9,7 +9,7 @@ const meta: Meta<typeof DynTextArea> = {
     docs: {
       description: {
         component:
-          'Dinamička textarea komponenta sa validacijom, kontrolom veličine i WCAG 2.1 AA podrškom. Koristi zajednički DynFieldContainer za konzistentno poravnanje labela i poruka o greškama.',
+          'Dynamic textarea component with validation, resize control, and WCAG 2.1 AA support. Uses DynFieldContainer for consistent alignment of labels and error messages.',
       },
     },
   },
@@ -18,7 +18,7 @@ const meta: Meta<typeof DynTextArea> = {
     resize: {
       control: 'select',
       options: ['none', 'vertical', 'horizontal', 'both'],
-      description: 'Određuje ponašanje resize opcije',
+      description: 'Determines the resize behavior',
     },
     disabled: { control: 'boolean' },
     readonly: { control: 'boolean' },
@@ -30,8 +30,8 @@ const meta: Meta<typeof DynTextArea> = {
     help: { control: 'text' },
   },
   args: {
-    label: 'Opis',
-    placeholder: 'Unesite detaljniji opis...',
+    label: 'Description',
+    placeholder: 'Enter a detailed description...',
     rows: 4,
   },
 };
@@ -42,18 +42,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   args: {
-    help: 'Možete koristiti markdown sintaksu za formatiranje.',
+    help: 'You can use markdown syntax for formatting.',
   },
 };
 
 export const States: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 640 }}>
-      <DynTextArea label="Osnovno" placeholder="Standardno polje" />
-      <DynTextArea label="Obavezno" required placeholder="Morate popuniti ovo polje" />
-      <DynTextArea label="Sa greškom" errorMessage="Neispravan opis" value="tekst" />
-      <DynTextArea label="Onemogućeno" disabled value="Onemogućeni unos" />
-      <DynTextArea label="Samo čitanje" readonly value="Sadržaj samo za prikaz" />
+      <DynTextArea label="Basic" placeholder="Standard field" />
+      <DynTextArea label="Required" required placeholder="You must fill this field" />
+      <DynTextArea label="With Error" errorMessage="Invalid description" value="some text" />
+      <DynTextArea label="Disabled" disabled value="Disabled input" />
+      <DynTextArea label="Read Only" readonly value="Display only content" />
     </div>
   ),
 };
@@ -61,10 +61,10 @@ export const States: Story = {
 export const ResizeOptions: Story = {
   render: () => (
     <div style={{ display: 'grid', gap: '1rem', maxWidth: 640 }}>
-      <DynTextArea label="Bez resize" resize="none" placeholder="Resize zabranjen" />
-      <DynTextArea label="Horizontalno" resize="horizontal" rows={3} />
-      <DynTextArea label="Vertikalno" resize="vertical" rows={6} />
-      <DynTextArea label="Oba smera" resize="both" rows={5} />
+      <DynTextArea label="No Resize" resize="none" placeholder="Resize disabled" />
+      <DynTextArea label="Horizontal" resize="horizontal" rows={3} />
+      <DynTextArea label="Vertical" resize="vertical" rows={6} />
+      <DynTextArea label="Both Directions" resize="both" rows={5} />
     </div>
   ),
 };
@@ -76,9 +76,9 @@ export const DarkTheme: Story = {
   render: () => (
     <div data-theme="dark" style={{ padding: '2rem', background: '#111827', borderRadius: 12 }}>
       <div style={{ display: 'grid', gap: '1rem', maxWidth: 640 }}>
-        <DynTextArea label="Opis" placeholder="Unesite detalje" />
-        <DynTextArea label="Sa greškom" errorMessage="Greška" value="Opis" />
-        <DynTextArea label="Savet" help="Tekst pomoći u tamnom modu" />
+        <DynTextArea label="Description" placeholder="Enter details" />
+        <DynTextArea label="With Error" errorMessage="Error" value="Description" />
+        <DynTextArea label="Tip" help="Help text in dark mode" />
       </div>
     </div>
   ),

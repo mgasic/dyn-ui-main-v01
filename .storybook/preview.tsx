@@ -2,6 +2,7 @@ import * as React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider } from '../packages/dyn-ui-react/src/theme/ThemeProvider';
 import '../packages/dyn-ui-react/src/styles/themes.css';
+import '../packages/dyn-ui-react/src/styles/design-tokens.css';
 
 const themes = ['light', 'dark'];
 

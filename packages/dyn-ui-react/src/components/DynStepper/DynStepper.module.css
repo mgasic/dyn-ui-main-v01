@@ -3,23 +3,24 @@
    Standardized with design tokens
    ========================================================================== */
 
-:root {
+.root {
   /* Color Tokens */
   --dyn-stepper-bg: transparent;
   --dyn-stepper-step-bg-pending: var(--dyn-color-surface, var(--color-surface, #ffffff));
   --dyn-stepper-step-bg-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
   --dyn-stepper-step-bg-completed: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-bg-error: var(--dyn-color-danger, var(--color-danger, #ef4444));
   --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  --dyn-stepper-step-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-text-active: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
   --dyn-stepper-step-text-completed: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-stepper-step-text-inverse: var(--dyn-color-text-inverse, #ffffff);
+
   --dyn-stepper-step-border: var(--dyn-color-border, var(--color-border, #d1d5db));
   --dyn-stepper-connector-bg: var(--dyn-color-border, var(--color-border, #d1d5db));
   --dyn-stepper-connector-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
   /* Size Tokens */
-  --dyn-stepper-step-size: 40px;
-  --dyn-stepper-step-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-stepper-step-padding: 0;
+  --dyn-stepper-step-size: 32px;
   --dyn-stepper-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-stepper-label-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
 
@@ -28,127 +29,231 @@
   --dyn-stepper-font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
   --dyn-stepper-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
 
-  /* Transitions */
-  --dyn-stepper-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-}
-
-.container {
   display: flex;
-  align-items: flex-start;
-  gap: var(--dyn-stepper-gap);
+  flex-direction: column;
   width: 100%;
-  padding: var(--dyn-stepper-step-padding);
-  background-color: var(--dyn-stepper-bg);
   font-family: var(--dyn-stepper-font-family);
   font-size: var(--dyn-stepper-font-size);
+  gap: var(--dyn-stepper-gap);
 }
 
-.vertical {
+.list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: var(--dyn-stepper-gap);
+  width: 100%;
+  position: relative;
+}
+
+.orientation-vertical .list {
   flex-direction: column;
 }
 
-.step {
+/* ==========================================================================
+   Step Item
+   ========================================================================== */
+
+.item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--dyn-stepper-label-gap);
   flex: 1;
   position: relative;
 }
 
-.stepNumber {
+.orientation-vertical .item {
+  flex-direction: row;
+  align-items: flex-start;
+  flex: 0 0 auto;
+}
+
+/* Connectors (Pseudo-elements on item) */
+.item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  background-color: var(--dyn-stepper-connector-bg);
+  transition: background-color 0.2s ease;
+}
+
+/* Horizontal Connector */
+.root:not(.orientation-vertical) .item:not(:last-child)::after {
+  top: calc(var(--dyn-stepper-step-size) / 2 - 1px);
+  left: calc(50% + var(--dyn-stepper-step-size) / 2 + var(--dyn-stepper-gap) / 2);
+  width: calc(100% - var(--dyn-stepper-step-size) - var(--dyn-stepper-gap));
+  height: 2px;
+}
+
+/* Vertical Connector */
+.orientation-vertical .item:not(:last-child)::after {
+  left: calc(var(--dyn-stepper-step-size) / 2 - 1px);
+  top: calc(var(--dyn-stepper-step-size) + 4px);
+  height: calc(100% - var(--dyn-stepper-step-size) + var(--dyn-stepper-gap) - 8px);
+  width: 2px;
+}
+
+/* Completed Connector State */
+.itemCompleted:not(:last-child)::after {
+  background-color: var(--dyn-stepper-connector-active);
+}
+
+/* ==========================================================================
+   Step Button
+   ========================================================================== */
+
+.button {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--dyn-stepper-label-gap);
+  cursor: pointer;
+  color: var(--dyn-stepper-step-text-pending);
+  width: 100%;
+}
+
+.orientation-vertical .button {
+  flex-direction: row;
+  width: auto;
+}
+
+.buttonDisabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Step Index Circle */
+.stepIndex {
   display: flex;
   align-items: center;
   justify-content: center;
   width: var(--dyn-stepper-step-size);
   height: var(--dyn-stepper-step-size);
-  background-color: var(--dyn-stepper-step-bg-pending);
-  border: 2px solid var(--dyn-stepper-step-border);
   border-radius: 50%;
+  background-color: var(--dyn-stepper-step-bg-pending);
+  border: 1px solid var(--dyn-stepper-step-border);
   color: var(--dyn-stepper-step-text-pending);
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
-  transition: all var(--dyn-stepper-transition);
-  flex-shrink: 0;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  z-index: 1;
+  /* Above connector */
 }
 
-.stepActive .stepNumber {
+/* States */
+.itemCurrent .stepIndex {
   background-color: var(--dyn-stepper-step-bg-active);
   border-color: var(--dyn-stepper-step-bg-active);
-  color: #ffffff;
+  color: var(--dyn-stepper-step-text-inverse);
 }
 
-.stepCompleted .stepNumber {
+.itemCompleted .stepIndex {
   background-color: var(--dyn-stepper-step-bg-completed);
   border-color: var(--dyn-stepper-step-bg-completed);
-  color: #ffffff;
+  color: var(--dyn-stepper-step-text-inverse);
 }
 
+.itemError .stepIndex {
+  background-color: var(--dyn-stepper-step-bg-error);
+  border-color: var(--dyn-stepper-step-bg-error);
+  color: var(--dyn-stepper-step-text-inverse);
+}
+
+/* Label */
 .stepLabel {
-  text-align: center;
   font-size: var(--dyn-stepper-font-size);
-  line-height: var(--dyn-stepper-line-height);
+  font-weight: 500;
+  text-align: center;
 }
 
-.stepTitle {
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
-  color: var(--dyn-stepper-step-text-pending);
-}
-
-.stepActive .stepTitle {
+.itemCurrent .stepLabel {
   color: var(--dyn-stepper-step-text-active);
+  font-weight: 600;
 }
 
-.stepCompleted .stepTitle {
+.itemCompleted .stepLabel {
   color: var(--dyn-stepper-step-text-completed);
 }
 
-.connector {
-  flex: 1;
-  height: 2px;
+.itemError .stepLabel {
+  color: var(--dyn-stepper-step-bg-error);
+}
+
+/* Icon */
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ==========================================================================
+   Content Panel
+   ========================================================================== */
+
+.panel {
+  width: 100%;
+  padding-top: var(--dyn-spacing-lg, 24px);
+}
+
+.orientation-vertical .panel {
+  padding-left: calc(var(--dyn-stepper-step-size) + var(--dyn-stepper-gap));
+  padding-top: 0;
+  margin-top: calc(var(--dyn-stepper-step-size) * -1 + 4px);
+  margin-bottom: var(--dyn-spacing-lg, 24px);
+}
+
+.panelHidden {
+  display: none;
+}
+
+/* ==========================================================================
+   Optional / Description
+   ========================================================================== */
+
+.description {
+  font-size: 0.875rem;
+  color: var(--dyn-stepper-step-text-pending);
+  margin-top: 4px;
+}
+
+.optional {
+  font-size: 0.75rem;
+  color: var(--dyn-stepper-step-text-pending);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Progress Variant
+   ========================================================================== */
+
+.progressBar {
+  height: 4px;
   background-color: var(--dyn-stepper-connector-bg);
-  margin: 0 var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  transition: all var(--dyn-stepper-transition);
+  border-radius: 2px;
+  margin: var(--dyn-spacing-md, 16px) 0;
+  width: 100%;
+  overflow: hidden;
 }
 
-.connectorActive,
-.connectorCompleted {
-  background-color: var(--dyn-stepper-connector-active);
+.progressFill {
+  height: 100%;
+  background-color: var(--dyn-stepper-step-bg-active);
+  transition: width 0.3s ease;
 }
 
-.vertical .connector {
-  width: 2px;
-  height: 30px;
-  margin: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) 0;
-}
-
-@media (max-width: 767px) {
-  .stepLabel {
-    display: none;
-  }
-
-  .container {
-    gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  }
-}
-
-@media (prefers-contrast: more) {
-  .stepNumber {
-    border-width: 3px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stepNumber,
-  .connector {
-    transition: none;
-  }
-}
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-stepper-step-bg-pending: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
-    --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-stepper-step-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-    --dyn-stepper-connector-bg: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  .root {
+    --dyn-stepper-step-bg-pending: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-stepper-step-text-pending: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-stepper-step-text-active: var(--dyn-color-text-primary-dark, #f3f4f6);
+    --dyn-stepper-step-border: var(--dyn-color-border-dark, #374151);
+    --dyn-stepper-connector-bg: var(--dyn-color-border-dark, #374151);
   }
 }

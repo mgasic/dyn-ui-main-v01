@@ -1,462 +1,154 @@
-/* ==========================================================================
-   DynSelect Component Styles
-   Standardized with design tokens
-   ========================================================================== */
+.container {
+  /* Component-scoped tokens with foundations alignment */
+  --dyn-select-bg: var(--dyn-neutral-light-white, #ffffff);
+  --dyn-select-color: var(--dyn-neutral-dark-900, #111827);
+  --dyn-select-border: var(--dyn-neutral-light-200, #d1d5db);
+  --dyn-select-border-hover: var(--dyn-neutral-mid-400, #9ca3af);
+  --dyn-select-border-focus: var(--dyn-theme-primary, #2563eb);
+  --dyn-select-focus-ring: var(--dyn-action-focus, rgba(37, 99, 235, 0.35));
+  --dyn-select-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
+  --dyn-select-disabled-bg: var(--dyn-neutral-light-100, #f3f4f6);
+  --dyn-select-readonly-bg: var(--dyn-neutral-light-50, #f9fafb);
 
-:root {
-  /* Color Tokens */
-  --dyn-select-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
-  --dyn-select-border: var(--dyn-color-border, var(--color-border, #d0d5dd));
-  --dyn-select-border-hover: var(--dyn-color-border-hover, var(--color-border-hover, #9ca3af));
-  --dyn-select-border-focus: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-select-text-primary: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  --dyn-select-text-placeholder: var(--dyn-color-text-placeholder, var(--color-text-placeholder, #9ca3af));
-  --dyn-select-text-secondary: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
-  --dyn-select-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
+  --dyn-select-radius: var(--dyn-border-radius-md, 8px);
+  --dyn-select-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-select-padding-x: var(--dyn-spacing-md, 12px);
+  --dyn-select-font-size: var(--dyn-font-size-sm, 14px);
+  --dyn-select-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
 
-  --dyn-select-bg-disabled: var(--dyn-color-surface-disabled, var(--color-surface-disabled, #f1f5f9));
-  --dyn-select-border-disabled: var(--dyn-color-border-disabled, var(--color-border-disabled, #e2e8f0));
-  --dyn-select-bg-readonly: var(--dyn-color-surface-readonly, var(--color-surface-readonly, #f8fafc));
-
-  --dyn-select-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f1f5f9));
-  --dyn-select-bg-selected: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
-  --dyn-select-text-selected: var(--dyn-color-primary, var(--color-primary, #2563eb));
-
-  --dyn-select-border-error: var(--dyn-color-error, var(--color-error, #ef4444));
-  --dyn-select-error-alpha: rgba(239, 68, 68, 0.1);
-  --dyn-select-focus-ring-color: rgba(37, 99, 235, 0.16);
-
-  /* Tag Colors */
-  --dyn-select-tag-bg: var(--dyn-color-primary-light, var(--color-primary-light, #eff6ff));
-  --dyn-select-tag-text: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-select-tag-border: var(--dyn-color-primary, var(--color-primary, #2563eb));
-
-  /* Size Tokens */
-  --dyn-select-height: var(--dyn-size-md, var(--size-md, 40px));
-  --dyn-select-height-sm: var(--dyn-size-sm, var(--size-sm, 32px));
-  --dyn-select-height-lg: var(--dyn-size-lg, var(--size-lg, 48px));
-  --dyn-select-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-select-padding-x: var(--dyn-spacing-md, var(--spacing-md, 12px));
-  --dyn-select-padding-y-sm: var(--dyn-spacing-xs, var(--spacing-xs, 6px));
-  --dyn-select-padding-x-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-select-padding-y-lg: var(--dyn-spacing-md, var(--spacing-md, 12px));
-  --dyn-select-padding-x-lg: var(--dyn-spacing-lg, var(--spacing-lg, 16px));
-
-  /* Dropdown */
-  --dyn-select-dropdown-max-height: 300px;
-  --dyn-select-dropdown-options-max-height: 240px;
-  --dyn-select-dropdown-offset: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-select-dropdown-padding: var(--dyn-spacing-md, var(--spacing-md, 12px));
-
-  /* Spacing */
-  --dyn-select-gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-select-tag-gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-
-  /* Typography */
-  --dyn-select-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-  --dyn-select-font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
-  --dyn-select-font-size-sm: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  --dyn-select-font-size-lg: var(--dyn-font-size-lg, var(--font-size-lg, 18px));
-  --dyn-select-line-height: var(--dyn-line-height-base, var(--line-height-base, 1.5));
-
-  /* Border */
-  --dyn-select-border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
-  --dyn-select-border-radius-sm: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
-  --dyn-select-border-width: 1px;
-
-  /* Transition */
-  --dyn-select-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
-
-  /* Shadow */
-  --dyn-select-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)));
-
-  /* Arrow */
-  --dyn-select-arrow-margin: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-
-  /* Z-index */
-  --dyn-select-dropdown-zindex: var(--dyn-zindex-dropdown, var(--zindex-dropdown, 1000));
-
-  /* Opacity */
-  --dyn-select-opacity-disabled: var(--dyn-opacity-disabled, var(--opacity-disabled, 0.56));
-}
-
-/* ========================================================================
-   Container
-   ======================================================================== */
-
-.dyn-select-container {
   position: relative;
   width: 100%;
 }
 
-/* ========================================================================
-   Select Field
-   ======================================================================== */
-
-.dyn-select {
+.root {
   position: relative;
-  min-height: var(--dyn-select-height);
   width: 100%;
-  font-family: var(--dyn-select-font-family);
+  font-family: inherit;
   font-size: var(--dyn-select-font-size);
-  color: var(--dyn-select-text-primary);
+  color: var(--dyn-select-color);
   background-color: var(--dyn-select-bg);
-  border: var(--dyn-select-border-width) solid var(--dyn-select-border);
-  border-radius: var(--dyn-select-border-radius);
+  border: 1px solid var(--dyn-select-border);
+  border-radius: var(--dyn-select-radius);
   cursor: pointer;
   transition: all var(--dyn-select-transition);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--dyn-select-padding-y) var(--dyn-select-padding-x);
+  box-sizing: border-box;
+  min-height: 2.5rem;
 }
 
-.dyn-select:hover:not(.dyn-select--disabled):not(.dyn-select--readonly) {
+.root:hover:not(.disabled):not(.readonly) {
   border-color: var(--dyn-select-border-hover);
 }
 
-.dyn-select:focus {
+.root:focus {
   outline: none;
 }
 
-.dyn-select--focused,
-.dyn-select--open {
+.focused,
+.open {
   border-color: var(--dyn-select-border-focus);
-  box-shadow: 0 0 0 3px var(--dyn-select-focus-ring-color);
+  box-shadow: 0 0 0 3px var(--dyn-select-focus-ring);
 }
 
-.dyn-select--error {
-  border-color: var(--dyn-select-border-error);
-}
-
-.dyn-select--error.dyn-select--focused {
-  box-shadow: 0 0 0 3px var(--dyn-select-error-alpha);
-}
-
-.dyn-select--disabled {
-  background-color: var(--dyn-select-bg-disabled);
-  color: var(--dyn-select-text-disabled);
+.disabled {
+  background-color: var(--dyn-select-disabled-bg);
+  color: var(--dyn-select-placeholder);
   cursor: not-allowed;
-  border-color: var(--dyn-select-border-disabled);
-  opacity: var(--dyn-select-opacity-disabled);
+  opacity: 0.6;
 }
 
-.dyn-select--readonly {
-  background-color: var(--dyn-select-bg-readonly);
+.readonly {
+  background-color: var(--dyn-select-readonly-bg);
   cursor: default;
 }
 
-.dyn-select--loading {
-  cursor: wait;
-}
-
-/* Size variants */
-.dyn-select--small {
-  font-size: var(--dyn-select-font-size-sm);
-  min-height: var(--dyn-select-height-sm);
-  padding: var(--dyn-select-padding-y-sm) var(--dyn-select-padding-x-sm);
-}
-
-.dyn-select--large {
-  font-size: var(--dyn-select-font-size-lg);
-  min-height: var(--dyn-select-height-lg);
-  padding: var(--dyn-select-padding-y-lg) var(--dyn-select-padding-x-lg);
-}
-
-/* ========================================================================
-   Content
-   ======================================================================== */
-
-.dyn-select-content {
+/* Content & Text */
+.content {
   flex: 1;
   display: flex;
   align-items: center;
-  min-height: 24px;
-  gap: var(--dyn-select-tag-gap);
+  gap: 4px;
+  overflow: hidden;
 }
 
-.dyn-select-text {
-  line-height: var(--dyn-select-line-height);
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.dyn-select-text.dyn-select-placeholder {
-  color: var(--dyn-select-text-placeholder);
+.placeholder {
+  color: var(--dyn-select-placeholder);
 }
 
-/* ========================================================================
-   Tags
-   ======================================================================== */
-
-.dyn-select-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--dyn-select-tag-gap);
-  align-items: center;
-}
-
-.dyn-select-tag {
+/* Tags */
+.tag {
   display: inline-flex;
   align-items: center;
-  background-color: var(--dyn-select-tag-bg);
-  color: var(--dyn-select-tag-text);
-  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  border-radius: var(--dyn-select-border-radius-sm);
-  font-size: var(--dyn-select-font-size-sm);
-  line-height: 1.2;
-  gap: var(--dyn-select-tag-gap);
+  background-color: var(--dyn-neutral-light-50);
+  border: 1px solid var(--dyn-neutral-light-200);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  gap: 4px;
 }
 
-.dyn-select-tag-remove {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-  padding: 0;
+/* Actions */
+.actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  transition: all var(--dyn-select-transition);
-}
-
-.dyn-select-tag-remove:hover {
-  background-color: rgba(37, 99, 235, 0.1);
-}
-
-/* ========================================================================
-   Arrow
-   ======================================================================== */
-
-.dyn-select-arrow {
-  margin-left: var(--dyn-select-arrow-margin);
-  color: var(--dyn-select-text-secondary);
-  transition: transform var(--dyn-select-transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 4px;
   flex-shrink: 0;
 }
 
-.dyn-select-arrow--up {
-  transform: rotate(180deg);
+.arrow {
+  color: var(--dyn-select-placeholder);
+  transition: transform 0.2s;
 }
 
-/* ========================================================================
-   Dropdown
-   ======================================================================== */
-
-.dyn-select-dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: var(--dyn-select-dropdown-zindex);
-  margin-top: var(--dyn-select-dropdown-offset);
-  background-color: var(--dyn-select-bg);
-  border: var(--dyn-select-border-width) solid var(--dyn-select-border);
-  border-radius: var(--dyn-select-border-radius);
-  box-shadow: var(--dyn-select-shadow);
-  max-height: var(--dyn-select-dropdown-max-height);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ========================================================================
-   Search
-   ======================================================================== */
-
-.dyn-select-search {
-  padding: var(--dyn-select-dropdown-padding);
-  border-bottom: var(--dyn-select-border-width) solid var(--dyn-select-border);
-}
-
-.dyn-select-search-input {
-  width: 100%;
-  font-size: var(--dyn-select-font-size-sm);
-  padding: var(--dyn-select-padding-y) var(--dyn-select-padding-x);
-  border: var(--dyn-select-border-width) solid var(--dyn-select-border);
-  border-radius: var(--dyn-select-border-radius-sm);
-  outline: none;
-  font-family: var(--dyn-select-font-family);
-  transition: all var(--dyn-select-transition);
-  color: var(--dyn-select-text-primary);
-  background-color: var(--dyn-select-bg);
-}
-
-.dyn-select-search-input:focus {
-  border-color: var(--dyn-select-border-focus);
-  box-shadow: 0 0 0 2px var(--dyn-select-focus-ring-color);
-}
-
-.dyn-select-search-input::placeholder {
-  color: var(--dyn-select-text-placeholder);
-}
-
-/* ========================================================================
-   Options
-   ======================================================================== */
-
-.dyn-select-options {
-  flex: 1;
+/* Options */
+.options {
+  max-height: 240px;
   overflow-y: auto;
-  max-height: var(--dyn-select-dropdown-options-max-height);
-}
-
-.dyn-select-option {
-  display: flex;
-  align-items: center;
-  padding: var(--dyn-select-padding-y) var(--dyn-select-padding-x);
-  cursor: pointer;
-  font-size: var(--dyn-select-font-size);
-  line-height: var(--dyn-select-line-height);
-  color: var(--dyn-select-text-primary);
-  transition: background-color var(--dyn-select-transition);
-  gap: var(--dyn-select-gap);
-}
-
-.dyn-select-option:hover:not(.dyn-select-option--disabled) {
-  background-color: var(--dyn-select-bg-hover);
-}
-
-.dyn-select-option--selected {
-  background-color: var(--dyn-select-bg-selected);
-  color: var(--dyn-select-text-selected);
-}
-
-.dyn-select-option--disabled {
-  color: var(--dyn-select-text-disabled);
-  cursor: not-allowed;
-  opacity: var(--dyn-select-opacity-disabled);
-}
-
-.dyn-select-option-text {
-  flex: 1;
-}
-
-/* ========================================================================
-   Checkbox
-   ======================================================================== */
-
-.dyn-select-checkbox {
-  width: 16px;
-  height: 16px;
-  border: var(--dyn-select-border-width) solid var(--dyn-select-border);
-  border-radius: var(--dyn-select-border-radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 4px 0;
   background-color: var(--dyn-select-bg);
-  transition: all var(--dyn-select-transition);
-  flex-shrink: 0;
 }
 
-.dyn-select-checkbox--checked {
-  background-color: var(--dyn-select-border-focus);
-  border-color: var(--dyn-select-border-focus);
-  color: var(--dyn-select-bg);
+.option {
+  width: 100%;
+  padding: 10px 12px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: var(--dyn-select-font-size);
+  text-align: left;
+  color: var(--dyn-select-color);
+  transition: background-color 0.15s;
 }
 
-/* ========================================================================
-   Empty State
-   ======================================================================== */
-
-.dyn-select-empty {
-  padding: var(--dyn-spacing-lg, var(--spacing-lg, 24px)) var(--dyn-select-padding-x);
-  text-align: center;
-  color: var(--dyn-select-text-secondary);
-  font-size: var(--dyn-select-font-size-sm);
-  font-style: italic;
+.option:hover:not(.optionDisabled) {
+  background-color: var(--dyn-neutral-light-100);
 }
 
-/* ========================================================================
-   Accessibility: High Contrast Mode
-   ======================================================================== */
-
-@media (prefers-contrast: high) {
-  .dyn-select--focused,
-  .dyn-select--open {
-    box-shadow:
-      0 0 0 3px var(--dyn-select-focus-ring-color),
-      0 0 0 6px var(--dyn-select-border);
-    outline: 2px solid var(--dyn-select-border-focus);
-    outline-offset: 2px;
-  }
-
-  .dyn-select-search-input:focus {
-    outline: 2px solid var(--dyn-select-border-focus);
-    outline-offset: 2px;
-  }
+.optionSelected {
+  background-color: var(--dyn-neutral-light-50);
+  color: var(--dyn-select-border-focus);
+  font-weight: 500;
 }
 
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .dyn-select,
-  .dyn-select-arrow,
-  .dyn-select-option,
-  .dyn-select-tag-remove,
-  .dyn-select-search-input {
-    transition: none;
-  }
-}
-
-/* ========================================================================
-   Dark Mode Support
-   ======================================================================== */
-
+/* Dark mode support */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-select-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1e293b));
-    --dyn-select-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-    --dyn-select-border-hover: var(--dyn-color-border-dark-hover, var(--color-border-dark-hover, #475569));
-    --dyn-select-border-focus: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-    --dyn-select-text-primary: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-    --dyn-select-text-placeholder: var(--dyn-color-text-placeholder-dark, var(--color-text-placeholder-dark, #6b7280));
-    --dyn-select-text-secondary: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-    --dyn-select-text-disabled: var(--dyn-color-text-disabled-dark, var(--color-text-disabled-dark, #6b7280));
-
-    --dyn-select-bg-disabled: var(--dyn-color-surface-disabled-dark, var(--color-surface-disabled-dark, #334155));
-    --dyn-select-border-disabled: var(--dyn-color-border-disabled-dark, var(--color-border-disabled-dark, #475569));
-    --dyn-select-bg-readonly: var(--dyn-color-surface-readonly-dark, var(--color-surface-readonly-dark, #2d3748));
-
-    --dyn-select-bg-hover: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #2d3748));
-    --dyn-select-bg-selected: var(--dyn-color-primary-light-dark, rgba(59, 130, 246, 0.2));
-    --dyn-select-text-selected: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-
-    --dyn-select-tag-bg: rgba(59, 130, 246, 0.15);
-    --dyn-select-tag-text: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-
-    --dyn-select-focus-ring-color: rgba(59, 130, 246, 0.2);
-  }
-}
-
-/* ========================================================================
-   Responsive Design: Mobile
-   ======================================================================== */
-
-@media (max-width: 767px) {
-  .dyn-select {
-    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
+  .container {
+    --dyn-select-bg: var(--dyn-neutral-dark-900, #1e293b);
+    --dyn-select-color: var(--dyn-neutral-light-100, #f1f5f9);
+    --dyn-select-border: var(--dyn-neutral-dark-700, #334155);
+    --dyn-select-placeholder: var(--dyn-neutral-mid-400, #94a3b8);
   }
 
-  .dyn-select-dropdown {
-    max-height: 50vh;
-  }
-
-  .dyn-select-options {
-    max-height: calc(50vh - var(--dyn-spacing-lg, var(--spacing-lg, 24px)));
-  }
-
-  .dyn-select--small {
-    min-height: var(--dyn-size-touch-target-sm, var(--size-touch-target-sm, 40px));
-  }
-
-  .dyn-select--large {
-    min-height: var(--dyn-size-touch-target-lg, var(--size-touch-target-lg, 52px));
+  .option:hover:not(.optionDisabled) {
+    background-color: var(--dyn-neutral-dark-700);
   }
 }

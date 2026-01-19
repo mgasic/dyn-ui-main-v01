@@ -3,7 +3,12 @@
    Standardized with design tokens
    ========================================================================== */
 
-:root {
+
+.container {
+  /* ============================================
+     COMPONENT-SCOPED TOKEN DEFINITIONS
+     ============================================ */
+
   /* Color Tokens */
   --dyn-sidebar-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
   --dyn-sidebar-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
@@ -11,7 +16,7 @@
   --dyn-sidebar-item-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
   --dyn-sidebar-item-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
   --dyn-sidebar-item-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
-  --dyn-sidebar-item-bg-active: rgba(37, 99, 235, 0.1);
+  --dyn-sidebar-item-bg-active: var(--dyn-color-primary-alpha, rgba(37, 99, 235, 0.1));
 
   /* Size Tokens */
   --dyn-sidebar-width: 256px;
@@ -30,9 +35,8 @@
 
   /* Shadow */
   --dyn-sidebar-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)));
-}
 
-.container {
+
   display: flex;
   flex-direction: column;
   width: var(--dyn-sidebar-width);
@@ -119,6 +123,7 @@
 }
 
 @media (prefers-contrast: more) {
+
   .header,
   .footer {
     border-width: 2px;
@@ -126,6 +131,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .container,
   .item {
     transition: none;
@@ -149,7 +155,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  .container {
     --dyn-sidebar-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
     --dyn-sidebar-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
     --dyn-sidebar-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));

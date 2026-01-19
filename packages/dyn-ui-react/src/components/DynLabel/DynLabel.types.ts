@@ -1,7 +1,7 @@
-import type { ReactNode } from 'react';
+import type { LabelHTMLAttributes } from 'react';
 import type { BaseComponentProps } from '../../types/theme';
 
-export interface DynLabelProps extends BaseComponentProps {
+export interface DynLabelProps extends BaseComponentProps, Omit<LabelHTMLAttributes<HTMLLabelElement>, keyof BaseComponentProps | 'htmlFor'> {
   /** Associated form element ID */
   htmlFor?: string;
 
@@ -16,9 +16,6 @@ export interface DynLabelProps extends BaseComponentProps {
 
   /** Help text to display */
   helpText?: string;
-
-  /** Label content */
-  children?: ReactNode;
 }
 
 export const DYN_LABEL_DEFAULT_PROPS = {

@@ -1,8 +1,8 @@
 # DynChart - Component Audit
 
-**Status**: 🏆 **EXCELLENT (95%)**  
-**Priority**: TIER 3 (Specialized)  
-**Category**: Data Visualization
+**Status**: 🟢 **COMPLIANT**  
+**Priority**: TIER 3 (Visualization)  
+**Category**: Data Display
 
 ---
 
@@ -11,33 +11,44 @@
 ### File Structure ✅
 | File | Size | Status |
 |------|------|--------|
-| DynChart.tsx | 21.2 KB | ✅ Massive/Complete |
-| DynChart.utils.ts | 3.7 KB | ✅ Helper logic |
-| DynChart.types.ts | 2.0 KB | ✅ Good |
-| DynChart.test.tsx | 5.0 KB | ✅ Good |
-| DynChart.stories.tsx | 5.0 KB | ✅ Good |
-| index.ts | 93 B | ✅ Present |
+| DynChart.tsx | (Assumed) | ✅ Present |
+| DynChart.module.css | 6.0 KB | ⚠️ Scoping Issues |
 
-### Architecture
-Wrapper around a charting library (likely Recharts or ChartJS based on props). Handles standard theming, legends, tooltips, and responsive sizing.
+### CSS Token Compliance ❌
+- **CRITICAL**: Uses `:root` for dark mode token overrides (Global Leakage).
+- **MISSING**: Does not use component-specific tokens (e.g., `--dyn-chart-bg`).
+- Uses system tokens directly: `var(--dyn-color-background, ...)`.
+- Fallbacks are hardcoded hex values (acceptable if system tokens are present, but component layer is missing).
 
 ---
 
-## 2. Review Notes
+## 2. Gap Analysis vs Standard
 
-- Complex logical component.
-- Helper utilities extracted correctly.
-- Separation of concerns maintained.
+| Criteria | DynChart | Gap |
+|----------|----------|-----|
+| Component Tokens | ❌ | **CRITICAL** (Direct system token usage) |
+| Scoped CSS | ❌ | **CRITICAL** (`:root` usage) |
+| 3-level Fallback | ❌ | Missing component layer |
 
 ---
 
 ## 3. Required Changes
 
-### ✅ NONE
-Verify `displayName` and base props extension.
+### 🔴 MUST FIX
+1.  **Scope Dark Mode Tokens**: Move `:root` defines to `.root` class.
+2.  **Introduce Component Tokens**:
+    -   Define `--dyn-chart-bg: var(--dyn-color-background, #fff)` in `.root`.
+    -   Replace usage: `background: var(--dyn-chart-bg)`.
 
 ---
 
-## 4. Estimated Time
+## 4. Implementation Checklist
 
-**0 hours**
+- [ ] Refactor CSS module to remove `:root`
+- [ ] Implement component-scoped tokens
+
+---
+
+## 5. Estimated Time
+
+**20 mins**

@@ -11,14 +11,14 @@ export type ToolbarBadge =
   | number
   | string
   | {
-      count?: number;
-      value?: number;
-      label?: ReactNode;
-      color?: DynBadgeColor;
-      variant?: DynBadgeVariant;
-      maxCount?: number;
-      showZero?: boolean;
-    };
+    count?: number;
+    value?: number;
+    label?: ReactNode;
+    color?: DynBadgeColor;
+    variant?: DynBadgeVariant;
+    maxCount?: number;
+    showZero?: boolean;
+  };
 
 export interface ToolbarItem {
   id: string;
@@ -32,57 +32,58 @@ export interface ToolbarItem {
   component?: React.ReactNode; // for custom components
   tooltip?: string;
   badge?: ToolbarBadge;
+  onChange?: (value: string) => void;
 }
 
 export interface DynToolbarProps extends BaseComponentProps, AccessibilityProps {
   /** Toolbar items to display */
   items: ToolbarItem[];
-  
+
   /** Visual variant */
   variant?: 'default' | 'minimal' | 'floating';
-  
+
   /** Size variant */
   size?: 'small' | 'medium' | 'large';
-  
+
   /** Position on screen */
   position?: 'top' | 'bottom' | 'fixed-top' | 'fixed-bottom';
-  
+
   /** Enable responsive behavior */
   responsive?: boolean;
-  
+
   /** Show overflow menu for hidden items */
   overflowMenu?: boolean;
-  
+
   /** Number of items before overflow kicks in */
   overflowThreshold?: number;
-  
+
   /** Show labels on toolbar items */
   showLabels?: boolean;
-  
+
   /** Additional CSS classes */
   className?: string;
-  
+
   /** CSS class for individual items */
   itemClassName?: string;
-  
+
   /** Item click handler */
   onItemClick?: (item: ToolbarItem) => void;
-  
+
   /** Overflow menu toggle handler */
   onOverflowToggle?: (isOpen: boolean) => void;
-  
+
   /** Children elements for custom toolbar content */
   children?: React.ReactNode;
-  
+
   /** Component ID */
   id?: string;
-  
+
   /** ARIA label for toolbar */
   'aria-label'?: string;
-  
+
   /** ARIA labelledby for toolbar */
   'aria-labelledby'?: string;
-  
+
   /** Test ID */
   'data-testid'?: string;
 }
@@ -108,7 +109,7 @@ export const TOOLBAR_DEFAULTS = {
 // Toolbar item types
 export const TOOLBAR_ITEM_TYPES = {
   BUTTON: 'button',
-  SEPARATOR: 'separator', 
+  SEPARATOR: 'separator',
   DROPDOWN: 'dropdown',
   SEARCH: 'search',
   CUSTOM: 'custom'

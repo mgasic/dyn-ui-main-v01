@@ -41,13 +41,16 @@ export const DynDropdown = forwardRef<DynDropdownRef, DynDropdownProps>(
             id,
             'aria-label': ariaLabel,
             'data-testid': dataTestId = 'dyn-dropdown',
+            triggerWrapper = 'button',
+            triggerRole,
         },
+
         ref
     ) => {
         const [internalOpen, setInternalOpen] = useState(defaultOpen);
         const isOpen = isOpenProp !== undefined ? isOpenProp : internalOpen;
 
-        const triggerRef = useRef<HTMLButtonElement>(null);
+        const triggerRef = useRef<HTMLButtonElement | HTMLDivElement>(null);
         const menuRef = useRef<HTMLDivElement>(null);
         const [coords, setCoords] = useState({ top: 0, left: 0 });
         const componentId = id || useId();
@@ -189,21 +192,38 @@ export const DynDropdown = forwardRef<DynDropdownRef, DynDropdownProps>(
 
         return (
             <div className={cn(styles.container, className)} data-testid={dataTestId}>
-                <button
-                    ref={triggerRef}
-                    type="button"
-                    className={styles.trigger}
-                    onClick={!disabled && triggerType === 'click' ? toggle : undefined}
-                    onMouseEnter={!disabled && triggerType === 'hover' ? () => handleOpenChange(true) : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={isOpen}
-                    aria-controls={`${componentId}-menu`}
-                    aria-label={ariaLabel}
-                    disabled={disabled}
+                {triggerWrapper === 'button' ? (
+                    <button
+                        ref={triggerRef as React.RefObject<HTMLButtonElement>}
+                        type="button"
+                        className={styles.trigger}
+                        onClick={!disabled && triggerType === 'click' ? toggle : undefined}
+                        onMouseEnter={!disabled && triggerType === 'hover' ? () => handleOpenChange(true) : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={isOpen}
+                        aria-controls={`${componentId}-menu`}
+                        aria-label={ariaLabel}
+                        disabled={disabled}
+                    >
+                        {trigger}
+                    </button>
+                ) : (
+                    <div
+                        ref={triggerRef as React.RefObject<HTMLDivElement>}
+                        className={styles.trigger}
+                        onClick={!disabled && triggerType === 'click' ? toggle : undefined}
+                        onMouseEnter={!disabled && triggerType === 'hover' ? () => handleOpenChange(true) : undefined}
+                        role={triggerRole ?? 'button'}
+                        tabIndex={triggerRole === 'presentation' || triggerRole === 'none' ? undefined : (disabled ? -1 : 0)}
+                        aria-haspopup={triggerRole === 'presentation' || triggerRole === 'none' ? undefined : "true"}
+                        aria-expanded={triggerRole === 'presentation' || triggerRole === 'none' ? undefined : isOpen}
+                        aria-controls={triggerRole === 'presentation' || triggerRole === 'none' ? undefined : `${componentId}-menu`}
+                        aria-label={ariaLabel}
+                    >
+                        {trigger}
+                    </div>
+                )}
 
-                >
-                    {trigger}
-                </button>
 
 
                 {isOpen && (usePortal ? createPortal(menuContent, document.body) : menuContent)}

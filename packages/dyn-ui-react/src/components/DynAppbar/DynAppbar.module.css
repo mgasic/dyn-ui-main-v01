@@ -1,20 +1,19 @@
-/* ==========================================================================
-   DynAppbar Component Styles
-   Standardized with design tokens
-   ========================================================================== */
+.container {
+  /* ============================================
+     COMPONENT-SCOPED TOKEN DEFINITIONS
+     ============================================ */
 
-:root {
   /* Color Tokens */
   --dyn-appbar-bg: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-appbar-text-color: #ffffff;
-  --dyn-appbar-border-color: rgba(0, 0, 0, 0.1);
+  --dyn-appbar-text-color: var(--dyn-color-neutral-0, var(--legacy-color-neutral-0, #ffffff));
+  --dyn-appbar-border-color: var(--dyn-color-border-subtle, rgba(0, 0, 0, 0.1));
 
   /* Size Tokens */
-  --dyn-appbar-height: 64px;
+  --dyn-appbar-height: var(--dyn-size-appbar-height, 64px);
   --dyn-appbar-padding-y: var(--dyn-spacing-md, var(--spacing-md, 16px));
   --dyn-appbar-padding-x: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
   --dyn-appbar-gap: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
-  --dyn-appbar-border-radius: 0;
+  --dyn-appbar-border-radius: var(--dyn-border-radius-none, 0);
 
   /* Typography */
   --dyn-appbar-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
@@ -26,19 +25,19 @@
 
   /* Shadow */
   --dyn-appbar-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1)));
-}
 
-.container {
   display: flex;
   align-items: center;
   height: var(--dyn-appbar-height);
-  padding: var(--dyn-appbar-padding-y) var(--dyn-appbar-padding-x);
+  padding: 0 var(--dyn-appbar-padding-x);
   background-color: var(--dyn-appbar-bg);
   border-bottom: 1px solid var(--dyn-appbar-border-color);
   box-shadow: var(--dyn-appbar-shadow);
   font-family: var(--dyn-appbar-font-family);
   color: var(--dyn-appbar-text-color);
   gap: var(--dyn-appbar-gap);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .sticky {
@@ -55,11 +54,15 @@
   z-index: 1000;
 }
 
-
 .title {
   font-size: var(--dyn-appbar-title-font-size);
   font-weight: var(--dyn-appbar-title-font-weight);
   color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  /* Allow title to grow and truncate */
 }
 
 .left,
@@ -71,22 +74,29 @@
 }
 
 .left {
-  flex: 0 0 auto;
+  flex: 1;
+  /* Take equal space to balance center */
+  justify-content: flex-start;
+  min-width: 0;
+  /* Allow shrinking for truncation */
 }
 
 .center {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   justify-content: center;
 }
 
 .right {
-  flex: 0 0 auto;
+  flex: 1;
+  /* Take equal space to balance center */
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 @media (max-width: 767px) {
   .container {
     height: 56px;
-    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
+    padding: 0 var(--dyn-spacing-md, var(--spacing-md, 16px));
     gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
   }
 
@@ -102,8 +112,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-appbar-bg: var(--dyn-color-primary-dark, var(--color-primary-dark, #1e40af));
-    --dyn-appbar-border-color: rgba(255, 255, 255, 0.1);
+  .container {
+    --dyn-appbar-bg: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
+    --dyn-appbar-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+    --dyn-appbar-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
   }
+}
+
+:global(.theme-dark) .container,
+:global([data-theme='dark']) .container {
+  --dyn-appbar-bg: var(--dyn-color-background-dark, #0f172a);
+  --dyn-appbar-border-color: var(--dyn-color-border-dark, #334155);
+  --dyn-appbar-text-color: var(--dyn-color-text-primary-dark, #f1f5f9);
 }

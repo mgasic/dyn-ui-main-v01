@@ -12,78 +12,59 @@
    COMPONENT TOKENS - Default (Light Mode)
    ============================================ */
 
-:root {
-  /* Foundation color tokens */
-  --dyn-color-white: #FFFFFF;
-  --dyn-color-black: #000000;
-  --dyn-color-gray-50: #F5F5F5;
-  --dyn-color-gray-900: #1A1A1A;
-  --dyn-color-primary-60: #007ACC;
+/* Component tokens scoped to overlay/container */
+.modalOverlay {
+  /* Foundation tokens (local scope fallback) */
   --dyn-color-neutral-80: rgba(0, 0, 0, 0.5);
 
-  /* Foundation spacing tokens */
-  --dyn-spacing-2: 8px;
-  --dyn-spacing-3: 12px;
-  --dyn-spacing-4: 16px;
-  --dyn-spacing-5: 20px;
-  --dyn-spacing-6: 24px;
-  --dyn-spacing-8: 32px;
+  /* Overlay tokens */
+  --dyn-modal-overlay-bg: var(--dyn-color-neutral-80);
+  --dyn-modal-overlay-backdrop-filter: blur(2px);
+  --dyn-modal-overlay-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --dyn-modal-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  /* Foundation typography tokens */
-  --dyn-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --dyn-font-size-body: 14px;
-  --dyn-font-size-heading: 20px;
-  --dyn-font-weight-regular: 400;
-  --dyn-font-weight-semibold: 600;
-  --dyn-line-height-tight: 1.2;
-  --dyn-line-height-normal: 1.5;
-
-  /* Foundation border tokens */
-  --dyn-border-radius-lg: 8px;
+.modalContainer {
+  /* Foundation tokens (local scope fallback) */
+  --dyn-color-white: #FFFFFF;
+  --dyn-color-gray-900: #1A1A1A;
+  --dyn-color-gray-50: #F5F5F5;
   --dyn-border-color: rgba(0, 0, 0, 0.12);
-
-  /* Foundation shadow tokens */
-  --dyn-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
   --dyn-shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.25);
 
   /* Modal Base tokens */
-  --dyn-modal-bg: var(--dyn-color-white, #FFFFFF);
-  --dyn-modal-text: var(--dyn-color-gray-900, #1A1A1A);
-  --dyn-modal-border: var(--dyn-border-color, rgba(0, 0, 0, 0.12));
-  --dyn-modal-border-radius: var(--dyn-border-radius-lg, 8px);
-  --dyn-modal-box-shadow: var(--dyn-shadow-xl, 0 15px 40px rgba(0, 0, 0, 0.25));
-
-  /* Modal Overlay tokens */
-  --dyn-modal-overlay-bg: var(--dyn-color-neutral-80, rgba(0, 0, 0, 0.5));
-  --dyn-modal-overlay-backdrop-filter: blur(2px);
-  --dyn-modal-overlay-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --dyn-modal-bg: var(--dyn-color-white);
+  --dyn-modal-text: var(--dyn-color-gray-900);
+  --dyn-modal-border: var(--dyn-border-color);
+  --dyn-modal-border-radius: 8px;
+  --dyn-modal-box-shadow: var(--dyn-shadow-xl);
 
   /* Modal Header tokens */
-  --dyn-modal-header-padding: var(--dyn-spacing-6, 24px);
-  --dyn-modal-header-bg: var(--dyn-color-white, #FFFFFF);
-  --dyn-modal-header-border: var(--dyn-border-color, rgba(0, 0, 0, 0.12));
-  --dyn-modal-header-text: var(--dyn-color-gray-900, #1A1A1A);
-  --dyn-modal-header-font-size: var(--dyn-font-size-heading, 20px);
-  --dyn-modal-header-font-weight: var(--dyn-font-weight-semibold, 600);
+  --dyn-modal-header-padding: 24px;
+  --dyn-modal-header-bg: var(--dyn-color-white);
+  --dyn-modal-header-border: var(--dyn-border-color);
+  --dyn-modal-header-text: var(--dyn-color-gray-900);
+  --dyn-modal-header-font-size: 20px;
+  --dyn-modal-header-font-weight: 600;
 
   /* Modal Body tokens */
-  --dyn-modal-body-padding: var(--dyn-spacing-6, 24px);
-  --dyn-modal-body-bg: var(--dyn-color-white, #FFFFFF);
-  --dyn-modal-body-text: var(--dyn-color-gray-900, #1A1A1A);
-  --dyn-modal-body-font-size: var(--dyn-font-size-body, 14px);
-  --dyn-modal-body-line-height: var(--dyn-line-height-normal, 1.5);
+  --dyn-modal-body-padding: 24px;
+  --dyn-modal-body-bg: var(--dyn-color-white);
+  --dyn-modal-body-text: var(--dyn-color-gray-900);
+  --dyn-modal-body-font-size: 14px;
+  --dyn-modal-body-line-height: 1.5;
 
   /* Modal Footer tokens */
-  --dyn-modal-footer-padding: var(--dyn-spacing-6, 24px);
-  --dyn-modal-footer-bg: var(--dyn-color-gray-50, #F5F5F5);
-  --dyn-modal-footer-border: var(--dyn-border-color, rgba(0, 0, 0, 0.12));
-  --dyn-modal-footer-gap: var(--dyn-spacing-3, 12px);
+  --dyn-modal-footer-padding: 24px;
+  --dyn-modal-footer-bg: var(--dyn-color-gray-50);
+  --dyn-modal-footer-border: var(--dyn-border-color);
+  --dyn-modal-footer-gap: 12px;
 
   /* Modal Close Button tokens */
   --dyn-modal-close-size: 24px;
-  --dyn-modal-close-color: var(--dyn-color-gray-900, #1A1A1A);
-  --dyn-modal-close-color-hover: var(--dyn-color-primary-60, #007ACC);
-  --dyn-modal-close-color-active: var(--dyn-color-gray-900, #1A1A1A);
+  --dyn-modal-close-color: var(--dyn-color-gray-900);
+  --dyn-modal-close-color-hover: #007ACC;
+  --dyn-modal-close-color-active: var(--dyn-color-gray-900);
 
   /* Modal Size tokens */
   --dyn-modal-small-width: 400px;
@@ -94,8 +75,7 @@
   --dyn-modal-large-max-width: 90vw;
   --dyn-modal-max-height: 90vh;
 
-  /* Modal animation tokens */
-  --dyn-modal-animation-duration: 300ms;
+  /* Animation */
   --dyn-modal-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -303,6 +283,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -314,6 +295,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(20px);
@@ -342,6 +324,7 @@
 
 /* High contrast mode */
 @media (prefers-contrast: more) {
+
   .modalHeader,
   .modalFooter {
     border-width: 2px;
@@ -350,6 +333,7 @@
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .modalOverlay,
   .modalContainer,
   .modalClose,

@@ -174,7 +174,21 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       }
     );
 
-    const badgeSize = size === 'xs' || size === 'sm' ? 'sm' : size === 'xl' ? 'lg' : size;
+    const badgeSize = useMemo(() => {
+      switch (size) {
+        case 'xs':
+        case 'sm':
+          return 'xs';
+        case 'md':
+          return 'sm';
+        case 'lg':
+          return 'md';
+        case 'xl':
+          return 'lg';
+        default:
+          return 'sm';
+      }
+    }, [size]);
 
     return (
       <div

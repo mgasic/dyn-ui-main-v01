@@ -2,7 +2,9 @@ import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import styles from './DynMenu.module.css';
+import { DynIcon } from '../DynIcon';
 import type { DynMenuProps, DynMenuItem } from './DynMenu.types';
+
 
 const getStyleClass = (n: string) => (styles as Record<string, string>)[n] || '';
 
@@ -110,7 +112,19 @@ export const DynMenu: React.FC<DynMenuProps> = ({
               aria-controls={item.children && item.children.length ? menuId : undefined}
               onClick={() => handleItemClick(idx)}
             >
-              {item.label}
+              <div className={getStyleClass('menubar__button-content')}>
+                {item.icon && (
+                  <span className={getStyleClass('menubar__icon')}>
+                    <DynIcon icon={item.icon} size="small" />
+                  </span>
+                )}
+                <span className={getStyleClass('menubar__label')}>{item.label}</span>
+              </div>
+              {item.children && item.children.length > 0 && (
+                <span className={cn(getStyleClass('menubar__chevron'), isOpen && getStyleClass('menubar__chevron--open'))}>
+                  <DynIcon icon={isHorizontal ? 'chevron-down' : 'chevron-right'} size="small" />
+                </span>
+              )}
             </button>
             {item.children && item.children.length > 0 && isOpen && (
               <div
@@ -127,11 +141,17 @@ export const DynMenu: React.FC<DynMenuProps> = ({
                     className={getStyleClass('menu__item')}
                     onClick={() => onSubItemClick(sub.action)}
                   >
-                    {sub.label}
+                    {sub.icon && (
+                      <span className={getStyleClass('menu__icon')}>
+                        <DynIcon icon={sub.icon} size="small" />
+                      </span>
+                    )}
+                    <span className={getStyleClass('menu__label')}>{sub.label}</span>
                   </button>
                 ))}
               </div>
             )}
+
           </div>
         );
       })}

@@ -34,6 +34,9 @@ const DynTextAreaComponent = (
     resize = DYN_TEXT_AREA_DEFAULT_PROPS.resize,
     rows = DYN_TEXT_AREA_DEFAULT_PROPS.rows,
     cols,
+    showCount,
+    autoResize,
+    maxRows = 10,
     onChange,
     onBlur,
     onFocus,
@@ -47,6 +50,26 @@ const DynTextAreaComponent = (
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const fallbackId = useId();
   const fieldId = id ?? name ?? `${fallbackId}-textarea`;
+
+  // Auto-resize logic
+  useEffect(() => {
+    if (autoResize && textareaRef.current) {
+      const textarea = textareaRef.current;
+      textarea.style.height = 'auto';
+
+      const singleRowHeight = 24; // Approximate height of one row
+      const minHeight = rows * singleRowHeight;
+      const maxHeight = maxRows * singleRowHeight;
+
+      const scrollHeight = textarea.scrollHeight;
+      const newHeight = Math.min(Math.max(scrollHeight, minHeight), maxHeight);
+
+      textarea.style.height = `${newHeight}px`;
+
+      // If we reached maxRows, enable scrolling, otherwise hide it
+      textarea.style.overflowY = scrollHeight > maxHeight ? 'auto' : 'hidden';
+    }
+  }, [value, autoResize, rows, maxRows]);
 
   const { error, validate, clearError } = useDynFieldValidation({
     value,
@@ -71,6 +94,9 @@ const DynTextAreaComponent = (
         setValue(stringValue);
         onChange?.(stringValue);
       },
+      getElement: () => textareaRef.current,
+      blur: () => textareaRef.current?.blur(),
+      clearError: () => clearError(),
     }),
     [clearError, onChange, validate, value]
   );
@@ -96,6 +122,7 @@ const DynTextAreaComponent = (
     resolvedError && styles.textareaError,
     disabled && styles.textareaDisabled,
     readonly && styles.textareaReadonly,
+    autoResize && styles.textareaAutoResize,
     resize === 'none' && styles.textareaResizeNone,
     resize === 'horizontal' && styles.textareaResizeHorizontal,
     resize === 'both' && styles.textareaResizeBoth
@@ -143,29 +170,40 @@ const DynTextAreaComponent = (
     onBlur?.();
   };
 
+  const characterCount = value.length;
+  const maxLength = rest.maxLength;
+
   return (
     <DynFieldContainer {...fieldContainerProps}>
-      <textarea
-        {...rest}
-        ref={textareaRef}
-        id={fieldId}
-        name={name}
-        className={textareaClasses}
-        placeholder={placeholder}
-        value={value}
-        disabled={disabled}
-        readOnly={readonly}
-        required={required}
-        rows={rows}
-        cols={cols}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        aria-invalid={Boolean(resolvedError)}
-        aria-required={required || undefined}
-        aria-describedby={describedById}
-        data-testid={dataTestId}
-      />
+      <div className={styles.wrapper}>
+        <textarea
+          {...rest}
+          ref={textareaRef}
+          id={fieldId}
+          name={name}
+          className={textareaClasses}
+          placeholder={placeholder}
+          value={value}
+          disabled={disabled}
+          readOnly={readonly}
+          required={required}
+          rows={rows}
+          cols={cols}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          aria-invalid={Boolean(resolvedError)}
+          aria-required={required || undefined}
+          aria-describedby={describedById}
+          data-testid={dataTestId}
+        />
+        {showCount && (
+          <div className={styles.characterCount} aria-hidden="true">
+            {characterCount}
+            {maxLength && ` / ${maxLength}`}
+          </div>
+        )}
+      </div>
     </DynFieldContainer>
   );
 };

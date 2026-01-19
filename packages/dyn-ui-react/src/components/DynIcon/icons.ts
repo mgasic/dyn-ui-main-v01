@@ -348,7 +348,91 @@ export const iconRegistry = {
     children: React.createElement('polyline', { points: '18 15 12 9 6 15', strokeLinecap: 'round', strokeLinejoin: 'round' })
   }),
 
+  'chevron-left': React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: React.createElement('polyline', { points: '15 18 9 12 15 6', strokeLinecap: 'round', strokeLinejoin: 'round' })
+  }),
 
+  'chevron-right': React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: React.createElement('polyline', { points: '9 18 15 12 9 6', strokeLinecap: 'round', strokeLinejoin: 'round' })
+  }),
+
+  'more-horizontal': React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: [
+      React.createElement('circle', { key: '1', cx: '12', cy: '12', r: '1' }),
+      React.createElement('circle', { key: '2', cx: '19', cy: '12', r: '1' }),
+      React.createElement('circle', { key: '3', cx: '5', cy: '12', r: '1' })
+    ]
+  }),
+
+  folder: React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: React.createElement('path', {
+      d: 'M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round'
+    })
+  }),
+
+  file: React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: [
+      React.createElement('path', { key: '1', d: 'M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z', strokeLinecap: 'round', strokeLinejoin: 'round' }),
+      React.createElement('polyline', { key: '2', points: '13 2 13 9 20 9', strokeLinecap: 'round', strokeLinejoin: 'round' })
+    ]
+  }),
+
+  loading: React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: React.createElement('path', {
+      d: 'M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round'
+    })
+  }),
+
+  star: React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: React.createElement('path', {
+      d: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z',
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round'
+    })
+  }),
+
+  'arrow-right': React.createElement('svg', {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: '2',
+    children: [
+      React.createElement('line', { key: '1', x1: '5', y1: '12', x2: '19', y2: '12', strokeLinecap: 'round', strokeLinejoin: 'round' }),
+      React.createElement('polyline', { key: '2', points: '12 5 19 12 12 19', strokeLinecap: 'round', strokeLinejoin: 'round' })
+    ]
+  }),
 };
 
 export type IconName = keyof typeof iconRegistry;

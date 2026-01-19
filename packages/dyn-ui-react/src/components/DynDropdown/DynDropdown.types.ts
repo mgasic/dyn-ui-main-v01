@@ -72,7 +72,22 @@ export interface DynDropdownProps extends BaseComponentProps, AccessibilityProps
 
     /** Disabled state */
     disabled?: boolean;
+
+    /**
+     * DOM element to wrap the trigger with.
+     * Use 'div' if the trigger contains interactive elements like inputs.
+     * Default: 'button'
+     */
+    triggerWrapper?: 'button' | 'div';
+
+    /**
+     * Optional ARIA role for the trigger wrapper.
+     * Defaults to 'button' when triggerWrapper is 'div'.
+     * Set to 'presentation' or 'none' if the trigger contains interactive elements.
+     */
+    triggerRole?: string;
 }
+
 
 export interface DynDropdownRef {
     /** Programmatically open the dropdown */

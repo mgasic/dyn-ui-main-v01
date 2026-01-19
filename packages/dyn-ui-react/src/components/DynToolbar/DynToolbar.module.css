@@ -1,83 +1,310 @@
 /* ==========================================================================
    DynToolbar Component Styles
-   Standardized with design tokens
+   Standardized with Design Tokens & camelCase classes
    ========================================================================== */
 
-:root {
-  /* Color Tokens */
+.root {
+  /* Component Tokens */
   --dyn-toolbar-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
-  --dyn-toolbar-border-color: var(--dyn-color-border, var(--color-border, #d1d5db));
-  --dyn-toolbar-text-color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-toolbar-border: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-toolbar-shadow: var(--dyn-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  --dyn-toolbar-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-toolbar-font: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
 
-  /* Size Tokens */
-  --dyn-toolbar-height: 56px;
-  --dyn-toolbar-padding-y: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-toolbar-padding-x: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-toolbar-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-toolbar-border-radius: 0;
+  /* Item Tokens */
+  --dyn-toolbar-item-bg: transparent;
+  --dyn-toolbar-item-bg-hover: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  --dyn-toolbar-item-bg-active: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
 
-  /* Typography */
-  --dyn-toolbar-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
+  --dyn-toolbar-item-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
+  --dyn-toolbar-item-text-hover: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-toolbar-item-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
-  /* Transitions */
-  --dyn-toolbar-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  /* Input Tokens */
+  --dyn-toolbar-input-bg: var(--dyn-color-background, var(--color-background, #ffffff));
+  --dyn-toolbar-input-border: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-toolbar-input-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-toolbar-input-focus: var(--dyn-color-primary, var(--color-primary, #2563eb));
 
-  /* Shadow */
-  --dyn-toolbar-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1)));
-}
+  /* Menu Tokens */
+  --dyn-toolbar-menu-bg: var(--dyn-color-surface, var(--color-surface, #ffffff));
+  --dyn-toolbar-menu-border: var(--dyn-color-border, var(--color-border, #e5e7eb));
+  --dyn-toolbar-menu-shadow: var(--dyn-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
 
-.container {
   display: flex;
-  align-items: center;
-  height: var(--dyn-toolbar-height);
-  padding: var(--dyn-toolbar-padding-y) var(--dyn-toolbar-padding-x);
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--dyn-toolbar-font);
   background-color: var(--dyn-toolbar-bg);
-  border-bottom: 1px solid var(--dyn-toolbar-border-color);
-  border-radius: var(--dyn-toolbar-border-radius);
+  border-bottom: 1px solid var(--dyn-toolbar-border);
   box-shadow: var(--dyn-toolbar-shadow);
-  font-family: var(--dyn-toolbar-font-family);
-  color: var(--dyn-toolbar-text-color);
-  gap: var(--dyn-toolbar-gap);
 }
 
-.left,
-.center,
-.right {
+.content {
   display: flex;
   align-items: center;
-  gap: var(--dyn-toolbar-gap);
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 0 var(--dyn-spacing-md, 16px);
+  gap: var(--dyn-spacing-md, 16px);
 }
 
-.left {
-  flex: 0 0 auto;
+.items {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm, 8px);
+  flex: 1;
 }
 
-.center {
-  flex: 1 1 auto;
+/* ==========================================================================
+   Toolbar Item
+   ========================================================================== */
+
+.itemWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xs, 4px);
+  padding: var(--dyn-spacing-xs, 4px) var(--dyn-spacing-sm, 8px);
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--dyn-border-radius-sm, 6px);
+  background: var(--dyn-toolbar-item-bg);
+  color: var(--dyn-toolbar-item-text);
+  font-size: var(--dyn-font-size-sm, 14px);
+  font-weight: var(--dyn-font-weight-medium, 500);
+  cursor: pointer;
+  transition: all var(--dyn-transition-base, 0.18s ease);
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.item:hover:not(.itemDisabled) {
+  background-color: var(--dyn-toolbar-item-bg-hover);
+  color: var(--dyn-toolbar-item-text-hover);
+}
+
+.itemActive {
+  background-color: var(--dyn-toolbar-item-bg-active);
+  color: var(--dyn-toolbar-item-text-active);
+}
+
+.itemDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.itemIcon {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  font-size: 18px;
 }
 
-.right {
-  flex: 0 0 auto;
+.itemLabel {
+  line-height: 1;
 }
 
-@media (max-width: 767px) {
-  .container {
-    height: 48px;
-    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-md, var(--spacing-md, 16px));
-  }
+.itemBadge {
+  margin-left: var(--dyn-spacing-xs, 4px);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .container {
-    transition: none;
-  }
+/* ==========================================================================
+   Special Items
+   ========================================================================== */
+
+.separator {
+  width: 1px;
+  height: 24px;
+  background-color: var(--dyn-toolbar-border);
+  margin: 0 var(--dyn-spacing-xs, 4px);
 }
+
+.search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 300px;
+  position: relative;
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--dyn-spacing-xs, 6px) var(--dyn-spacing-sm, 12px);
+  border: 1px solid var(--dyn-toolbar-input-border);
+  border-radius: var(--dyn-border-radius-sm, 6px);
+  font-size: var(--dyn-font-size-sm, 14px);
+  outline: none;
+  background-color: var(--dyn-toolbar-input-bg);
+  color: var(--dyn-toolbar-input-text);
+  transition: all var(--dyn-transition-base, 0.18s ease);
+}
+
+.searchInput:focus {
+  border-color: var(--dyn-toolbar-input-focus);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+/* ==========================================================================
+   Dropdown
+   ========================================================================== */
+
+.dropdownArrow {
+  display: inline-flex;
+  margin-left: var(--dyn-spacing-xs, 4px);
+  transition: transform var(--dyn-transition-base, 0.18s ease);
+}
+
+.itemActive .dropdownArrow {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  min-width: 160px;
+  background-color: var(--dyn-toolbar-menu-bg);
+  border: 1px solid var(--dyn-toolbar-menu-border);
+  border-radius: var(--dyn-border-radius-md, 8px);
+  box-shadow: var(--dyn-toolbar-menu-shadow);
+  padding: var(--dyn-spacing-xs, 4px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm, 8px);
+  padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 12px);
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  border-radius: var(--dyn-border-radius-sm, 4px);
+  color: var(--dyn-toolbar-text);
+  font-size: var(--dyn-font-size-sm, 14px);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:hover:not(:disabled) {
+  background-color: var(--dyn-toolbar-item-bg-hover);
+}
+
+/* ==========================================================================
+   Overflow
+   ========================================================================== */
+
+.overflow {
+  position: relative;
+  margin-left: auto;
+}
+
+.overflowButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: var(--dyn-border-radius-sm, 6px);
+  background: transparent;
+  color: var(--dyn-toolbar-item-text);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.overflowButton:hover,
+.overflowButton.active {
+  background-color: var(--dyn-toolbar-item-bg-hover);
+  color: var(--dyn-toolbar-item-text-hover);
+}
+
+.overflowMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  min-width: 200px;
+  background-color: var(--dyn-toolbar-menu-bg);
+  border: 1px solid var(--dyn-toolbar-menu-border);
+  border-radius: var(--dyn-border-radius-md, 8px);
+  box-shadow: var(--dyn-toolbar-menu-shadow);
+  padding: var(--dyn-spacing-xs, 4px);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Variants
+   ========================================================================== */
+
+.variantLight {
+  background-color: transparent;
+  box-shadow: none;
+  border-bottom: 1px solid transparent;
+}
+
+.variantOutline {
+  background-color: transparent;
+  border: 1px solid var(--dyn-toolbar-border);
+  border-radius: var(--dyn-border-radius-md, 8px);
+}
+
+/* Size Adjustments */
+.sizeSmall {
+  min-height: 48px;
+}
+
+.sizeSmall .item {
+  height: 32px;
+  padding: 0 var(--dyn-spacing-xs, 6px);
+  font-size: var(--dyn-font-size-xs, 12px);
+}
+
+.sizeLarge {
+  min-height: 64px;
+}
+
+.sizeLarge .item {
+  height: 40px;
+  padding: 0 var(--dyn-spacing-md, 12px);
+  font-size: var(--dyn-font-size-base, 16px);
+}
+
+/* ==========================================================================
+   Dark Mode
+   ========================================================================== */
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-toolbar-bg: var(--dyn-color-surface-dark, var(--color-surface-dark, #1f2937));
-    --dyn-toolbar-border-color: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-    --dyn-toolbar-text-color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  .root {
+    --dyn-toolbar-bg: var(--dyn-color-surface-dark, #1f2937);
+    --dyn-toolbar-border: var(--dyn-color-border-dark, #374151);
+    --dyn-toolbar-text: var(--dyn-color-text-primary-dark, #f1f5f9);
+
+    --dyn-toolbar-item-bg-hover: var(--dyn-color-surface-hover-dark, #374151);
+    --dyn-toolbar-item-bg-active: var(--dyn-color-surface-hover-dark, #374151);
+
+    --dyn-toolbar-item-text: var(--dyn-color-text-secondary-dark, #9ca3af);
+    --dyn-toolbar-item-text-hover: var(--dyn-color-text-primary-dark, #f1f5f9);
+    --dyn-toolbar-item-text-active: var(--dyn-color-primary-dark, #3b82f6);
+
+    --dyn-toolbar-input-bg: var(--dyn-color-surface-dark, #111827);
+    --dyn-toolbar-input-border: var(--dyn-color-border-dark, #374151);
+    --dyn-toolbar-input-text: var(--dyn-color-text-primary-dark, #f1f5f9);
+
+    --dyn-toolbar-menu-bg: var(--dyn-color-surface-dark, #111827);
+    --dyn-toolbar-menu-border: var(--dyn-color-border-dark, #374151);
+    --dyn-toolbar-menu-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
   }
 }

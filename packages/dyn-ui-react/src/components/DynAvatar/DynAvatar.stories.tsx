@@ -190,6 +190,12 @@ export const AllShapes: Story = {
 };
 
 export const WithBadge: Story = {
+  args: {
+    size: "sm",
+    shape: "square",
+    alt: "1546464"
+  },
+
   render: () => (
     <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
       <div style={{ textAlign: 'center' }}>
@@ -221,13 +227,14 @@ export const WithBadge: Story = {
       </div>
     </div>
   ),
+
   parameters: {
     docs: {
       description: {
         story: 'Badge overlay with different configurations: simple number, config object with DynBadge props, and custom React element.',
       },
     },
-  },
+  }
 };
 
 export const ErrorState: Story = {

@@ -5,17 +5,17 @@ export type DynTextAreaResize = 'none' | 'vertical' | 'horizontal' | 'both';
 
 export interface DynTextAreaProps
   extends DynFieldBase,
-    Omit<
-      TextareaHTMLAttributes<HTMLTextAreaElement>,
-      | 'value'
-      | 'defaultValue'
-      | 'onChange'
-      | 'onBlur'
-      | 'onFocus'
-      | 'rows'
-      | 'cols'
-      | keyof DynFieldBase
-    > {
+  Omit<
+    TextareaHTMLAttributes<HTMLTextAreaElement>,
+    | 'value'
+    | 'defaultValue'
+    | 'onChange'
+    | 'onBlur'
+    | 'onFocus'
+    | 'rows'
+    | 'cols'
+    | keyof DynFieldBase
+  > {
   /** Number of visible text lines */
   rows?: number;
   /** Number of visible columns */
@@ -26,6 +26,13 @@ export interface DynTextAreaProps
   value?: string;
   /** Change handler returning the textarea value */
   onChange?: (value: string) => void;
+  /** Show character count */
+  showCount?: boolean;
+  /** Automatically resize height based on content */
+  autoResize?: boolean;
+  /** Maximum number of rows for auto-resize (default: 10) */
+  maxRows?: number;
+
 }
 
 export type DynTextAreaRef = DynFieldRef;

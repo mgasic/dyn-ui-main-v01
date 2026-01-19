@@ -41,6 +41,21 @@
   gap: var(--dyn-appbar-gap);
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+
 .title {
   font-size: var(--dyn-appbar-title-font-size);
   font-weight: var(--dyn-appbar-title-font-weight);

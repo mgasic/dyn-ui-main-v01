@@ -10,14 +10,20 @@ import React, {
   useState,
   useEffect,
   useMemo,
-  useCallback
+  useCallback,
+  useLayoutEffect
 } from 'react';
 import { cn } from '../../utils/classNames';
-import type { DynInputProps, DynFieldRef, CurrencyInputConfig } from '../../types/field.types';
+import type { DynInputProps, DynInputRef, CurrencyInputConfig } from './DynInput.types';
+import { DYN_INPUT_DEFAULT_PROPS } from './DynInput.types';
 import type { DynCurrencyConfig } from '../../utils/dynFormatters';
 import { DynFieldContainer } from '../DynFieldContainer';
-import { useDynFieldValidation } from '../../hooks/useDynFieldValidation';
+import useDynFieldValidation from '../../hooks/useDynFieldValidation';
+import type { DynValidationRule } from '../../hooks/useDynFieldValidation';
+
 import { useDynMask } from '../../hooks/useDynMask';
+
+
 import { DynIcon } from '../DynIcon';
 import styles from './DynInput.module.css';
 
@@ -39,7 +45,8 @@ interface ResolvedCurrencyConfig {
 const DEFAULT_CURRENCY_CODE = 'BRL';
 const DEFAULT_PRECISION = 2;
 
-export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
+export const DynInput = forwardRef<DynInputRef, DynInputProps>(
+
   (
     {
       name,
@@ -57,18 +64,20 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
       errorMessage,
       validation,
       className,
-      type = 'text',
-      size = 'medium',
+      type = DYN_INPUT_DEFAULT_PROPS.type,
+      size = DYN_INPUT_DEFAULT_PROPS.size,
       maxLength,
       minLength,
       mask,
-      maskFormatModel = false,
+      maskFormatModel = DYN_INPUT_DEFAULT_PROPS.maskFormatModel,
       pattern,
       icon,
-      showCleanButton = false,
+      showClearButton: showClearButtonProp,
+      showCleanButton,
       step,
       min,
       max,
+
       currencyConfig,
       onChange,
       onBlur,
@@ -76,6 +85,8 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
     },
     ref
   ) => {
+    const showClearButton = showClearButtonProp ?? showCleanButton;
+
     const isCurrencyType = type === 'currency';
     const resolvedCurrencyConfig = useMemo(
       () => resolveCurrencyConfig(currencyConfig, type),
@@ -93,15 +104,17 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
     const { error, validate, clearError } = useDynFieldValidation({
       value: inputValue,
       required,
-      validation,
+      validation: validation as any,
       customError: errorMessage
     });
 
+
     const { maskedValue, unmaskValue, handleMaskedChange } = useDynMask(
-      mask,
+      typeof mask === 'string' ? mask : mask?.pattern,
       inputValue,
       maskFormatModel
     );
+
 
     useImperativeHandle(ref, () => ({
       focus: () => inputRef.current?.focus(),
@@ -116,9 +129,11 @@ export const DynInput = forwardRef<DynFieldRef, DynInputProps>(
           const numericValue = parseCurrencyLikeValue(inputValue, resolvedCurrencyConfig);
           return numericValue ?? '';
         }
-        return mask && !maskFormatModel ? unmaskValue(inputValue) : inputValue;
+        const resolvedMask = typeof mask === 'string' ? mask : mask?.pattern;
+        return resolvedMask && !maskFormatModel ? unmaskValue(inputValue) : inputValue;
       },
       setValue: (newValue: any) => {
+
         if (isCurrencyType) {
           const numericValue = parseCurrencyLikeValue(newValue, resolvedCurrencyConfig);
           if (numericValue == null) {

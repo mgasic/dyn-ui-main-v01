@@ -1,2 +1,3 @@
-export { DynDatePicker } from './DynDatePicker';
-export type { DynDatePickerProps } from './DynDatePicker.types';
+export * from './DynDatePicker';
+export * from './DynDatePicker.types';
+export { DynDatePicker as default } from './DynDatePicker';

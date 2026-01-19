@@ -1,345 +1,311 @@
-/**
- * DynSelect - Advanced select component with search and virtual scrolling
- * Part of DYN UI Form Components Group - SCOPE 6
- */
-
 import React, {
   forwardRef,
   useImperativeHandle,
   useRef,
   useState,
   useEffect,
-  useMemo
+  useMemo,
+  useId,
 } from 'react';
 import { cn } from '../../utils/classNames';
-import type { DynSelectProps, DynFieldRef, SelectOption } from '../../types/field.types';
+import type {
+  DynSelectProps,
+  DynSelectRef,
+  DynSelectOption
+} from './DynSelect.types';
+import { DYN_SELECT_DEFAULT_PROPS } from './DynSelect.types';
 import { DynFieldContainer } from '../DynFieldContainer';
 import { useDynFieldValidation } from '../../hooks/useDynFieldValidation';
 import { DynIcon } from '../DynIcon';
+import { DynDropdown } from '../DynDropdown';
+import type { DynDropdownRef, DynDropdownItem } from '../DynDropdown';
 import styles from './DynSelect.module.css';
 
-export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
+export const DynSelect = forwardRef<DynSelectRef, DynSelectProps>(
   (
     {
       name,
+      value: propValue,
+      defaultValue,
+      onChange,
+      options = [],
+      groups = [],
+      placeholder = 'Select...',
       label,
       help,
-      placeholder = 'Select...',
-      disabled = false,
-      readonly = false,
-      required = false,
-      optional = false,
-      visible = true,
-      value: propValue,
+      helpText,
+      errorText: errorMessageText,
       errorMessage,
-      validation,
-      className,
-      options = [],
-      multiple = false,
-      searchable = false,
-      virtualScroll = false,
+      required = false,
+
+      disabled = false,
+      readOnly = false,
+      size = DYN_SELECT_DEFAULT_PROPS.size,
+      multiple = DYN_SELECT_DEFAULT_PROPS.multiple,
+      searchable = DYN_SELECT_DEFAULT_PROPS.searchable,
+      clearable = DYN_SELECT_DEFAULT_PROPS.clearable,
+      filterOption,
+      searchPlaceholder = 'Search...',
+      maxMenuHeight,
       loading = false,
-      size = 'medium',
-      onChange,
-      onBlur,
-      onFocus
+      noOptionsMessage = DYN_SELECT_DEFAULT_PROPS.noOptionsMessage,
+      visible = DYN_SELECT_DEFAULT_PROPS.visible,
+      id,
+      className,
+      style,
+      ...rest
     },
     ref
   ) => {
-    const [value, setValue] = useState<string | string[]>(propValue || (multiple ? [] : ''));
+    const [internalValue, setInternalValue] = useState(defaultValue ?? (multiple ? [] : ''));
+    const value = propValue !== undefined ? propValue : internalValue;
+
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [focused, setFocused] = useState(false);
-    const selectRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
+
+    const dropdownRef = useRef<DynDropdownRef>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const fallbackId = useId();
+    const fieldId = id || name || fallbackId;
+
+    const resolvedHelpText = helpText ?? help;
+    const resolvedErrorText = errorMessageText ?? errorMessage;
 
     const { error, validate, clearError } = useDynFieldValidation({
       value,
       required,
-      validation,
-      customError: errorMessage
+      validation: [], // Can be extended if validation prop is added
+      customError: resolvedErrorText,
     });
 
+
+    const updateValue = (newValue: any) => {
+      setInternalValue(newValue);
+      onChange?.(newValue);
+      clearError();
+    };
+
     useImperativeHandle(ref, () => ({
-      focus: () => inputRef.current?.focus(),
-      validate: () => validate(),
-      clear: () => {
-        setValue(multiple ? [] : '');
-        onChange?.(multiple ? [] : '');
-        clearError();
-      },
+      focus: () => setIsOpen(true),
+      blur: () => setIsOpen(false),
+      clear: () => updateValue(multiple ? [] : ''),
+      open: () => setIsOpen(true),
+      close: () => setIsOpen(false),
       getValue: () => value,
-      setValue: (newValue: any) => {
-        setValue(newValue);
-        onChange?.(newValue);
+    }), [value, multiple]);
+
+    useEffect(() => {
+      if (propValue !== undefined) {
+        setInternalValue(propValue);
       }
-    }));
+    }, [propValue]);
 
     const filteredOptions = useMemo(() => {
       if (!searchable || !searchTerm) return options;
-      return options.filter(option =>
-        option.label.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }, [options, searchTerm, searchable]);
+
+      const search = searchTerm.toLowerCase();
+      return options.filter(option => {
+        if (filterOption) return filterOption(option, searchTerm);
+        return option.label.toLowerCase().includes(search);
+      });
+    }, [options, searchTerm, searchable, filterOption]);
 
     const selectedOptions = useMemo(() => {
       if (multiple && Array.isArray(value)) {
-        return options.filter(option => value.includes(option.value));
-      } else if (!multiple) {
-        return options.find(option => option.value === value) || null;
+        return options.filter(opt => value.includes(opt.value));
       }
-      return null;
+      return options.find(opt => opt.value === value);
     }, [options, value, multiple]);
-
-    useEffect(() => {
-      setValue(propValue || (multiple ? [] : ''));
-    }, [propValue, multiple]);
-
-    useEffect(() => {
-      const handleClickOutside = (event: MouseEvent) => {
-        if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
-          setIsOpen(false);
-          setSearchTerm('');
-        }
-      };
-
-      if (isOpen) {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-      }
-    }, [isOpen]);
-
-    const handleToggle = () => {
-      if (!disabled && !readonly) {
-        setIsOpen(prev => !prev);
-        if (!isOpen) {
-          inputRef.current?.focus();
-        }
-      }
-    };
-
-    const handleOptionSelect = (option: SelectOption) => {
-      if (option.disabled) return;
-
-      if (multiple && Array.isArray(value)) {
-        const newValue = value.includes(option.value)
-          ? value.filter(v => v !== option.value)
-          : [...value, option.value];
-        setValue(newValue);
-        onChange?.(newValue);
-      } else {
-        setValue(option.value);
-        onChange?.(option.value);
-        setIsOpen(false);
-        setSearchTerm('');
-      }
-
-      clearError();
-    };
-
-    const handleRemoveOption = (optionValue: any, event: React.MouseEvent) => {
-      event.stopPropagation();
-      if (multiple && Array.isArray(value)) {
-        const newValue = value.filter(v => v !== optionValue);
-        setValue(newValue);
-        onChange?.(newValue);
-      }
-    };
-
-    const handleBlur = () => {
-      setFocused(false);
-      validate();
-      onBlur?.();
-    };
-
-    const handleFocus = () => {
-      setFocused(true);
-      clearError();
-      onFocus?.();
-    };
-
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(e.target.value);
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-      switch (e.key) {
-        case 'Enter':
-        case ' ':
-          if (!isOpen) {
-            e.preventDefault();
-            setIsOpen(true);
-          }
-          break;
-        case 'Escape':
-          setIsOpen(false);
-          setSearchTerm('');
-          break;
-        case 'ArrowDown':
-          if (!isOpen) {
-            setIsOpen(true);
-          }
-          break;
-        default:
-          break;
-      }
-    };
 
     if (!visible) return null;
 
-    const resolvedError = errorMessage ?? (error || undefined);
+    const handleOptionSelect = (option: DynSelectOption) => {
+      if (option.disabled) return;
+
+      if (multiple) {
+        const currentArr = Array.isArray(value) ? [...value] : [];
+        const index = currentArr.indexOf(option.value);
+        if (index > -1) {
+          currentArr.splice(index, 1);
+        } else {
+          currentArr.push(option.value);
+        }
+        updateValue(currentArr);
+      } else {
+        updateValue(option.value);
+        setIsOpen(false);
+        setSearchTerm('');
+      }
+    };
+
+    const handleClear = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      updateValue(multiple ? [] : '');
+    };
+
+    const dropdownItems: DynDropdownItem[] = filteredOptions.map(opt => ({
+      id: String(opt.value),
+      label: (
+        <div className={cn(styles['dyn-select-option-content'])}>
+          {multiple && (
+            <span className={cn(styles['dyn-select-checkbox'], {
+              [styles['dyn-select-checkbox--checked']]: Array.isArray(value) && value.includes(opt.value)
+            })}>
+              {(Array.isArray(value) && value.includes(opt.value)) && <DynIcon icon="dyn-icon-check" size="small" />}
+            </span>
+          )}
+          <span>{opt.label}</span>
+        </div>
+      ),
+      disabled: opt.disabled,
+      onClick: () => handleOptionSelect(opt),
+      className: cn(
+        styles['dyn-select-option'],
+        (multiple ? (Array.isArray(value) && value.includes(opt.value)) : value === opt.value) && styles['dyn-select-option--selected']
+      )
+    }));
+
+    if (filteredOptions.length === 0) {
+      dropdownItems.push({
+        id: 'no-options',
+        label: <div className={styles['dyn-select-empty']}>{noOptionsMessage}</div>,
+        disabled: true
+      });
+    }
+
+    const resolvedError = resolvedErrorText ?? (error || undefined);
+
 
     const selectClasses = cn(
       styles['dyn-select'],
       styles[`dyn-select--${size}`],
-      {
-        [styles['dyn-select--open']]: isOpen,
-        [styles['dyn-select--focused']]: focused,
-        [styles['dyn-select--error']]: Boolean(resolvedError),
-        [styles['dyn-select--disabled']]: disabled,
-        [styles['dyn-select--readonly']]: readonly,
-        [styles['dyn-select--searchable']]: searchable,
-        [styles['dyn-select--multiple']]: multiple,
-        [styles['dyn-select--loading']]: loading
-      }
+      isOpen && styles['dyn-select--open'],
+      focused && styles['dyn-select--focused'],
+      resolvedError && styles['dyn-select--error'],
+      disabled && styles['dyn-select--disabled'],
+      readOnly && styles['dyn-select--readonly'],
+      loading && styles['dyn-select--loading']
     );
 
-    const getDisplayText = () => {
-      if (loading) return 'Loading...';
-
-      if (multiple && Array.isArray(selectedOptions) && selectedOptions.length > 0) {
-        return `${selectedOptions.length} selected`;
-      } else if (!multiple && selectedOptions) {
-        return (selectedOptions as SelectOption).label;
-      }
-
-      return placeholder;
-    };
-
-    const showPlaceholder = !selectedOptions ||
-      (multiple && Array.isArray(selectedOptions) && selectedOptions.length === 0);
+    const triggerContent = (
+      <div className={styles['dyn-select-content']}>
+        {multiple && Array.isArray(selectedOptions) && selectedOptions.length > 0 ? (
+          <div className={styles['dyn-select-tags']}>
+            {selectedOptions.map(opt => (
+              <span key={String(opt.value)} className={styles['dyn-select-tag']}>
+                {opt.label}
+                {!disabled && !readOnly && (
+                  <button
+                    type="button"
+                    className={styles['dyn-select-tag-remove']}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOptionSelect(opt);
+                    }}
+                  >
+                    <DynIcon icon="dyn-icon-close" size="small" />
+                  </button>
+                )}
+              </span>
+            ))}
+          </div>
+        ) : (
+          <span className={cn(styles['dyn-select-text'], !selectedOptions && styles['dyn-select-placeholder'])}>
+            {(selectedOptions && !Array.isArray(selectedOptions)) ? selectedOptions.label : placeholder}
+          </span>
+        )}
+      </div>
+    );
 
     return (
       <DynFieldContainer
         label={label}
-        helpText={help}
+        helpText={resolvedHelpText}
         required={required}
-        optional={optional}
         errorText={resolvedError}
         className={className}
-        htmlFor={name}
+        htmlFor={fieldId}
       >
-        <div ref={selectRef} className={styles['dyn-select-container']}>
-          <div
-            className={selectClasses}
-            onClick={handleToggle}
-            onKeyDown={handleKeyDown}
-            tabIndex={disabled ? -1 : 0}
-            role="combobox"
-            aria-expanded={isOpen}
-            aria-haspopup="listbox"
-            aria-invalid={Boolean(resolvedError)}
-            aria-describedby={
-              resolvedError ? `${name}-error` : help ? `${name}-help` : undefined
-            }
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-          >
-            <input
-              ref={inputRef}
-              type="hidden"
-              id={name}
-              name={name}
-              value={multiple && Array.isArray(value) ? value.join(',') : value || ''}
-            />
 
-            <div className={styles['dyn-select-content']}>
-              {multiple && Array.isArray(selectedOptions) && selectedOptions.length > 0 ? (
-                <div className={styles['dyn-select-tags']}>
-                  {selectedOptions.map((option) => (
-                    <span key={option.value} className={styles['dyn-select-tag']}>
-                      {option.label}
-                      <button
-                        type="button"
-                        className={styles['dyn-select-tag-remove']}
-                        onClick={(e) => handleRemoveOption(option.value, e)}
-                        aria-label={`Remove ${option.label}`}
-                      >
-                        <DynIcon icon="dyn-icon-close" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-              ) : (
-                <span className={cn(styles['dyn-select-text'], {
-                  [styles['dyn-select-placeholder']]: showPlaceholder
-                })}>
-                  {getDisplayText()}
-                </span>
-              )}
-            </div>
+        <div ref={containerRef} className={styles['dyn-select-container']} style={style}>
+          <DynDropdown
+            ref={dropdownRef}
+            isOpen={isOpen}
+            onOpenChange={setIsOpen}
+            disabled={disabled}
+            trigger={
+              <div
+                className={selectClasses}
+                id={fieldId}
+                tabIndex={disabled || readOnly ? -1 : 0}
+                role="combobox"
+                aria-expanded={isOpen}
+                aria-haspopup="listbox"
+                data-size={size}
+                onFocus={() => setFocused(true)}
 
-            <div className={styles['dyn-select-arrow']}>
-              <DynIcon
-                icon={loading ? "dyn-icon-loading" : "dyn-icon-arrow-down"}
-                className={cn({
-                  [styles['dyn-select-arrow--up']]: isOpen && !loading
-                })}
-              />
-            </div>
-          </div>
-
-          {isOpen && (
-            <div className={styles['dyn-select-dropdown']}>
-              {searchable && (
-                <div className={styles['dyn-select-search']}>
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                    className={styles['dyn-select-search-input']}
-                  />
-                </div>
-              )}
-
-              <div className={styles['dyn-select-options']} role="listbox">
-                {filteredOptions.length === 0 ? (
-                  <div className={styles['dyn-select-empty']}>
-                    {searchTerm ? 'No results found' : 'No options available'}
+                onBlur={() => {
+                  setFocused(false);
+                  validate();
+                }}
+                onKeyDown={(e) => {
+                  if (disabled || readOnly) return;
+                  if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setIsOpen(true);
+                  }
+                  if (e.key === 'Escape') {
+                    setIsOpen(false);
+                  }
+                }}
+              >
+                {triggerContent}
+                <div className={styles['dyn-select-actions']}>
+                  {clearable && value && !disabled && !readOnly && (
+                    <button type="button" className={styles['dyn-select-clear']} onClick={handleClear}>
+                      <DynIcon icon="dyn-icon-close" />
+                    </button>
+                  )}
+                  <div className={cn(styles['dyn-select-arrow'], isOpen && styles['dyn-select-arrow--up'])}>
+                    <DynIcon icon={loading ? "dyn-icon-loading" : "dyn-icon-arrow-down"} />
                   </div>
-                ) : (
-                  filteredOptions.map((option) => {
-                    const isSelected = multiple && Array.isArray(value)
-                      ? value.includes(option.value)
-                      : value === option.value;
-
-                    return (
-                      <div
-                        key={option.value}
-                        className={cn(styles['dyn-select-option'], {
-                          [styles['dyn-select-option--selected']]: isSelected,
-                          [styles['dyn-select-option--disabled']]: option.disabled
-                        })}
-                        role="option"
-                        aria-selected={isSelected}
-                        onClick={() => handleOptionSelect(option)}
-                      >
-                        {multiple && (
-                          <span className={cn(styles['dyn-select-checkbox'], {
-                            [styles['dyn-select-checkbox--checked']]: isSelected
-                          })}>
-                            {isSelected && <DynIcon icon="dyn-icon-check" />}
-                          </span>
-                        )}
-                        <span className={styles['dyn-select-option-text']}>{option.label}</span>
-                      </div>
-                    );
-                  })
-                )}
+                </div>
               </div>
+            }
+            usePortal={true}
+            offset={4}
+            closeOnItemClick={!multiple}
+            triggerType="click"
+            className={styles['dyn-select-dropdown-wrapper']}
+          >
+            {searchable && (
+              <div className={styles['dyn-select-search']}>
+                <input
+                  type="text"
+                  autoFocus
+                  placeholder={searchPlaceholder}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className={styles['dyn-select-search-input']}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            )}
+            <div className={styles['dyn-select-options']} style={{ maxHeight: maxMenuHeight }}>
+              {dropdownItems.map(item => (
+                <button
+                  key={item.id}
+                  type="button"
+                  disabled={item.disabled}
+                  className={cn(styles.item, item.className)}
+                  onClick={(e) => item.onClick?.(item as any, e as any)}
+                >
+                  {item.label}
+                </button>
+              ))}
             </div>
-          )}
+          </DynDropdown>
         </div>
       </DynFieldContainer>
     );
@@ -347,5 +313,4 @@ export const DynSelect = forwardRef<DynFieldRef, DynSelectProps>(
 );
 
 DynSelect.displayName = 'DynSelect';
-
 export default DynSelect;

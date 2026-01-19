@@ -159,8 +159,8 @@ const DynCheckboxComponent = (
   const describedById = resolvedError
     ? `${fieldId}-error`
     : help
-    ? `${fieldId}-help`
-    : undefined;
+      ? `${fieldId}-help`
+      : undefined;
 
   const visualState = indeterminate ? 'indeterminate' : checked ? 'checked' : 'unchecked';
 
@@ -209,11 +209,43 @@ const DynCheckboxComponent = (
         >
           <span className={styles.checkmark}>
             {indeterminate ? (
-              <span className={styles.indeterminateMark}>-</span>
+              <svg
+                width="12"
+                height="2"
+                viewBox="0 0 12 2"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className={styles.indeterminateIcon}
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 1H11"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                />
+              </svg>
             ) : checked ? (
-              <span className={styles.checkMark}>✓</span>
+              <svg
+                width="12"
+                height="10"
+                viewBox="0 0 12 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className={styles.checkIcon}
+                aria-hidden="true"
+              >
+                <path
+                  d="M1 5L4.5 8.5L11 2"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             ) : null}
           </span>
+
         </span>
         {label && (
           <span className={styles.label}>

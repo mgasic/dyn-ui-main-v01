@@ -26,11 +26,12 @@ describe('DynDatePicker', () => {
   it('opens calendar dropdown when calendar button is clicked', () => {
     render(<DynDatePicker name="test" label="Test" />);
 
-    const calendarButton = screen.getByLabelText('Abrir calendário');
+    const calendarButton = screen.getByLabelText('Open calendar');
     fireEvent.click(calendarButton);
 
-    expect(screen.getByText('Hoje')).toBeInTheDocument();
-    expect(screen.getByText('Limpar')).toBeInTheDocument();
+    expect(screen.getByText('Today')).toBeInTheDocument();
+    expect(screen.getByText('Clear')).toBeInTheDocument();
+
   });
 
   it('handles today shortcut', () => {
@@ -38,12 +39,13 @@ describe('DynDatePicker', () => {
     render(<DynDatePicker name="test" label="Test" onChange={handleChange} />);
 
     // Open dropdown
-    const calendarButton = screen.getByLabelText('Abrir calendário');
+    const calendarButton = screen.getByLabelText('Open calendar');
     fireEvent.click(calendarButton);
 
     // Click today
-    const todayButton = screen.getByText('Hoje');
+    const todayButton = screen.getByText('Today');
     fireEvent.click(todayButton);
+
 
     expect(handleChange).toHaveBeenCalled();
   });
@@ -60,10 +62,11 @@ describe('DynDatePicker', () => {
     );
 
     // Clear button should be visible
-    const clearButton = screen.getByLabelText('Limpar data');
+    const clearButton = screen.getByLabelText('Clear date');
     fireEvent.click(clearButton);
 
-    expect(handleChange).toHaveBeenCalledWith(null);
+
+    expect(handleChange).toHaveBeenCalledWith('');
   });
 
   it('handles keyboard navigation', () => {
@@ -73,11 +76,13 @@ describe('DynDatePicker', () => {
 
     // Enter key should open dropdown
     fireEvent.keyDown(input, { key: 'Enter' });
-    expect(screen.getByText('Hoje')).toBeInTheDocument();
+    expect(screen.getByText('Today')).toBeInTheDocument();
+
 
     // Escape should close dropdown
     fireEvent.keyDown(input, { key: 'Escape' });
-    expect(screen.queryByText('Hoje')).not.toBeInTheDocument();
+    expect(screen.queryByText('Today')).not.toBeInTheDocument();
+
   });
 
   it('prevents interaction when disabled', () => {
@@ -87,18 +92,20 @@ describe('DynDatePicker', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeDisabled();
 
-    const calendarButton = screen.getByLabelText('Abrir calendário');
+    const calendarButton = screen.getByLabelText('Open calendar');
     expect(calendarButton).toBeDisabled();
+
   });
 
   it('prevents changes when readonly', () => {
     render(<DynDatePicker name="test" label="Test" readonly value={new Date()} />);
 
     const input = screen.getByRole('textbox');
-    expect(input).toHaveAttribute('readOnly');
+    expect(input).toHaveAttribute('readonly');
 
     // Clear button should not be visible in readonly mode
-    expect(screen.queryByLabelText('Limpar data')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Clear date')).not.toBeInTheDocument();
+
   });
 
   it('displays help text', () => {

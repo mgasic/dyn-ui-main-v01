@@ -24,10 +24,11 @@ import styles from './DynIcon.module.css';
 type RegistryIcon = ReactElement | null;
 
 const SIZE_CLASS_MAP: Record<DynIconSizeToken, string> = {
-  small: styles['dyn-icon-size-small']!,
-  medium: styles['dyn-icon-size-medium']!,
-  large: styles['dyn-icon-size-large']!,
+  small: styles.sizeSmall!,
+  medium: styles.sizeMedium!,
+  large: styles.sizeLarge!,
 };
+
 
 const TONE_CLASS_MAP: Partial<Record<NonNullable<DynIconProps['tone']>, string>> = {
   success: styles.success!,
@@ -169,7 +170,7 @@ const DynIconComponent = (
     toneClass,
     spin ? styles.spinning : undefined,
     disabled ? styles.disabled : undefined,
-    isInteractive ? styles['dyn-icon-clickable'] : undefined,
+    isInteractive ? styles.iconClickable : undefined,
     processedIconClasses?.baseClass,
     processedIconClasses?.iconClass,
     className

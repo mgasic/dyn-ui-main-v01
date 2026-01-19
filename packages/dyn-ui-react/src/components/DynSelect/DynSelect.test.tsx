@@ -12,9 +12,10 @@ const sampleOptions = [
 
 describe('DynSelect', () => {
   it('renders with label', () => {
-    render(<label>Test Select<DynSelectAny name="test" options={sampleOptions} /></label>);
+    render(<DynSelectAny name="test" label="Test Select" options={sampleOptions} />);
     expect(screen.getByText('Test Select')).toBeInTheDocument();
   });
+
 
   it('displays placeholder when no value selected', () => {
     render(<label>Test<DynSelectAny name="test" options={sampleOptions} placeholder="Choose option" /></label>);
@@ -82,7 +83,8 @@ describe('DynSelect', () => {
     const select = screen.getByRole('combobox');
     fireEvent.click(select);
 
-    const searchInput = screen.getByPlaceholderText('Pesquisar...');
+    const searchInput = screen.getByPlaceholderText('Search...');
+
     fireEvent.change(searchInput, { target: { value: 'Option 1' } });
 
     expect(screen.getByText('Option 1')).toBeInTheDocument();
@@ -129,8 +131,9 @@ describe('DynSelect', () => {
 
   it('displays selected value', () => {
     render(<DynSelectAny name="test" label="Test" options={sampleOptions} value="option2" />);
-    expect(screen.getByText('Option 2')).toBeInTheDocument();
+    expect(screen.getAllByText('Option 2')[0]).toBeInTheDocument();
   });
+
 
   it('shows loading state', () => {
     render(<DynSelectAny name="test" label="Test" options={sampleOptions} loading />);
@@ -150,8 +153,9 @@ describe('DynSelect', () => {
   it('applies size classes', () => {
     render(<DynSelectAny name="test" label="Test" options={sampleOptions} size="large" />);
     const select = screen.getByRole('combobox');
-    expect(select).toHaveClass('dyn-select--large');
+    expect(select.className).toContain('large');
   });
+
 
   it('applies custom className', () => {
     const { container } = render(
@@ -166,10 +170,11 @@ describe('DynSelect', () => {
     const select = screen.getByRole('combobox');
     fireEvent.click(select);
 
-    const searchInput = screen.getByPlaceholderText('Pesquisar...');
+    const searchInput = screen.getByPlaceholderText('Search...');
     fireEvent.change(searchInput, { target: { value: 'nonexistent' } });
 
-    expect(screen.getByText('Nenhum resultado encontrado')).toBeInTheDocument();
+    expect(screen.getByText('No options found')).toBeInTheDocument();
+
   });
 
   it('hides when not visible', () => {

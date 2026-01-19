@@ -16,10 +16,12 @@
   border: var(--dyn-button-border-width, 1px) solid var(--dyn-button-border);
   background-color: var(--dyn-button-bg);
   color: var(--dyn-button-color);
-  font-family: var(--dyn-font-family-base, var(--font-family-base, inherit));
-  font-size: var(--dyn-button-font-size, var(--dyn-font-size-sm, var(--font-size-sm, 0.875rem)));
-  font-weight: var(--dyn-button-font-weight, var(--dyn-font-weight-medium, var(--font-weight-medium, 500)));
-  line-height: var(--dyn-button-line-height, var(--dyn-line-height-base, var(--line-height-base, 1.4)));
+  font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: var(--dyn-button-font-size, 0.875rem);
+  font-weight: 500;
+  line-height: 1.5;
+
+
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -87,27 +89,34 @@
 
 .kindSecondary {
   --dyn-button-bg: transparent;
-  --dyn-button-border: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-button-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-button-color-hover: var(--dyn-color-primary-hover, var(--color-primary-hover, #1d4ed8));
-  --dyn-button-color-active: var(--dyn-color-primary-active, var(--color-primary-active, #1e40af));
-  --dyn-button-bg-hover: var(--dyn-color-surface-subtle, var(--color-surface-subtle, rgba(37, 99, 235, 0.08)));
-  --dyn-button-border-hover: var(--dyn-color-primary-hover, var(--color-primary-hover, #1d4ed8));
-  --dyn-button-bg-active: var(--dyn-color-surface-muted, var(--color-surface-muted, rgba(37, 99, 235, 0.16)));
-  --dyn-button-border-active: var(--dyn-color-primary-active, var(--color-primary-active, #1e40af));
+  --dyn-button-border: var(--dyn-color-primary, #2563eb);
+  --dyn-button-color: var(--dyn-color-primary, #2563eb);
+  --dyn-button-color-hover: var(--dyn-color-primary-hover, #1d4ed8);
+  --dyn-button-color-active: var(--dyn-color-primary-active, #1e40af);
+  --dyn-button-bg-hover: var(--dyn-color-surface-subtle, rgba(37, 99, 235, 0.08));
+  --dyn-button-border-hover: var(--dyn-color-primary-hover, #1d4ed8);
+  --dyn-button-bg-active: var(--dyn-color-surface-muted, rgba(37, 99, 235, 0.16));
+  --dyn-button-border-active: var(--dyn-color-primary-active, #1e40af);
+
+  /* Ensure font consistency */
+  font-family: inherit;
 }
 
 .kindTertiary {
   --dyn-button-bg: transparent;
   --dyn-button-border: transparent;
-  --dyn-button-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-button-color-hover: var(--dyn-color-primary-hover, var(--color-primary-hover, #1d4ed8));
-  --dyn-button-color-active: var(--dyn-color-primary-active, var(--color-primary-active, #1e40af));
-  --dyn-button-bg-hover: var(--dyn-color-surface-subtle, var(--color-surface-subtle, rgba(37, 99, 235, 0.1)));
+  --dyn-button-color: var(--dyn-color-primary, #2563eb);
+  --dyn-button-color-hover: var(--dyn-color-primary-hover, #1d4ed8);
+  --dyn-button-color-active: var(--dyn-color-primary-active, #1e40af);
+  --dyn-button-bg-hover: var(--dyn-color-surface-subtle, rgba(37, 99, 235, 0.1));
   --dyn-button-border-hover: transparent;
-  --dyn-button-bg-active: var(--dyn-color-surface-muted, var(--color-surface-muted, rgba(37, 99, 235, 0.18)));
+  --dyn-button-bg-active: var(--dyn-color-surface-muted, rgba(37, 99, 235, 0.18));
   --dyn-button-border-active: transparent;
+
+  /* Ensure font consistency */
+  font-family: inherit;
 }
+
 
 /* Size Variants - Override sizing tokens */
 .sizeSmall {
@@ -210,9 +219,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--dyn-button-gap);
+  gap: var(--dyn-button-gap, 0.5rem);
   white-space: nowrap;
+  line-height: inherit;
 }
+
 
 .icon {
   display: inline-flex;
@@ -229,14 +240,16 @@
 .spinner {
   position: absolute;
   inset: 50% auto auto 50%;
-  width: var(--dyn-size-xs, var(--size-xs, 1rem));
-  height: var(--dyn-size-xs, var(--size-xs, 1rem));
+  width: 1.25em;
+  height: 1.25em;
   border-radius: 50%;
   border: 2px solid currentColor;
   border-top-color: transparent;
-  animation: dynButtonSpin var(--dyn-animation-duration-base, 0.9s) linear infinite;
+  animation: dynButtonSpin 0.8s linear infinite;
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
+
 
 @keyframes dynButtonSpin {
   to {

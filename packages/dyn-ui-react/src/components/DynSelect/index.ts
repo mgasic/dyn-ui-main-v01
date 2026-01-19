@@ -1,2 +1,3 @@
-export { DynSelect } from './DynSelect';
-export type { DynSelectProps } from './DynSelect.types';
+export * from './DynSelect';
+export * from './DynSelect.types';
+export { DynSelect as default } from './DynSelect';

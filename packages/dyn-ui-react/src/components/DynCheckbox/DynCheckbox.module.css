@@ -94,8 +94,9 @@
 
 .wrapper {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--dyn-checkbox-gap);
+
   cursor: pointer;
   font-family: var(--dyn-checkbox-label-font-family);
   line-height: var(--dyn-checkbox-label-line-height);
@@ -132,11 +133,11 @@
   padding: 0;
 }
 
-.input:focus + .box {
+.input:focus+.box {
   box-shadow: 0 0 0 var(--dyn-checkbox-focus-ring-width) var(--dyn-checkbox-focus-ring-color);
 }
 
-.input:focus:not(:focus-visible) + .box {
+.input:focus:not(:focus-visible)+.box {
   box-shadow: none;
 }
 
@@ -156,8 +157,9 @@
   border-radius: var(--dyn-checkbox-border-radius);
   transition: all var(--dyn-checkbox-transition);
   flex-shrink: 0;
-  margin-top: var(--dyn-checkbox-box-margin-top);
+  /* Removed margin-top to allow flex centering */
 }
+
 
 /* Checked and Indeterminate States */
 .box.boxChecked,
@@ -205,13 +207,12 @@
   border-width: var(--dyn-checkbox-border-width-sm);
 }
 
-.boxSmall .checkMark {
-  font-size: var(--dyn-checkbox-checkmark-font-size-sm);
+.boxSmall .checkIcon,
+.boxSmall .indeterminateIcon {
+  width: 10px;
+  height: auto;
 }
 
-.boxSmall .indeterminateMark {
-  font-size: var(--dyn-checkbox-checkmark-font-size-sm);
-}
 
 /* ========================================================================
    Size Variants: Large
@@ -222,13 +223,12 @@
   height: var(--dyn-checkbox-box-height-lg);
 }
 
-.boxLarge .checkMark {
-  font-size: var(--dyn-checkbox-checkmark-font-size-lg);
+.boxLarge .checkIcon,
+.boxLarge .indeterminateIcon {
+  width: 14px;
+  height: auto;
 }
 
-.boxLarge .indeterminateMark {
-  font-size: var(--dyn-checkbox-checkmark-font-size-lg);
-}
 
 /* ========================================================================
    Checkmark
@@ -246,19 +246,14 @@
   height: 100%;
 }
 
-.checkMark {
+.checkIcon,
+.indeterminateIcon {
   color: var(--dyn-checkbox-checkmark-color);
-  font-size: var(--dyn-checkbox-checkmark-font-size);
-  font-weight: var(--dyn-checkbox-checkmark-font-weight);
-  line-height: 1;
+  width: 12px;
+  height: auto;
+  flex-shrink: 0;
 }
 
-.indeterminateMark {
-  color: var(--dyn-checkbox-checkmark-color);
-  font-size: var(--dyn-checkbox-checkmark-font-size);
-  font-weight: var(--dyn-checkbox-checkmark-font-weight);
-  line-height: 1;
-}
 
 /* ========================================================================
    Label
@@ -278,11 +273,11 @@
   color: var(--dyn-checkbox-label-text-color-disabled);
 }
 
-.boxSmall ~ .label {
+.boxSmall~.label {
   font-size: var(--dyn-checkbox-label-font-size-sm);
 }
 
-.boxLarge ~ .label {
+.boxLarge~.label {
   font-size: var(--dyn-checkbox-label-font-size-lg);
 }
 
@@ -309,7 +304,7 @@
     border-width: 2px;
   }
 
-  .input:focus + .box {
+  .input:focus+.box {
     box-shadow:
       0 0 0 3px var(--dyn-checkbox-focus-ring-color),
       0 0 0 6px var(--dyn-checkbox-border);
@@ -323,6 +318,7 @@
    ======================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+
   .wrapper,
   .box,
   .wrapper:hover .box {
@@ -366,12 +362,7 @@
   .wrapper {
     /* Ensure touch-friendly spacing */
     gap: var(--dyn-spacing-md, var(--spacing-md, 12px));
-    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
-  }
-
-  .box {
-    min-width: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
-    min-height: var(--dyn-size-touch-target, var(--size-touch-target, 44px));
+    min-height: 40px;
   }
 
   .label {
@@ -379,6 +370,7 @@
     line-height: var(--dyn-checkbox-label-line-height);
   }
 }
+
 
 /* ========================================================================
    Print Styles

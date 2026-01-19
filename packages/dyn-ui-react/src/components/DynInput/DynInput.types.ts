@@ -69,18 +69,18 @@ export interface CurrencyInputConfig {
  */
 export interface DynInputProps
   extends BaseComponentProps,
-    AccessibilityProps,
-    Omit<
-      InputHTMLAttributes<HTMLInputElement>,
-      | 'size'
-      | 'value'
-      | 'onChange'
-      | 'onBlur'
-      | 'onFocus'
-      | 'type'
-      | keyof BaseComponentProps
-      | keyof AccessibilityProps
-    > {
+  AccessibilityProps,
+  Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    | 'size'
+    | 'value'
+    | 'onChange'
+    | 'onBlur'
+    | 'onFocus'
+    | 'type'
+    | keyof BaseComponentProps
+    | keyof AccessibilityProps
+  > {
 
   /** Input name attribute (also used as ID if not provided) */
   name?: string;
@@ -90,7 +90,7 @@ export interface DynInputProps
 
   /** Help text displayed below the input */
   help?: string;
-  
+
   /** Help text displayed below the input (alias for help) */
   helpText?: string;
 
@@ -111,7 +111,7 @@ export interface DynInputProps
 
   /** Whether the input is readonly */
   readOnly?: boolean;
-  
+
   /** Whether the input is readonly (alias) */
   readonly?: boolean;
 
@@ -126,25 +126,25 @@ export interface DynInputProps
 
   /** Whether the input is in invalid state */
   invalid?: boolean;
-  
+
   /** Whether the input is in valid state */
   valid?: boolean;
 
   /** Custom error message */
   errorMessage?: string;
-  
+
   /** Success message when valid */
   successMessage?: string;
 
   /** Validation rule function or array of functions */
   validation?: DynInputValidationRule | DynInputValidationRule[];
-  
+
   /** Validation rules array (alias) */
   validationRules?: DynInputValidationRule[];
-  
+
   /** Whether to validate on change */
   validateOnChange?: boolean;
-  
+
   /** Whether to validate on blur */
   validateOnBlur?: boolean;
 
@@ -154,6 +154,10 @@ export interface DynInputProps
   /** Whether to show clear button when input has value */
   showClearButton?: boolean;
 
+  /** Alias for backward compatibility */
+  showCleanButton?: boolean;
+
+
   /** Whether to show spin buttons for numeric inputs */
   showSpinButtons?: boolean;
 
@@ -162,7 +166,7 @@ export interface DynInputProps
 
   /** Whether to format the model value with mask */
   maskFormatModel?: boolean;
-  
+
   /** Loading state */
   loading?: boolean;
 
@@ -189,7 +193,7 @@ export interface DynInputProps
 
   /** Validation event handler */
   onValidate?: (isValid: boolean, errorMessage?: string) => void;
-  
+
   /** Key down event handler */
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
 }
@@ -200,25 +204,25 @@ export interface DynInputProps
 export interface DynInputRef {
   /** Focus the input element */
   focus: () => void;
-  
+
   /** Blur the input element */
   blur: () => void;
-  
+
   /** Clear the input value */
   clear: () => void;
-  
+
   /** Get the current input value */
   getValue: () => string | number;
-  
+
   /** Set the input value programmatically */
   setValue: (value: string | number) => void;
-  
+
   /** Validate the input and return validation result (async for compatibility) */
   validate: () => Promise<boolean>;
-  
+
   /** Clear any validation errors */
   clearError: () => void;
-  
+
   /** Get the native input element */
   getElement: () => HTMLInputElement | null;
 }
@@ -267,10 +271,10 @@ export type DynInputValidationState = 'valid' | 'invalid' | 'pending' | 'initial
 export interface DynInputValidationResult {
   /** Whether the input is valid */
   isValid: boolean;
-  
+
   /** Error message if invalid */
   errorMessage?: string;
-  
+
   /** Validation state */
   state: DynInputValidationState;
 }

@@ -8,7 +8,9 @@ const meta: Meta<typeof DynIcon> = {
   decorators: [
     Story => (
       <IconDictionaryProvider>
-        <Story />
+        <div style={{ padding: '2rem', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Story />
+        </div>
       </IconDictionaryProvider>
     ),
   ],
@@ -19,11 +21,18 @@ const meta: Meta<typeof DynIcon> = {
     },
     size: {
       control: 'select',
-      options: ['small', 'medium', 'large'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl', 'small', 'medium', 'large'],
     },
     tone: {
       control: 'select',
       options: ['success', 'warning', 'danger', 'info', undefined],
+    },
+    strokeWidth: {
+      control: { type: 'range', min: 0.5, max: 4, step: 0.5 },
+    },
+    mirror: {
+      control: 'select',
+      options: [undefined, 'horizontal', 'vertical', 'both'],
     },
     spin: {
       control: 'boolean',
@@ -35,7 +44,7 @@ const meta: Meta<typeof DynIcon> = {
   },
   args: {
     icon: 'ok',
-    size: 'medium',
+    size: 'md',
     spin: false,
     disabled: false,
   },
@@ -45,32 +54,52 @@ export default meta;
 
 type Story = StoryObj<typeof DynIcon>;
 
-export const Playground: Story = {};
-
-export const RegistryIcon: Story = {
-  args: {
-    icon: 'check',
-    size: 'large',
-    tone: 'info',
-  },
-};
-
-export const FontAwesome: Story = {
-  args: {
-    icon: 'fa-solid fa-user',
-    size: 'medium',
-  },
-};
-
-export const CustomNode: Story = {
-  render: args => (
-    <DynIcon
-      {...args}
-      icon={<span style={{ fontSize: '0.75rem', fontWeight: 600 }}>AB</span>}
-    />
+export const Sizes: Story = {
+  render: () => (
+    <>
+      <DynIcon icon="check" size="xs" />
+      <DynIcon icon="check" size="sm" />
+      <DynIcon icon="check" size="md" />
+      <DynIcon icon="check" size="lg" />
+      <DynIcon icon="check" size="xl" />
+    </>
   ),
+};
+
+export const StrokeWeights: Story = {
+  render: () => (
+    <>
+      <DynIcon icon="close" size="xl" strokeWidth={1} />
+      <DynIcon icon="close" size="xl" strokeWidth={2} />
+      <DynIcon icon="close" size="xl" strokeWidth={3} />
+      <DynIcon icon="close" size="xl" strokeWidth={4} />
+    </>
+  ),
+};
+
+export const Mirroring: Story = {
+  render: () => (
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <p>Original</p>
+        <DynIcon icon="warning" size="xl" />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <p>Horizontal</p>
+        <DynIcon icon="warning" size="xl" mirror="horizontal" />
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <p>Vertical</p>
+        <DynIcon icon="warning" size="xl" mirror="vertical" />
+      </div>
+    </>
+  ),
+};
+
+export const Interactive: Story = {
   args: {
-    tone: 'success',
-    size: 'large',
+    icon: 'search',
+    size: 'xl',
+    onClick: () => alert('Clicked!'),
   },
 };

@@ -2,7 +2,7 @@
 
 **Datum kreiranja**: 2026-01-21  
 **Poslednje ažuriranje**: 2026-01-21  
-**Status**: 🔄 U toku
+**Status**: ✅ Završeno (Phase 1)
 
 ---
 
@@ -16,27 +16,27 @@ DynAvatar je Atom komponenta za prikaz korisničkih avatara sa podrškom za slik
 
 ### Stilovi (CSS)
 
-| Problem | Opis | Prioritet |
-|---------|------|-----------|
-| Hardkodirani `size` tokeni | `24px`, `32px`, `40px`, `56px`, `80px` bez fallback-a | P1 |
-| Hardkodirani `status-size` | `8px`, `10px`, `12px`, `14px`, `18px` bez fallback-a | P1 |
-| Hardkodirana `border-width` | `2px`, `3px` direktno | P2 |
-| Hardkodiran breakpoint | `640px` u media query | P2 |
-| `min-width: 20px` u `.badge` | Treba token | P2 |
-| `height: 20px` u `.badge` | Treba token | P2 |
-| Nedostaju fallback vrednosti | Tokeni bez hardkodiranih fallback-a | P1 |
+| Problem | Opis | Prioritet | Status |
+|---------|------|-----------|--------|
+| ~~Hardkodirani `size` tokeni~~ | `24px`, `32px`, `40px`, `56px`, `80px` bez fallback-a | P1 | ✅ |
+| ~~Hardkodirani `status-size`~~ | `8px`, `10px`, `12px`, `14px`, `18px` bez fallback-a | P1 | ✅ |
+| ~~Hardkodirana `border-width`~~ | `2px`, `3px` direktno | P2 | ✅ |
+| Hardkodiran breakpoint | `640px` u media query | P2 | ⬜ |
+| `min-width: 20px` u `.badge` | Treba token | P2 | ⬜ |
+| `height: 20px` u `.badge` | Treba token | P2 | ⬜ |
+| ~~Nedostaju fallback vrednosti~~ | Tokeni bez hardkodiranih fallback-a | P1 | ✅ |
 
 ### Funkcionalnost (TSX)
 
-| Nedostatak | Opis | Prioritet |
-|------------|------|-----------|
-| ✅ forwardRef | Implementirano | - |
-| ✅ aria-label | Implementirano sa status context | - |
-| ✅ aria-busy | Implementirano za loading | - |
-| ✅ Keyboard navigation | Implementirano za interactive avatare | - |
-| ✅ Image load timeout | Implementirano (10s default) | - |
-| ✅ Fallback mehanizam | Initials → Icon fallback | - |
-| ❌ Hardkodiran string | "Avatar failed to load" u srOnly | P2 |
+| Nedostatak | Opis | Prioritet | Status |
+|------------|------|-----------|--------|
+| ✅ forwardRef | Implementirano | - | ✅ |
+| ✅ aria-label | Implementirano sa status context | - | ✅ |
+| ✅ aria-busy | Implementirano za loading | - | ✅ |
+| ✅ Keyboard navigation | Implementirano za interactive avatare | - | ✅ |
+| ✅ Image load timeout | Implementirano (10s default) | - | ✅ |
+| ✅ Fallback mehanizam | Initials → Icon fallback | - | ✅ |
+| ~~Hardkodiran string~~ | "Avatar failed to load" u srOnly | P2 | ✅ (`errorText` prop) |
 
 ### Tipovi (types.ts)
 

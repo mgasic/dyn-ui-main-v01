@@ -11,11 +11,5 @@
 /* 1. Import foundation tokens (colors, spacing, typography, etc.) */
 @import '@dyn-ui/design-tokens/styles/foundations/index.css';
 
-/* 2. Import component-specific tokens if needed */
-/* These are optional and only needed if you have component-specific overrides */
-/*
-@import '@dyn-ui/design-tokens/styles/components/badge.css';
-@import '@dyn-ui/design-tokens/styles/components/avatar.css';
-@import '@dyn-ui/design-tokens/styles/components/responsive-tabs.css';
-@import '@dyn-ui/design-tokens/styles/components/table.css';
-*/
+/* 2. Import component-specific tokens */
+@import '@dyn-ui/design-tokens/styles/components/index.css';

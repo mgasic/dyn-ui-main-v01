@@ -86,7 +86,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       // Content props
       children,
       count,
-      maxCount = 99,
+      maxCount = 999,
       fallback = null,
 
       // Style props
@@ -248,28 +248,34 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      * - State classes (badge--animated, badge--pulse, badge--invisible)
      */
     const badgeClasses = useMemo(() => {
+      // Convert variant/color/size to camelCase class names
+      const variantClass = validVariant !== 'solid' ? `badge${validVariant.charAt(0).toUpperCase()}${validVariant.slice(1)}` : null;
+      const colorClass = `badge${validColor.charAt(0).toUpperCase()}${validColor.slice(1)}`;
+      const sizeClass = `badge${validSize.charAt(0).toUpperCase()}${validSize.slice(1)}`;
+      const positionClass = position ? `badge${position.charAt(0).toUpperCase()}${position.slice(1)}` : null;
+
       return cn(
         styles.badge,
 
-        // Variant styles
-        validVariant !== 'solid' && styles[`badge--${validVariant}`],
+        // Variant styles (camelCase)
+        variantClass && styles[variantClass],
 
-        // Color styles - follows --dyn-badge-[color]-* token pattern
-        styles[`badge--${validColor}`],
+        // Color styles (camelCase)
+        styles[colorClass],
 
-        // Size styles - follows --dyn-badge-[size]-* token pattern
-        styles[`badge--${validSize}`],
+        // Size styles (camelCase)
+        styles[sizeClass],
 
-        // Position styles (for overlay badges in DynAvatar, etc.)
-        position && styles[`badge--${position}`],
-        position && styles['badge--positioned'],
+        // Position styles (camelCase)
+        positionClass && styles[positionClass],
+        position && styles.badgePositioned,
 
-        // State classes
+        // State classes (camelCase)
         {
-          [styles['badge--invisible']]: invisible,
-          [styles['badge--animated']]: animated,
-          [styles['badge--pulse']]: pulse,
-          [styles['badge--clickable']]: !!onClick,
+          [styles.badgeInvisible]: invisible,
+          [styles.badgeAnimated]: animated,
+          [styles.badgePulse]: pulse,
+          [styles.badgeClickable]: !!onClick,
         },
 
         // Custom classes
@@ -322,24 +328,24 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       >
         {/* Badge content container */}
         {displayContent && (
-          <span className={styles['badge__content']}>
+          <span className={styles.badgeContent}>
             {/* Start icon if provided */}
             {startIcon && (
-              <span className={styles['badge__icon']} aria-hidden="true">
+              <span className={styles.badgeIcon} aria-hidden="true">
                 {startIcon}
               </span>
             )}
 
             {/* Icon if provided (legacy support) */}
             {icon && !startIcon && (
-              <span className={styles['badge__icon']} aria-hidden="true">
+              <span className={styles.badgeIcon} aria-hidden="true">
                 {icon}
               </span>
             )}
 
             {/* Text content */}
             {typeof displayContent === 'string' ? (
-              <span className={styles['badge__text']}>
+              <span className={styles.badgeText}>
                 {displayContent}
               </span>
             ) : (
@@ -348,17 +354,16 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
 
             {/* End icon if provided */}
             {endIcon && (
-              <span className={styles['badge__icon']} aria-hidden="true">
+              <span className={styles.badgeIcon} aria-hidden="true">
                 {endIcon}
               </span>
             )}
           </span>
         )}
 
-        {/* Empty badge (dot variant without text) */}
         {!displayContent && validVariant === 'dot' && (
           <span
-            className={styles['badge__dot']}
+            className={styles.badgeDotIndicator}
             aria-label={computedAriaLabel}
           />
         )}

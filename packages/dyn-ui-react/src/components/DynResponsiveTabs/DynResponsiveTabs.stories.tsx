@@ -333,221 +333,399 @@ export const ManyTabs: Story = {
   },
 };
 
+const childTabs1: DynResponsiveTabItem[] = [
+  {
+    label: 'Responsive Tab 1',
+    content: (
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+          euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit.
+          Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
+          gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
+          gravida mollis.
+        </p>
+      </div>
+    ),
+  },
+  {
+    label: 'Responsive Tab 2',
+    content: (
+      <div>
+        <p>
+          Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
+          gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
+          gravida mollis.
+        </p>
+      </div>
+    ),
+  },
+  {
+    label: 'Responsive Tab 3',
+    content: (
+      <div>
+        <p>
+          Suspendisse blandit velit Integer laoreet placerat suscipit. Sed sodales
+          scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a
+          facilisis quis, ornare id lectus.
+        </p>
+      </div>
+    ),
+  },
+  {
+    label: 'Long name Responsive Tab 4',
+    content: (
+      <div>
+        <p>
+          Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta
+          cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus.
+          Proin consectetur nibh quis urna gravida mollis.
+        </p>
+      </div>
+    ),
+  },
+];
+
+const childTabs2: DynResponsiveTabItem[] = [
+  {
+    label: 'Product Details',
+    icon: 'info',
+    content: (
+      <div>
+        <h4>Product Specifications</h4>
+        <ul>
+          <li>Dimension: 10 x 5 x 3 cm</li>
+          <li>Weight: 250g</li>
+          <li>Material: Premium ABS plastic</li>
+          <li>Color: Midnight Black</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    label: 'Pricing',
+    icon: 'currency-dollar',
+    content: (
+      <div>
+        <h4>Pricing Information</h4>
+        <p>Standard: $99.99</p>
+        <p>Premium: $149.99</p>
+        <p>Enterprise: Contact sales</p>
+      </div>
+    ),
+  },
+  {
+    label: 'Reviews',
+    icon: 'star',
+    content: (
+      <div>
+        <h4>Customer Reviews</h4>
+        <p>⭐⭐⭐⭐⭐ 5.0 out of 5 stars (128 reviews)</p>
+        <p>"Excellent product, highly recommended!"</p>
+      </div>
+    ),
+  },
+];
+
+// Helper to create parent tabs dynamically if needed, or static
+const getParentTabs = (orientation: 'horizontal' | 'vertical') => [
+  {
+    label: 'Horizontal 1',
+    content: (
+      <>
+        <DynResponsiveTabs
+          tabs={childTabs1}
+          orientation="vertical"
+          tabIdentifier="child-vertical-1"
+          defaultActive={0}
+          aria-label="Child vertical tabs group 1"
+        />
+        <div
+          style={{
+            marginTop: '1rem',
+            padding: '1rem',
+            border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+            borderRadius: '0.25rem',
+            backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+          }}
+        >
+          <strong>Child 1 Container</strong>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+            This demonstrates how content can appear outside nested tabs
+          </p>
+        </div>
+      </>
+    ),
+  },
+  {
+    label: 'Horizontal 2',
+    content: (
+      <>
+        <DynResponsiveTabs
+          tabs={childTabs2}
+          orientation="vertical"
+          tabIdentifier="child-vertical-2"
+          defaultActive={0}
+          aria-label="Child vertical tabs group 2"
+        />
+        <div
+          style={{
+            marginTop: '1rem',
+            padding: '1rem',
+            border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+            borderRadius: '0.25rem',
+            backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+          }}
+        >
+          <strong>Child 2 Container</strong>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+            Different child tabs with icons and structured content
+          </p>
+        </div>
+      </>
+    ),
+  },
+  {
+    label: 'Horizontal 3',
+    content: (
+      <div style={{ padding: '1rem' }}>
+        <h3>Regular Content</h3>
+        <p>This tab contains only regular content without nested tabs.</p>
+        <p>
+          You can mix nested tabs with regular content tabs in the same parent
+          tab group for maximum flexibility.
+        </p>
+        <div
+          style={{
+            marginTop: '1rem',
+            padding: '1rem',
+            border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+            borderRadius: '0.25rem',
+            backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+          }}
+        >
+          <strong>Regular Container</strong>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+            No nested tabs here, just standard content
+          </p>
+        </div>
+      </div>
+    ),
+  },
+];
+
 /**
  * Nested tabs example: horizontal parent with vertical children.
  */
 export const NestedTabs: Story = {
-  render: () => {
-    // Child tabs (vertical)
-    const childTabs1: DynResponsiveTabItem[] = [
-      {
-        label: 'Responsive Tab 1',
-        content: (
-          <div>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
-              euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit.
-              Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
-              gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
-              gravida mollis.
-            </p>
-          </div>
-        ),
-      },
-      {
-        label: 'Responsive Tab 2',
-        content: (
-          <div>
-            <p>
-              Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
-              gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
-              gravida mollis.
-            </p>
-          </div>
-        ),
-      },
-      {
-        label: 'Responsive Tab 3',
-        content: (
-          <div>
-            <p>
-              Suspendisse blandit velit Integer laoreet placerat suscipit. Sed sodales
-              scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a
-              facilisis quis, ornare id lectus.
-            </p>
-          </div>
-        ),
-      },
-      {
-        label: 'Long name Responsive Tab 4',
-        content: (
-          <div>
-            <p>
-              Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta
-              cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus.
-              Proin consectetur nibh quis urna gravida mollis.
-            </p>
-          </div>
-        ),
-      },
-    ];
-
-    const childTabs2: DynResponsiveTabItem[] = [
-      {
-        label: 'Product Details',
-        icon: 'info',
-        content: (
-          <div>
-            <h4>Product Specifications</h4>
-            <ul>
-              <li>Dimension: 10 x 5 x 3 cm</li>
-              <li>Weight: 250g</li>
-              <li>Material: Premium ABS plastic</li>
-              <li>Color: Midnight Black</li>
-            </ul>
-          </div>
-        ),
-      },
-      {
-        label: 'Pricing',
-        icon: 'currency-dollar',
-        content: (
-          <div>
-            <h4>Pricing Information</h4>
-            <p>Standard: $99.99</p>
-            <p>Premium: $149.99</p>
-            <p>Enterprise: Contact sales</p>
-          </div>
-        ),
-      },
-      {
-        label: 'Reviews',
-        icon: 'star',
-        content: (
-          <div>
-            <h4>Customer Reviews</h4>
-            <p>⭐⭐⭐⭐⭐ 5.0 out of 5 stars (128 reviews)</p>
-            <p>"Excellent product, highly recommended!"</p>
-          </div>
-        ),
-      },
-    ];
-
-    // Parent tabs (horizontal)
-    const parentTabs: DynResponsiveTabItem[] = [
-      {
-        label: 'Horizontal 1',
-        content: (
-          <>
-            <DynResponsiveTabs
-              tabs={childTabs1}
-              orientation="vertical"
-              tabIdentifier="child-vertical-1"
-              defaultActive={0}
-              aria-label="Child vertical tabs group 1"
-            />
-            <div
-              style={{
-                marginTop: '1rem',
-                padding: '1rem',
-                border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
-                borderRadius: '0.25rem',
-                backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
-              }}
-            >
-              <strong>Child 1 Container</strong>
-              <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
-                This demonstrates how content can appear outside nested tabs
-              </p>
-            </div>
-          </>
-        ),
-      },
-      {
-        label: 'Horizontal 2',
-        content: (
-          <>
-            <DynResponsiveTabs
-              tabs={childTabs2}
-              orientation="vertical"
-              tabIdentifier="child-vertical-2"
-              defaultActive={0}
-              aria-label="Child vertical tabs group 2"
-            />
-            <div
-              style={{
-                marginTop: '1rem',
-                padding: '1rem',
-                border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
-                borderRadius: '0.25rem',
-                backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
-              }}
-            >
-              <strong>Child 2 Container</strong>
-              <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
-                Different child tabs with icons and structured content
-              </p>
-            </div>
-          </>
-        ),
-      },
-      {
-        label: 'Horizontal 3',
-        content: (
-          <div style={{ padding: '1rem' }}>
-            <h3>Regular Content</h3>
-            <p>This tab contains only regular content without nested tabs.</p>
-            <p>
-              You can mix nested tabs with regular content tabs in the same parent
-              tab group for maximum flexibility.
-            </p>
-            <div
-              style={{
-                marginTop: '1rem',
-                padding: '1rem',
-                border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
-                borderRadius: '0.25rem',
-                backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
-              }}
-            >
-              <strong>Regular Container</strong>
-              <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
-                No nested tabs here, just standard content
-              </p>
-            </div>
-          </div>
-        ),
-      },
-    ];
-
-    return (
+  render: (args) => {
+    // Parent tabs (horizontal) - recreating is cheap, content is stable references if possible
+    // But JSX elements are always new.
+    // However, moving logic out clarifies it.
+    const parentTabs = getParentTabs(args.orientation as any);
+    content: (
       <div>
-        <h2>Demo</h2>
-        <p style={{ marginBottom: '1rem', color: 'var(--dyn-color-text-secondary, #6b7280)' }}>
-          Selected tab: Responsive Tab 1
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nibh urna,
+          euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit.
+          Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
+          gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
+          gravida mollis.
         </p>
-        <DynResponsiveTabs
-          tabs={parentTabs}
-          orientation="horizontal"
-          tabIdentifier="parent-horizontal"
-          defaultActive={0}
-          aria-label="Main navigation tabs"
-        />
       </div>
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Complex nested tabs layout: horizontal parent tabs containing vertical child tabs. ' +
-          'This pattern is perfect for complex interfaces like product catalogs, settings panels, ' +
-          'or documentation sites. Each child tab group has its own unique `tabIdentifier` for ' +
-          'proper styling and state management. The component automatically adapts to accordion ' +
-          'mode on mobile devices.',
+    ),
       },
-    },
+      {
+  label: 'Responsive Tab 2',
+    content: (
+      <div>
+        <p>
+          Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat,
+          gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis urna
+          gravida mollis.
+        </p>
+      </div>
+    ),
+      },
+{
+  label: 'Responsive Tab 3',
+    content: (
+      <div>
+        <p>
+          Suspendisse blandit velit Integer laoreet placerat suscipit. Sed sodales
+          scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a
+          facilisis quis, ornare id lectus.
+        </p>
+      </div>
+    ),
+      },
+{
+  label: 'Long name Responsive Tab 4',
+    content: (
+      <div>
+        <p>
+          Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta
+          cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus.
+          Proin consectetur nibh quis urna gravida mollis.
+        </p>
+      </div>
+    ),
+      },
+    ];
+
+const childTabs2: DynResponsiveTabItem[] = [
+  {
+    label: 'Product Details',
+    icon: 'info',
+    content: (
+      <div>
+        <h4>Product Specifications</h4>
+        <ul>
+          <li>Dimension: 10 x 5 x 3 cm</li>
+          <li>Weight: 250g</li>
+          <li>Material: Premium ABS plastic</li>
+          <li>Color: Midnight Black</li>
+        </ul>
+      </div>
+    ),
   },
+  {
+    label: 'Pricing',
+    icon: 'currency-dollar',
+    content: (
+      <div>
+        <h4>Pricing Information</h4>
+        <p>Standard: $99.99</p>
+        <p>Premium: $149.99</p>
+        <p>Enterprise: Contact sales</p>
+      </div>
+    ),
+  },
+  {
+    label: 'Reviews',
+    icon: 'star',
+    content: (
+      <div>
+        <h4>Customer Reviews</h4>
+        <p>⭐⭐⭐⭐⭐ 5.0 out of 5 stars (128 reviews)</p>
+        <p>"Excellent product, highly recommended!"</p>
+      </div>
+    ),
+  },
+];
+
+
+content: (
+  <>
+    <DynResponsiveTabs
+      tabs={childTabs1}
+      orientation="vertical"
+      tabIdentifier="child-vertical-1"
+      defaultActive={0}
+      aria-label="Child vertical tabs group 1"
+    />
+    <div
+      style={{
+        marginTop: '1rem',
+        padding: '1rem',
+        border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+        borderRadius: '0.25rem',
+        backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+      }}
+    >
+      <strong>Child 1 Container</strong>
+      <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+        This demonstrates how content can appear outside nested tabs
+      </p>
+    </div>
+  </>
+),
+      },
+{
+  label: 'Horizontal 2',
+    content: (
+      <>
+        <DynResponsiveTabs
+          tabs={childTabs2}
+          orientation="vertical"
+          tabIdentifier="child-vertical-2"
+          defaultActive={0}
+          aria-label="Child vertical tabs group 2"
+        />
+        <div
+          style={{
+            marginTop: '1rem',
+            padding: '1rem',
+            border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+            borderRadius: '0.25rem',
+            backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+          }}
+        >
+          <strong>Child 2 Container</strong>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+            Different child tabs with icons and structured content
+          </p>
+        </div>
+      </>
+    ),
+      },
+{
+  label: 'Horizontal 3',
+    content: (
+      <div style={{ padding: '1rem' }}>
+        <h3>Regular Content</h3>
+        <p>This tab contains only regular content without nested tabs.</p>
+        <p>
+          You can mix nested tabs with regular content tabs in the same parent
+          tab group for maximum flexibility.
+        </p>
+        <div
+          style={{
+            marginTop: '1rem',
+            padding: '1rem',
+            border: '1px dashed var(--dyn-color-border-subtle, #e5e7eb)',
+            borderRadius: '0.25rem',
+            backgroundColor: 'var(--dyn-color-surface-secondary, #f9fafb)',
+          }}
+        >
+          <strong>Regular Container</strong>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem' }}>
+            No nested tabs here, just standard content
+          </p>
+        </div>
+      </div>
+    ),
+      },
+    ];
+
+return (
+  <div>
+    <h2>Demo</h2>
+    <p style={{ marginBottom: '1rem', color: 'var(--dyn-color-text-secondary, #6b7280)' }}>
+      Selected tab: Responsive Tab 1
+    </p>
+    <DynResponsiveTabs
+      tabs={parentTabs}
+      orientation={args.orientation}
+      tabIdentifier="parent-horizontal"
+      defaultActive={0}
+      aria-label="Main navigation tabs"
+    />
+  </div>
+);
+  },
+parameters: {
+  docs: {
+    description: {
+      story:
+      'Complex nested tabs layout: horizontal parent tabs containing vertical child tabs. ' +
+        'This pattern is perfect for complex interfaces like product catalogs, settings panels, ' +
+        'or documentation sites. Each child tab group has its own unique `tabIdentifier` for ' +
+        'proper styling and state management. The component automatically adapts to accordion ' +
+        'mode on mobile devices.',
+      },
+  },
+},
 };
 
 /**

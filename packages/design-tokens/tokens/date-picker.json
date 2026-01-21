@@ -1,0 +1,113 @@
+{
+    "dyn": {
+        "datePicker": {
+            "input": {
+                "height": {
+                    "sm": {
+                        "value": "36px"
+                    },
+                    "md": {
+                        "value": "40px"
+                    },
+                    "lg": {
+                        "value": "48px"
+                    }
+                },
+                "paddingRight": {
+                    "value": "48px"
+                }
+            },
+            "calendar": {
+                "width": {
+                    "value": "280px"
+                },
+                "padding": {
+                    "value": "12px"
+                },
+                "gap": {
+                    "value": "4px"
+                },
+                "headerHeight": {
+                    "value": "40px"
+                }
+            },
+            "weekday": {
+                "height": {
+                    "value": "32px"
+                },
+                "fontSize": {
+                    "value": "12px"
+                },
+                "color": {
+                    "value": "#757575"
+                }
+            },
+            "day": {
+                "size": {
+                    "value": "36px"
+                },
+                "fontSize": {
+                    "value": "14px"
+                },
+                "radius": {
+                    "value": "4px"
+                },
+                "transition": {
+                    "value": "0.1s ease"
+                },
+                "default": {
+                    "bg": {
+                        "value": "transparent"
+                    },
+                    "color": {
+                        "value": "#212121"
+                    }
+                },
+                "hover": {
+                    "bg": {
+                        "value": "#f5f5f5"
+                    }
+                },
+                "today": {
+                    "borderColor": {
+                        "value": "#007bff"
+                    },
+                    "borderWidth": {
+                        "value": "2px"
+                    }
+                },
+                "selected": {
+                    "bg": {
+                        "value": "#007bff"
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    }
+                },
+                "disabled": {
+                    "opacity": {
+                        "value": "0.4"
+                    }
+                },
+                "outside": {
+                    "color": {
+                        "value": "#bdbdbd"
+                    }
+                }
+            },
+            "nav": {
+                "buttonSize": {
+                    "value": "32px"
+                },
+                "iconSize": {
+                    "value": "16px"
+                }
+            },
+            "responsive": {
+                "mobileBreakpoint": {
+                    "value": "640px"
+                }
+            }
+        }
+    }
+}

@@ -5,15 +5,15 @@
       "color": {
         "background": {
           "inactive": {
-            "value": "#F5F5F5",
-            "description": "Background color for inactive tabs - Light gray (from design)"
+            "value": "#EEEEEE",
+            "description": "Background color for inactive tabs - Medium light gray for better contrast"
           },
           "active": {
             "value": "#E0F7FF",
             "description": "Background color for active tab - Light blue (from design)"
           },
           "hover": {
-            "value": "#E8E8E8",
+            "value": "#E0E0E0",
             "description": "Background color on hover for inactive tabs - Slightly darker gray"
           },
           "content": {
@@ -23,8 +23,8 @@
         },
         "border": {
           "default": {
-            "value": "#E0E0E0",
-            "description": "Default border color for inactive tabs - Light gray"
+            "value": "#BDBDBD",
+            "description": "Default border color for inactive tabs - Visible gray"
           },
           "active": {
             "value": "#4DB8E8",
@@ -47,8 +47,8 @@
         },
         "accordion": {
           "header": {
-            "value": "#F5F5F5",
-            "description": "Accordion header background color - Light gray"
+            "value": "#EEEEEE",
+            "description": "Accordion header background color - Medium light gray"
           },
           "headerActive": {
             "value": "#E0F7FF",
@@ -225,6 +225,10 @@
           "gap": {
             "value": "4px",
             "description": "Gap between tabs in list"
+          },
+          "offset": {
+            "value": "-2px",
+            "description": "Negative margin for seamless tab-panel connection"
           }
         },
         "panel": {
@@ -245,6 +249,36 @@
           "headerGap": {
             "value": "1rem",
             "description": "Gap between label and icon in accordion header"
+          },
+          "itemGap": {
+            "value": "0.5rem",
+            "description": "Gap between accordion items"
+          },
+          "toggleSize": {
+            "value": "20px",
+            "description": "Size of the accordion toggle icon container"
+          }
+        },
+        "vertical": {
+          "tabListMinWidth": {
+            "value": "200px",
+            "description": "Minimum width for vertical tab list"
+          },
+          "tabListMinWidthMobile": {
+            "value": "150px",
+            "description": "Minimum width for vertical tab list on tablet"
+          }
+        }
+      },
+      "responsive": {
+        "breakpoint": {
+          "accordion": {
+            "value": "768px",
+            "description": "Breakpoint below which tabs transform to accordion"
+          },
+          "compact": {
+            "value": "480px",
+            "description": "Breakpoint for compact/mobile styles"
           }
         }
       },

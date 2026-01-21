@@ -126,17 +126,75 @@
       }
     },
     "size": {
+      "xs": {
+        "fontSize": {
+          "value": "10px",
+          "description": "Extra small badge font size"
+        },
+        "paddingY": {
+          "value": "1px",
+          "description": "Extra small badge vertical padding"
+        },
+        "paddingX": {
+          "value": "4px",
+          "description": "Extra small badge horizontal padding"
+        }
+      },
       "sm": {
-        "value": "8px",
-        "description": "Small badge size"
+        "fontSize": {
+          "value": "11px",
+          "description": "Small badge font size"
+        },
+        "paddingX": {
+          "value": "4px",
+          "description": "Small badge horizontal padding"
+        }
       },
       "md": {
-        "value": "12px",
-        "description": "Medium badge size (default)"
+        "fontSize": {
+          "value": "12px",
+          "description": "Medium badge font size (default)"
+        }
       },
       "lg": {
-        "value": "16px",
-        "description": "Large badge size"
+        "fontSize": {
+          "value": "14px",
+          "description": "Large badge font size"
+        },
+        "paddingY": {
+          "value": "4px",
+          "description": "Large badge vertical padding"
+        },
+        "paddingX": {
+          "value": "12px",
+          "description": "Large badge horizontal padding"
+        }
+      },
+      "xl": {
+        "fontSize": {
+          "value": "16px",
+          "description": "Extra large badge font size"
+        },
+        "paddingY": {
+          "value": "6px",
+          "description": "Extra large badge vertical padding"
+        },
+        "paddingX": {
+          "value": "16px",
+          "description": "Extra large badge horizontal padding"
+        }
+      }
+    },
+    "icon": {
+      "size": {
+        "value": "1em",
+        "description": "Icon size relative to font size"
+      }
+    },
+    "hover": {
+      "brightness": {
+        "value": "1.1",
+        "description": "Brightness multiplier on hover"
       }
     },
     "position": {

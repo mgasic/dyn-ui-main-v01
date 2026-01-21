@@ -49,23 +49,35 @@ const useResponsiveMode = (breakpoint: number, responsive: boolean): boolean => 
       setIsAccordion(e.matches);
     };
 
+    // Debounce resize handler with RAF to prevent layout thrashing
+    let rafId: number | null = null;
+    const handleResize = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        checkBreakpoint();
+        rafId = null;
+      });
+    };
+
     // Modern browsers
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener('change', handleChange);
       // Also listen to resize for Storybook viewport changes
-      window.addEventListener('resize', checkBreakpoint);
+      window.addEventListener('resize', handleResize);
       return () => {
         mediaQuery.removeEventListener('change', handleChange);
-        window.removeEventListener('resize', checkBreakpoint);
+        window.removeEventListener('resize', handleResize);
+        if (rafId) cancelAnimationFrame(rafId);
       };
     }
     // Legacy browsers
     else {
       mediaQuery.addListener(handleChange);
-      window.addEventListener('resize', checkBreakpoint);
+      window.addEventListener('resize', handleResize);
       return () => {
         mediaQuery.removeListener(handleChange);
-        window.removeEventListener('resize', checkBreakpoint);
+        window.removeEventListener('resize', handleResize);
+        if (rafId) cancelAnimationFrame(rafId);
       };
     }
   }, [breakpoint, responsive]);
@@ -85,14 +97,17 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
     {
       tabs,
       defaultActive = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.defaultActive,
+      activeTab,
       orientation = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.orientation,
       responsive = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.responsive,
       breakpoint = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.breakpoint,
       allowCollapse = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.allowCollapse,
       expandIcon = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.expandIcon,
       collapseIcon = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.collapseIcon,
+      disableAnimation = DYN_RESPONSIVE_TABS_DEFAULT_PROPS.disableAnimation,
       tabIdentifier,
       onChange,
+      onTabChange,
       className,
       id,
       'aria-label': ariaLabel,
@@ -101,12 +116,20 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
     },
     ref
   ) => {
+    // Determine if we're in controlled mode
+    const isControlled = activeTab !== undefined;
+
     // Generate unique ID for this tabs instance
     const internalId = useMemo(() => {
       return id || generateId(tabIdentifier ? `tabs-${tabIdentifier}` : 'responsive-tabs');
     }, [id, tabIdentifier]);
 
-    const [activeIndex, setActiveIndex] = useState(defaultActive);
+    // Internal state for uncontrolled mode
+    const [internalActiveIndex, setInternalActiveIndex] = useState(defaultActive);
+
+    // Use activeTab prop if controlled, otherwise use internal state
+    const currentActiveIndex = isControlled ? activeTab : internalActiveIndex;
+
     const isAccordion = useResponsiveMode(breakpoint, responsive);
 
     // Validate tabs
@@ -114,19 +137,29 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
       return tabs.filter(tab => tab && (tab.label || tab.content));
     }, [tabs]);
 
-    // Handle tab click
+    // Handle tab click - supports both controlled and uncontrolled modes
     const handleTabClick = useCallback((index: number, disabled?: boolean) => {
       if (disabled) return;
 
+      let newIndex = index;
+
       // In accordion mode with allowCollapse, toggle the same tab
-      if (isAccordion && allowCollapse && activeIndex === index) {
-        setActiveIndex(-1);
-        onChange?.(-1);
-      } else {
-        setActiveIndex(index);
-        onChange?.(index);
+      if (isAccordion && allowCollapse && currentActiveIndex === index) {
+        newIndex = -1;
       }
-    }, [isAccordion, allowCollapse, activeIndex, onChange]);
+
+      // Update internal state if uncontrolled
+      if (!isControlled) {
+        setInternalActiveIndex(newIndex);
+      }
+
+      // Call appropriate callback
+      if (isControlled && onTabChange) {
+        onTabChange(newIndex);
+      } else if (onChange) {
+        onChange(newIndex);
+      }
+    }, [isAccordion, allowCollapse, currentActiveIndex, isControlled, onChange, onTabChange]);
 
     // Keyboard navigation for tabs (non-accordion mode)
     const handleTabKeyDown: (index: number) => KeyboardEventHandler<HTMLButtonElement> =
@@ -190,6 +223,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
       {
         [getStyleClass('accordion')]: isAccordion,
         [getStyleClass('nested')]: tabIdentifier !== undefined,
+        [getStyleClass('noAnimation')]: disableAnimation,
       },
       className
     );
@@ -209,7 +243,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
           aria-orientation={orientation}
         >
           {validTabs.map((tab, index) => {
-            const isActive = activeIndex === index;
+            const isActive = currentActiveIndex === index;
             const isDisabled = tab.disabled;
             const tabId = `${internalId}-tab-${index}`;
             const panelId = `${internalId}-panel-${index}`;
@@ -259,7 +293,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
       return (
         <div className={getStyleClass('panelContainer')}>
           {validTabs.map((tab, index) => {
-            const isActive = activeIndex === index;
+            const isActive = currentActiveIndex === index;
             const tabId = `${internalId}-${isAccordion ? 'accordion' : 'tab'}-${index}`;
             const panelId = `${internalId}-panel-${index}`;
             const isDisabled = tab.disabled;

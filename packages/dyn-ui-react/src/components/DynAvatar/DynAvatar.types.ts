@@ -22,12 +22,12 @@ export const AVATAR_SIZES = {
  * Badge configuration for avatar badge overlay
  * Accepts either a React node or full DynBadge props for customization
  */
-export type DynAvatarBadgeConfig = 
+export type DynAvatarBadgeConfig =
   | ReactNode
   | (Omit<DynBadgeProps, 'position'> & {
-      /** Badge content (number, text, or icon) */
-      content?: ReactNode;
-    });
+    /** Badge content (number, text, or icon) */
+    content?: ReactNode;
+  });
 
 /**
  * Props interface for DynAvatar component
@@ -124,6 +124,18 @@ export interface DynAvatarProps extends
    * />
    */
   onImageError?: (event: React.SyntheticEvent<HTMLImageElement> | { type: 'timeout' }) => void;
+
+  /**
+   * Text announced to screen readers when avatar fails to load
+   * @default 'Avatar failed to load'
+   */
+  errorText?: string;
+
+  /**
+   * Text announced to screen readers when avatar is loading
+   * @default 'Loading avatar'
+   */
+  loadingText?: string;
 }
 
 /**

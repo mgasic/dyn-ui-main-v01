@@ -27,8 +27,11 @@ export interface DynResponsiveTabsProps
   /** Array of tab items */
   tabs: DynResponsiveTabItem[];
 
-  /** Index of initially active tab */
+  /** Index of initially active tab (uncontrolled mode) */
   defaultActive?: number;
+
+  /** Currently active tab index (controlled mode) */
+  activeTab?: number;
 
   /** Tab orientation (horizontal or vertical) */
   orientation?: DynResponsiveTabsOrientation;
@@ -54,8 +57,14 @@ export interface DynResponsiveTabsProps
    */
   tabIdentifier?: string;
 
-  /** Callback when active tab changes */
+  /** Callback when active tab changes (uncontrolled mode) */
   onChange?: (index: number) => void;
+
+  /** Callback when active tab changes (controlled mode) */
+  onTabChange?: (index: number) => void;
+
+  /** Disable animations for accessibility or performance */
+  disableAnimation?: boolean;
 
   /** Accessible label for tab list */
   'aria-label'?: string;
@@ -88,6 +97,7 @@ export type DynResponsiveTabsDefaultProps = Required<
     | 'allowCollapse'
     | 'expandIcon'
     | 'collapseIcon'
+    | 'disableAnimation'
   >
 >;
 
@@ -102,4 +112,5 @@ export const DYN_RESPONSIVE_TABS_DEFAULT_PROPS: DynResponsiveTabsDefaultProps = 
   allowCollapse: false,
   expandIcon: 'chevron-down',
   collapseIcon: 'chevron-up',
+  disableAnimation: false,
 } as const;

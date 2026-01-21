@@ -93,9 +93,9 @@
         "description": "Background color for input fields, textareas, and selects"
       },
       "input-border": {
-        "value": "{color.neutral.light.200.value}",
+        "value": "{color.neutral.mid.400.value}",
         "darkTheme": {
-          "value": "{color.neutral.dark.800.value}"
+          "value": "{color.neutral.dark.700.value}"
         },
         "description": "Border color for input fields"
       },

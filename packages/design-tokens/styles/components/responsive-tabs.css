@@ -5,16 +5,16 @@
    ============================================ */
 
 :root {
-  --dyn-responsiveTabs-bg-inactive: #F5F5F5;
+  --dyn-responsiveTabs-bg-inactive: #EEEEEE;
   --dyn-responsiveTabs-bg-active: #E0F7FF;
-  --dyn-responsiveTabs-bg-hover: #E8E8E8;
+  --dyn-responsiveTabs-bg-hover: #E0E0E0;
   --dyn-responsiveTabs-bg-content: #FFFFFF;
-  --dyn-responsiveTabs-color-border-default: #E0E0E0;
+  --dyn-responsiveTabs-color-border-default: #BDBDBD;
   --dyn-responsiveTabs-color-border-active: #4DB8E8;
   --dyn-responsiveTabs-color-border-content: #4DB8E8;
   --dyn-responsiveTabs-text-inactive: #666666;
   --dyn-responsiveTabs-text-active: #333333;
-  --dyn-responsiveTabs-color-accordion-header: #F5F5F5;
+  --dyn-responsiveTabs-color-accordion-header: #EEEEEE;
   --dyn-responsiveTabs-color-accordion-headerActive: #E0F7FF;
   --dyn-responsiveTabs-color-accordion-border: #4DB8E8;
   --dyn-responsiveTabs-color-nested-backgroundInactive: #FAFAFA;
@@ -37,10 +37,17 @@
   --dyn-responsiveTabs-spacing-tab-paddingSm: 0.6rem 1rem;
   --dyn-responsiveTabs-spacing-tab-paddingXs: 0.5rem 0.75rem;
   --dyn-responsiveTabs-spacing-tab-gap: 4px;
+  --dyn-responsiveTabs-spacing-tab-offset: -2px;
   --dyn-responsiveTabs-spacing-panel-padding: 1.5rem;
   --dyn-responsiveTabs-spacing-panel-minHeight: 200px;
   --dyn-responsiveTabs-spacing-accordion-headerPadding: 1rem 1.5rem;
   --dyn-responsiveTabs-spacing-accordion-headerGap: 1rem;
+  --dyn-responsiveTabs-spacing-accordion-itemGap: 0.5rem;
+  --dyn-responsiveTabs-spacing-accordion-toggleSize: 20px;
+  --dyn-responsiveTabs-spacing-vertical-tabListMinWidth: 200px;
+  --dyn-responsiveTabs-spacing-vertical-tabListMinWidthMobile: 150px;
+  --dyn-responsiveTabs-responsive-breakpoint-accordion: 768px;
+  --dyn-responsiveTabs-responsive-breakpoint-compact: 480px;
   --dyn-responsiveTabs-typography-fontSize: 14px;
   --dyn-responsiveTabs-typography-fontSizeSm: 12px;
   --dyn-responsiveTabs-typography-fontWeight-inactive: 400;

@@ -1,9 +1,16 @@
 import * as React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider } from '../packages/dyn-ui-react/src/theme/ThemeProvider';
-import '../packages/dyn-ui-react/src/styles/themes.css';
-// Import design tokens directly - CSS @import doesn't use Vite aliases
+// Import design tokens baseline first
 import '../packages/design-tokens/styles/foundations/index.css';
+// Import component-specific tokens
+import '../packages/design-tokens/styles/components/badge.css';
+import '../packages/design-tokens/styles/components/avatar.css';
+import '../packages/design-tokens/styles/components/responsive-tabs.css';
+import '../packages/design-tokens/styles/components/table.css';
+// Finally import global styles and themes
+import '../packages/dyn-ui-react/src/styles/dyn-ui.css';
+import '../packages/dyn-ui-react/src/styles/themes.css';
 
 const themes = ['light', 'dark'];
 

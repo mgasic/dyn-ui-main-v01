@@ -59,6 +59,8 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
       imageProps,
       loadTimeout = DEFAULT_LOAD_TIMEOUT,
       onImageError,
+      errorText = 'Avatar failed to load',
+      loadingText = 'Loading avatar',
       className,
       id,
       'aria-label': ariaLabel,
@@ -301,13 +303,14 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
         {/* Loading announcement for screen readers */}
         {isLoadingState && (
           <span className={styles.srOnly} aria-live="polite">
+            {loadingText}
           </span>
         )}
 
         {/* Error announcement for screen readers */}
         {(error || imageError) && (
           <span className={styles.srOnly} aria-live="assertive">
-            Avatar failed to load
+            {errorText}
           </span>
         )}
 

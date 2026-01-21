@@ -1,4 +1,4 @@
-import {
+import React, {
   forwardRef,
   isValidElement,
   useMemo,
@@ -24,11 +24,21 @@ import styles from './DynIcon.module.css';
 type RegistryIcon = ReactElement | null;
 
 const SIZE_CLASS_MAP: Record<DynIconSizeToken, string> = {
+  xs: styles.sizeXS!,
+  sm: styles.sizeSM!,
+  md: styles.sizeMD!,
+  lg: styles.sizeLG!,
+  xl: styles.sizeXL!,
   small: styles.sizeSmall!,
   medium: styles.sizeMedium!,
   large: styles.sizeLarge!,
 };
 
+const MIRROR_CLASS_MAP: Record<NonNullable<DynIconProps['mirror']>, string> = {
+  horizontal: styles.mirrorHorizontal!,
+  vertical: styles.mirrorVertical!,
+  both: styles.mirrorBoth!,
+};
 
 const TONE_CLASS_MAP: Partial<Record<NonNullable<DynIconProps['tone']>, string>> = {
   success: styles.success!,
@@ -60,6 +70,8 @@ const DynIconComponent = (
     size = DYN_ICON_DEFAULT_PROPS.size,
     tone,
     color,
+    strokeWidth,
+    mirror,
     spin = DYN_ICON_DEFAULT_PROPS.spin,
     disabled = DYN_ICON_DEFAULT_PROPS.disabled,
     onClick,
@@ -98,6 +110,11 @@ const DynIconComponent = (
       return false;
     }
 
+    // Proveri registry PRE dictionary-a kako bi SVG ikone imale prednost
+    if (Boolean(resolveRegistryIcon(normalizedIcon))) {
+      return true;
+    }
+
     const hasDictionaryMatch = iconTokens.some(token => Boolean(dictionary[token]));
     const hasDirectClass = iconTokens.some(token => token.startsWith('dyn-icon-'));
     const hasFontClass = iconTokens.some(token => token.startsWith('fa'));
@@ -106,7 +123,7 @@ const DynIconComponent = (
       return false;
     }
 
-    return Boolean(resolveRegistryIcon(normalizedIcon));
+    return false;
   }, [dictionary, iconTokens, normalizedIcon]);
 
   const registryIcon = useMemo(() => {
@@ -114,8 +131,16 @@ const DynIconComponent = (
       return null;
     }
 
-    return resolveRegistryIcon(normalizedIcon);
-  }, [normalizedIcon, shouldUseRegistry]);
+    const baseIcon = resolveRegistryIcon(normalizedIcon);
+    if (baseIcon && strokeWidth && isValidElement(baseIcon)) {
+      // Propagation strokeWidth to the SVG element
+      return React.cloneElement(baseIcon as ReactElement, {
+        strokeWidth: strokeWidth.toString(),
+      });
+    }
+
+    return baseIcon;
+  }, [normalizedIcon, shouldUseRegistry, strokeWidth]);
 
   const processedIconClasses = useMemo(() => {
     if (typeof icon !== 'string' || shouldUseRegistry) {
@@ -163,11 +188,13 @@ const DynIconComponent = (
   const isInteractive = typeof onClick === 'function' && !disabled;
 
   const toneClass = tone ? TONE_CLASS_MAP[tone] : undefined;
+  const mirrorClass = mirror ? MIRROR_CLASS_MAP[mirror] : undefined;
 
   const rootClassName = cn(
     styles.dynIcon,
     resolvedSizeClass,
     toneClass,
+    mirrorClass,
     spin ? styles.spinning : undefined,
     disabled ? styles.disabled : undefined,
     isInteractive ? styles.iconClickable : undefined,
@@ -214,6 +241,15 @@ const DynIconComponent = (
     }
 
     if (isValidElement(icon)) {
+      if (strokeWidth) {
+        return (
+          <span className={styles.dynIconCustom} aria-hidden="true">
+            {React.cloneElement(icon as ReactElement, {
+              strokeWidth: strokeWidth.toString(),
+            })}
+          </span>
+        );
+      }
       return (
         <span className={styles.dynIconCustom} aria-hidden="true">
           {icon}

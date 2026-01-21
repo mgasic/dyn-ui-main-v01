@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { DynDatePicker } from './DynDatePicker';
-import type { DynDatePickerProps } from '../../types/field.types';
+import type { DynDatePickerProps } from './DynDatePicker.types';
 
 const meta: Meta<typeof DynDatePicker> = {
   title: 'Components/Form/DynDatePicker',
@@ -24,10 +24,6 @@ const meta: Meta<typeof DynDatePicker> = {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large'],
-    },
-    format: {
-      control: 'select',
-      options: ['dd/MM/yyyy', 'MM/dd/yyyy', 'yyyy-MM-dd'],
     },
     disabled: {
       control: 'boolean',
@@ -58,7 +54,7 @@ export const WithValue: Story = {
   args: {
     name: 'with-value-date',
     label: 'Date with Value',
-    value: new Date('2023-12-25'),
+    value: '2023-12-25',
   },
 };
 
@@ -83,8 +79,8 @@ export const WithMinMax: Story = {
     name: 'minmax-date',
     label: 'Date with Restrictions',
     help: 'Select a date between January 1st and December 31st, 2024',
-    minDate: new Date('2024-01-01'),
-    maxDate: new Date('2024-12-31'),
+    min: '2024-01-01',
+    max: '2024-12-31',
   },
 };
 
@@ -93,7 +89,7 @@ export const Disabled: Story = {
     name: 'disabled-date',
     label: 'Disabled Date Picker',
     disabled: true,
-    value: new Date(),
+    value: new Date().toISOString().split('T')[0],
   },
 };
 
@@ -102,7 +98,7 @@ export const ReadOnly: Story = {
     name: 'readonly-date',
     label: 'Readonly Date Picker',
     readonly: true,
-    value: new Date(),
+    value: new Date().toISOString().split('T')[0],
   },
 };
 
@@ -121,20 +117,17 @@ export const DifferentFormats: Story = {
       <DynDatePicker
         name="dd-mm-format"
         label="European Format (dd/MM/yyyy)"
-        format="dd/MM/yyyy"
-        value={new Date('2023-12-25')}
+        value="2023-12-25"
       />
       <DynDatePicker
         name="us-format"
         label="US Format (MM/dd/yyyy)"
-        format="MM/dd/yyyy"
-        value={new Date('2023-12-25')}
+        value="2023-12-25"
       />
       <DynDatePicker
         name="iso-format"
         label="ISO Format (yyyy-MM-dd)"
-        format="yyyy-MM-dd"
-        value={new Date('2023-12-25')}
+        value="2023-12-25"
       />
     </div>
   ),
@@ -152,7 +145,13 @@ export const Sizes: Story = {
 
 export const InteractiveExample: Story = {
   render: () => {
-    const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
+    const [selectedDate, setSelectedDate] = React.useState<string>('');
+
+    const handleChange = (value: string) => {
+      setSelectedDate(value);
+    };
+
+    const parsedDate = selectedDate ? new Date(selectedDate) : null;
 
     return (
       <div style={{ width: '300px' }}>
@@ -161,14 +160,14 @@ export const InteractiveExample: Story = {
           label="Interactive Date Picker"
           help="Try typing: 'today', 'tomorrow', '25/12/2023', or any natural date"
           value={selectedDate}
-          onChange={setSelectedDate}
+          onChange={handleChange}
         />
 
-        {selectedDate && (
+        {parsedDate && !isNaN(parsedDate.getTime()) && (
           <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f5f5f5', borderRadius: '4px' }}>
             <strong>Selected Date:</strong><br />
-            <code>{selectedDate.toISOString().split('T')[0]}</code><br />
-            <small>{selectedDate.toLocaleDateString('en-US', {
+            <code>{selectedDate}</code><br />
+            <small>{parsedDate.toLocaleDateString('en-US', {
               weekday: 'long',
               year: 'numeric',
               month: 'long',

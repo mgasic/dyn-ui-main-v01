@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 
 export type DynIconTone = 'success' | 'warning' | 'danger' | 'info';
-export type DynIconSizeToken = 'small' | 'medium' | 'large';
+export type DynIconSizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'small' | 'medium' | 'large';
 
 export interface DynIconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'color'> {
   /** Icon identifier - string (dictionary key, class names) or React node */
@@ -15,6 +15,12 @@ export interface DynIconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'col
 
   /** Custom color override */
   color?: string;
+
+  /** Custom stroke width for registry icons */
+  strokeWidth?: number | string;
+
+  /** Mirror/flip the icon */
+  mirror?: 'horizontal' | 'vertical' | 'both';
 
   /** Whether the icon should spin */
   spin?: boolean;

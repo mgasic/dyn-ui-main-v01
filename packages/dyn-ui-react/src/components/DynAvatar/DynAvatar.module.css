@@ -24,29 +24,29 @@
    ============================================ */
 
 .container {
-  /* Size tokens */
+  /* Size tokens - with fallbacks */
   --dyn-avatar-size: 40px;
-  --dyn-avatar-font-size: var(--dyn-font-size-sm);
+  --dyn-avatar-font-size: var(--dyn-font-size-sm, 14px);
 
-  /* Color tokens - semantic for auto theme switching */
-  --dyn-avatar-bg: var(--dyn-semantic-surface-muted);
-  --dyn-avatar-text: var(--dyn-theme-primary);
-  --dyn-avatar-border: var(--dyn-semantic-border);
-  --dyn-avatar-border-hover: var(--dyn-semantic-border-hover);
-  --dyn-avatar-bg-hover: var(--dyn-semantic-surface-hover);
+  /* Color tokens - semantic for auto theme switching with fallbacks */
+  --dyn-avatar-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-avatar-text: var(--dyn-theme-primary, #3b82f6);
+  --dyn-avatar-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-avatar-border-hover: var(--dyn-semantic-border-hover, #cbd5e1);
+  --dyn-avatar-bg-hover: var(--dyn-semantic-surface-hover, #e2e8f0);
 
   /* Shape tokens */
   --dyn-avatar-radius: 50%;
 
   /* Status tokens */
   --dyn-avatar-status-size: 12px;
-  --dyn-avatar-status-border: var(--dyn-semantic-background);
+  --dyn-avatar-status-border: var(--dyn-semantic-background, #ffffff);
 
   /* Focus tokens */
-  --dyn-avatar-focus-ring: var(--dyn-semantic-border-focus);
+  --dyn-avatar-focus-ring: var(--dyn-semantic-border-focus, #3b82f6);
 
   /* Transition tokens */
-  --dyn-avatar-transition: var(--dyn-transition-fast);
+  --dyn-avatar-transition: var(--dyn-transition-fast, 0.15s ease);
 
   /* Base styles */
   position: relative;
@@ -56,12 +56,12 @@
   width: var(--dyn-avatar-size);
   height: var(--dyn-avatar-size);
   background-color: var(--dyn-avatar-bg);
-  border: 2px solid var(--dyn-avatar-border);
+  border: var(--dyn-border-width-sm, 2px) solid var(--dyn-avatar-border);
   border-radius: var(--dyn-avatar-radius);
   color: var(--dyn-avatar-text);
   font-family: inherit;
   font-size: var(--dyn-avatar-font-size);
-  font-weight: var(--dyn-font-weight-semibold);
+  font-weight: var(--dyn-font-weight-semibold, 600);
   user-select: none;
   flex-shrink: 0;
   transition:
@@ -242,15 +242,19 @@
   height: 50%;
   margin-top: -25%;
   margin-left: -25%;
-  border: 2px solid transparent;
-  border-top-color: var(--dyn-theme-primary);
-  border-right-color: var(--dyn-theme-primary);
+  border: 3px solid transparent;
+  border-top-color: var(--dyn-theme-primary, #3b82f6);
+  border-right-color: var(--dyn-theme-primary, #3b82f6);
   border-radius: 50%;
   animation: avatarSpin 0.8s linear infinite;
   z-index: 10;
 }
 
 @keyframes avatarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
   to {
     transform: rotate(360deg);
   }

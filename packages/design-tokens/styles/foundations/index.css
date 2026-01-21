@@ -76,7 +76,7 @@
   --dyn-semantic-border-hover: #bdbdbd;
   --dyn-semantic-border-focus: #007bff;
   --dyn-semantic-input-bg: #ffffff;
-  --dyn-semantic-input-border: #eeeeee;
+  --dyn-semantic-input-border: #bdbdbd;
   --dyn-semantic-overlay: rgba(0, 0, 0, 0.5);
   --dyn-theme-primary: #007bff;
   --dyn-theme-primary-light: #4da3ff;
@@ -191,6 +191,52 @@
   --dyn-spacing-2xl: 48px;
   --dyn-spacing-3xl: 64px;
   --dyn-spacing-4xl: 96px;
+  --dyn-datePicker-input-height-sm: 36px;
+  --dyn-datePicker-input-height-md: 40px;
+  --dyn-datePicker-input-height-lg: 48px;
+  --dyn-datePicker-input-paddingRight: 48px;
+  --dyn-datePicker-calendar-width: 280px;
+  --dyn-datePicker-calendar-padding: 12px;
+  --dyn-datePicker-calendar-gap: 4px;
+  --dyn-datePicker-calendar-headerHeight: 40px;
+  --dyn-datePicker-weekday-height: 32px;
+  --dyn-datePicker-weekday-fontSize: 12px;
+  --dyn-datePicker-weekday-color: #757575;
+  --dyn-datePicker-day-size: 36px;
+  --dyn-datePicker-day-fontSize: 14px;
+  --dyn-datePicker-day-radius: 4px;
+  --dyn-datePicker-day-transition: 0.1s ease;
+  --dyn-datePicker-day-default-bg: transparent;
+  --dyn-datePicker-day-default-color: #212121;
+  --dyn-datePicker-day-hover-bg: #f5f5f5;
+  --dyn-datePicker-day-today-borderColor: #007bff;
+  --dyn-datePicker-day-today-borderWidth: 2px;
+  --dyn-datePicker-day-selected-bg: #007bff;
+  --dyn-datePicker-day-selected-color: #ffffff;
+  --dyn-datePicker-day-disabled-opacity: 0.4;
+  --dyn-datePicker-day-outside-color: #bdbdbd;
+  --dyn-datePicker-nav-buttonSize: 32px;
+  --dyn-datePicker-nav-iconSize: 16px;
+  --dyn-datePicker-responsive-mobileBreakpoint: 640px;
+  --dyn-icon-size-xs: 12px;
+  --dyn-icon-size-sm: 16px;
+  --dyn-icon-size-md: 24px;
+  --dyn-icon-size-lg: 32px;
+  --dyn-icon-size-xl: 48px;
+  --dyn-icon-strokeWidth-thin: 1.5;
+  --dyn-icon-strokeWidth-default: 2;
+  --dyn-icon-strokeWidth-thick: 2.5;
+  --dyn-icon-clickable-padding: 4px;
+  --dyn-icon-clickable-hoverScale: 1.1;
+  --dyn-icon-clickable-activeScale: 0.95;
+  --dyn-icon-clickable-transition: 0.1s ease;
+  --dyn-icon-radius: 4px;
+  --dyn-icon-animation-spin-duration: 2s;
+  --dyn-icon-animation-spin-timingFunction: linear;
+  --dyn-icon-mirror-horizontal: scaleX(-1);
+  --dyn-icon-mirror-vertical: scaleY(-1);
+  --dyn-icon-mirror-both: scale(-1);
+  --dyn-icon-state-disabled-opacity: 0.5;
   --dyn-listView-item-minHeight-sm: 40px;
   --dyn-listView-item-minHeight-md: 48px;
   --dyn-listView-item-minHeight-lg: 56px;
@@ -220,7 +266,7 @@
     --dyn-semantic-border-hover: #757575;
     --dyn-semantic-border-focus: #007bff;
     --dyn-semantic-input-bg: #121212;
-    --dyn-semantic-input-border: #424242;
+    --dyn-semantic-input-border: #616161;
     --dyn-semantic-overlay: rgba(0, 0, 0, 0.8);
   }
 }
@@ -240,6 +286,6 @@
     --dyn-semantic-border-hover: #757575;
     --dyn-semantic-border-focus: #007bff;
     --dyn-semantic-input-bg: #121212;
-    --dyn-semantic-input-border: #424242;
+    --dyn-semantic-input-border: #616161;
     --dyn-semantic-overlay: rgba(0, 0, 0, 0.8);
 }

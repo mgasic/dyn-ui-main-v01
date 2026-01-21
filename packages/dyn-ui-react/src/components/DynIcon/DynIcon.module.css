@@ -1,6 +1,6 @@
 /**
- * DynIcon Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
+ * DynIcon Component Styles
+ * Design Token Compliance & Standardized Sizes
  */
 
 .dynIcon {
@@ -9,8 +9,8 @@
   --dyn-icon-color-warning: var(--dyn-feedback-warning);
   --dyn-icon-color-danger: var(--dyn-feedback-negative-default);
   --dyn-icon-color-info: var(--dyn-feedback-info);
-  --dyn-icon-radius: var(--dyn-border-radius-sm);
-  --dyn-icon-transition: var(--dyn-transition-fast);
+  --dyn-icon-radius: var(--dyn-icon-radius, var(--dyn-border-radius-sm));
+  --dyn-icon-transition: var(--dyn-icon-clickable-transition, var(--dyn-transition-fast));
   --dyn-icon-focus-ring: var(--dyn-semantic-border-focus);
 
   display: inline-flex;
@@ -21,69 +21,41 @@
   vertical-align: middle;
 }
 
-.dynIcon svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-  stroke: currentColor;
-  display: block;
+/* Size Variants */
+.sizeXS {
+  width: var(--dyn-icon-size-xs, 12px);
+  height: var(--dyn-icon-size-xs, 12px);
+  font-size: var(--dyn-icon-size-xs, 12px);
 }
 
-.dynIconFallback {
-  font-size: 0.75em;
-  opacity: 0.7;
-  font-weight: bold;
-}
-
-/* ============================================
-   INTERACTIVE STATES
-   ============================================ */
-
-.iconClickable {
-  cursor: pointer;
-  border-radius: var(--dyn-icon-radius);
-  padding: var(--dyn-spacing-2xs);
-  margin: calc(var(--dyn-spacing-2xs) * -1);
-  transition: all var(--dyn-icon-transition);
-}
-
-.iconClickable:hover {
-  background-color: var(--dyn-semantic-surface-hover);
-  transform: scale(1.1);
-}
-
-.iconClickable:active {
-  transform: scale(0.95);
-}
-
-.iconClickable:focus-visible {
-  outline: 2px solid var(--dyn-icon-focus-ring);
-  outline-offset: 2px;
-}
-
-/* ============================================
-   SIZE VARIANTS
-   ============================================ */
-
+.sizeSM,
 .sizeSmall {
-  width: var(--dyn-font-size-sm);
-  height: var(--dyn-font-size-sm);
+  width: var(--dyn-icon-size-sm, 16px);
+  height: var(--dyn-icon-size-sm, 16px);
+  font-size: var(--dyn-icon-size-sm, 16px);
 }
 
+.sizeMD,
 .sizeMedium {
-  width: var(--dyn-font-size-md);
-  height: var(--dyn-font-size-md);
+  width: var(--dyn-icon-size-md, 24px);
+  height: var(--dyn-icon-size-md, 24px);
+  font-size: var(--dyn-icon-size-md, 24px);
 }
 
+.sizeLG,
 .sizeLarge {
-  width: var(--dyn-font-size-xl);
-  height: var(--dyn-font-size-xl);
+  width: var(--dyn-icon-size-lg, 32px);
+  height: var(--dyn-icon-size-lg, 32px);
+  font-size: var(--dyn-icon-size-lg, 32px);
 }
 
-/* ============================================
-   STATE COLORS
-   ============================================ */
+.sizeXL {
+  width: var(--dyn-icon-size-xl, 48px);
+  height: var(--dyn-icon-size-xl, 48px);
+  font-size: var(--dyn-icon-size-xl, 48px);
+}
 
+/* Tone Variants */
 .success {
   color: var(--dyn-icon-color-success);
 }
@@ -100,21 +72,12 @@
   color: var(--dyn-icon-color-info);
 }
 
-/* ============================================
-   STATES
-   ============================================ */
-
-.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
+/* Animation States */
 .spinning {
-  animation: iconSpin 1s linear infinite;
+  animation: dynIconSpin var(--dyn-icon-animation-spin-duration, 2s) var(--dyn-icon-animation-spin-timingFunction, linear) infinite;
 }
 
-@keyframes iconSpin {
+@keyframes dynIconSpin {
   from {
     transform: rotate(0deg);
   }
@@ -124,17 +87,77 @@
   }
 }
 
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
+/* Interaction States */
+.iconClickable {
+  cursor: pointer;
+  padding: var(--dyn-icon-clickable-padding, var(--dyn-spacing-2xs));
+  margin: calc(var(--dyn-icon-clickable-padding, var(--dyn-spacing-2xs)) * -1);
+  border-radius: var(--dyn-icon-radius);
+  transition: transform var(--dyn-icon-transition), background-color var(--dyn-icon-transition), opacity var(--dyn-icon-transition);
+  outline: none;
+}
+
+.iconClickable:hover:not(.disabled) {
+  transform: scale(var(--dyn-icon-clickable-hoverScale, 1.1));
+  background-color: var(--dyn-semantic-surface-hover);
+}
+
+.iconClickable:active:not(.disabled) {
+  transform: scale(var(--dyn-icon-clickable-activeScale, 0.95));
+  opacity: 0.8;
+}
+
+.iconClickable:focus-visible {
+  outline: 2px solid var(--dyn-icon-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Mirror Effects */
+.mirrorHorizontal {
+  transform: var(--dyn-icon-mirror-horizontal, scaleX(-1));
+}
+
+.mirrorVertical {
+  transform: var(--dyn-icon-mirror-vertical, scaleY(-1));
+}
+
+.mirrorBoth {
+  transform: var(--dyn-icon-mirror-both, scale(-1));
+}
+
+/* SVG specific container */
+.dynIconSvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.dynIconSvg svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+}
+
+/* Fallback/Text state */
+.dynIconFallback {
+  line-height: 1;
+  font-family: inherit;
+  font-weight: normal;
+}
+
+/* Disabled state */
+.disabled {
+  opacity: var(--dyn-icon-state-disabled-opacity, 0.5);
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .spinning {
     animation: none;
   }
 }
-
-/* ============================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   ============================================ */

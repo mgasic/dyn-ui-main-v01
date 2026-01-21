@@ -8,26 +8,36 @@
    ============================================ */
 
 .root {
-  /* Color tokens - semantic for auto theme switching */
-  --dyn-list-view-bg: var(--dyn-semantic-background);
-  --dyn-list-view-border: var(--dyn-semantic-border);
-  --dyn-list-view-text-primary: var(--dyn-semantic-text);
-  --dyn-list-view-text-secondary: var(--dyn-semantic-text-secondary);
-  --dyn-list-view-item-bg-hover: var(--dyn-semantic-surface-hover);
-  --dyn-list-view-item-bg-active: var(--dyn-semantic-surface-active);
-  --dyn-list-view-item-border-active: var(--dyn-theme-primary);
-  --dyn-list-view-item-bg-selected: var(--dyn-semantic-surface-active);
-  --dyn-list-view-item-color-selected: var(--dyn-theme-primary);
+  /* Component Tokens (Local Scoped) - WITH DEBUG COLORS */
+  --dyn-list-view-item-min-height-sm: 28px;
+  --dyn-list-view-item-min-height-md: 48px;
+  --dyn-list-view-item-min-height-lg: 80px;
+  --dyn-list-view-item-min-height-mobile: 44px;
+  --dyn-list-view-checkbox-size: 18px;
+  --dyn-list-view-focus-outline-offset: var(--dyn-spacing-2xs, 2px);
+  --dyn-list-view-divider-color: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-list-view-stripe-bg: var(--dyn-semantic-surface, #f8fafc);
+
+  /* Color tokens - with VISIBLE fallbacks for debugging */
+  --dyn-list-view-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-list-view-border: var(--dyn-semantic-border, #cbd5e1);
+  --dyn-list-view-text-primary: var(--dyn-semantic-text, #111827);
+  --dyn-list-view-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-list-view-item-bg-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
+  --dyn-list-view-item-bg-active: var(--dyn-semantic-surface-active, #e0e7ff);
+  --dyn-list-view-item-border-active: var(--dyn-theme-primary, #3b82f6);
+  --dyn-list-view-item-bg-selected: var(--dyn-semantic-surface-active, #dbeafe);
+  --dyn-list-view-item-color-selected: var(--dyn-theme-primary, #2563eb);
 
   /* Layout tokens */
-  --dyn-list-view-radius: var(--dyn-border-radius-md);
-  --dyn-list-view-padding: var(--dyn-spacing-sm);
+  --dyn-list-view-radius: var(--dyn-border-radius-md, 6px);
+  --dyn-list-view-padding: var(--dyn-spacing-sm, 8px);
 
   display: flex;
   flex-direction: column;
   width: 100%;
   background: var(--dyn-list-view-bg);
-  border: 1px solid var(--dyn-list-view-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-list-view-border);
   border-radius: var(--dyn-list-view-radius);
   padding: var(--dyn-list-view-padding);
   font-family: inherit;
@@ -36,8 +46,8 @@
 }
 
 .root:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-list-view-focus-outline-offset);
 }
 
 /* ============================================
@@ -45,7 +55,7 @@
    ============================================ */
 
 .bordered {
-  border-width: 2px;
+  border-width: var(--dyn-border-width-md);
 }
 
 .rootSmall {
@@ -63,15 +73,16 @@
 .option {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-sm);
-  padding: var(--dyn-spacing-md);
-  min-height: 48px;
-  border-radius: var(--dyn-border-radius-sm);
+  justify-content: flex-start;
+  gap: var(--dyn-spacing-sm, 8px);
+  padding: var(--dyn-spacing-md, 16px);
+  min-height: var(--dyn-list-view-item-min-height-md);
+  border-radius: var(--dyn-border-radius-sm, 4px);
   cursor: pointer;
-  transition: all var(--dyn-transition-fast);
+  transition: all var(--dyn-transition-fast, 0.15s ease);
   user-select: none;
   background: transparent;
-  border: 1px solid transparent;
+  border: var(--dyn-border-width-sm, 1px) solid transparent;
 }
 
 .option:hover:not(.optionDisabled) {
@@ -100,15 +111,15 @@
    ============================================ */
 
 .optionSmall {
-  padding: var(--dyn-spacing-sm);
-  min-height: 40px;
-  gap: var(--dyn-spacing-xs);
+  padding: 2px 8px;
+  min-height: 28px;
+  gap: 4px;
 }
 
 .optionLarge {
-  padding: var(--dyn-spacing-lg);
-  min-height: 56px;
-  gap: var(--dyn-spacing-md);
+  padding: 24px 32px;
+  min-height: 80px;
+  gap: 16px;
 }
 
 /* ============================================
@@ -116,8 +127,8 @@
    ============================================ */
 
 .optionCheckbox {
-  width: 18px;
-  height: 18px;
+  width: var(--dyn-list-view-checkbox-size);
+  height: var(--dyn-list-view-checkbox-size);
   flex-shrink: 0;
   cursor: pointer;
   accent-color: var(--dyn-theme-primary);
@@ -132,29 +143,28 @@
    ============================================ */
 
 .optionContent {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--dyn-spacing-xs);
+  gap: var(--dyn-spacing-xs, 4px);
   min-width: 0;
 }
 
 .optionLabel {
-  font-size: var(--dyn-font-size-sm);
-  font-weight: var(--dyn-font-weight-medium);
-  line-height: 1.5;
-  color: var(--dyn-list-view-text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--dyn-list-view-text-primary, #111827);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .optionLabelSmall {
-  font-size: var(--dyn-font-size-xs);
+  font-size: 11px;
 }
 
 .optionLabelLarge {
-  font-size: var(--dyn-font-size-md);
+  font-size: 20px;
 }
 
 .optionDescription {
@@ -165,6 +175,29 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.optionDescriptionSmall {
+  font-size: 9px;
+}
+
+.optionDescriptionLarge {
+  font-size: 16px;
+}
+
+.optionContentWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-sm, 8px);
+  min-width: 0;
+}
+
+.optionIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dyn-list-view-text-secondary);
 }
 
 /* ============================================
@@ -200,21 +233,22 @@
 
 .optionActions {
   display: flex;
-  gap: var(--dyn-spacing-xs);
+  gap: var(--dyn-spacing-sm, 8px);
   flex-shrink: 0;
+  margin-left: var(--dyn-spacing-md, 16px);
 }
 
 .actionButton {
-  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
-  font-size: var(--dyn-font-size-xs);
-  font-weight: var(--dyn-font-weight-medium);
+  padding: 4px 12px;
+  font-size: var(--dyn-font-size-xs, 12px);
+  font-weight: var(--dyn-font-weight-medium, 500);
   font-family: inherit;
-  color: var(--dyn-list-view-text-primary);
-  background: var(--dyn-list-view-bg);
-  border: 1px solid var(--dyn-list-view-border);
-  border-radius: var(--dyn-border-radius-sm);
+  color: var(--dyn-list-view-text-primary, #111827);
+  background: var(--dyn-list-view-bg, #ffffff);
+  border: 1px solid var(--dyn-list-view-border, #cbd5e1);
+  border-radius: var(--dyn-border-radius-sm, 4px);
   cursor: pointer;
-  transition: all var(--dyn-transition-fast);
+  transition: all 0.2s ease;
   white-space: nowrap;
 }
 
@@ -314,7 +348,7 @@
 
   .option {
     padding: var(--dyn-spacing-sm);
-    min-height: 44px;
+    min-height: var(--dyn-list-view-item-min-height-mobile);
   }
 
   .optionLabel {
@@ -332,15 +366,15 @@
 
 @media (prefers-contrast: high) {
   .root {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md);
   }
 
   .option {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md);
   }
 
   .optionActive:not(.optionDisabled) {
-    border-width: 3px;
+    border-width: var(--dyn-border-width-lg);
   }
 }
 
@@ -358,3 +392,34 @@
    DARK MODE
    Note: Handled automatically via semantic tokens!
    ============================================ */
+
+/* ============================================
+   DIVIDERS VARIANT
+   ============================================ */
+
+.root.dividers .option:not(:last-child) {
+  border-bottom: var(--dyn-border-width-sm) solid var(--dyn-list-view-divider-color);
+  border-radius: 0;
+}
+
+.root.dividers .option:first-child {
+  border-top-left-radius: var(--dyn-border-radius-sm);
+  border-top-right-radius: var(--dyn-border-radius-sm);
+}
+
+.root.dividers .option:last-child {
+  border-bottom-left-radius: var(--dyn-border-radius-sm);
+  border-bottom-right-radius: var(--dyn-border-radius-sm);
+}
+
+/* ============================================
+   STRIPED VARIANT
+   ============================================ */
+
+.root.striped .option:nth-child(even) {
+  background: var(--dyn-list-view-stripe-bg);
+}
+
+.root.striped .option:nth-child(even):hover:not(.optionDisabled) {
+  background: var(--dyn-list-view-item-bg-hover);
+}

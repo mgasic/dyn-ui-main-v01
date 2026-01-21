@@ -174,10 +174,12 @@ describe('DynListView', () => {
       const { container, rerender } = render(
         <DynListView data={sampleData} size="small" />
       );
-      expect(container.firstChild).toHaveClass('dyn-list-view--small');
+      // CSS Modules generates hashed class names, so check for pattern match
+      const rootElement = container.firstChild as HTMLElement;
+      expect(rootElement.className).toMatch(/rootSmall/);
 
       rerender(<DynListView data={sampleData} size="large" />);
-      expect(container.firstChild).toHaveClass('dyn-list-view--large');
+      expect(rootElement.className).toMatch(/rootLarge/);
     });
 
     it('applies height style', () => {

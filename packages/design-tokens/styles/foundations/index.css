@@ -191,6 +191,17 @@
   --dyn-spacing-2xl: 48px;
   --dyn-spacing-3xl: 64px;
   --dyn-spacing-4xl: 96px;
+  --dyn-listView-item-minHeight-sm: 40px;
+  --dyn-listView-item-minHeight-md: 48px;
+  --dyn-listView-item-minHeight-lg: 56px;
+  --dyn-listView-item-minHeight-mobile: 44px;
+  --dyn-listView-checkbox-size: 18px;
+  --dyn-listView-border-width-default: 1px;
+  --dyn-listView-border-width-active: 2px;
+  --dyn-listView-border-width-highContrast: 3px;
+  --dyn-listView-focus-outlineWidth: 2px;
+  --dyn-listView-focus-outlineOffset: 2px;
+  --dyn-listView-divider-height: 1px;
 }
 
 /* Dark Theme Support (Media Query + Classes) */

@@ -1,0 +1,75 @@
+{
+    "dyn": {
+        "listView": {
+            "item": {
+                "minHeight": {
+                    "sm": {
+                        "value": "40px",
+                        "type": "dimension",
+                        "description": "Minimum height for small list items"
+                    },
+                    "md": {
+                        "value": "48px",
+                        "type": "dimension",
+                        "description": "Minimum height for medium list items"
+                    },
+                    "lg": {
+                        "value": "56px",
+                        "type": "dimension",
+                        "description": "Minimum height for large list items"
+                    },
+                    "mobile": {
+                        "value": "44px",
+                        "type": "dimension",
+                        "description": "Minimum height for touch-friendly mobile items"
+                    }
+                }
+            },
+            "checkbox": {
+                "size": {
+                    "value": "18px",
+                    "type": "dimension",
+                    "description": "Size of the selection checkbox"
+                }
+            },
+            "border": {
+                "width": {
+                    "default": {
+                        "value": "1px",
+                        "type": "dimension",
+                        "description": "Default border width for list items"
+                    },
+                    "active": {
+                        "value": "2px",
+                        "type": "dimension",
+                        "description": "Border width for active/focused items"
+                    },
+                    "highContrast": {
+                        "value": "3px",
+                        "type": "dimension",
+                        "description": "Border width for high contrast mode"
+                    }
+                }
+            },
+            "focus": {
+                "outlineWidth": {
+                    "value": "2px",
+                    "type": "dimension",
+                    "description": "Focus outline width"
+                },
+                "outlineOffset": {
+                    "value": "2px",
+                    "type": "dimension",
+                    "description": "Focus outline offset from element"
+                }
+            },
+            "divider": {
+                "height": {
+                    "value": "1px",
+                    "type": "dimension",
+                    "description": "Height of divider between items"
+                }
+            }
+        }
+    }
+}

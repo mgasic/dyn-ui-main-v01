@@ -3,7 +3,7 @@ import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider } from '../packages/dyn-ui-react/src/theme/ThemeProvider';
 import '../packages/dyn-ui-react/src/styles/themes.css';
 // Import design tokens directly - CSS @import doesn't use Vite aliases
-import '@dyn-ui/design-tokens/styles/foundations/index.css';
+import '../packages/design-tokens/styles/foundations/index.css';
 
 const themes = ['light', 'dark'];
 

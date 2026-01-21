@@ -31,6 +31,14 @@ const meta: Meta<typeof DynListView> = {
       control: 'boolean',
       description: 'Show borders around the list'
     },
+    dividers: {
+      control: 'boolean',
+      description: 'Show dividers between list items'
+    },
+    striped: {
+      control: 'boolean',
+      description: 'Show alternating background colors (zebra pattern)'
+    },
     loading: {
       control: 'boolean',
       description: 'Show loading state'
@@ -38,6 +46,18 @@ const meta: Meta<typeof DynListView> = {
     height: {
       control: { type: 'number' },
       description: 'Fixed height for scrollable list'
+    },
+    emptyText: {
+      control: 'text',
+      description: 'Text to show when no data is available'
+    },
+    loadingText: {
+      control: 'text',
+      description: 'Text shown during loading state'
+    },
+    selectAllText: {
+      control: 'text',
+      description: 'Text for the "Select All" checkbox'
     },
   },
 };
@@ -154,7 +174,11 @@ export const FixedHeight: Story = {
   args: {
     ...Default.args,
     height: 300,
-    data: [...sampleData, ...sampleData, ...sampleData], // More data to show scrolling
+    data: [
+      ...sampleData.map(item => ({ ...item, id: `${item.id}-1` })),
+      ...sampleData.map(item => ({ ...item, id: `${item.id}-2` })),
+      ...sampleData.map(item => ({ ...item, id: `${item.id}-3` }))
+    ],
   },
 };
 
@@ -207,4 +231,111 @@ export const AllFeatures: Story = {
       console.log('Selection changed:', { keys, items });
     },
   },
+};
+
+// With Dividers
+export const WithDividers: Story = {
+  args: {
+    data: sampleData,
+    size: 'medium',
+    bordered: true,
+    dividers: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'List items with dividers between them for improved visual separation.'
+      }
+    }
+  }
+};
+
+// Striped Variant
+export const Striped: Story = {
+  args: {
+    data: sampleData,
+    size: 'medium',
+    bordered: true,
+    striped: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Alternating background colors (zebra pattern) for better scannability.'
+      }
+    }
+  }
+};
+
+// Dividers with Selection
+export const DividersWithSelection: Story = {
+  args: {
+    data: sampleData,
+    size: 'medium',
+    bordered: true,
+    dividers: true,
+    selectable: true,
+  },
+};
+
+// Striped with Actions
+export const StripedWithActions: Story = {
+  args: {
+    data: sampleData,
+    size: 'medium',
+    bordered: true,
+    striped: true,
+    actions: sampleActions,
+  },
+};
+
+// Localized Text
+export const LocalizedText: Story = {
+  args: {
+    data: [],
+    bordered: true,
+    loading: false,
+    emptyText: 'Nema dostupnih podataka',
+    loadingText: 'Učitavanje...',
+    selectAllText: 'Izaberi sve',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Example with localized (Serbian) text for internationalization support.'
+      }
+    }
+  }
+};
+
+// Loading with Custom Text
+export const LoadingCustomText: Story = {
+  args: {
+    data: [],
+    bordered: true,
+    loading: true,
+    loadingText: 'Please wait, loading data...',
+  },
+};
+
+// Combined Variants (Dividers + Striped)
+export const CombinedVariants: Story = {
+  args: {
+    data: [
+      ...sampleData.map(item => ({ ...item, id: `${item.id}-1` })),
+      ...sampleData.map(item => ({ ...item, id: `${item.id}-2` }))
+    ],
+    size: 'medium',
+    bordered: true,
+    dividers: true,
+    striped: true,
+    height: 400,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Both dividers and striped enabled for maximum visual distinction.'
+      }
+    }
+  }
 };

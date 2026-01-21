@@ -1,12 +1,10 @@
-import React, { forwardRef, useEffect, useMemo, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import styles from './DynListView.module.css';
-import type { DynListViewProps, ListViewItem, ListAction } from './DynListView.types';
+import type { DynListViewProps, DynListViewRef, ListViewItem, ListAction } from './DynListView.types';
 import { DynIcon } from '../DynIcon';
 
-
-const getStyleClass = (n: string) => (styles as Record<string, string>)[n] || '';
 
 const isComplexItem = (item: any) => {
   // Consider item complex if it has more than typical display fields
@@ -26,6 +24,12 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
     disabled = false,
     loading = false,
     emptyText = 'No data available',
+    loadingText = 'Loading...',
+    selectAllText = 'Select All',
+    expandText = 'Expand',
+    collapseText = 'Collapse',
+    dividers = false,
+    striped = false,
     actions = [],
     renderItem,
     size,
@@ -42,6 +46,9 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
     'data-testid': dataTestId,
     ...rest
   }, ref) {
+
+  // Internal ref for imperative handle
+  const rootRef = useRef<HTMLDivElement>(null);
 
   // Use items prop, fallback to data for backward compatibility
   const listItems = items.length > 0 ? items : data;
@@ -120,10 +127,12 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
   };
 
   const rootClasses = cn(
-    getStyleClass('root'),
-    size === 'small' && getStyleClass('rootSmall'),
-    size === 'large' && getStyleClass('rootLarge'),
-    bordered && getStyleClass('bordered'),
+    styles.root,
+    size === 'small' && styles.rootSmall,
+    size === 'large' && styles.rootLarge,
+    bordered && styles.bordered,
+    dividers && styles.dividers,
+    striped && styles.striped,
     className
   );
 
@@ -134,27 +143,36 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
   const allKeys = listItems.map((item, i) => getItemKey(item, i));
   const allChecked = (multiSelect || selectable) && allKeys.length > 0 && allKeys.every(k => isSelected(k));
 
+  // Expose imperative methods via ref
+  useImperativeHandle(ref, () => ({
+    focus: () => rootRef.current?.focus(),
+    selectAll: () => commit(allKeys),
+    clearSelection: () => commit(multiSelect ? [] : ''),
+  }) as unknown as HTMLDivElement, [allKeys, multiSelect, commit]);
+
   return (
     <div
-      ref={ref}
+      ref={rootRef}
       id={internalId}
       role="listbox"
       aria-multiselectable={multiSelect || selectable || undefined}
       aria-label={ariaLabel}
       aria-labelledby={ariaLabelledBy}
       aria-activedescendant={listItems[activeIndex] ? itemIds[activeIndex] : undefined}
+      aria-busy={loading}
+      aria-disabled={disabled || undefined}
       className={rootClasses}
       data-testid={dataTestId || 'dyn-listview'}
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
       onKeyDown={handleKeyDown}
       style={rootStyle}
       {...rest}
     >
       {(multiSelect || selectable) && (
         <div className={cn(
-          getStyleClass('option'),
-          size === 'small' && getStyleClass('optionSmall'),
-          size === 'large' && getStyleClass('optionLarge')
+          styles.option,
+          size === 'small' && styles.optionSmall,
+          size === 'large' && styles.optionLarge
         )}
           role="option"
           aria-selected={allChecked}
@@ -165,22 +183,22 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
             aria-checked={allChecked}
             checked={allChecked}
             onChange={() => commit(allChecked ? [] : allKeys)}
-            className={getStyleClass('option__checkbox')}
+            className={styles.optionCheckbox}
           />
           <span className={cn(
-            getStyleClass('option__label'),
-            size === 'small' && getStyleClass('option__label--small'),
-            size === 'large' && getStyleClass('option__label--large')
-          )}>Select All</span>
+            styles.optionLabel,
+            size === 'small' && styles.optionLabelSmall,
+            size === 'large' && styles.optionLabelLarge
+          )}>{selectAllText}</span>
         </div>
       )}
 
       {loading ? (
-        <div role="status" className={getStyleClass('loading')}>
-          Loading...
+        <div role="status" className={styles.loading}>
+          {loadingText}
         </div>
       ) : listItems.length === 0 ? (
-        <div role="note" className={getStyleClass('empty')}>
+        <div role="note" className={styles.empty}>
           {emptyText}
         </div>
       ) : (
@@ -197,13 +215,15 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
               id={itemIds[i]}
               role="option"
               aria-selected={selectedState}
+              aria-setsize={listItems.length}
+              aria-posinset={i + 1}
               className={cn(
-                getStyleClass('option'),
-                size === 'small' && getStyleClass('optionSmall'),
-                size === 'large' && getStyleClass('optionLarge'),
-                selectedState && getStyleClass('option--selected'),
-                i === activeIndex && getStyleClass('option--active'),
-                item.disabled && getStyleClass('option--disabled')
+                styles.option,
+                size === 'small' && styles.optionSmall,
+                size === 'large' && styles.optionLarge,
+                selectedState && styles.optionSelected,
+                i === activeIndex && styles.optionActive,
+                item.disabled && styles.optionDisabled
               )}
               onMouseEnter={() => !item.disabled && setActiveIndex(i)}
               onMouseDown={(e) => e.preventDefault()}
@@ -218,33 +238,33 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
                   disabled={item.disabled}
                   onChange={() => !item.disabled && toggle(key)}
                   onClick={(e) => e.stopPropagation()}
-                  className={getStyleClass('option__checkbox')}
+                  className={styles.optionCheckbox}
                 />
               )}
 
-              <div className={getStyleClass('option__content-wrapper')}>
+              <div className={styles.optionContentWrapper}>
                 {item.icon && (
-                  <div className={getStyleClass('option__icon')}>
+                  <div className={styles.optionIcon}>
                     <DynIcon icon={item.icon} size={size === 'large' ? 'medium' : 'small'} />
                   </div>
                 )}
-                <div className={getStyleClass('option__content')}>
+                <div className={styles.optionContent}>
                   {renderItem ? (
                     renderItem(item, i)
                   ) : (
                     <>
                       <span className={cn(
-                        getStyleClass('option__label'),
-                        size === 'small' && getStyleClass('option__label--small'),
-                        size === 'large' && getStyleClass('option__label--large')
+                        styles.optionLabel,
+                        size === 'small' && styles.optionLabelSmall,
+                        size === 'large' && styles.optionLabelLarge
                       )}>
                         {title}
                       </span>
                       {desc && (
                         <span className={cn(
-                          getStyleClass('option__description'),
-                          size === 'small' && getStyleClass('option__description--small'),
-                          size === 'large' && getStyleClass('option__description--large')
+                          styles.optionDescription,
+                          size === 'small' && styles.optionDescriptionSmall,
+                          size === 'large' && styles.optionDescriptionLarge
                         )}>
                           {desc}
                         </span>
@@ -257,20 +277,20 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
               {complex && (
                 <button
                   type="button"
-                  className={getStyleClass('option__expand')}
+                  className={styles.optionExpand}
                   onClick={(e) => {
                     e.stopPropagation();
                     setExpanded(prev => ({ ...prev, [key]: !prev[key] }));
                   }}
                   aria-expanded={!!expanded[key]}
                 >
-                  {expanded[key] ? 'Collapse' : 'Expand'}
+                  {expanded[key] ? collapseText : expandText}
                 </button>
               )}
 
               {actions && actions.length > 0 && (
                 <div
-                  className={getStyleClass('option__actions')}
+                  className={styles.optionActions}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {actions.map((action) => (
@@ -278,8 +298,9 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
                       key={action.key}
                       type="button"
                       className={cn(
-                        getStyleClass('action-button'),
-                        getStyleClass(`action-button--${action.type || 'default'}`)
+                        styles.actionButton,
+                        action.type === 'primary' && styles.actionButtonPrimary,
+                        action.type === 'danger' && styles.actionButtonDanger
                       )}
                       onClick={() => action.onClick(item, i)}
                       title={action.title}
@@ -292,7 +313,7 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
 
 
               {expanded[key] && (
-                <div className={getStyleClass('option__details')}>
+                <div className={styles.optionDetails}>
                   {Object.entries(item).map(([k, v]) => (
                     <div key={k}>
                       <strong>{k}:</strong> {String(v)}

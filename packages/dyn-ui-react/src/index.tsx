@@ -38,10 +38,7 @@ export type {
   DynFieldContainerProps
 } from './components';
 export type { ValidationRule, DynFieldRef, DynFieldBase, SelectOption } from './types';
-export {
-  useDynFieldValidation,
-  validators
-} from './hooks/useDynFieldValidation';
+export { useDynFieldValidation } from './hooks/useDynFieldValidation';
 export { useDynMask, MASK_PATTERNS, getMaskPattern } from './hooks/useDynMask';
 export { useDynDateParser, DATE_FORMATS, getDateFormat } from './hooks/useDynDateParser';
 

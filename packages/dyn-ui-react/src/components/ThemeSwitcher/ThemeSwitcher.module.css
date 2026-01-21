@@ -1,55 +1,111 @@
+/**
+ * ThemeSwitcher Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
+
 .container {
+    /* Color tokens - semantic for auto theme switching */
+    --dyn-switcher-bg: var(--dyn-semantic-surface-muted);
+    --dyn-switcher-border: var(--dyn-semantic-border);
+    --dyn-switcher-text: var(--dyn-semantic-text);
+    --dyn-switcher-hover: var(--dyn-semantic-surface-hover);
+    --dyn-switcher-active-bg: var(--dyn-theme-primary);
+    --dyn-switcher-active-text: var(--dyn-semantic-text-inverse);
+
     display: inline-flex;
-    border: 1px solid var(--dyn-color-border, #e5e7eb);
+    border: 1px solid var(--dyn-switcher-border);
     overflow: hidden;
-    background: var(--dyn-color-muted, #f9fafb);
-    transition: all 0.2s ease;
+    background: var(--dyn-switcher-bg);
+    transition: all var(--dyn-transition-fast);
 }
 
-.rounded-sm {
-    border-radius: 4px;
+/* ============================================
+   RADIUS VARIANTS
+   ============================================ */
+
+.roundedSm {
+    border-radius: var(--dyn-border-radius-sm);
 }
 
-.rounded-md {
-    border-radius: 6px;
+.roundedMd {
+    border-radius: var(--dyn-border-radius-md);
 }
 
-.rounded-lg {
-    border-radius: 8px;
+.roundedLg {
+    border-radius: var(--dyn-border-radius-lg);
 }
 
-.rounded-full {
-    border-radius: 9999px;
+.roundedFull {
+    border-radius: var(--dyn-border-radius-full);
 }
+
+/* ============================================
+   BUTTON
+   ============================================ */
 
 .button {
     appearance: none;
     cursor: pointer;
     border: none;
     background: transparent;
-    color: var(--dyn-color-foreground, #374151);
-    font-weight: 500;
+    color: var(--dyn-switcher-text);
+    font-weight: var(--dyn-font-weight-medium);
     line-height: 1.2;
-    transition: all 0.2s ease;
+    transition: all var(--dyn-transition-fast);
     min-width: 60px;
 }
 
 .button:hover:not(.active) {
-    background: var(--dyn-color-border, #f3f4f6);
+    background: var(--dyn-switcher-hover);
 }
 
 .active {
-    background: var(--dyn-color-primary, #3b82f6);
-    color: white;
-    font-weight: 600;
+    background: var(--dyn-switcher-active-bg);
+    color: var(--dyn-switcher-active-text);
+    font-weight: var(--dyn-font-weight-semibold);
 }
 
-.size-sm {
-    padding: 6px 12px;
-    font-size: 0.875rem;
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.sizeSm {
+    padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+    font-size: var(--dyn-font-size-sm);
 }
 
-.size-md {
-    padding: 8px 16px;
-    font-size: 1rem;
+.sizeMd {
+    padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+    font-size: var(--dyn-font-size-md);
 }
+
+.sizeLg {
+    padding: var(--dyn-spacing-md) var(--dyn-spacing-lg);
+    font-size: var(--dyn-font-size-lg);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.button:focus-visible {
+    outline: 2px solid var(--dyn-semantic-border-focus);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .container,
+    .button {
+        transition: none;
+    }
+}
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

@@ -1,9 +1,54 @@
+/**
+ * DynTabs Component Styles
+ * 100% Design Token Compliance - Optimized & Clean
+ */
+
+:root {
+  /* Component-scoped tokens */
+  --dyn-tabs-bg: var(--dyn-color-background, var(--color-background, #ffffff));
+  --dyn-tabs-header-bg: var(--dyn-color-background-secondary, var(--color-background-secondary, #f8fafc));
+  --dyn-tabs-active-bg: var(--dyn-color-background, var(--color-background, #ffffff));
+  --dyn-tabs-hover-bg: var(--dyn-color-background-hover, var(--color-background-hover, #f1f5f9));
+
+  --dyn-tabs-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-tabs-text-hover: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-content-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-tabs-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
+
+  --dyn-tabs-border: var(--dyn-color-border-light, var(--color-border-light, #e2e8f0));
+  --dyn-tabs-indicator: var(--dyn-color-primary, var(--color-primary, #2563eb));
+
+  --dyn-tabs-radius: var(--dyn-border-radius-md, var(--border-radius-md, 0.5rem));
+  --dyn-tabs-border-width: var(--dyn-border-width-hairline, var(--border-width-hairline, 1px));
+  --dyn-tabs-border-width-active: var(--dyn-border-width-thin, var(--border-width-thin, 2px));
+
+  --dyn-tabs-gap: var(--dyn-spacing-xxs, var(--spacing-xxs, 0.125rem));
+  --dyn-tabs-padding-x: var(--dyn-spacing-lg, var(--spacing-lg, 1rem));
+  --dyn-tabs-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
+
+  --dyn-tabs-icon-size: var(--dyn-size-icon-sm, 1rem);
+  --dyn-tabs-spinner-size: var(--dyn-size-icon-md, 1.5rem);
+}
+
+/* ============================================
+   BASE CONTAINER
+   ============================================ */
+
 .tabs {
   display: flex;
-  flex-direction: column;
   width: 100%;
-  font-family: inherit;
+  background: var(--dyn-tabs-bg);
+  border-radius: var(--dyn-tabs-radius);
+  overflow: hidden;
+  border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
+  box-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.08)));
+  transition: all var(--dyn-duration-normal, 0.2s) var(--dyn-timing-standard, ease);
 }
+
+/* ============================================
+   POSITIONING
+   ============================================ */
 
 .tabsTop {
   flex-direction: column;
@@ -21,132 +66,311 @@
   flex-direction: row-reverse;
 }
 
-/* Tab List */
-.tablist {
-  display: flex;
-  position: relative;
-  border-bottom: 2px solid var(--dyn-neutral-light-200, #e5e7eb);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  z-index: 1;
+.tabsBottom .tablist {
+  border-bottom: none;
+  border-top: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
+  padding: 0 var(--dyn-spacing-xs) var(--dyn-spacing-xs) var(--dyn-spacing-xs);
+}
+
+.tabsBottom .tab {
+  border-radius: 0 0 var(--dyn-border-radius-sm) var(--dyn-border-radius-sm);
+}
+
+.tabsBottom .tabActive::after {
+  top: calc(-1 * var(--dyn-tabs-border-width));
+  bottom: auto;
 }
 
 .tabsLeft .tablist,
 .tabsRight .tablist {
   flex-direction: column;
   border-bottom: none;
+  padding: var(--dyn-spacing-xs);
+  min-width: 140px;
 }
 
 .tabsLeft .tablist {
-  border-right: 2px solid var(--dyn-neutral-light-200);
+  border-right: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
 }
 
 .tabsRight .tablist {
-  border-left: 2px solid var(--dyn-neutral-light-200);
+  border-left: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
 }
 
-.tabsBottom .tablist {
-  border-bottom: none;
-  border-top: 2px solid var(--dyn-neutral-light-200);
+.tabsLeft .tab {
+  border-radius: var(--dyn-border-radius-sm) 0 0 var(--dyn-border-radius-sm);
 }
+
+.tabsRight .tab {
+  border-radius: 0 var(--dyn-border-radius-sm) var(--dyn-border-radius-sm) 0;
+}
+
+.tabsLeft .tab,
+.tabsRight .tab {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tabsLeft .tabActive::after,
+.tabsRight .tabActive::after {
+  top: 0;
+  bottom: 0;
+  width: var(--dyn-tabs-border-width-active);
+  height: auto;
+}
+
+.tabsLeft .tabActive::after {
+  right: calc(-1 * var(--dyn-tabs-border-width));
+  left: auto;
+}
+
+.tabsRight .tabActive::after {
+  left: calc(-1 * var(--dyn-tabs-border-width));
+  right: auto;
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+
+:global(.theme-dark) .tabs,
+:global([data-theme='dark']) .tabs {
+  --dyn-tabs-bg: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
+  --dyn-tabs-header-bg: var(--dyn-color-background-secondary-dark, var(--color-background-secondary-dark, #1e293b));
+  --dyn-tabs-active-bg: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
+  --dyn-tabs-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #cbd5f5));
+  --dyn-tabs-content-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
+  --dyn-tabs-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+}
+
+/* ============================================
+   TAB LIST
+   ============================================ */
+
+.tablist {
+  display: flex;
+  position: relative;
+  background: var(--dyn-tabs-header-bg);
+  margin: 0;
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-xs) 0 var(--dyn-spacing-xs);
+  list-style: none;
+  z-index: 1;
+  gap: var(--dyn-tabs-gap);
+  border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
+  flex-wrap: nowrap;
+}
+
+.scrollable .tablist {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dyn-tabs-border) transparent;
+}
+
+.scrollable .tablist::-webkit-scrollbar {
+  height: 4px;
+}
+
+.scrollable .tablist::-webkit-scrollbar-thumb {
+  background: var(--dyn-tabs-border);
+  border-radius: var(--dyn-border-radius-full);
+}
+
+/* ============================================
+   TAB BUTTON
+   ============================================ */
 
 .tab {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 16px;
+  padding: var(--dyn-tabs-padding-y) var(--dyn-tabs-padding-x);
   background: transparent;
   border: none;
+  border-radius: var(--dyn-border-radius-sm) var(--dyn-border-radius-sm) 0 0;
   cursor: pointer;
-  color: var(--dyn-neutral-mid-400);
-  font-size: var(--dyn-font-size-sm, 14px);
-  font-weight: 500;
-  transition: all 0.2s ease;
+  color: var(--dyn-tabs-text);
+  font-family: var(--dyn-font-family, inherit);
+  font-size: var(--dyn-font-size-sm, 0.875rem);
+  font-weight: var(--dyn-font-weight-medium, 500);
+  transition: all var(--dyn-duration-normal, 0.2s) var(--dyn-timing-standard, ease);
   white-space: nowrap;
   position: relative;
+  flex-shrink: 0;
+  min-height: var(--dyn-spacing-3xl, 3rem);
 }
 
 .tab:hover:not(.tabDisabled) {
-  color: var(--dyn-neutral-dark-900);
-  background-color: var(--dyn-neutral-light-100);
+  color: var(--dyn-tabs-text-hover);
+  background: var(--dyn-tabs-hover-bg);
 }
 
 .tabActive {
-  color: var(--dyn-theme-primary);
+  color: var(--dyn-tabs-text-active);
+  background: var(--dyn-tabs-active-bg);
+  font-weight: var(--dyn-font-weight-semibold, 600);
 }
 
 .tabActive::after {
   content: '';
   position: absolute;
-  background-color: var(--dyn-theme-primary);
-  transition: all 0.2s ease;
-}
-
-.tabsTop .tabActive::after {
-  bottom: -2px;
+  bottom: calc(-1 * var(--dyn-tabs-border-width));
   left: 0;
   right: 0;
-  height: 2px;
+  height: var(--dyn-tabs-border-width-active);
+  background-color: var(--dyn-tabs-indicator);
 }
 
-.tabsBottom .tabActive::after {
-  top: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
+.tabDisabled {
+  opacity: var(--dyn-opacity-disabled, 0.5);
+  cursor: not-allowed;
+  color: var(--dyn-tabs-text-disabled);
 }
 
-.tabsLeft .tabActive::after {
-  right: -2px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.tab.sizeSmall {
+  min-height: var(--dyn-spacing-2xl, 2rem) !important;
+  padding: var(--dyn-spacing-xxs) var(--dyn-spacing-sm) !important;
+  font-size: var(--dyn-font-size-xs, 0.75rem) !important;
 }
 
-.tabsRight .tabActive::after {
-  left: -2px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+.tab.sizeLarge {
+  min-height: var(--dyn-size-lg, 3.5rem) !important;
+  padding: var(--dyn-spacing-md) var(--dyn-spacing-xl) !important;
+  font-size: var(--dyn-font-size-base, 1rem) !important;
 }
 
-/* Variant: Pill */
+/* ============================================
+   STYLE VARIANTS
+   ============================================ */
+
 .variantPill {
-  border-radius: 9999px;
-  margin: 4px;
+  border-radius: var(--dyn-border-radius-pill, 999px) !important;
+  margin: var(--dyn-spacing-xxs);
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
 }
 
 .variantPill.tabActive {
-  background-color: var(--dyn-theme-primary);
-  color: #ffffff;
+  background: var(--dyn-tabs-indicator) !important;
+  color: var(--dyn-color-primary-contrast, #ffffff) !important;
 }
 
 .variantPill.tabActive::after {
   display: none;
 }
 
-.panel {
-  padding: 16px;
-  flex: 1;
+.variantUnderlined .tab {
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .tablist {
-    border-color: var(--dyn-neutral-dark-700, #334155);
-  }
+.variantUnderlined.tabActive::after {
+  height: var(--dyn-border-width-thick, 3px);
+  bottom: 0;
+}
 
-  .tab {
-    color: var(--dyn-neutral-mid-400, #9ca3af);
-  }
+.variantBordered {
+  border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
+}
 
-  .tab:hover:not(.tabDisabled) {
-    color: var(--dyn-neutral-light-100, #f1f5f9);
-    background-color: var(--dyn-neutral-dark-700, #374151);
-  }
+.variantBordered.tabActive {
+  border-color: var(--dyn-tabs-border) var(--dyn-tabs-border) var(--dyn-tabs-active-bg);
+  background: var(--dyn-tabs-active-bg);
+}
 
-  .tabActive {
-    color: var(--dyn-theme-primary, #3b82f6);
+.variantBordered.tabActive::after {
+  display: none;
+}
+
+/* ============================================
+   INTERACTIVE ELEMENTS
+   ============================================ */
+
+.tab [class*="dynIcon"],
+.tab svg,
+.closeButton [class*="dynIcon"],
+.closeButton svg,
+.addableButton [class*="dynIcon"],
+.addableButton svg {
+  width: var(--dyn-tabs-icon-size) !important;
+  height: var(--dyn-tabs-icon-size) !important;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dyn-spacing-xl);
+  height: var(--dyn-spacing-xl);
+  border-radius: var(--dyn-border-radius-xs);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  opacity: var(--dyn-opacity-disabled, 0.5);
+  margin-left: var(--dyn-spacing-xs);
+  transition: opacity var(--dyn-duration-fast, 0.1s);
+}
+
+.closeButton:hover {
+  opacity: 1;
+  background: var(--dyn-color-error-alpha, rgba(239, 68, 68, 0.1));
+  color: var(--dyn-color-error, #ef4444);
+}
+
+.addableButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  width: var(--dyn-spacing-2xl);
+  height: var(--dyn-spacing-2xl);
+  margin-left: var(--dyn-spacing-md);
+  border-radius: var(--dyn-border-radius-full);
+  border: var(--dyn-tabs-border-width) dashed var(--dyn-tabs-border);
+  background: transparent;
+  color: var(--dyn-tabs-text);
+  cursor: pointer;
+  transition: all var(--dyn-duration-normal);
+}
+
+.addableButton:hover {
+  background: var(--dyn-tabs-hover-bg);
+  border-style: solid;
+}
+
+/* ============================================
+   PANEL & LOADING
+   ============================================ */
+
+.panel {
+  flex: 1;
+  padding: var(--dyn-spacing-lg);
+  background: var(--dyn-tabs-active-bg);
+  color: var(--dyn-tabs-content-text);
+  min-height: var(--dyn-spacing-3xl);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dyn-spacing-3xl);
+  gap: var(--dyn-spacing-md);
+  color: var(--dyn-tabs-text);
+  min-height: 200px;
+}
+
+.loadingSpinner {
+  animation: dyn-spin var(--dyn-duration-deliberate, 1s) linear infinite;
+}
+
+@keyframes dyn-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -1,15 +1,19 @@
-/* ==========================================================================
-   DynPage Component Styles
-   100% Design Token Compliance
-   ========================================================================== */
+/**
+ * DynPage Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
 
 .container {
-  /* Component Tokens */
-  --dyn-page-bg: var(--dyn-color-background, #ffffff);
-  --dyn-page-bg-surface: var(--dyn-color-surface, #f8fafc);
-  --dyn-page-text-primary: var(--dyn-color-text-primary, #111827);
-  --dyn-page-text-secondary: var(--dyn-color-text-secondary, #6b7280);
-  --dyn-page-border-color: var(--dyn-color-border, #e5e7eb);
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-page-bg: var(--dyn-semantic-background);
+  --dyn-page-bg-surface: var(--dyn-semantic-surface);
+  --dyn-page-text-primary: var(--dyn-semantic-text);
+  --dyn-page-text-secondary: var(--dyn-semantic-text-secondary);
+  --dyn-page-border-color: var(--dyn-semantic-border);
 
   display: flex;
   flex-direction: column;
@@ -17,74 +21,79 @@
   min-height: 100vh;
   background-color: var(--dyn-page-bg);
   color: var(--dyn-page-text-primary);
-  font-family: var(--dyn-font-family-base, system-ui, sans-serif);
+  font-family: inherit;
   box-sizing: border-box;
 }
 
-/* Background Variants */
-.background-none {
+/* ============================================
+   BACKGROUND VARIANTS
+   ============================================ */
+
+.backgroundNone {
   background-color: transparent;
 }
 
-.background-surface {
+.backgroundSurface {
   background-color: var(--dyn-page-bg-surface);
 }
 
-.background-page {
+.backgroundPage {
   background-color: var(--dyn-page-bg);
 }
 
-/* Padding Variants */
-.padding-none {
+/* ============================================
+   PADDING VARIANTS
+   ============================================ */
+
+.paddingNone {
   padding: 0;
 }
 
-.padding-xs {
-  padding: var(--dyn-spacing-xs, 4px);
+.paddingXs {
+  padding: var(--dyn-spacing-xs);
 }
 
-.padding-sm {
-  padding: var(--dyn-spacing-sm, 8px);
+.paddingSm {
+  padding: var(--dyn-spacing-sm);
 }
 
-.padding-md {
-  padding: var(--dyn-spacing-md, 16px);
+.paddingMd {
+  padding: var(--dyn-spacing-md);
 }
 
-.padding-lg {
-  padding: var(--dyn-spacing-lg, 24px);
+.paddingLg {
+  padding: var(--dyn-spacing-lg);
 }
 
-.padding-xl {
-  padding: var(--dyn-spacing-xl, 32px);
-}
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
 
-/* Size Variants (Max Width) */
-.size-small {
+.sizeSmall {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.size-medium {
+.sizeMedium {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.size-large {
+.sizeLarge {
   max-width: 100%;
 }
 
-/* ========================================================================
-   Header Section
-   ======================================================================== */
+/* ============================================
+   HEADER SECTION
+   ============================================ */
 
 .header {
   display: flex;
   flex-direction: column;
-  padding: var(--dyn-spacing-lg, 24px) var(--dyn-spacing-xl, 32px);
+  padding: var(--dyn-spacing-lg) var(--dyn-spacing-xl);
   background-color: var(--dyn-page-bg-surface);
   border-bottom: 1px solid var(--dyn-page-border-color);
-  gap: var(--dyn-spacing-md, 16px);
+  gap: var(--dyn-spacing-md);
   flex-shrink: 0;
 }
 
@@ -92,7 +101,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: var(--dyn-spacing-lg, 24px);
+  gap: var(--dyn-spacing-lg);
   flex-wrap: wrap;
 }
 
@@ -103,31 +112,31 @@
 
 .headerTitle {
   margin: 0;
-  font-size: var(--dyn-font-size-2xl, 24px);
-  font-weight: var(--dyn-font-weight-bold, 700);
+  font-size: var(--dyn-font-size-xl);
+  font-weight: var(--dyn-font-weight-bold);
   color: var(--dyn-page-text-primary);
   line-height: 1.2;
 }
 
 .headerSubtitle {
-  margin: var(--dyn-spacing-xs, 4px) 0 0 0;
-  font-size: var(--dyn-font-size-md, 16px);
+  margin: var(--dyn-spacing-xs) 0 0 0;
+  font-size: var(--dyn-font-size-md);
   color: var(--dyn-page-text-secondary);
   line-height: 1.5;
 }
 
 .actions {
   display: flex;
-  gap: var(--dyn-spacing-sm, 8px);
+  gap: var(--dyn-spacing-sm);
   align-items: center;
 }
 
-/* ========================================================================
-   Breadcrumbs
-   ======================================================================== */
+/* ============================================
+   BREADCRUMBS
+   ============================================ */
 
 .breadcrumbs {
-  margin-bottom: var(--dyn-spacing-xs, 4px);
+  margin-bottom: var(--dyn-spacing-xs);
 }
 
 .breadcrumbList {
@@ -137,47 +146,47 @@
   margin: 0;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--dyn-spacing-xs, 4px);
+  gap: var(--dyn-spacing-xs);
 }
 
 .breadcrumbItem {
   display: flex;
   align-items: center;
-  font-size: var(--dyn-font-size-sm, 14px);
+  font-size: var(--dyn-font-size-sm);
   color: var(--dyn-page-text-secondary);
 }
 
 .breadcrumbLink {
-  color: var(--dyn-color-primary, #2563eb);
+  color: var(--dyn-theme-primary);
   text-decoration: none;
-  transition: color var(--dyn-transition-base, 0.18s);
+  transition: color var(--dyn-transition-fast);
 }
 
 .breadcrumbLink:hover {
   text-decoration: underline;
-  color: var(--dyn-color-primary-dark, #1d4ed8);
+  color: var(--dyn-action-hover);
 }
 
 .breadcrumbSeparator {
   display: flex;
   align-items: center;
-  margin: 0 var(--dyn-spacing-xs, 4px);
-  color: var(--dyn-color-text-muted, #9ca3af);
+  margin: 0 var(--dyn-spacing-xs);
+  color: var(--dyn-semantic-text-muted);
 }
 
-/* ========================================================================
-   Content Section
-   ======================================================================== */
+/* ============================================
+   CONTENT SECTION
+   ============================================ */
 
 .content {
   flex: 1;
-  padding: var(--dyn-spacing-xl, 32px);
+  padding: var(--dyn-spacing-xl);
   box-sizing: border-box;
 }
 
-/* ========================================================================
-   Loading & Error States
-   ======================================================================== */
+/* ============================================
+   LOADING & ERROR STATES
+   ============================================ */
 
 .loadingContainer,
 .errorContainer {
@@ -185,7 +194,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-2xl, 48px);
+  padding: var(--dyn-spacing-lg);
   text-align: center;
   min-height: 300px;
 }
@@ -194,10 +203,10 @@
   width: 40px;
   height: 40px;
   border: 3px solid var(--dyn-page-border-color);
-  border-top-color: var(--dyn-color-primary, #2563eb);
+  border-top-color: var(--dyn-theme-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: var(--dyn-spacing-md, 16px);
+  margin-bottom: var(--dyn-spacing-md);
 }
 
 @keyframes spin {
@@ -207,12 +216,12 @@
 }
 
 .errorIcon {
-  color: var(--dyn-color-danger, #dc2626);
-  margin-bottom: var(--dyn-spacing-md, 16px);
+  color: var(--dyn-feedback-negative-default);
+  margin-bottom: var(--dyn-spacing-md);
 }
 
 .errorMessage {
-  font-size: var(--dyn-font-size-lg, 18px);
+  font-size: var(--dyn-font-size-lg);
   color: var(--dyn-page-text-primary);
 }
 
@@ -221,15 +230,6 @@
 }
 
 /* ============================================
-   Dark Mode Overrides
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
    ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-page-bg: var(--dyn-color-background-dark, #111827);
-    --dyn-page-bg-surface: var(--dyn-color-surface-dark, #1f2937);
-    --dyn-page-text-primary: var(--dyn-color-text-primary-dark, #f9fafb);
-    --dyn-page-text-secondary: var(--dyn-color-text-secondary-dark, #9ca3af);
-    --dyn-page-border-color: var(--dyn-color-border-dark, #374151);
-  }
-}

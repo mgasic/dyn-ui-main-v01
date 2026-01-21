@@ -1,21 +1,31 @@
+/* ================================================
+   COMPONENT TOKENS (Layer 2)
+   Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
+   ================================================ */
+:root {
+  /* Color tokens */
+  --dyn-select-bg: var(--dyn-semantic-input-bg);
+  --dyn-select-color: var(--dyn-semantic-text);
+  --dyn-select-border: var(--dyn-semantic-input-border);
+  --dyn-select-border-hover: var(--dyn-neutral-mid-400);
+  --dyn-select-border-focus: var(--dyn-theme-primary);
+  --dyn-select-focus-ring: var(--dyn-action-focus);
+  --dyn-select-placeholder: var(--dyn-semantic-text-secondary);
+  --dyn-select-disabled-bg: var(--dyn-semantic-surface-muted);
+  --dyn-select-readonly-bg: var(--dyn-semantic-surface);
+
+  /* Layout tokens */
+  --dyn-select-radius: var(--dyn-border-radius-md);
+  --dyn-select-padding-y: var(--dyn-spacing-sm);
+  --dyn-select-padding-x: var(--dyn-spacing-md);
+  --dyn-select-font-size: var(--dyn-font-size-sm);
+  --dyn-select-transition: var(--dyn-transition-normal);
+}
+
+/* ================================================
+   BASE STYLES
+   ================================================ */
 .container {
-  /* Component-scoped tokens with foundations alignment */
-  --dyn-select-bg: var(--dyn-neutral-light-white, #ffffff);
-  --dyn-select-color: var(--dyn-neutral-dark-900, #111827);
-  --dyn-select-border: var(--dyn-neutral-light-200, #d1d5db);
-  --dyn-select-border-hover: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-select-border-focus: var(--dyn-theme-primary, #2563eb);
-  --dyn-select-focus-ring: var(--dyn-action-focus, rgba(37, 99, 235, 0.35));
-  --dyn-select-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-select-disabled-bg: var(--dyn-neutral-light-100, #f3f4f6);
-  --dyn-select-readonly-bg: var(--dyn-neutral-light-50, #f9fafb);
-
-  --dyn-select-radius: var(--dyn-border-radius-md, 8px);
-  --dyn-select-padding-y: var(--dyn-spacing-sm, 8px);
-  --dyn-select-padding-x: var(--dyn-spacing-md, 12px);
-  --dyn-select-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-select-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
-
   position: relative;
   width: 100%;
 }
@@ -39,6 +49,9 @@
   min-height: 2.5rem;
 }
 
+/* ================================================
+   INTERACTIVE STATES
+   ================================================ */
 .root:hover:not(.disabled):not(.readonly) {
   border-color: var(--dyn-select-border-hover);
 }
@@ -65,12 +78,14 @@
   cursor: default;
 }
 
-/* Content & Text */
+/* ================================================
+   CONTENT
+   ================================================ */
 .content {
   flex: 1;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dyn-spacing-xs);
   overflow: hidden;
 }
 
@@ -84,71 +99,68 @@
   color: var(--dyn-select-placeholder);
 }
 
-/* Tags */
+/* ================================================
+   TAGS (Multi-select)
+   ================================================ */
 .tag {
   display: inline-flex;
   align-items: center;
   background-color: var(--dyn-neutral-light-50);
   border: 1px solid var(--dyn-neutral-light-200);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  gap: 4px;
+  padding: var(--dyn-spacing-2xs) var(--dyn-spacing-sm);
+  border-radius: var(--dyn-border-radius-xs);
+  font-size: var(--dyn-font-size-xs);
+  gap: var(--dyn-spacing-xs);
 }
 
-/* Actions */
+/* ================================================
+   ACTIONS
+   ================================================ */
 .actions {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dyn-spacing-xs);
   flex-shrink: 0;
 }
 
 .arrow {
   color: var(--dyn-select-placeholder);
-  transition: transform 0.2s;
+  transition: transform var(--dyn-transition-fast);
 }
 
-/* Options */
+/* ================================================
+   OPTIONS DROPDOWN
+   ================================================ */
 .options {
   max-height: 240px;
   overflow-y: auto;
-  padding: 4px 0;
+  padding: var(--dyn-spacing-xs) 0;
   background-color: var(--dyn-select-bg);
 }
 
 .option {
   width: 100%;
-  padding: 10px 12px;
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
   cursor: pointer;
   border: none;
   background: none;
   font-size: var(--dyn-select-font-size);
   text-align: left;
   color: var(--dyn-select-color);
-  transition: background-color 0.15s;
+  transition: background-color var(--dyn-transition-fast);
 }
 
 .option:hover:not(.optionDisabled) {
-  background-color: var(--dyn-neutral-light-100);
+  background-color: var(--dyn-semantic-surface-muted);
 }
 
 .optionSelected {
   background-color: var(--dyn-neutral-light-50);
   color: var(--dyn-select-border-focus);
-  font-weight: 500;
+  font-weight: var(--dyn-font-weight-medium);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-select-bg: var(--dyn-neutral-dark-900, #1e293b);
-    --dyn-select-color: var(--dyn-neutral-light-100, #f1f5f9);
-    --dyn-select-border: var(--dyn-neutral-dark-700, #334155);
-    --dyn-select-placeholder: var(--dyn-neutral-mid-400, #94a3b8);
-  }
-
-  .option:hover:not(.optionDisabled) {
-    background-color: var(--dyn-neutral-dark-700);
-  }
-}
+/* ================================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ================================================ */

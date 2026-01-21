@@ -1,98 +1,88 @@
-.container {
-  /* Component tokens with fallbacks to system tokens */
-  --dyn-checkbox-bg: var(--dyn-neutral-light-white, #ffffff);
-  --dyn-checkbox-border: var(--dyn-neutral-light-200, #d1d5db);
-  --dyn-checkbox-border-hover: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-checkbox-bg-checked: var(--dyn-theme-primary, #2563eb);
-  --dyn-checkbox-border-checked: var(--dyn-theme-primary, #2563eb);
-  --dyn-checkbox-checkmark-color: #ffffff;
-  --dyn-checkbox-disabled-bg: var(--dyn-neutral-light-100, #f3f4f6);
-  --dyn-checkbox-error: var(--dyn-feedback-negative-default, #d32f2f);
+/* ================================================
+   COMPONENT TOKENS (Layer 2)
+   Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
+   ================================================ */
+:root {
+  /* Color tokens */
+  --dyn-checkbox-bg: var(--dyn-semantic-input-bg);
+  --dyn-checkbox-bg-checked: var(--dyn-theme-primary);
+  --dyn-checkbox-border: var(--dyn-semantic-input-border);
+  --dyn-checkbox-border-checked: var(--dyn-theme-primary);
+  --dyn-checkbox-border-focus: var(--dyn-semantic-border-focus);
+  --dyn-checkbox-checkmark: var(--dyn-base-white);
+  --dyn-checkbox-disabled-bg: var(--dyn-semantic-surface-muted);
+  --dyn-checkbox-disabled-border: var(--dyn-semantic-border);
 
-  --dyn-checkbox-radius: 4px;
-  --dyn-checkbox-size: 18px;
-  --dyn-checkbox-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
-  --dyn-checkbox-focus-ring: var(--dyn-action-focus, rgba(37, 99, 235, 0.35));
-
-  display: inline-flex;
-  flex-direction: column;
+  /* Layout tokens */
+  --dyn-checkbox-size: 1.25rem;
+  --dyn-checkbox-border-radius: var(--dyn-border-radius-xs);
+  --dyn-checkbox-transition: var(--dyn-transition-fast);
 }
 
-.wrapper {
+/* ================================================
+   BASE STYLES
+   ================================================ */
+.container {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--dyn-spacing-sm);
   cursor: pointer;
-  transition: all var(--dyn-checkbox-transition);
+  user-select: none;
 }
 
-.input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.box {
+.checkbox {
+  appearance: none;
   width: var(--dyn-checkbox-size);
   height: var(--dyn-checkbox-size);
-  border: 1px solid var(--dyn-checkbox-border);
-  border-radius: var(--dyn-checkbox-radius);
+  border: 2px solid var(--dyn-checkbox-border);
+  border-radius: var(--dyn-checkbox-border-radius);
   background-color: var(--dyn-checkbox-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  cursor: pointer;
   transition: all var(--dyn-checkbox-transition);
+  position: relative;
   flex-shrink: 0;
 }
 
-.input:focus-visible+.box {
-  box-shadow: 0 0 0 3px var(--dyn-checkbox-focus-ring);
-}
-
-.boxChecked {
+/* ================================================
+   INTERACTIVE STATES
+   ================================================ */
+.checkbox:checked {
   background-color: var(--dyn-checkbox-bg-checked);
   border-color: var(--dyn-checkbox-border-checked);
 }
 
-.boxIndeterminate {
-  background-color: var(--dyn-checkbox-bg-checked);
-  border-color: var(--dyn-checkbox-border-checked);
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 8px;
+  border: solid var(--dyn-checkbox-checkmark);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
 }
 
-.boxError {
-  border-color: var(--dyn-checkbox-error);
+.checkbox:focus-visible {
+  outline: 2px solid var(--dyn-checkbox-border-focus);
+  outline-offset: 2px;
 }
 
-.boxDisabled {
+.checkbox:disabled {
   background-color: var(--dyn-checkbox-disabled-bg);
+  border-color: var(--dyn-checkbox-disabled-border);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.checkmark {
-  color: var(--dyn-checkbox-checkmark-color);
-  width: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .label {
-  color: var(--dyn-neutral-dark-900);
-  font-size: var(--dyn-font-size-sm, 14px);
-  user-select: none;
+  color: var(--dyn-semantic-text);
+  font-size: var(--dyn-font-size-sm);
+  line-height: 1.5;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-checkbox-bg: var(--dyn-neutral-dark-900, #1e293b);
-    --dyn-checkbox-border: var(--dyn-neutral-dark-700, #334155);
-    --dyn-checkbox-bg-checked: var(--dyn-theme-primary, #3b82f6);
-  }
-
-  .label {
-    color: var(--dyn-neutral-light-100);
-  }
-}
+/* ================================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ================================================ */

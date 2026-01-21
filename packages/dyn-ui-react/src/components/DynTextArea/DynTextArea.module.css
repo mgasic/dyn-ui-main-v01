@@ -1,22 +1,32 @@
+/* ================================================
+   COMPONENT TOKENS (Layer 2)
+   Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
+   ================================================ */
+:root {
+  /* Color tokens */
+  --dyn-textarea-bg: var(--dyn-semantic-input-bg);
+  --dyn-textarea-color: var(--dyn-semantic-text);
+  --dyn-textarea-border: var(--dyn-semantic-input-border);
+  --dyn-textarea-border-hover: var(--dyn-neutral-mid-400);
+  --dyn-textarea-border-focus: var(--dyn-theme-primary);
+  --dyn-textarea-focus-ring: var(--dyn-action-focus);
+  --dyn-textarea-placeholder: var(--dyn-semantic-text-secondary);
+  --dyn-textarea-disabled-bg: var(--dyn-semantic-surface-muted);
+  --dyn-textarea-disabled-color: var(--dyn-semantic-text-secondary);
+  --dyn-textarea-readonly-bg: var(--dyn-semantic-surface);
+  --dyn-textarea-error: var(--dyn-feedback-negative-default);
+
+  /* Layout tokens */
+  --dyn-textarea-radius: var(--dyn-border-radius-md);
+  --dyn-textarea-padding: var(--dyn-spacing-sm);
+  --dyn-textarea-font-size: var(--dyn-font-size-sm);
+  --dyn-textarea-transition: var(--dyn-transition-normal);
+}
+
+/* ================================================
+   BASE STYLES
+   ================================================ */
 .container {
-  /* Component tokens with fallbacks to system tokens */
-  --dyn-textarea-bg: var(--dyn-neutral-light-white, var(--legacy-color-surface, #ffffff));
-  --dyn-textarea-color: var(--dyn-neutral-dark-900, var(--legacy-color-text-primary, #111827));
-  --dyn-textarea-border: var(--dyn-neutral-light-200, var(--legacy-color-border, #d1d5db));
-  --dyn-textarea-border-hover: var(--dyn-neutral-mid-400, var(--legacy-color-border-hover, #9ca3af));
-  --dyn-textarea-border-focus: var(--dyn-theme-primary, var(--legacy-color-primary, #2563eb));
-  --dyn-textarea-focus-ring: var(--dyn-action-focus, var(--legacy-color-focus-ring, rgba(37, 99, 235, 0.35)));
-  --dyn-textarea-placeholder: var(--dyn-neutral-mid-400, var(--legacy-color-text-placeholder, #9ca3af));
-  --dyn-textarea-disabled-bg: var(--dyn-neutral-light-100, var(--legacy-color-surface-disabled, #f3f4f6));
-  --dyn-textarea-disabled-color: var(--dyn-neutral-mid-400, var(--legacy-color-text-disabled, #9ca3af));
-  --dyn-textarea-readonly-bg: var(--dyn-neutral-light-50, var(--legacy-color-surface-readonly, #f9fafb));
-  --dyn-textarea-error: var(--dyn-feedback-negative-default, var(--legacy-color-danger, #d32f2f));
-
-  --dyn-textarea-radius: var(--dyn-border-radius-md, 8px);
-  --dyn-textarea-padding: var(--dyn-spacing-sm, 12px);
-  --dyn-textarea-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-textarea-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
-
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -48,6 +58,9 @@
   color: var(--dyn-textarea-placeholder);
 }
 
+/* ================================================
+   INTERACTIVE STATES
+   ================================================ */
 .textarea:hover:not(.textareaDisabled):not(.textareaReadonly) {
   border-color: var(--dyn-textarea-border-hover);
 }
@@ -73,6 +86,9 @@
   border-color: var(--dyn-textarea-error);
 }
 
+/* ================================================
+   RESIZE OPTIONS
+   ================================================ */
 .textareaAutoResize {
   resize: none;
   overflow: hidden;
@@ -90,28 +106,22 @@
   resize: both;
 }
 
+/* ================================================
+   CHARACTER COUNT
+   ================================================ */
 .characterCount {
   position: absolute;
-  bottom: 8px;
-  right: 12px;
-  font-size: 11px;
+  bottom: var(--dyn-spacing-sm);
+  right: var(--dyn-spacing-sm);
+  font-size: var(--dyn-font-size-2xs);
   color: var(--dyn-textarea-placeholder);
   pointer-events: none;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 2px 4px;
-  border-radius: 4px;
+  background-color: var(--dyn-semantic-surface);
+  padding: var(--dyn-spacing-2xs) var(--dyn-spacing-xs);
+  border-radius: var(--dyn-border-radius-xs);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-textarea-bg: var(--dyn-neutral-dark-900, #1f2937);
-    --dyn-textarea-color: var(--dyn-neutral-light-100, #f3f4f6);
-    --dyn-textarea-border: var(--dyn-neutral-dark-700, #4b5563);
-    --dyn-textarea-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
-  }
-
-  .characterCount {
-    background-color: rgba(31, 41, 55, 0.8);
-  }
-}
+/* ================================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ================================================ */

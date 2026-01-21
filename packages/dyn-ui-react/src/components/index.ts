@@ -28,7 +28,7 @@ export { DynTabs } from './DynTabs';
 export { DynToolbar } from './DynToolbar';
 export { DynTreeView } from './DynTreeView';
 export { DynSidebar } from './DynSidebar';
-export { DynSpaced } from './DynSpaced';
+// export { DynSpaced } from './DynSpaced'; // Component doesn't exist yet
 export { ThemeSwitcher } from './ThemeSwitcher';
 export { DynDropdown } from './DynDropdown';
 export { DynFlex } from './DynFlex';
@@ -74,7 +74,7 @@ export type * from './DynTabs';
 export type * from './DynToolbar';
 export type * from './DynTreeView';
 export type * from './DynSidebar';
-export type * from './DynSpaced';
+// export type * from './DynSpaced'; // Component doesn't exist yet
 export type * from './ThemeSwitcher';
 export type * from './DynDropdown';
 export type * from './DynFlex';

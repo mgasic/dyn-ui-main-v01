@@ -1,21 +1,38 @@
+/**
+ * DynResponsiveTabs Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
 /* ============================================
-   DYN RESPONSIVE TABS - COMPONENT STYLES
-   Uses Design Tokens from @dyn-ui/design-tokens
-   Updated: Dec 2025 - Blue/Gray Color Scheme
-   ALL VALUES FROM DESIGN TOKENS - NO HARDCODED VALUES
+   COMPONENT TOKENS
    ============================================ */
 
 .container {
-  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-tabs-bg: var(--dyn-semantic-surface);
+  --dyn-tabs-bg-active: var(--dyn-semantic-background);
+  --dyn-tabs-bg-hover: var(--dyn-semantic-surface-hover);
+  --dyn-tabs-border: var(--dyn-semantic-border);
+  --dyn-tabs-border-active: var(--dyn-theme-primary);
+  --dyn-tabs-text: var(--dyn-semantic-text-secondary);
+  --dyn-tabs-text-active: var(--dyn-theme-primary);
+
+  --dyn-tabs-radius: var(--dyn-border-radius-md);
+  --dyn-tabs-padding: var(--dyn-spacing-md) var(--dyn-spacing-lg);
+
+  font-family: inherit;
   position: relative;
   width: 100%;
 }
 
-/* ===== TAB LIST ===== */
+/* ============================================
+   TAB LIST
+   ============================================ */
+
 .tabList {
   display: flex;
-  gap: var(--dyn-responsive-tabs-tab-gap, 4px);
-  border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
+  gap: var(--dyn-spacing-xs);
+  border-bottom: 2px solid var(--dyn-tabs-border);
   background: transparent;
   padding: 0;
   margin: 0;
@@ -23,58 +40,67 @@
   flex-wrap: wrap;
 }
 
-/* ===== INDIVIDUAL TAB ===== */
+/* ============================================
+   INDIVIDUAL TAB
+   ============================================ */
+
 .tab {
-  background: var(--dyn-responsive-tabs-bg-inactive, #F5F5F5);
-  border: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+  background: var(--dyn-tabs-bg);
+  border: 1px solid var(--dyn-tabs-border);
   border-bottom: none;
-  border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-tab, 8px 8px 0 0);
-  padding: var(--dyn-responsive-tabs-tab-padding, 0.75rem 1.5rem);
-  font-size: var(--dyn-responsive-tabs-font-size, 14px);
-  font-weight: var(--dyn-responsive-tabs-font-weight-inactive, 400);
-  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
-  color: var(--dyn-responsive-tabs-text-inactive, #666666);
+  border-radius: var(--dyn-tabs-radius) var(--dyn-tabs-radius) 0 0;
+  padding: var(--dyn-tabs-padding);
+  font-size: var(--dyn-font-size-sm);
+  font-weight: var(--dyn-font-weight-medium);
+  color: var(--dyn-tabs-text);
   cursor: pointer;
-  transition: var(--dyn-responsive-tabs-transition, all 0.3s ease);
+  transition: all var(--dyn-transition-fast);
   position: relative;
-  margin-bottom: calc(var(--dyn-responsive-tabs-border-width-default, 2px) * -1);
+  margin-bottom: -2px;
   text-align: center;
   white-space: nowrap;
 }
 
 .tab:hover:not(.disabledTab) {
-  background: var(--dyn-responsive-tabs-bg-hover, #E8E8E8);
+  background: var(--dyn-tabs-bg-hover);
+  color: var(--dyn-semantic-text);
 }
 
 .activeTab {
-  background: var(--dyn-responsive-tabs-bg-active, #E0F7FF);
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-bottom: none;
-  color: var(--dyn-responsive-tabs-text-active, #333333);
-  font-weight: var(--dyn-responsive-tabs-font-weight-active, 600);
+  background: var(--dyn-tabs-bg-active);
+  border: 2px solid var(--dyn-tabs-border-active);
+  border-bottom: 2px solid var(--dyn-tabs-bg-active);
+  color: var(--dyn-tabs-text-active);
+  font-weight: var(--dyn-font-weight-semibold);
   z-index: 2;
 }
 
 .disabledTab {
-  opacity: 0.5;
+  opacity: var(--dyn-opacity-disabled);
   cursor: not-allowed;
-  background: #F5F5F5;
+  background: var(--dyn-semantic-surface-muted);
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  outline: 2px solid var(--dyn-semantic-border-focus);
   outline-offset: 2px;
 }
 
-/* ===== TAB ICON ===== */
+/* ============================================
+   TAB ICON
+   ============================================ */
+
 .tabIcon {
-  margin-right: 0.5rem;
+  margin-right: var(--dyn-spacing-sm);
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
 }
 
-/* ===== PANEL WRAPPER ===== */
+/* ============================================
+   PANEL WRAPPER
+   ============================================ */
+
 .panelWrapper {
   position: relative;
 }
@@ -83,14 +109,17 @@
   flex: 1;
 }
 
-/* ===== CONTENT PANEL ===== */
+/* ============================================
+   CONTENT PANEL
+   ============================================ */
+
 .panel {
-  background: var(--dyn-responsive-tabs-bg-content, #FFFFFF);
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
+  background: var(--dyn-tabs-bg-active);
+  border: 2px solid var(--dyn-tabs-border);
   border-top: none;
-  border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-panel, 0 0 8px 8px);
-  padding: var(--dyn-responsive-tabs-panel-padding, 1.5rem);
-  min-height: var(--dyn-responsive-tabs-panel-min-height, 200px);
+  border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
+  padding: var(--dyn-spacing-lg);
+  min-height: 200px;
   animation: fadeIn 0.2s ease;
 }
 
@@ -103,11 +132,19 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-/* ===== VERTICAL LAYOUT ===== */
+/* ============================================
+   VERTICAL LAYOUT
+   ============================================ */
+
 .orientation-vertical {
   display: flex;
   gap: 0;
@@ -119,33 +156,29 @@
   border-bottom: none;
   border-right: none;
   min-width: 200px;
-  margin-right: 0;
-  gap: 4px;
+  margin-right: -2px;
+  gap: var(--dyn-spacing-xs);
+  z-index: 1;
 }
 
 .orientation-vertical .tab {
-  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
-  border: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
-  border-right: var(--dyn-responsive-tabs-border-vertical-inactive-tab-right, none);
+  border-radius: var(--dyn-tabs-radius) 0 0 var(--dyn-tabs-radius);
+  border: 1px solid var(--dyn-tabs-border);
+  border-right: none;
   margin-bottom: 0;
-  margin-right: 0;
   text-align: left;
 }
 
 .orientation-vertical .tab:last-child {
-  border-bottom: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
+  border-bottom: 1px solid var(--dyn-tabs-border);
 }
 
-/* VERTICAL ACTIVE TAB - USING DESIGN TOKENS ONLY */
 .orientation-vertical .activeTab {
-  border-top: var(--dyn-responsive-tabs-border-vertical-active-tab-top, 2px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-right: var(--dyn-responsive-tabs-border-vertical-active-tab-right, none);
-  border-bottom: var(--dyn-responsive-tabs-border-vertical-active-tab-bottom, 2px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  border-left: var(--dyn-responsive-tabs-border-vertical-active-tab-left, 4px solid) var(--dyn-responsive-tabs-border-active, #4DB8E8);
-  
-  padding-left: calc(0.75rem - var(--dyn-responsive-tabs-border-width-default, 2px));
-  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px);
-  position: relative;
+  border: 2px solid var(--dyn-tabs-border-active);
+  border-right: 2px solid var(--dyn-tabs-bg-active);
+  border-left-width: 4px;
+  padding-left: calc(var(--dyn-spacing-lg) - 2px);
+  /* Adjust for border width change */
   z-index: 3;
 }
 
@@ -154,64 +187,68 @@
 }
 
 .orientation-vertical .panel {
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
-  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
+  border: 2px solid var(--dyn-tabs-border);
+  border-radius: 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius) var(--dyn-tabs-radius);
+  min-height: 300px;
 }
 
-/* ===== ACCORDION MODE ===== */
+/* ============================================
+   ACCORDION MODE
+   ============================================ */
+
 .accordion {
   width: 100%;
 }
 
 .accordion .panelWrapper {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--dyn-spacing-sm);
 }
 
 .accordionHeader {
-  background: var(--dyn-responsive-tabs-accordion-header, #F5F5F5);
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-accordion-border, #4DB8E8);
-  border-radius: var(--dyn-responsive-tabs-border-radius-default, 8px);
-  padding: var(--dyn-responsive-tabs-accordion-header-padding, 1rem 1.5rem);
+  background: var(--dyn-tabs-bg);
+  border: 2px solid var(--dyn-tabs-border);
+  border-radius: var(--dyn-tabs-radius);
+  padding: var(--dyn-spacing-md) var(--dyn-spacing-lg);
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--dyn-responsive-tabs-accordion-header-gap, 1rem);
-  font-size: var(--dyn-responsive-tabs-font-size, 14px);
-  font-weight: var(--dyn-responsive-tabs-font-weight-inactive, 400);
-  font-family: var(--dyn-responsive-tabs-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
-  color: var(--dyn-responsive-tabs-text-inactive, #666666);
-  transition: var(--dyn-responsive-tabs-transition, all 0.3s ease);
+  gap: var(--dyn-spacing-md);
+  font-size: var(--dyn-font-size-md);
+  font-weight: var(--dyn-font-weight-medium);
+  color: var(--dyn-tabs-text);
+  transition: all var(--dyn-transition-fast);
   user-select: none;
   width: 100%;
 }
 
 .accordionHeader:hover:not(.disabledAccordion) {
-  background: var(--dyn-responsive-tabs-bg-hover, #E8E8E8);
+  background: var(--dyn-tabs-bg-hover);
 }
 
 .accordionHeader:focus-visible {
-  outline: 2px solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+  outline: 2px solid var(--dyn-semantic-border-focus);
   outline-offset: 2px;
 }
 
 .activeAccordion {
-  background: var(--dyn-responsive-tabs-accordion-header-active, #E0F7FF);
-  border-color: var(--dyn-responsive-tabs-accordion-border, #4DB8E8);
-  color: var(--dyn-responsive-tabs-text-active, #333333);
-  font-weight: var(--dyn-responsive-tabs-font-weight-active, 600);
-  border-radius: var(--dyn-responsive-tabs-border-radius-default, 8px) var(--dyn-responsive-tabs-border-radius-default, 8px) 0 0;
+  background: var(--dyn-tabs-bg-active);
+  border-color: var(--dyn-tabs-border-active);
+  color: var(--dyn-tabs-text-active);
+  font-weight: var(--dyn-font-weight-semibold);
+  border-radius: var(--dyn-tabs-radius) var(--dyn-tabs-radius) 0 0;
 }
 
 .disabledAccordion {
-  opacity: 0.5;
+  opacity: var(--dyn-opacity-disabled);
   cursor: not-allowed;
+  background: var(--dyn-semantic-surface-muted);
 }
 
 .accordionLabel {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--dyn-spacing-sm);
   flex: 1;
 }
 
@@ -228,12 +265,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  transition: transform var(--dyn-transition-normal);
 }
 
 .accordion .panel {
+  border: 2px solid var(--dyn-tabs-border);
   border-top: none;
-  border-radius: 0 0 var(--dyn-responsive-tabs-border-radius-default, 8px) var(--dyn-responsive-tabs-border-radius-default, 8px);
+  border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   animation: slideDown 0.3s ease;
 }
 
@@ -242,61 +280,50 @@
     opacity: 0;
     max-height: 0;
   }
+
   to {
     opacity: 1;
     max-height: 500px;
   }
 }
 
-/* ===== NESTED TABS ===== */
+/* ============================================
+   NESTED TABS
+   ============================================ */
+
 .nested .tab {
-  background: var(--dyn-responsive-tabs-nested-background-inactive, #FAFAFA);
-  border-color: var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  padding: var(--dyn-responsive-tabs-tab-padding-sm, 0.6rem 1rem);
-  font-size: var(--dyn-responsive-tabs-font-size-sm, 12px);
+  background: var(--dyn-semantic-surface-muted);
+  border-color: var(--dyn-semantic-border);
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
+  font-size: var(--dyn-font-size-xs);
 }
 
 .nested .activeTab {
-  background: var(--dyn-responsive-tabs-nested-background-active, #F0FBFF);
-  border-color: var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  color: var(--dyn-responsive-tabs-text-active, #333333);
+  background: var(--dyn-semantic-background);
+  border-color: var(--dyn-semantic-border);
+  color: var(--dyn-semantic-text);
+  border-bottom-color: var(--dyn-semantic-background);
 }
 
 .nested .panel {
-  border-color: var(--dyn-responsive-tabs-nested-border, #80D0ED);
+  border-color: var(--dyn-semantic-border);
+  background: var(--dyn-semantic-background);
 }
 
-/* ===== NESTED TABS - VERTICAL LAYOUT (USING TOKENS) ===== */
-.container .nested.orientation-vertical .tab {
-  border-right: var(--dyn-responsive-tabs-border-vertical-inactive-tab-right, none);
-}
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
-.container .nested.orientation-vertical .tab.activeTab {
-  border-top: var(--dyn-responsive-tabs-border-vertical-active-tab-top, 2px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-right: var(--dyn-responsive-tabs-border-vertical-active-tab-right, none) !important;
-  border-bottom: var(--dyn-responsive-tabs-border-vertical-active-tab-bottom, 2px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-left: var(--dyn-responsive-tabs-border-vertical-active-tab-left, 4px solid) var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  
-  padding-left: calc(0.6rem - var(--dyn-responsive-tabs-border-width-default, 2px));
-  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-tab, 8px 0 0 8px) !important;
-}
-
-.container .nested.orientation-vertical .panel {
-  border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-nested-border, #80D0ED);
-  border-radius: var(--dyn-responsive-tabs-border-radius-vertical-panel, 0 8px 8px 0);
-}
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .tab {
-    padding: var(--dyn-responsive-tabs-tab-padding-sm, 0.6rem 1rem);
-    font-size: var(--dyn-responsive-tabs-font-size-sm, 12px);
+    padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+    font-size: var(--dyn-font-size-xs);
   }
-  
+
   .panel {
-    padding: 1rem;
+    padding: var(--dyn-spacing-md);
   }
-  
+
   .orientation-vertical .tabList {
     min-width: 150px;
   }
@@ -304,43 +331,52 @@
 
 @media (max-width: 480px) {
   .tab {
-    padding: var(--dyn-responsive-tabs-tab-padding-xs, 0.5rem 0.75rem);
-    font-size: 11px;
+    padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+    font-size: var(--dyn-font-size-2xs);
   }
-  
+
   .panel {
-    padding: 0.75rem;
+    padding: var(--dyn-spacing-sm);
     min-height: auto;
   }
-  
+
   .accordionHeader {
-    padding: 0.75rem 1rem;
+    padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
   }
-  
+
   .orientation-vertical {
     flex-direction: column;
   }
-  
+
   .orientation-vertical .tabList {
     border-right: none;
-    border-bottom: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-content, #4DB8E8);
+    border-bottom: 2px solid var(--dyn-tabs-border);
     min-width: auto;
+    margin-right: 0;
+    margin-bottom: -2px;
   }
-  
+
   .orientation-vertical .tab {
-    border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-tab, 8px 8px 0 0);
+    border-radius: var(--dyn-tabs-radius) var(--dyn-tabs-radius) 0 0;
     margin-right: 0;
-    border-right: var(--dyn-responsive-tabs-border-width-thin, 1px) solid var(--dyn-responsive-tabs-border-default, #E0E0E0);
-  }
-  
-  .orientation-vertical .activeTab {
-    border: var(--dyn-responsive-tabs-border-width-default, 2px) solid var(--dyn-responsive-tabs-border-active, #4DB8E8);
+    border: 1px solid var(--dyn-tabs-border);
     border-bottom: none;
-    margin-right: 0;
-    padding-left: 0.5rem;
   }
-  
+
+  .orientation-vertical .activeTab {
+    border: 2px solid var(--dyn-tabs-border-active);
+    border-bottom: 2px solid var(--dyn-tabs-bg-active);
+    margin-right: 0;
+    padding-left: var(--dyn-spacing-md);
+    border-left-width: 2px;
+  }
+
   .orientation-vertical .panel {
-    border-radius: var(--dyn-responsive-tabs-border-radius-horizontal-panel, 0 0 8px 8px);
+    border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

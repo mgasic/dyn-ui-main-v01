@@ -1,11 +1,98 @@
 {
   "animation": {
     "transition": {
-      "all": { "value": "all 0.2s ease-in-out" },
-      "colors": { "value": "color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease" },
-      "fast": { "value": "0.15s ease" },
-      "normal": { "value": "0.2s ease-in-out" },
-      "slow": { "value": "0.3s ease-in-out" }
+      "none": {
+        "value": "none",
+        "description": "No transition"
+      },
+      "fast": {
+        "value": "0.1s ease",
+        "description": "Fast transition for micro-interactions"
+      },
+      "normal": {
+        "value": "0.2s ease-in-out",
+        "description": "Normal transition (default)"
+      },
+      "slow": {
+        "value": "0.3s ease-in-out",
+        "description": "Slow transition for emphasis"
+      },
+      "slower": {
+        "value": "0.5s ease-in-out",
+        "description": "Slower transition for dramatic effects"
+      },
+      "all": {
+        "value": "all 0.2s ease-in-out",
+        "description": "Transition all properties"
+      },
+      "colors": {
+        "value": "color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease",
+        "description": "Color transitions only"
+      },
+      "transform": {
+        "value": "transform 0.2s ease-in-out",
+        "description": "Transform transition"
+      },
+      "opacity": {
+        "value": "opacity 0.2s ease-in-out",
+        "description": "Opacity transition"
+      }
+    },
+    "duration": {
+      "instant": {
+        "value": "0ms",
+        "description": "Instant, no duration"
+      },
+      "fast": {
+        "value": "100ms",
+        "description": "Fast duration"
+      },
+      "normal": {
+        "value": "200ms",
+        "description": "Normal duration"
+      },
+      "slow": {
+        "value": "300ms",
+        "description": "Slow duration"
+      },
+      "slower": {
+        "value": "500ms",
+        "description": "Slower duration"
+      },
+      "slowest": {
+        "value": "1000ms",
+        "description": "Slowest duration"
+      }
+    },
+    "easing": {
+      "linear": {
+        "value": "linear",
+        "description": "Linear easing"
+      },
+      "ease": {
+        "value": "ease",
+        "description": "Default ease"
+      },
+      "ease-in": {
+        "value": "ease-in",
+        "description": "Ease in (slow start)"
+      },
+      "ease-out": {
+        "value": "ease-out",
+        "description": "Ease out (slow end)"
+      },
+      "ease-in-out": {
+        "value": "ease-in-out",
+        "description": "Ease in and out"
+      },
+      "bounce": {
+        "value": "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
+        "description": "Bounce easing"
+      },
+      "smooth": {
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "description": "Smooth material easing"
+      }
     }
   }
 }

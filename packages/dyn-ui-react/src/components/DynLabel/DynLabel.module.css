@@ -1,30 +1,39 @@
-.dyn-label-container {
-  /* Color Tokens */
-  --dyn-label-text-color: var(--dyn-neutral-dark-900, #111827);
-  --dyn-label-text-color-secondary: var(--dyn-neutral-mid-400, #666666);
-  --dyn-label-text-color-required: var(--dyn-feedback-negative-default, #f44336);
-  --dyn-label-text-color-disabled: var(--dyn-neutral-mid-400, #999999);
-  --dyn-label-text-color-focus: var(--dyn-theme-primary, #007bff);
+/**
+ * DynLabel Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
 
-  /* Typography Tokens */
-  --dyn-label-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-label-font-size-help: var(--dyn-font-size-xs, 12px);
-  --dyn-label-font-weight: var(--dyn-font-weight-medium, 500);
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
 
-  /* Spacing Tokens */
-  --dyn-label-gap: var(--dyn-spacing-xs, 4px);
-  --dyn-label-margin-bottom: var(--dyn-spacing-xs, 4px);
-  --dyn-label-requirement-gap: var(--dyn-spacing-xs, 4px);
+.dynLabelContainer {
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-label-text-color: var(--dyn-semantic-text);
+  --dyn-label-text-color-secondary: var(--dyn-semantic-text-secondary);
+  --dyn-label-text-color-required: var(--dyn-feedback-negative-default);
+  --dyn-label-text-color-disabled: var(--dyn-semantic-text-muted);
+  --dyn-label-text-color-focus: var(--dyn-theme-primary);
 
-  /* Transitions */
-  --dyn-label-transition: color var(--dyn-transition-normal, 0.2s ease-in-out);
+  /* Typography tokens */
+  --dyn-label-font-size: var(--dyn-font-size-sm);
+  --dyn-label-font-size-help: var(--dyn-font-size-xs);
+  --dyn-label-font-weight: var(--dyn-font-weight-medium);
+
+  /* Spacing tokens */
+  --dyn-label-gap: var(--dyn-spacing-xs);
+  --dyn-label-transition: color var(--dyn-transition-fast);
 
   display: flex;
   flex-direction: column;
   gap: var(--dyn-label-gap);
 }
 
-.dyn-label {
+/* ============================================
+   LABEL ELEMENT
+   ============================================ */
+
+.dynLabel {
   display: inline-block;
   margin-bottom: 0;
   font-family: inherit;
@@ -34,52 +43,60 @@
   transition: var(--dyn-label-transition);
 }
 
-.dyn-label-text {
+.dynLabelText {
   display: flex;
   align-items: center;
   gap: var(--dyn-label-gap);
 }
 
-.dyn-label-requirement {
+/* ============================================
+   REQUIREMENT INDICATORS
+   ============================================ */
+
+.dynLabelRequirement {
   font-size: 0.875em;
   font-weight: normal;
   color: var(--dyn-label-text-color-secondary);
 }
 
-.dyn-label-required-asterisk {
+.dynLabelRequiredAsterisk {
   color: var(--dyn-label-text-color-required);
   font-weight: bold;
-  margin-left: var(--dyn-label-requirement-gap);
+  margin-left: var(--dyn-label-gap);
 }
 
-.dyn-label-optional-text {
+.dynLabelOptionalText {
   color: var(--dyn-label-text-color-secondary);
   font-style: italic;
   font-weight: normal;
 }
 
-.dyn-label-help-text {
+/* ============================================
+   HELP TEXT
+   ============================================ */
+
+.dynLabelHelpText {
   font-size: var(--dyn-label-font-size-help);
   color: var(--dyn-label-text-color-secondary);
   line-height: 1.5;
-  margin-top: var(--dyn-label-requirement-gap);
+  margin-top: var(--dyn-label-gap);
 }
 
-.dyn-label.dyn-label-disabled {
+/* ============================================
+   STATES
+   ============================================ */
+
+.dynLabel.dynLabelDisabled {
   color: var(--dyn-label-text-color-disabled);
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.dyn-label:focus-within .dyn-label-text {
+.dynLabel:focus-within .dynLabelText {
   color: var(--dyn-label-text-color-focus);
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .dyn-label-container {
-    --dyn-label-text-color: var(--dyn-neutral-light-100, #f3f4f6);
-    --dyn-label-text-color-secondary: var(--dyn-neutral-mid-400, #9ca3af);
-    --dyn-label-text-color-focus: var(--dyn-theme-primary, #3b82f6);
-  }
-}
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

@@ -1,139 +1,43 @@
 /**
- * DynModal Component Styles - 100% Design Token Compliance
+ * DynModal Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
  * 
- * Varijante: default, fullscreen, centered
- * Veličine: small, medium, large
- * Stanja: open, closed, loading
- * Dark mode: Podržano
+ * Variants: default, fullscreen, centered
+ * Sizes: small, medium, large
+ * States: open, closed, loading
+ * Dark mode: Automatic via semantic tokens
  * A11y: WCAG AA+ (trap focus, escape key, aria attributes)
  */
 
 /* ============================================
-   COMPONENT TOKENS - Default (Light Mode)
+   COMPONENT TOKENS (scoped to container)
+   All tokens reference semantic/foundation tokens
    ============================================ */
 
-/* Component tokens scoped to overlay/container */
 .modalOverlay {
-  /* Foundation tokens (local scope fallback) */
-  --dyn-color-neutral-80: rgba(0, 0, 0, 0.5);
-
   /* Overlay tokens */
-  --dyn-modal-overlay-bg: var(--dyn-color-neutral-80);
-  --dyn-modal-overlay-backdrop-filter: blur(2px);
-  --dyn-modal-overlay-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --dyn-modal-overlay-bg: var(--dyn-semantic-overlay);
+  --dyn-modal-overlay-backdrop-filter: blur(4px);
+  --dyn-modal-transition: var(--dyn-transition-normal);
   --dyn-modal-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.modalContainer {
-  /* Foundation tokens (local scope fallback) */
-  --dyn-color-white: #FFFFFF;
-  --dyn-color-gray-900: #1A1A1A;
-  --dyn-color-gray-50: #F5F5F5;
-  --dyn-border-color: rgba(0, 0, 0, 0.12);
-  --dyn-shadow-xl: 0 15px 40px rgba(0, 0, 0, 0.25);
-
-  /* Modal Base tokens */
-  --dyn-modal-bg: var(--dyn-color-white);
-  --dyn-modal-text: var(--dyn-color-gray-900);
-  --dyn-modal-border: var(--dyn-border-color);
-  --dyn-modal-border-radius: 8px;
-  --dyn-modal-box-shadow: var(--dyn-shadow-xl);
-
-  /* Modal Header tokens */
-  --dyn-modal-header-padding: 24px;
-  --dyn-modal-header-bg: var(--dyn-color-white);
-  --dyn-modal-header-border: var(--dyn-border-color);
-  --dyn-modal-header-text: var(--dyn-color-gray-900);
-  --dyn-modal-header-font-size: 20px;
-  --dyn-modal-header-font-weight: 600;
-
-  /* Modal Body tokens */
-  --dyn-modal-body-padding: 24px;
-  --dyn-modal-body-bg: var(--dyn-color-white);
-  --dyn-modal-body-text: var(--dyn-color-gray-900);
-  --dyn-modal-body-font-size: 14px;
-  --dyn-modal-body-line-height: 1.5;
-
-  /* Modal Footer tokens */
-  --dyn-modal-footer-padding: 24px;
-  --dyn-modal-footer-bg: var(--dyn-color-gray-50);
-  --dyn-modal-footer-border: var(--dyn-border-color);
-  --dyn-modal-footer-gap: 12px;
-
-  /* Modal Close Button tokens */
-  --dyn-modal-close-size: 24px;
-  --dyn-modal-close-color: var(--dyn-color-gray-900);
-  --dyn-modal-close-color-hover: #007ACC;
-  --dyn-modal-close-color-active: var(--dyn-color-gray-900);
-
-  /* Modal Size tokens */
-  --dyn-modal-small-width: 400px;
-  --dyn-modal-small-max-width: 90vw;
-  --dyn-modal-medium-width: 600px;
-  --dyn-modal-medium-max-width: 90vw;
-  --dyn-modal-large-width: 800px;
-  --dyn-modal-large-max-width: 90vw;
-  --dyn-modal-max-height: 90vh;
-
-  /* Animation */
-  --dyn-modal-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ============================================
-   DARK MODE OVERRIDES
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark mode colors */
-    --dyn-color-white: #1A1A1A;
-    --dyn-color-gray-50: #2D2D2D;
-    --dyn-color-gray-900: #F5F5F5;
-    --dyn-color-neutral-80: rgba(0, 0, 0, 0.7);
-
-    /* Modal dark mode tokens */
-    --dyn-modal-bg: var(--dyn-color-white, #1A1A1A);
-    --dyn-modal-text: var(--dyn-color-gray-900, #F5F5F5);
-    --dyn-modal-header-bg: var(--dyn-color-white, #1A1A1A);
-    --dyn-modal-body-bg: var(--dyn-color-white, #1A1A1A);
-    --dyn-modal-footer-bg: var(--dyn-color-gray-50, #2D2D2D);
-    --dyn-modal-border: rgba(255, 255, 255, 0.12);
-    --dyn-modal-overlay-bg: var(--dyn-color-neutral-80, rgba(0, 0, 0, 0.7));
-  }
-}
-
-/* ============================================
-   HIGH CONTRAST MODE
-   ============================================ */
-
-@media (prefers-contrast: more) {
-  :root {
-    --dyn-modal-border: 2px solid var(--dyn-color-black, #000000);
-    --dyn-modal-header-border: 2px solid var(--dyn-color-black, #000000);
-    --dyn-modal-footer-border: 2px solid var(--dyn-color-black, #000000);
-  }
-}
-
-/* ============================================
-   MODAL OVERLAY (BACKDROP)
-   ============================================ */
-
-.modalOverlay {
+  /* Base overlay styles */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--dyn-modal-overlay-bg, var(--dyn-color-neutral-80, rgba(0, 0, 0, 0.5)));
-  backdrop-filter: var(--dyn-modal-overlay-backdrop-filter, blur(2px));
+  background-color: var(--dyn-modal-overlay-bg);
+  backdrop-filter: var(--dyn-modal-overlay-backdrop-filter);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 300ms var(--dyn-modal-animation-timing, cubic-bezier(0.4, 0, 0.2, 1)),
-    visibility 300ms var(--dyn-modal-animation-timing, cubic-bezier(0.4, 0, 0.2, 1));
+  transition:
+    opacity var(--dyn-modal-transition),
+    visibility var(--dyn-modal-transition);
 }
 
 .modalOverlay.open {
@@ -141,26 +45,57 @@
   visibility: visible;
 }
 
-/* ============================================
-   MODAL CONTAINER
-   ============================================ */
-
 .modalContainer {
+  /* Modal tokens - all use semantic for auto theme switching */
+  --dyn-modal-bg: var(--dyn-semantic-background);
+  --dyn-modal-text: var(--dyn-semantic-text);
+  --dyn-modal-border: var(--dyn-semantic-border);
+  --dyn-modal-border-radius: var(--dyn-border-radius-lg);
+  --dyn-modal-box-shadow: var(--dyn-elevation-high);
+
+  /* Header tokens */
+  --dyn-modal-header-padding: var(--dyn-spacing-lg);
+  --dyn-modal-header-bg: var(--dyn-semantic-background);
+  --dyn-modal-header-border: var(--dyn-semantic-border);
+  --dyn-modal-header-text: var(--dyn-semantic-text);
+  --dyn-modal-header-font-size: var(--dyn-font-size-xl);
+  --dyn-modal-header-font-weight: var(--dyn-font-weight-semibold);
+
+  /* Body tokens */
+  --dyn-modal-body-padding: var(--dyn-spacing-lg);
+  --dyn-modal-body-bg: var(--dyn-semantic-background);
+  --dyn-modal-body-text: var(--dyn-semantic-text);
+  --dyn-modal-body-font-size: var(--dyn-font-size-sm);
+
+  /* Footer tokens */
+  --dyn-modal-footer-padding: var(--dyn-spacing-lg);
+  --dyn-modal-footer-bg: var(--dyn-semantic-surface);
+  --dyn-modal-footer-border: var(--dyn-semantic-border);
+  --dyn-modal-footer-gap: var(--dyn-spacing-sm);
+
+  /* Close button tokens */
+  --dyn-modal-close-size: 24px;
+  --dyn-modal-close-color: var(--dyn-semantic-text-secondary);
+  --dyn-modal-close-color-hover: var(--dyn-theme-primary);
+
+  /* Size tokens */
+  --dyn-modal-width: 600px;
+  --dyn-modal-max-width: 90vw;
+  --dyn-modal-max-height: 90vh;
+
+  /* Base container styles */
   position: relative;
-  background-color: var(--dyn-modal-bg, var(--dyn-color-white, #FFFFFF));
-  color: var(--dyn-modal-text, var(--dyn-color-gray-900, #1A1A1A));
-  border-radius: var(--dyn-modal-border-radius, var(--dyn-border-radius-lg, 8px));
-  border: 1px solid var(--dyn-modal-border, var(--dyn-border-color, rgba(0, 0, 0, 0.12)));
-  box-shadow: var(--dyn-modal-box-shadow, var(--dyn-shadow-xl, 0 15px 40px rgba(0, 0, 0, 0.25)));
-  max-width: var(--dyn-modal-medium-max-width, 90vw);
-  max-height: var(--dyn-modal-max-height, 90vh);
+  background-color: var(--dyn-modal-bg);
+  color: var(--dyn-modal-text);
+  border-radius: var(--dyn-modal-border-radius);
+  border: 1px solid var(--dyn-modal-border);
+  box-shadow: var(--dyn-modal-box-shadow);
+  width: var(--dyn-modal-width);
+  max-width: var(--dyn-modal-max-width);
+  max-height: var(--dyn-modal-max-height);
   display: flex;
   flex-direction: column;
-  animation: slideUp 300ms var(--dyn-modal-animation-timing, cubic-bezier(0.4, 0, 0.2, 1));
-}
-
-.modalOverlay.open .modalContainer {
-  animation: slideUp 300ms var(--dyn-modal-animation-timing, cubic-bezier(0.4, 0, 0.2, 1)) forwards;
+  animation: slideUp 300ms var(--dyn-modal-animation-timing);
 }
 
 /* ============================================
@@ -168,9 +103,9 @@
    ============================================ */
 
 .modalHeader {
-  padding: var(--dyn-modal-header-padding, var(--dyn-spacing-6, 24px));
-  background-color: var(--dyn-modal-header-bg, var(--dyn-color-white, #FFFFFF));
-  border-bottom: 1px solid var(--dyn-modal-header-border, var(--dyn-border-color, rgba(0, 0, 0, 0.12)));
+  padding: var(--dyn-modal-header-padding);
+  background-color: var(--dyn-modal-header-bg);
+  border-bottom: 1px solid var(--dyn-modal-header-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -179,10 +114,10 @@
 
 .modalTitle {
   margin: 0;
-  font-size: var(--dyn-modal-header-font-size, var(--dyn-font-size-heading, 20px));
-  font-weight: var(--dyn-modal-header-font-weight, var(--dyn-font-weight-semibold, 600));
-  color: var(--dyn-modal-header-text, var(--dyn-color-gray-900, #1A1A1A));
-  line-height: var(--dyn-line-height-tight, 1.2);
+  font-size: var(--dyn-modal-header-font-size);
+  font-weight: var(--dyn-modal-header-font-weight);
+  color: var(--dyn-modal-header-text);
+  line-height: 1.2;
 }
 
 /* ============================================
@@ -192,25 +127,30 @@
 .modalClose {
   background: transparent;
   border: none;
-  width: var(--dyn-modal-close-size, 24px);
-  height: var(--dyn-modal-close-size, 24px);
+  width: var(--dyn-modal-close-size);
+  height: var(--dyn-modal-close-size);
   padding: 0;
   cursor: pointer;
-  color: var(--dyn-modal-close-color, var(--dyn-color-gray-900, #1A1A1A));
+  color: var(--dyn-modal-close-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
-  transition: all 250ms var(--dyn-modal-animation-timing, cubic-bezier(0.4, 0, 0.2, 1));
+  border-radius: var(--dyn-border-radius-sm);
+  transition: all var(--dyn-transition-fast);
 }
 
 .modalClose:hover {
-  color: var(--dyn-modal-close-color-hover, var(--dyn-color-primary-60, #007ACC));
-  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--dyn-modal-close-color-hover);
+  background-color: var(--dyn-semantic-surface-hover);
 }
 
 .modalClose:active {
-  color: var(--dyn-modal-close-color-active, var(--dyn-color-gray-900, #1A1A1A));
+  background-color: var(--dyn-semantic-surface-active);
+}
+
+.modalClose:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
 }
 
 /* ============================================
@@ -218,11 +158,11 @@
    ============================================ */
 
 .modalBody {
-  padding: var(--dyn-modal-body-padding, var(--dyn-spacing-6, 24px));
-  background-color: var(--dyn-modal-body-bg, var(--dyn-color-white, #FFFFFF));
-  color: var(--dyn-modal-body-text, var(--dyn-color-gray-900, #1A1A1A));
-  font-size: var(--dyn-modal-body-font-size, var(--dyn-font-size-body, 14px));
-  line-height: var(--dyn-modal-body-line-height, var(--dyn-line-height-normal, 1.5));
+  padding: var(--dyn-modal-body-padding);
+  background-color: var(--dyn-modal-body-bg);
+  color: var(--dyn-modal-body-text);
+  font-size: var(--dyn-modal-body-font-size);
+  line-height: 1.5;
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -233,12 +173,12 @@
    ============================================ */
 
 .modalFooter {
-  padding: var(--dyn-modal-footer-padding, var(--dyn-spacing-6, 24px));
-  background-color: var(--dyn-modal-footer-bg, var(--dyn-color-gray-50, #F5F5F5));
-  border-top: 1px solid var(--dyn-modal-footer-border, var(--dyn-border-color, rgba(0, 0, 0, 0.12)));
+  padding: var(--dyn-modal-footer-padding);
+  background-color: var(--dyn-modal-footer-bg);
+  border-top: 1px solid var(--dyn-modal-footer-border);
   display: flex;
   justify-content: flex-end;
-  gap: var(--dyn-modal-footer-gap, var(--dyn-spacing-3, 12px));
+  gap: var(--dyn-modal-footer-gap);
   flex-wrap: wrap;
   flex-shrink: 0;
 }
@@ -248,18 +188,15 @@
    ============================================ */
 
 .modalSmall {
-  width: var(--dyn-modal-small-width, 400px);
-  max-width: var(--dyn-modal-small-max-width, 90vw);
+  --dyn-modal-width: 400px;
 }
 
 .modalMedium {
-  width: var(--dyn-modal-medium-width, 600px);
-  max-width: var(--dyn-modal-medium-max-width, 90vw);
+  --dyn-modal-width: 600px;
 }
 
 .modalLarge {
-  width: var(--dyn-modal-large-width, 800px);
-  max-width: var(--dyn-modal-large-max-width, 90vw);
+  --dyn-modal-width: 800px;
 }
 
 /* ============================================
@@ -315,29 +252,23 @@
    ACCESSIBILITY
    ============================================ */
 
-/* Focus ring for keyboard navigation */
-.modalClose:focus-visible,
-.modalFooter button:focus-visible {
-  outline: 2px solid var(--dyn-color-primary-60, #007ACC);
-  outline-offset: 2px;
-}
-
-/* High contrast mode */
-@media (prefers-contrast: more) {
+@media (prefers-contrast: high) {
 
   .modalHeader,
   .modalFooter {
     border-width: 2px;
   }
+
+  .modalContainer {
+    border-width: 2px;
+  }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
   .modalOverlay,
   .modalContainer,
-  .modalClose,
-  .modalOverlay.open {
+  .modalClose {
     animation: none !important;
     transition: none !important;
   }
@@ -349,40 +280,39 @@
 
 @media (max-width: 768px) {
   .modalContainer {
-    border-radius: var(--dyn-border-radius-lg, 8px);
-    margin: var(--dyn-spacing-4, 16px);
+    margin: var(--dyn-spacing-md);
   }
 
   .modalSmall,
   .modalMedium,
   .modalLarge {
     width: 100%;
-    max-width: calc(100vw - var(--dyn-spacing-4, 16px) * 2);
+    max-width: calc(100vw - var(--dyn-spacing-md) * 2);
   }
 
   .modalHeader,
   .modalBody,
   .modalFooter {
-    padding: var(--dyn-spacing-4, 16px);
+    padding: var(--dyn-spacing-md);
   }
 }
 
 @media (max-width: 480px) {
   .modalContainer {
-    margin: var(--dyn-spacing-2, 8px);
+    margin: var(--dyn-spacing-sm);
   }
 
   .modalSmall,
   .modalMedium,
   .modalLarge {
     width: 100%;
-    max-width: calc(100vw - var(--dyn-spacing-2, 8px) * 2);
+    max-width: calc(100vw - var(--dyn-spacing-sm) * 2);
   }
 
   .modalHeader,
   .modalBody,
   .modalFooter {
-    padding: var(--dyn-spacing-3, 12px);
+    padding: var(--dyn-spacing-sm);
   }
 
   .modalFooter {
@@ -393,3 +323,9 @@
     width: 100%;
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   No explicit overrides needed for Option B.
+   ============================================ */

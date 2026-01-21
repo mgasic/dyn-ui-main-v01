@@ -2,7 +2,8 @@ import * as React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider } from '../packages/dyn-ui-react/src/theme/ThemeProvider';
 import '../packages/dyn-ui-react/src/styles/themes.css';
-import '../packages/dyn-ui-react/src/styles/design-tokens.css';
+// Import design tokens directly - CSS @import doesn't use Vite aliases
+import '@dyn-ui/design-tokens/styles/foundations/index.css';
 
 const themes = ['light', 'dark'];
 
@@ -46,13 +47,14 @@ const preview: Preview = {
         <ThemeProvider initialTheme={theme}>
           <div style={{
             minHeight: '100vh',
-            backgroundColor: 'var(--dyn-color-background)',
-            color: 'var(--dyn-color-foreground)',
+            backgroundColor: 'var(--dyn-semantic-background)',
+            color: 'var(--dyn-semantic-text)',
             padding: '1rem'
           }}>
             <Story />
           </div>
         </ThemeProvider>
+
       );
     },
   ],

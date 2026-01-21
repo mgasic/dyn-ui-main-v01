@@ -1,11 +1,11 @@
 .container {
   /* Color Tokens */
-  --dyn-field-container-label-text: var(--dyn-neutral-dark-900, #111827);
-  --dyn-field-container-label-text-error: var(--dyn-feedback-negative-default, #f44336);
-  --dyn-field-container-help-text: var(--dyn-neutral-mid-400, #666666);
-  --dyn-field-container-required-text: var(--dyn-feedback-negative-default, #f44336);
-  --dyn-field-container-optional-text: var(--dyn-neutral-mid-400, #666666);
-  --dyn-field-container-error-text: var(--dyn-feedback-negative-default, #f44336);
+  --dyn-field-container-label-text: var(--dyn-semantic-text);
+  --dyn-field-container-label-text-error: var(--dyn-feedback-negative-default);
+  --dyn-field-container-help-text: var(--dyn-semantic-text-secondary);
+  --dyn-field-container-required-text: var(--dyn-feedback-negative-default);
+  --dyn-field-container-optional-text: var(--dyn-semantic-text-secondary);
+  --dyn-field-container-error-text: var(--dyn-feedback-negative-default);
 
   /* Typography Tokens */
   --dyn-field-container-label-font-size: var(--dyn-font-size-sm, 14px);
@@ -54,7 +54,7 @@
   margin-top: var(--dyn-field-container-gap);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--dyn-spacing-xs);
 }
 
 .help {
@@ -67,8 +67,8 @@
 .required {
   display: inline-block;
   color: var(--dyn-field-container-required-text);
-  font-weight: 600;
-  margin-left: 2px;
+  font-weight: var(--dyn-font-weight-semibold);
+  margin-left: var(--dyn-spacing-2xs);
 }
 
 .optional {
@@ -76,14 +76,28 @@
   color: var(--dyn-field-container-optional-text);
   font-style: italic;
   font-size: 0.9em;
-  margin-left: 4px;
+  margin-left: var(--dyn-spacing-xs);
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-field-container-label-text: var(--dyn-neutral-light-100, #f3f4f6);
-    --dyn-field-container-help-text: var(--dyn-neutral-mid-400, #9ca3af);
-    --dyn-field-container-error-text: var(--dyn-feedback-negative-default, #ef4444);
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .label,
+  .containerError .label {
+    transition: none;
   }
 }
+
+@media (prefers-contrast: high) {
+  .label {
+    font-weight: var(--dyn-font-weight-bold);
+  }
+}
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

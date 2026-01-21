@@ -1,9 +1,34 @@
 {
   "shadow": {
     "elevation": {
-      "low": { "value": "0 1px 3px rgba(0,0,0,0.12)" },
-      "medium": { "value": "0 3px 6px rgba(0,0,0,0.16)" },
-      "high": { "value": "0 10px 20px rgba(0,0,0,0.19)" }
+      "none": {
+        "value": "none",
+        "description": "No shadow"
+      },
+      "low": {
+        "value": "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08)",
+        "description": "Subtle shadow for cards and surfaces"
+      },
+      "medium": {
+        "value": "0 4px 6px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08)",
+        "description": "Medium shadow for dropdowns and popovers"
+      },
+      "high": {
+        "value": "0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.10)",
+        "description": "Strong shadow for modals and floating elements"
+      },
+      "highest": {
+        "value": "0 20px 40px rgba(0, 0, 0, 0.20), 0 10px 15px rgba(0, 0, 0, 0.10)",
+        "description": "Maximum shadow for navigation and sticky elements"
+      },
+      "focus": {
+        "value": "0 0 0 3px rgba(0, 123, 255, 0.25)",
+        "description": "Focus ring shadow for accessibility"
+      },
+      "inner": {
+        "value": "inset 0 2px 4px rgba(0, 0, 0, 0.08)",
+        "description": "Inner shadow for pressed states"
+      }
     }
   }
 }

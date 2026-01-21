@@ -1,14 +1,14 @@
 .container {
   /* Component-scoped tokens with foundations alignment */
-  --dyn-date-picker-bg: var(--dyn-neutral-light-white, #ffffff);
-  --dyn-date-picker-color: var(--dyn-neutral-dark-900, #111827);
-  --dyn-date-picker-border: var(--dyn-neutral-light-200, #d1d5db);
-  --dyn-date-picker-border-hover: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-date-picker-border-focus: var(--dyn-theme-primary, #2563eb);
-  --dyn-date-picker-focus-ring: var(--dyn-action-focus, rgba(37, 99, 235, 0.35));
-  --dyn-date-picker-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-date-picker-disabled-bg: var(--dyn-neutral-light-100, #f3f4f6);
-  --dyn-date-picker-readonly-bg: var(--dyn-neutral-light-50, #f9fafb);
+  --dyn-date-picker-bg: var(--dyn-semantic-input-bg);
+  --dyn-date-picker-color: var(--dyn-semantic-text);
+  --dyn-date-picker-border: var(--dyn-semantic-input-border);
+  --dyn-date-picker-border-hover: var(--dyn-neutral-mid-400);
+  --dyn-date-picker-border-focus: var(--dyn-theme-primary);
+  --dyn-date-picker-focus-ring: var(--dyn-action-focus);
+  --dyn-date-picker-placeholder: var(--dyn-semantic-text-secondary);
+  --dyn-date-picker-disabled-bg: var(--dyn-semantic-surface-muted);
+  --dyn-date-picker-readonly-bg: var(--dyn-semantic-surface);
 
   --dyn-date-picker-radius: var(--dyn-border-radius-md, 8px);
   --dyn-date-picker-padding-y: var(--dyn-spacing-sm, 8px);
@@ -72,15 +72,15 @@
   border: none;
   color: var(--dyn-date-picker-placeholder);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--dyn-transition-fast);
 }
 
 .calendarButton {
-  right: 0.75rem;
+  right: var(--dyn-spacing-md);
 }
 
 .clearButton {
-  right: 2.25rem;
+  right: calc(var(--dyn-spacing-md) * 3);
 }
 
 .calendarButton:hover,
@@ -88,45 +88,93 @@
   color: var(--dyn-date-picker-color);
 }
 
+.calendarButton:focus-visible,
+.clearButton:focus-visible {
+  outline: var(--dyn-border-width-md) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs);
+}
+
 .dropdown {
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
-  z-index: 1000;
-  margin-top: 4px;
-  padding: 16px;
+  z-index: var(--dyn-z-index-dropdown);
+  margin-top: var(--dyn-spacing-xs);
+  padding: var(--dyn-spacing-md);
   background-color: var(--dyn-date-picker-bg);
   border: 1px solid var(--dyn-date-picker-border);
   border-radius: var(--dyn-date-picker-radius);
-  box-shadow: var(--dyn-shadow-lg);
+  box-shadow: var(--dyn-elevation-medium);
 }
 
 .shortcuts {
   display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
+  gap: var(--dyn-spacing-sm);
+  margin-bottom: var(--dyn-spacing-sm);
+  padding-bottom: var(--dyn-spacing-sm);
   border-bottom: 1px solid var(--dyn-date-picker-border);
   flex-wrap: wrap;
 }
 
 .shortcut {
-  padding: 4px 12px;
-  font-size: 12px;
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+  font-size: var(--dyn-font-size-xs);
   color: var(--dyn-date-picker-color);
   background: none;
   border: 1px solid var(--dyn-date-picker-border);
-  border-radius: 4px;
+  border-radius: var(--dyn-border-radius-xs);
   cursor: pointer;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-date-picker-bg: var(--dyn-neutral-dark-900, #1e293b);
-    --dyn-date-picker-color: var(--dyn-neutral-light-100, #f1f5f9);
-    --dyn-date-picker-border: var(--dyn-neutral-dark-700, #334155);
-    --dyn-date-picker-placeholder: var(--dyn-neutral-mid-400, #6b7280);
+.shortcut:hover {
+  background-color: var(--dyn-semantic-surface-hover);
+}
+
+.shortcut:focus-visible {
+  outline: var(--dyn-border-width-md) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+  .input {
+    font-size: var(--dyn-font-size-md);
+    min-height: 2.75rem;
+  }
+
+  .dropdown {
+    padding: var(--dyn-spacing-sm);
   }
 }
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .input,
+  .calendarButton,
+  .clearButton {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .input {
+    border-width: var(--dyn-border-width-md);
+  }
+
+  .input:focus {
+    outline-width: var(--dyn-border-width-lg);
+  }
+}
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

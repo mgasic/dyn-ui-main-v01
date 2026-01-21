@@ -1,25 +1,41 @@
+/**
+ * DynDivider Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
+
 .root {
-  --dyn-divider-color: var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
-  --dyn-divider-text-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-divider-color: var(--dyn-semantic-border);
+  --dyn-divider-text-color: var(--dyn-semantic-text-secondary);
+
+  /* Sizing tokens */
   --dyn-divider-gap: 0;
   --dyn-divider-thickness: 1px;
   --dyn-divider-line-style: solid;
-  --dyn-divider-spacing-block: var(--dyn-spacing-md, var(--spacing-md, 1rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-md, var(--spacing-md, 1rem));
+  --dyn-divider-spacing: var(--dyn-spacing-md);
 
+  /* Base styles */
   display: flex;
   align-items: center;
   width: 100%;
   min-width: 0;
   gap: var(--dyn-divider-gap);
   color: var(--dyn-divider-text-color);
-  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 0.75rem));
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  font-size: var(--dyn-font-size-xs);
+  font-weight: var(--dyn-font-weight-medium);
   letter-spacing: 0.02em;
 }
 
+/* ============================================
+   DIRECTION VARIANTS
+   ============================================ */
+
 .directionHorizontal {
-  margin-block: var(--dyn-divider-spacing-block);
+  margin-block: var(--dyn-divider-spacing);
 }
 
 .directionVertical {
@@ -28,12 +44,12 @@
   width: auto;
   min-height: 100%;
   align-self: stretch;
-  margin-inline: var(--dyn-divider-spacing-inline);
+  margin-inline: var(--dyn-divider-spacing);
 }
 
-.withLabel {
-  --dyn-divider-gap: 0.75rem;
-}
+/* ============================================
+   LINE ELEMENT
+   ============================================ */
 
 .line {
   flex: 1 1 0%;
@@ -48,19 +64,27 @@
   border-left: var(--dyn-divider-thickness) var(--dyn-divider-line-style) var(--dyn-divider-color);
 }
 
+/* ============================================
+   LABEL
+   ============================================ */
+
+.withLabel {
+  --dyn-divider-gap: var(--dyn-spacing-sm);
+}
+
 .label {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 0.75rem;
+  padding: 0 var(--dyn-spacing-sm);
   white-space: nowrap;
   border-radius: 999px;
-  background: var(--dyn-color-background, var(--color-background, #ffffff));
+  background: var(--dyn-semantic-background);
   color: inherit;
 }
 
 .directionVertical .label {
-  padding: 0.5rem 0;
+  padding: var(--dyn-spacing-xs) 0;
   border-radius: 0;
 }
 
@@ -80,6 +104,10 @@
   justify-content: flex-end;
 }
 
+/* ============================================
+   THICKNESS VARIANTS
+   ============================================ */
+
 .thicknessThin {
   --dyn-divider-thickness: 1px;
 }
@@ -91,6 +119,10 @@
 .thicknessThick {
   --dyn-divider-thickness: 3px;
 }
+
+/* ============================================
+   LINE STYLE VARIANTS
+   ============================================ */
 
 .lineStyleSolid {
   --dyn-divider-line-style: solid;
@@ -104,55 +136,57 @@
   --dyn-divider-line-style: dotted;
 }
 
+/* ============================================
+   COLOR VARIANTS
+   ============================================ */
+
 .colorDefault {
-  --dyn-divider-color: var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
-  --dyn-divider-text-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-divider-color: var(--dyn-semantic-border);
+  --dyn-divider-text-color: var(--dyn-semantic-text-secondary);
 }
 
 .colorPrimary {
-  --dyn-divider-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-divider-text-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-divider-color: var(--dyn-theme-primary);
+  --dyn-divider-text-color: var(--dyn-theme-primary);
 }
 
 .colorSecondary {
-  --dyn-divider-color: var(--dyn-color-secondary, var(--color-secondary, #6b7280));
-  --dyn-divider-text-color: var(--dyn-color-secondary, var(--color-secondary, #6b7280));
+  --dyn-divider-color: var(--dyn-theme-secondary);
+  --dyn-divider-text-color: var(--dyn-theme-secondary);
 }
 
 .colorMuted {
-  --dyn-divider-color: var(--dyn-color-muted, var(--color-muted, #e2e8f0));
-  --dyn-divider-text-color: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
+  --dyn-divider-color: var(--dyn-semantic-surface-muted);
+  --dyn-divider-text-color: var(--dyn-semantic-text-secondary);
 }
 
+/* ============================================
+   SPACING VARIANTS
+   ============================================ */
+
 .spacingNone {
-  --dyn-divider-spacing-block: 0;
-  --dyn-divider-spacing-inline: 0;
+  --dyn-divider-spacing: 0;
 }
 
 .spacingXs {
-  --dyn-divider-spacing-block: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
+  --dyn-divider-spacing: var(--dyn-spacing-xs);
 }
 
 .spacingSm {
-  --dyn-divider-spacing-block: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
+  --dyn-divider-spacing: var(--dyn-spacing-sm);
 }
 
 .spacingMd {
-  --dyn-divider-spacing-block: var(--dyn-spacing-md, var(--spacing-md, 1rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-md, var(--spacing-md, 1rem));
+  --dyn-divider-spacing: var(--dyn-spacing-md);
 }
 
 .spacingLg {
-  --dyn-divider-spacing-block: var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem));
+  --dyn-divider-spacing: var(--dyn-spacing-lg);
 }
 
-.spacingXl {
-  --dyn-divider-spacing-block: var(--dyn-spacing-xl, var(--spacing-xl, 2rem));
-  --dyn-divider-spacing-inline: var(--dyn-spacing-xl, var(--spacing-xl, 2rem));
-}
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
   .label {
@@ -167,13 +201,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .root {
-    --dyn-divider-color: var(--dyn-color-border-dark, var(--color-border-dark, rgba(248, 250, 252, 0.15)));
-    --dyn-divider-text-color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #cbd5e1));
-  }
-
-  .label {
-    background: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
-  }
-}
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

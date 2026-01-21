@@ -266,4 +266,6 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
 });
 
 DynToolbar.displayName = 'DynToolbar';
+
+export { DynToolbar };
 export default DynToolbar;

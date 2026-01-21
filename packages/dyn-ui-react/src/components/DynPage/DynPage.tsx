@@ -23,9 +23,17 @@ export const DynPage: React.FC<DynPageProps> = ({
 }) => {
   const pageClasses = cn(
     styles.container,
-    styles[`size-${size}`],
-    styles[`padding-${padding}`],
-    styles[`background-${background}`],
+    size === 'small' && styles.sizeSmall,
+    size === 'medium' && styles.sizeMedium,
+    size === 'large' && styles.sizeLarge,
+    padding === 'none' && styles.paddingNone,
+    padding === 'xs' && styles.paddingXs,
+    padding === 'sm' && styles.paddingSm,
+    padding === 'md' && styles.paddingMd,
+    padding === 'lg' && styles.paddingLg,
+    background === 'none' && styles.backgroundNone,
+    background === 'surface' && styles.backgroundSurface,
+    background === 'page' && styles.backgroundPage,
     {
       [styles.loading]: loading,
       [styles.error]: !!error

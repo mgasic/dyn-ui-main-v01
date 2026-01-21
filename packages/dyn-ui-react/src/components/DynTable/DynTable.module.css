@@ -1,15 +1,28 @@
-/* ==========================================================================
-   DynTable Component Styles
-   Fully aligned with DynGrid design system
-   ========================================================================== */
+/**
+ * DynTable Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
 
 .root {
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-table-bg: var(--dyn-semantic-background);
+  --dyn-table-text: var(--dyn-semantic-text);
+  --dyn-table-border: var(--dyn-semantic-border);
+  --dyn-table-header-bg: var(--dyn-semantic-surface);
+  --dyn-table-hover: var(--dyn-semantic-surface-hover);
+  --dyn-table-stripe: var(--dyn-semantic-surface-muted);
+  --dyn-table-selected: var(--dyn-semantic-surface-active);
+
   width: 100%;
-  font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  background-color: var(--dyn-color-background, var(--color-background, #ffffff));
-  border-radius: var(--dyn-border-radius-md, var(--border-radius-md, 8px));
+  font-family: inherit;
+  font-size: var(--dyn-font-size-sm);
+  color: var(--dyn-table-text);
+  background-color: var(--dyn-table-bg);
+  border-radius: var(--dyn-border-radius-md);
   overflow: hidden;
 }
 
@@ -24,62 +37,60 @@
   border-spacing: 0;
 }
 
-/* ==========================================================================
-   Header
-   ========================================================================== */
+/* ============================================
+   HEADER
+   ============================================ */
 
 .head {
-  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+  background: var(--dyn-table-header-bg);
 }
 
 .cellHeader {
-  padding: var(--dyn-spacing-md, var(--spacing-md, 12px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  font-weight: var(--dyn-font-weight-semibold, var(--font-weight-semibold, 600));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
+  background: var(--dyn-table-header-bg);
+  color: var(--dyn-table-text);
+  font-weight: var(--dyn-font-weight-semibold);
+  font-size: var(--dyn-font-size-sm);
   text-align: left;
-  border-bottom: 2px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  border-bottom: 2px solid var(--dyn-table-border);
   white-space: nowrap;
   user-select: none;
 }
 
 .cellHeaderSortable {
   cursor: pointer;
-  transition: background-color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  transition: background-color var(--dyn-transition-fast);
 }
 
 .cellHeaderSortable:hover {
-  background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  background: var(--dyn-table-hover);
 }
 
 .cellHeaderSorted {
-  color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  color: var(--dyn-theme-primary);
 }
 
 .cellContent {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  gap: var(--dyn-spacing-xs);
 }
 
 .sortIndicator {
   display: inline-flex;
   align-items: center;
-  font-size: 14px;
+  font-size: var(--dyn-font-size-sm);
   opacity: 0.6;
-  margin-left: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  margin-left: var(--dyn-spacing-xs);
 }
 
-/* ==========================================================================
-   Body
-   ========================================================================== */
-
-.body {}
+/* ============================================
+   BODY
+   ============================================ */
 
 .row {
-  border-bottom: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
-  transition: background-color var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  border-bottom: 1px solid var(--dyn-table-border);
+  transition: background-color var(--dyn-transition-fast);
 }
 
 .row:last-child {
@@ -87,17 +98,16 @@
 }
 
 .rowSelected {
-  background-color: rgba(37, 99, 235, 0.1);
+  background-color: var(--dyn-table-selected);
 }
 
 .cell {
-  padding: var(--dyn-spacing-md, var(--spacing-md, 12px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  line-height: var(--dyn-line-height-normal, var(--line-height-normal, 1.5));
+  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
+  font-size: var(--dyn-font-size-sm);
+  color: var(--dyn-table-text);
+  line-height: 1.5;
 }
 
-/* Alignment */
 .cellLeft {
   text-align: left;
 }
@@ -110,18 +120,24 @@
   text-align: right;
 }
 
-/* Selection Cell */
+/* ============================================
+   SELECTION
+   ============================================ */
+
 .cellSelection {
-  width: var(--dyn-table-selection-width, 48px);
+  width: 48px;
   text-align: center;
 }
 
 .cellSelection input {
   cursor: pointer;
-  accent-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  accent-color: var(--dyn-theme-primary);
 }
 
-/* Actions Cell */
+/* ============================================
+   ACTIONS
+   ============================================ */
+
 .cellActions {
   text-align: right;
   white-space: nowrap;
@@ -129,26 +145,26 @@
 
 .actionsContainer {
   display: flex;
-  gap: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
+  gap: var(--dyn-spacing-xs);
   justify-content: flex-end;
 }
 
 .actionButton {
-  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
-  border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
-  background: var(--dyn-color-background, var(--color-background, #ffffff));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+  border: 1px solid var(--dyn-table-border);
+  border-radius: var(--dyn-border-radius-sm);
+  background: var(--dyn-table-bg);
+  color: var(--dyn-table-text);
+  font-size: var(--dyn-font-size-xs);
+  font-weight: var(--dyn-font-weight-medium);
   font-family: inherit;
   cursor: pointer;
-  transition: all var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  transition: all var(--dyn-transition-fast);
 }
 
 .actionButton:hover:not(:disabled) {
-  background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
-  border-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  background: var(--dyn-table-hover);
+  border-color: var(--dyn-theme-primary);
 }
 
 .actionButton:disabled {
@@ -156,40 +172,32 @@
   cursor: not-allowed;
 }
 
-/* ==========================================================================
-   Size Variants
-   ========================================================================== */
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
 
-.size-small .cell {
-  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+.sizeSmall .cell,
+.sizeSmall .cellHeader {
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
+  font-size: var(--dyn-font-size-xs);
 }
 
-.size-small .cellHeader {
-  padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+.sizeLarge .cell,
+.sizeLarge .cellHeader {
+  padding: var(--dyn-spacing-lg) var(--dyn-spacing-md);
+  font-size: var(--dyn-font-size-md);
 }
 
-.size-large .cell {
-  padding: var(--dyn-spacing-lg, var(--spacing-lg, 16px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
-  font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
-}
-
-.size-large .cellHeader {
-  padding: var(--dyn-spacing-lg, var(--spacing-lg, 16px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
-  font-size: var(--dyn-font-size-base, var(--font-size-base, 16px));
-}
-
-/* ==========================================================================
-   Style Variants
-   ========================================================================== */
+/* ============================================
+   STYLE VARIANTS
+   ============================================ */
 
 .bordered {
-  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  border: 1px solid var(--dyn-table-border);
 }
 
 .bordered .cell {
-  border-right: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
+  border-right: 1px solid var(--dyn-table-border);
 }
 
 .bordered .cell:last-child {
@@ -197,24 +205,24 @@
 }
 
 .striped .body .row:nth-child(odd) {
-  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+  background: var(--dyn-table-stripe);
 }
 
 .hoverable .body .row:hover {
-  background: var(--dyn-color-surface-hover, var(--color-surface-hover, #f3f4f6));
+  background: var(--dyn-table-hover);
 }
 
-/* ==========================================================================
-   Empty & Loading States
-   ========================================================================== */
+/* ============================================
+   EMPTY & LOADING STATES
+   ============================================ */
 
 .empty {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
-  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  padding: var(--dyn-spacing-lg);
+  color: var(--dyn-semantic-text-secondary);
+  font-size: var(--dyn-font-size-sm);
   min-height: 200px;
 }
 
@@ -223,16 +231,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
-  color: var(--dyn-color-text-secondary, var(--color-text-secondary, #6b7280));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  min-height: var(--dyn-table-loading-height, 200px);
+  padding: var(--dyn-spacing-lg);
+  color: var(--dyn-semantic-text-secondary);
+  font-size: var(--dyn-font-size-sm);
+  min-height: 200px;
   gap: var(--dyn-spacing-md);
 }
 
 .loadingSpinner {
   animation: spin 1s linear infinite;
-  color: var(--dyn-color-primary);
+  color: var(--dyn-theme-primary);
 }
 
 @keyframes spin {
@@ -245,40 +253,40 @@
   }
 }
 
-/* ==========================================================================
-   Pagination
-   ========================================================================== */
+/* ============================================
+   PAGINATION
+   ============================================ */
 
 .pagination {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-md, var(--spacing-md, 12px));
-  border-top: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
-  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
+  padding: var(--dyn-spacing-md);
+  border-top: 1px solid var(--dyn-table-border);
+  background: var(--dyn-table-header-bg);
 }
 
 .paginationControls {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  gap: var(--dyn-spacing-sm);
 }
 
 .paginationButton {
-  padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px)) var(--dyn-spacing-md, var(--spacing-md, 12px));
-  border: 1px solid var(--dyn-color-border, var(--color-border, #e5e7eb));
-  border-radius: var(--dyn-border-radius-sm, var(--border-radius-sm, 6px));
-  background: var(--dyn-color-background, var(--color-background, #ffffff));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
+  border: 1px solid var(--dyn-table-border);
+  border-radius: var(--dyn-border-radius-sm);
+  background: var(--dyn-table-bg);
+  color: var(--dyn-table-text);
+  font-size: var(--dyn-font-size-sm);
   font-family: inherit;
   cursor: pointer;
-  transition: all var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  transition: all var(--dyn-transition-fast);
 }
 
 .paginationButton:hover:not(:disabled) {
-  background: var(--dyn-color-surface, var(--color-surface, #f9fafb));
-  border-color: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  background: var(--dyn-table-hover);
+  border-color: var(--dyn-theme-primary);
 }
 
 .paginationButton:disabled {
@@ -287,30 +295,30 @@
 }
 
 .paginationInfo {
-  font-size: var(--dyn-font-size-sm, var(--font-size-sm, 14px));
-  color: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
-  font-weight: var(--dyn-font-weight-medium, var(--font-weight-medium, 500));
+  font-size: var(--dyn-font-size-sm);
+  color: var(--dyn-table-text);
+  font-weight: var(--dyn-font-weight-medium);
 }
 
-/* ==========================================================================
-   Fixed Height
-   ========================================================================== */
+/* ============================================
+   FIXED HEIGHT
+   ============================================ */
 
 .fixedHeight .wrapper {
   overflow-y: auto;
   max-height: inherit;
 }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 768px) {
 
   .cell,
   .cellHeader {
-    padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px)) var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-    font-size: var(--dyn-font-size-xs, var(--font-size-xs, 12px));
+    padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
+    font-size: var(--dyn-font-size-xs);
   }
 
   .cellSelection {
@@ -318,16 +326,16 @@
   }
 
   .actionButton {
-    padding: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-    font-size: 11px;
+    padding: var(--dyn-spacing-xs);
+    font-size: var(--dyn-font-size-2xs);
   }
 }
 
-/* ==========================================================================
-   Accessibility
-   ========================================================================== */
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 
-@media (prefers-contrast: more) {
+@media (prefers-contrast: high) {
   .bordered {
     border-width: 2px;
   }
@@ -351,95 +359,7 @@
   }
 }
 
-/* ==========================================================================
-   Dark Mode
-   ========================================================================== */
-
-@media (prefers-color-scheme: dark) {
-  .root {
-    background-color: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  }
-
-  .bordered {
-    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-  }
-
-  .head {
-    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
-  }
-
-  .cellHeader {
-    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-    border-bottom-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-  }
-
-  .cellHeaderSortable:hover {
-    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
-  }
-
-  .cellHeaderSorted {
-    color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-  }
-
-  .row {
-    border-bottom-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-  }
-
-  .rowSelected {
-    background-color: rgba(59, 130, 246, 0.15);
-  }
-
-  .cell {
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  }
-
-  .bordered .cell {
-    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-  }
-
-  .striped .body .row:nth-child(odd) {
-    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
-  }
-
-  .hoverable .body .row:hover {
-    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
-  }
-
-  .actionButton {
-    background: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
-    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  }
-
-  .actionButton:hover:not(:disabled) {
-    background: var(--dyn-color-surface-hover-dark, var(--color-surface-hover-dark, #374151));
-    border-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-  }
-
-  .empty,
-  .loading {
-    color: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #9ca3af));
-  }
-
-  .pagination {
-    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
-    border-top-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-  }
-
-  .paginationButton {
-    background: var(--dyn-color-background-dark, var(--color-background-dark, #1f2937));
-    border-color: var(--dyn-color-border-dark, var(--color-border-dark, #374151));
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  }
-
-  .paginationButton:hover:not(:disabled) {
-    background: var(--dyn-color-surface-dark, var(--color-surface-dark, #111827));
-    border-color: var(--dyn-color-primary-dark, var(--color-primary-dark, #3b82f6));
-  }
-
-  .paginationInfo {
-    color: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  }
-}
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

@@ -9,16 +9,13 @@
    ============================================ */
 
 /* 1. Import foundation tokens (colors, spacing, typography, etc.) */
-@import url('../../design-tokens/styles/foundations/index.css');
+@import '@dyn-ui/design-tokens/styles/foundations/index.css';
 
-/* 2. Import component-specific tokens */
-@import url('../../design-tokens/styles/components/badge.css');
-@import url('../../design-tokens/styles/components/avatar.css');
-@import url('../../design-tokens/styles/components/responsive-tabs.css');
-@import url('../../design-tokens/styles/components/table.css');
-
-/* 
-   Note: If you have a build system (like Vite or PostCSS), 
-   you can also import these via the package name:
-   @import '@dyn-ui/design-tokens/styles/foundations/index.css';
+/* 2. Import component-specific tokens if needed */
+/* These are optional and only needed if you have component-specific overrides */
+/*
+@import '@dyn-ui/design-tokens/styles/components/badge.css';
+@import '@dyn-ui/design-tokens/styles/components/avatar.css';
+@import '@dyn-ui/design-tokens/styles/components/responsive-tabs.css';
+@import '@dyn-ui/design-tokens/styles/components/table.css';
 */

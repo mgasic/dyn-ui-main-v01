@@ -1,26 +1,37 @@
+/**
+ * DynBadge Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
+
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
+
 .badge {
-  /* Component-scoped tokens with foundations alignment */
-  --dyn-badge-bg: var(--dyn-neutral-light-100, #f3f4f6);
-  --dyn-badge-color: var(--dyn-neutral-dark-900, #111827);
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-badge-bg: var(--dyn-semantic-surface-muted);
+  --dyn-badge-color: var(--dyn-semantic-text);
   --dyn-badge-border: transparent;
 
-  --dyn-badge-radius: 9999px;
-  --dyn-badge-font-size: 12px;
-  --dyn-badge-font-weight: 500;
-  --dyn-badge-padding-y: 2px;
-  --dyn-badge-padding-x: 8px;
-  --dyn-badge-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
+  /* Layout tokens */
+  --dyn-badge-radius: var(--dyn-border-radius-full);
+  --dyn-badge-font-size: var(--dyn-font-size-xs);
+  --dyn-badge-font-weight: var(--dyn-font-weight-medium);
+  --dyn-badge-padding-y: var(--dyn-spacing-2xs);
+  --dyn-badge-padding-x: var(--dyn-spacing-sm);
+  --dyn-badge-gap: var(--dyn-spacing-xs);
+  --dyn-badge-transition: var(--dyn-transition-normal);
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: var(--dyn-badge-gap);
   padding: var(--dyn-badge-padding-y) var(--dyn-badge-padding-x);
   font-size: var(--dyn-badge-font-size);
   font-weight: var(--dyn-badge-font-weight);
   line-height: 1.2;
   border-radius: var(--dyn-badge-radius);
-  border: 1px solid var(--dyn-badge-border);
+  border: var(--dyn-border-width-sm) solid var(--dyn-badge-border);
   background-color: var(--dyn-badge-bg);
   color: var(--dyn-badge-color);
   white-space: nowrap;
@@ -32,22 +43,22 @@
 /* Colors */
 .badge--primary {
   --dyn-badge-bg: var(--dyn-theme-primary);
-  --dyn-badge-color: #ffffff;
+  --dyn-badge-color: var(--dyn-base-white);
 }
 
 .badge--secondary {
   --dyn-badge-bg: var(--dyn-neutral-mid-400);
-  --dyn-badge-color: #ffffff;
+  --dyn-badge-color: var(--dyn-base-white);
 }
 
 .badge--success {
-  --dyn-badge-bg: var(--dyn-feedback-positive-default);
-  --dyn-badge-color: #ffffff;
+  --dyn-badge-bg: var(--dyn-feedback-positive);
+  --dyn-badge-color: var(--dyn-base-white);
 }
 
 .badge--danger {
   --dyn-badge-bg: var(--dyn-feedback-negative-default);
-  --dyn-badge-color: #ffffff;
+  --dyn-badge-color: var(--dyn-base-white);
 }
 
 .badge--warning {
@@ -56,8 +67,8 @@
 }
 
 .badge--info {
-  --dyn-badge-bg: var(--dyn-feedback-info-default);
-  --dyn-badge-color: #ffffff;
+  --dyn-badge-bg: var(--dyn-feedback-info);
+  --dyn-badge-color: var(--dyn-base-white);
 }
 
 /* Variants */
@@ -73,31 +84,41 @@
   color: var(--dyn-badge-bg);
 }
 
-/* Sizes */
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
 .badge--sm {
-  --dyn-badge-font-size: 10px;
-  --dyn-badge-padding-x: 6px;
+  --dyn-badge-font-size: var(--dyn-font-size-2xs);
+  --dyn-badge-padding-x: var(--dyn-spacing-xs);
 }
 
 .badge--lg {
-  --dyn-badge-font-size: 14px;
-  --dyn-badge-padding-y: 4px;
-  --dyn-badge-padding-x: 12px;
+  --dyn-badge-font-size: var(--dyn-font-size-sm);
+  --dyn-badge-padding-y: var(--dyn-spacing-xs);
+  --dyn-badge-padding-x: var(--dyn-spacing-md);
 }
 
-/* Dot */
+/* ============================================
+   DOT VARIANT
+   ============================================ */
+
 .badge--dot {
-  width: 10px;
-  height: 10px;
+  --dyn-badge-dot-size: var(--dyn-font-size-2xs);
+  width: var(--dyn-badge-dot-size);
+  height: var(--dyn-badge-dot-size);
   padding: 0;
   border-radius: 50%;
-  min-width: 10px;
+  min-width: var(--dyn-badge-dot-size);
 }
 
-/* Positioned overlay */
+/* ============================================
+   POSITIONED VARIANTS
+   ============================================ */
+
 .badge--positioned {
   position: absolute;
-  z-index: 10;
+  z-index: var(--dyn-z-index-dropdown);
 }
 
 .badge--topRight {
@@ -106,14 +127,35 @@
   transform: translate(50%, -50%);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .badge {
-    --dyn-badge-bg: var(--dyn-neutral-dark-700);
-    --dyn-badge-color: var(--dyn-neutral-light-100);
-  }
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
-  .badge--primary {
-    --dyn-badge-bg: var(--dyn-theme-primary);
+@media (max-width: 767px) {
+  .badge {
+    --dyn-badge-padding-y: var(--dyn-spacing-2xs);
+    --dyn-badge-padding-x: var(--dyn-spacing-xs);
   }
 }
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .badge {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .badge {
+    border-width: var(--dyn-border-width-md);
+    border-color: currentColor;
+  }
+}
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

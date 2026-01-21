@@ -34,34 +34,6 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
 
 ## 📋 WHERE TO START
 
-### Option 1: I'm a Developer
-
-1. **Read** (10 min): `docs/COMPLETE_KNOWLEDGE_BASE.md`
-   - Section: "Component Structure" (6-file template)
-   - Section: "Implementation Workflow" (step-by-step)
-
-2. **Copy** (5 min):
-
-   ```bash
-   cp -r docs/TEMPLATES/TEMPLATE-Component src/components/DynMyComponent
-   ```
-
-3. **Implement** (30+ min):
-   - Update .tsx, .types.ts, .module.css, .stories.tsx, .test.tsx
-   - Use COMPLETE_KNOWLEDGE_BASE.md as reference
-
-4. **Verify** (5 min):
-   - Use "Verification Checklist" from COMPLETE_KNOWLEDGE_BASE.md
-   - Ensure all items checked
-
-5. **Commit**:
-
-   ```bash
-   git add .
-   git commit -m "feat(DynMyComponent): 100% design token compliance"
-   ```
-
-### Option 2: I'm an AI Agent
 
 1. **Parse**:
 
@@ -87,9 +59,6 @@ var(--dyn-button-bg, var(--legacy-button-bg, #2563eb))
    - Copy examples from reference doc
    - Apply checklist
 
-4. **Generate**:
-   - Create PR with filled checklist
-   - Reference this document in PR
 
 ---
 
@@ -286,19 +255,12 @@ DynMyComponent/
 ✓ Accessibility tested
 ✓ Focus ring present (3px)
 ✓ Touch targets 44px minimum
-✓ Branch: feat/component-name
-✓ Clear commit message
+
 ```
 
 ---
 
 ## 🚀 NEXT STEPS
-
-### P0 (Next 2 Weeks)
-
-1. **DynFlex** (3h) - Move to component scope, add --dyn- prefix
-2. **DynBadge** (4h) - Fix token naming
-3. **DynModal** (4h) - Replace hard-coded values with tokens
 
 ### For Full Details
 

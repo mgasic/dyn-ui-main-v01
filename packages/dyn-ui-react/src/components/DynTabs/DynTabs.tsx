@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect, forwardRef } from 'react';
+import React, { useMemo, useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import { cn } from '../../utils/classNames';
 import { generateId } from '../../utils/accessibility';
 import styles from './DynTabs.module.css';
@@ -36,6 +36,9 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
       'aria-describedby': ariaDescribedBy,
       'data-testid': dataTestId,
       loadingComponent,
+      tabListClassName,
+      contentClassName,
+      onTabClick,
       ...rest
     },
     ref
@@ -126,15 +129,38 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
       }
     };
 
+    // Imperative handle for DynTabsRef
+    useImperativeHandle(ref, () => ({
+      focus: () => tabsRef.current[currentIndex]?.focus(),
+      blur: () => tabsRef.current[currentIndex]?.blur(),
+      focusTab: (tabId: string) => {
+        const index = processedItems.findIndex(i => i.processedValue === tabId);
+        if (index >= 0) tabsRef.current[index]?.focus();
+      },
+      getActiveTab: () => current,
+      setActiveTab: (tabId: string) => handleSelect(tabId),
+      getTabs: () => tabsRef.current.filter(Boolean) as HTMLButtonElement[],
+      getTabElement: (tabId: string) => {
+        const index = processedItems.findIndex(i => i.processedValue === tabId);
+        return index >= 0 ? tabsRef.current[index] : null;
+      },
+      getActiveTabElement: () => tabsRef.current[currentIndex] || null,
+      getTabPanel: (tabId: string) => document.getElementById(`${internalId}-panel-${tabId}`) as HTMLDivElement | null,
+      getActiveTabPanel: () => current ? document.getElementById(`${internalId}-panel-${current}`) as HTMLDivElement | null : null
+    }), [current, currentIndex, processedItems, internalId, handleSelect]);
+
     // Style classes
     const rootClass = cn(
       styles.tabs,
       styles[`tabs${position.charAt(0).toUpperCase() + position.slice(1)}`],
+      variant === 'pills' && styles.tabsPills,
+      variant === 'underlined' && styles.tabsUnderlined,
+      variant === 'bordered' && styles.tabsBordered,
       scrollable && styles.scrollable,
       className
     );
 
-    const listClass = cn(styles.tablist);
+    const listClass = cn(styles.tablist, tabListClassName);
 
     if (processedItems.length === 0) return null;
 
@@ -160,8 +186,23 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
               item.disabled && styles.tabDisabled,
               size === 'small' && styles.sizeSmall,
               size === 'large' && styles.sizeLarge,
-              variant === 'pills' && styles.variantPill
+              variant === 'pills' && styles.variantPill,
+              variant === 'underlined' && styles.variantUnderlined,
+              variant === 'bordered' && styles.variantBordered
             );
+
+            // Handle tab click with optional callback
+            const handleTabClick = (e: React.MouseEvent) => {
+              if (item.disabled) return;
+
+              // Call onTabClick if provided, allow prevent default
+              if (onTabClick) {
+                const shouldContinue = onTabClick(item.processedValue, e);
+                if (shouldContinue === false) return;
+              }
+
+              handleSelect(item.processedValue, activation === 'auto');
+            };
 
             return (
               <button
@@ -175,8 +216,9 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
                 aria-controls={panelId}
                 aria-disabled={item.disabled}
                 tabIndex={isSelected ? 0 : -1}
-                onClick={() => !item.disabled && handleSelect(item.processedValue, activation === 'auto')}
+                onClick={handleTabClick}
                 disabled={item.disabled}
+                data-status={isSelected ? 'active' : item.disabled ? 'disabled' : 'inactive'}
               >
                 <div className={styles.tabContent}>
                   {item.icon && (
@@ -191,6 +233,7 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
                       type="button"
                       className={styles.closeButton}
                       aria-label="Close tab"
+                      data-testid={dataTestId ? `${dataTestId}-close-${item.processedValue}` : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
                         onTabClose?.(item.processedValue);
@@ -203,6 +246,17 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
               </button>
             );
           })}
+
+          {(rest as any).addable && (rest as any).onTabAdd && (
+            <button
+              type="button"
+              className={styles.addableButton}
+              onClick={(rest as any).onTabAdd}
+              aria-label="Add tab"
+            >
+              <DynIcon icon="plus" size="small" />
+            </button>
+          )}
         </div>
 
         {processedItems.map(item => {
@@ -210,7 +264,7 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
           const panelId = `${internalId}-panel-${item.processedValue}`;
           const tabId = `${internalId}-tab-${item.processedValue}`;
 
-          const isLoaded = !lazy || loaded[item.processedValue] || isSelected;
+          const isLoaded = !lazy || loaded[item.processedValue];
 
           return (
             <div
@@ -219,14 +273,14 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
               role="tabpanel"
               aria-labelledby={tabId}
               hidden={!isSelected}
-              className={cn(styles.panel, animated && styles.panelAnimated)}
+              className={cn(styles.panel, animated && styles.panelAnimated, contentClassName)}
               tabIndex={0}
             >
               {isSelected && (
                 <>
                   {!isLoaded && (
                     <div className={styles.loading}>
-                      <DynIcon icon="loading" className={styles.loadingSpinner} size="large" />
+                      <DynIcon icon="loading" className={styles.loadingSpinner} size={32} />
                       {loadingComponent || <span>Loading...</span>}
                     </div>
                   )}

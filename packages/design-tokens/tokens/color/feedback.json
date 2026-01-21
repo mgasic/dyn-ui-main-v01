@@ -1,14 +1,72 @@
 {
   "color": {
     "feedback": {
-      "positive": { "value": "#4caf50" },
-      "negative": {
-        "default": { "value": "#f44336" },
-        "dark": { "value": "#d32f2f" },
-        "darker": { "value": "#b71c1c" }
+      "positive": {
+        "value": "#28a745",
+        "description": "Success/positive feedback"
       },
-      "warning": { "value": "#ff9800" },
-      "info": { "value": "#2196f3" }
+      "positive-light": {
+        "value": "#48c767",
+        "description": "Light success"
+      },
+      "positive-dark": {
+        "value": "#1e7e34",
+        "description": "Dark success"
+      },
+      "positive-subtle": {
+        "value": "rgba(40, 167, 69, 0.1)",
+        "description": "Subtle success background"
+      },
+      "negative": {
+        "default": {
+          "value": "#dc3545",
+          "description": "Error/danger color"
+        },
+        "light": {
+          "value": "#e4606d",
+          "description": "Light error"
+        },
+        "dark": {
+          "value": "#bd2130",
+          "description": "Dark error"
+        },
+        "subtle": {
+          "value": "rgba(220, 53, 69, 0.1)",
+          "description": "Subtle error background"
+        }
+      },
+      "warning": {
+        "value": "#ffc107",
+        "description": "Warning/caution color"
+      },
+      "warning-light": {
+        "value": "#ffda6a",
+        "description": "Light warning"
+      },
+      "warning-dark": {
+        "value": "#d39e00",
+        "description": "Dark warning"
+      },
+      "warning-subtle": {
+        "value": "rgba(255, 193, 7, 0.1)",
+        "description": "Subtle warning background"
+      },
+      "info": {
+        "value": "#17a2b8",
+        "description": "Information color"
+      },
+      "info-light": {
+        "value": "#3fc3dc",
+        "description": "Light info"
+      },
+      "info-dark": {
+        "value": "#117a8b",
+        "description": "Dark info"
+      },
+      "info-subtle": {
+        "value": "rgba(23, 162, 184, 0.1)",
+        "description": "Subtle info background"
+      }
     }
   }
 }

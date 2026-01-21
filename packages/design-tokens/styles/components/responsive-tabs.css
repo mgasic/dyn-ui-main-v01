@@ -50,6 +50,7 @@
   --dyn-responsiveTabs-animation-transitionFast: all 0.15s ease;
 }
 
+/* Dark Theme Support (Media Query + Classes) */
 @media (prefers-color-scheme: dark) {
   :root {
     --dyn-responsiveTabs-color-darkTheme-background-inactive: #2A2A2A;
@@ -68,4 +69,23 @@
     --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #1A3D4F;
     --dyn-responsiveTabs-color-darkTheme-nested-border: #3A7A9B;
   }
+}
+
+[data-theme='dark'],
+.theme-dark {
+    --dyn-responsiveTabs-color-darkTheme-background-inactive: #2A2A2A;
+    --dyn-responsiveTabs-color-darkTheme-background-active: #1E4A5F;
+    --dyn-responsiveTabs-color-darkTheme-background-hover: #333333;
+    --dyn-responsiveTabs-color-darkTheme-background-content: #1A1A1A;
+    --dyn-responsiveTabs-color-darkTheme-border-default: #3A3A3A;
+    --dyn-responsiveTabs-color-darkTheme-border-active: #4DB8E8;
+    --dyn-responsiveTabs-color-darkTheme-border-content: #4DB8E8;
+    --dyn-responsiveTabs-color-darkTheme-text-inactive: #AAAAAA;
+    --dyn-responsiveTabs-color-darkTheme-text-active: #E0F7FF;
+    --dyn-responsiveTabs-color-darkTheme-accordion-header: #2A2A2A;
+    --dyn-responsiveTabs-color-darkTheme-accordion-headerActive: #1E4A5F;
+    --dyn-responsiveTabs-color-darkTheme-accordion-border: #4DB8E8;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundInactive: #222222;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #1A3D4F;
+    --dyn-responsiveTabs-color-darkTheme-nested-border: #3A7A9B;
 }

@@ -1,23 +1,33 @@
+/* ================================================
+   COMPONENT TOKENS (Layer 2)
+   Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
+   ================================================ */
+:root {
+  /* Color tokens */
+  --dyn-input-bg: var(--dyn-semantic-input-bg);
+  --dyn-input-color: var(--dyn-semantic-text);
+  --dyn-input-border: var(--dyn-semantic-input-border);
+  --dyn-input-border-hover: var(--dyn-neutral-mid-400);
+  --dyn-input-border-focus: var(--dyn-theme-primary);
+  --dyn-input-focus-ring: var(--dyn-action-focus);
+  --dyn-input-placeholder: var(--dyn-semantic-text-secondary);
+  --dyn-input-disabled-bg: var(--dyn-semantic-surface-muted);
+  --dyn-input-disabled-color: var(--dyn-semantic-text-secondary);
+  --dyn-input-readonly-bg: var(--dyn-semantic-surface);
+  --dyn-input-error: var(--dyn-feedback-negative-default);
+
+  /* Layout tokens */
+  --dyn-input-radius: var(--dyn-border-radius-md);
+  --dyn-input-padding-y: var(--dyn-spacing-sm);
+  --dyn-input-padding-x: var(--dyn-spacing-md);
+  --dyn-input-font-size: var(--dyn-font-size-sm);
+  --dyn-input-transition: var(--dyn-transition-normal);
+}
+
+/* ================================================
+   BASE STYLES
+   ================================================ */
 .container {
-  /* Component tokens with fallbacks to system tokens */
-  --dyn-input-bg: var(--dyn-neutral-light-white, #ffffff);
-  --dyn-input-color: var(--dyn-neutral-dark-900, #111827);
-  --dyn-input-border: var(--dyn-neutral-light-200, #d1d5db);
-  --dyn-input-border-hover: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-input-border-focus: var(--dyn-theme-primary, #2563eb);
-  --dyn-input-focus-ring: var(--dyn-action-focus, rgba(37, 99, 235, 0.35));
-  --dyn-input-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-input-disabled-bg: var(--dyn-neutral-light-100, #f3f4f6);
-  --dyn-input-disabled-color: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-input-readonly-bg: var(--dyn-neutral-light-50, #f9fafb);
-  --dyn-input-error: var(--dyn-feedback-negative-default, #d32f2f);
-
-  --dyn-input-radius: var(--dyn-border-radius-md, 8px);
-  --dyn-input-padding-y: var(--dyn-spacing-sm, 8px);
-  --dyn-input-padding-x: var(--dyn-spacing-md, 16px);
-  --dyn-input-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-input-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
-
   display: flex;
   align-items: center;
   position: relative;
@@ -42,6 +52,9 @@
   color: var(--dyn-input-placeholder);
 }
 
+/* ================================================
+   INTERACTIVE STATES
+   ================================================ */
 .input:hover:not(:disabled):not(.input--readonly) {
   border-color: var(--dyn-input-border-hover);
 }
@@ -73,17 +86,22 @@
   border-color: var(--dyn-input-error);
 }
 
-/* Sizes */
+/* ================================================
+   SIZE VARIANTS
+   ================================================ */
 .input--small {
-  padding: var(--dyn-spacing-xs, 4px) var(--dyn-spacing-sm, 12px);
-  font-size: var(--dyn-font-size-xs, 12px);
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+  font-size: var(--dyn-font-size-xs);
 }
 
 .input--large {
-  padding: var(--dyn-spacing-md, 12px) var(--dyn-spacing-lg, 24px);
-  font-size: var(--dyn-font-size-md, 16px);
+  padding: var(--dyn-spacing-md) var(--dyn-spacing-lg);
+  font-size: var(--dyn-font-size-md);
 }
 
+/* ================================================
+   ICON SUPPORT
+   ================================================ */
 .input--with-icon {
   padding-left: 2.5rem;
 }
@@ -94,7 +112,7 @@
 
 .icon-container {
   position: absolute;
-  left: 0.75rem;
+  left: var(--dyn-spacing-md);
   top: 50%;
   transform: translateY(-50%);
   color: var(--dyn-input-placeholder);
@@ -104,34 +122,25 @@
 
 .clear-button {
   position: absolute;
-  right: 0.5rem;
+  right: var(--dyn-spacing-sm);
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: var(--dyn-input-placeholder);
-  padding: 4px;
-  border-radius: 4px;
+  padding: var(--dyn-spacing-xs);
+  border-radius: var(--dyn-border-radius-xs);
   display: inline-flex;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--dyn-transition-fast);
 }
 
 .clear-button:hover {
   color: var(--dyn-input-color);
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--dyn-semantic-surface-hover);
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  .container {
-    --dyn-input-bg: var(--dyn-neutral-dark-900, #1f2937);
-    --dyn-input-color: var(--dyn-neutral-light-100, #f3f4f6);
-    --dyn-input-border: var(--dyn-neutral-dark-700, #4b5563);
-    --dyn-input-placeholder: var(--dyn-neutral-mid-400, #9ca3af);
-  }
-
-  .clear-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
+/* ================================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ================================================ */

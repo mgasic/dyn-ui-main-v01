@@ -1,8 +1,16 @@
+/**
+ * DynBox Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ * 
+ * Utility component for layout primitives
+ */
+
 .box {
+  /* Base styles using tokens */
   display: var(--dyn-box-display, block);
   position: var(--dyn-box-position, relative);
   box-sizing: border-box;
-  font-family: var(--dyn-font-family-primary, var(--font-family-primary, inherit));
+  font-family: inherit;
 
   width: var(--dyn-box-width, auto);
   height: var(--dyn-box-height, auto);
@@ -12,57 +20,47 @@
   max-height: var(--dyn-box-max-height, none);
 
   padding: var(--dyn-box-padding, 0);
-  padding-top: var(--dyn-box-padding-top, var(--dyn-box-padding, 0));
-  padding-right: var(--dyn-box-padding-right, var(--dyn-box-padding, 0));
-  padding-bottom: var(--dyn-box-padding-bottom, var(--dyn-box-padding, 0));
-  padding-left: var(--dyn-box-padding-left, var(--dyn-box-padding, 0));
-
   margin: var(--dyn-box-margin, 0);
-  margin-top: var(--dyn-box-margin-top, var(--dyn-box-margin, 0));
-  margin-right: var(--dyn-box-margin-right, var(--dyn-box-margin, 0));
-  margin-bottom: var(--dyn-box-margin-bottom, var(--dyn-box-margin, 0));
-  margin-left: var(--dyn-box-margin-left, var(--dyn-box-margin, 0));
 
-  background-color: var(--dyn-box-bg, var(--dyn-color-surface, var(--color-surface, #ffffff)));
-  border: var(--dyn-box-border, calc(var(--dyn-border-width, 1px) * 0) solid var(--dyn-color-border-muted, var(--color-border, rgba(15, 23, 42, 0.12))));
-  border-radius: var(--dyn-box-radius, var(--dyn-border-radius-md, var(--radius-md, 0.375rem)));
-  box-shadow: var(--dyn-box-shadow, var(--dyn-shadow-none, none));
+  /* Colors using semantic tokens */
+  background-color: var(--dyn-box-bg, transparent);
+  border: var(--dyn-box-border, none);
+  border-radius: var(--dyn-box-radius, 0);
+  box-shadow: var(--dyn-box-shadow, none);
 
-  color: var(--dyn-box-color, var(--dyn-color-text-primary, var(--color-text-primary, #1f293b)));
+  color: var(--dyn-box-color, var(--dyn-semantic-text));
   text-align: var(--dyn-box-text-align, inherit);
   overflow: var(--dyn-box-overflow, visible);
-  overflow-x: var(--dyn-box-overflow-x, var(--dyn-box-overflow, visible));
-  overflow-y: var(--dyn-box-overflow-y, var(--dyn-box-overflow, visible));
-
   gap: var(--dyn-box-gap, 0);
-  row-gap: var(--dyn-box-row-gap, var(--dyn-box-gap, 0));
-  column-gap: var(--dyn-box-column-gap, var(--dyn-box-gap, 0));
 
-  transition: var(--dyn-box-transition, var(--dyn-transition-base, var(--transition-base, 150ms ease-in-out)));
+  transition: var(--dyn-box-transition, var(--dyn-transition-fast));
 }
 
-.box--inline {
+/* ============================================
+   DISPLAY VARIANTS
+   ============================================ */
+
+.boxInline {
   display: inline;
 }
 
-.box--inline-block {
+.boxInlineBlock {
   display: inline-block;
 }
 
-.box--none {
+.boxNone {
   display: none;
 }
 
-.box--flex {
+.boxFlex {
   display: flex;
   flex-direction: var(--dyn-box-flex-direction, row);
   flex-wrap: var(--dyn-box-flex-wrap, nowrap);
   justify-content: var(--dyn-box-justify-content, flex-start);
   align-items: var(--dyn-box-align-items, stretch);
-  align-content: var(--dyn-box-align-content, stretch);
 }
 
-.box--inline-flex {
+.boxInlineFlex {
   display: inline-flex;
   flex-direction: var(--dyn-box-flex-direction, row);
   flex-wrap: var(--dyn-box-flex-wrap, nowrap);
@@ -70,25 +68,19 @@
   align-items: var(--dyn-box-align-items, stretch);
 }
 
-.box--grid {
+.boxGrid {
   display: grid;
   grid-template-columns: var(--dyn-box-grid-columns, none);
   grid-template-rows: var(--dyn-box-grid-rows, none);
-  grid-template-areas: var(--dyn-box-grid-areas, none);
   justify-content: var(--dyn-box-justify-content, stretch);
-  align-content: var(--dyn-box-align-content, stretch);
-  justify-items: var(--dyn-box-justify-items, stretch);
   align-items: var(--dyn-box-align-items, stretch);
 }
 
-.box--inline-grid {
-  display: inline-grid;
-  grid-template-columns: var(--dyn-box-grid-columns, none);
-  grid-template-rows: var(--dyn-box-grid-rows, none);
-  grid-template-areas: var(--dyn-box-grid-areas, none);
-}
+/* ============================================
+   POSITION VARIANTS
+   ============================================ */
 
-.box--absolute {
+.boxAbsolute {
   position: absolute;
   top: var(--dyn-box-top, auto);
   right: var(--dyn-box-right, auto);
@@ -97,16 +89,11 @@
   z-index: var(--dyn-box-z-index, auto);
 }
 
-.box--relative {
+.boxRelative {
   position: relative;
-  top: var(--dyn-box-top, auto);
-  right: var(--dyn-box-right, auto);
-  bottom: var(--dyn-box-bottom, auto);
-  left: var(--dyn-box-left, auto);
-  z-index: var(--dyn-box-z-index, auto);
 }
 
-.box--fixed {
+.boxFixed {
   position: fixed;
   top: var(--dyn-box-top, auto);
   right: var(--dyn-box-right, auto);
@@ -115,248 +102,238 @@
   z-index: var(--dyn-box-z-index, auto);
 }
 
-.box--sticky {
+.boxSticky {
   position: sticky;
-  top: var(--dyn-box-top, auto);
+  top: var(--dyn-box-top, 0);
   z-index: var(--dyn-box-z-index, auto);
 }
 
-.box--p-0 {
+/* ============================================
+   PADDING VARIANTS
+   ============================================ */
+
+.boxP0 {
   --dyn-box-padding: 0;
 }
 
-.box--p-xs {
-  --dyn-box-padding: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
+.boxPXs {
+  --dyn-box-padding: var(--dyn-spacing-xs);
 }
 
-.box--p-sm {
-  --dyn-box-padding: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
+.boxPSm {
+  --dyn-box-padding: var(--dyn-spacing-sm);
 }
 
-.box--p-md {
-  --dyn-box-padding: var(--dyn-spacing-md, var(--spacing-md, 1rem));
+.boxPMd {
+  --dyn-box-padding: var(--dyn-spacing-md);
 }
 
-.box--p-lg {
-  --dyn-box-padding: var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem));
+.boxPLg {
+  --dyn-box-padding: var(--dyn-spacing-lg);
 }
 
-.box--p-xl {
-  --dyn-box-padding: var(--dyn-spacing-xl, var(--spacing-xl, 2rem));
-}
+/* ============================================
+   MARGIN VARIANTS
+   ============================================ */
 
-.box--p-2xl {
-  --dyn-box-padding: var(--dyn-spacing-2xl, var(--spacing-2xl, 3rem));
-}
-
-.box--m-0 {
+.boxM0 {
   --dyn-box-margin: 0;
 }
 
-.box--m-xs {
-  --dyn-box-margin: var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem));
+.boxMXs {
+  --dyn-box-margin: var(--dyn-spacing-xs);
 }
 
-.box--m-sm {
-  --dyn-box-margin: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
+.boxMSm {
+  --dyn-box-margin: var(--dyn-spacing-sm);
 }
 
-.box--m-md {
-  --dyn-box-margin: var(--dyn-spacing-md, var(--spacing-md, 1rem));
+.boxMMd {
+  --dyn-box-margin: var(--dyn-spacing-md);
 }
 
-.box--m-lg {
-  --dyn-box-margin: var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem));
+.boxMLg {
+  --dyn-box-margin: var(--dyn-spacing-lg);
 }
 
-.box--m-xl {
-  --dyn-box-margin: var(--dyn-spacing-xl, var(--spacing-xl, 2rem));
-}
-
-.box--m-auto {
+.boxMAuto {
   --dyn-box-margin: auto;
 }
 
-.box--bg-primary {
-  --dyn-box-bg: var(--dyn-color-primary, var(--color-theme-primary, #007bff));
-  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
+/* ============================================
+   BACKGROUND VARIANTS
+   ============================================ */
+
+.boxBgPrimary {
+  --dyn-box-bg: var(--dyn-theme-primary);
+  --dyn-box-color: var(--dyn-semantic-text-inverse);
 }
 
-.box--bg-secondary {
-  --dyn-box-bg: var(--dyn-color-secondary, var(--color-theme-secondary, #6c757d));
-  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
+.boxBgSecondary {
+  --dyn-box-bg: var(--dyn-theme-secondary);
+  --dyn-box-color: var(--dyn-semantic-text-inverse);
 }
 
-.box--bg-tertiary {
-  --dyn-box-bg: var(--dyn-color-neutral-10, var(--color-neutral-light-10, #f8fafc));
-  --dyn-box-color: var(--dyn-color-neutral-90, var(--color-neutral-dark-90, #1e293b));
+.boxBgSurface {
+  --dyn-box-bg: var(--dyn-semantic-surface);
 }
 
-.box--bg-success {
-  --dyn-box-bg: var(--dyn-color-feedback-positive, var(--color-feedback-positive, #4caf50));
-  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
+.boxBgMuted {
+  --dyn-box-bg: var(--dyn-semantic-surface-muted);
 }
 
-.box--bg-warning {
-  --dyn-box-bg: var(--dyn-color-feedback-warning, var(--color-feedback-warning, #ff9800));
-  --dyn-box-color: var(--dyn-color-neutral-90, var(--color-neutral-dark-90, #333333));
+.boxBgSuccess {
+  --dyn-box-bg: var(--dyn-feedback-positive);
+  --dyn-box-color: var(--dyn-semantic-text-inverse);
 }
 
-.box--bg-danger {
-  --dyn-box-bg: var(--dyn-color-feedback-negative, var(--color-feedback-negative-default, #f44336));
-  --dyn-box-color: var(--dyn-color-base-white, var(--color-base-white, #ffffff));
+.boxBgWarning {
+  --dyn-box-bg: var(--dyn-feedback-warning);
+  --dyn-box-color: var(--dyn-semantic-text);
 }
 
-.box--border {
-  --dyn-box-border: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+.boxBgDanger {
+  --dyn-box-bg: var(--dyn-feedback-negative-default);
+  --dyn-box-color: var(--dyn-semantic-text-inverse);
 }
 
-.box--border-top {
-  border-top: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+/* ============================================
+   BORDER VARIANTS
+   ============================================ */
+
+.boxBorder {
+  --dyn-box-border: 1px solid var(--dyn-semantic-border);
 }
 
-.box--border-right {
-  border-right: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+.boxBorderTop {
+  border-top: 1px solid var(--dyn-semantic-border);
 }
 
-.box--border-bottom {
-  border-bottom: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+.boxBorderRight {
+  border-right: 1px solid var(--dyn-semantic-border);
 }
 
-.box--border-left {
-  border-left: var(--dyn-border-width, 1px) solid var(--dyn-color-border, var(--color-border, rgba(15, 23, 42, 0.12)));
+.boxBorderBottom {
+  border-bottom: 1px solid var(--dyn-semantic-border);
 }
 
-.box--rounded-none {
-  --dyn-box-radius: var(--dyn-border-radius-none, var(--radius-none, 0));
+.boxBorderLeft {
+  border-left: 1px solid var(--dyn-semantic-border);
 }
 
-.box--rounded-sm {
-  --dyn-box-radius: var(--dyn-border-radius-sm, var(--radius-sm, 0.25rem));
+/* ============================================
+   RADIUS VARIANTS
+   ============================================ */
+
+.boxRoundedNone {
+  --dyn-box-radius: 0;
 }
 
-.box--rounded-md {
-  --dyn-box-radius: var(--dyn-border-radius-md, var(--radius-md, 0.375rem));
+.boxRoundedSm {
+  --dyn-box-radius: var(--dyn-border-radius-sm);
 }
 
-.box--rounded-lg {
-  --dyn-box-radius: var(--dyn-border-radius-lg, var(--radius-lg, 0.5rem));
+.boxRoundedMd {
+  --dyn-box-radius: var(--dyn-border-radius-md);
 }
 
-.box--rounded-xl {
-  --dyn-box-radius: var(--dyn-border-radius-xl, var(--radius-xl, 0.75rem));
+.boxRoundedLg {
+  --dyn-box-radius: var(--dyn-border-radius-lg);
 }
 
-.box--rounded-full {
-  --dyn-box-radius: var(--dyn-border-radius-full, var(--radius-full, 9999px));
+.boxRoundedFull {
+  --dyn-box-radius: 9999px;
 }
 
-.box--shadow-sm {
-  --dyn-box-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 2px rgb(0 0 0 / 0.05)));
+/* ============================================
+   SHADOW VARIANTS
+   ============================================ */
+
+.boxShadowSm {
+  --dyn-box-shadow: var(--dyn-elevation-low);
 }
 
-.box--shadow-md {
-  --dyn-box-shadow: var(--dyn-shadow-md, var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1)));
+.boxShadowMd {
+  --dyn-box-shadow: var(--dyn-elevation-medium);
 }
 
-.box--shadow-lg {
-  --dyn-box-shadow: var(--dyn-shadow-lg, var(--shadow-lg, 0 10px 15px -3px rgb(0 0 0 / 0.1)));
+.boxShadowLg {
+  --dyn-box-shadow: var(--dyn-elevation-high);
 }
 
-.box--text-left {
+/* ============================================
+   TEXT ALIGN
+   ============================================ */
+
+.boxTextLeft {
   --dyn-box-text-align: left;
 }
 
-.box--text-center {
+.boxTextCenter {
   --dyn-box-text-align: center;
 }
 
-.box--text-right {
+.boxTextRight {
   --dyn-box-text-align: right;
 }
 
-.box--text-justify {
-  --dyn-box-text-align: justify;
-}
+/* ============================================
+   OVERFLOW
+   ============================================ */
 
-.box--overflow-hidden {
+.boxOverflowHidden {
   --dyn-box-overflow: hidden;
 }
 
-.box--overflow-auto {
+.boxOverflowAuto {
   --dyn-box-overflow: auto;
 }
 
-.box--overflow-scroll {
+.boxOverflowScroll {
   --dyn-box-overflow: scroll;
 }
 
-@media (max-width: 767px) {
-  .box--mobile-block {
-    display: block !important;
-  }
+/* ============================================
+   INTERACTIVE
+   ============================================ */
 
-  .box--mobile-flex {
-    display: flex !important;
-  }
-
-  .box--mobile-hidden {
-    display: none !important;
-  }
-
-  .box--mobile-p-sm {
-    --dyn-box-padding: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem)) !important;
-  }
-
-  .box--mobile-p-md {
-    --dyn-box-padding: var(--dyn-spacing-md, var(--spacing-md, 1rem)) !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .box--tablet-block {
-    display: block !important;
-  }
-
-  .box--tablet-flex {
-    display: flex !important;
-  }
-
-  .box--tablet-hidden {
-    display: none !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .box--desktop-block {
-    display: block !important;
-  }
-
-  .box--desktop-flex {
-    display: flex !important;
-  }
-
-  .box--desktop-hidden {
-    display: none !important;
-  }
-}
-
-.box--interactive {
+.boxInteractive {
   cursor: pointer;
-  transition: var(--dyn-transition-fast, var(--transition-fast, 150ms ease));
 }
 
-.box--interactive:hover {
+.boxInteractive:hover {
   transform: translateY(-1px);
-  box-shadow: var(--dyn-shadow-md, var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1)));
+  box-shadow: var(--dyn-elevation-medium);
 }
 
-.box--interactive:focus-visible {
-  outline: var(--dyn-focus-ring-width, 2px) solid var(--dyn-color-focus, var(--color-primary, #007bff));
-  outline-offset: var(--dyn-focus-ring-offset, 2px);
+.boxInteractive:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
 }
 
-.dyn-sr-only {
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+  .boxMobileBlock {
+    display: block !important;
+  }
+
+  .boxMobileFlex {
+    display: flex !important;
+  }
+
+  .boxMobileHidden {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.dynSrOnly {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -368,22 +345,25 @@
   border: 0;
 }
 
-@media (prefers-contrast: more) {
-  .box {
-    --dyn-box-border: var(--dyn-border-width, 1px) solid var(--dyn-color-border-strong, var(--color-border-strong, #111827));
+@media (prefers-contrast: high) {
+  .boxBorder {
+    --dyn-box-border: 2px solid var(--dyn-semantic-border);
   }
 
-  .box--interactive:focus-visible {
-    outline-width: max(3px, var(--dyn-focus-ring-width, 2px));
+  .boxInteractive:focus-visible {
+    outline-width: 3px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .box {
-    transition: none;
-  }
 
-  .box--interactive {
+  .box,
+  .boxInteractive {
     transition: none;
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

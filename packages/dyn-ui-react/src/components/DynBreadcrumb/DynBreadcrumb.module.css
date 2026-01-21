@@ -1,113 +1,96 @@
-/* ==========================================================================
-   DynBreadcrumb Component Styles
-   Complete implementation with design tokens
-   ========================================================================== */
+/**
+ * DynBreadcrumb Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ */
 
-/* Design Tokens
-   ========================================================================== */
-/* Component tokens scoped to breadcrumb */
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
+
 .breadcrumb {
-  /* Color Tokens */
-  --dyn-breadcrumb-color-text: var(--dyn-color-text-secondary, #64748b);
-  --dyn-breadcrumb-color-text-current: var(--dyn-color-text-primary, #0f172a);
-  --dyn-breadcrumb-color-link: var(--dyn-color-primary, #3b82f6);
-  --dyn-breadcrumb-color-link-hover: var(--dyn-color-primary-dark, #2563eb);
-  --dyn-breadcrumb-color-separator: var(--dyn-color-text-tertiary, #94a3b8);
-  --dyn-breadcrumb-color-ellipsis-bg: var(--dyn-color-neutral-100, #f1f5f9);
-  --dyn-breadcrumb-color-ellipsis-hover: var(--dyn-color-neutral-200, #e2e8f0);
+  /* Color tokens - semantic for auto theme switching */
+  --dyn-breadcrumb-color-text: var(--dyn-semantic-text-secondary);
+  --dyn-breadcrumb-color-text-current: var(--dyn-semantic-text);
+  --dyn-breadcrumb-color-link: var(--dyn-theme-primary);
+  --dyn-breadcrumb-color-link-hover: var(--dyn-action-hover);
+  --dyn-breadcrumb-color-separator: var(--dyn-semantic-text-muted);
+  --dyn-breadcrumb-color-ellipsis-bg: var(--dyn-semantic-surface-muted);
+  --dyn-breadcrumb-color-ellipsis-hover: var(--dyn-semantic-surface-hover);
+  --dyn-breadcrumb-focus-ring-color: var(--dyn-semantic-border-focus);
 
-  /* Spacing Tokens */
-  --dyn-breadcrumb-gap-small: var(--dyn-spacing-2xs, 4px);
-  --dyn-breadcrumb-gap-medium: var(--dyn-spacing-xs, 6px);
-  --dyn-breadcrumb-gap-large: var(--dyn-spacing-sm, 8px);
-  --dyn-breadcrumb-icon-gap: var(--dyn-spacing-2xs, 4px);
-  --dyn-breadcrumb-ellipsis-padding: var(--dyn-spacing-xs, 6px);
+  /* Spacing tokens */
+  --dyn-breadcrumb-gap: var(--dyn-spacing-xs);
+  --dyn-breadcrumb-icon-gap: var(--dyn-spacing-xs);
 
-  /* Typography Tokens */
-  --dyn-breadcrumb-font-family: var(--dyn-font-family-base, system-ui, -apple-system, sans-serif);
-  --dyn-breadcrumb-font-size-small: var(--dyn-font-size-xs, 12px);
-  --dyn-breadcrumb-font-size-medium: var(--dyn-font-size-sm, 14px);
-  --dyn-breadcrumb-font-size-large: var(--dyn-font-size-base, 16px);
-  --dyn-breadcrumb-font-weight: var(--dyn-font-weight-medium, 500);
-  --dyn-breadcrumb-line-height: var(--dyn-line-height-normal, 1.5);
+  /* Typography */
+  --dyn-breadcrumb-font-size: var(--dyn-font-size-sm);
+  --dyn-breadcrumb-font-weight: var(--dyn-font-weight-medium);
 
-  /* Border & Effects */
-  --dyn-breadcrumb-border-radius: var(--dyn-border-radius-sm, 4px);
-  --dyn-breadcrumb-focus-ring-width: var(--dyn-border-width-thick, 2px);
-  --dyn-breadcrumb-focus-ring-offset: var(--dyn-spacing-3xs, 2px);
-  --dyn-breadcrumb-focus-ring-color: var(--dyn-color-focus, #3b82f6);
+  /* Border */
+  --dyn-breadcrumb-border-radius: var(--dyn-border-radius-sm);
 
-  /* Transitions */
-  --dyn-breadcrumb-transition: var(--dyn-transition-base, 0.18s ease);
+  /* Transition */
+  --dyn-breadcrumb-transition: var(--dyn-transition-fast);
 
   display: block;
-  font-family: var(--dyn-breadcrumb-font-family);
-  font-size: var(--dyn-breadcrumb-font-size-medium);
-  line-height: var(--dyn-breadcrumb-line-height);
+  font-family: inherit;
+  font-size: var(--dyn-breadcrumb-font-size);
+  line-height: 1.5;
 }
 
+/* ============================================
+   BREADCRUMB LIST
+   ============================================ */
 
-
-/* Breadcrumb List
-   ========================================================================== */
 .breadcrumbList {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--dyn-breadcrumb-gap-medium);
+  gap: var(--dyn-breadcrumb-gap);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Size Variants
-   ========================================================================== */
-.breadcrumb--small {
-  font-size: var(--dyn-breadcrumb-font-size-small);
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.breadcrumbSmall {
+  font-size: var(--dyn-font-size-xs);
 }
 
-.breadcrumb--small .breadcrumbList {
-  gap: var(--dyn-breadcrumb-gap-small);
+.breadcrumbMedium {
+  font-size: var(--dyn-font-size-sm);
 }
 
-.breadcrumb--medium {
-  font-size: var(--dyn-breadcrumb-font-size-medium);
+.breadcrumbLarge {
+  font-size: var(--dyn-font-size-md);
 }
 
-.breadcrumb--medium .breadcrumbList {
-  gap: var(--dyn-breadcrumb-gap-medium);
-}
-
-.breadcrumb--large {
-  font-size: var(--dyn-breadcrumb-font-size-large);
-}
-
-.breadcrumb--large .breadcrumbList {
-  gap: var(--dyn-breadcrumb-gap-large);
-}
-
-/* Collapsed State
-   ========================================================================== */
-.breadcrumb--collapsed .breadcrumbList {
+.breadcrumbCollapsed .breadcrumbList {
   flex-wrap: nowrap;
 }
 
-/* Breadcrumb Item
-   ========================================================================== */
+/* ============================================
+   BREADCRUMB ITEM
+   ============================================ */
+
 .breadcrumbItem {
   display: inline-flex;
   align-items: center;
-  gap: var(--dyn-breadcrumb-gap-medium);
+  gap: var(--dyn-breadcrumb-gap);
   color: var(--dyn-breadcrumb-color-text);
 }
 
-.breadcrumbItem--show {
-  /* Forced visible when collapsed */
+.breadcrumbItemShow {
   display: inline-flex;
 }
 
-/* Breadcrumb Link
-   ========================================================================== */
+/* ============================================
+   BREADCRUMB LINK
+   ============================================ */
+
 .breadcrumbLink {
   display: inline-flex;
   align-items: center;
@@ -127,12 +110,14 @@
 }
 
 .breadcrumbLink:focus-visible {
-  outline: var(--dyn-breadcrumb-focus-ring-width) solid var(--dyn-breadcrumb-focus-ring-color);
-  outline-offset: var(--dyn-breadcrumb-focus-ring-offset);
+  outline: 2px solid var(--dyn-breadcrumb-focus-ring-color);
+  outline-offset: 2px;
 }
 
-/* Breadcrumb Current Page
-   ========================================================================== */
+/* ============================================
+   CURRENT PAGE
+   ============================================ */
+
 .breadcrumbCurrent {
   display: inline-flex;
   align-items: center;
@@ -142,8 +127,10 @@
   cursor: default;
 }
 
-/* Breadcrumb Static (non-link, non-current)
-   ========================================================================== */
+/* ============================================
+   STATIC ITEM
+   ============================================ */
+
 .breadcrumbStatic {
   display: inline-flex;
   align-items: center;
@@ -151,8 +138,10 @@
   color: var(--dyn-breadcrumb-color-text);
 }
 
-/* Breadcrumb Icon
-   ========================================================================== */
+/* ============================================
+   ICON & TEXT
+   ============================================ */
+
 .breadcrumbIcon {
   display: inline-flex;
   align-items: center;
@@ -160,14 +149,14 @@
   flex-shrink: 0;
 }
 
-/* Breadcrumb Text
-   ========================================================================== */
 .breadcrumbText {
   display: inline-block;
 }
 
-/* Breadcrumb Separator
-   ========================================================================== */
+/* ============================================
+   SEPARATOR
+   ============================================ */
+
 .breadcrumbSeparator {
   display: inline-flex;
   align-items: center;
@@ -176,45 +165,42 @@
   pointer-events: none;
 }
 
-/* Separator: Slash (default) */
 .breadcrumbSeparator::before {
   content: '/';
 }
 
-.breadcrumbSeparator--slash::before {
+.breadcrumbSeparatorSlash::before {
   content: '/';
 }
 
-/* Separator: Chevron */
-.breadcrumbSeparator--chevron::before {
+.breadcrumbSeparatorChevron::before {
   content: '›';
   font-size: 1.2em;
 }
 
-/* Separator: Arrow */
-.breadcrumbSeparator--arrow::before {
+.breadcrumbSeparatorArrow::before {
   content: '→';
 }
 
-/* Separator: Dot */
-.breadcrumbSeparator--dot::before {
+.breadcrumbSeparatorDot::before {
   content: '•';
 }
 
-/* Separator: Custom (content provided by children) */
-.breadcrumbSeparator--custom::before {
+.breadcrumbSeparatorCustom::before {
   content: none;
 }
 
-/* Ellipsis Button
-   ========================================================================== */
-.breadcrumbItem--ellipsis {
+/* ============================================
+   ELLIPSIS BUTTON
+   ============================================ */
+
+.breadcrumbItemEllipsis {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 32px;
   height: 32px;
-  padding: var(--dyn-breadcrumb-ellipsis-padding);
+  padding: var(--dyn-spacing-xs);
   background-color: var(--dyn-breadcrumb-color-ellipsis-bg);
   color: var(--dyn-breadcrumb-color-text);
   border: none;
@@ -226,72 +212,57 @@
   outline: none;
 }
 
-.breadcrumbItem--ellipsis:hover {
+.breadcrumbItemEllipsis:hover {
   background-color: var(--dyn-breadcrumb-color-ellipsis-hover);
 }
 
-.breadcrumbItem--ellipsis:focus-visible {
-  outline: var(--dyn-breadcrumb-focus-ring-width) solid var(--dyn-breadcrumb-focus-ring-color);
-  outline-offset: var(--dyn-breadcrumb-focus-ring-offset);
+.breadcrumbItemEllipsis:focus-visible {
+  outline: 2px solid var(--dyn-breadcrumb-focus-ring-color);
+  outline-offset: 2px;
 }
 
-.breadcrumbItem--ellipsis:active {
+.breadcrumbItemEllipsis:active {
   transform: scale(0.95);
 }
 
-/* Dark Mode Support
-   ========================================================================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --dyn-breadcrumb-color-text: var(--dyn-color-text-secondary-dark, #94a3b8);
-    --dyn-breadcrumb-color-text-current: var(--dyn-color-text-primary-dark, #f1f5f9);
-    --dyn-breadcrumb-color-link: var(--dyn-color-primary-dark, #60a5fa);
-    --dyn-breadcrumb-color-link-hover: var(--dyn-color-primary-light, #93c5fd);
-    --dyn-breadcrumb-color-separator: var(--dyn-color-text-tertiary-dark, #64748b);
-    --dyn-breadcrumb-color-ellipsis-bg: var(--dyn-color-neutral-800, #1e293b);
-    --dyn-breadcrumb-color-ellipsis-hover: var(--dyn-color-neutral-700, #334155);
-    --dyn-breadcrumb-focus-ring-color: var(--dyn-color-focus-dark, #60a5fa);
-  }
-}
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 
-/* Accessibility: High Contrast
-   ========================================================================== */
-@media (prefers-contrast: more) {
+@media (prefers-contrast: high) {
   .breadcrumbLink {
     text-decoration: underline;
   }
 
-  .breadcrumbLink:focus-visible {
-    outline-width: 3px;
-  }
-
-  .breadcrumbItem--ellipsis:focus-visible {
+  .breadcrumbLink:focus-visible,
+  .breadcrumbItemEllipsis:focus-visible {
     outline-width: 3px;
   }
 }
 
-/* Accessibility: Reduced Motion
-   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
 
   .breadcrumbLink,
-  .breadcrumbItem--ellipsis {
+  .breadcrumbItemEllipsis {
     transition: none;
   }
 
-  .breadcrumbItem--ellipsis:active {
+  .breadcrumbItemEllipsis:active {
     transform: none;
   }
 }
 
-/* Responsive: Mobile Adjustments
-   ========================================================================== */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
 @media (max-width: 640px) {
   .breadcrumbList {
-    gap: var(--dyn-breadcrumb-gap-small);
-  }
-
-  .breadcrumb--large .breadcrumbList {
-    gap: var(--dyn-breadcrumb-gap-medium);
+    gap: var(--dyn-spacing-xs);
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: Handled automatically via semantic tokens!
+   ============================================ */

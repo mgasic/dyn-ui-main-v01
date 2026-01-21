@@ -1,8 +1,111 @@
 {
   "color": {
     "semantic": {
-      "background": { "value": "{color.base.white.value}" },
-      "text": { "value": "{color.base.black.value}" }
+      "background": {
+        "value": "{color.neutral.light.white.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.950.value}"
+        },
+        "description": "Primary background color for pages and main content areas"
+      },
+      "surface": {
+        "value": "{color.neutral.light.50.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.900.value}"
+        },
+        "description": "Secondary surface color for cards, panels, and elevated elements"
+      },
+      "surface-muted": {
+        "value": "{color.neutral.light.100.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.800.value}"
+        },
+        "description": "Muted surface for disabled states and subtle backgrounds"
+      },
+      "surface-hover": {
+        "value": "{color.neutral.light.100.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.800.value}"
+        },
+        "description": "Surface color for hover states on interactive elements"
+      },
+      "surface-active": {
+        "value": "{color.neutral.light.200.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.700.value}"
+        },
+        "description": "Surface color for active/pressed states"
+      },
+      "text": {
+        "value": "{color.neutral.dark.900.value}",
+        "darkTheme": {
+          "value": "{color.neutral.light.50.value}"
+        },
+        "description": "Primary text color for headings and body text"
+      },
+      "text-secondary": {
+        "value": "{color.neutral.mid.600.value}",
+        "darkTheme": {
+          "value": "{color.neutral.mid.400.value}"
+        },
+        "description": "Secondary text color for labels, captions, and helper text"
+      },
+      "text-muted": {
+        "value": "{color.neutral.mid.400.value}",
+        "darkTheme": {
+          "value": "{color.neutral.mid.600.value}"
+        },
+        "description": "Muted text color for placeholders and disabled text"
+      },
+      "text-inverse": {
+        "value": "{color.neutral.light.white.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.950.value}"
+        },
+        "description": "Inverse text color for use on primary/dark backgrounds"
+      },
+      "border": {
+        "value": "{color.neutral.light.200.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.800.value}"
+        },
+        "description": "Default border color for cards, inputs, and dividers"
+      },
+      "border-hover": {
+        "value": "{color.neutral.mid.400.value}",
+        "darkTheme": {
+          "value": "{color.neutral.mid.600.value}"
+        },
+        "description": "Border color for hover states"
+      },
+      "border-focus": {
+        "value": "{color.theme.primary.value}",
+        "darkTheme": {
+          "value": "{color.theme.primary.value}"
+        },
+        "description": "Border color for focused elements"
+      },
+      "input-bg": {
+        "value": "{color.neutral.light.white.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.950.value}"
+        },
+        "description": "Background color for input fields, textareas, and selects"
+      },
+      "input-border": {
+        "value": "{color.neutral.light.200.value}",
+        "darkTheme": {
+          "value": "{color.neutral.dark.800.value}"
+        },
+        "description": "Border color for input fields"
+      },
+      "overlay": {
+        "value": "rgba(0, 0, 0, 0.5)",
+        "darkTheme": {
+          "value": "rgba(0, 0, 0, 0.8)"
+        },
+        "description": "Overlay color for modals and dialogs"
+      }
     }
   }
 }

@@ -1,0 +1,172 @@
+{
+    "layout": {
+        "z-index": {
+            "hide": {
+                "value": "-1",
+                "description": "Hidden behind everything"
+            },
+            "base": {
+                "value": "0",
+                "description": "Base level"
+            },
+            "raised": {
+                "value": "1",
+                "description": "Slightly raised elements"
+            },
+            "dropdown": {
+                "value": "100",
+                "description": "Dropdowns and popovers"
+            },
+            "sticky": {
+                "value": "200",
+                "description": "Sticky headers and elements"
+            },
+            "fixed": {
+                "value": "300",
+                "description": "Fixed navigation"
+            },
+            "overlay": {
+                "value": "400",
+                "description": "Overlay backgrounds"
+            },
+            "modal": {
+                "value": "500",
+                "description": "Modal dialogs"
+            },
+            "popover": {
+                "value": "600",
+                "description": "Tooltips and popovers above modals"
+            },
+            "toast": {
+                "value": "700",
+                "description": "Toast notifications"
+            },
+            "max": {
+                "value": "9999",
+                "description": "Maximum z-index"
+            }
+        },
+        "opacity": {
+            "0": {
+                "value": "0",
+                "description": "Fully transparent"
+            },
+            "5": {
+                "value": "0.05",
+                "description": "5% opacity"
+            },
+            "10": {
+                "value": "0.1",
+                "description": "10% opacity"
+            },
+            "20": {
+                "value": "0.2",
+                "description": "20% opacity"
+            },
+            "25": {
+                "value": "0.25",
+                "description": "25% opacity"
+            },
+            "30": {
+                "value": "0.3",
+                "description": "30% opacity"
+            },
+            "40": {
+                "value": "0.4",
+                "description": "40% opacity"
+            },
+            "50": {
+                "value": "0.5",
+                "description": "50% opacity"
+            },
+            "60": {
+                "value": "0.6",
+                "description": "60% opacity"
+            },
+            "70": {
+                "value": "0.7",
+                "description": "70% opacity"
+            },
+            "75": {
+                "value": "0.75",
+                "description": "75% opacity"
+            },
+            "80": {
+                "value": "0.8",
+                "description": "80% opacity"
+            },
+            "90": {
+                "value": "0.9",
+                "description": "90% opacity"
+            },
+            "95": {
+                "value": "0.95",
+                "description": "95% opacity"
+            },
+            "100": {
+                "value": "1",
+                "description": "Fully opaque"
+            },
+            "disabled": {
+                "value": "0.5",
+                "description": "Disabled state opacity"
+            }
+        },
+        "container": {
+            "xs": {
+                "value": "320px",
+                "description": "Extra small container"
+            },
+            "sm": {
+                "value": "540px",
+                "description": "Small container"
+            },
+            "md": {
+                "value": "720px",
+                "description": "Medium container"
+            },
+            "lg": {
+                "value": "960px",
+                "description": "Large container"
+            },
+            "xl": {
+                "value": "1140px",
+                "description": "Extra large container"
+            },
+            "2xl": {
+                "value": "1320px",
+                "description": "2x Extra large container"
+            },
+            "full": {
+                "value": "100%",
+                "description": "Full width container"
+            }
+        },
+        "breakpoint": {
+            "xs": {
+                "value": "0",
+                "description": "Extra small screens"
+            },
+            "sm": {
+                "value": "576px",
+                "description": "Small screens (mobile landscape)"
+            },
+            "md": {
+                "value": "768px",
+                "description": "Medium screens (tablets)"
+            },
+            "lg": {
+                "value": "992px",
+                "description": "Large screens (small desktops)"
+            },
+            "xl": {
+                "value": "1200px",
+                "description": "Extra large screens (desktops)"
+            },
+            "2xl": {
+                "value": "1400px",
+                "description": "2x Extra large screens (large desktops)"
+            }
+        }
+    }
+}

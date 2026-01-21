@@ -38,6 +38,7 @@ const config: StorybookConfig = {
     config.resolve.alias = {
       ...config.resolve.alias,
       'dyn-ui-react': join(__dirname, '../packages/dyn-ui-react/src'),
+      '@dyn-ui/design-tokens': join(__dirname, '../packages/design-tokens'),
     };
 
     return config;

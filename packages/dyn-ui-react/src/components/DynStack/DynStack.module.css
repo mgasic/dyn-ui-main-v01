@@ -1,40 +1,29 @@
-/* ==========================================================================
-   DynStack Component Styles
-   Standardized with design tokens
-   ========================================================================== */
+/**
+ * DynStack Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
+ * 
+ * Structural component - no color overrides needed for dark mode
+ */
 
-/* Stack Container */
+/* ============================================
+   COMPONENT TOKENS
+   ============================================ */
+
 .container {
-  /* Size Tokens */
-  --dyn-stack-width: 100%;
-  --dyn-stack-height: auto;
-
-  /* Spacing Tokens */
-  --dyn-stack-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-stack-gap-none: 0;
-  --dyn-stack-gap-xs: var(--dyn-spacing-xs, var(--spacing-xs, 4px));
-  --dyn-stack-gap-sm: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
-  --dyn-stack-gap-md: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-stack-gap-lg: var(--dyn-spacing-lg, var(--spacing-lg, 24px));
-  --dyn-stack-gap-xl: var(--dyn-spacing-xl, var(--spacing-xl, 32px));
-
-  /* Typography */
-  --dyn-stack-font-family: var(--dyn-font-family-base, var(--font-family-base, system-ui, -apple-system, sans-serif));
-
-  /* Transitions */
-  --dyn-stack-transition: var(--dyn-transition-base, var(--transition-base, 0.18s ease));
+  /* Spacing tokens */
+  --dyn-stack-gap: var(--dyn-spacing-md);
 
   display: flex;
-  width: var(--dyn-stack-width);
-  height: var(--dyn-stack-height);
+  width: 100%;
+  height: auto;
   gap: var(--dyn-stack-gap);
-  font-family: var(--dyn-stack-font-family);
+  font-family: inherit;
   box-sizing: border-box;
 }
 
-/* ========================================================================
-   Direction Variants
-   ======================================================================== */
+/* ============================================
+   DIRECTION VARIANTS
+   ============================================ */
 
 .vertical {
   flex-direction: column;
@@ -52,9 +41,9 @@
   flex-direction: row-reverse;
 }
 
-/* ========================================================================
-   Alignment Variants
-   ======================================================================== */
+/* ============================================
+   ALIGNMENT VARIANTS
+   ============================================ */
 
 .alignStart {
   align-items: flex-start;
@@ -76,9 +65,9 @@
   align-items: baseline;
 }
 
-/* ========================================================================
-   Justification Variants
-   ======================================================================== */
+/* ============================================
+   JUSTIFICATION VARIANTS
+   ============================================ */
 
 .justifyStart {
   justify-content: flex-start;
@@ -104,37 +93,33 @@
   justify-content: space-evenly;
 }
 
-/* ========================================================================
-   Gap Variants
-   ======================================================================== */
+/* ============================================
+   GAP VARIANTS
+   ============================================ */
 
 .gapNone {
-  gap: var(--dyn-stack-gap-none);
+  --dyn-stack-gap: 0;
 }
 
 .gapXs {
-  gap: var(--dyn-stack-gap-xs);
+  --dyn-stack-gap: var(--dyn-spacing-xs);
 }
 
 .gapSm {
-  gap: var(--dyn-stack-gap-sm);
+  --dyn-stack-gap: var(--dyn-spacing-sm);
 }
 
 .gapMd {
-  gap: var(--dyn-stack-gap-md);
+  --dyn-stack-gap: var(--dyn-spacing-md);
 }
 
 .gapLg {
-  gap: var(--dyn-stack-gap-lg);
+  --dyn-stack-gap: var(--dyn-spacing-lg);
 }
 
-.gapXl {
-  gap: var(--dyn-stack-gap-xl);
-}
-
-/* ========================================================================
-   Wrap Variants
-   ======================================================================== */
+/* ============================================
+   WRAP VARIANTS
+   ============================================ */
 
 .wrap {
   flex-wrap: wrap;
@@ -148,9 +133,9 @@
   flex-wrap: wrap-reverse;
 }
 
-/* ========================================================================
-   Flex Grow/Shrink
-   ======================================================================== */
+/* ============================================
+   FLEX VARIANTS
+   ============================================ */
 
 .flex1 {
   flex: 1 1 auto;
@@ -168,9 +153,9 @@
   flex: none;
 }
 
-/* ========================================================================
-   Accessibility: Reduced Motion
-   ======================================================================== */
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
   .container {
@@ -178,13 +163,13 @@
   }
 }
 
-/* ========================================================================
-   Responsive: Mobile (767px and below)
-   ======================================================================== */
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
 @media (max-width: 767px) {
   .container {
-    --dyn-stack-gap: var(--dyn-stack-gap-sm);
+    --dyn-stack-gap: var(--dyn-spacing-sm);
   }
 
   .horizontal {
@@ -195,3 +180,9 @@
     flex-direction: column-reverse;
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: DynStack is a structural component with no colors.
+   No dark mode overrides needed.
+   ============================================ */

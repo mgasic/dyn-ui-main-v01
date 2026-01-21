@@ -1,116 +1,90 @@
 /**
- * DynFlex Component Styles - 100% Design Token Compliance
+ * DynFlex Component Styles - Option B: Full Token Integration
+ * 100% Design Token Compliance
  * 
- * Varijante: row, column, wrap, inline-flex
- * Stanja: default, responsive
- * Dark mode: Podržan
- * A11y: Uključen
+ * Variants: row, column, wrap, inline-flex
+ * States: default, responsive
+ * A11y: Included
  */
 
 /* ============================================
-   COMPONENT TOKENS - Default (Light Mode)
-   Uses global foundation tokens from:
-   packages/design-tokens/styles/foundations/spacing.css
+   BASE FLEX CONTAINER
+   All tokens reference foundation tokens
    ============================================ */
 
-/* Base Flex Container */
 .flex {
-  /* Base tokens - DynFlex */
+  /* Flex tokens */
   --dyn-flex-display: flex;
-  --dyn-flex-flex-direction: row;
-  --dyn-flex-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-  --dyn-flex-padding: var(--dyn-spacing-sm, var(--spacing-sm, 8px));
+  --dyn-flex-direction: row;
+  --dyn-flex-gap: var(--dyn-spacing-md);
+  --dyn-flex-padding: 0;
   --dyn-flex-align-items: stretch;
   --dyn-flex-justify-content: flex-start;
-  --dyn-flex-flex-wrap: nowrap;
+  --dyn-flex-wrap: nowrap;
 
-  /* Column variant */
-  --dyn-flex-column-direction: column;
-  --dyn-flex-column-gap: var(--dyn-spacing-md, var(--spacing-md, 16px));
-
-  /* Wrap variant */
-  --dyn-flex-wrap-wrap: wrap;
-
-  /* Inline variant */
-  --dyn-flex-inline-display: inline-flex;
-
-  /* Properties */
-  display: var(--dyn-flex-display, flex);
-  flex-direction: var(--dyn-flex-flex-direction, row);
+  /* Base styles */
+  display: var(--dyn-flex-display);
+  flex-direction: var(--dyn-flex-direction);
   gap: var(--dyn-flex-gap);
   padding: var(--dyn-flex-padding);
-  align-items: var(--dyn-flex-align-items, stretch);
-  justify-content: var(--dyn-flex-justify-content, flex-start);
-  flex-wrap: var(--dyn-flex-flex-wrap, nowrap);
-  box-sizing: border-box;
-}
-
-
-/* ============================================
-   DARK MODE OVERRIDES
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark mode - nema specifičnog override-a za flex
-       jer su flex svojstva agnostična prema temi */
-  }
-}
-
-/* ============================================
-   HIGH CONTRAST MODE
-   ============================================ */
-
-@media (prefers-contrast: more) {
-  :root {
-    /* Flex je strukturalna komponenta, nema boja za contrast */
-  }
-}
-
-/* ============================================
-   BASE FLEX CONTAINER
-   ============================================ */
-
-.flex {
-  display: var(--dyn-flex-display, flex);
-  flex-direction: var(--dyn-flex-flex-direction, row);
-  gap: var(--dyn-flex-gap);
-  padding: var(--dyn-flex-padding);
-  align-items: var(--dyn-flex-align-items, stretch);
-  justify-content: var(--dyn-flex-justify-content, flex-start);
-  flex-wrap: var(--dyn-flex-flex-wrap, nowrap);
+  align-items: var(--dyn-flex-align-items);
+  justify-content: var(--dyn-flex-justify-content);
+  flex-wrap: var(--dyn-flex-wrap);
   box-sizing: border-box;
 }
 
 /* ============================================
-   VARIANT: COLUMN
+   DIRECTION VARIANTS
    ============================================ */
 
 .flexColumn {
-  --dyn-flex-flex-direction: var(--dyn-flex-column-direction, column);
-  --dyn-flex-gap: var(--dyn-flex-column-gap);
+  --dyn-flex-direction: column;
+}
+
+.flexRow {
+  --dyn-flex-direction: row;
+}
+
+.flexRowReverse {
+  --dyn-flex-direction: row-reverse;
+}
+
+.flexColumnReverse {
+  --dyn-flex-direction: column-reverse;
 }
 
 /* ============================================
-   VARIANT: WRAP
+   WRAP VARIANTS
    ============================================ */
 
 .flexWrap {
-  --dyn-flex-flex-wrap: var(--dyn-flex-wrap-wrap, wrap);
+  --dyn-flex-wrap: wrap;
+}
+
+.flexNoWrap {
+  --dyn-flex-wrap: nowrap;
+}
+
+.flexWrapReverse {
+  --dyn-flex-wrap: wrap-reverse;
 }
 
 /* ============================================
-   VARIANT: INLINE-FLEX
+   DISPLAY VARIANTS
    ============================================ */
 
 .flexInline {
-  --dyn-flex-display: var(--dyn-flex-inline-display, inline-flex);
+  --dyn-flex-display: inline-flex;
 }
 
 /* ============================================
    GAP UTILITIES
-   Uses global foundation spacing tokens
+   Uses foundation spacing tokens
    ============================================ */
+
+.gapNone {
+  --dyn-flex-gap: 0;
+}
 
 .gapXSmall {
   --dyn-flex-gap: var(--dyn-spacing-xs);
@@ -126,14 +100,6 @@
 
 .gapLarge {
   --dyn-flex-gap: var(--dyn-spacing-lg);
-}
-
-.gapXLarge {
-  --dyn-flex-gap: var(--dyn-spacing-xl);
-}
-
-.gap2XLarge {
-  --dyn-flex-gap: var(--dyn-spacing-2xl);
 }
 
 /* ============================================
@@ -194,18 +160,13 @@
 
 @media (max-width: 768px) {
   .flex {
-    /* Stack na mobilnim uređajima */
     min-width: 0;
-    /* Omogući flex children da se prelamaju */
-    flex-wrap: var(--dyn-flex-wrap-wrap, wrap);
   }
 }
 
 @media (max-width: 480px) {
   .flex {
-    /* Manji gap na jako malim ekranima */
     --dyn-flex-gap: var(--dyn-spacing-sm);
-    --dyn-flex-padding: var(--dyn-spacing-xs);
   }
 }
 
@@ -213,16 +174,20 @@
    ACCESSIBILITY
    ============================================ */
 
-/* Focus ring za keyboard navigation kroz flex items */
 .flex> :focus-visible {
-  outline: 2px solid var(--dyn-focus-ring-color, #007ACC);
+  outline: 2px solid var(--dyn-semantic-border-focus);
   outline-offset: 2px;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .flex>* {
     animation: none !important;
     transition: none !important;
   }
 }
+
+/* ============================================
+   DARK MODE
+   Note: DynFlex is a structural component with no colors.
+   No dark mode overrides needed.
+   ============================================ */

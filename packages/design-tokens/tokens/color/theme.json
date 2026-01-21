@@ -1,8 +1,50 @@
 {
   "color": {
     "theme": {
-      "primary": { "value": "#007bff" },
-      "secondary": { "value": "#6c757d" }
+      "primary": {
+        "value": "#007bff",
+        "description": "Primary brand color"
+      },
+      "primary-light": {
+        "value": "#4da3ff",
+        "description": "Light primary for hover states"
+      },
+      "primary-dark": {
+        "value": "#0056b3",
+        "description": "Dark primary for active states"
+      },
+      "primary-subtle": {
+        "value": "rgba(0, 123, 255, 0.1)",
+        "description": "Subtle primary for backgrounds"
+      },
+      "secondary": {
+        "value": "#6c757d",
+        "description": "Secondary color"
+      },
+      "secondary-light": {
+        "value": "#868e96",
+        "description": "Light secondary"
+      },
+      "secondary-dark": {
+        "value": "#545b62",
+        "description": "Dark secondary"
+      },
+      "secondary-subtle": {
+        "value": "rgba(108, 117, 125, 0.1)",
+        "description": "Subtle secondary for backgrounds"
+      },
+      "accent": {
+        "value": "#17a2b8",
+        "description": "Accent color for highlights"
+      },
+      "accent-light": {
+        "value": "#3fc3dc",
+        "description": "Light accent"
+      },
+      "accent-dark": {
+        "value": "#117a8b",
+        "description": "Dark accent"
+      }
     }
   }
 }

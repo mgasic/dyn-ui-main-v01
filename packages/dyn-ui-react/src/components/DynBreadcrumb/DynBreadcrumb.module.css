@@ -9,28 +9,28 @@
 
 .breadcrumb {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-breadcrumb-color-text: var(--dyn-semantic-text-secondary);
-  --dyn-breadcrumb-color-text-current: var(--dyn-semantic-text);
-  --dyn-breadcrumb-color-link: var(--dyn-theme-primary);
-  --dyn-breadcrumb-color-link-hover: var(--dyn-action-hover);
-  --dyn-breadcrumb-color-separator: var(--dyn-semantic-text-muted);
-  --dyn-breadcrumb-color-ellipsis-bg: var(--dyn-semantic-surface-muted);
-  --dyn-breadcrumb-color-ellipsis-hover: var(--dyn-semantic-surface-hover);
-  --dyn-breadcrumb-focus-ring-color: var(--dyn-semantic-border-focus);
+  --dyn-breadcrumb-color-text: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-breadcrumb-color-text-current: var(--dyn-semantic-text, #0f172a);
+  --dyn-breadcrumb-color-link: var(--dyn-theme-primary, #2563eb);
+  --dyn-breadcrumb-color-link-hover: var(--dyn-action-hover, #1d4ed8);
+  --dyn-breadcrumb-color-separator: var(--dyn-semantic-text-muted, #94a3b8);
+  --dyn-breadcrumb-color-ellipsis-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-breadcrumb-color-ellipsis-hover: var(--dyn-semantic-surface-hover, #e2e8f0);
+  --dyn-breadcrumb-focus-ring-color: var(--dyn-semantic-border-focus, #3b82f6);
 
   /* Spacing tokens */
-  --dyn-breadcrumb-gap: var(--dyn-spacing-xs);
-  --dyn-breadcrumb-icon-gap: var(--dyn-spacing-xs);
+  --dyn-breadcrumb-gap: var(--dyn-spacing-xs, 0.25rem);
+  --dyn-breadcrumb-icon-gap: var(--dyn-spacing-xs, 0.25rem);
 
   /* Typography */
-  --dyn-breadcrumb-font-size: var(--dyn-font-size-sm);
-  --dyn-breadcrumb-font-weight: var(--dyn-font-weight-medium);
+  --dyn-breadcrumb-font-size: var(--dyn-font-size-sm, 0.875rem);
+  --dyn-breadcrumb-font-weight: var(--dyn-font-weight-medium, 500);
 
   /* Border */
-  --dyn-breadcrumb-border-radius: var(--dyn-border-radius-sm);
+  --dyn-breadcrumb-border-radius: var(--dyn-border-radius-sm, 0.25rem);
 
   /* Transition */
-  --dyn-breadcrumb-transition: var(--dyn-transition-fast);
+  --dyn-breadcrumb-transition: var(--dyn-transition-fast, 0.15s ease);
 
   display: block;
   font-family: inherit;

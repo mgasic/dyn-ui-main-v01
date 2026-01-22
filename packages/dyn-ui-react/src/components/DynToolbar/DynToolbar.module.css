@@ -9,29 +9,29 @@
 
 .root {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-toolbar-bg: var(--dyn-semantic-background);
-  --dyn-toolbar-border: var(--dyn-semantic-border);
-  --dyn-toolbar-shadow: var(--dyn-elevation-low);
-  --dyn-toolbar-text: var(--dyn-semantic-text);
+  --dyn-toolbar-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-toolbar-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-toolbar-shadow: var(--dyn-elevation-low, 0 1px 3px rgba(0, 0, 0, 0.12));
+  --dyn-toolbar-text: var(--dyn-semantic-text, #0f172a);
 
   /* Item tokens */
   --dyn-toolbar-item-bg: transparent;
-  --dyn-toolbar-item-bg-hover: var(--dyn-semantic-surface-hover);
-  --dyn-toolbar-item-bg-active: var(--dyn-semantic-surface-active);
-  --dyn-toolbar-item-text: var(--dyn-semantic-text-secondary);
-  --dyn-toolbar-item-text-hover: var(--dyn-semantic-text);
-  --dyn-toolbar-item-text-active: var(--dyn-theme-primary);
+  --dyn-toolbar-item-bg-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
+  --dyn-toolbar-item-bg-active: var(--dyn-semantic-surface-active, #e2e8f0);
+  --dyn-toolbar-item-text: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-toolbar-item-text-hover: var(--dyn-semantic-text, #0f172a);
+  --dyn-toolbar-item-text-active: var(--dyn-theme-primary, #2563eb);
 
   /* Input tokens */
-  --dyn-toolbar-input-bg: var(--dyn-semantic-input-bg);
-  --dyn-toolbar-input-border: var(--dyn-semantic-input-border);
-  --dyn-toolbar-input-text: var(--dyn-semantic-text);
-  --dyn-toolbar-input-focus: var(--dyn-semantic-border-focus);
+  --dyn-toolbar-input-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-toolbar-input-border: var(--dyn-semantic-input-border, #cbd5e1);
+  --dyn-toolbar-input-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-toolbar-input-focus: var(--dyn-semantic-border-focus, #3b82f6);
 
   /* Menu tokens */
-  --dyn-toolbar-menu-bg: var(--dyn-semantic-background);
-  --dyn-toolbar-menu-border: var(--dyn-semantic-border);
-  --dyn-toolbar-menu-shadow: var(--dyn-elevation-high);
+  --dyn-toolbar-menu-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-toolbar-menu-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-toolbar-menu-shadow: var(--dyn-elevation-high, 0 10px 20px rgba(0, 0, 0, 0.15));
 
   display: flex;
   flex-direction: column;

@@ -9,17 +9,17 @@
 
 .root {
   /* Spacing tokens */
-  --dyn-container-padding: var(--dyn-spacing-md);
-  --dyn-container-gap: var(--dyn-spacing-md);
+  --dyn-container-padding: var(--dyn-spacing-md, 1rem);
+  --dyn-container-gap: var(--dyn-spacing-md, 1rem);
   --dyn-container-margin: 0;
 
   /* Color tokens - semantic for auto theme switching */
-  --dyn-container-border-color: var(--dyn-semantic-border);
-  --dyn-container-surface: var(--dyn-semantic-surface);
-  --dyn-container-card: var(--dyn-semantic-background);
-  --dyn-container-shadow: var(--dyn-elevation-medium);
-  --dyn-container-title-color: var(--dyn-semantic-text);
-  --dyn-container-subtitle-color: var(--dyn-semantic-text-secondary);
+  --dyn-container-border-color: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-container-surface: var(--dyn-semantic-surface, #ffffff);
+  --dyn-container-card: var(--dyn-semantic-background, #ffffff);
+  --dyn-container-shadow: var(--dyn-elevation-medium, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  --dyn-container-title-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-container-subtitle-color: var(--dyn-semantic-text-secondary, #64748b);
 
   /* Layout tokens */
   --dyn-container-max-width: 100%;

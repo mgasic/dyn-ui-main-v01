@@ -9,18 +9,18 @@
 
 .container {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-appbar-bg: var(--dyn-theme-primary);
-  --dyn-appbar-text-color: var(--dyn-semantic-text-inverse);
-  --dyn-appbar-border-color: var(--dyn-semantic-border);
+  --dyn-appbar-bg: var(--dyn-theme-primary, #007bff);
+  --dyn-appbar-text-color: var(--dyn-semantic-text-inverse, #ffffff);
+  --dyn-appbar-border-color: var(--dyn-semantic-border, #e2e8f0);
 
   /* Size tokens */
   --dyn-appbar-height: 64px;
-  --dyn-appbar-padding-x: var(--dyn-spacing-lg);
-  --dyn-appbar-gap: var(--dyn-spacing-lg);
+  --dyn-appbar-padding-x: var(--dyn-spacing-lg, 1.5rem);
+  --dyn-appbar-gap: var(--dyn-spacing-lg, 1.5rem);
 
   /* Effects */
-  --dyn-appbar-shadow: var(--dyn-elevation-medium);
-  --dyn-appbar-transition: var(--dyn-transition-fast);
+  --dyn-appbar-shadow: var(--dyn-elevation-medium, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  --dyn-appbar-transition: var(--dyn-transition-fast, 0.15s ease);
 
   /* Base styles */
   display: flex;

@@ -16,9 +16,9 @@
 
 .modalOverlay {
   /* Overlay tokens */
-  --dyn-modal-overlay-bg: var(--dyn-semantic-overlay);
+  --dyn-modal-overlay-bg: var(--dyn-semantic-overlay, rgba(0, 0, 0, 0.5));
   --dyn-modal-overlay-backdrop-filter: blur(4px);
-  --dyn-modal-transition: var(--dyn-transition-normal);
+  --dyn-modal-transition: var(--dyn-transition-normal, 0.2s ease-in-out);
   --dyn-modal-animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Base overlay styles */
@@ -47,36 +47,36 @@
 
 .modalContainer {
   /* Modal tokens - all use semantic for auto theme switching */
-  --dyn-modal-bg: var(--dyn-semantic-background);
-  --dyn-modal-text: var(--dyn-semantic-text);
-  --dyn-modal-border: var(--dyn-semantic-border);
-  --dyn-modal-border-radius: var(--dyn-border-radius-lg);
-  --dyn-modal-box-shadow: var(--dyn-elevation-high);
+  --dyn-modal-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-modal-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-modal-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-modal-border-radius: var(--dyn-border-radius-lg, 0.5rem);
+  --dyn-modal-box-shadow: var(--dyn-elevation-high, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
 
   /* Header tokens */
-  --dyn-modal-header-padding: var(--dyn-spacing-lg);
-  --dyn-modal-header-bg: var(--dyn-semantic-background);
-  --dyn-modal-header-border: var(--dyn-semantic-border);
-  --dyn-modal-header-text: var(--dyn-semantic-text);
-  --dyn-modal-header-font-size: var(--dyn-font-size-xl);
-  --dyn-modal-header-font-weight: var(--dyn-font-weight-semibold);
+  --dyn-modal-header-padding: var(--dyn-spacing-lg, 1.5rem);
+  --dyn-modal-header-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-modal-header-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-modal-header-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-modal-header-font-size: var(--dyn-font-size-xl, 1.25rem);
+  --dyn-modal-header-font-weight: var(--dyn-font-weight-semibold, 600);
 
   /* Body tokens */
-  --dyn-modal-body-padding: var(--dyn-spacing-lg);
-  --dyn-modal-body-bg: var(--dyn-semantic-background);
-  --dyn-modal-body-text: var(--dyn-semantic-text);
-  --dyn-modal-body-font-size: var(--dyn-font-size-sm);
+  --dyn-modal-body-padding: var(--dyn-spacing-lg, 1.5rem);
+  --dyn-modal-body-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-modal-body-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-modal-body-font-size: var(--dyn-font-size-sm, 0.875rem);
 
   /* Footer tokens */
-  --dyn-modal-footer-padding: var(--dyn-spacing-lg);
-  --dyn-modal-footer-bg: var(--dyn-semantic-surface);
-  --dyn-modal-footer-border: var(--dyn-semantic-border);
-  --dyn-modal-footer-gap: var(--dyn-spacing-sm);
+  --dyn-modal-footer-padding: var(--dyn-spacing-lg, 1.5rem);
+  --dyn-modal-footer-bg: var(--dyn-semantic-surface, #f8fafc);
+  --dyn-modal-footer-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-modal-footer-gap: var(--dyn-spacing-sm, 0.5rem);
 
   /* Close button tokens */
   --dyn-modal-close-size: 24px;
-  --dyn-modal-close-color: var(--dyn-semantic-text-secondary);
-  --dyn-modal-close-color-hover: var(--dyn-theme-primary);
+  --dyn-modal-close-color: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-modal-close-color-hover: var(--dyn-theme-primary, #2563eb);
 
   /* Size tokens */
   --dyn-modal-width: 600px;

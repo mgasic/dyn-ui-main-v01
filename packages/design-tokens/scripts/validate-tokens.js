@@ -73,7 +73,7 @@ function validateNamingConventions(content, filePath) {
   function checkNames(obj, path = []) {
     for (const [key, val] of Object.entries(obj)) {
       // Check if key uses camelCase or kebab-case (allows starting with a digit)
-      if (!/^[a-z0-9][a-zA-Z0-9]*$|^[a-z0-9](-[a-z0-9]*)*$/.test(key)) {
+      if (!/^[a-z0-9][a-zA-Z0-9]*$|^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(key)) {
         const currentPath = [...path, key].join('.');
         localWarnings.push(`${currentPath}: key should use camelCase or kebab-case`);
       }

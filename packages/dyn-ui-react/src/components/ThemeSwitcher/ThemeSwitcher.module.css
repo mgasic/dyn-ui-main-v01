@@ -9,12 +9,12 @@
 
 .container {
     /* Color tokens - semantic for auto theme switching */
-    --dyn-switcher-bg: var(--dyn-semantic-surface-muted);
-    --dyn-switcher-border: var(--dyn-semantic-border);
-    --dyn-switcher-text: var(--dyn-semantic-text);
-    --dyn-switcher-hover: var(--dyn-semantic-surface-hover);
-    --dyn-switcher-active-bg: var(--dyn-theme-primary);
-    --dyn-switcher-active-text: var(--dyn-semantic-text-inverse);
+    --dyn-switcher-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+    --dyn-switcher-border: var(--dyn-semantic-border, #e2e8f0);
+    --dyn-switcher-text: var(--dyn-semantic-text, #0f172a);
+    --dyn-switcher-hover: var(--dyn-semantic-surface-hover, #e2e8f0);
+    --dyn-switcher-active-bg: var(--dyn-theme-primary, #007bff);
+    --dyn-switcher-active-text: var(--dyn-semantic-text-inverse, #ffffff);
 
     display: inline-flex;
     border: 1px solid var(--dyn-switcher-border);

@@ -49,7 +49,7 @@ const meta: Meta<typeof DynButton> = {
     },
     danger: {
       control: 'boolean',
-      description: 'Apply destructive/danger styling for dangerous actions',
+      description: 'Apply destructive/danger styling. Works with any kind (primary/secondary/tertiary).',
       table: {
         defaultValue: { summary: 'false' },
       },

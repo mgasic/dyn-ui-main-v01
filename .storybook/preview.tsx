@@ -2,12 +2,12 @@ import * as React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider } from '../packages/dyn-ui-react/src/theme/ThemeProvider';
 // Import design tokens baseline first
-import '../packages/design-tokens/styles/foundations/index.css';
+import '@dyn-ui/design-tokens/styles/foundations/index.css';
 // Import component-specific tokens
-import '../packages/design-tokens/styles/components/badge.css';
-import '../packages/design-tokens/styles/components/avatar.css';
-import '../packages/design-tokens/styles/components/responsive-tabs.css';
-import '../packages/design-tokens/styles/components/table.css';
+import '@dyn-ui/design-tokens/styles/components/badge.css';
+import '@dyn-ui/design-tokens/styles/components/avatar.css';
+import '@dyn-ui/design-tokens/styles/components/responsive-tabs.css';
+import '@dyn-ui/design-tokens/styles/components/table.css';
 // Finally import global styles and themes
 import '../packages/dyn-ui-react/src/styles/dyn-ui.css';
 import '../packages/dyn-ui-react/src/styles/themes.css';
@@ -53,7 +53,6 @@ const preview: Preview = {
       return (
         <ThemeProvider initialTheme={theme}>
           <div style={{
-            minHeight: '100vh',
             backgroundColor: 'var(--dyn-semantic-background)',
             color: 'var(--dyn-semantic-text)',
             padding: '1rem'

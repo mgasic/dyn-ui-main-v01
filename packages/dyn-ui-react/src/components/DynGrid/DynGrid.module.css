@@ -9,14 +9,14 @@
 
 .root {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-grid-bg: var(--dyn-semantic-background);
-  --dyn-grid-text: var(--dyn-semantic-text);
-  --dyn-grid-text-secondary: var(--dyn-semantic-text-secondary);
-  --dyn-grid-border: var(--dyn-semantic-border);
-  --dyn-grid-header-bg: var(--dyn-semantic-surface);
-  --dyn-grid-hover: var(--dyn-semantic-surface-hover);
-  --dyn-grid-stripe: var(--dyn-semantic-surface-muted);
-  --dyn-grid-selected: var(--dyn-semantic-surface-active);
+  --dyn-grid-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-grid-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-grid-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-grid-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-grid-header-bg: var(--dyn-semantic-surface, #f8fafc);
+  --dyn-grid-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
+  --dyn-grid-stripe: var(--dyn-semantic-surface-muted, #f8fafc);
+  --dyn-grid-selected: var(--dyn-semantic-surface-active, #e0f2fe);
 
   width: 100%;
   background: var(--dyn-grid-bg);

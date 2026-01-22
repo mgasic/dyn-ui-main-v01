@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@dyn-ui/design-tokens": "workspace:*",
-    "classnames": "^2.5.1"
+    "classnames": "catalog:"
   },
   "devDependencies": {
-    "@types/classnames": "^2.3.0"
+    "@types/classnames": "catalog:"
   }
 }

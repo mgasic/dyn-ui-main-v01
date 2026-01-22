@@ -4,16 +4,16 @@
    ================================================ */
 :root {
   /* Color tokens */
-  --dyn-textarea-bg: var(--dyn-semantic-input-bg);
-  --dyn-textarea-color: var(--dyn-semantic-text);
-  --dyn-textarea-border: var(--dyn-semantic-input-border);
+  --dyn-textarea-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-textarea-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-textarea-border: var(--dyn-semantic-input-border, #cbd5e1);
   --dyn-textarea-border-hover: var(--dyn-neutral-mid-400);
-  --dyn-textarea-border-focus: var(--dyn-theme-primary);
+  --dyn-textarea-border-focus: var(--dyn-semantic-border-focus, #3b82f6);
   --dyn-textarea-focus-ring: var(--dyn-action-focus);
-  --dyn-textarea-placeholder: var(--dyn-semantic-text-secondary);
-  --dyn-textarea-disabled-bg: var(--dyn-semantic-surface-muted);
-  --dyn-textarea-disabled-color: var(--dyn-semantic-text-secondary);
-  --dyn-textarea-readonly-bg: var(--dyn-semantic-surface);
+  --dyn-textarea-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-textarea-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-textarea-disabled-color: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-textarea-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
   --dyn-textarea-error: var(--dyn-feedback-negative-default);
 
   /* Layout tokens */

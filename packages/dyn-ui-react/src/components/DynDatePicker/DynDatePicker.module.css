@@ -5,15 +5,15 @@
 
 .container {
   /* Component-scoped tokens with foundations alignment */
-  --dyn-date-picker-bg: var(--dyn-semantic-input-bg);
-  --dyn-date-picker-color: var(--dyn-semantic-text);
-  --dyn-date-picker-border: var(--dyn-semantic-input-border);
-  --dyn-date-picker-border-hover: var(--dyn-neutral-mid-400);
-  --dyn-date-picker-border-focus: var(--dyn-theme-primary);
-  --dyn-date-picker-focus-ring: var(--dyn-action-focus);
-  --dyn-date-picker-placeholder: var(--dyn-semantic-text-secondary);
-  --dyn-date-picker-disabled-bg: var(--dyn-semantic-surface-muted);
-  --dyn-date-picker-readonly-bg: var(--dyn-semantic-surface);
+  --dyn-date-picker-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-date-picker-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-date-picker-border: var(--dyn-semantic-input-border, #e2e8f0);
+  --dyn-date-picker-border-hover: var(--dyn-neutral-mid-400, #94a3b8);
+  --dyn-date-picker-border-focus: var(--dyn-theme-primary, #3b82f6);
+  --dyn-date-picker-focus-ring: var(--dyn-action-focus, rgba(59, 130, 246, 0.4));
+  --dyn-date-picker-placeholder: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-date-picker-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-date-picker-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
 
   --dyn-date-picker-radius: var(--dyn-border-radius-md, 8px);
   --dyn-date-picker-padding-y: var(--dyn-spacing-sm, 8px);
@@ -35,7 +35,8 @@
   flex: 1;
   width: 100%;
   height: var(--dyn-datePicker-input-height-md, 40px);
-  padding: var(--dyn-date-picker-padding-y) 90px var(--dyn-date-picker-padding-y) var(--dyn-date-picker-padding-x);
+  /* Reduced right padding to bring icons closer */
+  padding: var(--dyn-date-picker-padding-y) 70px var(--dyn-date-picker-padding-y) var(--dyn-date-picker-padding-x);
   font-family: inherit;
   font-size: var(--dyn-date-picker-font-size);
   color: var(--dyn-date-picker-color);
@@ -79,12 +80,12 @@
 /* Input Actions (Clear, Calendar Icons) */
 .inputActions {
   position: absolute;
-  right: 12px;
+  right: 8px; /* Closer to edge */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px; /* Tighter gap */
 }
 
 .calendarIcon,

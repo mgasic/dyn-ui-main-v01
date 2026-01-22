@@ -60,9 +60,9 @@
 }
 
 .dynLabelRequiredAsterisk {
-  color: var(--dyn-label-text-color-required);
+  color: var(--dyn-label-text-color-required, #dc2626);
   font-weight: bold;
-  margin-left: var(--dyn-label-gap);
+  margin-left: var(--dyn-label-gap, 0.25rem);
 }
 
 .dynLabelOptionalText {

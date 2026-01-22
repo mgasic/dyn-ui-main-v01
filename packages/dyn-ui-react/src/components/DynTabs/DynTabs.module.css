@@ -23,7 +23,7 @@
   --dyn-tabs-border-width: var(--dyn-border-width-hairline, var(--border-width-hairline, 1px));
   --dyn-tabs-border-width-active: var(--dyn-border-width-thin, var(--border-width-thin, 2px));
 
-  --dyn-tabs-gap: var(--dyn-spacing-xxs, var(--spacing-xxs, 0.125rem));
+  --dyn-tabs-gap: 0; /* Seamless by default */
   --dyn-tabs-padding-x: var(--dyn-spacing-lg, var(--spacing-lg, 1rem));
   --dyn-tabs-padding-y: var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem));
 
@@ -152,12 +152,23 @@
   position: relative;
   background: var(--dyn-tabs-header-bg);
   margin: 0;
-  padding: var(--dyn-spacing-xs) var(--dyn-spacing-xs) 0 var(--dyn-spacing-xs);
+  padding: 0; /* Seamless: Removed padding */
   list-style: none;
   z-index: 1;
   gap: var(--dyn-tabs-gap);
   border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
   flex-wrap: nowrap;
+}
+
+/* Restore gap and padding for Pills */
+.tabsPills .tablist {
+  gap: var(--dyn-spacing-xxs);
+  padding: var(--dyn-spacing-xs);
+}
+
+/* Restore padding for Underlined */
+.tabsUnderlined .tablist {
+  padding: 0 var(--dyn-spacing-xs);
 }
 
 .scrollable .tablist {
@@ -276,9 +287,22 @@
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
 }
 
+/* Seamless Borders Logic */
+.tabsTop .variantBordered,
+.tabsBottom .variantBordered {
+  margin-right: calc(-1 * var(--dyn-tabs-border-width));
+}
+
+.tabsLeft .variantBordered,
+.tabsRight .variantBordered {
+  margin-bottom: calc(-1 * var(--dyn-tabs-border-width));
+}
+/* End Seamless Borders Logic */
+
 .variantBordered.tabActive {
   border-color: var(--dyn-tabs-border) var(--dyn-tabs-border) var(--dyn-tabs-active-bg);
   background: var(--dyn-tabs-active-bg);
+  z-index: 2; /* Ensure active tab sits on top of neighbors */
 }
 
 .variantBordered.tabActive::after {

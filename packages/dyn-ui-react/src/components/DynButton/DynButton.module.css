@@ -9,41 +9,41 @@
    ================================================ */
 :root {
   /* Color tokens - using semantic tokens for auto theme switching */
-  --dyn-button-bg: var(--dyn-theme-primary);
-  --dyn-button-color: var(--dyn-semantic-text-inverse);
-  --dyn-button-border: var(--dyn-theme-primary);
+  --dyn-button-bg: var(--dyn-theme-primary, #3b82f6);
+  --dyn-button-color: var(--dyn-semantic-text-inverse, #ffffff);
+  --dyn-button-border: var(--dyn-theme-primary, #3b82f6);
 
   /* Hover states */
-  --dyn-button-bg-hover: var(--dyn-action-hover);
-  --dyn-button-color-hover: var(--dyn-semantic-text-inverse);
-  --dyn-button-border-hover: var(--dyn-action-hover);
+  --dyn-button-bg-hover: var(--dyn-action-hover, #2563eb);
+  --dyn-button-color-hover: var(--dyn-semantic-text-inverse, #ffffff);
+  --dyn-button-border-hover: var(--dyn-action-hover, #2563eb);
 
   /* Active states */
-  --dyn-button-bg-active: var(--dyn-action-pressed);
-  --dyn-button-color-active: var(--dyn-semantic-text-inverse);
-  --dyn-button-border-active: var(--dyn-action-pressed);
+  --dyn-button-bg-active: var(--dyn-action-pressed, #1d4ed8);
+  --dyn-button-color-active: var(--dyn-semantic-text-inverse, #ffffff);
+  --dyn-button-border-active: var(--dyn-action-pressed, #1d4ed8);
 
   /* Disabled states */
-  --dyn-button-bg-disabled: var(--dyn-action-disabled);
-  --dyn-button-color-disabled: var(--dyn-semantic-text-muted);
-  --dyn-button-border-disabled: var(--dyn-action-disabled);
+  --dyn-button-bg-disabled: var(--dyn-action-disabled, #94a3b8);
+  --dyn-button-color-disabled: var(--dyn-semantic-text-muted, #cbd5e1);
+  --dyn-button-border-disabled: var(--dyn-action-disabled, #94a3b8);
 
   /* Sizing tokens */
-  --dyn-button-padding-y: var(--dyn-spacing-sm);
-  --dyn-button-padding-x: var(--dyn-spacing-md);
-  --dyn-button-gap: var(--dyn-spacing-sm);
+  --dyn-button-padding-y: var(--dyn-spacing-sm, 0.5rem);
+  --dyn-button-padding-x: var(--dyn-spacing-md, 1rem);
+  --dyn-button-gap: var(--dyn-spacing-sm, 0.5rem);
   --dyn-button-min-height: 2.5rem;
-  --dyn-button-font-size: var(--dyn-font-size-sm);
-  --dyn-button-font-weight: var(--dyn-font-weight-medium);
-  --dyn-button-border-radius: var(--dyn-border-radius-md);
-  --dyn-button-border-width: var(--dyn-border-width-sm);
+  --dyn-button-font-size: var(--dyn-font-size-sm, 0.875rem);
+  --dyn-button-font-weight: var(--dyn-font-weight-medium, 500);
+  --dyn-button-border-radius: var(--dyn-border-radius-md, 0.375rem);
+  --dyn-button-border-width: var(--dyn-border-width-sm, 1px);
 
   /* Effects */
   --dyn-button-shadow: none;
-  --dyn-button-shadow-hover: var(--dyn-elevation-low);
+  --dyn-button-shadow-hover: var(--dyn-elevation-low, 0 1px 2px rgba(0, 0, 0, 0.05));
   --dyn-button-shadow-active: none;
-  --dyn-button-shadow-focus: var(--dyn-semantic-border-focus);
-  --dyn-button-transition: var(--dyn-transition-fast);
+  --dyn-button-shadow-focus: var(--dyn-semantic-border-focus, #3b82f6);
+  --dyn-button-transition: var(--dyn-transition-fast, 0.15s ease);
   --dyn-button-opacity-disabled: 0.56;
 }
 

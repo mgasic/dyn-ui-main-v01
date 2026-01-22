@@ -4,24 +4,24 @@
    ================================================ */
 :root {
   /* Color tokens */
-  --dyn-input-bg: var(--dyn-semantic-input-bg);
-  --dyn-input-color: var(--dyn-semantic-text);
-  --dyn-input-border: var(--dyn-semantic-input-border);
-  --dyn-input-border-hover: var(--dyn-neutral-mid-400);
-  --dyn-input-border-focus: var(--dyn-theme-primary);
-  --dyn-input-focus-ring: var(--dyn-action-focus);
-  --dyn-input-placeholder: var(--dyn-semantic-text-secondary);
-  --dyn-input-disabled-bg: var(--dyn-semantic-surface-muted);
-  --dyn-input-disabled-color: var(--dyn-semantic-text-secondary);
-  --dyn-input-readonly-bg: var(--dyn-semantic-surface);
-  --dyn-input-error: var(--dyn-feedback-negative-default);
+  --dyn-input-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-input-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-input-border: var(--dyn-semantic-input-border, #cbd5e1);
+  --dyn-input-border-hover: var(--dyn-neutral-mid-400, #94a3b8);
+  --dyn-input-border-focus: var(--dyn-theme-primary, #3b82f6);
+  --dyn-input-focus-ring: var(--dyn-action-focus, #3b82f6);
+  --dyn-input-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-input-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-input-disabled-color: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-input-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
+  --dyn-input-error: var(--dyn-feedback-negative-default, #dc2626);
 
   /* Layout tokens */
-  --dyn-input-radius: var(--dyn-border-radius-md);
-  --dyn-input-padding-y: var(--dyn-spacing-sm);
-  --dyn-input-padding-x: var(--dyn-spacing-md);
-  --dyn-input-font-size: var(--dyn-font-size-sm);
-  --dyn-input-transition: var(--dyn-transition-normal);
+  --dyn-input-radius: var(--dyn-border-radius-md, 0.375rem);
+  --dyn-input-padding-y: var(--dyn-spacing-sm, 0.5rem);
+  --dyn-input-padding-x: var(--dyn-spacing-md, 0.75rem);
+  --dyn-input-font-size: var(--dyn-font-size-sm, 0.875rem);
+  --dyn-input-transition: var(--dyn-transition-normal, 0.2s ease);
 }
 
 /* ================================================

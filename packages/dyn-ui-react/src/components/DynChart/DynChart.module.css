@@ -9,17 +9,17 @@
 
 .root {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-chart-bg: var(--dyn-semantic-background);
-  --dyn-chart-border: var(--dyn-semantic-border);
-  --dyn-chart-text-primary: var(--dyn-semantic-text);
-  --dyn-chart-text-secondary: var(--dyn-semantic-text-secondary);
-  --dyn-chart-radius: var(--dyn-border-radius-md);
+  --dyn-chart-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-chart-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-chart-text-primary: var(--dyn-semantic-text, #0f172a);
+  --dyn-chart-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-chart-radius: var(--dyn-border-radius-md, 8px);
 
   display: flex;
   flex-direction: column;
   background: var(--dyn-chart-bg);
   border-radius: var(--dyn-chart-radius);
-  border: 1px solid var(--dyn-chart-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-chart-border);
   padding: var(--dyn-spacing-md);
   font-family: inherit;
   gap: var(--dyn-spacing-md);

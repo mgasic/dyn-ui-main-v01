@@ -17,7 +17,7 @@
     --dyn-switcher-active-text: var(--dyn-semantic-text-inverse, #ffffff);
 
     display: inline-flex;
-    border: 1px solid var(--dyn-switcher-border);
+    border: var(--dyn-border-width-sm, 1px) solid var(--dyn-switcher-border, #e2e8f0);
     overflow: hidden;
     background: var(--dyn-switcher-bg);
     transition: all var(--dyn-transition-fast);

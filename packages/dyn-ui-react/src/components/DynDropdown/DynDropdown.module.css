@@ -9,30 +9,30 @@
 
 .container {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-dropdown-bg: var(--dyn-semantic-background);
-  --dyn-dropdown-border-color: var(--dyn-semantic-border);
-  --dyn-dropdown-text-color: var(--dyn-semantic-text);
-  --dyn-dropdown-text-secondary: var(--dyn-semantic-text-secondary);
-  --dyn-dropdown-item-bg-hover: var(--dyn-semantic-surface-hover);
-  --dyn-dropdown-item-bg-active: var(--dyn-semantic-surface-active);
-  --dyn-dropdown-item-text-active: var(--dyn-theme-primary);
-  --dyn-dropdown-divider-color: var(--dyn-semantic-border);
+  --dyn-dropdown-bg: var(--dyn-semantic-background, #ffffff);
+  --dyn-dropdown-border-color: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-dropdown-text-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-dropdown-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-dropdown-item-bg-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
+  --dyn-dropdown-item-bg-active: var(--dyn-semantic-surface-active, #eff6ff);
+  --dyn-dropdown-item-text-active: var(--dyn-theme-primary, #3b82f6);
+  --dyn-dropdown-divider-color: var(--dyn-semantic-border, #e2e8f0);
 
   /* Size tokens */
   --dyn-dropdown-min-width: 200px;
   --dyn-dropdown-max-width: 400px;
-  --dyn-dropdown-padding: var(--dyn-spacing-sm);
+  --dyn-dropdown-padding: var(--dyn-spacing-sm, 8px);
   --dyn-dropdown-item-height: 40px;
-  --dyn-dropdown-item-padding-y: var(--dyn-spacing-sm);
-  --dyn-dropdown-item-padding-x: var(--dyn-spacing-md);
-  --dyn-dropdown-border-radius: var(--dyn-border-radius-md);
+  --dyn-dropdown-item-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-dropdown-item-padding-x: var(--dyn-spacing-md, 12px);
+  --dyn-dropdown-border-radius: var(--dyn-border-radius-md, 6px);
 
   /* Typography */
-  --dyn-dropdown-font-size: var(--dyn-font-size-sm);
+  --dyn-dropdown-font-size: var(--dyn-font-size-sm, 14px);
 
   /* Effects */
-  --dyn-dropdown-shadow: var(--dyn-elevation-high);
-  --dyn-dropdown-transition: var(--dyn-transition-fast);
+  --dyn-dropdown-shadow: var(--dyn-elevation-high, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  --dyn-dropdown-transition: var(--dyn-transition-fast, 150ms ease);
   --dyn-dropdown-z-index: 1000;
 }
 
@@ -59,7 +59,7 @@
   min-width: var(--dyn-dropdown-min-width);
   max-width: var(--dyn-dropdown-max-width);
   background-color: var(--dyn-dropdown-bg);
-  border: 1px solid var(--dyn-dropdown-border-color);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-dropdown-border-color);
   border-radius: var(--dyn-dropdown-border-radius);
   box-shadow: var(--dyn-dropdown-shadow);
   padding: var(--dyn-dropdown-padding);

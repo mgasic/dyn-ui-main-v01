@@ -210,7 +210,7 @@
   font-weight: var(--dyn-font-weight-medium);
   color: var(--dyn-theme-primary);
   background: transparent;
-  border: 1px solid var(--dyn-list-view-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-list-view-border);
   border-radius: var(--dyn-border-radius-sm);
   cursor: pointer;
   transition: all var(--dyn-transition-fast);
@@ -245,7 +245,7 @@
   font-family: inherit;
   color: var(--dyn-list-view-text-primary, #111827);
   background: var(--dyn-list-view-bg, #ffffff);
-  border: 1px solid var(--dyn-list-view-border, #cbd5e1);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-list-view-border, #cbd5e1);
   border-radius: var(--dyn-border-radius-sm, 4px);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -301,7 +301,7 @@
   margin-top: var(--dyn-spacing-sm);
   padding: var(--dyn-spacing-md);
   background: var(--dyn-semantic-surface);
-  border: 1px solid var(--dyn-list-view-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-list-view-border);
   border-radius: var(--dyn-border-radius-sm);
   font-size: var(--dyn-font-size-xs);
   line-height: 1.6;
@@ -309,7 +309,7 @@
 
 .optionDetails>div {
   padding: var(--dyn-spacing-xs) 0;
-  border-bottom: 1px solid var(--dyn-list-view-border);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-list-view-border);
 }
 
 .optionDetails>div:last-child {

@@ -206,23 +206,23 @@
    ============================================ */
 
 .boxBorder {
-  --dyn-box-border: 1px solid var(--dyn-semantic-border, #e2e8f0);
+  --dyn-box-border: var(--dyn-border-width-sm, 1px) solid var(--dyn-semantic-border, #e2e8f0);
 }
 
 .boxBorderTop {
-  border-top: 1px solid var(--dyn-semantic-border, #e2e8f0);
+  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-semantic-border, #e2e8f0);
 }
 
 .boxBorderRight {
-  border-right: 1px solid var(--dyn-semantic-border, #e2e8f0);
+  border-right: var(--dyn-border-width-sm, 1px) solid var(--dyn-semantic-border, #e2e8f0);
 }
 
 .boxBorderBottom {
-  border-bottom: 1px solid var(--dyn-semantic-border, #e2e8f0);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-semantic-border, #e2e8f0);
 }
 
 .boxBorderLeft {
-  border-left: 1px solid var(--dyn-semantic-border, #e2e8f0);
+  border-left: var(--dyn-border-width-sm, 1px) solid var(--dyn-semantic-border, #e2e8f0);
 }
 
 /* ============================================

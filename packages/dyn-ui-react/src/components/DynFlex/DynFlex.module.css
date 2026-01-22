@@ -16,7 +16,7 @@
   /* Flex tokens */
   --dyn-flex-display: flex;
   --dyn-flex-direction: row;
-  --dyn-flex-gap: var(--dyn-spacing-md);
+  --dyn-flex-gap: var(--dyn-spacing-md, 1rem);
   --dyn-flex-padding: 0;
   --dyn-flex-align-items: stretch;
   --dyn-flex-justify-content: flex-start;

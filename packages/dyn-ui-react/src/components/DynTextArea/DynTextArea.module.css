@@ -44,7 +44,7 @@
   min-height: 6rem;
   padding: var(--dyn-textarea-padding);
   border-radius: var(--dyn-textarea-radius);
-  border: 1px solid var(--dyn-textarea-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-textarea-border, #e2e8f0);
   background-color: var(--dyn-textarea-bg);
   color: var(--dyn-textarea-color);
   font-family: inherit;

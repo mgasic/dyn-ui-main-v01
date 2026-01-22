@@ -39,7 +39,7 @@
   width: 100%;
   color: var(--dyn-input-color);
   background: var(--dyn-input-bg);
-  border: 1px solid var(--dyn-input-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-input-border, #e2e8f0);
   border-radius: var(--dyn-input-radius);
   padding: var(--dyn-input-padding-y) var(--dyn-input-padding-x);
   font-family: inherit;

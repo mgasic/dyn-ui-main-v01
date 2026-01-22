@@ -1,11 +1,11 @@
 .container {
   /* Color Tokens */
-  --dyn-field-container-label-text: var(--dyn-semantic-text);
-  --dyn-field-container-label-text-error: var(--dyn-feedback-negative-default);
-  --dyn-field-container-help-text: var(--dyn-semantic-text-secondary);
-  --dyn-field-container-required-text: var(--dyn-feedback-negative-default);
-  --dyn-field-container-optional-text: var(--dyn-semantic-text-secondary);
-  --dyn-field-container-error-text: var(--dyn-feedback-negative-default);
+  --dyn-field-container-label-text: var(--dyn-semantic-text, #0f172a);
+  --dyn-field-container-label-text-error: var(--dyn-feedback-negative-default, #ef4444);
+  --dyn-field-container-help-text: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-field-container-required-text: var(--dyn-feedback-negative-default, #ef4444);
+  --dyn-field-container-optional-text: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-field-container-error-text: var(--dyn-feedback-negative-default, #ef4444);
 
   /* Typography Tokens */
   --dyn-field-container-label-font-size: var(--dyn-font-size-sm, 14px);

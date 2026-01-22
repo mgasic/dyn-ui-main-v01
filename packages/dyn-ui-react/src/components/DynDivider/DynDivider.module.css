@@ -9,14 +9,14 @@
 
 .root {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-divider-color: var(--dyn-semantic-border);
-  --dyn-divider-text-color: var(--dyn-semantic-text-secondary);
+  --dyn-divider-color: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-divider-text-color: var(--dyn-semantic-text-secondary, #64748b);
 
   /* Sizing tokens */
   --dyn-divider-gap: 0;
   --dyn-divider-thickness: 1px;
   --dyn-divider-line-style: solid;
-  --dyn-divider-spacing: var(--dyn-spacing-md);
+  --dyn-divider-spacing: var(--dyn-spacing-md, 1rem);
 
   /* Base styles */
   display: flex;
@@ -79,7 +79,7 @@
   padding: 0 var(--dyn-spacing-sm);
   white-space: nowrap;
   border-radius: 999px;
-  background: var(--dyn-semantic-background);
+  background: var(--dyn-semantic-background, #ffffff);
   color: inherit;
 }
 

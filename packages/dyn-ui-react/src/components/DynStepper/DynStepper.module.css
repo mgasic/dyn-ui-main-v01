@@ -9,25 +9,25 @@
 
 .root {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-stepper-step-bg-pending: var(--dyn-semantic-background);
-  --dyn-stepper-step-bg-active: var(--dyn-theme-primary);
-  --dyn-stepper-step-bg-completed: var(--dyn-theme-primary);
-  --dyn-stepper-step-bg-error: var(--dyn-feedback-negative-default);
-  --dyn-stepper-step-text-pending: var(--dyn-semantic-text-secondary);
-  --dyn-stepper-step-text-active: var(--dyn-semantic-text);
-  --dyn-stepper-step-text-completed: var(--dyn-theme-primary);
-  --dyn-stepper-step-text-inverse: var(--dyn-semantic-text-inverse);
-  --dyn-stepper-step-border: var(--dyn-semantic-border);
-  --dyn-stepper-connector-bg: var(--dyn-semantic-border);
-  --dyn-stepper-connector-active: var(--dyn-theme-primary);
+  --dyn-stepper-step-bg-pending: var(--dyn-semantic-background, #ffffff);
+  --dyn-stepper-step-bg-active: var(--dyn-theme-primary, #3b82f6);
+  --dyn-stepper-step-bg-completed: var(--dyn-theme-primary, #3b82f6);
+  --dyn-stepper-step-bg-error: var(--dyn-feedback-negative-default, #ef4444);
+  --dyn-stepper-step-text-pending: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-stepper-step-text-active: var(--dyn-semantic-text, #0f172a);
+  --dyn-stepper-step-text-completed: var(--dyn-theme-primary, #3b82f6);
+  --dyn-stepper-step-text-inverse: var(--dyn-semantic-text-inverse, #ffffff);
+  --dyn-stepper-step-border: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-stepper-connector-bg: var(--dyn-semantic-border, #e2e8f0);
+  --dyn-stepper-connector-active: var(--dyn-theme-primary, #3b82f6);
 
   /* Size tokens */
   --dyn-stepper-step-size: 32px;
-  --dyn-stepper-gap: var(--dyn-spacing-md);
-  --dyn-stepper-label-gap: var(--dyn-spacing-sm);
+  --dyn-stepper-gap: var(--dyn-spacing-md, 1rem);
+  --dyn-stepper-label-gap: var(--dyn-spacing-sm, 0.5rem);
 
   /* Typography */
-  --dyn-stepper-font-size: var(--dyn-font-size-sm);
+  --dyn-stepper-font-size: var(--dyn-font-size-sm, 0.875rem);
 
   display: flex;
   flex-direction: column;
@@ -143,7 +143,7 @@
   height: var(--dyn-stepper-step-size);
   border-radius: 50%;
   background-color: var(--dyn-stepper-step-bg-pending);
-  border: 1px solid var(--dyn-stepper-step-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-stepper-step-border);
   color: var(--dyn-stepper-step-text-pending);
   font-weight: var(--dyn-font-weight-semibold);
   transition: all var(--dyn-transition-fast);

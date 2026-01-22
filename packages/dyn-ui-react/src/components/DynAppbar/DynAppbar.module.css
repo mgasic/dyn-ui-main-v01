@@ -28,7 +28,7 @@
   height: var(--dyn-appbar-height);
   padding: 0 var(--dyn-appbar-padding-x);
   background-color: var(--dyn-appbar-bg);
-  border-bottom: 1px solid var(--dyn-appbar-border-color);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-appbar-border-color);
   box-shadow: var(--dyn-appbar-shadow);
   font-family: inherit;
   color: var(--dyn-appbar-text-color);

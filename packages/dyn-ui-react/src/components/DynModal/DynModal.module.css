@@ -88,7 +88,7 @@
   background-color: var(--dyn-modal-bg);
   color: var(--dyn-modal-text);
   border-radius: var(--dyn-modal-border-radius);
-  border: 1px solid var(--dyn-modal-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-modal-border);
   box-shadow: var(--dyn-modal-box-shadow);
   width: var(--dyn-modal-width);
   max-width: var(--dyn-modal-max-width);
@@ -105,7 +105,7 @@
 .modalHeader {
   padding: var(--dyn-modal-header-padding);
   background-color: var(--dyn-modal-header-bg);
-  border-bottom: 1px solid var(--dyn-modal-header-border);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-modal-header-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -175,7 +175,7 @@
 .modalFooter {
   padding: var(--dyn-modal-footer-padding);
   background-color: var(--dyn-modal-footer-bg);
-  border-top: 1px solid var(--dyn-modal-footer-border);
+  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-modal-footer-border);
   display: flex;
   justify-content: flex-end;
   gap: var(--dyn-modal-footer-gap);

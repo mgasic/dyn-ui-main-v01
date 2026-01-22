@@ -41,7 +41,7 @@
   font-size: var(--dyn-date-picker-font-size);
   color: var(--dyn-date-picker-color);
   background-color: var(--dyn-date-picker-bg);
-  border: 1px solid var(--dyn-date-picker-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-date-picker-border);
   border-radius: var(--dyn-date-picker-radius);
   transition: all var(--dyn-date-picker-transition);
 }
@@ -124,7 +124,7 @@
   width: var(--dyn-datePicker-calendar-width, 280px);
   padding: var(--dyn-datePicker-calendar-padding, var(--dyn-spacing-md));
   background-color: var(--dyn-date-picker-bg);
-  border: 1px solid var(--dyn-date-picker-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-date-picker-border);
   border-radius: var(--dyn-date-picker-radius);
   box-shadow: var(--dyn-elevation-medium);
 }
@@ -250,7 +250,7 @@
   gap: var(--dyn-spacing-sm);
   margin-top: var(--dyn-spacing-sm);
   padding-top: var(--dyn-spacing-sm);
-  border-top: 1px solid var(--dyn-date-picker-border);
+  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-date-picker-border);
 }
 
 .shortcut {
@@ -259,7 +259,7 @@
   font-size: var(--dyn-font-size-xs);
   color: var(--dyn-date-picker-color);
   background: none;
-  border: 1px solid var(--dyn-date-picker-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-date-picker-border);
   border-radius: var(--dyn-border-radius-xs);
   cursor: pointer;
   transition: background-color var(--dyn-transition-fast);

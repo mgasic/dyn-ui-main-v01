@@ -11,7 +11,7 @@
 
 .container {
   /* Spacing tokens */
-  --dyn-stack-gap: var(--dyn-spacing-md);
+  --dyn-stack-gap: var(--dyn-spacing-md, 1rem);
 
   display: flex;
   width: 100%;

@@ -33,7 +33,7 @@
   flex-direction: column;
   background-color: var(--dyn-tree-bg);
   border-radius: var(--dyn-tree-radius);
-  border: 1px solid var(--dyn-tree-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-tree-border, #e2e8f0);
   font-family: inherit;
   overflow: hidden;
   width: 100%;
@@ -45,14 +45,14 @@
 
 .search {
   padding: var(--dyn-spacing-sm);
-  border-bottom: 1px solid var(--dyn-tree-search-border);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-tree-search-border, #e2e8f0);
   background-color: var(--dyn-tree-search-bg);
 }
 
 .searchInput {
   width: 100%;
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
-  border: 1px solid var(--dyn-tree-input-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-tree-input-border, #e2e8f0);
   border-radius: var(--dyn-border-radius-sm);
   font-size: var(--dyn-font-size-sm);
   background-color: var(--dyn-tree-input-bg);

@@ -5,13 +5,13 @@
 
 .dynIcon {
   /* Component tokens */
-  --dyn-icon-color-success: var(--dyn-feedback-positive);
-  --dyn-icon-color-warning: var(--dyn-feedback-warning);
-  --dyn-icon-color-danger: var(--dyn-feedback-negative-default);
-  --dyn-icon-color-info: var(--dyn-feedback-info);
-  --dyn-icon-radius: var(--dyn-icon-radius, var(--dyn-border-radius-sm));
-  --dyn-icon-transition: var(--dyn-icon-clickable-transition, var(--dyn-transition-fast));
-  --dyn-icon-focus-ring: var(--dyn-semantic-border-focus);
+  --dyn-icon-color-success: var(--dyn-feedback-positive, #22c55e);
+  --dyn-icon-color-warning: var(--dyn-feedback-warning, #f59e0b);
+  --dyn-icon-color-danger: var(--dyn-feedback-negative-default, #ef4444);
+  --dyn-icon-color-info: var(--dyn-feedback-info, #3b82f6);
+  --dyn-icon-radius: var(--dyn-icon-radius, var(--dyn-border-radius-sm, 4px));
+  --dyn-icon-transition: var(--dyn-icon-clickable-transition, var(--dyn-transition-fast, 0.15s ease));
+  --dyn-icon-focus-ring: var(--dyn-semantic-border-focus, #3b82f6);
 
   display: inline-flex;
   align-items: center;

@@ -9,11 +9,11 @@
 
 .container {
   /* Color tokens - semantic for auto theme switching */
-  --dyn-page-bg: var(--dyn-semantic-background);
-  --dyn-page-bg-surface: var(--dyn-semantic-surface);
-  --dyn-page-text-primary: var(--dyn-semantic-text);
-  --dyn-page-text-secondary: var(--dyn-semantic-text-secondary);
-  --dyn-page-border-color: var(--dyn-semantic-border);
+  --dyn-page-bg: var(--dyn-semantic-background, #f8fafc);
+  --dyn-page-bg-surface: var(--dyn-semantic-surface, #ffffff);
+  --dyn-page-text-primary: var(--dyn-semantic-text, #0f172a);
+  --dyn-page-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-page-border-color: var(--dyn-semantic-border, #e2e8f0);
 
   display: flex;
   flex-direction: column;
@@ -92,7 +92,7 @@
   flex-direction: column;
   padding: var(--dyn-spacing-lg) var(--dyn-spacing-xl);
   background-color: var(--dyn-page-bg-surface);
-  border-bottom: 1px solid var(--dyn-page-border-color);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-page-border-color);
   gap: var(--dyn-spacing-md);
   flex-shrink: 0;
 }

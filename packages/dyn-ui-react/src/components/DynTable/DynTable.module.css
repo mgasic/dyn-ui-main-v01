@@ -89,7 +89,7 @@
    ============================================ */
 
 .row {
-  border-bottom: 1px solid var(--dyn-table-border);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
   transition: background-color var(--dyn-transition-fast);
 }
 
@@ -151,7 +151,7 @@
 
 .actionButton {
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
-  border: 1px solid var(--dyn-table-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
   border-radius: var(--dyn-border-radius-sm);
   background: var(--dyn-table-bg);
   color: var(--dyn-table-text);
@@ -193,11 +193,11 @@
    ============================================ */
 
 .bordered {
-  border: 1px solid var(--dyn-table-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
 }
 
 .bordered .cell {
-  border-right: 1px solid var(--dyn-table-border);
+  border-right: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
 }
 
 .bordered .cell:last-child {
@@ -262,7 +262,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--dyn-spacing-md);
-  border-top: 1px solid var(--dyn-table-border);
+  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
   background: var(--dyn-table-header-bg);
 }
 
@@ -274,7 +274,7 @@
 
 .paginationButton {
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
-  border: 1px solid var(--dyn-table-border);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
   border-radius: var(--dyn-border-radius-sm);
   background: var(--dyn-table-bg);
   color: var(--dyn-table-text);

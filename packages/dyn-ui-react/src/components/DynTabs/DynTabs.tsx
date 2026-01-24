@@ -149,10 +149,18 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
       getActiveTabPanel: () => current ? document.getElementById(`${internalId}-panel-${current}`) as HTMLDivElement | null : null
     }), [current, currentIndex, processedItems, internalId, handleSelect]);
 
+    // Explicit position mapping for type safety
+    const POSITION_MAP: Record<NonNullable<DynTabsProps['position']>, string> = {
+      top: styles.tabsTop,
+      bottom: styles.tabsBottom,
+      left: styles.tabsLeft,
+      right: styles.tabsRight,
+    };
+
     // Style classes
     const rootClass = cn(
       styles.tabs,
-      styles[`tabs${position.charAt(0).toUpperCase() + position.slice(1)}`],
+      POSITION_MAP[position],
       variant === 'pills' && styles.tabsPills,
       variant === 'underlined' && styles.tabsUnderlined,
       variant === 'bordered' && styles.tabsBordered,

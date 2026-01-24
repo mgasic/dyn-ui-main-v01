@@ -2,25 +2,7 @@
    COMPONENT TOKENS (Layer 2)
    Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
    ================================================ */
-:root {
-  /* Color tokens */
-  --dyn-select-bg: var(--dyn-semantic-input-bg, #ffffff);
-  --dyn-select-color: var(--dyn-semantic-text, #0f172a);
-  --dyn-select-border: var(--dyn-semantic-input-border, #cbd5e1);
-  --dyn-select-border-hover: var(--dyn-neutral-mid-400, #94a3b8);
-  --dyn-select-border-focus: var(--dyn-theme-primary, #3b82f6);
-  --dyn-select-focus-ring: var(--dyn-action-focus, #3b82f6);
-  --dyn-select-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
-  --dyn-select-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
-  --dyn-select-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
-
-  /* Layout tokens */
-  --dyn-select-radius: var(--dyn-border-radius-md, 0.375rem);
-  --dyn-select-padding-y: var(--dyn-spacing-sm, 0.5rem);
-  --dyn-select-padding-x: var(--dyn-spacing-md, 0.75rem);
-  --dyn-select-font-size: var(--dyn-font-size-sm, 0.875rem);
-  --dyn-select-transition: var(--dyn-transition-normal, 0.2s ease);
-}
+/* Tokens moved to .root for better component scoping (consistent with DynInput) */
 
 /* ================================================
    BASE STYLES
@@ -31,6 +13,25 @@
 }
 
 .root {
+  /* Component tokens - scoped to root for better isolation */
+  /* Color tokens */
+  --dyn-select-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-select-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-select-border: var(--dyn-semantic-input-border, #cbd5e1);
+  --dyn-select-border-hover: var(--dyn-neutral-mid-400, #94a3b8);
+  --dyn-select-border-focus: var(--dyn-theme-primary, #3b82f6);
+  --dyn-select-focus-ring: var(--dyn-action-focus,#3b82f6);
+  --dyn-select-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-select-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-select-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
+
+  /* Layout tokens */
+  --dyn-select-radius: var(--dyn-border-radius-md, 0.375rem);
+  --dyn-select-padding-y: var(--dyn-spacing-sm, 0.5rem);
+  --dyn-select-padding-x: var(--dyn-spacing-md, 0.75rem);
+  --dyn-select-font-size: var(--dyn-font-size-sm, 0.875rem);
+  --dyn-select-transition: var(--dyn-transition-normal, 0.2s ease);
+
   position: relative;
   width: 100%;
   font-family: inherit;

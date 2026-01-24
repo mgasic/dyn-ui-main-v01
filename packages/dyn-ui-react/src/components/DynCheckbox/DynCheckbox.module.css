@@ -22,7 +22,7 @@
   --dyn-checkbox-disabled-border: var(--dyn-semantic-border, #e2e8f0);
 
   /* Layout tokens */
-  --dyn-checkbox-size: var(--dyn-checkbox-size, 20px);
+  --dyn-checkbox-size: 20px; /* Medium (default) size */
   --dyn-checkbox-border-radius: var(--dyn-border-radius-xs, 0.25rem);
   --dyn-checkbox-transition: var(--dyn-transition-fast, 0.15s ease);
 
@@ -66,6 +66,7 @@
   background-color: var(--dyn-checkbox-bg);
   transition: all var(--dyn-checkbox-transition);
   flex-shrink: 0;
+  /* Color for SVG icons - unchecked state has no icon, so invisible */
   color: transparent;
 }
 
@@ -87,6 +88,7 @@
 .boxIndeterminate {
   background-color: var(--dyn-checkbox-bg-checked);
   border-color: var(--dyn-checkbox-border-checked);
+  /* Make checkmark visible - SVG uses currentColor */
   color: var(--dyn-checkbox-checkmark);
 }
 

@@ -171,6 +171,26 @@
   font-size: var(--dyn-font-size-xs);
 }
 
+.sizeMedium {
+  padding: var(--dyn-spacing-md);
+}
+
+.sizeMedium .title {
+  font-size: var(--dyn-font-size-lg);
+}
+
+.sizeMedium .subtitle {
+  font-size: var(--dyn-font-size-sm);
+}
+
+.sizeMedium .valueText {
+  font-size: var(--dyn-font-size-xl);
+}
+
+.sizeMedium .valueLabel {
+  font-size: var(--dyn-font-size-xs);
+}
+
 .sizeLarge {
   padding: var(--dyn-spacing-lg);
 }

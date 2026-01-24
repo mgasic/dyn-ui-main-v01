@@ -5,10 +5,10 @@ import {
   DYN_DIVIDER_DEFAULT_PROPS,
   DynDividerProps,
   DynDividerRef,
+  DynDividerColor,
+  LayoutSpacing,
 } from './DynDivider.types';
 import styles from './DynDivider.module.css';
-
-const toPascalCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
 
 const DynDividerComponent = (
   {
@@ -34,24 +34,58 @@ const DynDividerComponent = (
   const ariaLabel =
     !labelId && typeof labelContent === 'string' ? labelContent : undefined;
 
-  const directionClass = styles[`direction${toPascalCase(orientation)}` as keyof typeof styles];
-  const thicknessClass = styles[`thickness${toPascalCase(thickness)}` as keyof typeof styles];
-  const styleClass = styles[`lineStyle${toPascalCase(lineStyle)}` as keyof typeof styles];
-  const colorClass = styles[`color${toPascalCase(color)}` as keyof typeof styles];
-  const spacingClass = styles[`spacing${toPascalCase(spacing)}` as keyof typeof styles];
-  const labelPositionClass = labelContent
-    ? styles[`label${toPascalCase(labelPosition)}` as keyof typeof styles]
-    : undefined;
+  // Explicit mapping objects for type safety
+  const DIRECTION_MAP = {
+    horizontal: styles.directionHorizontal,
+    vertical: styles.directionVertical,
+  };
+
+  const THICKNESS_MAP = {
+    thin: styles.thicknessThin,
+    medium: styles.thicknessMedium,
+    thick: styles.thicknessThick,
+  };
+
+  const LINE_STYLE_MAP = {
+    solid: styles.lineStyleSolid,
+    dashed: styles.lineStyleDashed,
+    dotted: styles.lineStyleDotted,
+  };
+
+  const COLOR_MAP: Record<DynDividerColor, string | undefined> = {
+    default: styles.colorDefault,
+    primary: styles.colorPrimary,
+    secondary: styles.colorSecondary,
+    subtle: styles.colorMuted, // CSS uses 'colorMuted' for 'subtle'
+    success: undefined, // No CSS class for 'success', uses default
+    warning: undefined, // No CSS class for 'warning', uses default
+    danger: undefined, // No CSS class for 'danger', uses default
+  };
+
+  const SPACING_MAP: Record<LayoutSpacing, string> = {
+    none: styles.spacingNone,
+    xs: styles.spacingXs,
+    sm: styles.spacingSm,
+    md: styles.spacingMd,
+    lg: styles.spacingLg,
+    xl: styles.spacingLg, // Fallback to 'lg' for 'xl' (CSS doesn't have spacingXl)
+  };
+
+  const LABEL_POSITION_MAP = {
+    left: styles.labelLeft,
+    center: undefined, // default, no class needed
+    right: styles.labelRight,
+  };
 
   const dividerClassName = cn(
     styles.root,
-    directionClass,
-    thicknessClass,
-    styleClass,
-    colorClass,
-    spacingClass,
+    DIRECTION_MAP[orientation],
+    THICKNESS_MAP[thickness],
+    LINE_STYLE_MAP[lineStyle],
+    COLOR_MAP[color ?? 'default'],
+    SPACING_MAP[spacing],
     Boolean(labelContent) && styles.withLabel,
-    labelPositionClass,
+    Boolean(labelContent) && LABEL_POSITION_MAP[labelPosition],
     className
   );
 

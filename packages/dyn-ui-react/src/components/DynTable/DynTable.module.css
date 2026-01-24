@@ -176,6 +176,12 @@
   font-size: var(--dyn-table-size-fontSize-small);
 }
 
+.sizeMedium .cell,
+.sizeMedium .cellHeader {
+  padding: var(--dyn-table-size-padding-medium);
+  font-size: var(--dyn-table-size-fontSize-medium, var(--dyn-font-size-sm));
+}
+
 .sizeLarge .cell,
 .sizeLarge .cellHeader {
   padding: var(--dyn-table-size-padding-large);
@@ -316,4 +322,10 @@
   .row, .cellHeaderSortable, .actionButton, .paginationButton {
     transition: none;
   }
+}
+
+.paginationButton:focus-visible,
+.checkbox:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
 }

@@ -9,7 +9,7 @@
   --dyn-container-margin-val: var(--dyn-container-margin, 0);
   --dyn-container-gap-val: var(--dyn-container-gap, var(--dyn-container-gap-md));
   --dyn-container-max-width-val: var(--dyn-container-max-width, 100%);
-  --dyn-container-bg-val: var(--dyn-container-background, transparent);
+  --dyn-container-bg-val: var(--dyn-container-background, var(--dyn-semantic-surface, #f8fafc));
   --dyn-container-shadow-val: var(--dyn-container-shadow, var(--dyn-container-shadow-none));
 
   box-sizing: border-box;
@@ -23,9 +23,10 @@
   padding: var(--dyn-container-padding-val);
   gap: var(--dyn-container-gap-val);
   
-  background: var(--dyn-container-bg-val);
+  background: var(--dyn-container-bg-val, var(--dyn-semantic-surface));
   box-shadow: var(--dyn-container-shadow-val);
   border-radius: var(--dyn-border-radius-lg);
+  /* Border is applied via .bordered class instead of default */
   border: none;
   
   transition:
@@ -112,9 +113,26 @@
    STYLE VARIANTS
    ============================================ */
 .bordered {
-  border: var(--dyn-border-width-sm) solid var(--dyn-container-header-border-color);
+  border: var(--dyn-border-width-sm) solid var(--dyn-semantic-border);
 }
 
+.shadowNone {
+  --dyn-container-shadow: var(--dyn-container-shadow-none);
+}
+
+.shadowLow {
+  --dyn-container-shadow: var(--dyn-container-shadow-low);
+}
+
+.shadowMedium {
+  --dyn-container-shadow: var(--dyn-container-shadow-medium);
+}
+
+.shadowHigh {
+  --dyn-container-shadow: var(--dyn-container-shadow-high);
+}
+
+.shadowDefault,
 .shadow {
   --dyn-container-shadow: var(--dyn-container-shadow-default);
 }
@@ -184,4 +202,8 @@
   }
 }
 
+.root:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
+}
 

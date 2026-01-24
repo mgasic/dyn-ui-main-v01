@@ -116,10 +116,18 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
           return null;
         }
 
+        // Map separator type to camelCase class name (matching CSS modules)
+        const separatorClassMap: Record<string, string | undefined> = {
+          slash: styles.breadcrumbSeparatorSlash,
+          chevron: styles.breadcrumbSeparatorChevron,
+          arrow: styles.breadcrumbSeparatorArrow,
+          dot: styles.breadcrumbSeparatorDot,
+          custom: styles.breadcrumbSeparatorCustom,
+        };
+
         const separatorClasses = cn(
           styles.breadcrumbSeparator,
-          separator !== 'slash' && styles[`breadcrumbSeparator--${separator}`],
-          separator === 'custom' && styles['breadcrumbSeparator--custom']
+          separatorClassMap[separator]
         );
 
         return (
@@ -165,10 +173,10 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
 
         const listItemProps = enableStructuredData
           ? {
-              itemProp: 'itemListElement' as const,
-              itemScope: true,
-              itemType: 'https://schema.org/ListItem',
-            }
+            itemProp: 'itemListElement' as const,
+            itemScope: true,
+            itemType: 'https://schema.org/ListItem',
+          }
           : undefined;
 
         const itemContent = isLink ? (
@@ -249,9 +257,9 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
 
     const navStructuredDataProps = enableStructuredData
       ? {
-          itemScope: true,
-          itemType: 'https://schema.org/BreadcrumbList',
-        }
+        itemScope: true,
+        itemType: 'https://schema.org/BreadcrumbList',
+      }
       : undefined;
 
     return (

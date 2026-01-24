@@ -3,6 +3,12 @@ import { cn } from '../../utils/classNames';
 import { DynAppbarProps } from './DynAppbar.types';
 import styles from './DynAppbar.module.css';
 
+// Explicit position mapping for type safety
+const POSITION_MAP: Record<'sticky' | 'fixed', string> = {
+    sticky: styles.sticky,
+    fixed: styles.fixed,
+};
+
 export const DynAppbar = forwardRef<HTMLDivElement, DynAppbarProps>(
     (
         {
@@ -19,7 +25,7 @@ export const DynAppbar = forwardRef<HTMLDivElement, DynAppbarProps>(
     ) => {
         const rootClasses = cn(
             styles.container,
-            styles[position], // dynamic class based on position
+            position !== 'static' && POSITION_MAP[position as 'sticky' | 'fixed'],
             className
         );
 

@@ -178,9 +178,16 @@ const DynSelectInner = <T extends string | number>(
 
   const resolvedError = resolvedErrorText ?? (error || undefined);
 
+  // Size mapping - explicit map instead of string interpolation
+  const SIZE_MAP: Record<string, string> = {
+    small: styles.sizeSmall || '',
+    medium: styles.sizeMedium || '',
+    large: styles.sizeLarge || '',
+  };
+
   const selectClasses = cn(
     styles.root,
-    styles[`size-${size}`],
+    SIZE_MAP[size],
     {
       [styles.open]: isOpen,
       [styles.focused]: focused,

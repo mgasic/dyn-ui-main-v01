@@ -72,6 +72,11 @@
   font-size: var(--dyn-font-size-xs);
 }
 
+.sizeMedium .input {
+  height: var(--dyn-datePicker-input-height-md, 40px);
+  font-size: var(--dyn-font-size-sm);
+}
+
 .sizeLarge .input {
   height: var(--dyn-datePicker-input-height-lg, 48px);
   font-size: var(--dyn-font-size-md);

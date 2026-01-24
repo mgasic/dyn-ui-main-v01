@@ -11,10 +11,12 @@
  * - Reduced motion: N/A
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
   /* ========== FONT FAMILIES ========== */
-  --dyn-font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
-  --dyn-font-family-mono: 'Fira Code', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --dyn-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --dyn-font-family-mono: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, Courier, monospace;
 
   /* ========== FONT SIZES SCALE ========== */
   --dyn-font-size-xs: 0.75rem;     /* 12px */

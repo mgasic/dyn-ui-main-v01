@@ -3,8 +3,12 @@
  * 100% Design Token Compliance - Optimized & Clean
  */
 
-:root {
-  /* Component-scoped tokens */
+/* ============================================
+   BASE CONTAINER
+   ============================================ */
+
+.tabs {
+  /* Component tokens - scoped to .tabs for better isolation */
   --dyn-tabs-bg: var(--dyn-color-background, var(--color-background, #ffffff));
   --dyn-tabs-header-bg: var(--dyn-color-background-secondary, var(--color-background-secondary, #f8fafc));
   --dyn-tabs-active-bg: var(--dyn-color-background, var(--color-background, #ffffff));
@@ -29,13 +33,7 @@
 
   --dyn-tabs-icon-size: var(--dyn-size-icon-sm, 1rem);
   --dyn-tabs-spinner-size: var(--dyn-size-icon-md, 1.5rem);
-}
 
-/* ============================================
-   BASE CONTAINER
-   ============================================ */
-
-.tabs {
   display: flex;
   width: 100%;
   background: var(--dyn-tabs-bg);
@@ -246,6 +244,12 @@
   min-height: var(--dyn-spacing-2xl, 2rem) !important;
   padding: var(--dyn-spacing-xxs) var(--dyn-spacing-sm) !important;
   font-size: var(--dyn-font-size-xs, 0.75rem) !important;
+}
+
+.tab.sizeMedium {
+  min-height: var(--dyn-size-md, 2.75rem) !important;
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-md) !important;
+  font-size: var(--dyn-font-size-sm, 0.875rem) !important;
 }
 
 .tab.sizeLarge {

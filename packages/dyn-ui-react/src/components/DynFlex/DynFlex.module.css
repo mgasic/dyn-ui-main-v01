@@ -123,3 +123,9 @@
   }
 }
 
+@media (prefers-contrast: high) {
+  .flex > :focus-visible {
+    outline-width: 3px;
+  }
+}
+

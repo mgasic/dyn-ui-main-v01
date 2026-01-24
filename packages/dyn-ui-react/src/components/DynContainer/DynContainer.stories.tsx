@@ -136,10 +136,11 @@ export const Default: Story = {
     size: 'medium',
     bordered: true,
     background: 'surface',
+    title: 'Default Container',
     children: (
       <div>
-        <p>This is the default container with standard styling, borders, and padding.</p>
-        <DynButton label="Sample Button" kind="primary" />
+        <p>This is the standard container with borders and padding enabled by default for better visibility.</p>
+        <DynButton label="Action Button" kind="primary" />
       </div>
     ),
   },

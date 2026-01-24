@@ -2,7 +2,20 @@
    COMPONENT TOKENS (Layer 2)
    Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
    ================================================ */
-:root {
+/* Tokens moved to .input for better component scoping (consistent with DynCheckbox) */
+
+/* ================================================
+   BASE STYLES
+   ================================================ */
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  /* Component tokens - scoped to input for better isolation */
   /* Color tokens */
   --dyn-input-bg: var(--dyn-semantic-input-bg, #ffffff);
   --dyn-input-color: var(--dyn-semantic-text, #0f172a);
@@ -22,19 +35,7 @@
   --dyn-input-padding-x: var(--dyn-spacing-md, 0.75rem);
   --dyn-input-font-size: var(--dyn-font-size-sm, 0.875rem);
   --dyn-input-transition: var(--dyn-transition-normal, 0.2s ease);
-}
 
-/* ================================================
-   BASE STYLES
-   ================================================ */
-.container {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
-}
-
-.input {
   appearance: none;
   width: 100%;
   color: var(--dyn-input-color);
@@ -92,6 +93,12 @@
 .input--small {
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
   font-size: var(--dyn-font-size-xs);
+}
+
+.input--medium {
+  /* Medium uses default values from .input (lines 34-36) */
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+  font-size: var(--dyn-font-size-sm);
 }
 
 .input--large {

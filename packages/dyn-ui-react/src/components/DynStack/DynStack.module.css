@@ -91,6 +91,17 @@
   }
 }
 
+@media (prefers-contrast: high) {
+  .container > :focus-visible {
+    outline-width: 3px;
+  }
+}
+
+.container > :focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
+}
+
 /* ============================================
    RESPONSIVE
    ============================================ */

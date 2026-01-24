@@ -31,13 +31,13 @@
   --dyn-button-opacity-disabled: var(--dyn-button-state-disabled-opacity, var(--dyn-opacity-50, 0.5));
 
   /* Sizing Tokens */
-  --dyn-button-padding-y: var(--dyn-spacing-sm, 8px);
-  --dyn-button-padding-x: var(--dyn-spacing-md, 16px);
+  --dyn-button-padding-y: var(--dyn-spacing-sm, 10px);
+  --dyn-button-padding-x: var(--dyn-spacing-md, 20px);
   --dyn-button-gap: var(--dyn-button-root-gap, var(--dyn-spacing-sm, 8px));
-  --dyn-button-min-height: var(--dyn-button-size-minHeight-medium, 40px);
+  --dyn-button-min-height: var(--dyn-button-size-minHeight-medium, 44px);
   --dyn-button-font-size: var(--dyn-button-root-fontSize, var(--dyn-font-size-sm, 14px));
-  --dyn-button-font-weight: var(--dyn-button-root-fontWeight, var(--dyn-font-weight-medium, 500));
-  --dyn-button-border-radius: var(--dyn-button-root-borderRadius, var(--dyn-border-radius-md, 4px));
+  --dyn-button-font-weight: var(--dyn-button-root-fontWeight, var(--dyn-font-weight-semibold, 600));
+  --dyn-button-border-radius: var(--dyn-button-root-borderRadius, var(--dyn-border-radius-md, 6px));
   --dyn-button-border-width: var(--dyn-button-root-borderWidth, var(--dyn-border-width-sm, 1px));
 
   /* Effects */
@@ -61,7 +61,7 @@
   border: var(--dyn-button-border-width) solid var(--dyn-button-border);
   background-color: var(--dyn-button-bg);
   color: var(--dyn-button-color);
-  font-family: var(--dyn-button-root-fontFamily, inherit);
+  font-family: var(--dyn-font-family-base, inherit);
   font-size: var(--dyn-button-font-size);
   font-weight: var(--dyn-button-font-weight);
   line-height: var(--dyn-typography-lineHeight-normal, 1.5);
@@ -126,6 +126,8 @@
   --dyn-button-border: var(--dyn-button-color-secondary-border, var(--dyn-theme-secondary, #6b7280));
   --dyn-button-bg-hover: var(--dyn-button-color-secondary-hover-background, var(--dyn-theme-secondary-dark, #4b5563));
   --dyn-button-border-hover: var(--dyn-button-color-secondary-hover-background, var(--dyn-theme-secondary-dark, #4b5563));
+  /* Ensure text remains readable on hover */
+  --dyn-button-color-hover: var(--dyn-button-color-secondary-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .kindTertiary {
@@ -134,6 +136,8 @@
   --dyn-button-border: var(--dyn-button-color-tertiary-border, transparent);
   --dyn-button-bg-hover: var(--dyn-button-color-tertiary-hover-background, var(--dyn-semantic-surface-hover, #f3f4f6));
   --dyn-button-border-hover: var(--dyn-button-color-tertiary-hover-background, var(--dyn-semantic-surface-hover, #f3f4f6));
+  /* Fix: explicitly use primary color for hover text instead of inheriting base white */
+  --dyn-button-color-hover: var(--dyn-button-color-tertiary-text, var(--dyn-theme-primary, #3b82f6));
   --dyn-button-shadow-hover: none;
 }
 
@@ -157,7 +161,11 @@
 }
 
 .sizeMedium {
-  min-width: auto;
+  /* Medium - default button size with explicit values */
+  --dyn-button-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-button-padding-x: var(--dyn-button-size-padding-medium, var(--dyn-spacing-md, 16px));
+  --dyn-button-min-height: var(--dyn-button-size-minHeight-medium, 40px);
+  --dyn-button-font-size: var(--dyn-button-size-fontSize-medium, var(--dyn-font-size-sm, 14px));
 }
 
 .sizeLarge {
@@ -250,5 +258,15 @@
   }
   .spinner {
     animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .root {
+    border-width: 2px;
+  }
+  
+  .root:focus-visible {
+    outline-width: 3px;
   }
 }

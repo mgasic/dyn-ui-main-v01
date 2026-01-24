@@ -2,26 +2,7 @@
    COMPONENT TOKENS (Layer 2)
    Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
    ================================================ */
-:root {
-  /* Color tokens */
-  --dyn-textarea-bg: var(--dyn-semantic-input-bg, #ffffff);
-  --dyn-textarea-color: var(--dyn-semantic-text, #0f172a);
-  --dyn-textarea-border: var(--dyn-semantic-input-border, #cbd5e1);
-  --dyn-textarea-border-hover: var(--dyn-neutral-mid-400);
-  --dyn-textarea-border-focus: var(--dyn-semantic-border-focus, #3b82f6);
-  --dyn-textarea-focus-ring: var(--dyn-action-focus);
-  --dyn-textarea-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
-  --dyn-textarea-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
-  --dyn-textarea-disabled-color: var(--dyn-semantic-text-secondary, #94a3b8);
-  --dyn-textarea-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
-  --dyn-textarea-error: var(--dyn-feedback-negative-default);
-
-  /* Layout tokens */
-  --dyn-textarea-radius: var(--dyn-border-radius-md);
-  --dyn-textarea-padding: var(--dyn-spacing-sm);
-  --dyn-textarea-font-size: var(--dyn-font-size-sm);
-  --dyn-textarea-transition: var(--dyn-transition-normal);
-}
+/* Tokens moved to .textarea for better component scoping (consistent with DynInput) */
 
 /* ================================================
    BASE STYLES
@@ -40,6 +21,26 @@
 }
 
 .textarea {
+  /* Component tokens - scoped to textarea for better isolation */
+  /* Color tokens */
+  --dyn-textarea-bg: var(--dyn-semantic-input-bg, #ffffff);
+  --dyn-textarea-color: var(--dyn-semantic-text, #0f172a);
+  --dyn-textarea-border: var(--dyn-semantic-input-border, #cbd5e1);
+  --dyn-textarea-border-hover: var(--dyn-neutral-mid-400);
+  --dyn-textarea-border-focus: var(--dyn-semantic-border-focus, #3b82f6);
+  --dyn-textarea-focus-ring: var(--dyn-action-focus);
+  --dyn-textarea-placeholder: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-textarea-disabled-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
+  --dyn-textarea-disabled-color: var(--dyn-semantic-text-secondary, #94a3b8);
+  --dyn-textarea-readonly-bg: var(--dyn-semantic-surface, #f8fafc);
+  --dyn-textarea-error: var(--dyn-feedback-negative-default);
+
+  /* Layout tokens */
+  --dyn-textarea-radius: var(--dyn-border-radius-md);
+  --dyn-textarea-padding: var(--dyn-spacing-sm);
+  --dyn-textarea-font-size: var(--dyn-font-size-sm);
+  --dyn-textarea-transition: var(--dyn-transition-normal);
+
   width: 100%;
   min-height: 6rem;
   padding: var(--dyn-textarea-padding);

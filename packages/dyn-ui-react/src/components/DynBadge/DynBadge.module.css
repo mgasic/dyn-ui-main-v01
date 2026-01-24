@@ -143,7 +143,10 @@
 }
 
 .badgeMd {
-  color: inherit;
+  /* Medium uses default values - explicitly set for clarity */
+  --dyn-badge-font-size: var(--dyn-badge-size-md-fontSize, 12px);
+  --dyn-badge-padding-y: var(--dyn-badge-size-md-paddingY, 2px);
+  --dyn-badge-padding-x: var(--dyn-badge-size-md-paddingX, 8px);
 }
 
 .badgeLg {
@@ -256,4 +259,19 @@
     animation: none;
     transition: none;
   }
+}
+
+@media (prefers-contrast: high) {
+  .badge {
+    border-width: 2px;
+  }
+  
+  .badgeOutline {
+    border-width: 3px;
+  }
+}
+
+.badgeClickable:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
 }

@@ -227,10 +227,23 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
     setActiveDropdown(null);
   };
 
+  // Explicit variant and size mapping for type safety
+  const VARIANT_MAP: Record<NonNullable<DynToolbarProps['variant']>, string | undefined> = {
+    default: undefined,
+    minimal: styles.variantLight, // CSS uses 'light' for minimal
+    floating: styles.variantOutline, // CSS uses 'outline' for floating
+  };
+
+  const SIZE_MAP: Record<NonNullable<DynToolbarProps['size']>, string | undefined> = {
+    medium: undefined,
+    small: styles.sizeSmall,
+    large: styles.sizeLarge,
+  };
+
   const rootClass = cn(
     styles.root,
-    styles[`variant${variant.charAt(0).toUpperCase() + variant.slice(1)}`],
-    styles[`size${size.charAt(0).toUpperCase() + size.slice(1)}`],
+    VARIANT_MAP[variant],
+    SIZE_MAP[size],
     className
   );
 

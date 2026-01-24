@@ -105,158 +105,23 @@
   box-sizing: border-box;
 }
 
+/* 
+  LEGACY STYLES DISABLED - UTS MODULES TAKE PRECEDENCE 
+  The following styles are commented out to prevent conflicts with 
+  the new Batch 1 UTS components (DynButton, DynBox, etc.)
+*/
+
+/*
 .dyn-component {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family: var(--dyn-font-family-base, system-ui, sans-serif);
   box-sizing: border-box;
 }
 
-/* ===== DynButton Component ===== */
 .dyn-button {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-  border: none;
-  cursor: pointer;
-  font-weight: var(--font-weight-semibold);
-  font-family: inherit;
-  font-size: var(--font-size-base);
-  line-height: 1.5;
-  text-decoration: none;
-  white-space: nowrap;
-  user-select: none;
-  outline: none;
-  position: relative;
-  transition: var(--transition-colors), var(--transition-transform);
-
-  /* Default size (medium) */
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-md);
-  min-height: 2.5rem;
+  ...
 }
-
-/* Button Focus State */
-.dyn-button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-/* ===== Button Kind Variants ===== */
-
-/* Primary Button */
-.dyn-button--primary {
-  background-color: var(--dyn-color-primary);
-  color: var(--dyn-color-primary-text);
-  border: 2px solid var(--dyn-color-primary);
-}
-
-.dyn-button--primary:hover:not(:disabled):not(.dyn-button--loading) {
-  background-color: var(--dyn-color-primary-hover);
-  border-color: var(--dyn-color-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
-}
-
-.dyn-button--primary:active:not(:disabled):not(.dyn-button--loading) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-/* Secondary Button */
-.dyn-button--secondary {
-  background-color: transparent;
-  color: var(--dyn-color-secondary-text);
-  border: 2px solid var(--dyn-color-secondary);
-}
-
-.dyn-button--secondary:hover:not(:disabled):not(.dyn-button--loading) {
-  background-color: var(--dyn-color-secondary-hover);
-  border-color: var(--dyn-color-primary-hover);
-  color: var(--dyn-color-primary-hover);
-}
-
-/* Tertiary Button */
-.dyn-button--tertiary {
-  background-color: transparent;
-  color: var(--dyn-color-tertiary-text);
-  border: 2px solid transparent;
-}
-
-.dyn-button--tertiary:hover:not(:disabled):not(.dyn-button--loading) {
-  background-color: var(--dyn-color-tertiary-hover);
-  border-color: var(--color-border);
-}
-
-/* ===== Button Size Variants ===== */
-.dyn-button--small {
-  padding: var(--spacing-xs) var(--spacing-md);
-  font-size: var(--font-size-sm);
-  min-height: 2rem;
-  border-radius: var(--radius-sm);
-}
-
-.dyn-button--medium {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-size-base);
-  min-height: 2.5rem;
-  border-radius: var(--radius-md);
-}
-
-.dyn-button--large {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-lg);
-  min-height: 3rem;
-  border-radius: var(--radius-lg);
-}
-
-/* ===== Button State Variants ===== */
-
-/* Danger State */
-.dyn-button--danger {
-  background-color: var(--dyn-color-danger) !important;
-  border-color: var(--dyn-color-danger) !important;
-  color: #ffffff !important;
-}
-
-.dyn-button--danger:hover:not(:disabled):not(.dyn-button--loading) {
-  background-color: var(--dyn-color-danger-hover) !important;
-  border-color: var(--dyn-color-danger-hover) !important;
-}
-
-/* Disabled State */
-.dyn-button--disabled,
-.dyn-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-/* Loading State */
-.dyn-button--loading {
-  pointer-events: none;
-  position: relative;
-}
-
-.dyn-button--loading .dyn-button__text {
-  opacity: 0.7;
-}
-
-/* Icon Only Button */
-.dyn-button--icon-only {
-  padding: var(--spacing-sm);
-  width: 2.5rem;
-  aspect-ratio: 1;
-}
-
-.dyn-button--icon-only.dyn-button--small {
-  width: 2rem;
-  padding: var(--spacing-xs);
-}
-
-.dyn-button--icon-only.dyn-button--large {
-  width: 3rem;
-  padding: var(--spacing-md);
-}
+*/
 
 /* ===== Loading Animation ===== */
 @keyframes dyn-spin {
@@ -282,7 +147,8 @@
 }
 
 /* ===== Utility Classes ===== */
-.sr-only {
+.sr-only,
+.dyn-sr-only {
   position: absolute;
   width: 1px;
   height: 1px;

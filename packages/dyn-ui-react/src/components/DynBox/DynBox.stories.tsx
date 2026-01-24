@@ -581,11 +581,11 @@ export const Performance: Story = {
       </DynBox>
 
       {/* Edge cases */}
-      <DynBox border="default"  p="md" borderRadius="md">
+      <DynBox border="default" p="md" borderRadius="md">
         <h3 style={{ margin: '0 0 1rem 0' }}>Edge Cases Handled</h3>
         <DynBox display="flex" flexDirection="column" gap="sm">
-          <DynBox bg="tertiary" p="sm" borderRadius="sm" width={0} height={0}>
-            Zero dimensions handled gracefully
+          <DynBox bg="tertiary" p="sm" borderRadius="sm" minWidth={100}>
+            Minimum dimensions handled gracefully
           </DynBox>
           <DynBox
             p="xl" m="auto"

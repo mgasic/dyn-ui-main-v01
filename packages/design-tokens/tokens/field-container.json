@@ -1,6 +1,6 @@
 {
   "dyn": {
-    "fieldContainer": {
+    "field-container": {
       "label": {
         "text": {
           "value": "{color.semantic.text}"
@@ -32,6 +32,16 @@
         },
         "fontSize": {
           "value": "{size.font.size.sm}"
+        }
+      },
+      "required": {
+        "text": {
+          "value": "{color.feedback.negative.default}"
+        }
+      },
+      "optional": {
+        "text": {
+          "value": "{color.semantic.text-secondary}"
         }
       },
       "spacing": {

@@ -10,25 +10,25 @@
      ========================================================================== */
   
   /* Color Tokens */
-  --dyn-avatar-bg-internal: var(--dyn-avatar-bg, var(--dyn-neutral-light-200, #eeeeee));
-  --dyn-avatar-text-internal: var(--dyn-avatar-text, var(--dyn-semantic-text, #1e293b));
-  --dyn-avatar-border-internal: var(--dyn-avatar-border-color, var(--dyn-neutral-light-white, #ffffff));
+  --dyn-avatar-bg-val: var(--dyn-avatar-bg, var(--dyn-neutral-light-200, #eeeeee));
+  --dyn-avatar-text-val: var(--dyn-avatar-text, var(--dyn-semantic-text, #1e293b));
+  --dyn-avatar-border-val: var(--dyn-avatar-border-color, var(--dyn-neutral-light-white, #ffffff));
 
   /* Sizing Tokens */
-  --dyn-avatar-size-internal: var(--dyn-avatar-size-md, 40px);
-  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-md, var(--dyn-font-size-sm, 14px));
-  --dyn-avatar-font-weight-internal: var(--dyn-avatar-size-fontWeight, var(--dyn-font-weight-semibold, 600));
-  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-circle, 50%);
-  --dyn-avatar-border-width-internal: var(--dyn-avatar-border-width, var(--dyn-border-width-md, 2px));
+  --dyn-avatar-size-val: var(--dyn-avatar-size-md, 40px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-md, var(--dyn-font-size-sm, 14px));
+  --dyn-avatar-font-weight-val: var(--dyn-avatar-size-fontWeight, var(--dyn-font-weight-semibold, 600));
+  --dyn-avatar-radius-val: var(--dyn-avatar-border-radius-circle, 50%);
+  --dyn-avatar-border-width-val: var(--dyn-avatar-border-width, var(--dyn-border-width-md, 2px));
 
   /* Status Tokens */
-  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-md, 12px);
-  --dyn-avatar-status-border-internal: var(--dyn-avatar-status-indicator-border-color, var(--dyn-neutral-light-white, #ffffff));
-  --dyn-avatar-status-border-width-internal: var(--dyn-avatar-status-indicator-border-width, var(--dyn-border-width-md, 2px));
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-md, 12px);
+  --dyn-avatar-status-border-val: var(--dyn-avatar-status-indicator-border-color, var(--dyn-neutral-light-white, #ffffff));
+  --dyn-avatar-status-border-width-val: var(--dyn-avatar-status-indicator-border-width, var(--dyn-border-width-md, 2px));
 
   /* Other Tokens */
-  --dyn-avatar-shadow-internal: var(--dyn-avatar-shadow, var(--dyn-shadow-elevation-medium, 0 4px 6px rgba(0, 0, 0, 0.1)));
-  --dyn-avatar-transition-internal: var(--dyn-avatar-animation-transition-duration, var(--dyn-duration-normal, 200ms)) var(--dyn-avatar-animation-transition-timingFunction, var(--dyn-easing-ease-in-out, ease-in-out));
+  --dyn-avatar-shadow-val: var(--dyn-avatar-shadow, var(--dyn-shadow-elevation-medium, 0 4px 6px rgba(0, 0, 0, 0.1)));
+  --dyn-avatar-transition-val: var(--dyn-avatar-animation-transition-duration, var(--dyn-duration-normal, 200ms)) var(--dyn-avatar-animation-transition-timingFunction, var(--dyn-easing-ease-in-out, ease-in-out));
 
   /* ==========================================================================
      BASE STYLES
@@ -37,19 +37,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-avatar-size-internal);
-  height: var(--dyn-avatar-size-internal);
-  background-color: var(--dyn-avatar-bg-internal);
-  border: var(--dyn-avatar-border-width-internal) solid var(--dyn-avatar-border-internal);
-  border-radius: var(--dyn-avatar-radius-internal);
-  color: var(--dyn-avatar-text-internal);
+  width: var(--dyn-avatar-size-val);
+  height: var(--dyn-avatar-size-val);
+  background-color: var(--dyn-avatar-bg-val);
+  border: var(--dyn-avatar-border-width-val) solid var(--dyn-avatar-border-val);
+  border-radius: var(--dyn-avatar-radius-val);
+  color: var(--dyn-avatar-text-val);
   font-family: inherit;
-  font-size: var(--dyn-avatar-font-size-internal);
-  font-weight: var(--dyn-avatar-font-weight-internal);
+  font-size: var(--dyn-avatar-font-size-val);
+  font-weight: var(--dyn-avatar-font-weight-val);
   user-select: none;
   flex-shrink: 0;
-  box-shadow: var(--dyn-avatar-shadow-internal);
-  transition: all var(--dyn-avatar-transition-internal);
+  box-shadow: var(--dyn-avatar-shadow-val);
+  transition: all var(--dyn-avatar-transition-val);
+  /* Removed overflow: hidden from container to allow badge overflow */
 }
 
 /* ==========================================================================
@@ -95,32 +96,35 @@
    SIZE VARIANTS
    ========================================================================== */
 
-.xs {
-  --dyn-avatar-size-internal: var(--dyn-avatar-size-xs, 24px);
-  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-xs, 8px);
-  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-sm, 6px);
+.sizeXs {
+  --dyn-avatar-size-val: var(--dyn-avatar-size-xs, 24px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-xs, 10px);
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-xs, 8px);
 }
 
-.sm {
-  --dyn-avatar-size-internal: var(--dyn-avatar-size-sm, 32px);
-  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-sm, 11px);
-  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-sm, 8px);
+.sizeSm {
+  --dyn-avatar-size-val: var(--dyn-avatar-size-sm, 32px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-sm, 12px);
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-sm, 10px);
 }
 
-.md {
-  /* Uses default root tokens */
+.sizeM {
+  /* Medium - default values (from container lines 18-19) */
+  --dyn-avatar-size-val: var(--dyn-avatar-size-md, 40px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-md, 14px);
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-md, 12px);
 }
 
-.lg {
-  --dyn-avatar-size-internal: var(--dyn-avatar-size-lg, 56px);
-  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-lg, 16px);
-  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-lg, 12px);
+.sizeLg {
+  --dyn-avatar-size-val: var(--dyn-avatar-size-lg, 48px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-lg, 16px);
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-lg, 14px);
 }
 
-.xl {
-  --dyn-avatar-size-internal: var(--dyn-avatar-size-xl, 80px);
-  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-xl, 24px);
-  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-lg, 16px);
+.sizeXl {
+  --dyn-avatar-size-val: var(--dyn-avatar-size-xl, 64px);
+  --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-xl, 20px);
+  --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-xl, 16px);
 }
 
 /* ==========================================================================
@@ -128,15 +132,15 @@
    ========================================================================== */
 
 .circle {
-  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-circle, 50%);
+  --dyn-avatar-radius-val: var(--dyn-avatar-border-radius-circle, 50%);
 }
 
 .square {
-  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-square, 0);
+  --dyn-avatar-radius-val: var(--dyn-avatar-border-radius-square, 0);
 }
 
 .rounded {
-  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-rounded, 8px);
+  --dyn-avatar-radius-val: var(--dyn-avatar-border-radius-rounded, 8px);
 }
 
 /* ==========================================================================
@@ -148,10 +152,13 @@
   z-index: 1;
   bottom: 0;
   right: 0;
-  width: var(--dyn-avatar-status-size-internal);
-  height: var(--dyn-avatar-status-size-internal);
+  width: var(--dyn-avatar-status-size-val);
+  height: var(--dyn-avatar-status-size-val);
   border-radius: 50%;
-  box-shadow: 0 0 0 var(--dyn-avatar-status-border-width-internal) var(--dyn-avatar-status-border-internal);
+  /* Enhanced shadow for better visibility in both light and dark themes */
+  box-shadow: 
+    0 0 0 var(--dyn-avatar-status-border-width-val) var(--dyn-avatar-status-border-val),
+    0 2px 4px rgba(0, 0, 0, 0.2);
   transform: translate(calc(var(--dyn-avatar-status-indicator-offset, -2px) * -1), calc(var(--dyn-avatar-status-indicator-offset, -2px) * -1));
 }
 
@@ -169,6 +176,22 @@
 
 .statusOffline {
   background-color: var(--dyn-avatar-status-indicator-offline-backgroundColor, var(--dyn-theme-secondary, #6b7280));
+}
+
+/* ==========================================================================
+   BADGE CONTAINER
+   ========================================================================== */
+
+.badgeContainer {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  z-index: 2;
+}
+
+.customBadge {
+  /* Enhance visibility with shadow for better contrast in both themes */
+  box-shadow: 0 0 0 2px var(--dyn-semantic-background, #ffffff);
 }
 
 /* ==========================================================================
@@ -245,10 +268,26 @@
   .container.loading::after { animation: none; }
 }
 
+@media (prefers-contrast: high) {
+  .container {
+    border-width: 3px;
+  }
+  
+  .status {
+    box-shadow: 0 0 0 3px var(--dyn-avatar-status-border-val);
+  }
+}
+
+.clickable:focus-visible {
+  outline: 2px solid var(--dyn-semantic-border-focus);
+  outline-offset: 2px;
+}
+
 /* Responsive Overrides */
 @media (max-width: 640px) {
   .xl {
-    --dyn-avatar-size-internal: var(--dyn-avatar-size-lg, 56px);
-    --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-lg, 16px);
+    --dyn-avatar-size-val: var(--dyn-avatar-size-lg, 56px);
+    --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-lg, 16px);
   }
 }
+

@@ -1,0 +1,179 @@
+{
+  "dyn": {
+    "button": {
+      "description": "Design tokens for DynButton component",
+      "root": {
+        "fontFamily": {
+          "value": "inherit",
+          "description": "Button font family"
+        },
+        "fontSize": {
+          "value": "{size.font.size.sm}",
+          "description": "Button font size"
+        },
+        "fontWeight": {
+          "value": "{typography.font.weight.medium}",
+          "description": "Button font weight"
+        },
+        "borderRadius": {
+          "value": "{size.border.radius.md}",
+          "description": "Button border radius"
+        },
+        "borderWidth": {
+          "value": "{size.border.width.sm}",
+          "description": "Button border width"
+        },
+        "transition": {
+          "value": "{animation.duration.fast} {animation.easing.ease-in-out}",
+          "description": "Button transition"
+        },
+        "gap": {
+          "value": "{size.spacing.sm}",
+          "description": "Space between icon and label"
+        }
+      },
+      "size": {
+        "padding": {
+          "small": {
+            "value": "{size.spacing.xs} {size.spacing.sm}",
+            "description": "Small button padding"
+          },
+          "medium": {
+            "value": "{size.spacing.sm} {size.spacing.md}",
+            "description": "Medium button padding"
+          },
+          "large": {
+            "value": "{size.spacing.md} {size.spacing.lg}",
+            "description": "Large button padding"
+          }
+        },
+        "fontSize": {
+          "small": {
+            "value": "{size.font.size.xs}",
+            "description": "Small button font size"
+          },
+          "medium": {
+            "value": "{size.font.size.sm}",
+            "description": "Medium button font size"
+          },
+          "large": {
+            "value": "{size.font.size.md}",
+            "description": "Large button font size"
+          }
+        },
+        "minHeight": {
+          "small": {
+            "value": "32px",
+            "description": "Small button min height"
+          },
+          "medium": {
+            "value": "40px",
+            "description": "Medium button min height"
+          },
+          "large": {
+            "value": "48px",
+            "description": "Large button min height"
+          }
+        }
+      },
+      "color": {
+        "primary": {
+          "background": {
+            "value": "{color.theme.primary}",
+            "description": "Primary button background"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Primary button text"
+          },
+          "border": {
+            "value": "{color.theme.primary}",
+            "description": "Primary button border"
+          },
+          "hover": {
+            "background": {
+              "value": "{color.theme.primary-dark}",
+              "description": "Primary button hover background"
+            }
+          }
+        },
+        "secondary": {
+          "background": {
+            "value": "{color.theme.secondary}",
+            "description": "Secondary button background"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Secondary button text"
+          },
+          "border": {
+            "value": "{color.theme.secondary}",
+            "description": "Secondary button border"
+          },
+          "hover": {
+            "background": {
+              "value": "{color.theme.secondary-dark}",
+              "description": "Secondary button hover background"
+            }
+          }
+        },
+        "tertiary": {
+          "background": {
+            "value": "transparent",
+            "description": "Tertiary button background"
+          },
+          "text": {
+            "value": "{color.theme.primary}",
+            "description": "Tertiary button text"
+          },
+          "border": {
+            "value": "transparent",
+            "description": "Tertiary button border"
+          },
+          "hover": {
+            "background": {
+              "value": "{color.semantic.surface-hover}",
+              "description": "Tertiary button hover background"
+            }
+          }
+        },
+        "danger": {
+          "background": {
+            "value": "{color.feedback.negative.default}",
+            "description": "Danger button background"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Danger button text"
+          },
+          "border": {
+            "value": "{color.feedback.negative.default}",
+            "description": "Danger button border"
+          },
+          "hover": {
+            "background": {
+              "value": "{color.feedback.negative.dark}",
+              "description": "Danger button hover background"
+            }
+          }
+        }
+      },
+      "state": {
+        "disabled": {
+          "opacity": {
+            "value": "{layout.opacity.50}",
+            "description": "Disabled button opacity"
+          },
+          "background": {
+            "value": "{color.neutral.light.300}",
+            "description": "Disabled button background"
+          },
+          "text": {
+            "value": "{color.neutral.mid.600}",
+            "description": "Disabled button text"
+          }
+        }
+      }
+    }
+  }
+}

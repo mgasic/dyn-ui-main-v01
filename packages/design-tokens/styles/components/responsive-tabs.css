@@ -48,11 +48,11 @@
   --dyn-responsiveTabs-spacing-vertical-tabListMinWidthMobile: 150px;
   --dyn-responsiveTabs-responsive-breakpoint-accordion: var(--dyn-breakpoint-md);
   --dyn-responsiveTabs-responsive-breakpoint-compact: 480px;
-  --dyn-responsiveTabs-typography-fontSize: var(--dyn-font-size-sm);
-  --dyn-responsiveTabs-typography-fontSizeSm: var(--dyn-font-size-xs);
-  --dyn-responsiveTabs-typography-fontWeight-inactive: var(--dyn-font-weight-normal);
-  --dyn-responsiveTabs-typography-fontWeight-active: var(--dyn-font-weight-semibold);
-  --dyn-responsiveTabs-typography-fontFamily: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --dyn-responsiveTabs-size-fontSize: var(--dyn-font-size-sm);
+  --dyn-responsiveTabs-size-fontSizeSm: var(--dyn-font-size-xs);
+  --dyn-responsiveTabs-size-fontWeight-inactive: var(--dyn-font-weight-normal);
+  --dyn-responsiveTabs-size-fontWeight-active: var(--dyn-font-weight-semibold);
+  --dyn-responsiveTabs-size-fontFamily: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --dyn-responsiveTabs-animation-transition: var(--dyn-transition-normal);
   --dyn-responsiveTabs-animation-transitionFast: var(--dyn-transition-fast);
 }

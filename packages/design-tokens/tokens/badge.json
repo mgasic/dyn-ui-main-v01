@@ -1,261 +1,263 @@
 {
-  "badge": {
-    "description": "Badge component tokens",
-    "color": {
-      "primary": {
-        "background": {
-          "value": "{color.theme.primary.value}",
-          "description": "Primary badge background color"
+  "dyn": {
+    "badge": {
+      "description": "Badge component tokens",
+      "color": {
+        "primary": {
+          "background": {
+            "value": "{color.theme.primary}",
+            "description": "Primary badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Primary badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text-inverse.value}",
-          "description": "Primary badge text color"
-        }
-      },
-      "secondary": {
-        "background": {
-          "value": "{color.theme.secondary.value}",
-          "description": "Secondary badge background color"
+        "secondary": {
+          "background": {
+            "value": "{color.theme.secondary}",
+            "description": "Secondary badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Secondary badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text-inverse.value}",
-          "description": "Secondary badge text color"
-        }
-      },
-      "success": {
-        "background": {
-          "value": "{color.feedback.positive.value}",
-          "description": "Success badge background color"
+        "success": {
+          "background": {
+            "value": "{color.feedback.positive}",
+            "description": "Success badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Success badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text-inverse.value}",
-          "description": "Success badge text color"
-        }
-      },
-      "danger": {
-        "background": {
-          "value": "{color.feedback.negative.default.value}",
-          "description": "Danger badge background color"
+        "danger": {
+          "background": {
+            "value": "{color.feedback.negative.default}",
+            "description": "Danger badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Danger badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text-inverse.value}",
-          "description": "Danger badge text color"
-        }
-      },
-      "warning": {
-        "background": {
-          "value": "{color.feedback.warning.value}",
-          "description": "Warning badge background color"
+        "warning": {
+          "background": {
+            "value": "{color.feedback.warning}",
+            "description": "Warning badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text}",
+            "description": "Warning badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text.value}",
-          "description": "Warning badge text color"
-        }
-      },
-      "info": {
-        "background": {
-          "value": "{color.feedback.info.value}",
-          "description": "Info badge background color"
+        "info": {
+          "background": {
+            "value": "{color.feedback.info}",
+            "description": "Info badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text-inverse}",
+            "description": "Info badge text color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text-inverse.value}",
-          "description": "Info badge text color"
+        "neutral": {
+          "background": {
+            "value": "{color.neutral.light.100}",
+            "description": "Neutral badge background color"
+          },
+          "text": {
+            "value": "{color.semantic.text}",
+            "description": "Neutral badge text color"
+          }
         }
       },
-      "neutral": {
-        "background": {
-          "value": "{color.neutral.light.100.value}",
-          "description": "Neutral badge background color"
+      "status": {
+        "online": {
+          "background": {
+            "value": "{color.feedback.positive}",
+            "description": "Online status indicator color"
+          }
         },
-        "text": {
-          "value": "{color.semantic.text.value}",
-          "description": "Neutral badge text color"
-        }
-      }
-    },
-    "status": {
-      "online": {
-        "background": {
-          "value": "{color.feedback.positive.value}",
-          "description": "Online status indicator color"
-        }
-      },
-      "offline": {
-        "background": {
-          "value": "{color.theme.secondary.value}",
-          "description": "Offline status indicator color"
-        }
-      },
-      "away": {
-        "background": {
-          "value": "{color.feedback.warning.value}",
-          "description": "Away status indicator color"
-        }
-      },
-      "busy": {
-        "background": {
-          "value": "{color.feedback.negative.default.value}",
-          "description": "Busy status indicator color"
-        }
-      }
-    },
-    "variant": {
-      "solid": {
-        "description": "Solid badge variant with filled background"
-      },
-      "soft": {
-        "description": "Soft badge variant with light background",
-        "opacity": {
-          "value": "{layout.opacity.20.value}",
-          "description": "Opacity for soft badge background"
-        }
-      },
-      "outline": {
-        "description": "Outline badge variant with border",
-        "borderWidth": {
-          "value": "{size.border.width.sm.value}",
-          "description": "Border width for outline variant"
-        }
-      },
-      "dot": {
-        "description": "Dot variant - circular status indicator",
-        "size": {
-          "value": "12px",
-          "description": "Base size for dot variant"
-        }
-      }
-    },
-    "size": {
-      "xs": {
-        "fontSize": {
-          "value": "{size.font.size.2xs.value}",
-          "description": "Extra small badge font size"
+        "offline": {
+          "background": {
+            "value": "{color.theme.secondary}",
+            "description": "Offline status indicator color"
+          }
         },
-        "paddingY": {
-          "value": "1px",
-          "description": "Extra small badge vertical padding"
+        "away": {
+          "background": {
+            "value": "{color.feedback.warning}",
+            "description": "Away status indicator color"
+          }
         },
-        "paddingX": {
-          "value": "{size.spacing.xs.value}",
-          "description": "Extra small badge horizontal padding"
+        "busy": {
+          "background": {
+            "value": "{color.feedback.negative.default}",
+            "description": "Busy status indicator color"
+          }
         }
       },
-      "sm": {
-        "fontSize": {
-          "value": "11px",
-          "description": "Small badge font size"
+      "variant": {
+        "solid": {
+          "description": "Solid badge variant with filled background"
         },
-        "paddingX": {
-          "value": "{size.spacing.xs.value}",
-          "description": "Small badge horizontal padding"
+        "soft": {
+          "description": "Soft badge variant with light background",
+          "opacity": {
+            "value": "{layout.opacity.20}",
+            "description": "Opacity for soft badge background"
+          }
+        },
+        "outline": {
+          "description": "Outline badge variant with border",
+          "borderWidth": {
+            "value": "{size.border.width.sm}",
+            "description": "Border width for outline variant"
+          }
+        },
+        "dot": {
+          "description": "Dot variant - circular status indicator",
+          "size": {
+            "value": "12px",
+            "description": "Base size for dot variant"
+          }
         }
       },
-      "md": {
-        "fontSize": {
-          "value": "{size.font.size.xs.value}",
-          "description": "Medium badge font size (default)"
-        }
-      },
-      "lg": {
-        "fontSize": {
-          "value": "{size.font.size.sm.value}",
-          "description": "Large badge font size"
-        },
-        "paddingY": {
-          "value": "{size.spacing.xs.value}",
-          "description": "Large badge vertical padding"
-        },
-        "paddingX": {
-          "value": "{size.spacing.md.value}",
-          "description": "Large badge horizontal padding"
-        }
-      },
-      "xl": {
-        "fontSize": {
-          "value": "{size.font.size.md.value}",
-          "description": "Extra large badge font size"
-        },
-        "paddingY": {
-          "value": "6px",
-          "description": "Extra large badge vertical padding"
-        },
-        "paddingX": {
-          "value": "{size.spacing.md.value}",
-          "description": "Extra large badge horizontal padding"
-        }
-      }
-    },
-    "icon": {
       "size": {
-        "value": "1em",
-        "description": "Icon size relative to font size"
-      }
-    },
-    "hover": {
-      "brightness": {
-        "value": "1.1",
-        "description": "Brightness multiplier on hover"
-      }
-    },
-    "position": {
-      "topRight": {
-        "offset": {
-          "value": "-8px",
-          "description": "Position offset"
+        "xs": {
+          "fontSize": {
+            "value": "{size.font.size.2xs}",
+            "description": "Extra small badge font size"
+          },
+          "paddingY": {
+            "value": "1px",
+            "description": "Extra small badge vertical padding"
+          },
+          "paddingX": {
+            "value": "{size.spacing.xs}",
+            "description": "Extra small badge horizontal padding"
+          }
         },
-        "zIndex": {
-          "value": "{layout.z-index.dropdown.value}",
-          "description": "Z-index"
+        "sm": {
+          "fontSize": {
+            "value": "11px",
+            "description": "Small badge font size"
+          },
+          "paddingX": {
+            "value": "{size.spacing.xs}",
+            "description": "Small badge horizontal padding"
+          }
+        },
+        "md": {
+          "fontSize": {
+            "value": "{size.font.size.xs}",
+            "description": "Medium badge font size (default)"
+          }
+        },
+        "lg": {
+          "fontSize": {
+            "value": "{size.font.size.sm}",
+            "description": "Large badge font size"
+          },
+          "paddingY": {
+            "value": "{size.spacing.xs}",
+            "description": "Large badge vertical padding"
+          },
+          "paddingX": {
+            "value": "{size.spacing.md}",
+            "description": "Large badge horizontal padding"
+          }
+        },
+        "xl": {
+          "fontSize": {
+            "value": "{size.font.size.md}",
+            "description": "Extra large badge font size"
+          },
+          "paddingY": {
+            "value": "6px",
+            "description": "Extra large badge vertical padding"
+          },
+          "paddingX": {
+            "value": "{size.spacing.md}",
+            "description": "Extra large badge horizontal padding"
+          }
         }
       },
-      "center": {
-        "offset": {
-          "value": "{size.spacing.none.value}",
-          "description": "Center offset"
-        },
-        "zIndex": {
-          "value": "{layout.z-index.dropdown.value}",
-          "description": "Z-index"
+      "icon": {
+        "size": {
+          "value": "1em",
+          "description": "Icon size relative to font size"
         }
-      }
-    },
-    "spacing": {
-      "padding": {
-        "value": "{size.spacing.xs.value} {size.spacing.sm.value}",
-        "description": "Badge padding"
       },
-      "borderRadius": {
-        "value": "{size.border.radius.xl.value}",
-        "description": "Badge border radius"
+      "hover": {
+        "brightness": {
+          "value": "1.1",
+          "description": "Brightness multiplier on hover"
+        }
       },
-      "dotRadius": {
-        "value": "{size.border.radius.full.value}",
-        "description": "Border radius for dot variant"
-      }
-    },
-    "typography": {
-      "fontSize": {
-        "value": "{size.font.size.xs.value}",
-        "description": "Badge font size"
-      },
-      "fontWeight": {
-        "value": "{size.font.weight.semibold.value}",
-        "description": "Badge font weight"
-      },
-      "lineHeight": {
-        "value": "{size.font.lineHeight.normal.value}",
-        "description": "Badge line height"
-      }
-    },
-    "animation": {
-      "transition": {
-        "duration": {
-          "value": "{animation.duration.fast.value}",
-          "description": "Default transition duration"
+      "position": {
+        "topRight": {
+          "offset": {
+            "value": "-8px",
+            "description": "Position offset"
+          },
+          "zIndex": {
+            "value": "{layout.z-index.dropdown}",
+            "description": "Z-index"
+          }
         },
-        "timingFunction": {
-          "value": "{animation.easing.ease-in-out.value}",
-          "description": "Default transition timing function"
+        "center": {
+          "offset": {
+            "value": "{size.spacing.none}",
+            "description": "Center offset"
+          },
+          "zIndex": {
+            "value": "{layout.z-index.dropdown}",
+            "description": "Z-index"
+          }
+        }
+      },
+      "spacing": {
+        "padding": {
+          "value": "{size.spacing.xs} {size.spacing.sm}",
+          "description": "Badge padding"
+        },
+        "borderRadius": {
+          "value": "{size.border.radius.xl}",
+          "description": "Badge border radius"
+        },
+        "dotRadius": {
+          "value": "{size.border.radius.full}",
+          "description": "Border radius for dot variant"
+        }
+      },
+      "typography": {
+        "fontSize": {
+          "value": "{size.font.size.xs}",
+          "description": "Badge font size"
+        },
+        "fontWeight": {
+          "value": "{typography.font.weight.semibold}",
+          "description": "Badge font weight"
+        },
+        "lineHeight": {
+          "value": "{typography.font.lineHeight.normal}",
+          "description": "Badge line height"
+        }
+      },
+      "animation": {
+        "transition": {
+          "duration": {
+            "value": "{animation.duration.fast}",
+            "description": "Default transition duration"
+          },
+          "timingFunction": {
+            "value": "{animation.easing.ease-in-out}",
+            "description": "Default transition timing function"
+          }
         }
       }
     }

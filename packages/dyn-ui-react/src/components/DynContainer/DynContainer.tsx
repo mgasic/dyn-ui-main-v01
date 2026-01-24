@@ -5,13 +5,11 @@ import {
   DYN_CONTAINER_DEFAULT_PROPS,
   DynContainerProps,
   DynContainerRef,
-  type DynContainerMaxWidthToken,
-  type DynContainerSpaceValue,
 } from './DynContainer.types';
 import styles from './DynContainer.module.css';
 
 const toPascalCase = (value: string) => {
-  if (value.match(/^\d/)) return value.toLowerCase(); // 2xs -> 2xs
+  if (value.match(/^\d/)) return value; // 2xs -> 2xs (lowercase start for numbers)
   return value.charAt(0).toUpperCase() + value.slice(1);
 };
 
@@ -28,59 +26,28 @@ const SPACING_TOKENS: Record<string, string> = {
   '4xl': 'var(--dyn-spacing-4xl)',
 };
 
-const MAX_WIDTH_TOKENS: Record<DynContainerMaxWidthToken, string> = {
-  xs: 'min(100%, var(--dyn-container-max-width-xs))',
-  sm: 'min(100%, var(--dyn-container-max-width-sm))',
-  md: 'min(100%, var(--dyn-container-max-width-md))',
-  lg: 'min(100%, var(--dyn-container-max-width-lg))',
-  xl: 'min(100%, var(--dyn-container-max-width-xl))',
+const MAX_WIDTH_TOKENS: Record<string, string> = {
+  xs: 'var(--dyn-container-max-width-xs)',
+  sm: 'var(--dyn-container-max-width-sm)',
+  md: 'var(--dyn-container-max-width-md)',
+  lg: 'var(--dyn-container-max-width-lg)',
+  xl: 'var(--dyn-container-max-width-xl)',
   full: '100%',
 };
 
-const SIZE_MAP: Record<string, string> = {
-  small: 'Sm',
-  medium: 'Md',
-  large: 'Lg',
-};
+const SHADOW_TOKENS = ['none', 'low', 'medium', 'high', 'default'];
+const BG_TOKENS = ['none', 'surface', 'card'];
+
+const getStyleClass = (name: string) => (styles as Record<string, string>)[name] || '';
 
 type CSSVarProperties = CSSProperties & Record<string, string | number | undefined>;
 
-const resolveSpacingValue = (value?: DynContainerSpaceValue): string | undefined => {
-  if (value === undefined) {
-    return undefined;
-  }
-
-  if (typeof value === 'number') {
-    return value === 0 ? '0' : `${value}px`;
-  }
-
-  const normalized = value.trim();
-
-  if (normalized in SPACING_TOKENS) {
-    return SPACING_TOKENS[normalized];
-  }
-
-  return normalized;
-};
-
-const resolveMaxWidth = (
-  value?: DynContainerProps['maxWidth']
-): string | undefined => {
-  if (value === undefined) {
-    return undefined;
-  }
-
-  if (typeof value === 'number') {
-    return value === 0 ? '0' : `${value}px`;
-  }
-
-  const normalized = value.trim();
-
-  if (normalized in MAX_WIDTH_TOKENS) {
-    return MAX_WIDTH_TOKENS[normalized as DynContainerMaxWidthToken];
-  }
-
-  return normalized;
+const resolveTokenValue = (value: string | number | undefined, tokenMap: Record<string, string>): string | undefined => {
+  if (value === undefined) return undefined;
+  if (typeof value === 'number') return value === 0 ? '0' : `${value}px`;
+  const valStr = String(value).trim();
+  if (valStr in tokenMap) return tokenMap[valStr];
+  return valStr;
 };
 
 const DynContainerComponent = (
@@ -105,7 +72,7 @@ const DynContainerComponent = (
     className,
     children,
     style,
-    'data-testid': dataTestId,
+    'data-testid': dataTestId = 'dyn-container',
     ...rest
   }: DynContainerProps,
   ref: ForwardedRef<DynContainerRef>
@@ -117,64 +84,57 @@ const DynContainerComponent = (
   const effectiveBordered = bordered ?? DYN_CONTAINER_DEFAULT_PROPS.bordered;
   const effectiveShadow = shadow ?? DYN_CONTAINER_DEFAULT_PROPS.shadow;
   const effectiveLayout = layout ?? DYN_CONTAINER_DEFAULT_PROPS.layout;
-  const effectiveDataTestId = dataTestId ?? DYN_CONTAINER_DEFAULT_PROPS['data-testid'];
 
   const resolvedBordered = noBorder ? false : effectiveBordered;
   const hasTitleContent = Boolean(title || subtitle);
-  const resolvedMaxWidth = resolveMaxWidth(maxWidth);
-  const resolvedPadding = resolveSpacingValue(padding);
-  const resolvedMargin = resolveSpacingValue(margin);
 
   const containerStyle = useMemo<CSSProperties | undefined>(() => {
     const next: CSSVarProperties = { ...(style as CSSVarProperties) };
 
     if (height !== undefined) {
-      if (typeof height === 'number') {
-        next.height = height === 0 ? '0' : `${height}px`;
-      } else if (typeof height === 'string') {
-        next.height = height;
-      }
+      next.height = typeof height === 'number' ? `${height}px` : height;
     }
 
-    if (maxWidth !== undefined && resolvedMaxWidth !== undefined) {
-      next.maxWidth = resolvedMaxWidth;
-      next['--dyn-container-max-width'] = resolvedMaxWidth;
+    const resolvedMaxWidth = resolveTokenValue(maxWidth, MAX_WIDTH_TOKENS);
+    if (resolvedMaxWidth !== undefined) {
+      next.maxWidth = resolvedMaxWidth.startsWith('var') ? `min(100%, ${resolvedMaxWidth})` : resolvedMaxWidth;
+      next['--dyn-container-max-width'] = next.maxWidth as string;
     }
 
-    if (padding !== undefined && resolvedPadding !== undefined) {
+    const resolvedPadding = resolveTokenValue(padding, SPACING_TOKENS);
+    if (resolvedPadding !== undefined) {
       next['--dyn-container-padding'] = resolvedPadding;
     }
 
-    if (margin !== undefined && resolvedMargin !== undefined) {
+    const resolvedMargin = resolveTokenValue(margin, SPACING_TOKENS);
+    if (resolvedMargin !== undefined) {
       next['--dyn-container-margin'] = resolvedMargin;
     }
 
+    const resolvedGap = resolveTokenValue(spacing, SPACING_TOKENS);
+    if (resolvedGap !== undefined) {
+      next['--dyn-container-gap'] = resolvedGap;
+    }
+
     return Object.keys(next).length > 0 ? next : undefined;
-  }, [height, margin, maxWidth, padding, resolvedMargin, resolvedMaxWidth, resolvedPadding, style]);
+  }, [height, maxWidth, padding, margin, spacing, style]);
 
+  // Dynamic Class Mappings 
+  const directionClass = getStyleClass(`direction${toPascalCase(effectiveDirection)}`);
 
-  // Dynamic Class Mappings
-  const directionClass = styles[`direction${toPascalCase(effectiveDirection)}` as keyof typeof styles];
+  const sizeMap: Record<string, string> = { small: 'Sm', medium: 'Md', large: 'Lg' };
+  const sizeSuffix = sizeMap[effectiveSize] || toPascalCase(effectiveSize);
+  const sizeClass = effectiveSize ? getStyleClass(`size${sizeSuffix}`) : undefined;
 
-  const spacingClass = effectiveSpacing
-    ? styles[`spacing${toPascalCase(effectiveSpacing)}` as keyof typeof styles]
+  const backgroundClass = effectiveBackground && BG_TOKENS.includes(effectiveBackground)
+    ? getStyleClass(`background${toPascalCase(effectiveBackground)}`)
     : undefined;
 
-  const sizeSuffix = effectiveSize ? (SIZE_MAP[effectiveSize] || toPascalCase(effectiveSize)) : '';
-  const sizeClass = effectiveSize
-    ? styles[`size${sizeSuffix}` as keyof typeof styles]
-    : undefined;
+  const alignClass = align ? getStyleClass(`align${toPascalCase(align)}`) : undefined;
+  const justifyClass = justify ? getStyleClass(`justify${toPascalCase(justify)}`) : undefined;
 
-  const backgroundClass = effectiveBackground
-    ? styles[`background${toPascalCase(effectiveBackground)}` as keyof typeof styles]
-    : undefined;
-
-  const alignClass = align
-    ? styles[`align${toPascalCase(align)}` as keyof typeof styles]
-    : undefined;
-
-  const justifyClass = justify
-    ? styles[`justify${toPascalCase(justify)}` as keyof typeof styles]
+  const spacingClass = effectiveSpacing && typeof effectiveSpacing === 'string' && SPACING_TOKENS[effectiveSpacing]
+    ? getStyleClass(`spacing${toPascalCase(effectiveSpacing)}`)
     : undefined;
 
   const containerClassName = cn(
@@ -187,7 +147,7 @@ const DynContainerComponent = (
     justifyClass,
     effectiveLayout === 'fixed' && styles.layoutFixed,
     resolvedBordered && styles.bordered,
-    effectiveShadow && styles.shadow,
+    effectiveShadow && (SHADOW_TOKENS.includes(String(effectiveShadow)) ? getStyleClass(`shadow${toPascalCase(String(effectiveShadow))}`) : styles.shadow),
     noPadding && styles.noPadding,
     hasTitleContent && styles.withTitle,
     className
@@ -198,7 +158,7 @@ const DynContainerComponent = (
       ref={ref}
       className={containerClassName}
       style={containerStyle}
-      data-testid={effectiveDataTestId}
+      data-testid={dataTestId}
       {...rest}
     >
       {hasTitleContent && (
@@ -218,3 +178,4 @@ DynContainer.displayName = 'DynContainer';
 
 export { DynContainer };
 export default DynContainer;
+

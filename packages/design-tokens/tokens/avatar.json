@@ -1,179 +1,167 @@
 {
-  "avatar": {
-    "description": "Avatar component tokens",
-    "size": {
-      "xs": {
-        "value": "{size.spacing.lg.value}",
-        "description": "Extra small avatar size (24px)"
-      },
-      "sm": {
-        "value": "{size.spacing.xl.value}",
-        "description": "Small avatar size (32px)"
-      },
-      "md": {
-        "value": "40px",
-        "description": "Medium avatar size (40px) - Custom value"
-      },
-      "lg": {
-        "value": "56px",
-        "description": "Large avatar size (56px) - Custom value"
-      },
-      "xl": {
-        "value": "80px",
-        "description": "Extra large avatar size (80px) - Custom value"
-      }
-    },
-    "border": {
-      "width": {
-        "value": "{size.border.width.md.value}",
-        "description": "Avatar border width"
-      },
-      "color": {
-        "value": "{color.neutral.light.white.value}",
-        "description": "Avatar border color"
-      },
-      "radius": {
-        "circle": {
-          "value": "{size.border.radius.full.value}",
-          "description": "Circular avatar border radius"
-        },
-        "rounded": {
-          "value": "{size.border.radius.lg.value}",
-          "description": "Rounded avatar border radius"
-        },
-        "square": {
-          "value": "{size.border.radius.none.value}",
-          "description": "Square avatar border radius"
-        }
-      }
-    },
-    "color": {
-      "background": {
-        "value": "{color.neutral.light.200.value}",
-        "description": "Avatar background color"
-      },
-      "text": {
-        "value": "{color.semantic.text.value}",
-        "description": "Avatar text color"
-      }
-    },
-    "status": {
-      "indicator": {
-        "size": {
-          "sm": {
-            "value": "6px",
-            "description": "Small status indicator size"
-          },
-          "md": {
-            "value": "{size.spacing.sm.value}",
-            "description": "Medium status indicator size"
-          },
-          "lg": {
-            "value": "12px",
-            "description": "Large status indicator size"
-          }
-        },
-        "offset": {
-          "value": "-2px",
-          "description": "Status indicator offset from edge"
-        },
-        "border": {
-          "width": {
-            "value": "{size.border.width.md.value}",
-            "description": "Status indicator border width"
-          },
-          "color": {
-            "value": "{color.neutral.light.white.value}",
-            "description": "Status indicator border color"
-          }
-        },
-        "online": {
-          "backgroundColor": {
-            "value": "{color.feedback.positive.value}",
-            "description": "Online status color"
-          }
-        },
-        "offline": {
-          "backgroundColor": {
-            "value": "{color.theme.secondary.value}",
-            "description": "Offline status color"
-          }
-        },
-        "away": {
-          "backgroundColor": {
-            "value": "{color.feedback.warning.value}",
-            "description": "Away status color"
-          }
-        },
-        "busy": {
-          "backgroundColor": {
-            "value": "{color.feedback.negative.default.value}",
-            "description": "Busy status color"
-          }
-        }
-      }
-    },
-    "spacing": {
-      "padding": {
-        "value": "{size.spacing.none.value}",
-        "description": "Avatar padding"
-      }
-    },
-    "typography": {
-      "fontSize": {
+  "dyn": {
+    "avatar": {
+      "description": "Avatar component tokens",
+      "size": {
         "xs": {
-          "value": "8px",
-          "description": "Font size for extra small avatar"
+          "value": "{size.spacing.lg}",
+          "description": "Extra small avatar size (24px)"
         },
         "sm": {
-          "value": "11px",
-          "description": "Font size for small avatar"
+          "value": "{size.spacing.xl}",
+          "description": "Small avatar size (32px)"
         },
         "md": {
-          "value": "{size.font.size.sm.value}",
-          "description": "Font size for medium avatar"
+          "value": "40px",
+          "description": "Medium avatar size (40px) - Custom value"
         },
         "lg": {
-          "value": "{size.font.size.lg.value}",
-          "description": "Font size for large avatar"
+          "value": "56px",
+          "description": "Large avatar size (56px) - Custom value"
         },
         "xl": {
-          "value": "{size.font.size.2xl.value}",
-          "description": "Font size for extra large avatar"
+          "value": "80px",
+          "description": "Extra large avatar size (80px) - Custom value"
         }
       },
-      "fontWeight": {
-        "value": "{size.font.weight.semibold.value}",
-        "description": "Avatar font weight"
-      }
-    },
-    "shadow": {
-      "value": "{shadow.elevation.medium.value}",
-      "description": "Avatar shadow"
-    },
-    "darkMode": {
-      "backgroundColor": {
-        "value": "{color.neutral.dark.800.value}",
-        "description": "Avatar background color in dark mode"
-      },
-      "textColor": {
-        "value": "{color.neutral.light.white.value}",
-        "description": "Avatar text color in dark mode"
-      },
-      "borderColor": {
-        "value": "{color.neutral.dark.900.value}",
-        "description": "Avatar border color in dark mode"
-      }
-    },
-    "animation": {
-      "transition": {
-        "duration": {
-          "value": "{animation.duration.normal.value}",
-          "description": "Avatar transition duration"
+      "border": {
+        "width": {
+          "value": "{size.border.width.md}",
+          "description": "Avatar border width"
         },
-        "timingFunction": {
-          "value": "{animation.easing.ease-in-out.value}",
-          "description": "Avatar transition timing function"
+        "color": {
+          "value": "{color.neutral.light.white}",
+          "description": "Avatar border color"
+        },
+        "radius": {
+          "circle": {
+            "value": "{size.border.radius.full}",
+            "description": "Circular avatar border radius"
+          },
+          "rounded": {
+            "value": "{size.border.radius.lg}",
+            "description": "Rounded avatar border radius"
+          },
+          "square": {
+            "value": "{size.border.radius.none}",
+            "description": "Square avatar border radius"
+          }
+        }
+      },
+      "color": {
+        "background": {
+          "value": "{color.semantic.surface-muted}",
+          "description": "Avatar background color (Handles dark mode automatically)"
+        },
+        "text": {
+          "value": "{color.semantic.text}",
+          "description": "Avatar text color (Handles dark mode automatically)"
+        }
+      },
+      "status": {
+        "indicator": {
+          "size": {
+            "sm": {
+              "value": "6px",
+              "description": "Small status indicator size"
+            },
+            "md": {
+              "value": "{size.spacing.sm}",
+              "description": "Medium status indicator size"
+            },
+            "lg": {
+              "value": "12px",
+              "description": "Large status indicator size"
+            }
+          },
+          "offset": {
+            "value": "-2px",
+            "description": "Status indicator offset from edge"
+          },
+          "border": {
+            "width": {
+              "value": "{size.border.width.md}",
+              "description": "Status indicator border width"
+            },
+            "color": {
+              "value": "{color.neutral.light.white}",
+              "description": "Status indicator border color"
+            }
+          },
+          "online": {
+            "backgroundColor": {
+              "value": "{color.feedback.positive}",
+              "description": "Online status color"
+            }
+          },
+          "offline": {
+            "backgroundColor": {
+              "value": "{color.theme.secondary}",
+              "description": "Offline status color"
+            }
+          },
+          "away": {
+            "backgroundColor": {
+              "value": "{color.feedback.warning}",
+              "description": "Away status color"
+            }
+          },
+          "busy": {
+            "backgroundColor": {
+              "value": "{color.feedback.negative.default}",
+              "description": "Busy status color"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "padding": {
+          "value": "{size.spacing.none}",
+          "description": "Avatar padding"
+        }
+      },
+      "typography": {
+        "fontSize": {
+          "xs": {
+            "value": "8px",
+            "description": "Font size for extra small avatar"
+          },
+          "sm": {
+            "value": "11px",
+            "description": "Font size for small avatar"
+          },
+          "md": {
+            "value": "{size.font.size.sm}",
+            "description": "Font size for medium avatar"
+          },
+          "lg": {
+            "value": "{size.font.size.lg}",
+            "description": "Font size for large avatar"
+          },
+          "xl": {
+            "value": "{size.font.size.2xl}",
+            "description": "Font size for extra large avatar"
+          }
+        },
+        "fontWeight": {
+          "value": "{typography.font.weight.semibold}",
+          "description": "Avatar font weight"
+        }
+      },
+      "shadow": {
+        "value": "{shadow.elevation.medium}",
+        "description": "Avatar shadow"
+      },
+      "animation": {
+        "transition": {
+          "duration": {
+            "value": "{animation.duration.normal}",
+            "description": "Avatar transition duration"
+          },
+          "timingFunction": {
+            "value": "{animation.easing.ease-in-out}",
+            "description": "Avatar transition timing function"
+          }
         }
       }
     }

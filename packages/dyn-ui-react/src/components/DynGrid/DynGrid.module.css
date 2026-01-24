@@ -1,28 +1,61 @@
 /**
  * DynGrid Component Styles - Unified Component Token Strategy
- * Consumes 'table.json' tokens for consistency
+ * 100% Design Token Compliance with 3-Level Fallback Pattern
  */
 
-/* ============================================
-   ROOT
-   ============================================ */
-
 .root {
+  /* ==========================================================================
+     COMPONENT TOKENS (Layer 2)
+     ========================================================================== */
+
+  /* Color Tokens */
+  --dyn-grid-bg: var(--dyn-grid-root-backgroundColor, var(--dyn-semantic-surface-default, #ffffff));
+  --dyn-grid-color: var(--dyn-grid-root-textColor, var(--dyn-semantic-text-default, #1e293b));
+  --dyn-grid-border: var(--dyn-grid-root-borderColor, var(--dyn-semantic-border-default, #e2e8f0));
+  
+  /* Row Styles */
+  --dyn-grid-row-border: var(--dyn-grid-row-borderColor, var(--dyn-grid-border));
+  --dyn-grid-hover-bg: var(--dyn-grid-row-hover-backgroundColor, var(--dyn-semantic-surface-hover, #f8fafc));
+  --dyn-grid-striped-bg: var(--dyn-grid-row-striped-backgroundColor, var(--dyn-semantic-surface-subtle, #f1f5f9));
+  --dyn-grid-selected-bg: var(--dyn-grid-row-selected-backgroundColor, var(--dyn-semantic-surface-selected, #e2e8f0));
+
+  /* Header Tokens */
+  --dyn-grid-header-bg: var(--dyn-grid-header-backgroundColor, var(--dyn-semantic-surface-subtle, #f1f5f9));
+  --dyn-grid-header-color: var(--dyn-grid-header-textColor, var(--dyn-semantic-text-default, #1e293b));
+  --dyn-grid-header-font-weight: var(--dyn-grid-header-fontWeight, var(--dyn-font-weight-semibold, 600));
+
+  /* Sizing Tokens */
+  --dyn-grid-padding-y: var(--dyn-grid-size-medium-paddingY, var(--dyn-spacing-md, 16px));
+  --dyn-grid-padding-x: var(--dyn-grid-size-medium-paddingX, var(--dyn-spacing-sm, 12px));
+  --dyn-grid-font-size: var(--dyn-grid-root-fontSize, var(--dyn-font-size-sm, 14px));
+  --dyn-grid-radius: var(--dyn-grid-root-borderRadius, var(--dyn-border-radius-md, 8px));
+
+  /* Pagination Tokens */
+  --dyn-grid-pagination-bg: var(--dyn-grid-pagination-backgroundColor, var(--dyn-grid-header-bg));
+  --dyn-grid-pagination-color: var(--dyn-grid-pagination-textColor, var(--dyn-semantic-text-secondary, #64748b));
+  --dyn-grid-pagination-border: var(--dyn-grid-pagination-borderColor, var(--dyn-grid-border));
+
+  /* ==========================================================================
+     BASE STYLES
+     ========================================================================== */
   width: 100%;
-  background: var(--dyn-table-root-background-color);
-  font-family: var(--dyn-table-root-font-family);
-  font-size: var(--dyn-table-root-font-size);
-  color: var(--dyn-table-root-text-color);
-  border-radius: var(--dyn-border-radius-md); 
+  background-color: var(--dyn-grid-bg);
+  color: var(--dyn-grid-color);
+  font-family: var(--dyn-grid-root-fontFamily, inherit);
+  font-size: var(--dyn-grid-font-size);
+  border-radius: var(--dyn-grid-radius);
   overflow: hidden;
+  border: var(--dyn-border-width-sm, 1px) solid transparent;
+  transition: all var(--dyn-duration-fast, 150ms) var(--dyn-easing-ease-in-out, ease-in-out);
 }
 
 .root.bordered {
-  border: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
+  border-color: var(--dyn-grid-border);
 }
 
 .wrapper {
   overflow-x: auto;
+  width: 100%;
 }
 
 .table {
@@ -31,65 +64,60 @@
   border-spacing: 0;
 }
 
-/* ============================================
+/* ==========================================================================
    HEADER
-   ============================================ */
+   ========================================================================== */
 
 .header {
-  background: var(--dyn-table-header-background-color);
+  background-color: var(--dyn-grid-header-bg);
 }
 
 .headerRow {
-  border-bottom: var(--dyn-table-header-border-width) solid var(--dyn-table-header-border-color);
+  border-bottom: var(--dyn-border-width-md, 2px) solid var(--dyn-grid-border);
 }
 
 .headerCell {
-  padding: var(--dyn-table-size-medium-padding);
+  padding: var(--dyn-grid-padding-y) var(--dyn-grid-padding-x);
   text-align: left;
-  font-size: var(--dyn-table-size-medium-font-size);
-  font-weight: var(--dyn-table-header-font-weight);
-  color: var(--dyn-table-header-text-color);
-  line-height: 1.5;
+  font-weight: var(--dyn-grid-header-font-weight);
+  color: var(--dyn-grid-header-color);
+  line-height: var(--dyn-typography-lineHeight-normal, 1.5);
   white-space: nowrap;
 }
 
 .headerCellSortable {
-  cursor: parse; /* Fallback */
-  cursor: var(--dyn-table-sortable-cursor);
+  cursor: pointer;
   user-select: none;
-  transition: background-color var(--dyn-transition-fast);
+  transition: background-color var(--dyn-duration-fast, 150ms);
 }
 
 .headerCellSortable:hover {
-  background-color: var(--dyn-table-sortable-hover-background-color);
+  background-color: var(--dyn-grid-hover-bg);
 }
 
 .headerCellSorted {
-  color: var(--dyn-table-sortable-active-text-color);
-  background-color: var(--dyn-table-sortable-active-background-color);
+  color: var(--dyn-theme-primary, #3b82f6);
 }
 
 .headerContent {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-xs);
+  gap: var(--dyn-spacing-xs, 4px);
 }
 
 .sortIndicator {
-  font-size: 12px;
-  opacity: 0.6;
+  font-size: 0.85em;
+  opacity: 0.7;
 }
 
-.headerCellAlignCenter { text-align: center; }
-.headerCellAlignRight { text-align: right; }
-
-/* ============================================
+/* ==========================================================================
    BODY
-   ============================================ */
+   ========================================================================== */
 
 .row {
-  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
-  transition: var(--dyn-table-row-hover-transition);
+  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-row-border);
+  background-color: transparent;
+  transition: background-color var(--dyn-duration-fast, 150ms);
 }
 
 .row:last-child {
@@ -97,158 +125,134 @@
 }
 
 .hoverable .row:hover {
-  background-color: var(--dyn-table-row-hover-background-color);
+  background-color: var(--dyn-grid-hover-bg);
 }
 
 .striped .rowOdd {
-  background-color: var(--dyn-table-row-striped-background-color);
+  background-color: var(--dyn-grid-striped-bg);
 }
 
 .rowSelected {
-  background-color: var(--dyn-table-row-selected-background-color) !important;
+  background-color: var(--dyn-grid-selected-bg) !important;
 }
 
 .cell {
-  padding: var(--dyn-table-size-medium-padding);
-  font-size: var(--dyn-table-size-medium-font-size);
-  color: var(--dyn-table-root-text-color);
-  line-height: 1.5;
+  padding: var(--dyn-grid-padding-y) var(--dyn-grid-padding-x);
+  color: inherit;
+  line-height: var(--dyn-typography-lineHeight-normal, 1.5);
 }
 
-.cellAlignCenter { text-align: center; }
-.cellAlignRight { text-align: right; }
-
-/* ============================================
+/* ==========================================================================
    SELECTION
-   ============================================ */
+   ========================================================================== */
 
 .selectionCell {
-  width: 48px;
+  width: var(--dyn-spacing-xl, 48px);
   text-align: center;
-  padding-left: var(--dyn-spacing-sm);
-  padding-right: var(--dyn-spacing-sm);
 }
 
 .checkbox {
   cursor: pointer;
-  accent-color: var(--dyn-table-checkbox-focus-outline-color);
+  accent-color: var(--dyn-theme-primary, #3b82f6);
 }
 
-/* ============================================
+/* ==========================================================================
    SIZE VARIANTS
-   ============================================ */
+   ========================================================================== */
 
-.sizeSm .headerCell,
-.sizeSm .cell {
-  padding: var(--dyn-table-size-small-padding);
-  font-size: var(--dyn-table-size-small-font-size);
+.sizeSm {
+  --dyn-grid-padding-y: var(--dyn-grid-size-small-paddingY, var(--dyn-spacing-sm, 8px));
+  --dyn-grid-padding-x: var(--dyn-grid-size-small-paddingX, var(--dyn-spacing-xs, 4px));
+  --dyn-grid-font-size: var(--dyn-grid-size-small-fontSize, var(--dyn-font-size-xs, 12px));
 }
 
-.sizeLg .headerCell,
-.sizeLg .cell {
-  padding: var(--dyn-table-size-large-padding);
-  font-size: var(--dyn-table-size-large-font-size);
+.sizeLg {
+  --dyn-grid-padding-y: var(--dyn-grid-size-large-paddingY, var(--dyn-spacing-lg, 24px));
+  --dyn-grid-padding-x: var(--dyn-grid-size-large-paddingX, var(--dyn-spacing-md, 16px));
+  --dyn-grid-font-size: var(--dyn-grid-size-large-fontSize, var(--dyn-font-size-md, 16px));
 }
 
-/* ============================================
-   LOADING STATE
-   ============================================ */
+/* ==========================================================================
+   LOADING & EMPTY STATES
+   ========================================================================== */
 
 .loading {
+  position: relative;
   min-height: 200px;
 }
 
-.loadingState {
+.loadingState,
+.emptyState {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--dyn-spacing-md);
-  padding: var(--dyn-table-loading-padding);
-  color: var(--dyn-table-loading-text-color);
-  font-size: var(--dyn-table-loading-font-size);
+  padding: var(--dyn-spacing-xl, 48px);
+  text-align: center;
+  min-height: 200px;
+  color: var(--dyn-grid-pagination-color);
 }
 
 .spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--dyn-table-border-color);
-  border-top-color: var(--dyn-theme-primary);
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--dyn-grid-border);
+  border-top-color: var(--dyn-theme-primary, #3b82f6);
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: dynGridSpin 0.8s linear infinite;
+  margin-bottom: var(--dyn-spacing-sm, 12px);
 }
 
-@keyframes spin {
+@keyframes dynGridSpin {
   to { transform: rotate(360deg); }
 }
 
-/* ============================================
-   EMPTY STATE
-   ============================================ */
-
-.emptyState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--dyn-table-empty-padding);
-  color: var(--dyn-table-empty-text-color);
-  font-size: var(--dyn-table-empty-font-size);
-  text-align: center;
-  min-height: 200px;
-}
-
-/* ============================================
+/* ==========================================================================
    PAGINATION
-   ============================================ */
+   ========================================================================== */
 
 .pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--dyn-table-pagination-padding);
-  gap: var(--dyn-table-pagination-gap);
-  border-top: var(--dyn-table-border-width) solid var(--dyn-table-pagination-border-color);
-  background: var(--dyn-table-pagination-background-color);
+  padding: var(--dyn-spacing-md, 16px);
+  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-pagination-border);
+  background-color: var(--dyn-grid-pagination-bg);
 }
 
 .paginationInfo {
-  font-size: var(--dyn-table-pagination-font-size);
-  color: var(--dyn-grid-text-secondary); /* Needs fallback or new token */
-  color: var(--dyn-semantic-text-secondary);
+  font-size: var(--dyn-font-size-sm, 14px);
+  color: var(--dyn-grid-pagination-color);
 }
 
 .paginationControls {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-xs);
-  font-size: var(--dyn-table-pagination-font-size);
-  color: var(--dyn-table-root-text-color);
+  gap: var(--dyn-spacing-xs, 8px);
 }
 
 .paginationButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  padding: 0 var(--dyn-spacing-xs);
-  border: var(--dyn-table-border-width) solid var(--dyn-table-pagination-border-color);
-  border-radius: var(--dyn-table-button-default-border-radius);
-  background: var(--dyn-table-button-default-background-color);
-  color: var(--dyn-table-button-default-text-color);
-  font-size: var(--dyn-table-button-default-font-size);
-  font-weight: var(--dyn-table-button-default-font-weight);
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 var(--dyn-spacing-xs, 8px);
+  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-border);
+  border-radius: var(--dyn-border-radius-sm, 4px);
+  background-color: var(--dyn-grid-bg);
+  color: var(--dyn-grid-color);
   font-family: inherit;
+  font-size: var(--dyn-font-size-sm, 14px);
   cursor: pointer;
-  transition: var(--dyn-table-button-default-transition);
+  transition: all var(--dyn-duration-fast, 150ms);
   user-select: none;
 }
 
 .paginationButton:hover:not(:disabled) {
-  background: var(--dyn-table-header-background-color);
-  border-color: var(--dyn-theme-primary); /* Missing specific token, keeping semantic */
-  color: var(--dyn-theme-primary);
+  background-color: var(--dyn-grid-header-bg);
+  border-color: var(--dyn-theme-primary, #3b82f6);
+  color: var(--dyn-theme-primary, #3b82f6);
 }
 
 .paginationButton:active:not(:disabled) {
@@ -256,370 +260,47 @@
 }
 
 .paginationButton:disabled {
-  opacity: var(--dyn-opacity-disabled);
+  opacity: var(--dyn-opacity-disabled, 0.5);
   cursor: not-allowed;
 }
 
 .paginationText {
-  padding: 0 var(--dyn-spacing-sm);
-  font-size: var(--dyn-table-pagination-font-size);
-  color: var(--dyn-table-root-text-color);
-  white-space: nowrap;
+  padding: 0 var(--dyn-spacing-sm, 12px);
+  font-size: var(--dyn-font-size-sm, 14px);
+  color: var(--dyn-grid-color);
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
+/* ==========================================================================
+   RESPONSIVE & UTILITIES
+   ========================================================================== */
+
+.alignCenter { text-align: center; }
+.alignRight { text-align: right; }
 
 @media (max-width: 768px) {
-  .headerCell,
-  .cell {
-    padding: var(--dyn-table-size-small-padding);
-    font-size: var(--dyn-table-size-small-font-size);
-  }
-
-  .selectionCell {
-    width: 40px;
-  }
-
-  .pagination {
-    flex-direction: column;
-    gap: var(--dyn-spacing-sm);
-  }
-
-  .paginationButton {
-    min-width: 28px;
-    height: 28px;
-  }
-}
-
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-
-@media (prefers-contrast: high) {
-  .root.bordered { border-width: 2px; }
-  .headerRow { border-bottom-width: 3px; }
-  .row { border-bottom-width: 2px; }
-  .paginationButton { border-width: 2px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .row,
-  .headerCellSortable,
-  .spinner,
-  .paginationButton {
-    transition: none;
-    animation: none;
-  }
-}
-
-
-
-/* ============================================
-   HEADER
-   ============================================ */
-
-.header {
-  background: var(--dyn-grid-header-bg);
-}
-
-.headerRow {
-  border-bottom: 2px solid var(--dyn-grid-border);
-}
-
-.headerCell {
-  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
-  text-align: left;
-  font-size: var(--dyn-font-size-sm);
-  font-weight: var(--dyn-font-weight-semibold);
-  color: var(--dyn-grid-text);
-  line-height: 1.5;
-  white-space: nowrap;
-}
-
-.headerCellSortable {
-  cursor: pointer;
-  user-select: none;
-  transition: background-color var(--dyn-transition-fast);
-}
-
-.headerCellSortable:hover {
-  background-color: var(--dyn-grid-hover);
-}
-
-.headerCellSorted {
-  color: var(--dyn-theme-primary);
-}
-
-.headerContent {
-  display: flex;
-  align-items: center;
-  gap: var(--dyn-spacing-xs);
-}
-
-.sortIndicator {
-  font-size: 12px;
-  opacity: 0.6;
-}
-
-.headerCellAlignCenter {
-  text-align: center;
-}
-
-.headerCellAlignRight {
-  text-align: right;
-}
-
-/* ============================================
-   BODY
-   ============================================ */
-
-.row {
-  border-bottom: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
-  transition: background-color var(--dyn-transition-fast);
-}
-
-.row:last-child {
-  border-bottom: none;
-}
-
-.hoverable .row:hover {
-  background-color: var(--dyn-grid-hover);
-}
-
-.striped .rowOdd {
-  background-color: var(--dyn-grid-stripe);
-}
-
-.rowSelected {
-  background-color: var(--dyn-grid-selected) !important;
-}
-
-.cell {
-  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-grid-text);
-  line-height: 1.5;
-}
-
-.cellAlignCenter {
-  text-align: center;
-}
-
-.cellAlignRight {
-  text-align: right;
-}
-
-/* ============================================
-   SELECTION
-   ============================================ */
-
-.selectionCell {
-  width: 48px;
-  text-align: center;
-  padding-left: var(--dyn-spacing-sm);
-  padding-right: var(--dyn-spacing-sm);
-}
-
-.checkbox {
-  cursor: pointer;
-  accent-color: var(--dyn-theme-primary);
-}
-
-/* ============================================
-   SIZE VARIANTS
-   ============================================ */
-
-.sizeSm .headerCell,
-.sizeSm .cell {
-  padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
-  font-size: var(--dyn-font-size-xs);
-}
-
-.sizeLg .headerCell,
-.sizeLg .cell {
-  padding: var(--dyn-spacing-lg) var(--dyn-spacing-md);
-  font-size: var(--dyn-font-size-md);
-}
-
-/* ============================================
-   LOADING STATE
-   ============================================ */
-
-.loading {
-  min-height: 200px;
-}
-
-.loadingState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--dyn-spacing-md);
-  padding: var(--dyn-spacing-xl);
-  color: var(--dyn-grid-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-}
-
-.spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--dyn-grid-border);
-  border-top-color: var(--dyn-theme-primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ============================================
-   EMPTY STATE
-   ============================================ */
-
-.emptyState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: var(--dyn-spacing-xl);
-  color: var(--dyn-grid-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-  text-align: center;
-  min-height: 200px;
-}
-
-/* ============================================
-   PAGINATION
-   ============================================ */
-
-.pagination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--dyn-spacing-md);
-  border-top: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
-  background: var(--dyn-grid-header-bg);
-}
-
-.paginationInfo {
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-grid-text-secondary);
-}
-
-.paginationControls {
-  display: flex;
-  align-items: center;
-  gap: var(--dyn-spacing-xs);
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-grid-text);
-}
-
-.paginationButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  padding: 0 var(--dyn-spacing-xs);
-  border: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
-  border-radius: var(--dyn-border-radius-sm);
-  background: var(--dyn-grid-bg);
-  color: var(--dyn-grid-text);
-  font-size: var(--dyn-font-size-sm);
-  font-family: inherit;
-  cursor: pointer;
-  transition: all var(--dyn-transition-fast);
-  user-select: none;
-}
-
-.paginationButton:hover:not(:disabled) {
-  background: var(--dyn-grid-header-bg);
-  border-color: var(--dyn-theme-primary);
-  color: var(--dyn-theme-primary);
-}
-
-.paginationButton:active:not(:disabled) {
-  transform: translateY(1px);
-}
-
-.paginationButton:disabled {
-  opacity: var(--dyn-opacity-disabled);
-  cursor: not-allowed;
-}
-
-.paginationText {
-  padding: 0 var(--dyn-spacing-sm);
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-grid-text);
-  white-space: nowrap;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 768px) {
-
   .headerCell,
   .cell {
     padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
     font-size: var(--dyn-font-size-xs);
   }
 
-  .selectionCell {
-    width: 40px;
-  }
-
   .pagination {
     flex-direction: column;
     gap: var(--dyn-spacing-sm);
-  }
-
-  .paginationButton {
-    min-width: 28px;
-    height: 28px;
+    text-align: center;
   }
 }
 
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-
+/* Accessibility */
 @media (prefers-contrast: high) {
-  .root.bordered {
-    border-width: 2px;
-  }
-
-  .headerRow {
-    border-bottom-width: 3px;
-  }
-
-  .row {
-    border-bottom-width: 2px;
-  }
-
-  .paginationButton {
-    border-width: 2px;
-  }
+  .root.bordered { border-width: 2px; }
+  .headerRow { border-bottom-width: 3px; }
+  .row { border-bottom-width: 2px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  .row,
-  .headerCellSortable,
-  .spinner,
-  .paginationButton {
+  .root, .row, .headerCellSortable, .spinner, .paginationButton {
     transition: none;
     animation: none;
   }
 }
-
-/* ============================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   ============================================ */

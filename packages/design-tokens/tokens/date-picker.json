@@ -14,7 +14,7 @@
                     }
                 },
                 "paddingRight": {
-                    "value": "{size.spacing.2xl.value}"
+                    "value": "{size.spacing.2xl}"
                 }
             },
             "calendar": {
@@ -22,10 +22,10 @@
                     "value": "280px"
                 },
                 "padding": {
-                    "value": "{size.spacing.sm.value}"
+                    "value": "{size.spacing.sm}"
                 },
                 "gap": {
-                    "value": "{size.spacing.xs.value}"
+                    "value": "{size.spacing.xs}"
                 },
                 "headerHeight": {
                     "value": "40px"
@@ -36,10 +36,10 @@
                     "value": "32px"
                 },
                 "fontSize": {
-                    "value": "{size.font.size.xs.value}"
+                    "value": "{size.font.size.xs}"
                 },
                 "color": {
-                    "value": "{color.semantic.text-secondary.value}"
+                    "value": "{color.semantic.text-secondary}"
                 }
             },
             "day": {
@@ -47,51 +47,51 @@
                     "value": "36px"
                 },
                 "fontSize": {
-                    "value": "{size.font.size.sm.value}"
+                    "value": "{size.font.size.sm}"
                 },
                 "radius": {
-                    "value": "{size.border.radius.sm.value}"
+                    "value": "{size.border.radius.sm}"
                 },
                 "transition": {
-                    "value": "{animation.transition.fast.value}"
+                    "value": "{animation.transition.fast}"
                 },
                 "default": {
                     "bg": {
                         "value": "transparent"
                     },
                     "color": {
-                        "value": "{color.semantic.text.value}"
+                        "value": "{color.semantic.text}"
                     }
                 },
                 "hover": {
                     "bg": {
-                        "value": "{color.semantic.surface-hover.value}"
+                        "value": "{color.semantic.surface-hover}"
                     }
                 },
                 "today": {
                     "borderColor": {
-                        "value": "{color.theme.primary.value}"
+                        "value": "{color.theme.primary}"
                     },
                     "borderWidth": {
-                        "value": "{size.border.width.md.value}"
+                        "value": "{size.border.width.md}"
                     }
                 },
                 "selected": {
                     "bg": {
-                        "value": "{color.theme.primary.value}"
+                        "value": "{color.theme.primary}"
                     },
                     "color": {
-                        "value": "{color.semantic.text-inverse.value}"
+                        "value": "{color.semantic.text-inverse}"
                     }
                 },
                 "disabled": {
                     "opacity": {
-                        "value": "{layout.opacity.40.value}"
+                        "value": "{layout.opacity.40}"
                     }
                 },
                 "outside": {
                     "color": {
-                        "value": "{color.semantic.text-muted.value}"
+                        "value": "{color.semantic.text-muted}"
                     }
                 }
             },
@@ -100,7 +100,7 @@
                     "value": "32px"
                 },
                 "iconSize": {
-                    "value": "{size.font.size.md.value}"
+                    "value": "{size.font.size.md}"
                 }
             },
             "responsive": {

@@ -1,0 +1,50 @@
+{
+  "dyn": {
+    "fieldContainer": {
+      "label": {
+        "text": {
+          "value": "{color.semantic.text}"
+        },
+        "textError": {
+          "value": "{color.feedback.negative.default}"
+        },
+        "fontSize": {
+          "value": "{size.font.size.sm}"
+        },
+        "fontWeight": {
+          "value": "{typography.font.weight.medium}"
+        },
+        "marginBottom": {
+          "value": "{size.spacing.xs}"
+        }
+      },
+      "help": {
+        "text": {
+          "value": "{color.semantic.text-secondary}"
+        },
+        "fontSize": {
+          "value": "{size.font.size.sm}"
+        }
+      },
+      "error": {
+        "text": {
+          "value": "{color.feedback.negative.default}"
+        },
+        "fontSize": {
+          "value": "{size.font.size.sm}"
+        }
+      },
+      "spacing": {
+        "gap": {
+          "value": "{size.spacing.xs}"
+        },
+        "marginBottom": {
+          "value": "{size.spacing.md}"
+        }
+      },
+      "transition": {
+        "value": "{animation.transition.normal}"
+      }
+    }
+  }
+}

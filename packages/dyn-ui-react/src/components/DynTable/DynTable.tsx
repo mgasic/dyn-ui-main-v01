@@ -108,13 +108,15 @@ export const DynTable: React.FC<DynTableProps> = ({
     [sortedData, rowKey]
   );
 
+  const toCamelCase = (s: string) => s ? s.replace(/-([a-z])/g, (g) => g[1].toUpperCase()) : '';
+
   const rootClasses = cn(
     styles.root,
     bordered && styles.bordered,
     striped && styles.striped,
     hoverable && styles.hoverable,
     height !== undefined && styles.fixedHeight,
-    styles[`size-${size}`],
+    size && size !== 'medium' && styles[toCamelCase(`size-${size}`)],
     className
   );
 

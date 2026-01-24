@@ -239,7 +239,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
               aria-hidden={showImage ? 'true' : undefined}
             >
               {fallback || children || (
-                (displayInitials && !error && !imageError) ? (
+                displayInitials ? (
                   <span data-testid="dyn-avatar-initials">
                     {displayInitials}
                   </span>
@@ -302,14 +302,14 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
 
         {/* Loading announcement for screen readers */}
         {isLoadingState && (
-          <span className={styles.srOnly} aria-live="polite">
+          <span className="dyn-sr-only" aria-live="polite">
             {loadingText}
           </span>
         )}
 
         {/* Error announcement for screen readers */}
         {(error || imageError) && (
-          <span className={styles.srOnly} aria-live="assertive">
+          <span className="dyn-sr-only" aria-live="assertive">
             {errorText}
           </span>
         )}

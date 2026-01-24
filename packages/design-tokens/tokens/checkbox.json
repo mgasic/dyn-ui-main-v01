@@ -8,7 +8,7 @@
       },
       "focus": {
         "outlineWidth": {
-          "value": "{size.border.width.md.value}",
+          "value": "{size.border.width.md}",
           "type": "dimension",
           "description": "Width of the focus outline"
         },
@@ -20,7 +20,7 @@
       },
       "icon": {
         "size": {
-          "value": "{size.font.size.xs.value}",
+          "value": "{size.font.size.xs}",
           "type": "dimension",
           "description": "Size of the checkmark icon"
         }

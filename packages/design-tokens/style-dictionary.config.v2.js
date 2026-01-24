@@ -14,14 +14,9 @@ StyleDictionary.registerTransform({
     const shortcuts = {
       'responsive-tabs-color-background': 'responsive-tabs-bg',
       'responsive-tabs-color-text': 'responsive-tabs-text',
-      'responsive-tabs-typography-font-size': 'responsive-tabs-font-size',
-      'responsive-tabs-typography-font-weight': 'responsive-tabs-font-weight',
-      'responsive-tabs-typography-font-family': 'responsive-tabs-font-family',
+      'typography-font': 'size-font',
       'color-background': 'bg',
-      'color-text': 'text',
-      'typography-font-size': 'font-size',
-      'typography-font-weight': 'font-weight',
-      'typography-font-family': 'font-family'
+      'color-text': 'text'
     };
 
     // Apply shortcuts
@@ -249,6 +244,24 @@ module.exports = {
           format: 'css/variables-with-dark',
           filter: (token) => token.filePath.replace(/\\/g, '/').endsWith('/stack.json'),
           options: { outputReferences: true }
+        },
+        {
+          destination: 'container.css',
+          format: 'css/variables-with-dark',
+          filter: (token) => token.filePath.replace(/\\/g, '/').endsWith('/container.json'),
+          options: { outputReferences: true }
+        },
+        {
+          destination: 'button.css',
+          format: 'css/variables-with-dark',
+          filter: (token) => token.filePath.replace(/\\/g, '/').endsWith('/button.json'),
+          options: { outputReferences: true }
+        },
+        {
+          destination: 'field-container.css',
+          format: 'css/variables-with-dark',
+          filter: (token) => token.filePath.replace(/\\/g, '/').endsWith('/field-container.json'),
+          options: { outputReferences: true }
         }
       ]
     },
@@ -278,7 +291,9 @@ module.exports = {
               !normalizedPath.endsWith('/table.json') &&
               !normalizedPath.endsWith('/box.json') &&
               !normalizedPath.endsWith('/flex.json') &&
-              !normalizedPath.endsWith('/stack.json');
+              !normalizedPath.endsWith('/stack.json') &&
+              !normalizedPath.endsWith('/container.json') &&
+              !normalizedPath.endsWith('/field-container.json');
           }
         }
       ]

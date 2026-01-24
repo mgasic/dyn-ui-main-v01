@@ -293,11 +293,11 @@
         },
         "fontWeight": {
           "inactive": {
-            "value": "{size.font.weight.normal.value}",
+            "value": "{typography.font.weight.normal.value}",
             "description": "Font weight for inactive tabs"
           },
           "active": {
-            "value": "{size.font.weight.semibold.value}",
+            "value": "{typography.font.weight.semibold.value}",
             "description": "Font weight for active tabs"
           }
         },

@@ -4,111 +4,111 @@
       "description": "Design tokens for DynTable component",
       "root": {
         "fontFamily": {
-          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif",
+          "value": "{typography.font.family.base}",
           "description": "Default font family for table"
         },
         "fontSize": {
-          "value": "{size.font.size.sm.value}",
+          "value": "{size.font.size.sm}",
           "description": "Default font size for table cells"
         },
         "backgroundColor": {
-          "value": "{color.semantic.surface.value}",
+          "value": "{color.semantic.surface}",
           "description": "Table background color"
         },
         "textColor": {
-          "value": "{color.semantic.text.value}",
+          "value": "{color.semantic.text}",
           "description": "Table text color"
+        },
+        "borderColor": {
+          "value": "{color.semantic.border}",
+          "description": "Table border color"
+        },
+        "borderRadius": {
+          "value": "{size.border.radius.md}",
+          "description": "Table container border radius"
         }
       },
       "size": {
-        "small": {
-          "padding": {
-            "value": "6px 12px",
+        "padding": {
+          "small": {
+            "value": "{size.spacing.sm} {size.spacing.xs}",
             "description": "Small size cell padding"
           },
-          "fontSize": {
-            "value": "{size.font.size.xs.value}",
-            "description": "Small size font size"
-          }
-        },
-        "medium": {
-          "padding": {
-            "value": "12px 16px",
+          "medium": {
+            "value": "{size.spacing.md} {size.spacing.sm}",
             "description": "Medium size cell padding (default)"
           },
-          "fontSize": {
-            "value": "{size.font.size.sm.value}",
-            "description": "Medium size font size"
+          "large": {
+            "value": "{size.spacing.lg} {size.spacing.md}",
+            "description": "Large size cell padding"
           }
         },
-        "large": {
-          "padding": {
-            "value": "16px 20px",
-            "description": "Large size cell padding"
+        "fontSize": {
+          "small": {
+            "value": "{size.font.size.xs}",
+            "description": "Small size font size"
           },
-          "fontSize": {
-            "value": "{size.font.size.md.value}",
+          "medium": {
+            "value": "{size.font.size.sm}",
+            "description": "Medium size font size"
+          },
+          "large": {
+            "value": "{size.font.size.md}",
             "description": "Large size font size"
           }
         }
       },
       "header": {
         "backgroundColor": {
-          "value": "{color.neutral.light.100.value}",
+          "value": "{color.semantic.surface-muted}",
           "description": "Header cell background color"
         },
         "textColor": {
-          "value": "{color.semantic.text-secondary.value}",
+          "value": "{color.semantic.text}",
           "description": "Header cell text color"
         },
         "fontWeight": {
-          "value": "{size.font.weight.semibold.value}",
+          "value": "{typography.font.weight.semibold}",
           "description": "Header cell font weight"
         },
         "borderColor": {
-          "value": "{color.semantic.border.value}",
+          "value": "{color.semantic.border}",
           "description": "Header border color"
         },
         "borderWidth": {
-          "value": "{size.border.width.md.value}",
+          "value": "{size.border.width.md}",
           "description": "Header bottom border width"
-        }
-      },
-      "border": {
-        "color": {
-          "value": "{color.semantic.border.value}",
-          "description": "Border color for bordered variant"
         },
-        "width": {
-          "value": "{size.border.width.sm.value}",
-          "description": "Border width"
+        "fontSize": {
+          "value": "{size.font.size.sm}",
+          "description": "Header font size"
         }
       },
       "row": {
+        "borderWidth": {
+          "value": "{size.border.width.sm}",
+          "description": "Row border bottom width"
+        },
         "striped": {
           "backgroundColor": {
-            "value": "{color.neutral.light.50.value}",
+            "value": "{color.semantic.surface-muted}",
             "description": "Striped row background color"
           }
         },
         "hover": {
           "backgroundColor": {
-            "value": "{color.semantic.surface-hover.value}",
+            "value": "{color.semantic.surface-hover}",
             "description": "Row hover background color"
           },
           "transition": {
-            "value": "background-color {animation.transition.fast.value}",
+            "value": "{animation.transition.fast}",
             "description": "Row hover transition"
           }
         },
         "selected": {
           "backgroundColor": {
-            "value": "{color.theme.primary-subtle.value}",
+            "value": "{color.semantic.surface-active}",
             "description": "Selected row background color"
-          },
-          "stripedBackgroundColor": {
-            "value": "{color.theme.primary-subtle.value}",
-            "description": "Selected striped row background color"
           }
         }
       },
@@ -118,144 +118,104 @@
           "description": "Sortable cell cursor"
         },
         "hoverBackgroundColor": {
-          "value": "{color.semantic.surface-hover.value}",
+          "value": "{color.semantic.surface-hover}",
           "description": "Sortable cell hover background"
         },
-        "activeBackgroundColor": {
-          "value": "{color.theme.primary-subtle.value}",
-          "description": "Active sorted cell background"
-        },
         "activeTextColor": {
-          "value": "{color.theme.primary.value}",
+          "value": "{color.theme.primary}",
           "description": "Active sorted cell text color"
         }
       },
-      "button": {
-        "default": {
-          "padding": {
-            "value": "6px 12px",
-            "description": "Default button padding"
-          },
-          "fontSize": {
-            "value": "{size.font.size.xs.value}",
-            "description": "Default button font size"
-          },
-          "fontWeight": {
-            "value": "{size.font.weight.medium.value}",
-            "description": "Default button font weight"
-          },
-          "backgroundColor": {
-            "value": "{color.semantic.surface.value}",
-            "description": "Default button background"
-          },
-          "textColor": {
-            "value": "{color.semantic.text.value}",
-            "description": "Default button text color"
-          },
-          "borderColor": {
-            "value": "{color.semantic.border.value}",
-            "description": "Default button border color"
-          },
-          "borderRadius": {
-            "value": "{size.border.radius.sm.value}",
-            "description": "Default button border radius"
-          },
-          "transition": {
-            "value": "{animation.transition.normal.value}",
-            "description": "Default button transition"
-          }
+      "action": {
+        "padding": {
+          "value": "{size.spacing.xs} {size.spacing.sm}",
+          "description": "Action button padding"
         },
-        "primary": {
-          "backgroundColor": {
-            "value": "{color.theme.primary.value}",
-            "description": "Primary button background"
-          },
-          "textColor": {
-            "value": "{color.semantic.text-inverse.value}",
-            "description": "Primary button text color"
-          },
-          "hoverBackgroundColor": {
-            "value": "{color.theme.primary-dark.value}",
-            "description": "Primary button hover background"
-          }
+        "fontSize": {
+          "value": "{size.font.size.xs}",
+          "description": "Action button font size"
         },
-        "danger": {
-          "backgroundColor": {
-            "value": "{color.feedback.negative.default.value}",
-            "description": "Danger button background"
-          },
-          "textColor": {
-            "value": "{color.semantic.text-inverse.value}",
-            "description": "Danger button text color"
-          },
-          "hoverBackgroundColor": {
-            "value": "{color.feedback.negative.dark.value}",
-            "description": "Danger button hover background"
-          }
+        "fontWeight": {
+          "value": "{typography.font.weight.medium}",
+          "description": "Action button font weight"
+        },
+        "borderRadius": {
+          "value": "{size.border.radius.sm}",
+          "description": "Action button border radius"
+        },
+        "borderWidth": {
+          "value": "{size.border.width.sm}",
+          "description": "Action button border width"
+        },
+        "transition": {
+          "value": "{animation.transition.fast}",
+          "description": "Action button transition"
         }
       },
       "pagination": {
         "padding": {
-          "value": "{size.spacing.md.value}",
+          "value": "{size.spacing.md}",
           "description": "Pagination padding"
         },
         "gap": {
-          "value": "{size.spacing.sm.value}",
+          "value": "{size.spacing.sm}",
           "description": "Pagination gap between elements"
         },
         "backgroundColor": {
-          "value": "{color.neutral.light.50.value}",
+          "value": "{color.semantic.surface-muted}",
           "description": "Pagination background color"
         },
         "borderColor": {
-          "value": "{color.semantic.border.value}",
+          "value": "{color.semantic.border}",
           "description": "Pagination border color"
         },
         "fontSize": {
-          "value": "{size.font.size.xs.value}",
+          "value": "{size.font.size.sm}",
           "description": "Pagination font size"
-        }
-      },
-      "checkbox": {
-        "size": {
-          "value": "18px",
-          "description": "Checkbox size"
         },
-        "focusOutlineColor": {
-          "value": "{color.theme.primary.value}",
-          "description": "Checkbox focus outline color"
-        },
-        "focusOutlineWidth": {
-          "value": "{size.border.width.md.value}",
-          "description": "Checkbox focus outline width"
+        "infoFontWeight": {
+          "value": "{typography.font.weight.medium}",
+          "description": "Pagination info font weight"
         }
       },
       "empty": {
         "padding": {
-          "value": "40px {size.spacing.md.value}",
+          "value": "{size.spacing.lg}",
           "description": "Empty state padding"
         },
         "textColor": {
-          "value": "{color.semantic.text-muted.value}",
+          "value": "{color.semantic.text-secondary}",
           "description": "Empty state text color"
         },
         "fontSize": {
-          "value": "{size.font.size.sm.value}",
+          "value": "{size.font.size.sm}",
           "description": "Empty state font size"
+        },
+        "minHeight": {
+          "value": "200px",
+          "description": "Empty state min height"
         }
       },
       "loading": {
         "padding": {
-          "value": "40px {size.spacing.md.value}",
+          "value": "{size.spacing.lg}",
           "description": "Loading state padding"
         },
         "textColor": {
-          "value": "{color.semantic.text-secondary.value}",
+          "value": "{color.semantic.text-secondary}",
           "description": "Loading state text color"
         },
         "fontSize": {
-          "value": "{size.font.size.sm.value}",
+          "value": "{size.font.size.sm}",
           "description": "Loading state font size"
+        },
+        "minHeight": {
+          "value": "200px",
+          "description": "Loading state min height"
+        },
+        "gap": {
+          "value": "{size.spacing.md}",
+          "description": "Loading state gap"
         }
       }
     }

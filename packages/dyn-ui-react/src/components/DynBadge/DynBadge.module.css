@@ -1,29 +1,31 @@
 /**
- * DynBadge Component Styles - Option B: Full Token Integration
+ * DynBadge Component Styles
  * 100% Design Token Compliance
- * 
- * Refactored: BEM → camelCase class names for CSS Modules compatibility
+ * Unified Token Strategy: 3-Level Fallback Pattern
  */
 
-/* ============================================
-   COMPONENT TOKENS
-   ============================================ */
-
 .badge {
-  /* Color tokens - with fallbacks for debugging */
-  --dyn-badge-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
-  --dyn-badge-color: var(--dyn-semantic-text, #1e293b);
+  /* ==========================================================================
+     COMPONENT TOKENS (Layer 2)
+     ========================================================================== */
+  
+  /* Color Tokens */
+  --dyn-badge-bg: var(--dyn-badge-color-neutral-background, var(--dyn-neutral-light-100, #f5f5f5));
+  --dyn-badge-color: var(--dyn-badge-color-neutral-text, var(--dyn-semantic-text, #1e293b));
   --dyn-badge-border: transparent;
 
-  /* Layout tokens - with fallbacks */
-  --dyn-badge-radius: var(--dyn-border-radius-full, 9999px);
-  --dyn-badge-font-size: var(--dyn-font-size-xs, 12px);
-  --dyn-badge-font-weight: var(--dyn-font-weight-medium, 500);
+  /* Sizing Tokens */
+  --dyn-badge-radius: var(--dyn-badge-spacing-borderRadius, var(--dyn-border-radius-full, 9999px));
+  --dyn-badge-font-size: var(--dyn-badge-size-fontSize, var(--dyn-font-size-xs, 12px));
+  --dyn-badge-font-weight: var(--dyn-badge-size-fontWeight, var(--dyn-font-weight-semibold, 600));
   --dyn-badge-padding-y: var(--dyn-spacing-2xs, 2px);
-  --dyn-badge-padding-x: var(--dyn-spacing-sm, 8px);
-  --dyn-badge-gap: var(--dyn-spacing-xs, 4px);
-  --dyn-badge-transition: var(--dyn-transition-normal, 0.2s ease);
+  --dyn-badge-padding-x: var(--dyn-badge-spacing-padding, var(--dyn-spacing-xs, 4px));
+  --dyn-badge-gap: var(--dyn-spacing-2xs, 2px);
+  --dyn-badge-transition: var(--dyn-badge-animation-transition-duration, var(--dyn-duration-fast, 150ms)) var(--dyn-badge-animation-transition-timingFunction, var(--dyn-easing-ease-in-out, ease-in-out));
 
+  /* ==========================================================================
+     BASE STYLES
+     ========================================================================== */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +33,7 @@
   padding: var(--dyn-badge-padding-y) var(--dyn-badge-padding-x);
   font-size: var(--dyn-badge-font-size);
   font-weight: var(--dyn-badge-font-weight);
-  line-height: var(--dyn-typography-lineHeight, 1.4);
+  line-height: var(--dyn-badge-typography-lineHeight, 1);
   border-radius: var(--dyn-badge-radius);
   border: var(--dyn-border-width-sm, 1px) solid var(--dyn-badge-border);
   background-color: var(--dyn-badge-bg);
@@ -42,220 +44,156 @@
   user-select: none;
 }
 
-/* ============================================
-   COLOR VARIANTS (camelCase)
-   ============================================ */
+/* ==========================================================================
+   CONTEXT VARIANTS (Color Schemes)
+   ========================================================================== */
 
 .badgePrimary {
-  --dyn-badge-bg: var(--dyn-theme-primary, #3b82f6);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-color-primary-background, var(--dyn-theme-primary, #3b82f6));
+  --dyn-badge-color: var(--dyn-badge-color-primary-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .badgeSecondary {
-  --dyn-badge-bg: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-color-secondary-background, var(--dyn-theme-secondary, #6b7280));
+  --dyn-badge-color: var(--dyn-badge-color-secondary-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .badgeSuccess {
-  --dyn-badge-bg: var(--dyn-feedback-positive, #22c55e);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-color-success-background, var(--dyn-feedback-positive, #22c55e));
+  --dyn-badge-color: var(--dyn-badge-color-success-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .badgeDanger {
-  --dyn-badge-bg: var(--dyn-feedback-negative-default, #ef4444);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-color-danger-background, var(--dyn-feedback-negative-default, #ef4444));
+  --dyn-badge-color: var(--dyn-badge-color-danger-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .badgeWarning {
-  --dyn-badge-bg: var(--dyn-feedback-warning-default, #f59e0b);
-  --dyn-badge-color: var(--dyn-neutral-dark-900, #111827);
+  --dyn-badge-bg: var(--dyn-badge-color-warning-background, var(--dyn-feedback-warning, #f59e0b));
+  --dyn-badge-color: var(--dyn-badge-color-warning-text, var(--dyn-semantic-text, #111827));
 }
 
 .badgeInfo {
-  --dyn-badge-bg: var(--dyn-feedback-info, #3b82f6);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-color-info-background, var(--dyn-feedback-info, #0ea5e9));
+  --dyn-badge-color: var(--dyn-badge-color-info-text, var(--dyn-semantic-text-inverse, #ffffff));
 }
 
 .badgeNeutral {
-  --dyn-badge-bg: var(--dyn-neutral-mid-200, #e5e7eb);
-  --dyn-badge-color: var(--dyn-neutral-dark-700, #374151);
+  --dyn-badge-bg: var(--dyn-badge-color-neutral-background, var(--dyn-neutral-light-100, #f3f4f6));
+  --dyn-badge-color: var(--dyn-badge-color-neutral-text, var(--dyn-semantic-text, #374151));
 }
 
-/* Status color variants for DynAvatar compatibility */
+/* Status variants */
 .badgeOnline {
-  --dyn-badge-bg: var(--dyn-feedback-positive, #22c55e);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-status-online-background, var(--dyn-feedback-positive, #22c55e));
 }
-
-.badgeAway {
-  --dyn-badge-bg: var(--dyn-feedback-warning-default, #f59e0b);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
-}
-
-.badgeBusy {
-  --dyn-badge-bg: var(--dyn-feedback-negative-default, #ef4444);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
-}
-
 .badgeOffline {
-  --dyn-badge-bg: var(--dyn-neutral-mid-400, #9ca3af);
-  --dyn-badge-color: var(--dyn-base-white, #ffffff);
+  --dyn-badge-bg: var(--dyn-badge-status-offline-background, var(--dyn-theme-secondary, #6b7280));
+}
+.badgeAway {
+  --dyn-badge-bg: var(--dyn-badge-status-away-background, var(--dyn-feedback-warning, #f59e0b));
+}
+.badgeBusy {
+  --dyn-badge-bg: var(--dyn-badge-status-busy-background, var(--dyn-feedback-negative-default, #ef4444));
 }
 
-/* ============================================
-   STYLE VARIANTS (camelCase)
-   ============================================ */
+/* ==========================================================================
+   STYLE VARIANTS
+   ========================================================================== */
 
 .badgeSolid {
-  /* Default solid variant - inherits from .badge base styles */
-  background-color: var(--dyn-badge-bg);
+  color: inherit;
 }
 
 .badgeSoft {
-  /* Soft variant - uses dedicated lighter backgrounds */
-  opacity: 1;
-}
-
-.badgeSoft.badgePrimary {
-  --dyn-badge-bg: rgba(59, 130, 246, 0.15);
-  --dyn-badge-color: var(--dyn-theme-primary, #3b82f6);
-}
-
-.badgeSoft.badgeSecondary {
-  --dyn-badge-bg: rgba(156, 163, 175, 0.15);
-  --dyn-badge-color: var(--dyn-neutral-mid-600, #4b5563);
-}
-
-.badgeSoft.badgeSuccess {
-  --dyn-badge-bg: rgba(34, 197, 94, 0.15);
-  --dyn-badge-color: var(--dyn-feedback-positive, #22c55e);
-}
-
-.badgeSoft.badgeDanger {
-  --dyn-badge-bg: rgba(239, 68, 68, 0.15);
-  --dyn-badge-color: var(--dyn-feedback-negative-default, #ef4444);
-}
-
-.badgeSoft.badgeWarning {
-  --dyn-badge-bg: rgba(245, 158, 11, 0.15);
-  --dyn-badge-color: var(--dyn-feedback-warning-default, #f59e0b);
-}
-
-.badgeSoft.badgeInfo {
-  --dyn-badge-bg: rgba(59, 130, 246, 0.15);
-  --dyn-badge-color: var(--dyn-feedback-info, #3b82f6);
-}
-
-.badgeSoft.badgeNeutral {
-  --dyn-badge-bg: rgba(107, 114, 128, 0.15);
-  --dyn-badge-color: var(--dyn-neutral-mid-600, #4b5563);
+  background-color: color-mix(in srgb, var(--dyn-badge-bg) calc(var(--dyn-badge-variant-soft-opacity, 0.2) * 100%), transparent);
+  color: var(--dyn-badge-bg);
+  border-color: transparent;
 }
 
 .badgeOutline {
   background-color: transparent;
   border-color: var(--dyn-badge-bg);
   color: var(--dyn-badge-bg);
+  border-width: var(--dyn-badge-variant-outline-borderWidth, 1px);
 }
 
-/* ============================================
-   SIZE VARIANTS (camelCase)
-   ============================================ */
+.badgeDot {
+  --dyn-badge-dot-actual-size: var(--dyn-badge-variant-dot-size, 12px);
+  width: var(--dyn-badge-dot-actual-size);
+  height: var(--dyn-badge-dot-actual-size);
+  padding: 0;
+  border-radius: var(--dyn-badge-spacing-dotRadius, 50%);
+  min-width: var(--dyn-badge-dot-actual-size);
+}
+
+/* ==========================================================================
+   SIZE VARIANTS
+   ========================================================================== */
 
 .badgeXs {
-  --dyn-badge-font-size: 10px;
-  --dyn-badge-padding-y: 1px;
-  --dyn-badge-padding-x: var(--dyn-spacing-xs, 4px);
+  --dyn-badge-font-size: var(--dyn-badge-size-xs-fontSize, 10px);
+  --dyn-badge-padding-y: var(--dyn-badge-size-xs-paddingY, 1px);
+  --dyn-badge-padding-x: var(--dyn-badge-size-xs-paddingX, 4px);
 }
 
 .badgeSm {
-  --dyn-badge-font-size: var(--dyn-font-size-2xs, 11px);
-  --dyn-badge-padding-x: var(--dyn-spacing-xs, 4px);
+  --dyn-badge-font-size: var(--dyn-badge-size-sm-fontSize, 11px);
+  --dyn-badge-padding-x: var(--dyn-badge-size-sm-paddingX, 4px);
 }
 
 .badgeMd {
-  /* Default medium size - inherits from .badge base styles */
-  --dyn-badge-font-size: var(--dyn-font-size-xs, 12px);
+  color: inherit;
 }
 
 .badgeLg {
-  --dyn-badge-font-size: var(--dyn-font-size-sm, 14px);
-  --dyn-badge-padding-y: var(--dyn-spacing-xs, 4px);
-  --dyn-badge-padding-x: var(--dyn-spacing-md, 12px);
+  --dyn-badge-font-size: var(--dyn-badge-size-lg-fontSize, 14px);
+  --dyn-badge-padding-y: var(--dyn-badge-size-lg-paddingY, 4px);
+  --dyn-badge-padding-x: var(--dyn-badge-size-lg-paddingX, 12px);
 }
 
 .badgeXl {
-  --dyn-badge-font-size: var(--dyn-font-size-md, 16px);
-  --dyn-badge-padding-y: var(--dyn-spacing-sm, 6px);
-  --dyn-badge-padding-x: var(--dyn-spacing-lg, 16px);
+  --dyn-badge-font-size: var(--dyn-badge-size-xl-fontSize, 16px);
+  --dyn-badge-padding-y: var(--dyn-badge-size-xl-paddingY, 6px);
+  --dyn-badge-padding-x: var(--dyn-badge-size-xl-paddingX, 16px);
 }
 
-/* ============================================
-   DOT VARIANT
-   ============================================ */
-
-.badgeDot {
-  --dyn-badge-dot-size: 8px;
-  width: var(--dyn-badge-dot-size);
-  height: var(--dyn-badge-dot-size);
-  padding: 0;
-  border-radius: 50%;
-  min-width: var(--dyn-badge-dot-size);
-}
-
-.badgeDot.badgeSm {
-  --dyn-badge-dot-size: 6px;
-}
-
-.badgeDot.badgeMd {
-  --dyn-badge-dot-size: 8px;
-}
-
-.badgeDot.badgeLg {
-  --dyn-badge-dot-size: 10px;
-}
-
-.badgeDot.badgeXl {
-  --dyn-badge-dot-size: 12px;
-}
-
-/* ============================================
+/* ==========================================================================
    POSITIONED VARIANTS
-   ============================================ */
+   ========================================================================== */
 
 .badgePositioned {
   position: absolute;
   z-index: var(--dyn-z-index-dropdown, 1000);
-  --dyn-badge-pos-inset: 0;
-  --dyn-badge-pos-shift: 50%;
 }
 
 .badgeTopRight {
-  top: var(--dyn-badge-pos-inset);
-  right: var(--dyn-badge-pos-inset);
-  transform: translate(var(--dyn-badge-pos-shift), calc(-1 * var(--dyn-badge-pos-shift)));
+  top: 0;
+  right: 0;
+  transform: translate(var(--dyn-badge-position-topRight-offset, 50%), calc(-1 * var(--dyn-badge-position-topRight-offset, 50%)));
 }
 
 .badgeTopLeft {
-  top: var(--dyn-badge-pos-inset);
-  left: var(--dyn-badge-pos-inset);
-  transform: translate(calc(-1 * var(--dyn-badge-pos-shift)), calc(-1 * var(--dyn-badge-pos-shift)));
+  top: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--dyn-badge-position-topRight-offset, 50%)), calc(-1 * var(--dyn-badge-position-topRight-offset, 50%)));
 }
 
 .badgeBottomRight {
-  bottom: var(--dyn-badge-pos-inset);
-  right: var(--dyn-badge-pos-inset);
-  transform: translate(var(--dyn-badge-pos-shift), var(--dyn-badge-pos-shift));
+  bottom: 0;
+  right: 0;
+  transform: translate(var(--dyn-badge-position-topRight-offset, 50%), var(--dyn-badge-position-topRight-offset, 50%));
 }
 
 .badgeBottomLeft {
-  bottom: var(--dyn-badge-pos-inset);
-  left: var(--dyn-badge-pos-inset);
-  transform: translate(calc(-1 * var(--dyn-badge-pos-shift)), var(--dyn-badge-pos-shift));
+  bottom: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--dyn-badge-position-topRight-offset, 50%)), var(--dyn-badge-position-topRight-offset, 50%));
 }
 
-/* ============================================
-   STATE VARIANTS
-   ============================================ */
+/* ==========================================================================
+   ANIMATIONS & UTILITIES
+   ========================================================================== */
 
 .badgeInvisible {
   opacity: 0;
@@ -263,35 +201,21 @@
 }
 
 .badgeAnimated {
-  animation: badgeEnter var(--dyn-duration-slow, 300ms) var(--dyn-easing-ease-out, ease-out) forwards !important;
+  animation: badgeEnter var(--dyn-duration-slow, 300ms) var(--dyn-easing-ease-out, ease-out) forwards;
 }
 
 @keyframes badgeEnter {
-  from {
-    opacity: 0;
-    scale: 0;
-  }
-
-  to {
-    opacity: 1;
-    scale: 1;
-  }
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .badgePulse {
-  animation: badgePulse var(--dyn-duration-slowest, 1500ms) var(--dyn-easing-ease-in-out, ease-in-out) infinite !important;
+  animation: badgePulse var(--dyn-duration-slowest, 2s) var(--dyn-easing-ease-in-out, ease-in-out) infinite;
 }
 
 @keyframes badgePulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: var(--dyn-opacity-60, 0.6);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
 }
 
 .badgeClickable {
@@ -299,12 +223,10 @@
 }
 
 .badgeClickable:hover {
-  filter: brightness(var(--dyn-hover-brightness, 1.1));
+  filter: brightness(var(--dyn-badge-hover-brightness, 1.1));
 }
 
-/* ============================================
-   CONTENT ELEMENTS
-   ============================================ */
+/* CONTENT ELEMENTS */
 
 .badgeContent {
   display: inline-flex;
@@ -317,111 +239,21 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  /* Constrain icon size to match badge */
-  width: var(--dyn-icon-size, 1em);
-  height: var(--dyn-icon-size, 1em);
-  max-width: var(--dyn-icon-size, 1em);
-  max-height: var(--dyn-icon-size, 1em);
+  width: var(--dyn-badge-icon-size, 1em);
+  height: var(--dyn-badge-icon-size, 1em);
 }
 
 .badgeIcon svg {
   width: 100%;
   height: 100%;
-  display: block;
 }
 
-.badgeText {
-  /* Text content inherits font styles from parent */
-  line-height: inherit;
-}
-
-.badgeDotIndicator {
-  /* Empty dot indicator for screen readers */
-  display: block;
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 767px) {
-  .badge {
-    --dyn-badge-padding-y: var(--dyn-spacing-2xs, 2px);
-    --dyn-badge-padding-x: var(--dyn-spacing-xs, 4px);
-  }
-}
-
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-
+/* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
-
   .badge,
   .badgeAnimated,
   .badgePulse {
-    /* Use accessibility tokens for reduced motion */
-    animation-duration: var(--dyn-accessibility-reducedMotion-animationDuration, 0ms);
-    transition-duration: var(--dyn-accessibility-reducedMotion-animationDuration, 0ms);
+    animation: none;
+    transition: none;
   }
-}
-
-@media (prefers-contrast: high) {
-  .badge {
-    border-width: var(--dyn-border-width-md, 2px);
-    border-color: currentColor;
-  }
-}
-
-/* ============================================
-   DARK MODE
-   Handled automatically via semantic tokens!
-   Additional overrides for soft variant:
-   ============================================ */
-
-@media (prefers-color-scheme: dark) {
-  .badgeSoft.badgePrimary {
-    --dyn-badge-bg: rgba(59, 130, 246, 0.25);
-  }
-
-  .badgeSoft.badgeSuccess {
-    --dyn-badge-bg: rgba(34, 197, 94, 0.25);
-  }
-
-  .badgeSoft.badgeDanger {
-    --dyn-badge-bg: rgba(239, 68, 68, 0.25);
-  }
-
-  .badgeSoft.badgeWarning {
-    --dyn-badge-bg: rgba(245, 158, 11, 0.25);
-  }
-
-  .badgeSoft.badgeInfo {
-    --dyn-badge-bg: rgba(59, 130, 246, 0.25);
-  }
-}
-
-:global([data-theme='dark']) .badgeSoft.badgePrimary,
-:global(.theme-dark) .badgeSoft.badgePrimary {
-  --dyn-badge-bg: rgba(59, 130, 246, 0.25);
-}
-
-:global([data-theme='dark']) .badgeSoft.badgeSuccess,
-:global(.theme-dark) .badgeSoft.badgeSuccess {
-  --dyn-badge-bg: rgba(34, 197, 94, 0.25);
-}
-
-:global([data-theme='dark']) .badgeSoft.badgeDanger,
-:global(.theme-dark) .badgeSoft.badgeDanger {
-  --dyn-badge-bg: rgba(239, 68, 68, 0.25);
-}
-
-:global([data-theme='dark']) .badgeSoft.badgeWarning,
-:global(.theme-dark) .badgeSoft.badgeWarning {
-  --dyn-badge-bg: rgba(245, 158, 11, 0.25);
-}
-
-:global([data-theme='dark']) .badgeSoft.badgeInfo,
-:global(.theme-dark) .badgeSoft.badgeInfo {
-  --dyn-badge-bg: rgba(59, 130, 246, 0.25);
 }

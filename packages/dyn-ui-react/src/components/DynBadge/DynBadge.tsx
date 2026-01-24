@@ -14,6 +14,7 @@
 
 import React, { forwardRef, useMemo, useCallback } from 'react';
 import { cn } from '../../utils/classNames';
+import { generateId } from '../../utils/accessibility';
 import {
   DynBadgeProps,
   DynBadgeRef,
@@ -103,6 +104,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       animated = false,
       pulse = false,
       showZero = false,
+      onKeyDown,
 
       // Accessibility props
       id,
@@ -122,6 +124,16 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     },
     ref
   ) => {
+
+    // ====================================
+    // PHASE 0: State & Initial Identifiers
+    // ====================================
+
+    /**
+     * Generate unique implementation ID if none provided
+     * Stable across re-renders via useState
+     */
+    const [internalId] = React.useState(() => id || generateId('badge'));
 
     // ====================================
     // PHASE 1: Input Validation & Fallback
@@ -199,7 +211,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      * Determine if badge should be visible
      * invisible prop takes precedence
      */
-    const isVisible = !invisible && displayContent !== null;
+    const isVisible = !invisible && (displayContent !== null || validVariant === 'dot');
 
     // ====================================
     // PHASE 3: Accessibility Attributes
@@ -237,6 +249,27 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
     // ====================================
 
     /**
+     * Determine if a custom color (hex/rgb) is provided
+     */
+    const isCustomColor = useMemo(() => {
+      if (!color) return false;
+      return !DYN_BADGE_COLORS.includes(color as any);
+    }, [color]);
+
+    /**
+     * Compute inline styles for custom colors
+     */
+    const inlineStyles = useMemo<React.CSSProperties>(() => {
+      const styles: any = {};
+      if (isCustomColor) {
+        styles['--dyn-badge-bg'] = color;
+        styles['--dyn-badge-color'] = '#ffffff'; // Default to white text for custom badges
+        styles['--dyn-badge-border'] = color;
+      }
+      return styles;
+    }, [isCustomColor, color]);
+
+    /**
      * Compute root element classes
      * Combines module styles with variant, color, size, and custom classes
      * 
@@ -249,7 +282,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      */
     const badgeClasses = useMemo(() => {
       // Convert variant/color/size to camelCase class names
-      const variantClass = validVariant !== 'solid' ? `badge${validVariant.charAt(0).toUpperCase()}${validVariant.slice(1)}` : null;
+      const variantClass = `badge${validVariant.charAt(0).toUpperCase()}${validVariant.slice(1)}`;
       const colorClass = `badge${validColor.charAt(0).toUpperCase()}${validColor.slice(1)}`;
       const sizeClass = `badge${validSize.charAt(0).toUpperCase()}${validSize.slice(1)}`;
       const positionClass = position ? `badge${position.charAt(0).toUpperCase()}${position.slice(1)}` : null;
@@ -258,7 +291,7 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
         styles.badge,
 
         // Variant styles (camelCase)
-        variantClass && styles[variantClass],
+        styles[variantClass],
 
         // Color styles (camelCase)
         styles[colorClass],
@@ -299,22 +332,36 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
       [onClick]
     );
 
+    /**
+     * Handle keyboard navigation for interactive badges
+     */
+    const handleKeyDown = useCallback(
+      (e: React.KeyboardEvent<HTMLSpanElement>) => {
+        if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          handleClick(e as any);
+        }
+        onKeyDown?.(e);
+      },
+      [onClick, handleClick, onKeyDown]
+    );
+
     // ====================================
     // PHASE 6: Render
     // ====================================
 
-    // Don't render if invisible AND no need to keep in DOM
-    // (return null keeps component in React tree but hidden visually)
-    if (!isVisible && invisible) {
+    // Don't render if not visible AND not specifically marked as invisible (hidden but in DOM)
+    if (!isVisible && !invisible) {
       return null;
     }
 
     return (
       <span
         ref={ref}
-        id={id}
+        id={internalId}
         className={badgeClasses}
-        role={role}
+        role={onClick ? 'button' : (role || 'status')}
+        tabIndex={onClick ? 0 : undefined}
         aria-label={computedAriaLabel}
         aria-live={ariaLive}
         aria-hidden={invisible ? 'true' : undefined}
@@ -324,6 +371,8 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
         data-size={validSize}
         data-position={position}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
+        style={{ ...inlineStyles, ...rest.style } as React.CSSProperties}
         {...rest}
       >
         {/* Badge content container */}

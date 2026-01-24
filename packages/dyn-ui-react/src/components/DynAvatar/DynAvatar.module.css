@@ -1,78 +1,60 @@
 /**
- * DynAvatar Component Styles - Option B: Full Token Integration
+ * DynAvatar Component Styles
  * 100% Design Token Compliance
- * 
- * Features:
- * - Size variants: xs, sm, md (default), lg, xl
- * - Shape variants: circle (default), square, rounded
- * - Status indicators: online, away, busy, offline
- * - Badge overlay support
- * - Loading state with spinner animation
- * - Error state visualization
- * - Interactive states with hover/focus/active
- * 
- * Accessibility:
- * - Dark mode: Automatic via semantic tokens
- * - High contrast: Enhanced borders
- * - Reduced motion: Animation disabled
- * - Focus ring for keyboard navigation
+ * Unified Token Strategy: 3-Level Fallback Pattern
  */
 
-/* ============================================
-   COMPONENT TOKENS
-   All tokens reference semantic/foundation tokens
-   ============================================ */
-
 .container {
-  /* Size tokens - with fallbacks */
-  --dyn-avatar-size: 40px;
-  --dyn-avatar-font-size: var(--dyn-font-size-sm, 14px);
+  /* ==========================================================================
+     COMPONENT TOKENS (Layer 2)
+     ========================================================================== */
+  
+  /* Color Tokens */
+  --dyn-avatar-bg-internal: var(--dyn-avatar-bg, var(--dyn-neutral-light-200, #eeeeee));
+  --dyn-avatar-text-internal: var(--dyn-avatar-text, var(--dyn-semantic-text, #1e293b));
+  --dyn-avatar-border-internal: var(--dyn-avatar-border-color, var(--dyn-neutral-light-white, #ffffff));
 
-  /* Color tokens - semantic for auto theme switching with fallbacks */
-  --dyn-avatar-bg: var(--dyn-semantic-surface-muted, #f1f5f9);
-  --dyn-avatar-text: var(--dyn-theme-primary, #3b82f6);
-  --dyn-avatar-border: var(--dyn-semantic-border, #e2e8f0);
-  --dyn-avatar-border-hover: var(--dyn-semantic-border-hover, #cbd5e1);
-  --dyn-avatar-bg-hover: var(--dyn-semantic-surface-hover, #e2e8f0);
+  /* Sizing Tokens */
+  --dyn-avatar-size-internal: var(--dyn-avatar-size-md, 40px);
+  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-md, var(--dyn-font-size-sm, 14px));
+  --dyn-avatar-font-weight-internal: var(--dyn-avatar-size-fontWeight, var(--dyn-font-weight-semibold, 600));
+  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-circle, 50%);
+  --dyn-avatar-border-width-internal: var(--dyn-avatar-border-width, var(--dyn-border-width-md, 2px));
 
-  /* Shape tokens */
-  --dyn-avatar-radius: 50%;
+  /* Status Tokens */
+  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-md, 12px);
+  --dyn-avatar-status-border-internal: var(--dyn-avatar-status-indicator-border-color, var(--dyn-neutral-light-white, #ffffff));
+  --dyn-avatar-status-border-width-internal: var(--dyn-avatar-status-indicator-border-width, var(--dyn-border-width-md, 2px));
 
-  /* Status tokens */
-  --dyn-avatar-status-size: 12px;
-  --dyn-avatar-status-border: var(--dyn-semantic-background, #ffffff);
+  /* Other Tokens */
+  --dyn-avatar-shadow-internal: var(--dyn-avatar-shadow, var(--dyn-shadow-elevation-medium, 0 4px 6px rgba(0, 0, 0, 0.1)));
+  --dyn-avatar-transition-internal: var(--dyn-avatar-animation-transition-duration, var(--dyn-duration-normal, 200ms)) var(--dyn-avatar-animation-transition-timingFunction, var(--dyn-easing-ease-in-out, ease-in-out));
 
-  /* Focus tokens */
-  --dyn-avatar-focus-ring: var(--dyn-semantic-border-focus, #3b82f6);
-
-  /* Transition tokens */
-  --dyn-avatar-transition: var(--dyn-transition-fast, 0.15s ease);
-
-  /* Base styles */
+  /* ==========================================================================
+     BASE STYLES
+     ========================================================================== */
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-avatar-size);
-  height: var(--dyn-avatar-size);
-  background-color: var(--dyn-avatar-bg);
-  border: var(--dyn-border-width-sm, 2px) solid var(--dyn-avatar-border);
-  border-radius: var(--dyn-avatar-radius);
-  color: var(--dyn-avatar-text);
+  width: var(--dyn-avatar-size-internal);
+  height: var(--dyn-avatar-size-internal);
+  background-color: var(--dyn-avatar-bg-internal);
+  border: var(--dyn-avatar-border-width-internal) solid var(--dyn-avatar-border-internal);
+  border-radius: var(--dyn-avatar-radius-internal);
+  color: var(--dyn-avatar-text-internal);
   font-family: inherit;
-  font-size: var(--dyn-avatar-font-size);
-  font-weight: var(--dyn-font-weight-semibold, 600);
+  font-size: var(--dyn-avatar-font-size-internal);
+  font-weight: var(--dyn-avatar-font-weight-internal);
   user-select: none;
   flex-shrink: 0;
-  transition:
-    background-color var(--dyn-avatar-transition),
-    border-color var(--dyn-avatar-transition),
-    transform var(--dyn-avatar-transition);
+  box-shadow: var(--dyn-avatar-shadow-internal);
+  transition: all var(--dyn-avatar-transition-internal);
 }
 
-/* ============================================
+/* ==========================================================================
    CONTENT ELEMENTS
-   ============================================ */
+   ========================================================================== */
 
 .content {
   position: relative;
@@ -89,7 +71,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity var(--dyn-avatar-transition);
+}
+
+.imageLoading {
+  opacity: 0;
+}
+
+.imageLoaded {
+  opacity: 1;
 }
 
 .initials {
@@ -102,254 +91,164 @@
   letter-spacing: 0.02em;
 }
 
-/* ============================================
+/* ==========================================================================
    SIZE VARIANTS
-   ============================================ */
+   ========================================================================== */
 
 .xs {
-  --dyn-avatar-size: 24px;
-  --dyn-avatar-font-size: var(--dyn-font-size-2xs);
-  --dyn-avatar-status-size: 8px;
+  --dyn-avatar-size-internal: var(--dyn-avatar-size-xs, 24px);
+  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-xs, 8px);
+  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-sm, 6px);
 }
 
 .sm {
-  --dyn-avatar-size: 32px;
-  --dyn-avatar-font-size: var(--dyn-font-size-xs);
-  --dyn-avatar-status-size: 10px;
+  --dyn-avatar-size-internal: var(--dyn-avatar-size-sm, 32px);
+  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-sm, 11px);
+  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-sm, 8px);
 }
 
 .md {
-  --dyn-avatar-size: 40px;
-  --dyn-avatar-font-size: var(--dyn-font-size-sm);
-  --dyn-avatar-status-size: 12px;
+  /* Uses default root tokens */
 }
 
 .lg {
-  --dyn-avatar-size: 56px;
-  --dyn-avatar-font-size: var(--dyn-font-size-md);
-  --dyn-avatar-status-size: 14px;
+  --dyn-avatar-size-internal: var(--dyn-avatar-size-lg, 56px);
+  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-lg, 16px);
+  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-lg, 12px);
 }
 
 .xl {
-  --dyn-avatar-size: 80px;
-  --dyn-avatar-font-size: var(--dyn-font-size-lg);
-  --dyn-avatar-status-size: 18px;
+  --dyn-avatar-size-internal: var(--dyn-avatar-size-xl, 80px);
+  --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-xl, 24px);
+  --dyn-avatar-status-size-internal: var(--dyn-avatar-status-indicator-size-lg, 16px);
 }
 
-/* ============================================
+/* ==========================================================================
    SHAPE VARIANTS
-   ============================================ */
+   ========================================================================== */
 
 .circle {
-  --dyn-avatar-radius: 50%;
+  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-circle, 50%);
 }
 
 .square {
-  --dyn-avatar-radius: 0;
+  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-square, 0);
 }
 
 .rounded {
-  --dyn-avatar-radius: var(--dyn-border-radius-md);
+  --dyn-avatar-radius-internal: var(--dyn-avatar-border-radius-rounded, 8px);
 }
 
-/* ============================================
+/* ==========================================================================
    STATUS INDICATOR
-   ============================================ */
+   ========================================================================== */
 
 .status {
   position: absolute;
   z-index: 1;
   bottom: 0;
   right: 0;
-  width: var(--dyn-avatar-status-size);
-  height: var(--dyn-avatar-status-size);
+  width: var(--dyn-avatar-status-size-internal);
+  height: var(--dyn-avatar-status-size-internal);
   border-radius: 50%;
-  box-shadow: 0 0 0 2px var(--dyn-avatar-status-border);
-  transform: translate(10%, 10%);
+  box-shadow: 0 0 0 var(--dyn-avatar-status-border-width-internal) var(--dyn-avatar-status-border-internal);
+  transform: translate(calc(var(--dyn-avatar-status-indicator-offset, -2px) * -1), calc(var(--dyn-avatar-status-indicator-offset, -2px) * -1));
 }
 
 .statusOnline {
-  background-color: var(--dyn-feedback-positive);
+  background-color: var(--dyn-avatar-status-indicator-online-backgroundColor, var(--dyn-feedback-positive, #22c55e));
 }
 
 .statusAway {
-  background-color: var(--dyn-feedback-warning);
+  background-color: var(--dyn-avatar-status-indicator-away-backgroundColor, var(--dyn-feedback-warning, #f59e0b));
 }
 
 .statusBusy {
-  background-color: var(--dyn-feedback-negative-default);
+  background-color: var(--dyn-avatar-status-indicator-busy-backgroundColor, var(--dyn-feedback-negative-default, #ef4444));
 }
 
 .statusOffline {
-  background-color: var(--dyn-semantic-text-muted);
+  background-color: var(--dyn-avatar-status-indicator-offline-backgroundColor, var(--dyn-theme-secondary, #6b7280));
 }
 
-.srOnly {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-/* ============================================
+/* ==========================================================================
    INTERACTIVE STATES
-   ============================================ */
+   ========================================================================== */
 
 .clickable {
   cursor: pointer;
 }
 
 .clickable:hover {
-  background-color: var(--dyn-avatar-bg-hover);
-  border-color: var(--dyn-avatar-border-hover);
-  transform: scale(1.05);
-}
-
-.clickable:focus-visible {
-  outline: 2px solid var(--dyn-avatar-focus-ring);
-  outline-offset: 2px;
+  filter: brightness(1.05);
+  transform: translateY(-1px);
 }
 
 .clickable:active {
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
-/* ============================================
-   LOADING STATE
-   ============================================ */
+/* ==========================================================================
+   LOADING & ERROR STATES
+   ========================================================================== */
 
 .container.loading {
   pointer-events: none;
 }
 
-.container.loading .initials,
-.container.loading .image {
-  opacity: 0;
-  visibility: hidden;
+.container.loading .content {
+  opacity: 0.3;
 }
 
 .container.loading::after {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset: 50% auto auto 50%;
   width: 50%;
   height: 50%;
-  margin-top: -25%;
-  margin-left: -25%;
-  border: 3px solid transparent;
+  border: 2px solid transparent;
   border-top-color: var(--dyn-theme-primary, #3b82f6);
   border-right-color: var(--dyn-theme-primary, #3b82f6);
   border-radius: 50%;
   animation: avatarSpin 0.8s linear infinite;
-  z-index: 10;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes avatarSpin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
-
-/* ============================================
-   ERROR STATE
-   ============================================ */
 
 .error {
-  border-color: var(--dyn-feedback-negative-default);
-  background-color: var(--dyn-feedback-negative-light);
+  border-color: var(--dyn-feedback-negative-default, #ef4444);
 }
 
-/* ============================================
-   BADGE OVERLAY
-   ============================================ */
+/* ==========================================================================
+   ACCESSIBILITY & UTILITIES
+   ========================================================================== */
 
-.badge {
+.srOnly {
   position: absolute;
-  top: calc(-1 * var(--dyn-spacing-xs));
-  right: calc(-1 * var(--dyn-spacing-xs));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 var(--dyn-spacing-xs);
-  background-color: var(--dyn-theme-primary);
-  border: var(--dyn-border-width-md) solid var(--dyn-semantic-background);
-  border-radius: 50%;
-  color: var(--dyn-semantic-text-inverse);
-  font-size: var(--dyn-font-size-2xs);
-  font-weight: var(--dyn-font-weight-bold);
-  z-index: 1;
-  line-height: 1;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
-.badgeContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  transform: translate(25%, -25%);
-}
-
-.customBadge {
-  box-shadow: 0 0 0 2px var(--dyn-semantic-background);
-}
-
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
 
 @media (prefers-reduced-motion: reduce) {
-
-  .container,
-  .image,
-  .initials {
-    transition: none;
-  }
-
-  .clickable:hover,
-  .clickable:active {
-    transform: none;
-  }
-
-  .container.loading::after {
-    animation: none;
-  }
+  .container { transition: none; }
+  .clickable:hover { transform: none; }
+  .container.loading::after { animation: none; }
 }
 
-@media (prefers-contrast: high) {
-  .container {
-    border-width: 3px;
-  }
-
-  .status {
-    box-shadow: 0 0 0 3px var(--dyn-avatar-status-border);
-  }
-}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-
+/* Responsive Overrides */
 @media (max-width: 640px) {
   .xl {
-    --dyn-avatar-size: 56px;
-    --dyn-avatar-font-size: var(--dyn-font-size-md);
+    --dyn-avatar-size-internal: var(--dyn-avatar-size-lg, 56px);
+    --dyn-avatar-font-size-internal: var(--dyn-avatar-size-fontSize-lg, 16px);
   }
 }
-
-/* ============================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   No explicit overrides needed for Option B.
-   ============================================ */

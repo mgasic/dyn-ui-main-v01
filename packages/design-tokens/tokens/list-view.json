@@ -1,75 +1,75 @@
 {
-    "dyn": {
-        "listView": {
-            "item": {
-                "minHeight": {
-                    "sm": {
-                        "value": "40px",
-                        "type": "dimension",
-                        "description": "Minimum height for small list items"
-                    },
-                    "md": {
-                        "value": "{size.spacing.2xl.value}",
-                        "type": "dimension",
-                        "description": "Minimum height for medium list items"
-                    },
-                    "lg": {
-                        "value": "56px",
-                        "type": "dimension",
-                        "description": "Minimum height for large list items"
-                    },
-                    "mobile": {
-                        "value": "44px",
-                        "type": "dimension",
-                        "description": "Minimum height for touch-friendly mobile items"
-                    }
-                }
-            },
-            "checkbox": {
-                "size": {
-                    "value": "18px",
-                    "type": "dimension",
-                    "description": "Size of the selection checkbox"
-                }
-            },
-            "border": {
-                "width": {
-                    "default": {
-                        "value": "{size.border.width.sm.value}",
-                        "type": "dimension",
-                        "description": "Default border width for list items"
-                    },
-                    "active": {
-                        "value": "{size.border.width.md.value}",
-                        "type": "dimension",
-                        "description": "Border width for active/focused items"
-                    },
-                    "highContrast": {
-                        "value": "{size.border.width.lg.value}",
-                        "type": "dimension",
-                        "description": "Border width for high contrast mode"
-                    }
-                }
-            },
-            "focus": {
-                "outlineWidth": {
-                    "value": "{size.border.width.md.value}",
-                    "type": "dimension",
-                    "description": "Focus outline width"
-                },
-                "outlineOffset": {
-                    "value": "2px",
-                    "type": "dimension",
-                    "description": "Focus outline offset from element"
-                }
-            },
-            "divider": {
-                "height": {
-                    "value": "{size.border.width.sm.value}",
-                    "type": "dimension",
-                    "description": "Height of divider between items"
-                }
-            }
+  "dyn": {
+    "listView": {
+      "item": {
+        "minHeight": {
+          "sm": {
+            "value": "40px",
+            "type": "dimension",
+            "description": "Minimum height for small list items"
+          },
+          "md": {
+            "value": "{size.spacing.2xl.value}",
+            "type": "dimension",
+            "description": "Minimum height for medium list items"
+          },
+          "lg": {
+            "value": "56px",
+            "type": "dimension",
+            "description": "Minimum height for large list items"
+          },
+          "mobile": {
+            "value": "44px",
+            "type": "dimension",
+            "description": "Minimum height for touch-friendly mobile items"
+          }
         }
+      },
+      "checkbox": {
+        "size": {
+          "value": "18px",
+          "type": "dimension",
+          "description": "Size of the selection checkbox"
+        }
+      },
+      "border": {
+        "width": {
+          "default": {
+            "value": "{size.border.width.sm.value}",
+            "type": "dimension",
+            "description": "Default border width for list items"
+          },
+          "active": {
+            "value": "{size.border.width.md.value}",
+            "type": "dimension",
+            "description": "Border width for active/focused items"
+          },
+          "highContrast": {
+            "value": "{size.border.width.lg.value}",
+            "type": "dimension",
+            "description": "Border width for high contrast mode"
+          }
+        }
+      },
+      "focus": {
+        "outlineWidth": {
+          "value": "{size.border.width.md.value}",
+          "type": "dimension",
+          "description": "Focus outline width"
+        },
+        "outlineOffset": {
+          "value": "2px",
+          "type": "dimension",
+          "description": "Focus outline offset from element"
+        }
+      },
+      "divider": {
+        "height": {
+          "value": "{size.border.width.sm.value}",
+          "type": "dimension",
+          "description": "Height of divider between items"
+        }
+      }
     }
+  }
 }

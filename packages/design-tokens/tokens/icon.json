@@ -1,79 +1,79 @@
 {
-    "dyn": {
-        "icon": {
-            "size": {
-                "xs": {
-                    "value": "{size.font.size.xs.value}"
-                },
-                "sm": {
-                    "value": "{size.font.size.md.value}"
-                },
-                "md": {
-                    "value": "24px"
-                },
-                "lg": {
-                    "value": "32px"
-                },
-                "xl": {
-                    "value": "48px"
-                }
-            },
-            "strokeWidth": {
-                "thin": {
-                    "value": "1.5"
-                },
-                "default": {
-                    "value": "2"
-                },
-                "thick": {
-                    "value": "2.5"
-                }
-            },
-            "clickable": {
-                "padding": {
-                    "value": "{size.spacing.xs.value}"
-                },
-                "hoverScale": {
-                    "value": "1.1"
-                },
-                "activeScale": {
-                    "value": "0.95"
-                },
-                "transition": {
-                    "value": "{animation.transition.fast.value}"
-                }
-            },
-            "radius": {
-                "value": "{size.border.radius.sm.value}"
-            },
-            "animation": {
-                "spin": {
-                    "duration": {
-                        "value": "2s"
-                    },
-                    "timingFunction": {
-                        "value": "linear"
-                    }
-                }
-            },
-            "mirror": {
-                "horizontal": {
-                    "value": "scaleX(-1)"
-                },
-                "vertical": {
-                    "value": "scaleY(-1)"
-                },
-                "both": {
-                    "value": "scale(-1)"
-                }
-            },
-            "state": {
-                "disabled": {
-                    "opacity": {
-                        "value": "{layout.opacity.50.value}"
-                    }
-                }
-            }
+  "dyn": {
+    "icon": {
+      "size": {
+        "xs": {
+          "value": "{size.font.size.xs}"
+        },
+        "sm": {
+          "value": "{size.font.size.md}"
+        },
+        "md": {
+          "value": "24px"
+        },
+        "lg": {
+          "value": "32px"
+        },
+        "xl": {
+          "value": "48px"
         }
+      },
+      "strokeWidth": {
+        "thin": {
+          "value": "1.5"
+        },
+        "default": {
+          "value": "2"
+        },
+        "thick": {
+          "value": "2.5"
+        }
+      },
+      "clickable": {
+        "padding": {
+          "value": "{size.spacing.xs}"
+        },
+        "hoverScale": {
+          "value": "1.1"
+        },
+        "activeScale": {
+          "value": "0.95"
+        },
+        "transition": {
+          "value": "{animation.transition.fast}"
+        }
+      },
+      "radius": {
+        "value": "{size.border.radius.sm}"
+      },
+      "animation": {
+        "spin": {
+          "duration": {
+            "value": "2s"
+          },
+          "timingFunction": {
+            "value": "linear"
+          }
+        }
+      },
+      "mirror": {
+        "horizontal": {
+          "value": "scaleX(-1)"
+        },
+        "vertical": {
+          "value": "scaleY(-1)"
+        },
+        "both": {
+          "value": "scale(-1)"
+        }
+      },
+      "state": {
+        "disabled": {
+          "opacity": {
+            "value": "{layout.opacity.50}"
+          }
+        }
+      }
     }
+  }
 }

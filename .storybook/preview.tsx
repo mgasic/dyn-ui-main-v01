@@ -10,6 +10,7 @@ import '@dyn-ui/design-tokens/styles/components/box.css';
 import '@dyn-ui/design-tokens/styles/components/button.css';
 import '@dyn-ui/design-tokens/styles/components/button-like.css';
 import '@dyn-ui/design-tokens/styles/components/checkbox.css';
+import '@dyn-ui/design-tokens/styles/components/container.css';
 import '@dyn-ui/design-tokens/styles/components/data-display.css';
 import '@dyn-ui/design-tokens/styles/components/date-picker.css';
 import '@dyn-ui/design-tokens/styles/components/flex.css';

@@ -1,28 +1,31 @@
 /**
- * DynTable Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
+ * DynTable Component Styles
+ * Unified Token Strategy
  */
 
-/* ============================================
-   COMPONENT TOKENS
-   ============================================ */
-
 .root {
-  /* Color tokens - semantic for auto theme switching */
-  --dyn-table-bg: var(--dyn-semantic-background, #ffffff);
-  --dyn-table-text: var(--dyn-semantic-text, #0f172a);
-  --dyn-table-border: var(--dyn-semantic-border, #e2e8f0);
-  --dyn-table-header-bg: var(--dyn-semantic-surface, #f8fafc);
-  --dyn-table-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
-  --dyn-table-stripe: var(--dyn-semantic-surface-muted, #f8fafc);
-  --dyn-table-selected: var(--dyn-semantic-surface-active, #e0f2fe);
+  /* Internal variable resolution with 3-level fallback:
+     1. Prop-level override (--dyn-table-*)
+     2. Component-specific token (--dyn-table-root-*)
+     3. Global foundation token fallback (within the component token)
+  */
+  --dyn-table-bg-val: var(--dyn-table-bg, var(--dyn-table-root-backgroundColor));
+  --dyn-table-text-val: var(--dyn-table-text, var(--dyn-table-root-textColor));
+  --dyn-table-border-val: var(--dyn-table-border, var(--dyn-table-root-borderColor));
+  --dyn-table-radius-val: var(--dyn-table-radius, var(--dyn-table-root-borderRadius));
+  --dyn-table-header-bg-val: var(--dyn-table-header-bg, var(--dyn-table-header-backgroundColor));
+  --dyn-table-header-text-val: var(--dyn-table-header-text, var(--dyn-table-header-textColor));
+  --dyn-table-header-border-val: var(--dyn-table-header-border, var(--dyn-table-header-borderColor));
+  --dyn-table-stripe-bg-val: var(--dyn-table-stripe-bg, var(--dyn-table-row-striped-backgroundColor));
+  --dyn-table-hover-bg-val: var(--dyn-table-hover-bg, var(--dyn-table-row-hover-backgroundColor));
+  --dyn-table-selected-bg-val: var(--dyn-table-selected-bg, var(--dyn-table-row-selected-backgroundColor));
 
   width: 100%;
-  font-family: inherit;
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-table-text);
-  background-color: var(--dyn-table-bg);
-  border-radius: var(--dyn-border-radius-md);
+  font-family: var(--dyn-table-root-fontFamily);
+  font-size: var(--dyn-table-root-fontSize);
+  color: var(--dyn-table-text-val);
+  background-color: var(--dyn-table-bg-val);
+  border-radius: var(--dyn-table-radius-val);
   overflow: hidden;
 }
 
@@ -42,32 +45,32 @@
    ============================================ */
 
 .head {
-  background: var(--dyn-table-header-bg);
+  background: var(--dyn-table-header-bg-val);
 }
 
 .cellHeader {
-  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
-  background: var(--dyn-table-header-bg);
-  color: var(--dyn-table-text);
-  font-weight: var(--dyn-font-weight-semibold);
-  font-size: var(--dyn-font-size-sm);
+  padding: var(--dyn-table-size-padding-medium);
+  background: var(--dyn-table-header-bg-val);
+  color: var(--dyn-table-header-text-val);
+  font-weight: var(--dyn-table-header-fontWeight);
+  font-size: var(--dyn-table-header-fontSize);
   text-align: left;
-  border-bottom: var(--dyn-border-width-md, 2px) solid var(--dyn-table-border);
+  border-bottom: var(--dyn-table-header-borderWidth) solid var(--dyn-table-header-border-val);
   white-space: nowrap;
   user-select: none;
 }
 
 .cellHeaderSortable {
-  cursor: pointer;
-  transition: background-color var(--dyn-transition-fast);
+  cursor: var(--dyn-table-sortable-cursor);
+  transition: background-color var(--dyn-table-row-hover-transition);
 }
 
 .cellHeaderSortable:hover {
-  background: var(--dyn-table-hover);
+  background: var(--dyn-table-sortable-hoverBackgroundColor);
 }
 
 .cellHeaderSorted {
-  color: var(--dyn-theme-primary);
+  color: var(--dyn-table-sortable-activeTextColor);
 }
 
 .cellContent {
@@ -81,7 +84,6 @@
   align-items: center;
   font-size: var(--dyn-font-size-sm);
   opacity: 0.6;
-  margin-left: var(--dyn-spacing-xs);
 }
 
 /* ============================================
@@ -89,8 +91,8 @@
    ============================================ */
 
 .row {
-  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
-  transition: background-color var(--dyn-transition-fast);
+  border-bottom: var(--dyn-table-row-borderWidth) solid var(--dyn-table-border-val);
+  transition: background-color var(--dyn-table-row-hover-transition);
 }
 
 .row:last-child {
@@ -98,27 +100,19 @@
 }
 
 .rowSelected {
-  background-color: var(--dyn-table-selected);
+  background-color: var(--dyn-table-selected-bg-val);
 }
 
 .cell {
-  padding: var(--dyn-spacing-md) var(--dyn-spacing-sm);
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-table-text);
-  line-height: 1.5;
+  padding: var(--dyn-table-size-padding-medium);
+  font-size: var(--dyn-table-root-fontSize);
+  color: var(--dyn-table-text-val);
+  line-height: var(--dyn-typography-font-lineHeight-normal, 1.5);
 }
 
-.cellLeft {
-  text-align: left;
-}
-
-.cellCenter {
-  text-align: center;
-}
-
-.cellRight {
-  text-align: right;
-}
+.cellLeft { text-align: left; }
+.cellCenter { text-align: center; }
+.cellRight { text-align: right; }
 
 /* ============================================
    SELECTION
@@ -150,20 +144,20 @@
 }
 
 .actionButton {
-  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
-  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
-  border-radius: var(--dyn-border-radius-sm);
-  background: var(--dyn-table-bg);
-  color: var(--dyn-table-text);
-  font-size: var(--dyn-font-size-xs);
-  font-weight: var(--dyn-font-weight-medium);
+  padding: var(--dyn-table-action-padding);
+  border: var(--dyn-table-action-borderWidth) solid var(--dyn-table-border-val);
+  border-radius: var(--dyn-table-action-borderRadius);
+  background: var(--dyn-table-bg-val);
+  color: var(--dyn-table-text-val);
+  font-size: var(--dyn-table-action-fontSize);
+  font-weight: var(--dyn-table-action-fontWeight);
   font-family: inherit;
   cursor: pointer;
-  transition: all var(--dyn-transition-fast);
+  transition: all var(--dyn-table-action-transition);
 }
 
 .actionButton:hover:not(:disabled) {
-  background: var(--dyn-table-hover);
+  background: var(--dyn-table-hover-bg-val);
   border-color: var(--dyn-theme-primary);
 }
 
@@ -178,14 +172,14 @@
 
 .sizeSmall .cell,
 .sizeSmall .cellHeader {
-  padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
-  font-size: var(--dyn-font-size-xs);
+  padding: var(--dyn-table-size-padding-small);
+  font-size: var(--dyn-table-size-fontSize-small);
 }
 
 .sizeLarge .cell,
 .sizeLarge .cellHeader {
-  padding: var(--dyn-spacing-lg) var(--dyn-spacing-md);
-  font-size: var(--dyn-font-size-md);
+  padding: var(--dyn-table-size-padding-large);
+  font-size: var(--dyn-table-size-fontSize-large);
 }
 
 /* ============================================
@@ -193,11 +187,11 @@
    ============================================ */
 
 .bordered {
-  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
+  border: var(--dyn-border-width-sm) solid var(--dyn-table-border-val);
 }
 
 .bordered .cell {
-  border-right: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
+  border-right: var(--dyn-border-width-sm) solid var(--dyn-table-border-val);
 }
 
 .bordered .cell:last-child {
@@ -205,11 +199,11 @@
 }
 
 .striped .body .row:nth-child(odd) {
-  background: var(--dyn-table-stripe);
+  background: var(--dyn-table-stripe-bg-val);
 }
 
 .hoverable .body .row:hover {
-  background: var(--dyn-table-hover);
+  background: var(--dyn-table-hover-bg-val);
 }
 
 /* ============================================
@@ -220,10 +214,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-lg);
-  color: var(--dyn-semantic-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-  min-height: 200px;
+  padding: var(--dyn-table-empty-padding);
+  color: var(--dyn-table-empty-textColor);
+  font-size: var(--dyn-table-empty-fontSize);
+  min-height: var(--dyn-table-empty-minHeight);
 }
 
 .loading {
@@ -231,11 +225,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-lg);
-  color: var(--dyn-semantic-text-secondary);
-  font-size: var(--dyn-font-size-sm);
-  min-height: 200px;
-  gap: var(--dyn-spacing-md);
+  padding: var(--dyn-table-loading-padding);
+  color: var(--dyn-table-loading-textColor);
+  font-size: var(--dyn-table-loading-fontSize);
+  min-height: var(--dyn-table-loading-minHeight);
+  gap: var(--dyn-table-loading-gap);
 }
 
 .loadingSpinner {
@@ -244,13 +238,8 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ============================================
@@ -261,31 +250,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-md);
-  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
-  background: var(--dyn-table-header-bg);
+  padding: var(--dyn-table-pagination-padding);
+  border-top: var(--dyn-border-width-sm) solid var(--dyn-table-border-val);
+  background: var(--dyn-table-pagination-backgroundColor);
 }
 
 .paginationControls {
   display: flex;
   align-items: center;
-  gap: var(--dyn-spacing-sm);
+  gap: var(--dyn-table-pagination-gap);
 }
 
 .paginationButton {
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
-  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-table-border);
+  border: var(--dyn-border-width-sm) solid var(--dyn-table-pagination-borderColor);
   border-radius: var(--dyn-border-radius-sm);
-  background: var(--dyn-table-bg);
-  color: var(--dyn-table-text);
-  font-size: var(--dyn-font-size-sm);
+  background: var(--dyn-table-bg-val);
+  color: var(--dyn-table-text-val);
+  font-size: var(--dyn-table-pagination-fontSize);
   font-family: inherit;
   cursor: pointer;
   transition: all var(--dyn-transition-fast);
 }
 
 .paginationButton:hover:not(:disabled) {
-  background: var(--dyn-table-hover);
+  background: var(--dyn-table-hover-bg-val);
   border-color: var(--dyn-theme-primary);
 }
 
@@ -295,9 +284,9 @@
 }
 
 .paginationInfo {
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-table-text);
-  font-weight: var(--dyn-font-weight-medium);
+  font-size: var(--dyn-table-pagination-fontSize);
+  color: var(--dyn-table-text-val);
+  font-weight: var(--dyn-table-pagination-infoFontWeight);
 }
 
 /* ============================================
@@ -310,56 +299,21 @@
 }
 
 /* ============================================
-   RESPONSIVE
-   ============================================ */
-
-@media (max-width: 768px) {
-
-  .cell,
-  .cellHeader {
-    padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
-    font-size: var(--dyn-font-size-xs);
-  }
-
-  .cellSelection {
-    width: 40px;
-  }
-
-  .actionButton {
-    padding: var(--dyn-spacing-xs);
-    font-size: var(--dyn-font-size-2xs);
-  }
-}
-
-/* ============================================
    ACCESSIBILITY
    ============================================ */
 
 @media (prefers-contrast: high) {
   .bordered {
-    border-width: var(--dyn-border-width-md, 2px);
-  }
-
-  .bordered .cell {
-    border-width: var(--dyn-border-width-md, 2px);
+    border-width: var(--dyn-border-width-md);
   }
 
   .cellHeader {
-    border-bottom-width: var(--dyn-border-width-lg, 3px);
+    border-bottom-width: var(--dyn-border-width-lg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-  .row,
-  .cellHeaderSortable,
-  .actionButton,
-  .paginationButton {
+  .row, .cellHeaderSortable, .actionButton, .paginationButton {
     transition: none;
   }
 }
-
-/* ============================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   ============================================ */

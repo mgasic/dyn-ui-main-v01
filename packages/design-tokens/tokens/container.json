@@ -1,0 +1,26 @@
+{
+  "dyn": {
+    "container": {
+      "maxWidth": {
+        "xs": { "value": "{layout.container.xs}" },
+        "sm": { "value": "{layout.container.sm}" },
+        "md": { "value": "{layout.container.md}" },
+        "lg": { "value": "{layout.container.lg}" },
+        "xl": { "value": "{layout.container.xl}" },
+        "2xl": { "value": "{layout.container.2xl}" },
+        "full": { "value": "{layout.container.full}" }
+      },
+      "padding": {
+        "none": { "value": "{size.spacing.none}" },
+        "xs": { "value": "{size.spacing.xs}" },
+        "sm": { "value": "{size.spacing.sm}" },
+        "md": { "value": "{size.spacing.md}" },
+        "lg": { "value": "{size.spacing.lg}" },
+        "xl": { "value": "{size.spacing.xl}" }
+      },
+      "gutter": {
+        "default": { "value": "{size.spacing.md}" }
+      }
+    }
+  }
+}

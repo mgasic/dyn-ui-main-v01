@@ -80,9 +80,9 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
     },
     ref
   ) => {
-  // Generate an ID per render when not provided so tests that expect
-  // different IDs on rerender pass (generateId increments a module counter).
-  const internalId = id || generateId('button');
+    // Generate an ID per render when not provided so tests that expect
+    // different IDs on rerender pass (generateId increments a module counter).
+    const internalId = id || generateId('button');
 
     // Memoized computations
     const trimmedLabel = useMemo(() => (typeof label === 'string' ? label.trim() : ''), [label]);
@@ -148,16 +148,14 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
 
     const buttonClassName = cn(
       getStyleClass('root'),
-      kindClass,
-      sizeClass,
-      {
-        [dangerClass]: danger && dangerClass,
-        [loadingClass]: loading && loadingClass,
-        [iconOnlyClass]: isIconOnly && iconOnlyClass,
-        [fullWidthClass]: fullWidth && fullWidthClass,
-        [hideOnMobileClass]: hideOnMobile && hideOnMobileClass,
-        [iconOnlyOnMobileClass]: iconOnlyOnMobile && iconOnlyOnMobileClass,
-      },
+      getStyleClass(`kind${kind.charAt(0).toUpperCase() + kind.slice(1)}`),
+      getStyleClass(`size${size.charAt(0).toUpperCase() + size.slice(1)}`),
+      danger && getStyleClass('danger'),
+      loading && getStyleClass('loading'),
+      isIconOnly && getStyleClass('iconOnly'),
+      fullWidth && getStyleClass('fullWidth'),
+      hideOnMobile && getStyleClass('hideOnMobile'),
+      iconOnlyOnMobile && getStyleClass('iconOnlyOnMobile'),
       className
     );
 
@@ -188,66 +186,45 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
     return (
       <>
         <button
-        ref={ref}
-        id={internalId}
-        type={type}
-        className={buttonClassName}
-        data-testid={dataTestId ?? 'dyn-button'}
-        aria-label={computedAriaLabel}
-        aria-describedby={ariaDescribedBy}
-        aria-labelledby={ariaLabelledBy}
-        aria-expanded={ariaExpanded}
-        aria-controls={ariaControls}
-        aria-pressed={typeof ariaPressed === 'boolean' ? ariaPressed : undefined}
-        aria-busy={loading || undefined}
-        aria-disabled={isDisabled || undefined}
-        disabled={isDisabled}
-        role={role}
-        onClick={handleClick}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        {...rest}
-      >
-        <span className={getStyleClass('content')}>
-          {iconElement}
-          {labelElement}
-          {childrenContent}
-        </span>
-        {/* Loading spinner and accessibility announcements */}
-        {loading && (
-          <>
-            <span className={getStyleClass('spinner')} aria-hidden="true" />
-            {/* Keep an inert SR-only element inside the button so tests can
-                query it, but mark it aria-hidden so it doesn't become part
-                of the button's accessible name. The actual live region that
-                will be announced by assistive tech is rendered *outside*
-                the button below. */}
-            <span
-              className={getStyleClass('visuallyHidden')}
-              role="status"
-              aria-live="polite"
-              aria-atomic="true"
-              aria-hidden="true"
-            >
-              {normalizedLoadingText}
-            </span>
-          </>
-        )}
-        </button>
-
-        {/* External live region so screen readers announce loading text
-            without affecting the button's accessible name. It is visually
-            hidden via the same SR-only class. */}
-        {loading && (
-          <span
-            className={getStyleClass('visuallyHidden')}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            {normalizedLoadingText}
+          ref={ref}
+          id={internalId}
+          type={type}
+          className={buttonClassName}
+          data-testid={dataTestId ?? 'dyn-button'}
+          aria-label={computedAriaLabel}
+          aria-describedby={ariaDescribedBy}
+          aria-labelledby={ariaLabelledBy}
+          aria-expanded={ariaExpanded}
+          aria-controls={ariaControls}
+          aria-pressed={typeof ariaPressed === 'boolean' ? ariaPressed : undefined}
+          aria-busy={loading || undefined}
+          aria-disabled={isDisabled || undefined}
+          disabled={isDisabled}
+          role={role}
+          onClick={handleClick}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          {...rest}
+        >
+          <span className={getStyleClass('content')}>
+            {iconElement}
+            {labelElement}
+            {childrenContent}
           </span>
-        )}
+          {loading && (
+            <>
+              <span className={getStyleClass('spinner')} aria-hidden="true" />
+              <span
+                className={cn(getStyleClass('visuallyHidden'), 'dyn-sr-only')}
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {normalizedLoadingText}
+              </span>
+            </>
+          )}
+        </button>
       </>
     );
   }

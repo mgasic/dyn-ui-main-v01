@@ -1,55 +1,55 @@
-/* ==========================================================================
-   DynButton Component - Option B: Full Token Integration
-   100% Design Token Compliance
-   ========================================================================== */
+/**
+ * DynButton Component Styles
+ * 100% Design Token Compliance
+ * Unified Token Strategy: 3-Level Fallback Pattern
+ */
 
-/* ================================================
-   COMPONENT TOKENS (Layer 2)
-   Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
-   ================================================ */
-/* :root block removed - moved to .root for better scoping */
-
-/* ================================================
-   BASE STYLES
-   ================================================ */
 .root {
-  /* Component Tokens (moved from :root) */
-  --dyn-button-bg: var(--dyn-theme-primary, #3b82f6);
-  --dyn-button-color: var(--dyn-semantic-text-inverse, #ffffff);
-  --dyn-button-border: var(--dyn-theme-primary, #3b82f6);
+  /* ==========================================================================
+     COMPONENT TOKENS (Layer 2)
+     ========================================================================== */
+  
+  /* Color Tokens */
+  --dyn-button-bg: var(--dyn-button-root-backgroundColor, var(--dyn-theme-primary, #3b82f6));
+  --dyn-button-color: var(--dyn-button-root-textColor, var(--dyn-semantic-text-inverse, #ffffff));
+  --dyn-button-border: var(--dyn-button-root-borderColor, var(--dyn-theme-primary, #3b82f6));
 
-  /* Hover states */
-  --dyn-button-bg-hover: var(--dyn-action-hover, #2563eb);
-  --dyn-button-color-hover: var(--dyn-semantic-text-inverse, #ffffff);
-  --dyn-button-border-hover: var(--dyn-action-hover, #2563eb);
+  /* Hover States */
+  --dyn-button-bg-hover: var(--dyn-button-root-hover-backgroundColor, var(--dyn-theme-primary-dark, #2563eb));
+  --dyn-button-color-hover: var(--dyn-button-root-hover-textColor, var(--dyn-semantic-text-inverse, #ffffff));
+  --dyn-button-border-hover: var(--dyn-button-root-hover-borderColor, var(--dyn-theme-primary-dark, #2563eb));
 
-  /* Active states */
-  --dyn-button-bg-active: var(--dyn-action-pressed, #1d4ed8);
-  --dyn-button-color-active: var(--dyn-semantic-text-inverse, #ffffff);
-  --dyn-button-border-active: var(--dyn-action-pressed, #1d4ed8);
+  /* Active States */
+  --dyn-button-bg-active: var(--dyn-button-root-active-backgroundColor, var(--dyn-theme-primary-darker, #1d4ed8));
+  --dyn-button-color-active: var(--dyn-button-root-active-textColor, var(--dyn-semantic-text-inverse, #ffffff));
+  --dyn-button-border-active: var(--dyn-button-root-active-borderColor, var(--dyn-theme-primary-darker, #1d4ed8));
 
-  /* Disabled states */
-  --dyn-button-bg-disabled: var(--dyn-action-disabled, #94a3b8);
-  --dyn-button-color-disabled: var(--dyn-semantic-text-muted, #cbd5e1);
-  --dyn-button-border-disabled: var(--dyn-action-disabled, #94a3b8);
+  /* Disabled States */
+  --dyn-button-bg-disabled: var(--dyn-button-state-disabled-background, var(--dyn-neutral-light-300, #e0e0e0));
+  --dyn-button-color-disabled: var(--dyn-button-state-disabled-text, var(--dyn-neutral-mid-600, #757575));
+  --dyn-button-border-disabled: var(--dyn-button-state-disabled-background, var(--dyn-neutral-light-300, #e0e0e0));
+  --dyn-button-opacity-disabled: var(--dyn-button-state-disabled-opacity, var(--dyn-opacity-50, 0.5));
 
-  /* Sizing tokens */
-  --dyn-button-padding-y: var(--dyn-spacing-sm, 0.5rem);
-  --dyn-button-padding-x: var(--dyn-spacing-md, 1rem);
-  --dyn-button-gap: var(--dyn-spacing-sm, 0.5rem);
-  --dyn-button-min-height: 2.5rem;
-  --dyn-button-font-size: var(--dyn-font-size-sm, 0.875rem);
-  --dyn-button-font-weight: var(--dyn-font-weight-medium, 500);
-  --dyn-button-border-radius: var(--dyn-border-radius-md, 0.375rem);
-  --dyn-button-border-width: var(--dyn-border-width-sm, 1px);
+  /* Sizing Tokens */
+  --dyn-button-padding-y: var(--dyn-spacing-sm, 8px);
+  --dyn-button-padding-x: var(--dyn-spacing-md, 16px);
+  --dyn-button-gap: var(--dyn-button-root-gap, var(--dyn-spacing-sm, 8px));
+  --dyn-button-min-height: var(--dyn-button-size-minHeight-medium, 40px);
+  --dyn-button-font-size: var(--dyn-button-root-fontSize, var(--dyn-font-size-sm, 14px));
+  --dyn-button-font-weight: var(--dyn-button-root-fontWeight, var(--dyn-font-weight-medium, 500));
+  --dyn-button-border-radius: var(--dyn-button-root-borderRadius, var(--dyn-border-radius-md, 4px));
+  --dyn-button-border-width: var(--dyn-button-root-borderWidth, var(--dyn-border-width-sm, 1px));
 
   /* Effects */
   --dyn-button-shadow: none;
-  --dyn-button-shadow-hover: var(--dyn-elevation-low, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --dyn-button-shadow-hover: var(--dyn-shadow-elevation-low, 0 1px 2px rgba(0, 0, 0, 0.05));
   --dyn-button-shadow-active: none;
   --dyn-button-shadow-focus: var(--dyn-semantic-border-focus, #3b82f6);
-  --dyn-button-transition: var(--dyn-transition-fast, 0.15s ease);
-  --dyn-button-opacity-disabled: 0.56;
+  --dyn-button-transition: var(--dyn-button-root-transition, var(--dyn-duration-fast, 150ms)) var(--dyn-easing-ease-in-out, ease-in-out);
+
+  /* ==========================================================================
+     BASE STYLES
+     ========================================================================== */
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -61,37 +61,28 @@
   border: var(--dyn-button-border-width) solid var(--dyn-button-border);
   background-color: var(--dyn-button-bg);
   color: var(--dyn-button-color);
-  font-family: inherit;
+  font-family: var(--dyn-button-root-fontFamily, inherit);
   font-size: var(--dyn-button-font-size);
   font-weight: var(--dyn-button-font-weight);
-  line-height: 1.5;
+  line-height: var(--dyn-typography-lineHeight-normal, 1.5);
   text-decoration: none;
   cursor: pointer;
   user-select: none;
   box-shadow: var(--dyn-button-shadow);
-  appearance: none; /* Reset native button style */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  transition:
-    background-color var(--dyn-button-transition),
-    color var(--dyn-button-transition),
-    border-color var(--dyn-button-transition),
-    box-shadow var(--dyn-button-transition),
-    transform var(--dyn-button-transition);
+  appearance: none;
+  transition: all var(--dyn-button-transition);
 }
 
-/* Firefox-specific reset for button inner border/padding */
+/* Firefox reset */
 .root::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-/* ================================================
-   INTERACTIVE STATES
-   ================================================ */
+/* INTERACTIVE STATES */
 .root:focus-visible {
-  outline: var(--dyn-border-width-lg) solid var(--dyn-button-shadow-focus);
-  outline-offset: var(--dyn-spacing-2xs);
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-button-shadow-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
   z-index: 1;
 }
 
@@ -121,101 +112,79 @@
   transform: none;
 }
 
-/* ================================================
-   KIND VARIANTS (override tokens only)
-   ================================================ */
-/* kindPrimary uses default tokens - empty class to satisfy mapping */
+/* ==========================================================================
+   KIND VARIANTS
+   ========================================================================== */
+
 .kindPrimary {
-  content: ""; /* Keeps class generated for TSX mapping */
+  color: inherit;
 }
 
 .kindSecondary {
-  --dyn-button-bg: transparent;
-  --dyn-button-color: var(--dyn-theme-primary);
-  --dyn-button-border: var(--dyn-theme-primary);
-  --dyn-button-bg-hover: var(--dyn-semantic-surface-hover);
-  --dyn-button-color-hover: var(--dyn-action-hover);
-  --dyn-button-border-hover: var(--dyn-action-hover);
-  --dyn-button-bg-active: var(--dyn-semantic-surface-active);
-  --dyn-button-color-active: var(--dyn-action-pressed);
-  --dyn-button-border-active: var(--dyn-action-pressed);
+  --dyn-button-bg: var(--dyn-button-color-secondary-background, var(--dyn-theme-secondary, #6b7280));
+  --dyn-button-color: var(--dyn-button-color-secondary-text, var(--dyn-semantic-text-inverse, #ffffff));
+  --dyn-button-border: var(--dyn-button-color-secondary-border, var(--dyn-theme-secondary, #6b7280));
+  --dyn-button-bg-hover: var(--dyn-button-color-secondary-hover-background, var(--dyn-theme-secondary-dark, #4b5563));
+  --dyn-button-border-hover: var(--dyn-button-color-secondary-hover-background, var(--dyn-theme-secondary-dark, #4b5563));
 }
 
 .kindTertiary {
-  --dyn-button-bg: transparent;
-  --dyn-button-color: var(--dyn-theme-primary);
-  --dyn-button-border: transparent;
-  --dyn-button-bg-hover: var(--dyn-semantic-surface-hover);
-  --dyn-button-color-hover: var(--dyn-action-hover);
-  --dyn-button-border-hover: transparent;
-  --dyn-button-bg-active: var(--dyn-semantic-surface-active);
-  --dyn-button-color-active: var(--dyn-action-pressed);
-  --dyn-button-border-active: transparent;
+  --dyn-button-bg: var(--dyn-button-color-tertiary-background, transparent);
+  --dyn-button-color: var(--dyn-button-color-tertiary-text, var(--dyn-theme-primary, #3b82f6));
+  --dyn-button-border: var(--dyn-button-color-tertiary-border, transparent);
+  --dyn-button-bg-hover: var(--dyn-button-color-tertiary-hover-background, var(--dyn-semantic-surface-hover, #f3f4f6));
+  --dyn-button-border-hover: var(--dyn-button-color-tertiary-hover-background, var(--dyn-semantic-surface-hover, #f3f4f6));
   --dyn-button-shadow-hover: none;
 }
 
-/* ================================================
-   SIZE VARIANTS (override sizing tokens)
-   ================================================ */
+.danger {
+  --dyn-button-bg: var(--dyn-button-color-danger-background, var(--dyn-feedback-negative-default, #ef4444));
+  --dyn-button-color: var(--dyn-button-color-danger-text, var(--dyn-semantic-text-inverse, #ffffff));
+  --dyn-button-border: var(--dyn-button-color-danger-border, var(--dyn-feedback-negative-default, #ef4444));
+  --dyn-button-bg-hover: var(--dyn-button-color-danger-hover-background, var(--dyn-feedback-negative-dark, #dc2626));
+  --dyn-button-border-hover: var(--dyn-button-color-danger-hover-background, var(--dyn-feedback-negative-dark, #dc2626));
+}
+
+/* ==========================================================================
+   SIZE VARIANTS
+   ========================================================================== */
+
 .sizeSmall {
-  --dyn-button-padding-y: var(--dyn-spacing-xs);
-  --dyn-button-padding-x: var(--dyn-spacing-sm);
-  --dyn-button-gap: var(--dyn-spacing-xs);
-  --dyn-button-min-height: 2rem;
-  --dyn-button-font-size: var(--dyn-font-size-xs);
+  --dyn-button-padding-y: var(--dyn-spacing-xs, 4px);
+  --dyn-button-padding-x: var(--dyn-button-size-padding-small, var(--dyn-spacing-sm, 8px));
+  --dyn-button-min-height: var(--dyn-button-size-minHeight-small, 32px);
+  --dyn-button-font-size: var(--dyn-button-size-fontSize-small, var(--dyn-font-size-xs, 12px));
 }
 
-/* sizeMedium uses default tokens - no override needed */
+.sizeMedium {
+  min-width: auto;
+}
+
 .sizeLarge {
-  --dyn-button-padding-y: var(--dyn-spacing-sm);
-  --dyn-button-padding-x: var(--dyn-spacing-lg);
-  --dyn-button-gap: var(--dyn-spacing-sm);
-  --dyn-button-min-height: 3rem;
-  --dyn-button-font-size: var(--dyn-font-size-md);
+  --dyn-button-padding-y: var(--dyn-spacing-md, 16px);
+  --dyn-button-padding-x: var(--dyn-button-size-padding-large, var(--dyn-spacing-lg, 24px));
+  --dyn-button-min-height: var(--dyn-button-size-minHeight-large, 48px);
+  --dyn-button-font-size: var(--dyn-button-size-fontSize-large, var(--dyn-font-size-md, 16px));
 }
 
-/* ================================================
-   DANGER VARIANT
-   ================================================ */
-.danger.kindPrimary {
-  --dyn-button-bg: var(--dyn-feedback-negative-default);
-  --dyn-button-border: var(--dyn-feedback-negative-default);
-  --dyn-button-bg-hover: var(--dyn-feedback-negative-dark);
-  --dyn-button-border-hover: var(--dyn-feedback-negative-dark);
-  --dyn-button-bg-active: var(--dyn-feedback-negative-darker);
-  --dyn-button-border-active: var(--dyn-feedback-negative-darker);
-}
-
-.danger.kindSecondary {
-  --dyn-button-color: var(--dyn-feedback-negative-default);
-  --dyn-button-border: var(--dyn-feedback-negative-default);
-  --dyn-button-color-hover: var(--dyn-feedback-negative-dark);
-  --dyn-button-border-hover: var(--dyn-feedback-negative-dark);
-  --dyn-button-color-active: var(--dyn-feedback-negative-darker);
-  --dyn-button-border-active: var(--dyn-feedback-negative-darker);
-}
-
-.danger.kindTertiary {
-  --dyn-button-color: var(--dyn-feedback-negative-default);
-  --dyn-button-color-hover: var(--dyn-feedback-negative-dark);
-  --dyn-button-color-active: var(--dyn-feedback-negative-darker);
-}
-
-/* ================================================
+/* ==========================================================================
    UTILITY CLASSES
-   ================================================ */
+   ========================================================================== */
+
 .fullWidth {
   width: 100%;
 }
 
 .iconOnly {
-  --dyn-button-padding-x: var(--dyn-button-padding-y);
+  padding-left: 0;
+  padding-right: 0;
   width: var(--dyn-button-min-height);
   min-width: var(--dyn-button-min-height);
 }
 
 .loading {
   pointer-events: none;
+  cursor: wait;
 }
 
 .loading .content {
@@ -224,19 +193,20 @@
 
 .visuallyHidden {
   position: absolute;
-  width: var(--dyn-border-width-sm);
-  height: var(--dyn-border-width-sm);
+  width: 1px;
+  height: 1px;
   padding: 0;
-  margin: calc(-1 * var(--dyn-border-width-sm));
+  margin: -1px;
   overflow: hidden;
-  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }
 
-/* ================================================
+/* ==========================================================================
    LAYOUT ELEMENTS
-   ================================================ */
+   ========================================================================== */
+
 .content {
   display: inline-flex;
   align-items: center;
@@ -244,6 +214,7 @@
   gap: var(--dyn-button-gap);
   white-space: nowrap;
   line-height: inherit;
+  transition: opacity var(--dyn-button-transition);
 }
 
 .icon {
@@ -253,18 +224,13 @@
   line-height: 0;
 }
 
-.label {
-  display: inline-flex;
-  align-items: center;
-}
-
 .spinner {
   position: absolute;
   inset: 50% auto auto 50%;
   width: 1.25em;
   height: 1.25em;
   border-radius: 50%;
-  border: var(--dyn-border-width-md) solid currentColor;
+  border: 2px solid currentColor;
   border-top-color: transparent;
   animation: dynButtonSpin 0.8s linear infinite;
   transform: translate(-50%, -50%);
@@ -277,85 +243,12 @@
   }
 }
 
-/* ================================================
-   RESPONSIVE DESIGN
-   ================================================ */
-@media (max-width: 767px) {
-  .root {
-    min-height: 2.75rem;
-    /* 44px - Touch target */
-  }
-
-  .sizeSmall {
-    min-height: 2.5rem;
-    /* 40px */
-  }
-
-  .sizeLarge {
-    min-height: 3.25rem;
-    /* 52px */
-  }
-
-  .iconOnly {
-    min-width: 2.75rem;
-    width: 2.75rem;
-  }
-
-  .hideOnMobile {
-    display: none !important;
-  }
-
-  .iconOnlyOnMobile .label {
-    display: none !important;
-  }
-
-  .iconOnlyOnMobile {
-    width: 2.75rem;
-    min-width: 2.75rem;
-    --dyn-button-padding-x: 0;
-    --dyn-button-padding-y: 0;
-  }
-}
-
-.hideOnMobile {
-  display: inherit;
-}
-
-.iconOnlyOnMobile {
-  display: inline-flex;
-}
-
-/* ================================================
-   ACCESSIBILITY
-   ================================================ */
+/* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
   .root {
     transition: none;
   }
-
   .spinner {
     animation: none;
   }
 }
-
-@media (prefers-contrast: high) {
-  .root {
-    border-width: var(--dyn-border-width-md);
-  }
-
-  .root:focus-visible {
-    outline-width: var(--dyn-border-width-xl);
-    outline-offset: var(--dyn-spacing-2xs);
-  }
-
-  .kindTertiary {
-    --dyn-button-border: currentColor;
-    border-width: var(--dyn-border-width-sm);
-  }
-}
-
-/* ================================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   No explicit overrides needed for Option B.
-   ================================================ */

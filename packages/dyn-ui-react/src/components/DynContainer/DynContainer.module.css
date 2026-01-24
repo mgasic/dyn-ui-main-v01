@@ -1,41 +1,33 @@
 /**
- * DynContainer Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
+ * DynContainer Component Styles - Unified Component Token Strategy
+ * Supports both component tokens and dynamic overrides
  */
 
-/* ============================================
-   COMPONENT TOKENS
-   ============================================ */
-
 .root {
-  /* Spacing tokens */
-  --dyn-container-padding: var(--dyn-spacing-md);
-  --dyn-container-gap: var(--dyn-spacing-md);
-  --dyn-container-margin: 0;
-
-  /* Color tokens - semantic */
-  --dyn-container-border-color: var(--dyn-semantic-border);
-  --dyn-container-surface: var(--dyn-semantic-surface);
-  --dyn-container-card: var(--dyn-semantic-background);
-  --dyn-container-shadow: var(--dyn-elevation-medium);
-  --dyn-container-title-color: var(--dyn-semantic-text);
-  --dyn-container-subtitle-color: var(--dyn-semantic-text-secondary);
-
-  /* Layout tokens */
-  --dyn-container-max-width: 100%;
+  /* Layout Variables with Defaults from container.json */
+  --dyn-container-padding-val: var(--dyn-container-padding, var(--dyn-container-padding-md));
+  --dyn-container-margin-val: var(--dyn-container-margin, 0);
+  --dyn-container-gap-val: var(--dyn-container-gap, var(--dyn-container-gap-md));
+  --dyn-container-max-width-val: var(--dyn-container-max-width, 100%);
+  --dyn-container-bg-val: var(--dyn-container-background, transparent);
+  --dyn-container-shadow-val: var(--dyn-container-shadow, var(--dyn-container-shadow-none));
 
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
+  
   width: 100%;
-  max-width: var(--dyn-container-max-width);
-  margin: var(--dyn-container-margin);
-  padding: var(--dyn-container-padding);
-  gap: var(--dyn-container-gap);
+  max-width: var(--dyn-container-max-width-val);
+  margin: var(--dyn-container-margin-val);
+  padding: var(--dyn-container-padding-val);
+  gap: var(--dyn-container-gap-val);
+  
+  background: var(--dyn-container-bg-val);
+  box-shadow: var(--dyn-container-shadow-val);
   border-radius: var(--dyn-border-radius-lg);
   border: none;
-  background: transparent;
+  
   transition:
     background-color var(--dyn-transition-fast),
     box-shadow var(--dyn-transition-fast),
@@ -45,7 +37,6 @@
 /* ============================================
    DIRECTION VARIANTS
    ============================================ */
-
 .directionVertical .content {
   flex-direction: column;
 }
@@ -58,110 +49,50 @@
 /* ============================================
    ALIGNMENT
    ============================================ */
+.alignStart .content { align-items: flex-start; }
+.alignCenter .content { align-items: center; }
+.alignEnd .content { align-items: flex-end; }
+.alignStretch .content { align-items: stretch; }
 
-.alignStart .content {
-  align-items: flex-start;
-}
-
-.alignCenter .content {
-  align-items: center;
-}
-
-.alignEnd .content {
-  align-items: flex-end;
-}
-
-.alignStretch .content {
-  align-items: stretch;
-}
-
-.justifyStart .content {
-  justify-content: flex-start;
-}
-
-.justifyCenter .content {
-  justify-content: center;
-}
-
-.justifyEnd .content {
-  justify-content: flex-end;
-}
-
-.justifyBetween .content {
-  justify-content: space-between;
-}
-
-.justifyAround .content {
-  justify-content: space-around;
-}
-
-.justifyEvenly .content {
-  justify-content: space-evenly;
-}
+.justifyStart .content { justify-content: flex-start; }
+.justifyCenter .content { justify-content: center; }
+.justifyEnd .content { justify-content: flex-end; }
+.justifyBetween .content { justify-content: space-between; }
+.justifyAround .content { justify-content: space-around; }
+.justifyEvenly .content { justify-content: space-evenly; }
 
 /* ============================================
-   SPACING VARIANTS
+   SPACING VARIANTS (Internal Class Overrides) 
+   Note: We keep these if we want to support them via props that bypass style injection,
+   but TSX now resolves them. I'll keep them as fallback mechanisms.
    ============================================ */
-
-.spacingNone {
-  --dyn-container-gap: 0;
-}
-
-.spacing2xs {
-  --dyn-container-gap: var(--dyn-spacing-2xs);
-}
-
-.spacingXs {
-  --dyn-container-gap: var(--dyn-spacing-xs);
-}
-
-.spacingSm {
-  --dyn-container-gap: var(--dyn-spacing-sm);
-}
-
-.spacingMd {
-  --dyn-container-gap: var(--dyn-spacing-md);
-}
-
-.spacingLg {
-  --dyn-container-gap: var(--dyn-spacing-lg);
-}
-
-.spacingXl {
-  --dyn-container-gap: var(--dyn-spacing-xl);
-}
-
-.spacing2xl {
-  --dyn-container-gap: var(--dyn-spacing-2xl);
-}
-
-.spacing3xl {
-  --dyn-container-gap: var(--dyn-spacing-3xl);
-}
-
-.spacing4xl {
-  --dyn-container-gap: var(--dyn-spacing-4xl);
-}
+.spacingNone { --dyn-container-gap: var(--dyn-container-gap-none); }
+.spacing2xs { --dyn-container-gap: var(--dyn-container-gap-2xs); }
+.spacingXs { --dyn-container-gap: var(--dyn-container-gap-xs); }
+.spacingSm { --dyn-container-gap: var(--dyn-container-gap-sm); }
+.spacingMd { --dyn-container-gap: var(--dyn-container-gap-md); }
+.spacingLg { --dyn-container-gap: var(--dyn-container-gap-lg); }
+.spacingXl { --dyn-container-gap: var(--dyn-container-gap-xl); }
+.spacing2xl { --dyn-container-gap: var(--dyn-container-gap-2xl); }
+.spacing3xl { --dyn-container-gap: var(--dyn-container-gap-3xl); }
+.spacing4xl { --dyn-container-gap: var(--dyn-container-gap-4xl); }
 
 /* ============================================
-   SIZE VARIANTS
+   SIZE VARIANTS (Padding)
    ============================================ */
-
-.sizeSm {
-  --dyn-container-padding: var(--dyn-spacing-sm);
-}
-
-.sizeMd {
-  --dyn-container-padding: var(--dyn-spacing-md);
-}
-
-.sizeLg {
-  --dyn-container-padding: var(--dyn-spacing-lg);
-}
+.sizeSm { --dyn-container-padding: var(--dyn-container-padding-sm); }
+.sizeMd { --dyn-container-padding: var(--dyn-container-padding-md); }
+.sizeLg { --dyn-container-padding: var(--dyn-container-padding-lg); }
 
 /* ============================================
    LAYOUT VARIANTS
    ============================================ */
+.maxWidthXs { --dyn-container-max-width: min(100%, var(--dyn-layout-container-xs)); }
+.maxWidthSm { --dyn-container-max-width: min(100%, var(--dyn-layout-container-sm)); }
+.maxWidthMd { --dyn-container-max-width: min(100%, var(--dyn-layout-container-md)); }
+.maxWidthLg { --dyn-container-max-width: min(100%, var(--dyn-layout-container-lg)); }
+.maxWidthXl { --dyn-container-max-width: min(100%, var(--dyn-layout-container-xl)); }
+.maxWidthFull { --dyn-container-max-width: 100%; }
 
 .layoutFixed {
   --dyn-container-margin: 0 auto;
@@ -171,67 +102,58 @@
 /* ============================================
    BACKGROUND VARIANTS
    ============================================ */
-
-.backgroundNone {
-  background: transparent;
-}
-
-.backgroundSurface {
-  background: var(--dyn-container-surface);
-}
-
+.backgroundNone { --dyn-container-background: var(--dyn-container-background-none); }
+.backgroundSurface { --dyn-container-background: var(--dyn-container-background-surface); }
 .backgroundCard {
-  background: var(--dyn-container-card);
-  box-shadow: var(--dyn-elevation-low);
+  --dyn-container-background: var(--dyn-container-background-card);
 }
 
 /* ============================================
    STYLE VARIANTS
    ============================================ */
-
 .bordered {
-  border: var(--dyn-border-width-sm) solid var(--dyn-container-border-color);
+  border: var(--dyn-border-width-sm) solid var(--dyn-container-header-border-color);
 }
 
 .shadow {
-  box-shadow: var(--dyn-container-shadow);
+  --dyn-container-shadow: var(--dyn-container-shadow-default);
 }
 
 .noPadding {
-  --dyn-container-padding: 0;
+  --dyn-container-padding: var(--dyn-container-padding-none);
 }
+
 
 /* ============================================
    HEADER & CONTENT
    ============================================ */
-
 .header {
   display: flex;
   flex-direction: column;
   gap: var(--dyn-spacing-xs);
-  padding-bottom: var(--dyn-spacing-sm);
-  border-bottom: var(--dyn-border-width-sm) solid var(--dyn-container-border-color);
+  padding-bottom: var(--dyn-container-header-padding-bottom);
+  border-bottom: var(--dyn-container-header-border-width) solid var(--dyn-container-header-border-color);
 }
 
 .title {
   margin: 0;
-  font-size: var(--dyn-font-size-lg);
-  font-weight: var(--dyn-font-weight-semibold);
-  color: var(--dyn-container-title-color);
+  font-size: var(--dyn-container-typography-title-font-size);
+  font-weight: var(--dyn-container-typography-title-font-weight);
+  color: var(--dyn-container-typography-title-color);
   line-height: 1.3;
 }
 
 .subtitle {
   margin: 0;
-  font-size: var(--dyn-font-size-sm);
-  color: var(--dyn-container-subtitle-color);
+  font-size: var(--dyn-container-typography-subtitle-font-size);
+  color: var(--dyn-container-typography-subtitle-color);
   line-height: 1.5;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--dyn-container-gap);
+  gap: var(--dyn-container-gap-val);
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
@@ -242,28 +164,19 @@
 }
 
 /* ============================================
-   ACCESSIBILITY
+   ACCESSIBILITY & RESPONSIVE
    ============================================ */
-
 @media (prefers-reduced-motion: reduce) {
-  .root {
-    transition: none;
-  }
+  .root { transition: none; }
 }
 
 @media (prefers-contrast: high) {
-  .bordered {
-    border-width: 2px;
-  }
+  .bordered { border-width: 2px; }
 }
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 
 @media (max-width: 768px) {
   .root {
-    --dyn-container-padding: var(--dyn-spacing-sm);
+    --dyn-container-padding-override: var(--dyn-container-padding-sm);
   }
 
   .directionHorizontal .content {
@@ -271,7 +184,4 @@
   }
 }
 
-/* ============================================
-   DARK MODE
-   Note: Handled automatically via semantic tokens!
-   ============================================ */
+

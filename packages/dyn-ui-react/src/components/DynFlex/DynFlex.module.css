@@ -1,193 +1,125 @@
 /**
- * DynFlex Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
- * 
- * Variants: row, column, wrap, inline-flex
- * States: default, responsive
- * A11y: Included
+ * DynFlex Component Styles - Unified Component Token Strategy
+ * Supports both component tokens and dynamic overrides
  */
 
-/* ============================================
-   BASE FLEX CONTAINER
-   All tokens reference foundation tokens
-   ============================================ */
-
 .flex {
-  /* Flex tokens */
-  --dyn-flex-display: flex;
-  --dyn-flex-direction: row;
-  --dyn-flex-gap: var(--dyn-spacing-md, 1rem);
-  --dyn-flex-padding: 0;
-  --dyn-flex-align-items: stretch;
-  --dyn-flex-justify-content: flex-start;
-  --dyn-flex-wrap: nowrap;
+  /* Base Layout Variables with Defaults */
+  --dyn-flex-display-val: var(--dyn-flex-display, var(--dyn-flex-display-flex));
+  --dyn-flex-direction-val: var(--dyn-flex-flex-direction, var(--dyn-flex-direction-row));
+  --dyn-flex-wrap-val: var(--dyn-flex-flex-wrap, var(--dyn-flex-wrap-nowrap));
+  
+  /* Alignment Variables */
+  --dyn-flex-justify-val: var(--dyn-flex-justify-content, var(--dyn-flex-justify-start));
+  --dyn-flex-align-val: var(--dyn-flex-align-items, var(--dyn-flex-align-stretch));
+  
+  /* Spacing Variables */
+  --dyn-flex-gap-val: var(--dyn-flex-gap, 0);
+  --dyn-flex-padding-val: var(--dyn-flex-padding, 0);
 
-  /* Base styles */
-  display: var(--dyn-flex-display);
-  flex-direction: var(--dyn-flex-direction);
-  gap: var(--dyn-flex-gap);
-  padding: var(--dyn-flex-padding);
-  align-items: var(--dyn-flex-align-items);
-  justify-content: var(--dyn-flex-justify-content);
-  flex-wrap: var(--dyn-flex-wrap);
+  display: var(--dyn-flex-display-val);
+  flex-direction: var(--dyn-flex-direction-val);
+  flex-wrap: var(--dyn-flex-wrap-val);
+  
+  justify-content: var(--dyn-flex-justify-val);
+  align-items: var(--dyn-flex-align-val);
+  
+  gap: var(--dyn-flex-gap-val);
+  padding: var(--dyn-flex-padding-val);
+  
   box-sizing: border-box;
-}
-
-/* ============================================
-   DIRECTION VARIANTS
-   ============================================ */
-
-.flexColumn {
-  --dyn-flex-direction: column;
-}
-
-.flexRow {
-  --dyn-flex-direction: row;
-}
-
-.flexRowReverse {
-  --dyn-flex-direction: row-reverse;
-}
-
-.flexColumnReverse {
-  --dyn-flex-direction: column-reverse;
-}
-
-/* ============================================
-   WRAP VARIANTS
-   ============================================ */
-
-.flexWrap {
-  --dyn-flex-wrap: wrap;
-}
-
-.flexNoWrap {
-  --dyn-flex-wrap: nowrap;
-}
-
-.flexWrapReverse {
-  --dyn-flex-wrap: wrap-reverse;
 }
 
 /* ============================================
    DISPLAY VARIANTS
    ============================================ */
-
-.flexInline {
-  --dyn-flex-display: inline-flex;
-}
+.flexInline { --dyn-flex-display: var(--dyn-flex-display-inline-flex); }
 
 /* ============================================
-   GAP UTILITIES
-   Uses foundation spacing tokens
+   DIRECTION VARIANTS
    ============================================ */
+.flexRow { --dyn-flex-flex-direction: var(--dyn-flex-direction-row); }
+.flexColumn { --dyn-flex-flex-direction: var(--dyn-flex-direction-column); }
+.flexRowReverse { --dyn-flex-flex-direction: var(--dyn-flex-direction-row-reverse); }
+.flexColumnReverse { --dyn-flex-flex-direction: var(--dyn-flex-direction-column-reverse); }
 
-.gapNone {
-  --dyn-flex-gap: 0;
-}
+/* ============================================
+   WRAP VARIANTS
+   ============================================ */
+.flexWrap { --dyn-flex-flex-wrap: var(--dyn-flex-wrap-wrap); }
+.flexNowrap { --dyn-flex-flex-wrap: var(--dyn-flex-wrap-nowrap); }
+.flexWrapReverse { --dyn-flex-flex-wrap: var(--dyn-flex-wrap-wrap-reverse); }
 
-.gapXSmall {
-  --dyn-flex-gap: var(--dyn-spacing-xs);
-}
+/* ============================================
+   GAP VARIANTS (Component Tokens)
+   ============================================ */
+.gapNone { --dyn-flex-gap: var(--dyn-flex-gap-none); }
+.gap2xs { --dyn-flex-gap: var(--dyn-flex-gap-2xs); }
+.gapXs { --dyn-flex-gap: var(--dyn-flex-gap-xs); }
+.gapSm { --dyn-flex-gap: var(--dyn-flex-gap-sm); }
+.gapMd { --dyn-flex-gap: var(--dyn-flex-gap-md); }
+.gapLg { --dyn-flex-gap: var(--dyn-flex-gap-lg); }
+.gapXl { --dyn-flex-gap: var(--dyn-flex-gap-xl); }
+.gap2xl { --dyn-flex-gap: var(--dyn-flex-gap-2xl); }
+.gap3xl { --dyn-flex-gap: var(--dyn-flex-gap-3xl); }
+.gap4xl { --dyn-flex-gap: var(--dyn-flex-gap-4xl); }
 
-.gapSmall {
-  --dyn-flex-gap: var(--dyn-spacing-sm);
-}
-
-.gapMedium {
-  --dyn-flex-gap: var(--dyn-spacing-md);
-}
-
-.gapLarge {
-  --dyn-flex-gap: var(--dyn-spacing-lg);
-}
+/* ============================================
+   PADDING VARIANTS (Component Tokens)
+   ============================================ */
+.paddingNone { --dyn-flex-padding: var(--dyn-flex-padding-none); }
+.padding2xs { --dyn-flex-padding: var(--dyn-flex-padding-2xs); }
+.paddingXs { --dyn-flex-padding: var(--dyn-flex-padding-xs); }
+.paddingSm { --dyn-flex-padding: var(--dyn-flex-padding-sm); }
+.paddingMd { --dyn-flex-padding: var(--dyn-flex-padding-md); }
+.paddingLg { --dyn-flex-padding: var(--dyn-flex-padding-lg); }
+.paddingXl { --dyn-flex-padding: var(--dyn-flex-padding-xl); }
+.padding2xl { --dyn-flex-padding: var(--dyn-flex-padding-2xl); }
+.padding3xl { --dyn-flex-padding: var(--dyn-flex-padding-3xl); }
+.padding4xl { --dyn-flex-padding: var(--dyn-flex-padding-4xl); }
 
 /* ============================================
    ALIGNMENT UTILITIES
    ============================================ */
-
-.alignCenter {
-  --dyn-flex-align-items: center;
-}
-
-.alignStart {
-  --dyn-flex-align-items: flex-start;
-}
-
-.alignEnd {
-  --dyn-flex-align-items: flex-end;
-}
-
-.alignStretch {
-  --dyn-flex-align-items: stretch;
-}
-
-.alignBaseline {
-  --dyn-flex-align-items: baseline;
-}
+.alignStart { --dyn-flex-align-items: var(--dyn-flex-align-start); }
+.alignCenter { --dyn-flex-align-items: var(--dyn-flex-align-center); }
+.alignEnd { --dyn-flex-align-items: var(--dyn-flex-align-end); }
+.alignStretch { --dyn-flex-align-items: var(--dyn-flex-align-stretch); }
+.alignBaseline { --dyn-flex-align-items: var(--dyn-flex-align-baseline); }
 
 /* ============================================
    JUSTIFY UTILITIES
    ============================================ */
-
-.justifyStart {
-  --dyn-flex-justify-content: flex-start;
-}
-
-.justifyCenter {
-  --dyn-flex-justify-content: center;
-}
-
-.justifyEnd {
-  --dyn-flex-justify-content: flex-end;
-}
-
-.justifyBetween {
-  --dyn-flex-justify-content: space-between;
-}
-
-.justifyAround {
-  --dyn-flex-justify-content: space-around;
-}
-
-.justifyEvenly {
-  --dyn-flex-justify-content: space-evenly;
-}
+.justifyStart { --dyn-flex-justify-content: var(--dyn-flex-justify-start); }
+.justifyCenter { --dyn-flex-justify-content: var(--dyn-flex-justify-center); }
+.justifyEnd { --dyn-flex-justify-content: var(--dyn-flex-justify-end); }
+.justifyBetween { --dyn-flex-justify-content: var(--dyn-flex-justify-between); }
+.justifyAround { --dyn-flex-justify-content: var(--dyn-flex-justify-around); }
+.justifyEvenly { --dyn-flex-justify-content: var(--dyn-flex-justify-evenly); }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
-
 @media (max-width: 768px) {
   .flex {
-    min-width: 0;
+    min-width: 0; 
   }
 }
 
-@media (max-width: 480px) {
-  .flex {
-    --dyn-flex-gap: var(--dyn-spacing-sm);
-  }
-}
+
 
 /* ============================================
    ACCESSIBILITY
    ============================================ */
-
-.flex> :focus-visible {
+.flex > :focus-visible {
   outline: 2px solid var(--dyn-semantic-border-focus);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flex>* {
+  .flex > * {
     animation: none !important;
     transition: none !important;
   }
 }
 
-/* ============================================
-   DARK MODE
-   Note: DynFlex is a structural component with no colors.
-   No dark mode overrides needed.
-   ============================================ */

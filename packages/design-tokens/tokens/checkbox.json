@@ -1,0 +1,30 @@
+{
+  "dyn": {
+    "checkbox": {
+      "size": {
+        "value": "20px",
+        "type": "dimension",
+        "description": "Size of the checkbox control"
+      },
+      "focus": {
+        "outlineWidth": {
+          "value": "{size.border.width.md.value}",
+          "type": "dimension",
+          "description": "Width of the focus outline"
+        },
+        "outlineOffset": {
+          "value": "2px",
+          "type": "dimension",
+          "description": "Offset of the focus outline"
+        }
+      },
+      "icon": {
+        "size": {
+          "value": "{size.font.size.xs.value}",
+          "type": "dimension",
+          "description": "Size of the checkmark icon"
+        }
+      }
+    }
+  }
+}

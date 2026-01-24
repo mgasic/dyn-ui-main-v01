@@ -229,11 +229,6 @@ Once these tokens are merged:
    - Add DynBadge integration to DynAvatar
    - Add/update tests
 
-2. **Create Pull Request**
-   - Reference this documentation
-   - Include token mapping examples
-   - Request review
-
 ## References
 
 - [Design Tokens Documentation](./docs/)

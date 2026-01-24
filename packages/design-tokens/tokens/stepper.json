@@ -1,0 +1,32 @@
+{
+  "dyn": {
+    "stepper": {
+      "step": {
+        "size": {
+          "value": "{size.spacing.xl.value}",
+          "type": "dimension",
+          "description": "Size of the step circle"
+        }
+      },
+      "bar": {
+        "height": {
+          "value": "{size.spacing.xs.value}",
+          "type": "dimension",
+          "description": "Height of the progress bar/connector"
+        },
+        "radius": {
+          "value": "{size.border.radius.xs.value}",
+          "type": "dimension",
+          "description": "Border radius of the progress bar"
+        }
+      },
+      "icon": {
+        "size": {
+          "value": "20px",
+          "type": "dimension",
+          "description": "Size of the icon inside the step"
+        }
+      }
+    }
+  }
+}

@@ -56,7 +56,7 @@
     font-weight: var(--dyn-font-weight-medium);
     line-height: 1.2;
     transition: all var(--dyn-transition-fast);
-    min-width: 60px;
+    min-width: var(--dyn-themeSwitcher-minWidth, 60px);
 }
 
 .button:hover:not(.active) {
@@ -93,8 +93,8 @@
    ============================================ */
 
 .button:focus-visible {
-    outline: 2px solid var(--dyn-semantic-border-focus);
-    outline-offset: 2px;
+    outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+    outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 @media (prefers-reduced-motion: reduce) {

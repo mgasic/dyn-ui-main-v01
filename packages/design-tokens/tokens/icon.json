@@ -3,10 +3,10 @@
         "icon": {
             "size": {
                 "xs": {
-                    "value": "12px"
+                    "value": "{size.font.size.xs.value}"
                 },
                 "sm": {
-                    "value": "16px"
+                    "value": "{size.font.size.md.value}"
                 },
                 "md": {
                     "value": "24px"
@@ -31,7 +31,7 @@
             },
             "clickable": {
                 "padding": {
-                    "value": "4px"
+                    "value": "{size.spacing.xs.value}"
                 },
                 "hoverScale": {
                     "value": "1.1"
@@ -40,11 +40,11 @@
                     "value": "0.95"
                 },
                 "transition": {
-                    "value": "0.1s ease"
+                    "value": "{animation.transition.fast.value}"
                 }
             },
             "radius": {
-                "value": "4px"
+                "value": "{size.border.radius.sm.value}"
             },
             "animation": {
                 "spin": {
@@ -70,7 +70,7 @@
             "state": {
                 "disabled": {
                     "opacity": {
-                        "value": "0.5"
+                        "value": "{layout.opacity.50.value}"
                     }
                 }
             }

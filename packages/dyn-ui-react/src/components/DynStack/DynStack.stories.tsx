@@ -154,13 +154,13 @@ export const Wrapped: Story = {
 };
 
 export const NestedStacks: Story = {
-    render: () => (
-        <DynStack direction="vertical" gap="lg">
-            <DynStack direction="horizontal" gap="md">
+    render: (args) => (
+        <DynStack {...args} style={{ minHeight: '400px', border: '1px dashed #ccc', ...args.style }}>
+            <DynStack direction="horizontal" gap="md" style={{ width: 'fit-content', border: '1px solid #e5e7eb', padding: '8px' }}>
                 <ExampleBox color="#10b981">Row 1 - A</ExampleBox>
                 <ExampleBox color="#10b981">Row 1 - B</ExampleBox>
             </DynStack>
-            <DynStack direction="horizontal" gap="md">
+            <DynStack direction="horizontal" gap="md" style={{ width: 'fit-content', border: '1px solid #e5e7eb', padding: '8px' }}>
                 <ExampleBox color="#f59e0b">Row 2 - A</ExampleBox>
                 <ExampleBox color="#f59e0b">Row 2 - B</ExampleBox>
                 <ExampleBox color="#f59e0b">Row 2 - C</ExampleBox>

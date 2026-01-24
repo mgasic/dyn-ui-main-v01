@@ -1,8 +1,8 @@
 import type { ElementType, ReactNode, ComponentPropsWithoutRef } from 'react';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
 
-export type DynStackDirection = 'vertical' | 'horizontal' | 'reverse';
-export type DynStackGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type DynStackDirection = 'vertical' | 'horizontal' | 'reverse' | 'vertical-reverse' | 'horizontal-reverse';
+export type DynStackGap = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
 export type DynStackAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 export type DynStackJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 

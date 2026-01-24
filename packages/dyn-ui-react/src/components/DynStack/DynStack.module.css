@@ -1,22 +1,26 @@
 /**
- * DynStack Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
- * 
- * Structural component - no color overrides needed for dark mode
+ * DynStack Component Styles - Unified Component Token Strategy
+ * Supports both component tokens and dynamic overrides
  */
 
-/* ============================================
-   COMPONENT TOKENS
-   ============================================ */
-
 .container {
-  /* Spacing tokens */
-  --dyn-stack-gap: var(--dyn-spacing-md, 1rem);
+  /* Layout Variables with Defaults */
+  --dyn-stack-display: flex;
+  --dyn-stack-direction-val: var(--dyn-stack-direction, var(--dyn-stack-direction-vertical));
+  --dyn-stack-gap-val: var(--dyn-stack-gap, var(--dyn-stack-gap-md));
+  --dyn-stack-align-val: var(--dyn-stack-align-items, var(--dyn-stack-align-stretch));
+  --dyn-stack-justify-val: var(--dyn-stack-justify-content, var(--dyn-stack-justify-start));
+  --dyn-stack-wrap-val: var(--dyn-stack-wrap, var(--dyn-stack-wrap-nowrap));
 
-  display: flex;
+  display: var(--dyn-stack-display);
+  flex-direction: var(--dyn-stack-direction-val);
+  gap: var(--dyn-stack-gap-val);
+  align-items: var(--dyn-stack-align-val);
+  justify-content: var(--dyn-stack-justify-val);
+  flex-wrap: var(--dyn-stack-wrap-val);
+  
   width: 100%;
   height: auto;
-  gap: var(--dyn-stack-gap);
   font-family: inherit;
   box-sizing: border-box;
 }
@@ -24,139 +28,63 @@
 /* ============================================
    DIRECTION VARIANTS
    ============================================ */
-
-.vertical {
-  flex-direction: column;
-}
-
-.horizontal {
-  flex-direction: row;
-}
-
-.reverse {
-  flex-direction: column-reverse;
-}
-
-.horizontal.reverse {
-  flex-direction: row-reverse;
-}
+.vertical { --dyn-stack-direction: var(--dyn-stack-direction-vertical); }
+.horizontal { --dyn-stack-direction: var(--dyn-stack-direction-horizontal); }
+.reverse { --dyn-stack-direction: var(--dyn-stack-direction-vertical-reverse); }
+.verticalReverse { --dyn-stack-direction: var(--dyn-stack-direction-vertical-reverse); }
+.horizontalReverse { --dyn-stack-direction: var(--dyn-stack-direction-horizontal-reverse); }
 
 /* ============================================
    ALIGNMENT VARIANTS
    ============================================ */
-
-.alignStart {
-  align-items: flex-start;
-}
-
-.alignCenter {
-  align-items: center;
-}
-
-.alignEnd {
-  align-items: flex-end;
-}
-
-.alignStretch {
-  align-items: stretch;
-}
-
-.alignBaseline {
-  align-items: baseline;
-}
+.alignStart { --dyn-stack-align-items: var(--dyn-stack-align-start); }
+.alignCenter { --dyn-stack-align-items: var(--dyn-stack-align-center); }
+.alignEnd { --dyn-stack-align-items: var(--dyn-stack-align-end); }
+.alignStretch { --dyn-stack-align-items: var(--dyn-stack-align-stretch); }
+.alignBaseline { --dyn-stack-align-items: var(--dyn-stack-align-baseline); }
 
 /* ============================================
    JUSTIFICATION VARIANTS
    ============================================ */
-
-.justifyStart {
-  justify-content: flex-start;
-}
-
-.justifyCenter {
-  justify-content: center;
-}
-
-.justifyEnd {
-  justify-content: flex-end;
-}
-
-.justifyBetween {
-  justify-content: space-between;
-}
-
-.justifyAround {
-  justify-content: space-around;
-}
-
-.justifyEvenly {
-  justify-content: space-evenly;
-}
+.justifyStart { --dyn-stack-justify-content: var(--dyn-stack-justify-start); }
+.justifyCenter { --dyn-stack-justify-content: var(--dyn-stack-justify-center); }
+.justifyEnd { --dyn-stack-justify-content: var(--dyn-stack-justify-end); }
+.justifyBetween { --dyn-stack-justify-content: var(--dyn-stack-justify-between); }
+.justifyAround { --dyn-stack-justify-content: var(--dyn-stack-justify-around); }
+.justifyEvenly { --dyn-stack-justify-content: var(--dyn-stack-justify-evenly); }
 
 /* ============================================
-   GAP VARIANTS
+   GAP VARIANTS (Component Tokens)
    ============================================ */
-
-.gapNone {
-  --dyn-stack-gap: 0;
-}
-
-.gapXs {
-  --dyn-stack-gap: var(--dyn-spacing-xs);
-}
-
-.gapSm {
-  --dyn-stack-gap: var(--dyn-spacing-sm);
-}
-
-.gapMd {
-  --dyn-stack-gap: var(--dyn-spacing-md);
-}
-
-.gapLg {
-  --dyn-stack-gap: var(--dyn-spacing-lg);
-}
+.gapNone { --dyn-stack-gap: var(--dyn-stack-gap-none); }
+.gap2xs { --dyn-stack-gap: var(--dyn-stack-gap-2xs); }
+.gapXs { --dyn-stack-gap: var(--dyn-stack-gap-xs); }
+.gapSm { --dyn-stack-gap: var(--dyn-stack-gap-sm); }
+.gapMd { --dyn-stack-gap: var(--dyn-stack-gap-md); }
+.gapLg { --dyn-stack-gap: var(--dyn-stack-gap-lg); }
+.gapXl { --dyn-stack-gap: var(--dyn-stack-gap-xl); }
+.gap2xl { --dyn-stack-gap: var(--dyn-stack-gap-2xl); }
+.gap3xl { --dyn-stack-gap: var(--dyn-stack-gap-3xl); }
+.gap4xl { --dyn-stack-gap: var(--dyn-stack-gap-4xl); }
 
 /* ============================================
    WRAP VARIANTS
    ============================================ */
-
-.wrap {
-  flex-wrap: wrap;
-}
-
-.noWrap {
-  flex-wrap: nowrap;
-}
-
-.wrapReverse {
-  flex-wrap: wrap-reverse;
-}
+.wrap { --dyn-stack-wrap: var(--dyn-stack-wrap-wrap); }
+.noWrap { --dyn-stack-wrap: var(--dyn-stack-wrap-nowrap); }
+.wrapReverse { --dyn-stack-wrap: var(--dyn-stack-wrap-wrap-reverse); }
 
 /* ============================================
    FLEX VARIANTS
    ============================================ */
-
-.flex1 {
-  flex: 1 1 auto;
-}
-
-.flexGrow {
-  flex-grow: 1;
-}
-
-.flexShrink {
-  flex-shrink: 1;
-}
-
-.flexNone {
-  flex: none;
-}
+.flex1 { flex: 1 1 auto; }
+.flexGrow { flex-grow: 1; }
+.flexShrink { flex-shrink: 1; }
+.flexNone { flex: none; }
 
 /* ============================================
    ACCESSIBILITY
    ============================================ */
-
 @media (prefers-reduced-motion: reduce) {
   .container {
     transition: none;
@@ -167,22 +95,4 @@
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 767px) {
-  .container {
-    --dyn-stack-gap: var(--dyn-spacing-sm);
-  }
 
-  .horizontal {
-    flex-direction: column;
-  }
-
-  .horizontal.reverse {
-    flex-direction: column-reverse;
-  }
-}
-
-/* ============================================
-   DARK MODE
-   Note: DynStack is a structural component with no colors.
-   No dark mode overrides needed.
-   ============================================ */

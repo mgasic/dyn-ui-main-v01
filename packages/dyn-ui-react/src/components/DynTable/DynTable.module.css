@@ -52,7 +52,7 @@
   font-weight: var(--dyn-font-weight-semibold);
   font-size: var(--dyn-font-size-sm);
   text-align: left;
-  border-bottom: 2px solid var(--dyn-table-border);
+  border-bottom: var(--dyn-border-width-md, 2px) solid var(--dyn-table-border);
   white-space: nowrap;
   user-select: none;
 }
@@ -337,15 +337,15 @@
 
 @media (prefers-contrast: high) {
   .bordered {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md, 2px);
   }
 
   .bordered .cell {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md, 2px);
   }
 
   .cellHeader {
-    border-bottom-width: 3px;
+    border-bottom-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

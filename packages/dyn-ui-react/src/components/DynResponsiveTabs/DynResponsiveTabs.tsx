@@ -12,13 +12,6 @@ import { DYN_RESPONSIVE_TABS_DEFAULT_PROPS } from './DynResponsiveTabs.types';
 import styles from './DynResponsiveTabs.module.css';
 
 /**
- * Safely access CSS module classes
- */
-const getStyleClass = (className: string): string => {
-  return (styles as Record<string, string>)[className] || '';
-};
-
-/**
  * Hook to detect responsive breakpoint
  */
 const useResponsiveMode = (breakpoint: number, responsive: boolean): boolean => {
@@ -218,12 +211,13 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
 
     // Generate CSS classes
     const containerClass = cn(
-      getStyleClass('container'),
-      getStyleClass(`orientation-${orientation}`),
+      styles.container,
+      // Map orientation to specific class if needed, checking specifically for 'vertical'
+      orientation === 'vertical' && styles.orientationVertical,
       {
-        [getStyleClass('accordion')]: isAccordion,
-        [getStyleClass('nested')]: tabIdentifier !== undefined,
-        [getStyleClass('noAnimation')]: disableAnimation,
+        [styles.accordion]: isAccordion,
+        [styles.nested]: tabIdentifier !== undefined,
+        [styles.noAnimation]: disableAnimation,
       },
       className
     );
@@ -236,8 +230,11 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
         <div
           role="tablist"
           className={cn(
-            getStyleClass('tabList'),
-            tabIdentifier && getStyleClass(`tabList-${tabIdentifier}`)
+            styles.tabList,
+            // Only add dynamic class if using modules correctly, normally dynamic classes like this
+            // don't work with modules comfortably unless explicitly defined. 
+            // Safeguarding with styles access, assuming styles[...] might be undefined.
+            tabIdentifier && styles[`tabList-${tabIdentifier}`]
           )}
           aria-label={ariaLabel}
           aria-orientation={orientation}
@@ -261,10 +258,10 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                 disabled={isDisabled}
                 tabIndex={isActive ? 0 : -1}
                 className={cn(
-                  getStyleClass('tab'),
+                  styles.tab,
                   {
-                    [getStyleClass('activeTab')]: isActive,
-                    [getStyleClass('disabledTab')]: isDisabled,
+                    [styles.activeTab]: isActive,
+                    [styles.disabledTab]: isDisabled,
                   }
                 )}
                 onClick={() => handleTabClick(index, isDisabled)}
@@ -272,7 +269,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                 data-testid={`${dataTestId || 'dyn-responsive-tabs'}-tab-${index}`}
               >
                 {tab.icon && (
-                  <span className={getStyleClass('tabIcon')} aria-hidden="true">
+                  <span className={styles.tabIcon} aria-hidden="true">
                     {typeof tab.icon === 'string' ? (
                       <DynIcon icon={tab.icon} size="small" />
                     ) : (
@@ -291,7 +288,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
     // Render panels
     const renderPanels = () => {
       return (
-        <div className={getStyleClass('panelContainer')}>
+        <div className={styles.panelContainer}>
           {validTabs.map((tab, index) => {
             const isActive = currentActiveIndex === index;
             const tabId = `${internalId}-${isAccordion ? 'accordion' : 'tab'}-${index}`;
@@ -299,7 +296,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
             const isDisabled = tab.disabled;
 
             return (
-              <div key={index} className={getStyleClass('panelWrapper')}>
+              <div key={index} className={styles.panelWrapper}>
                 {/* Accordion header (mobile view) */}
                 {isAccordion && (
                   <button
@@ -307,10 +304,10 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                     ref={isActive ? ref : undefined}
                     type="button"
                     className={cn(
-                      getStyleClass('accordionHeader'),
+                      styles.accordionHeader,
                       {
-                        [getStyleClass('activeAccordion')]: isActive,
-                        [getStyleClass('disabledAccordion')]: isDisabled,
+                        [styles.activeAccordion]: isActive,
+                        [styles.disabledAccordion]: isDisabled,
                       }
                     )}
                     aria-expanded={isActive}
@@ -320,9 +317,9 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                     onClick={() => handleTabClick(index, isDisabled)}
                     data-testid={`${dataTestId || 'dyn-responsive-tabs'}-accordion-${index}`}
                   >
-                    <span className={getStyleClass('accordionLabel')}>
+                    <span className={styles.accordionLabel}>
                       {tab.icon && (
-                        <span className={getStyleClass('accordionIcon')} aria-hidden="true">
+                        <span className={styles.accordionIcon} aria-hidden="true">
                           {typeof tab.icon === 'string' ? (
                             <DynIcon icon={tab.icon} size="small" />
                           ) : (
@@ -332,7 +329,7 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                       )}
                       {tab.label}
                     </span>
-                    <span className={getStyleClass('accordionToggle')} aria-hidden="true">
+                    <span className={styles.accordionToggle} aria-hidden="true">
                       {typeof expandIcon === 'string' ? (
                         <DynIcon icon={isActive ? collapseIcon as string : expandIcon} size="small" />
                       ) : isActive ? (
@@ -351,9 +348,9 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
                   aria-labelledby={tabId}
                   hidden={!isActive}
                   className={cn(
-                    getStyleClass('panel'),
+                    styles.panel,
                     {
-                      [getStyleClass('activePanel')]: isActive,
+                      [styles.activePanel]: isActive,
                     }
                   )}
                   data-testid={`${dataTestId || 'dyn-responsive-tabs'}-panel-${index}`}

@@ -1,0 +1,11 @@
+{
+  "dyn": {
+    "themeSwitcher": {
+      "minWidth": {
+        "value": "60px",
+        "type": "dimension",
+        "description": "Minimum width of the theme switcher button"
+      }
+    }
+  }
+}

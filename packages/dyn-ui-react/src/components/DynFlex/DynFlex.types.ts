@@ -5,7 +5,7 @@ export type DynFlexDirection = 'row' | 'column' | 'row-reverse' | 'column-revers
 export type DynFlexJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 export type DynFlexAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';
 export type DynFlexWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
-export type DynFlexGap = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+export type DynFlexGap = 'none' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl';
 
 export interface DynFlexOwnProps extends BaseComponentProps, AccessibilityProps {
     /** Flex direction */

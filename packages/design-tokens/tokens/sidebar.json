@@ -1,0 +1,32 @@
+{
+  "dyn": {
+    "sidebar": {
+      "width": {
+        "default": {
+          "value": "256px",
+          "type": "dimension",
+          "description": "Default width of the sidebar"
+        },
+        "collapsed": {
+          "value": "{size.spacing.3xl.value}",
+          "type": "dimension",
+          "description": "Width of the collapsed sidebar"
+        }
+      },
+      "item": {
+        "height": {
+          "value": "40px",
+          "type": "dimension",
+          "description": "Height of sidebar navigation items"
+        }
+      },
+      "icon": {
+        "size": {
+          "value": "20px",
+          "type": "dimension",
+          "description": "Size of sidebar icons"
+        }
+      }
+    }
+  }
+}

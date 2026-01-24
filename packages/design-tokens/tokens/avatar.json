@@ -3,57 +3,57 @@
     "description": "Avatar component tokens",
     "size": {
       "xs": {
-        "value": "24px",
-        "description": "Extra small avatar size"
+        "value": "{size.spacing.lg.value}",
+        "description": "Extra small avatar size (24px)"
       },
       "sm": {
-        "value": "32px",
-        "description": "Small avatar size"
+        "value": "{size.spacing.xl.value}",
+        "description": "Small avatar size (32px)"
       },
       "md": {
         "value": "40px",
-        "description": "Medium avatar size (default)"
+        "description": "Medium avatar size (40px) - Custom value"
       },
       "lg": {
         "value": "56px",
-        "description": "Large avatar size"
+        "description": "Large avatar size (56px) - Custom value"
       },
       "xl": {
         "value": "80px",
-        "description": "Extra large avatar size"
+        "description": "Extra large avatar size (80px) - Custom value"
       }
     },
     "border": {
       "width": {
-        "value": "2px",
+        "value": "{size.border.width.md.value}",
         "description": "Avatar border width"
       },
       "color": {
-        "value": "#FFFFFF",
+        "value": "{color.neutral.light.white.value}",
         "description": "Avatar border color"
       },
       "radius": {
         "circle": {
-          "value": "50%",
+          "value": "{size.border.radius.full.value}",
           "description": "Circular avatar border radius"
         },
         "rounded": {
-          "value": "8px",
+          "value": "{size.border.radius.lg.value}",
           "description": "Rounded avatar border radius"
         },
         "square": {
-          "value": "0px",
+          "value": "{size.border.radius.none.value}",
           "description": "Square avatar border radius"
         }
       }
     },
     "color": {
       "background": {
-        "value": "#E8E8E8",
+        "value": "{color.neutral.light.200.value}",
         "description": "Avatar background color"
       },
       "text": {
-        "value": "#212529",
+        "value": "{color.semantic.text.value}",
         "description": "Avatar text color"
       }
     },
@@ -65,7 +65,7 @@
             "description": "Small status indicator size"
           },
           "md": {
-            "value": "8px",
+            "value": "{size.spacing.sm.value}",
             "description": "Medium status indicator size"
           },
           "lg": {
@@ -79,35 +79,35 @@
         },
         "border": {
           "width": {
-            "value": "2px",
+            "value": "{size.border.width.md.value}",
             "description": "Status indicator border width"
           },
           "color": {
-            "value": "#FFFFFF",
+            "value": "{color.neutral.light.white.value}",
             "description": "Status indicator border color"
           }
         },
         "online": {
           "backgroundColor": {
-            "value": "#28A745",
+            "value": "{color.feedback.positive.value}",
             "description": "Online status color"
           }
         },
         "offline": {
           "backgroundColor": {
-            "value": "#6C757D",
+            "value": "{color.theme.secondary.value}",
             "description": "Offline status color"
           }
         },
         "away": {
           "backgroundColor": {
-            "value": "#FFC107",
+            "value": "{color.feedback.warning.value}",
             "description": "Away status color"
           }
         },
         "busy": {
           "backgroundColor": {
-            "value": "#DC3545",
+            "value": "{color.feedback.negative.default.value}",
             "description": "Busy status color"
           }
         }
@@ -115,7 +115,7 @@
     },
     "spacing": {
       "padding": {
-        "value": "0px",
+        "value": "{size.spacing.none.value}",
         "description": "Avatar padding"
       }
     },
@@ -130,49 +130,49 @@
           "description": "Font size for small avatar"
         },
         "md": {
-          "value": "14px",
+          "value": "{size.font.size.sm.value}",
           "description": "Font size for medium avatar"
         },
         "lg": {
-          "value": "18px",
+          "value": "{size.font.size.lg.value}",
           "description": "Font size for large avatar"
         },
         "xl": {
-          "value": "24px",
+          "value": "{size.font.size.2xl.value}",
           "description": "Font size for extra large avatar"
         }
       },
       "fontWeight": {
-        "value": 600,
+        "value": "{size.font.weight.semibold.value}",
         "description": "Avatar font weight"
       }
     },
     "shadow": {
-      "value": "0 2px 8px rgba(0, 0, 0, 0.15)",
+      "value": "{shadow.elevation.medium.value}",
       "description": "Avatar shadow"
     },
     "darkMode": {
       "backgroundColor": {
-        "value": "#424242",
+        "value": "{color.neutral.dark.800.value}",
         "description": "Avatar background color in dark mode"
       },
       "textColor": {
-        "value": "#FFFFFF",
+        "value": "{color.neutral.light.white.value}",
         "description": "Avatar text color in dark mode"
       },
       "borderColor": {
-        "value": "#212121",
+        "value": "{color.neutral.dark.900.value}",
         "description": "Avatar border color in dark mode"
       }
     },
     "animation": {
       "transition": {
         "duration": {
-          "value": "200ms",
+          "value": "{animation.duration.normal.value}",
           "description": "Avatar transition duration"
         },
         "timingFunction": {
-          "value": "ease-in-out",
+          "value": "{animation.easing.ease-in-out.value}",
           "description": "Avatar transition timing function"
         }
       }

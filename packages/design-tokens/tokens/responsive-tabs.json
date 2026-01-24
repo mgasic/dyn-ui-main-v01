@@ -5,142 +5,142 @@
       "color": {
         "background": {
           "inactive": {
-            "value": "#EEEEEE",
-            "description": "Background color for inactive tabs - Medium light gray for better contrast"
+            "value": "{color.neutral.light.200.value}",
+            "description": "Background color for inactive tabs"
           },
           "active": {
-            "value": "#E0F7FF",
-            "description": "Background color for active tab - Light blue (from design)"
+            "value": "{color.theme.primary-subtle.value}",
+            "description": "Background color for active tab"
           },
           "hover": {
-            "value": "#E0E0E0",
-            "description": "Background color on hover for inactive tabs - Slightly darker gray"
+            "value": "{color.semantic.surface-hover.value}",
+            "description": "Background color on hover for inactive tabs"
           },
           "content": {
-            "value": "#FFFFFF",
-            "description": "Background color for content area - White"
+            "value": "{color.semantic.surface.value}",
+            "description": "Background color for content area"
           }
         },
         "border": {
           "default": {
-            "value": "#BDBDBD",
-            "description": "Default border color for inactive tabs - Visible gray"
+            "value": "{color.semantic.border.value}",
+            "description": "Default border color for inactive tabs"
           },
           "active": {
-            "value": "#4DB8E8",
-            "description": "Border color for active tab - Medium blue (from design)"
+            "value": "{color.theme.primary.value}",
+            "description": "Border color for active tab"
           },
           "content": {
-            "value": "#4DB8E8",
-            "description": "Border color for content panel - Medium blue (from design)"
+            "value": "{color.theme.primary.value}",
+            "description": "Border color for content panel"
           }
         },
         "text": {
           "inactive": {
-            "value": "#666666",
-            "description": "Text color for inactive tabs - Medium gray"
+            "value": "{color.semantic.text-secondary.value}",
+            "description": "Text color for inactive tabs"
           },
           "active": {
-            "value": "#333333",
-            "description": "Text color for active tab - Dark gray"
+            "value": "{color.semantic.text.value}",
+            "description": "Text color for active tab"
           }
         },
         "accordion": {
           "header": {
-            "value": "#EEEEEE",
-            "description": "Accordion header background color - Medium light gray"
+            "value": "{color.neutral.light.200.value}",
+            "description": "Accordion header background color"
           },
           "headerActive": {
-            "value": "#E0F7FF",
-            "description": "Accordion header background color when active - Light blue"
+            "value": "{color.theme.primary-subtle.value}",
+            "description": "Accordion header background color when active"
           },
           "border": {
-            "value": "#4DB8E8",
-            "description": "Accordion border color - Medium blue"
+            "value": "{color.theme.primary.value}",
+            "description": "Accordion border color"
           }
         },
         "nested": {
           "backgroundInactive": {
-            "value": "#FAFAFA",
-            "description": "Background color for nested/child tabs - inactive - Very light gray"
+            "value": "{color.neutral.light.50.value}",
+            "description": "Background color for nested/child tabs - inactive"
           },
           "backgroundActive": {
-            "value": "#F0FBFF",
-            "description": "Background color for nested/child tabs - active - Very light blue"
+            "value": "{color.theme.primary-subtle.value}",
+            "description": "Background color for nested/child tabs - active"
           },
           "border": {
-            "value": "#80D0ED",
-            "description": "Border color for nested/child tabs - Lighter blue"
+            "value": "{color.theme.primary-light.value}",
+            "description": "Border color for nested/child tabs"
           }
         },
         "darkTheme": {
           "background": {
             "inactive": {
-              "value": "#2A2A2A",
+              "value": "{color.neutral.dark.800.value}",
               "description": "Background color for inactive tabs - Dark theme"
             },
             "active": {
-              "value": "#1E4A5F",
+              "value": "{color.theme.primary-dark.value}",
               "description": "Background color for active tab - Dark blue"
             },
             "hover": {
-              "value": "#333333",
+              "value": "{color.semantic.surface-hover.value}",
               "description": "Background color on hover - Dark theme"
             },
             "content": {
-              "value": "#1A1A1A",
+              "value": "{color.semantic.surface.value}",
               "description": "Background color for content area - Dark theme"
             }
           },
           "border": {
             "default": {
-              "value": "#3A3A3A",
+              "value": "{color.semantic.border.value}",
               "description": "Default border color - Dark theme"
             },
             "active": {
-              "value": "#4DB8E8",
-              "description": "Border color for active tab - Dark theme (same blue)"
+              "value": "{color.theme.primary.value}",
+              "description": "Border color for active tab - Dark theme"
             },
             "content": {
-              "value": "#4DB8E8",
+              "value": "{color.theme.primary.value}",
               "description": "Border color for content panel - Dark theme"
             }
           },
           "text": {
             "inactive": {
-              "value": "#AAAAAA",
+              "value": "{color.semantic.text-muted.value}",
               "description": "Text color for inactive tabs - Dark theme"
             },
             "active": {
-              "value": "#E0F7FF",
+              "value": "{color.theme.primary-light.value}",
               "description": "Text color for active tab - Dark theme"
             }
           },
           "accordion": {
             "header": {
-              "value": "#2A2A2A",
+              "value": "{color.neutral.dark.800.value}",
               "description": "Accordion header background - Dark theme"
             },
             "headerActive": {
-              "value": "#1E4A5F",
+              "value": "{color.theme.primary-dark.value}",
               "description": "Accordion header background when active - Dark theme"
             },
             "border": {
-              "value": "#4DB8E8",
+              "value": "{color.theme.primary.value}",
               "description": "Accordion border color - Dark theme"
             }
           },
           "nested": {
             "backgroundInactive": {
-              "value": "#222222",
+              "value": "{color.neutral.dark.900.value}",
               "description": "Nested tabs inactive background - Dark theme"
             },
             "backgroundActive": {
-              "value": "#1A3D4F",
+              "value": "{color.theme.primary-dark.value}",
               "description": "Nested tabs active background - Dark theme"
             },
             "border": {
-              "value": "#3A7A9B",
+              "value": "{color.theme.primary.value}",
               "description": "Nested tabs border - Dark theme"
             }
           }
@@ -149,63 +149,63 @@
       "border": {
         "width": {
           "default": {
-            "value": "2px",
+            "value": "{size.border.width.md.value}",
             "description": "Default border width for content panel"
           },
           "active": {
-            "value": "4px",
+            "value": "{size.border.width.xl.value}",
             "description": "Border width for active tab (left side in vertical mode)"
           },
           "thin": {
-            "value": "1px",
+            "value": "{size.border.width.sm.value}",
             "description": "Thin border width for inactive tabs"
           }
         },
         "radius": {
           "default": {
-            "value": "8px",
+            "value": "{size.border.radius.lg.value}",
             "description": "Default border radius for tabs and panels"
           },
           "horizontal": {
             "tab": {
-              "value": "8px 8px 0 0",
-              "description": "Border radius for horizontal tabs (rounded top, flat bottom)"
+              "value": "{size.border.radius.lg.value} {size.border.radius.lg.value} 0 0",
+              "description": "Border radius for horizontal tabs"
             },
             "panel": {
-              "value": "0 0 8px 8px",
-              "description": "Border radius for horizontal content panel (flat top, rounded bottom)"
+              "value": "0 0 {size.border.radius.lg.value} {size.border.radius.lg.value}",
+              "description": "Border radius for horizontal content panel"
             }
           },
           "vertical": {
             "tab": {
-              "value": "8px 0 0 8px",
-              "description": "Border radius for vertical tabs (rounded left, flat right)"
+              "value": "{size.border.radius.lg.value} 0 0 {size.border.radius.lg.value}",
+              "description": "Border radius for vertical tabs"
             },
             "panel": {
-              "value": "0 8px 8px 0",
-              "description": "Border radius for vertical content panel (flat left, rounded right)"
+              "value": "0 {size.border.radius.lg.value} {size.border.radius.lg.value} 0",
+              "description": "Border radius for vertical content panel"
             }
           }
         },
         "verticalActiveTabTop": {
-          "value": "2px solid",
-          "description": "Top border for active vertical tab - 2px solid (color applied separately)"
+          "value": "{size.border.width.md.value} solid",
+          "description": "Top border for active vertical tab"
         },
         "verticalActiveTabRight": {
           "value": "none",
-          "description": "Right border for active vertical tab - NONE for seamless connection with panel"
+          "description": "Right border for active vertical tab"
         },
         "verticalActiveTabBottom": {
-          "value": "2px solid",
-          "description": "Bottom border for active vertical tab - 2px solid (color applied separately)"
+          "value": "{size.border.width.md.value} solid",
+          "description": "Bottom border for active vertical tab"
         },
         "verticalActiveTabLeft": {
-          "value": "4px solid",
-          "description": "Left border for active vertical tab - 4px solid for emphasis (color applied separately)"
+          "value": "{size.border.width.xl.value} solid",
+          "description": "Left border for active vertical tab"
         },
         "verticalInactiveTabRight": {
           "value": "none",
-          "description": "Right border for inactive vertical tabs - NONE"
+          "description": "Right border for inactive vertical tabs"
         }
       },
       "spacing": {
@@ -216,19 +216,19 @@
           },
           "paddingSm": {
             "value": "0.6rem 1rem",
-            "description": "Padding for small tab size (tablet)"
+            "description": "Padding for small tab size"
           },
           "paddingXs": {
             "value": "0.5rem 0.75rem",
-            "description": "Padding for extra small tab size (mobile)"
+            "description": "Padding for extra small tab size"
           },
           "gap": {
-            "value": "4px",
+            "value": "{size.spacing.xs.value}",
             "description": "Gap between tabs in list"
           },
           "offset": {
             "value": "-2px",
-            "description": "Negative margin for seamless tab-panel connection"
+            "description": "Negative margin for seamless connection"
           }
         },
         "panel": {
@@ -248,7 +248,7 @@
           },
           "headerGap": {
             "value": "1rem",
-            "description": "Gap between label and icon in accordion header"
+            "description": "Gap between label and icon"
           },
           "itemGap": {
             "value": "0.5rem",
@@ -256,7 +256,7 @@
           },
           "toggleSize": {
             "value": "20px",
-            "description": "Size of the accordion toggle icon container"
+            "description": "Size of the accordion toggle icon"
           }
         },
         "vertical": {
@@ -273,7 +273,7 @@
       "responsive": {
         "breakpoint": {
           "accordion": {
-            "value": "768px",
+            "value": "{layout.breakpoint.md.value}",
             "description": "Breakpoint below which tabs transform to accordion"
           },
           "compact": {
@@ -284,20 +284,20 @@
       },
       "typography": {
         "fontSize": {
-          "value": "14px",
+          "value": "{size.font.size.sm.value}",
           "description": "Default font size for tabs"
         },
         "fontSizeSm": {
-          "value": "12px",
-          "description": "Small font size for responsive and nested tabs"
+          "value": "{size.font.size.xs.value}",
+          "description": "Small font size for responsive tabs"
         },
         "fontWeight": {
           "inactive": {
-            "value": "400",
+            "value": "{size.font.weight.normal.value}",
             "description": "Font weight for inactive tabs"
           },
           "active": {
-            "value": "600",
+            "value": "{size.font.weight.semibold.value}",
             "description": "Font weight for active tabs"
           }
         },
@@ -308,11 +308,11 @@
       },
       "animation": {
         "transition": {
-          "value": "all 0.3s ease",
+          "value": "{animation.transition.normal.value}",
           "description": "Transition for color and style changes"
         },
         "transitionFast": {
-          "value": "all 0.15s ease",
+          "value": "{animation.transition.fast.value}",
           "description": "Fast transition for quick interactions"
         }
       }

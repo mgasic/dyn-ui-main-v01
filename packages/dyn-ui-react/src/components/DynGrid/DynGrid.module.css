@@ -1,32 +1,24 @@
 /**
- * DynGrid Component Styles - Option B: Full Token Integration
- * 100% Design Token Compliance
+ * DynGrid Component Styles - Unified Component Token Strategy
+ * Consumes 'table.json' tokens for consistency
  */
 
 /* ============================================
-   COMPONENT TOKENS
+   ROOT
    ============================================ */
 
 .root {
-  /* Color tokens - semantic for auto theme switching */
-  --dyn-grid-bg: var(--dyn-semantic-background, #ffffff);
-  --dyn-grid-text: var(--dyn-semantic-text, #0f172a);
-  --dyn-grid-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
-  --dyn-grid-border: var(--dyn-semantic-border, #e2e8f0);
-  --dyn-grid-header-bg: var(--dyn-semantic-surface, #f8fafc);
-  --dyn-grid-hover: var(--dyn-semantic-surface-hover, #f1f5f9);
-  --dyn-grid-stripe: var(--dyn-semantic-surface-muted, #f8fafc);
-  --dyn-grid-selected: var(--dyn-semantic-surface-active, #e0f2fe);
-
   width: 100%;
-  background: var(--dyn-grid-bg);
-  border-radius: var(--dyn-border-radius-md);
-  font-family: inherit;
+  background: var(--dyn-table-root-background-color);
+  font-family: var(--dyn-table-root-font-family);
+  font-size: var(--dyn-table-root-font-size);
+  color: var(--dyn-table-root-text-color);
+  border-radius: var(--dyn-border-radius-md); 
   overflow: hidden;
 }
 
 .root.bordered {
-  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-border);
+  border: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
 }
 
 .wrapper {
@@ -38,6 +30,291 @@
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.header {
+  background: var(--dyn-table-header-background-color);
+}
+
+.headerRow {
+  border-bottom: var(--dyn-table-header-border-width) solid var(--dyn-table-header-border-color);
+}
+
+.headerCell {
+  padding: var(--dyn-table-size-medium-padding);
+  text-align: left;
+  font-size: var(--dyn-table-size-medium-font-size);
+  font-weight: var(--dyn-table-header-font-weight);
+  color: var(--dyn-table-header-text-color);
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.headerCellSortable {
+  cursor: parse; /* Fallback */
+  cursor: var(--dyn-table-sortable-cursor);
+  user-select: none;
+  transition: background-color var(--dyn-transition-fast);
+}
+
+.headerCellSortable:hover {
+  background-color: var(--dyn-table-sortable-hover-background-color);
+}
+
+.headerCellSorted {
+  color: var(--dyn-table-sortable-active-text-color);
+  background-color: var(--dyn-table-sortable-active-background-color);
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xs);
+}
+
+.sortIndicator {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.headerCellAlignCenter { text-align: center; }
+.headerCellAlignRight { text-align: right; }
+
+/* ============================================
+   BODY
+   ============================================ */
+
+.row {
+  border-bottom: var(--dyn-table-border-width) solid var(--dyn-table-border-color);
+  transition: var(--dyn-table-row-hover-transition);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.hoverable .row:hover {
+  background-color: var(--dyn-table-row-hover-background-color);
+}
+
+.striped .rowOdd {
+  background-color: var(--dyn-table-row-striped-background-color);
+}
+
+.rowSelected {
+  background-color: var(--dyn-table-row-selected-background-color) !important;
+}
+
+.cell {
+  padding: var(--dyn-table-size-medium-padding);
+  font-size: var(--dyn-table-size-medium-font-size);
+  color: var(--dyn-table-root-text-color);
+  line-height: 1.5;
+}
+
+.cellAlignCenter { text-align: center; }
+.cellAlignRight { text-align: right; }
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+.selectionCell {
+  width: 48px;
+  text-align: center;
+  padding-left: var(--dyn-spacing-sm);
+  padding-right: var(--dyn-spacing-sm);
+}
+
+.checkbox {
+  cursor: pointer;
+  accent-color: var(--dyn-table-checkbox-focus-outline-color);
+}
+
+/* ============================================
+   SIZE VARIANTS
+   ============================================ */
+
+.sizeSm .headerCell,
+.sizeSm .cell {
+  padding: var(--dyn-table-size-small-padding);
+  font-size: var(--dyn-table-size-small-font-size);
+}
+
+.sizeLg .headerCell,
+.sizeLg .cell {
+  padding: var(--dyn-table-size-large-padding);
+  font-size: var(--dyn-table-size-large-font-size);
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.loading {
+  min-height: 200px;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dyn-spacing-md);
+  padding: var(--dyn-table-loading-padding);
+  color: var(--dyn-table-loading-text-color);
+  font-size: var(--dyn-table-loading-font-size);
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--dyn-table-border-color);
+  border-top-color: var(--dyn-theme-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--dyn-table-empty-padding);
+  color: var(--dyn-table-empty-text-color);
+  font-size: var(--dyn-table-empty-font-size);
+  text-align: center;
+  min-height: 200px;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--dyn-table-pagination-padding);
+  gap: var(--dyn-table-pagination-gap);
+  border-top: var(--dyn-table-border-width) solid var(--dyn-table-pagination-border-color);
+  background: var(--dyn-table-pagination-background-color);
+}
+
+.paginationInfo {
+  font-size: var(--dyn-table-pagination-font-size);
+  color: var(--dyn-grid-text-secondary); /* Needs fallback or new token */
+  color: var(--dyn-semantic-text-secondary);
+}
+
+.paginationControls {
+  display: flex;
+  align-items: center;
+  gap: var(--dyn-spacing-xs);
+  font-size: var(--dyn-table-pagination-font-size);
+  color: var(--dyn-table-root-text-color);
+}
+
+.paginationButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 var(--dyn-spacing-xs);
+  border: var(--dyn-table-border-width) solid var(--dyn-table-pagination-border-color);
+  border-radius: var(--dyn-table-button-default-border-radius);
+  background: var(--dyn-table-button-default-background-color);
+  color: var(--dyn-table-button-default-text-color);
+  font-size: var(--dyn-table-button-default-font-size);
+  font-weight: var(--dyn-table-button-default-font-weight);
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--dyn-table-button-default-transition);
+  user-select: none;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: var(--dyn-table-header-background-color);
+  border-color: var(--dyn-theme-primary); /* Missing specific token, keeping semantic */
+  color: var(--dyn-theme-primary);
+}
+
+.paginationButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.paginationButton:disabled {
+  opacity: var(--dyn-opacity-disabled);
+  cursor: not-allowed;
+}
+
+.paginationText {
+  padding: 0 var(--dyn-spacing-sm);
+  font-size: var(--dyn-table-pagination-font-size);
+  color: var(--dyn-table-root-text-color);
+  white-space: nowrap;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .headerCell,
+  .cell {
+    padding: var(--dyn-table-size-small-padding);
+    font-size: var(--dyn-table-size-small-font-size);
+  }
+
+  .selectionCell {
+    width: 40px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: var(--dyn-spacing-sm);
+  }
+
+  .paginationButton {
+    min-width: 28px;
+    height: 28px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-contrast: high) {
+  .root.bordered { border-width: 2px; }
+  .headerRow { border-bottom-width: 3px; }
+  .row { border-bottom-width: 2px; }
+  .paginationButton { border-width: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .headerCellSortable,
+  .spinner,
+  .paginationButton {
+    transition: none;
+    animation: none;
+  }
+}
+
+
 
 /* ============================================
    HEADER
@@ -99,7 +376,7 @@
    ============================================ */
 
 .row {
-  border-bottom: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-border);
+  border-bottom: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
   transition: background-color var(--dyn-transition-fast);
 }
 
@@ -154,14 +431,14 @@
    SIZE VARIANTS
    ============================================ */
 
-.sizeSmall .headerCell,
-.sizeSmall .cell {
+.sizeSm .headerCell,
+.sizeSm .cell {
   padding: var(--dyn-spacing-sm) var(--dyn-spacing-xs);
   font-size: var(--dyn-font-size-xs);
 }
 
-.sizeLarge .headerCell,
-.sizeLarge .cell {
+.sizeLg .headerCell,
+.sizeLg .cell {
   padding: var(--dyn-spacing-lg) var(--dyn-spacing-md);
   font-size: var(--dyn-font-size-md);
 }
@@ -225,7 +502,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--dyn-spacing-md);
-  border-top: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-border);
+  border-top: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
   background: var(--dyn-grid-header-bg);
 }
 
@@ -249,7 +526,7 @@
   min-width: 32px;
   height: 32px;
   padding: 0 var(--dyn-spacing-xs);
-  border: var(--dyn-border-width-sm, 1px) solid var(--dyn-grid-border);
+  border: var(--dyn-border-width-sm) solid var(--dyn-grid-border);
   border-radius: var(--dyn-border-radius-sm);
   background: var(--dyn-grid-bg);
   color: var(--dyn-grid-text);

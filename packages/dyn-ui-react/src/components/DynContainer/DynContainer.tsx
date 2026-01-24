@@ -10,15 +10,22 @@ import {
 } from './DynContainer.types';
 import styles from './DynContainer.module.css';
 
-const toPascalCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+const toPascalCase = (value: string) => {
+  if (value.match(/^\d/)) return value.toLowerCase(); // 2xs -> 2xs
+  return value.charAt(0).toUpperCase() + value.slice(1);
+};
 
 const SPACING_TOKENS: Record<string, string> = {
   none: '0',
-  xs: 'var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem))',
-  sm: 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-  md: 'var(--dyn-spacing-md, var(--spacing-md, 1rem))',
-  lg: 'var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem))',
-  xl: 'var(--dyn-spacing-xl, var(--spacing-xl, 2rem))',
+  '2xs': 'var(--dyn-spacing-2xs)',
+  xs: 'var(--dyn-spacing-xs)',
+  sm: 'var(--dyn-spacing-sm)',
+  md: 'var(--dyn-spacing-md)',
+  lg: 'var(--dyn-spacing-lg)',
+  xl: 'var(--dyn-spacing-xl)',
+  '2xl': 'var(--dyn-spacing-2xl)',
+  '3xl': 'var(--dyn-spacing-3xl)',
+  '4xl': 'var(--dyn-spacing-4xl)',
 };
 
 const MAX_WIDTH_TOKENS: Record<DynContainerMaxWidthToken, string> = {
@@ -30,6 +37,12 @@ const MAX_WIDTH_TOKENS: Record<DynContainerMaxWidthToken, string> = {
   full: '100%',
 };
 
+const SIZE_MAP: Record<string, string> = {
+  small: 'Sm',
+  medium: 'Md',
+  large: 'Lg',
+};
+
 type CSSVarProperties = CSSProperties & Record<string, string | number | undefined>;
 
 const resolveSpacingValue = (value?: DynContainerSpaceValue): string | undefined => {
@@ -38,7 +51,7 @@ const resolveSpacingValue = (value?: DynContainerSpaceValue): string | undefined
   }
 
   if (typeof value === 'number') {
-    return `${value}px`;
+    return value === 0 ? '0' : `${value}px`;
   }
 
   const normalized = value.trim();
@@ -58,7 +71,7 @@ const resolveMaxWidth = (
   }
 
   if (typeof value === 'number') {
-    return `${value}px`;
+    return value === 0 ? '0' : `${value}px`;
   }
 
   const normalized = value.trim();
@@ -97,8 +110,6 @@ const DynContainerComponent = (
   }: DynContainerProps,
   ref: ForwardedRef<DynContainerRef>
 ) => {
-  // ✅ Apply defaults only for CSS class generation
-  // Do NOT create variables that are always truthy
   const effectiveDirection = direction ?? DYN_CONTAINER_DEFAULT_PROPS.direction;
   const effectiveSpacing = spacing ?? DYN_CONTAINER_DEFAULT_PROPS.spacing;
   const effectiveSize = size ?? DYN_CONTAINER_DEFAULT_PROPS.size;
@@ -114,31 +125,26 @@ const DynContainerComponent = (
   const resolvedPadding = resolveSpacingValue(padding);
   const resolvedMargin = resolveSpacingValue(margin);
 
-  // ✅ Only add inline styles when props are explicitly provided
   const containerStyle = useMemo<CSSProperties | undefined>(() => {
     const next: CSSVarProperties = { ...(style as CSSVarProperties) };
 
-    // Only add height if explicitly provided
     if (height !== undefined) {
       if (typeof height === 'number') {
-        next.height = `${height}px`;
+        next.height = height === 0 ? '0' : `${height}px`;
       } else if (typeof height === 'string') {
         next.height = height;
       }
     }
 
-    // Only add maxWidth if explicitly provided
     if (maxWidth !== undefined && resolvedMaxWidth !== undefined) {
       next.maxWidth = resolvedMaxWidth;
       next['--dyn-container-max-width'] = resolvedMaxWidth;
     }
 
-    // Only add padding if explicitly provided
     if (padding !== undefined && resolvedPadding !== undefined) {
       next['--dyn-container-padding'] = resolvedPadding;
     }
 
-    // Only add margin if explicitly provided
     if (margin !== undefined && resolvedMargin !== undefined) {
       next['--dyn-container-margin'] = resolvedMargin;
     }
@@ -146,19 +152,27 @@ const DynContainerComponent = (
     return Object.keys(next).length > 0 ? next : undefined;
   }, [height, margin, maxWidth, padding, resolvedMargin, resolvedMaxWidth, resolvedPadding, style]);
 
+
+  // Dynamic Class Mappings
   const directionClass = styles[`direction${toPascalCase(effectiveDirection)}` as keyof typeof styles];
+
   const spacingClass = effectiveSpacing
     ? styles[`spacing${toPascalCase(effectiveSpacing)}` as keyof typeof styles]
     : undefined;
+
+  const sizeSuffix = effectiveSize ? (SIZE_MAP[effectiveSize] || toPascalCase(effectiveSize)) : '';
   const sizeClass = effectiveSize
-    ? styles[`size${toPascalCase(effectiveSize)}` as keyof typeof styles]
+    ? styles[`size${sizeSuffix}` as keyof typeof styles]
     : undefined;
+
   const backgroundClass = effectiveBackground
     ? styles[`background${toPascalCase(effectiveBackground)}` as keyof typeof styles]
     : undefined;
+
   const alignClass = align
     ? styles[`align${toPascalCase(align)}` as keyof typeof styles]
     : undefined;
+
   const justifyClass = justify
     ? styles[`justify${toPascalCase(justify)}` as keyof typeof styles]
     : undefined;

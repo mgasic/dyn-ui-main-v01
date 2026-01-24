@@ -7,7 +7,7 @@
    COMPONENT TOKENS
    ============================================ */
 
-.dynLabelContainer {
+.container {
   /* Color tokens - semantic for auto theme switching */
   --dyn-label-text-color: var(--dyn-semantic-text);
   --dyn-label-text-color-secondary: var(--dyn-semantic-text-secondary);
@@ -33,7 +33,7 @@
    LABEL ELEMENT
    ============================================ */
 
-.dynLabel {
+.label {
   display: inline-block;
   margin-bottom: 0;
   font-family: inherit;
@@ -43,7 +43,7 @@
   transition: var(--dyn-label-transition);
 }
 
-.dynLabelText {
+.text {
   display: flex;
   align-items: center;
   gap: var(--dyn-label-gap);
@@ -53,19 +53,19 @@
    REQUIREMENT INDICATORS
    ============================================ */
 
-.dynLabelRequirement {
+.requirement {
   font-size: 0.875em;
   font-weight: normal;
   color: var(--dyn-label-text-color-secondary);
 }
 
-.dynLabelRequiredAsterisk {
+.asterisk {
   color: var(--dyn-label-text-color-required, #dc2626);
   font-weight: bold;
   margin-left: var(--dyn-label-gap, 0.25rem);
 }
 
-.dynLabelOptionalText {
+.optionalText {
   color: var(--dyn-label-text-color-secondary);
   font-style: italic;
   font-weight: normal;
@@ -75,7 +75,7 @@
    HELP TEXT
    ============================================ */
 
-.dynLabelHelpText {
+.helpText {
   font-size: var(--dyn-label-font-size-help);
   color: var(--dyn-label-text-color-secondary);
   line-height: 1.5;
@@ -86,13 +86,13 @@
    STATES
    ============================================ */
 
-.dynLabel.dynLabelDisabled {
+.label.disabled {
   color: var(--dyn-label-text-color-disabled);
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.dynLabel:focus-within .dynLabelText {
+.label:focus-within .text {
   color: var(--dyn-label-text-color-focus);
 }
 

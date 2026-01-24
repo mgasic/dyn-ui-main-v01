@@ -20,13 +20,13 @@ export const DynLabel = forwardRef<HTMLLabelElement, DynLabelProps>(({
   ...rest
 }, ref) => {
   const containerClasses = cn(
-    styles['dyn-label-container']
+    styles.container
   );
 
   const labelClasses = cn(
-    styles['dyn-label'],
-    disabled && styles['dyn-label--disabled'],
-    (required || optional) && styles['dyn-label--with-requirement'],
+    styles.label,
+    disabled && styles.disabled,
+    (required || optional) && styles.withRequirement,
     className
   );
 
@@ -34,8 +34,8 @@ export const DynLabel = forwardRef<HTMLLabelElement, DynLabelProps>(({
   const renderRequirementIndicator = () => {
     if (required) {
       return (
-        <span className={cn(styles['dyn-label-requirement'], styles['dyn-label--required'])}>
-          <span className={styles['dyn-label-required-asterisk']} aria-hidden="true">*</span>
+        <span className={cn(styles.requirement, styles.required)}>
+          <span className={styles.asterisk} aria-hidden="true">*</span>
         </span>
       );
     }
@@ -43,10 +43,10 @@ export const DynLabel = forwardRef<HTMLLabelElement, DynLabelProps>(({
     if (optional) {
       return (
         <span
-          className={cn(styles['dyn-label-requirement'], styles['dyn-label--optional'])}
+          className={cn(styles.requirement, styles.optional)}
           data-testid="optional-indicator"
         >
-          <span className={styles['dyn-label-optional-text']}>(optional)</span>
+          <span className={styles.optionalText}>(optional)</span>
         </span>
       );
     }
@@ -58,14 +58,14 @@ export const DynLabel = forwardRef<HTMLLabelElement, DynLabelProps>(({
     if (!helpText) return null;
 
     return (
-      <span className={styles['dyn-label-help-text']} id={htmlFor ? `${htmlFor}-help` : undefined}>
+      <span className={styles.helpText} id={htmlFor ? `${htmlFor}-help` : undefined}>
         {helpText}
       </span>
     );
   };
 
   const labelContent = (
-    <span className={styles['dyn-label-text']}>
+    <span className={styles.text}>
       {children}
       {renderRequirementIndicator()}
     </span>

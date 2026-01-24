@@ -12,6 +12,8 @@ export type ThemeSwitcherProps = {
   className?: string;
 };
 
+const toPascalCase = (value: string) => value.charAt(0).toUpperCase() + value.slice(1);
+
 export function ThemeSwitcher({
   themes,
   size = 'md',
@@ -30,7 +32,7 @@ export function ThemeSwitcher({
 
   const containerClasses = cn(
     styles.container,
-    styles[`rounded-${rounded}`],
+    styles[`rounded${toPascalCase(rounded)}` as keyof typeof styles],
     className
   );
 
@@ -53,7 +55,7 @@ export function ThemeSwitcher({
             onClick={() => handleThemeChange(t)}
             className={cn(
               styles.button,
-              styles[`size-${size}`],
+              styles[`size${toPascalCase(size)}` as keyof typeof styles],
               isActive && styles.active
             )}
           >

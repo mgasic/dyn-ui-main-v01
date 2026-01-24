@@ -44,9 +44,8 @@
   --dyn-tabs-transition: var(--dyn-responsiveTabs-animation-transitionFast, all 0.15s ease);
   --dyn-tabs-animation-duration: var(--dyn-duration-normal, 0.2s);
 
-  font-family: inherit;
-  position: relative;
-  width: 100%;
+  --dyn-tabs-font-family: var(--dyn-responsiveTabs-font-family, inherit);
+  --dyn-tabs-width: var(--dyn-responsiveTabs-width, 100%);
 }
 
 /* ============================================
@@ -170,13 +169,13 @@
    VERTICAL LAYOUT
    ============================================ */
 
-.orientation-vertical {
+.orientationVertical {
   display: flex;
   gap: 0;
   width: 100%;
 }
 
-.orientation-vertical .tabList {
+.orientationVertical .tabList {
   flex-direction: column;
   border-bottom: none;
   border-right: none;
@@ -186,27 +185,27 @@
   z-index: 1;
 }
 
-.nested.orientation-vertical .tabList {
+.nested.orientationVertical .tabList {
   gap: 0;
 }
 
-.nested.orientation-vertical .tab {
+.nested.orientationVertical .tab {
   margin-bottom: calc(-1 * var(--dyn-tabs-border-width-thin));
   border-radius: 0;
   /* Continuous vertical line for inactive tabs */
   border-right: var(--dyn-tabs-border-width) solid var(--dyn-tabs-nested-border);
 }
 
-.nested.orientation-vertical .tab:first-child {
+.nested.orientationVertical .tab:first-child {
   border-radius: var(--dyn-tabs-radius) 0 0 0;
 }
 
-.nested.orientation-vertical .tab:last-child {
+.nested.orientationVertical .tab:last-child {
   border-radius: 0 0 0 var(--dyn-tabs-radius);
   margin-bottom: 0;
 }
 
-.orientation-vertical .tab {
+.orientationVertical .tab {
   border-radius: var(--dyn-tabs-radius) 0 0 var(--dyn-tabs-radius);
   border: var(--dyn-tabs-border-width-thin) solid var(--dyn-tabs-border);
   border-right: none;
@@ -214,17 +213,17 @@
   text-align: left;
 }
 
-.orientation-vertical .tab:last-child {
+.orientationVertical .tab:last-child {
   border-bottom: var(--dyn-tabs-border-width-thin) solid var(--dyn-tabs-border);
 }
 
-.nested.orientation-vertical .activeTab {
+.nested.orientationVertical .activeTab {
   border-color: var(--dyn-tabs-nested-border);
   border-right-color: var(--dyn-tabs-nested-bg-active);
   border-bottom-color: var(--dyn-tabs-nested-border);
 }
 
-.orientation-vertical .activeTab {
+.orientationVertical .activeTab {
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-active);
   border-right: var(--dyn-tabs-border-width) solid var(--dyn-tabs-bg-active);
   border-left-width: var(--dyn-tabs-border-width-active);
@@ -233,11 +232,11 @@
   z-index: 3;
 }
 
-.orientation-vertical .panelContainer {
+.orientationVertical .panelContainer {
   flex: 1;
 }
 
-.orientation-vertical .panel {
+.orientationVertical .panel {
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
   border-radius: 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   min-height: 300px;
@@ -380,7 +379,7 @@
     padding: var(--dyn-spacing-md, 16px);
   }
 
-  .orientation-vertical .tabList {
+  .orientationVertical .tabList {
     min-width: var(--dyn-responsiveTabs-spacing-vertical-tabListMinWidthMobile, 150px);
   }
 }
@@ -400,11 +399,11 @@
     padding: var(--dyn-spacing-sm, 8px) var(--dyn-spacing-md, 16px);
   }
 
-  .orientation-vertical {
+  .orientationVertical {
     flex-direction: column;
   }
 
-  .orientation-vertical .tabList {
+  .orientationVertical .tabList {
     border-right: none;
     border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
     min-width: auto;
@@ -412,14 +411,14 @@
     margin-bottom: calc(-1 * var(--dyn-tabs-border-width));
   }
 
-  .orientation-vertical .tab {
+  .orientationVertical .tab {
     border-radius: var(--dyn-tabs-radius) var(--dyn-tabs-radius) 0 0;
     margin-right: 0;
     border: var(--dyn-tabs-border-width-thin) solid var(--dyn-tabs-border);
     border-bottom: none;
   }
 
-  .orientation-vertical .activeTab {
+  .orientationVertical .activeTab {
     border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-active);
     border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-bg-active);
     margin-right: 0;
@@ -427,7 +426,7 @@
     border-left-width: var(--dyn-tabs-border-width);
   }
 
-  .orientation-vertical .panel {
+  .orientationVertical .panel {
     border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   }
 }

@@ -7,8 +7,13 @@
    COMPONENT TOKENS (Layer 2)
    Per COMPLETE_KNOWLEDGE_BASE.md lines 320-336
    ================================================ */
-:root {
-  /* Color tokens - using semantic tokens for auto theme switching */
+/* :root block removed - moved to .root for better scoping */
+
+/* ================================================
+   BASE STYLES
+   ================================================ */
+.root {
+  /* Component Tokens (moved from :root) */
   --dyn-button-bg: var(--dyn-theme-primary, #3b82f6);
   --dyn-button-color: var(--dyn-semantic-text-inverse, #ffffff);
   --dyn-button-border: var(--dyn-theme-primary, #3b82f6);
@@ -45,12 +50,6 @@
   --dyn-button-shadow-focus: var(--dyn-semantic-border-focus, #3b82f6);
   --dyn-button-transition: var(--dyn-transition-fast, 0.15s ease);
   --dyn-button-opacity-disabled: 0.56;
-}
-
-/* ================================================
-   BASE STYLES
-   ================================================ */
-.root {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -70,12 +69,21 @@
   cursor: pointer;
   user-select: none;
   box-shadow: var(--dyn-button-shadow);
+  appearance: none; /* Reset native button style */
+  -webkit-appearance: none;
+  -moz-appearance: none;
   transition:
     background-color var(--dyn-button-transition),
     color var(--dyn-button-transition),
     border-color var(--dyn-button-transition),
     box-shadow var(--dyn-button-transition),
     transform var(--dyn-button-transition);
+}
+
+/* Firefox-specific reset for button inner border/padding */
+.root::-moz-focus-inner {
+  border: 0;
+  padding: 0;
 }
 
 /* ================================================
@@ -116,7 +124,10 @@
 /* ================================================
    KIND VARIANTS (override tokens only)
    ================================================ */
-/* kindPrimary uses default tokens - no override needed */
+/* kindPrimary uses default tokens - empty class to satisfy mapping */
+.kindPrimary {
+  content: ""; /* Keeps class generated for TSX mapping */
+}
 
 .kindSecondary {
   --dyn-button-bg: transparent;

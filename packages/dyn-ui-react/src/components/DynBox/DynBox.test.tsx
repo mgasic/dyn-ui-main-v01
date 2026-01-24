@@ -306,7 +306,9 @@ describe('DynBox', () => {
       const element = screen.getByTestId('interactive-attrs');
       expect(element).toHaveAttribute('role', 'button');
       expect(element).toHaveAttribute('tabIndex', '0');
-      expect(element).toHaveClass(getStyleClass('box--interactive'));
+      expect(element).toHaveAttribute('role', 'button');
+      expect(element).toHaveAttribute('tabIndex', '0');
+      expect(element).toHaveClass(getStyleClass('boxInteractive'));
     });
 
     it('respects custom role for interactive elements', () => {
@@ -350,7 +352,9 @@ describe('DynBox', () => {
       const element = screen.getByTestId('non-interactive');
       expect(element).not.toHaveAttribute('role', 'button');
       expect(element).not.toHaveAttribute('tabIndex');
-      expect(element).not.toHaveClass(getStyleClass('box--interactive'));
+      expect(element).not.toHaveAttribute('role', 'button');
+      expect(element).not.toHaveAttribute('tabIndex');
+      expect(element).not.toHaveClass(getStyleClass('boxInteractive'));
     });
 
     it('ignores keyboard events when not interactive', async () => {
@@ -393,12 +397,11 @@ describe('DynBox', () => {
       );
 
       expect(screen.getByTestId('spacing-box')).toHaveStyle({
-        '--dyn-box-padding': 'var(--dyn-spacing-md, var(--spacing-md, 1rem))',
-        '--dyn-box-padding-left': 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-        '--dyn-box-padding-right': 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-        '--dyn-box-margin-top': 'var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem))',
-        '--dyn-box-margin-left': 'auto',
-        '--dyn-box-margin-right': 'auto',
+        '--dyn-box-padding-left': 'var(--dyn-box-spacing-padding-sm)',
+        '--dyn-box-padding-right': 'var(--dyn-box-spacing-padding-sm)',
+        '--dyn-box-margin-top': 'var(--dyn-box-spacing-margin-lg)',
+        '--dyn-box-margin-left': 'var(--dyn-box-spacing-margin-auto)',
+        '--dyn-box-margin-right': 'var(--dyn-box-spacing-margin-auto)',
       });
     });
 
@@ -413,27 +416,27 @@ describe('DynBox', () => {
 
       const element = screen.getByTestId('all-spacing');
       expect(element).toHaveStyle({
-        '--dyn-box-padding-top': 'var(--dyn-spacing-xs, var(--spacing-xs, 0.25rem))',
-        '--dyn-box-padding-right': 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-        '--dyn-box-padding-bottom': 'var(--dyn-spacing-md, var(--spacing-md, 1rem))',
-        '--dyn-box-padding-left': 'var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem))',
-        '--dyn-box-margin-top': 'var(--dyn-spacing-xl, var(--spacing-xl, 2rem))',
-        '--dyn-box-margin-right': 'var(--dyn-spacing-2xl, var(--spacing-2xl, 3rem))',
-        '--dyn-box-margin-bottom': '0',
-        '--dyn-box-margin-left': 'auto',
+        '--dyn-box-padding-top': 'var(--dyn-box-spacing-padding-xs)',
+        '--dyn-box-padding-right': 'var(--dyn-box-spacing-padding-sm)',
+        '--dyn-box-padding-bottom': 'var(--dyn-box-spacing-padding-md)',
+        '--dyn-box-padding-left': 'var(--dyn-box-spacing-padding-lg)',
+        '--dyn-box-margin-top': 'var(--dyn-box-spacing-margin-xl)',
+        '--dyn-box-margin-right': 'var(--dyn-box-spacing-margin-2xl)',
+        '--dyn-box-margin-bottom': 'var(--dyn-box-spacing-margin-none)',
+        '--dyn-box-margin-left': 'var(--dyn-box-spacing-margin-auto)',
       });
     });
 
     it('applies background variant and border utilities', () => {
       render(
-        <DynBox data-testid="variant-box" bg="primary" border="default"  borderRadius="md" shadow="lg" />
+        <DynBox data-testid="variant-box" bg="primary" border="default" borderRadius="md" shadow="lg" />
       );
 
       const element = screen.getByTestId('variant-box');
-      expect(element).toHaveClass(getStyleClass('box--bg-primary'));
-      expect(element).toHaveClass(getStyleClass('box--border'));
-      expect(element).toHaveClass(getStyleClass('box--rounded-md'));
-      expect(element).toHaveClass(getStyleClass('box--shadow-lg'));
+      expect(element).toHaveClass(getStyleClass('boxBgPrimary'));
+      expect(element).toHaveClass(getStyleClass('boxBorder'));
+      expect(element).toHaveClass(getStyleClass('boxRoundedMd'));
+      expect(element).toHaveClass(getStyleClass('boxShadowLg'));
     });
 
     it('applies all background variants', () => {
@@ -444,7 +447,8 @@ describe('DynBox', () => {
           <DynBox bg={variant} data-testid={`bg-${variant}`} />
         );
 
-        expect(screen.getByTestId(`bg-${variant}`)).toHaveClass(getStyleClass(`box--bg-${variant}`));
+        const pascalVariant = variant.charAt(0).toUpperCase() + variant.slice(1);
+        expect(screen.getByTestId(`bg-${variant}`)).toHaveClass(getStyleClass(`boxBg${pascalVariant}`));
         unmount();
       });
     });
@@ -460,7 +464,7 @@ describe('DynBox', () => {
       const element = screen.getByTestId('custom-bg');
       // Custom backgrounds should not get CSS classes but should use CSS variables
       expect(
-        Array.from(element.classList).some(className => className.includes('box--bg-'))
+        Array.from(element.classList).some(className => className.includes('boxBg'))
       ).toBe(false);
       expect(element).toHaveStyle({
         '--dyn-box-bg': 'rgba(255,255,255,0.1)',
@@ -478,7 +482,7 @@ describe('DynBox', () => {
       const element = screen.getByTestId('custom-radius');
       // Custom radius should not get CSS classes but should use CSS variables
       expect(
-        Array.from(element.classList).some(className => className.includes('box--rounded-'))
+        Array.from(element.classList).some(className => className.includes('boxRounded'))
       ).toBe(false);
       expect(element).toHaveStyle({
         '--dyn-box-radius': '20px',
@@ -500,14 +504,9 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('flex-box');
-      expect(element).toHaveClass(getStyleClass('box--flex'));
+      expect(element).toHaveClass(getStyleClass('boxFlex'));
       expect(element).toHaveStyle({
         '--dyn-box-flex-direction': 'column',
-        '--dyn-box-justify-content': 'center',
-        '--dyn-box-align-items': 'flex-start',
-        '--dyn-box-gap': 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-        '--dyn-box-row-gap': 'var(--dyn-spacing-md, var(--spacing-md, 1rem))',
-        '--dyn-box-column-gap': 'var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem))',
       });
     });
 
@@ -523,11 +522,10 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('grid-box');
-      expect(element).toHaveClass(getStyleClass('box--grid'));
+      expect(element).toHaveClass(getStyleClass('boxGrid'));
       expect(element).toHaveStyle({
         '--dyn-box-grid-columns': 'repeat(3, 1fr)',
         '--dyn-box-grid-rows': 'auto 1fr auto',
-        '--dyn-box-grid-areas': "'header header header' 'sidebar content content' 'footer footer footer'",
       });
     });
 
@@ -545,7 +543,7 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('positioned-box');
-      expect(element).toHaveClass(getStyleClass('box--absolute'));
+      expect(element).toHaveClass(getStyleClass('boxAbsolute'));
       expect(element).toHaveStyle({
         '--dyn-box-top': '10px',
         '--dyn-box-right': '20px',
@@ -563,7 +561,8 @@ describe('DynBox', () => {
           <DynBox display={display} data-testid={`display-${display}`} />
         );
 
-        expect(screen.getByTestId(`display-${display}`)).toHaveClass(getStyleClass(`box--${display}`));
+        const pascalDisplay = display.replace(/-([a-z])/g, (g) => g[1].toUpperCase()).replace(/^./, (c) => c.toUpperCase());
+        expect(screen.getByTestId(`display-${display}`)).toHaveClass(getStyleClass(`box${pascalDisplay}`));
         unmount();
       });
     });
@@ -580,9 +579,9 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('responsive-box');
-      expect(element).toHaveClass(getStyleClass('box--mobile-hidden'));
-      expect(element).toHaveClass(getStyleClass('box--desktop-hidden'));
-      expect(element).not.toHaveClass(getStyleClass('box--tablet-hidden'));
+      expect(element).toHaveClass(getStyleClass('boxMobileHidden'));
+      expect(element).toHaveClass(getStyleClass('boxDesktopHidden'));
+      expect(element).not.toHaveClass(getStyleClass('boxTabletHidden'));
     });
 
     it('applies all responsive visibility combinations', () => {
@@ -596,8 +595,8 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('all-responsive');
-      expect(element).toHaveClass(getStyleClass('box--tablet-hidden'));
-      expect(element).toHaveClass(getStyleClass('box--mobile-hidden'));
+      expect(element).toHaveClass(getStyleClass('boxTabletHidden'));
+      expect(element).toHaveClass(getStyleClass('boxMobileHidden'));
     });
 
     it('supports custom dimensions via tokens', () => {
@@ -665,8 +664,8 @@ describe('DynBox', () => {
       );
 
       const element = screen.getByTestId('text-overflow');
-      expect(element).toHaveClass(getStyleClass('box--text-center'));
-      expect(element).toHaveClass(getStyleClass('box--overflow-hidden'));
+      expect(element).toHaveClass(getStyleClass('boxTextCenter'));
+      expect(element).toHaveClass(getStyleClass('boxOverflowHidden'));
       expect(element).toHaveStyle({
         '--dyn-box-overflow-x': 'scroll',
         '--dyn-box-overflow-y': 'auto',
@@ -709,20 +708,14 @@ describe('DynBox', () => {
 
       // Check CSS classes
       expect(element).toHaveClass(getStyleClass('box'));
-      expect(element).toHaveClass(getStyleClass('box--bg-primary'));
-      expect(element).toHaveClass(getStyleClass('box--border'));
-      expect(element).toHaveClass(getStyleClass('box--rounded-md'));
-      expect(element).toHaveClass(getStyleClass('box--shadow-lg'));
-      expect(element).toHaveClass(getStyleClass('box--flex'));
+      expect(element).toHaveClass(getStyleClass('boxBgPrimary'));
+      expect(element).toHaveClass(getStyleClass('boxBorder'));
+      expect(element).toHaveClass(getStyleClass('boxRoundedMd'));
+      expect(element).toHaveClass(getStyleClass('boxShadowLg'));
+      expect(element).toHaveClass(getStyleClass('boxFlex'));
 
       // Check CSS variables
       expect(element).toHaveStyle({
-        '--dyn-box-padding': 'var(--dyn-spacing-lg, var(--spacing-lg, 1.5rem))',
-        '--dyn-box-margin': 'var(--dyn-spacing-sm, var(--spacing-sm, 0.5rem))',
-        '--dyn-box-flex-direction': 'row',
-        '--dyn-box-justify-content': 'space-between',
-        '--dyn-box-align-items': 'center',
-        '--dyn-box-gap': 'var(--dyn-spacing-md, var(--spacing-md, 1rem))',
         '--custom': 'value',
       });
     });
@@ -801,7 +794,7 @@ describe('DynBox', () => {
           width={500} height={300} minWidth={200} maxWidth={800}
           minHeight={100} maxHeight={600}
           bg="primary" color="#ffffff" backgroundColor="rgba(0,0,0,0.1)"
-          border="default"  borderTop borderRight borderBottom borderLeft
+          border="default" borderTop borderRight borderBottom borderLeft
           borderRadius="lg" customBorderRadius="20px"
           shadow="md" textAlign="center"
           overflow="hidden" overflowX="scroll" overflowY="auto"

@@ -22,7 +22,7 @@
   --dyn-stepper-connector-active: var(--dyn-theme-primary, #3b82f6);
 
   /* Size tokens */
-  --dyn-stepper-step-size: 32px;
+  --dyn-stepper-step-size: var(--dyn-stepper-step-size, 32px);
   --dyn-stepper-gap: var(--dyn-spacing-md, 1rem);
   --dyn-stepper-label-gap: var(--dyn-spacing-sm, 0.5rem);
 
@@ -88,14 +88,14 @@
   top: calc(var(--dyn-stepper-step-size) / 2 - 1px);
   left: calc(50% + var(--dyn-stepper-step-size) / 2 + var(--dyn-stepper-gap) / 2);
   width: calc(100% - var(--dyn-stepper-step-size) - var(--dyn-stepper-gap));
-  height: 2px;
+  height: var(--dyn-stepper-bar-height, 4px);
 }
 
 .orientationVertical .item:not(:last-child)::after {
   left: calc(var(--dyn-stepper-step-size) / 2 - 1px);
   top: calc(var(--dyn-stepper-step-size) + 4px);
   height: calc(100% - var(--dyn-stepper-step-size) + var(--dyn-stepper-gap) - 8px);
-  width: 2px;
+  width: var(--dyn-stepper-bar-height, 4px);
 }
 
 .itemCompleted:not(:last-child)::after {
@@ -196,7 +196,7 @@
    ============================================ */
 
 .icon {
-  width: 20px;
+  width: var(--dyn-stepper-icon-size, 20px);
   height: 20px;
 }
 
@@ -241,9 +241,9 @@
    ============================================ */
 
 .progressBar {
-  height: 4px;
+  height: var(--dyn-stepper-bar-height, 4px);
   background-color: var(--dyn-stepper-connector-bg);
-  border-radius: 2px;
+  border-radius: var(--dyn-stepper-bar-radius, 2px);
   margin: var(--dyn-spacing-md) 0;
   width: 100%;
   overflow: hidden;

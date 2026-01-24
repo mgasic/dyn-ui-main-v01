@@ -8,15 +8,15 @@
           "description": "Default font family for table"
         },
         "fontSize": {
-          "value": "14px",
+          "value": "{size.font.size.sm.value}",
           "description": "Default font size for table cells"
         },
         "backgroundColor": {
-          "value": "#ffffff",
+          "value": "{color.semantic.surface.value}",
           "description": "Table background color"
         },
         "textColor": {
-          "value": "#333333",
+          "value": "{color.semantic.text.value}",
           "description": "Table text color"
         }
       },
@@ -27,7 +27,7 @@
             "description": "Small size cell padding"
           },
           "fontSize": {
-            "value": "12px",
+            "value": "{size.font.size.xs.value}",
             "description": "Small size font size"
           }
         },
@@ -37,7 +37,7 @@
             "description": "Medium size cell padding (default)"
           },
           "fontSize": {
-            "value": "14px",
+            "value": "{size.font.size.sm.value}",
             "description": "Medium size font size"
           }
         },
@@ -47,67 +47,67 @@
             "description": "Large size cell padding"
           },
           "fontSize": {
-            "value": "16px",
+            "value": "{size.font.size.md.value}",
             "description": "Large size font size"
           }
         }
       },
       "header": {
         "backgroundColor": {
-          "value": "#f5f5f5",
+          "value": "{color.neutral.light.100.value}",
           "description": "Header cell background color"
         },
         "textColor": {
-          "value": "#666666",
+          "value": "{color.semantic.text-secondary.value}",
           "description": "Header cell text color"
         },
         "fontWeight": {
-          "value": "600",
+          "value": "{size.font.weight.semibold.value}",
           "description": "Header cell font weight"
         },
         "borderColor": {
-          "value": "#e0e0e0",
+          "value": "{color.semantic.border.value}",
           "description": "Header border color"
         },
         "borderWidth": {
-          "value": "2px",
+          "value": "{size.border.width.md.value}",
           "description": "Header bottom border width"
         }
       },
       "border": {
         "color": {
-          "value": "#e0e0e0",
+          "value": "{color.semantic.border.value}",
           "description": "Border color for bordered variant"
         },
         "width": {
-          "value": "1px",
+          "value": "{size.border.width.sm.value}",
           "description": "Border width"
         }
       },
       "row": {
         "striped": {
           "backgroundColor": {
-            "value": "#f9f9f9",
+            "value": "{color.neutral.light.50.value}",
             "description": "Striped row background color"
           }
         },
         "hover": {
           "backgroundColor": {
-            "value": "#f5f5f5",
+            "value": "{color.semantic.surface-hover.value}",
             "description": "Row hover background color"
           },
           "transition": {
-            "value": "background-color 0.15s ease",
+            "value": "background-color {animation.transition.fast.value}",
             "description": "Row hover transition"
           }
         },
         "selected": {
           "backgroundColor": {
-            "value": "#e3f2fd",
+            "value": "{color.theme.primary-subtle.value}",
             "description": "Selected row background color"
           },
           "stripedBackgroundColor": {
-            "value": "#bbdefb",
+            "value": "{color.theme.primary-subtle.value}",
             "description": "Selected striped row background color"
           }
         }
@@ -118,15 +118,15 @@
           "description": "Sortable cell cursor"
         },
         "hoverBackgroundColor": {
-          "value": "#ececec",
+          "value": "{color.semantic.surface-hover.value}",
           "description": "Sortable cell hover background"
         },
         "activeBackgroundColor": {
-          "value": "#e3f2fd",
+          "value": "{color.theme.primary-subtle.value}",
           "description": "Active sorted cell background"
         },
         "activeTextColor": {
-          "value": "#1976d2",
+          "value": "{color.theme.primary.value}",
           "description": "Active sorted cell text color"
         }
       },
@@ -137,82 +137,82 @@
             "description": "Default button padding"
           },
           "fontSize": {
-            "value": "12px",
+            "value": "{size.font.size.xs.value}",
             "description": "Default button font size"
           },
           "fontWeight": {
-            "value": "500",
+            "value": "{size.font.weight.medium.value}",
             "description": "Default button font weight"
           },
           "backgroundColor": {
-            "value": "#ffffff",
+            "value": "{color.semantic.surface.value}",
             "description": "Default button background"
           },
           "textColor": {
-            "value": "#333333",
+            "value": "{color.semantic.text.value}",
             "description": "Default button text color"
           },
           "borderColor": {
-            "value": "#dddddd",
+            "value": "{color.semantic.border.value}",
             "description": "Default button border color"
           },
           "borderRadius": {
-            "value": "4px",
+            "value": "{size.border.radius.sm.value}",
             "description": "Default button border radius"
           },
           "transition": {
-            "value": "all 0.2s ease",
+            "value": "{animation.transition.normal.value}",
             "description": "Default button transition"
           }
         },
         "primary": {
           "backgroundColor": {
-            "value": "#1976d2",
+            "value": "{color.theme.primary.value}",
             "description": "Primary button background"
           },
           "textColor": {
-            "value": "#ffffff",
+            "value": "{color.semantic.text-inverse.value}",
             "description": "Primary button text color"
           },
           "hoverBackgroundColor": {
-            "value": "#1565c0",
+            "value": "{color.theme.primary-dark.value}",
             "description": "Primary button hover background"
           }
         },
         "danger": {
           "backgroundColor": {
-            "value": "#d32f2f",
+            "value": "{color.feedback.negative.default.value}",
             "description": "Danger button background"
           },
           "textColor": {
-            "value": "#ffffff",
+            "value": "{color.semantic.text-inverse.value}",
             "description": "Danger button text color"
           },
           "hoverBackgroundColor": {
-            "value": "#c62828",
+            "value": "{color.feedback.negative.dark.value}",
             "description": "Danger button hover background"
           }
         }
       },
       "pagination": {
         "padding": {
-          "value": "16px",
+          "value": "{size.spacing.md.value}",
           "description": "Pagination padding"
         },
         "gap": {
-          "value": "12px",
+          "value": "{size.spacing.sm.value}",
           "description": "Pagination gap between elements"
         },
         "backgroundColor": {
-          "value": "#fafafa",
+          "value": "{color.neutral.light.50.value}",
           "description": "Pagination background color"
         },
         "borderColor": {
-          "value": "#e0e0e0",
+          "value": "{color.semantic.border.value}",
           "description": "Pagination border color"
         },
         "fontSize": {
-          "value": "12px",
+          "value": "{size.font.size.xs.value}",
           "description": "Pagination font size"
         }
       },
@@ -222,39 +222,39 @@
           "description": "Checkbox size"
         },
         "focusOutlineColor": {
-          "value": "#1976d2",
+          "value": "{color.theme.primary.value}",
           "description": "Checkbox focus outline color"
         },
         "focusOutlineWidth": {
-          "value": "2px",
+          "value": "{size.border.width.md.value}",
           "description": "Checkbox focus outline width"
         }
       },
       "empty": {
         "padding": {
-          "value": "40px 16px",
+          "value": "40px {size.spacing.md.value}",
           "description": "Empty state padding"
         },
         "textColor": {
-          "value": "#999999",
+          "value": "{color.semantic.text-muted.value}",
           "description": "Empty state text color"
         },
         "fontSize": {
-          "value": "14px",
+          "value": "{size.font.size.sm.value}",
           "description": "Empty state font size"
         }
       },
       "loading": {
         "padding": {
-          "value": "40px 16px",
+          "value": "40px {size.spacing.md.value}",
           "description": "Loading state padding"
         },
         "textColor": {
-          "value": "#666666",
+          "value": "{color.semantic.text-secondary.value}",
           "description": "Loading state text color"
         },
         "fontSize": {
-          "value": "14px",
+          "value": "{size.font.size.sm.value}",
           "description": "Loading state font size"
         }
       }

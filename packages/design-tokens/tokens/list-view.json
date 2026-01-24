@@ -9,7 +9,7 @@
                         "description": "Minimum height for small list items"
                     },
                     "md": {
-                        "value": "48px",
+                        "value": "{size.spacing.2xl.value}",
                         "type": "dimension",
                         "description": "Minimum height for medium list items"
                     },
@@ -35,17 +35,17 @@
             "border": {
                 "width": {
                     "default": {
-                        "value": "1px",
+                        "value": "{size.border.width.sm.value}",
                         "type": "dimension",
                         "description": "Default border width for list items"
                     },
                     "active": {
-                        "value": "2px",
+                        "value": "{size.border.width.md.value}",
                         "type": "dimension",
                         "description": "Border width for active/focused items"
                     },
                     "highContrast": {
-                        "value": "3px",
+                        "value": "{size.border.width.lg.value}",
                         "type": "dimension",
                         "description": "Border width for high contrast mode"
                     }
@@ -53,7 +53,7 @@
             },
             "focus": {
                 "outlineWidth": {
-                    "value": "2px",
+                    "value": "{size.border.width.md.value}",
                     "type": "dimension",
                     "description": "Focus outline width"
                 },
@@ -65,7 +65,7 @@
             },
             "divider": {
                 "height": {
-                    "value": "1px",
+                    "value": "{size.border.width.sm.value}",
                     "type": "dimension",
                     "description": "Height of divider between items"
                 }

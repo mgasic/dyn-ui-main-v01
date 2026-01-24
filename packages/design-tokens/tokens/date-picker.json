@@ -14,7 +14,7 @@
                     }
                 },
                 "paddingRight": {
-                    "value": "48px"
+                    "value": "{size.spacing.2xl.value}"
                 }
             },
             "calendar": {
@@ -22,10 +22,10 @@
                     "value": "280px"
                 },
                 "padding": {
-                    "value": "12px"
+                    "value": "{size.spacing.sm.value}"
                 },
                 "gap": {
-                    "value": "4px"
+                    "value": "{size.spacing.xs.value}"
                 },
                 "headerHeight": {
                     "value": "40px"
@@ -36,10 +36,10 @@
                     "value": "32px"
                 },
                 "fontSize": {
-                    "value": "12px"
+                    "value": "{size.font.size.xs.value}"
                 },
                 "color": {
-                    "value": "#757575"
+                    "value": "{color.semantic.text-secondary.value}"
                 }
             },
             "day": {
@@ -47,51 +47,51 @@
                     "value": "36px"
                 },
                 "fontSize": {
-                    "value": "14px"
+                    "value": "{size.font.size.sm.value}"
                 },
                 "radius": {
-                    "value": "4px"
+                    "value": "{size.border.radius.sm.value}"
                 },
                 "transition": {
-                    "value": "0.1s ease"
+                    "value": "{animation.transition.fast.value}"
                 },
                 "default": {
                     "bg": {
                         "value": "transparent"
                     },
                     "color": {
-                        "value": "#212121"
+                        "value": "{color.semantic.text.value}"
                     }
                 },
                 "hover": {
                     "bg": {
-                        "value": "#f5f5f5"
+                        "value": "{color.semantic.surface-hover.value}"
                     }
                 },
                 "today": {
                     "borderColor": {
-                        "value": "#007bff"
+                        "value": "{color.theme.primary.value}"
                     },
                     "borderWidth": {
-                        "value": "2px"
+                        "value": "{size.border.width.md.value}"
                     }
                 },
                 "selected": {
                     "bg": {
-                        "value": "#007bff"
+                        "value": "{color.theme.primary.value}"
                     },
                     "color": {
-                        "value": "#ffffff"
+                        "value": "{color.semantic.text-inverse.value}"
                     }
                 },
                 "disabled": {
                     "opacity": {
-                        "value": "0.4"
+                        "value": "{layout.opacity.40.value}"
                     }
                 },
                 "outside": {
                     "color": {
-                        "value": "#bdbdbd"
+                        "value": "{color.semantic.text-muted.value}"
                     }
                 }
             },
@@ -100,7 +100,7 @@
                     "value": "32px"
                 },
                 "iconSize": {
-                    "value": "16px"
+                    "value": "{size.font.size.md.value}"
                 }
             },
             "responsive": {

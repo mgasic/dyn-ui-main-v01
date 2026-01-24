@@ -4,6 +4,19 @@ import type { DynFlexProps } from './DynFlex.types';
 import { DYN_FLEX_DEFAULT_PROPS } from './DynFlex.types';
 import styles from './DynFlex.module.css';
 
+const getStyleClass = (name: string) => (styles as Record<string, string>)[name] || '';
+const toPascalCase = (s: string) => s ? s.replace(/(^\w|-\w)/g, (c) => c.replace('-', '').toUpperCase()) : '';
+
+// Valid token keys from flex.json (approximate list for gap/padding)
+const TOKEN_KEYS = ['none', '2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'];
+const isToken = (v?: string | number) => v !== undefined && TOKEN_KEYS.includes(String(v));
+
+// Layout enums
+const DIRECTIONS = ['row', 'column', 'row-reverse', 'column-reverse'];
+const WRAPS = ['nowrap', 'wrap', 'wrap-reverse'];
+const ALIGNS = ['start', 'center', 'end', 'stretch', 'baseline'];
+const JUSTIFIES = ['start', 'center', 'end', 'between', 'around', 'evenly'];
+
 export const DynFlex = forwardRef(
     <E extends React.ElementType = 'div'>(
         {
@@ -16,6 +29,7 @@ export const DynFlex = forwardRef(
             inline = DYN_FLEX_DEFAULT_PROPS.inline,
             padding,
             className,
+            style,
             children,
             ...rest
         }: DynFlexProps<E>,
@@ -25,38 +39,38 @@ export const DynFlex = forwardRef(
 
         const classes = cn(
             styles.flex,
-            direction === 'column' && styles.flexColumn,
-            wrap === 'wrap' && styles.flexWrap,
             inline && styles.flexInline,
 
-            // Gap mapping
-            gap === 'xs' && styles.gapXSmall,
-            gap === 'sm' && styles.gapSmall,
-            gap === 'md' && styles.gapMedium,
-            gap === 'lg' && styles.gapLarge,
-            gap === 'xl' && styles.gapXLarge,
-            gap === '2xl' && styles.gap2XLarge,
+            // Direction
+            direction && DIRECTIONS.includes(direction) && getStyleClass(`flex${toPascalCase(direction)}`),
 
-            // Align mapping
-            align === 'center' && styles.alignCenter,
-            align === 'start' && styles.alignStart,
-            align === 'end' && styles.alignEnd,
-            align === 'baseline' && styles.alignBaseline,
-            align === 'stretch' && styles.alignStretch,
+            // Wrap
+            wrap && WRAPS.includes(wrap) && getStyleClass(`flex${toPascalCase(wrap)}`),
 
-            // Justify mapping
-            justify === 'start' && styles.justifyStart,
-            justify === 'center' && styles.justifyCenter,
-            justify === 'end' && styles.justifyEnd,
-            justify === 'between' && styles.justifyBetween,
-            justify === 'around' && styles.justifyAround,
-            justify === 'evenly' && styles.justifyEvenly,
+            // Alignment
+            align && ALIGNS.includes(align) && getStyleClass(`align${toPascalCase(align)}`),
+            justify && JUSTIFIES.includes(justify) && getStyleClass(`justify${toPascalCase(justify)}`),
+
+            // Gap & Padding (Tokens)
+            gap && isToken(gap) && getStyleClass(`gap${toPascalCase(String(gap))}`),
+            padding && isToken(padding) && getStyleClass(`padding${toPascalCase(String(padding))}`),
 
             className
         );
 
+        // Dynamic Overrides
+        const styleVars: React.CSSProperties = {
+            ...(direction && !DIRECTIONS.includes(direction) ? { '--dyn-flex-flex-direction': direction } : {}),
+            ...(wrap && !WRAPS.includes(wrap) ? { '--dyn-flex-flex-wrap': wrap } : {}),
+            ...(align && !ALIGNS.includes(align) ? { '--dyn-flex-align-items': align } : {}),
+            ...(justify && !JUSTIFIES.includes(justify) ? { '--dyn-flex-justify-content': justify } : {}),
+            ...(gap && !isToken(gap) ? { '--dyn-flex-gap': typeof gap === 'number' ? `${gap}px` : gap } : {}),
+            ...(padding && !isToken(padding) ? { '--dyn-flex-padding': typeof padding === 'number' ? `${padding}px` : padding } : {}),
+            ...style,
+        } as React.CSSProperties;
+
         return (
-            <Component ref={ref} className={classes} {...rest}>
+            <Component ref={ref} className={classes} style={styleVars} {...rest}>
                 {children}
             </Component>
         );

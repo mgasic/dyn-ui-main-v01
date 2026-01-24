@@ -1,0 +1,20 @@
+{
+  "dyn": {
+    "treeView": {
+      "item": {
+        "minHeight": {
+          "value": "{size.spacing.xl.value}",
+          "type": "dimension",
+          "description": "Minimum height of tree view items"
+        }
+      },
+      "icon": {
+        "size": {
+          "value": "20px",
+          "type": "dimension",
+          "description": "Size of tree view icons"
+        }
+      }
+    }
+  }
+}

@@ -65,7 +65,7 @@
         "description": "Inverse text color for use on primary/dark backgrounds"
       },
       "border": {
-        "value": "{color.neutral.light.200.value}",
+        "value": "{color.neutral.light.300.value}",
         "darkTheme": {
           "value": "{color.neutral.dark.800.value}"
         },

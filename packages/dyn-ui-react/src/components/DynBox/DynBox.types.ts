@@ -18,7 +18,7 @@ export type BoxDisplay =
   | 'none';
 
 export type BoxPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
-export type SpacingSize = '0' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'auto';
+export type SpacingSize = 'none' | '0' | '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | 'auto';
 
 export type BackgroundVariant = 'surface' | 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'none' | string;
 export type BorderRadius = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'full' | string;
@@ -53,8 +53,8 @@ type PolymorphicComponentProps<E extends ElementType, P> = P &
 
 export interface DynBoxOwnProps
   extends BaseComponentProps,
-    AccessibilityProps,
-    ResponsiveVisibilityProps {
+  AccessibilityProps,
+  ResponsiveVisibilityProps {
   display?: BoxDisplay;
   position?: BoxPosition;
 

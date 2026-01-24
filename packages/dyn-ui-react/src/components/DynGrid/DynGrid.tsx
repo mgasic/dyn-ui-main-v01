@@ -27,9 +27,9 @@ const cellAlignClassMap: Record<'center' | 'right', string> = {
 };
 
 const sizeClassNameMap: Record<NonNullable<DynGridProps['size']>, string | undefined> = {
-  small: styles.sizeSmall,
+  small: styles.sizeSm,
   medium: undefined,
-  large: styles.sizeLarge,
+  large: styles.sizeLg,
 };
 
 const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
@@ -356,8 +356,8 @@ const DynGrid = forwardRef<HTMLDivElement, DynGridProps>((props, ref) => {
                         ? direction === 'asc'
                           ? 'ascending'
                           : direction === 'desc'
-                          ? 'descending'
-                          : 'none'
+                            ? 'descending'
+                            : 'none'
                         : undefined
                     }
                     scope="col"

@@ -110,7 +110,7 @@ describe('DynGrid', () => {
     const { container } = render(
       <DynGrid columns={mockColumns} data={mockData} size="large" />
     );
-    expect(container.firstChild).toHaveClass(styles.sizeLarge!);
+    expect(container.firstChild).toHaveClass(styles.sizeLg!);
   });
 
   it('applies styling variants', () => {

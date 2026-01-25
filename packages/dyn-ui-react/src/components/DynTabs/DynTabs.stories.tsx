@@ -352,7 +352,7 @@ export const DarkTheme: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ 
+      <div style={{
         backgroundColor: 'var(--dyn-color-surface-dark, #111827)',
         color: 'var(--dyn-color-text-primary-dark, #f9fafb)',
         padding: '2rem',
@@ -367,21 +367,49 @@ export const DarkTheme: Story = {
 
 // Scrollable tabs
 export const ScrollableTabs: Story = {
+  render: (args) => (
+    <div style={{ display: 'grid', gap: '3rem' }}>
+      <div>
+        <h4>1. Ograničena širina (400px fixed)</h4>
+        <p style={{ fontSize: '0.8rem', color: '#666', marginBottom: '1rem' }}>
+          Demonstracija skrolovanja u malom kontejneru:
+        </p>
+        <div style={{ maxWidth: '400px', border: '1px dashed #ccc', padding: '1rem' }}>
+          <DynTabs {...args} />
+        </div>
+      </div>
+      <div>
+        <h4>2. Adaptivna širina (Full Width)</h4>
+        <p style={{ fontSize: '0.8rem', color: '#666', marginBottom: '1rem' }}>
+          Ovaj primer zauzima 100% širine. Skrolovanje će se pojaviti <strong>automatski</strong> čim se širina prozora ili kontejnera smanji (responsive):
+        </p>
+        <DynTabs {...args} />
+      </div>
+    </div>
+  ),
   args: {
-    items: Array.from({ length: 12 }, (_, i) => ({
+    items: Array.from({ length: 15 }, (_, i) => ({
       id: `tab-${i + 1}`,
       label: `Tab ${i + 1}`,
       content: <div>Sadržaj za tab {i + 1} sa scrollable demonstracijom</div>,
-      icon: i % 3 === 0 ? <span>📁</span> : undefined,
-      badge: i === 2 ? '99+' : i === 5 ? '1' : undefined
+      icon: i % 3 === 0 ? 'folder' : undefined,
     })),
     scrollable: true,
     variant: 'underlined'
+  }
+};
+
+// Fitted tabs
+export const FittedTabs: Story = {
+  args: {
+    items: defaultItems.slice(0, 3),
+    fitted: true,
+    variant: 'bordered'
   },
   parameters: {
     docs: {
       description: {
-        story: 'Kada ima previše tab-ova da stanu, omogućite scrollable režim za horizontalno skrolovanje.'
+        story: '`fitted` tabovi zauzimaju jednaku širinu i popunjavaju sav dostupan prostor u kontejneru.'
       }
     }
   }
@@ -391,7 +419,7 @@ export const ScrollableTabs: Story = {
 export const ErrorStates: Story = {
   render: () => {
     const [hasError, setHasError] = useState(false);
-    
+
     const itemsWithError: DynTabItem[] = [
       {
         id: 'normal',
@@ -402,16 +430,16 @@ export const ErrorStates: Story = {
         id: 'error-tab',
         label: 'Error Demo',
         content: hasError ? (
-          <div style={{ 
+          <div style={{
             color: 'var(--dyn-color-error, #ef4444)',
             padding: 'var(--dyn-spacing-lg, 1rem)',
             textAlign: 'center'
           }}>
             ❌ Greška pri učitavanju sadržaja
             <br />
-            <button 
+            <button
               onClick={() => setHasError(false)}
-              style={{ 
+              style={{
                 marginTop: 'var(--dyn-spacing-md, 0.75rem)',
                 padding: 'var(--dyn-spacing-sm, 0.5rem) var(--dyn-spacing-md, 0.75rem)',
                 backgroundColor: 'var(--dyn-color-primary, #3b82f6)',
@@ -427,9 +455,9 @@ export const ErrorStates: Story = {
         ) : (
           <div>
             <p>Kliknite ispod da simulirate grešku učitavanja sadržaja:</p>
-            <button 
+            <button
               onClick={() => setHasError(true)}
-              style={{ 
+              style={{
                 padding: 'var(--dyn-spacing-sm, 0.5rem) var(--dyn-spacing-md, 0.75rem)',
                 backgroundColor: 'var(--dyn-color-error, #ef4444)',
                 color: 'white',

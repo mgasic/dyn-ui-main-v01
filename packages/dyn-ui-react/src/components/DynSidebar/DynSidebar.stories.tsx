@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 import { DynSidebar } from './DynSidebar';
 import type { DynSidebarItem } from './DynSidebar.types';
 
@@ -57,6 +58,22 @@ const footerItems: DynSidebarItem[] = [
 ];
 
 export const Default: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'dashboard');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return (
+            <DynSidebar
+                {...args}
+                activeId={activeId}
+                onItemClick={handleItemClick}
+            />
+        );
+    },
     args: {
         items: sampleItems,
         activeId: 'dashboard',
@@ -64,6 +81,22 @@ export const Default: Story = {
 };
 
 export const WithHeader: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'projects');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return (
+            <DynSidebar
+                {...args}
+                activeId={activeId}
+                onItemClick={handleItemClick}
+            />
+        );
+    },
     args: {
         items: sampleItems,
         header: (
@@ -76,6 +109,16 @@ export const WithHeader: Story = {
 };
 
 export const WithFooter: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'dashboard');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: sampleItems,
         footerItems: footerItems,
@@ -84,6 +127,16 @@ export const WithFooter: Story = {
 };
 
 export const Collapsed: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'tasks');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: sampleItems,
         footerItems: footerItems,
@@ -93,6 +146,16 @@ export const Collapsed: Story = {
 };
 
 export const WithDisabledItem: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'dashboard');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: [
             ...sampleItems.slice(0, 2),
@@ -104,6 +167,16 @@ export const WithDisabledItem: Story = {
 };
 
 export const FullExample: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'projects');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: sampleItems,
         footerItems: footerItems,
@@ -122,6 +195,16 @@ export const FullExample: Story = {
 };
 
 export const MobileOpen: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'dashboard');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: sampleItems,
         footerItems: footerItems,
@@ -134,6 +217,16 @@ export const MobileOpen: Story = {
 };
 
 export const ManyItems: Story = {
+    render: (args) => {
+        const [activeId, setActiveId] = React.useState(args.activeId || 'analytics');
+
+        const handleItemClick = (item: DynSidebarItem) => {
+            setActiveId(item.id);
+            args.onItemClick?.(item);
+        };
+
+        return <DynSidebar {...args} activeId={activeId} onItemClick={handleItemClick} />;
+    },
     args: {
         items: [
             { id: 'home', label: 'Home', icon: 'home' },

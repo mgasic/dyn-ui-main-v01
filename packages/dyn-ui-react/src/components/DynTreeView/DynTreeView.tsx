@@ -28,6 +28,7 @@ export const DynTreeView = forwardRef<HTMLDivElement, DynTreeViewProps>(
       onCheck,
       onSelect,
       onSearch,
+      checkStrictly = false,
       height,
       className,
       id,
@@ -82,17 +83,29 @@ export const DynTreeView = forwardRef<HTMLDivElement, DynTreeViewProps>(
       }
     }, [defaultExpandAll, treeData, expandedKeys, internalExpandedKeys, getAllKeys]);
 
+    const prevCheckedKeysRef = React.useRef(checkedKeys);
     useEffect(() => {
-      if (!arraysEqual(checkedKeys, internalCheckedKeys)) {
+      if (!arraysEqual(checkedKeys, prevCheckedKeysRef.current)) {
         setInternalCheckedKeys(checkedKeys);
+        prevCheckedKeysRef.current = checkedKeys;
       }
-    }, [checkedKeys, internalCheckedKeys]);
+    }, [checkedKeys]);
 
+    const prevSelectedKeysRef = React.useRef(selectedKeys);
     useEffect(() => {
-      if (!arraysEqual(selectedKeys, internalSelectedKeys)) {
+      if (!arraysEqual(selectedKeys, prevSelectedKeysRef.current)) {
         setInternalSelectedKeys(selectedKeys);
+        prevSelectedKeysRef.current = selectedKeys;
       }
-    }, [selectedKeys, internalSelectedKeys]);
+    }, [selectedKeys]);
+
+    const prevExpandedKeysRef = React.useRef(expandedKeys);
+    useEffect(() => {
+      if (expandedKeys && expandedKeys.length > 0 && !arraysEqual(expandedKeys, prevExpandedKeysRef.current)) {
+        setInternalExpandedKeys(expandedKeys);
+        prevExpandedKeysRef.current = expandedKeys;
+      }
+    }, [expandedKeys]);
 
     // Filter tree data based on search
     const filteredTreeData = useMemo(() => {
@@ -165,22 +178,30 @@ export const DynTreeView = forwardRef<HTMLDivElement, DynTreeViewProps>(
 
         if (checked) {
           if (multiple) {
-            const descendantKeys = getDescendantKeys(node);
-            descendantKeys.forEach((key) => newCheckedKeys.add(key));
+            if (checkStrictly) {
+              newCheckedKeys.add(node.key);
+            } else {
+              const descendantKeys = getDescendantKeys(node);
+              descendantKeys.forEach((key) => newCheckedKeys.add(key));
+            }
           } else {
             newCheckedKeys.clear();
             newCheckedKeys.add(node.key);
           }
         } else {
-          const descendantKeys = getDescendantKeys(node);
-          descendantKeys.forEach((key) => newCheckedKeys.delete(key));
+          if (checkStrictly) {
+            newCheckedKeys.delete(node.key);
+          } else {
+            const descendantKeys = getDescendantKeys(node);
+            descendantKeys.forEach((key) => newCheckedKeys.delete(key));
+          }
         }
 
         const finalCheckedKeys = Array.from(newCheckedKeys);
         setInternalCheckedKeys(finalCheckedKeys);
         onCheck?.(finalCheckedKeys, { checked, node });
       },
-      [checkable, multiple, internalCheckedKeys, onCheck]
+      [checkable, multiple, checkStrictly, internalCheckedKeys, onCheck]
     );
 
     // Handle search

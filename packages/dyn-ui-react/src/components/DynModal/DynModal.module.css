@@ -74,12 +74,12 @@
   --dyn-modal-footer-gap: var(--dyn-spacing-sm, 0.5rem);
 
   /* Close button tokens */
-  --dyn-modal-close-size: 24px;
+  --dyn-modal-close-size: 1.5rem;
   --dyn-modal-close-color: var(--dyn-semantic-text-secondary, #64748b);
   --dyn-modal-close-color-hover: var(--dyn-theme-primary, #2563eb);
 
   /* Size tokens */
-  --dyn-modal-width: 600px;
+  --dyn-modal-width: 37.5rem;
   --dyn-modal-max-width: 90vw;
   --dyn-modal-max-height: 90vh;
 
@@ -149,8 +149,8 @@
 }
 
 .modalClose:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* ============================================
@@ -188,15 +188,15 @@
    ============================================ */
 
 .modalSmall {
-  --dyn-modal-width: 400px;
+  --dyn-modal-width: 25rem;
 }
 
 .modalMedium {
-  --dyn-modal-width: 600px;
+  --dyn-modal-width: 37.5rem;
 }
 
 .modalLarge {
-  --dyn-modal-width: 800px;
+  --dyn-modal-width: 50rem;
 }
 
 /* ============================================
@@ -218,7 +218,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem);
   }
 
   to {
@@ -235,7 +235,7 @@
 
   to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem);
   }
 }
 
@@ -256,11 +256,11 @@
 
   .modalHeader,
   .modalFooter {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md, 2px);
   }
 
   .modalContainer {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md, 2px);
   }
 }
 

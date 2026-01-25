@@ -25,10 +25,10 @@
   --dyn-grid-header-font-weight: var(--dyn-grid-header-fontWeight, var(--dyn-font-weight-semibold, 600));
 
   /* Sizing Tokens */
-  --dyn-grid-padding-y: var(--dyn-grid-size-medium-paddingY, var(--dyn-spacing-md, 16px));
-  --dyn-grid-padding-x: var(--dyn-grid-size-medium-paddingX, var(--dyn-spacing-sm, 12px));
-  --dyn-grid-font-size: var(--dyn-grid-root-fontSize, var(--dyn-font-size-sm, 14px));
-  --dyn-grid-radius: var(--dyn-grid-root-borderRadius, var(--dyn-border-radius-md, 8px));
+  --dyn-grid-padding-y: var(--dyn-grid-size-medium-paddingY, var(--dyn-spacing-md, 1rem));
+  --dyn-grid-padding-x: var(--dyn-grid-size-medium-paddingX, var(--dyn-spacing-sm, 0.75rem));
+  --dyn-grid-font-size: var(--dyn-grid-root-fontSize, var(--dyn-font-size-sm, 0.875rem));
+  --dyn-grid-radius: var(--dyn-grid-root-borderRadius, var(--dyn-border-radius-md, 0.5rem));
 
   /* Pagination Tokens */
   --dyn-grid-pagination-bg: var(--dyn-grid-pagination-backgroundColor, var(--dyn-grid-header-bg));
@@ -147,7 +147,7 @@
    ========================================================================== */
 
 .selectionCell {
-  width: var(--dyn-spacing-xl, 48px);
+  width: var(--dyn-spacing-xl, 3rem);
   text-align: center;
 }
 
@@ -178,7 +178,7 @@
 
 .loading {
   position: relative;
-  min-height: 200px;
+  min-height: 12.5rem;
 }
 
 .loadingState,
@@ -187,16 +187,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: var(--dyn-spacing-xl, 48px);
+  padding: var(--dyn-spacing-xl, 3rem);
   text-align: center;
-  min-height: 200px;
+  min-height: 12.5rem;
   color: var(--dyn-grid-pagination-color);
 }
 
 .spinner {
   width: 2rem;
   height: 2rem;
-  border: 3px solid var(--dyn-grid-border);
+  border: var(--dyn-border-width-lg, 0.1875rem) solid var(--dyn-grid-border);
   border-top-color: var(--dyn-theme-primary, #3b82f6);
   border-radius: 50%;
   animation: dynGridSpin 0.8s linear infinite;
@@ -293,9 +293,9 @@
 
 /* Accessibility */
 @media (prefers-contrast: high) {
-  .root.bordered { border-width: 2px; }
-  .headerRow { border-bottom-width: 3px; }
-  .row { border-bottom-width: 2px; }
+  .root.bordered { border-width: var(--dyn-border-width-md, 2px); }
+  .headerRow { border-bottom-width: var(--dyn-border-width-lg, 3px); }
+  .row { border-bottom-width: var(--dyn-border-width-md, 2px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

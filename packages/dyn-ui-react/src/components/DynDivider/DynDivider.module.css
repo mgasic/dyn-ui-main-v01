@@ -59,7 +59,7 @@
 
 .directionVertical .line {
   width: 0;
-  min-height: 16px;
+  min-height: 1rem;
   border-top: none;
   border-left: var(--dyn-divider-thickness) var(--dyn-divider-line-style) var(--dyn-divider-color);
 }
@@ -89,11 +89,11 @@
 }
 
 .labelLeft .line:first-of-type {
-  flex: 0 1 32px;
+  flex: 0 1 2rem;
 }
 
 .labelRight .line:last-of-type {
-  flex: 0 1 32px;
+  flex: 0 1 2rem;
 }
 
 .directionVertical.labelLeft {
@@ -117,7 +117,7 @@
 }
 
 .thicknessThick {
-  --dyn-divider-thickness: 3px;
+  --dyn-divider-thickness: var(--dyn-border-width-lg, 0.1875rem);
 }
 
 /* ============================================

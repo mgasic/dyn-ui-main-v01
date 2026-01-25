@@ -76,7 +76,7 @@ describe('ThemeSwitcher', () => {
       renderWithTheme(<ThemeSwitcher size={size} />);
       const buttons = screen.getAllByRole('tab');
       buttons.forEach(button => {
-        expect(button.className).toContain(`size-${size}`);
+        expect(button.className).toMatch(new RegExp(`size${size.charAt(0).toUpperCase() + size.slice(1)}`));
       });
     });
   });
@@ -84,7 +84,7 @@ describe('ThemeSwitcher', () => {
   describe('rounded variants', () => {
     it.each(['sm', 'md', 'lg', 'full'] as const)('applies %s rounded class', (rounded) => {
       renderWithTheme(<ThemeSwitcher rounded={rounded} />);
-      expect(screen.getByRole('tablist').className).toContain(`rounded-${rounded}`);
+      expect(screen.getByRole('tablist').className).toMatch(new RegExp(`rounded${rounded.charAt(0).toUpperCase() + rounded.slice(1)}`));
     });
   });
 

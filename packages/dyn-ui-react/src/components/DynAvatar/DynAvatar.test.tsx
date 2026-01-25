@@ -187,10 +187,10 @@ describe('DynAvatar', () => {
   describe('Sizes and Variants', () => {
     it('applies size classes correctly', () => {
       const { rerender } = render(<DynAvatar alt="Test" size="sm" />);
-      expect(screen.getByRole('img')).toHaveClass(getStyleClass('sm'));
+      expect(screen.getByRole('img')).toHaveClass(getStyleClass('sizeSm'));
 
       rerender(<DynAvatar alt="Test" size="lg" />);
-      expect(screen.getByRole('img')).toHaveClass(getStyleClass('lg'));
+      expect(screen.getByRole('img')).toHaveClass(getStyleClass('sizeLg'));
     });
 
     it('applies default medium size when not specified', () => {

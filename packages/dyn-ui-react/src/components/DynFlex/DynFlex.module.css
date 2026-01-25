@@ -125,7 +125,7 @@
 
 @media (prefers-contrast: high) {
   .flex > :focus-visible {
-    outline-width: 3px;
+    outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

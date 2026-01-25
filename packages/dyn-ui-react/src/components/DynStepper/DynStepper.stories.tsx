@@ -225,6 +225,13 @@ const sampleSteps: StepItem[] = [
   }
 ];
 
+// Simplified steps for variant showcase
+const minimalSteps: StepItem[] = [
+  { id: '1', title: 'Step 1', content: 'Content for first step' },
+  { id: '2', title: 'Step 2', content: 'Content for second step' },
+  { id: '3', title: 'Step 3', content: 'Content for third step' },
+];
+
 const errorSteps: StepItem[] = [
   { ...sampleSteps[0], completed: true },
   { ...sampleSteps[1], error: true },
@@ -415,29 +422,67 @@ export const CustomIcons: Story = {
         content: <div style={{ padding: '20px' }}>All done!</div>
       }
     ],
+    variant: 'tabs',
     defaultActiveStep: 0
   }
 };
 
 export const VariantShowcase: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      <div>
-        <h4 style={{ marginBottom: '16px', color: '#333' }}>Default Variant</h4>
-        <DynStepper steps={sampleSteps.slice(0, 3)} variant="default" defaultActiveStep={1} />
-      </div>
-      <div>
-        <h4 style={{ marginBottom: '16px', color: '#333' }}>Numbered Variant</h4>
-        <DynStepper steps={sampleSteps.slice(0, 3)} variant="numbered" defaultActiveStep={1} />
-      </div>
-      <div>
-        <h4 style={{ marginBottom: '16px', color: '#333' }}>Dots Variant</h4>
-        <DynStepper steps={sampleSteps.slice(0, 3)} variant="dots" defaultActiveStep={1} />
-      </div>
-      <div>
-        <h4 style={{ marginBottom: '16px', color: '#333' }}>Progress Variant</h4>
-        <DynStepper steps={sampleSteps.slice(0, 3)} variant="progress" defaultActiveStep={1} />
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '48px', maxWidth: '800px' }}>
+      <section>
+        <h3 style={{ marginBottom: '24px', borderBottom: '1px solid #eee', paddingBottom: '8px' }}>Visual Variants</h3>
+
+        <div style={{ display: 'grid', gap: '40px' }}>
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Default (Numbered)
+            </h4>
+            <DynStepper steps={minimalSteps} variant="default" defaultActiveStep={1} />
+          </div>
+
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Dots Variant
+            </h4>
+            <DynStepper steps={minimalSteps} variant="dots" defaultActiveStep={1} />
+          </div>
+
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Progress Variant
+            </h4>
+            <DynStepper steps={minimalSteps} variant="progress" defaultActiveStep={1} />
+          </div>
+
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Tabs Variant
+            </h4>
+            <DynStepper steps={minimalSteps} variant="tabs" defaultActiveStep={1} />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 style={{ marginBottom: '24px', borderBottom: '1px solid #eee', paddingBottom: '8px' }}>Orientation Variants</h3>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px' }}>
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Horizontal (Default)
+            </h4>
+            <DynStepper steps={minimalSteps} orientation="horizontal" defaultActiveStep={0} />
+          </div>
+
+          <div>
+            <h4 style={{ marginBottom: '16px', fontSize: '0.9rem', color: '#666', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              Vertical
+            </h4>
+            <DynStepper steps={minimalSteps} orientation="vertical" defaultActiveStep={0} />
+          </div>
+        </div>
+      </section>
     </div>
   )
 };

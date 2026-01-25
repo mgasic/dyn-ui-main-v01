@@ -22,7 +22,7 @@
   --dyn-stepper-connector-active: var(--dyn-theme-primary, #3b82f6);
 
   /* Size tokens */
-  --dyn-stepper-step-size: var(--dyn-stepper-step-size, 32px);
+  --dyn-stepper-step-size: var(--dyn-stepper-step-size, 2rem);
   --dyn-stepper-gap: var(--dyn-spacing-md, 1rem);
   --dyn-stepper-label-gap: var(--dyn-spacing-sm, 0.5rem);
 
@@ -88,14 +88,14 @@
   top: calc(var(--dyn-stepper-step-size) / 2 - 1px);
   left: calc(50% + var(--dyn-stepper-step-size) / 2 + var(--dyn-stepper-gap) / 2);
   width: calc(100% - var(--dyn-stepper-step-size) - var(--dyn-stepper-gap));
-  height: var(--dyn-stepper-bar-height, 4px);
+  width: var(--dyn-stepper-bar-height, 0.25rem);
 }
 
 .orientationVertical .item:not(:last-child)::after {
   left: calc(var(--dyn-stepper-step-size) / 2 - 1px);
-  top: calc(var(--dyn-stepper-step-size) + 4px);
-  height: calc(100% - var(--dyn-stepper-step-size) + var(--dyn-stepper-gap) - 8px);
-  width: var(--dyn-stepper-bar-height, 4px);
+  top: calc(var(--dyn-stepper-step-size) + 0.25rem);
+  height: calc(100% - var(--dyn-stepper-step-size) + var(--dyn-stepper-gap) - 0.5rem);
+  width: var(--dyn-stepper-bar-height, 0.25rem);
 }
 
 .itemCompleted:not(:last-child)::after {
@@ -196,8 +196,8 @@
    ============================================ */
 
 .icon {
-  width: var(--dyn-stepper-icon-size, 20px);
-  height: 20px;
+  width: var(--dyn-stepper-icon-size, 1.25rem);
+  height: 1.25rem;
 }
 
 /* ============================================
@@ -212,7 +212,7 @@
 .orientationVertical .panel {
   padding-left: calc(var(--dyn-stepper-step-size) + var(--dyn-stepper-gap));
   padding-top: 0;
-  margin-top: calc(var(--dyn-stepper-step-size) * -1 + 4px);
+  margin-top: calc(var(--dyn-stepper-step-size) * -1 + 0.25rem);
   margin-bottom: var(--dyn-spacing-lg);
 }
 
@@ -272,16 +272,12 @@
    VARIANTS
    ============================================ */
 
-/* Variant: Numbered (Default-like but specific) */
-.variant-numbered .stepIndex {
-  /* Inherits standard look */
-}
 
 /* Variant: Dots */
 .variant-dots .stepIndex {
-  width: 12px;
-  height: 12px;
-  min-width: 12px; /* Ensure it doesn't shrink */
+  width: var(--dyn-stepper-dot-size, 0.75rem);
+  height: var(--dyn-stepper-dot-size, 0.75rem);
+  min-width: var(--dyn-stepper-dot-size, 0.75rem); /* Ensure it doesn't shrink */
   padding: 0;
   border-radius: 50%;
   color: transparent; /* Hide number */
@@ -312,7 +308,7 @@
   flex-direction: row;
   justify-content: center;
   padding: var(--dyn-spacing-md);
-  border-bottom: 2px solid transparent;
+  border-bottom: var(--dyn-border-width-md, 2px) solid transparent;
   width: 100%;
   gap: var(--dyn-spacing-sm);
   border-radius: 0;
@@ -341,15 +337,15 @@
    ============================================ */
 
 .size-small {
-  --dyn-stepper-step-size: 24px;
+  --dyn-stepper-step-size: 1.5rem;
   --dyn-stepper-font-size: var(--dyn-font-size-xs);
-  --dyn-stepper-icon-size: 16px;
+  --dyn-stepper-icon-size: 1rem;
 }
 
 .size-large {
-  --dyn-stepper-step-size: 40px;
+  --dyn-stepper-step-size: 2.5rem;
   --dyn-stepper-font-size: var(--dyn-font-size-base);
-  --dyn-stepper-icon-size: 24px;
+  --dyn-stepper-icon-size: 1.5rem;
 }
 
 /* ============================================

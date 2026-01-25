@@ -9,6 +9,12 @@
 
 .container {
   display: inline-block;
+  width: auto;
+}
+
+.containerBlock {
+  display: block;
+  width: 100%;
 }
 
 /* ============================================
@@ -148,7 +154,7 @@
 
 @media (prefers-contrast: high) {
   .item:focus-visible {
-    outline-width: 3px;
+    outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

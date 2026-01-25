@@ -46,7 +46,7 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
       onStepClick,
       clickableSteps = true,
       orientation = 'horizontal',
-      variant = 'tabs',
+      variant = 'numbered',
       size = 'medium',
       showLabels = true,
       showDescription = false,
@@ -327,7 +327,7 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
           {steps.map((step, index) => (
             <li key={step.id || index} className={getItemClassName(index)}>
               <button
-                aria-label={step.title ? `${step.title} ${step.title}` : undefined}
+                aria-label={step.title ? step.title : undefined}
                 aria-current={index === clampedActiveStep ? 'step' : undefined}
                 aria-selected={variant === 'tabs' ? index === clampedActiveStep : undefined}
                 className={getButtonClassName(index)}
@@ -340,13 +340,12 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
               >
                 {renderStepIcon ? renderStepIcon(step, index, index === clampedActiveStep) : (
                   <>
-                    {/* Render icon from step data when provided */}
-                    {step.icon && typeof step.icon === 'string' ? (
-                      <DynIcon icon={step.icon} className={styles.icon} />
-                    ) : null}
-
                     <span aria-hidden="true" className={styles.stepIndex}>
-                      {index + 1}
+                      {step.icon && typeof step.icon === 'string' ? (
+                        <DynIcon icon={step.icon} className={styles.icon} />
+                      ) : (
+                        index + 1
+                      )}
                     </span>
                     {showLabels && (
                       <span className={styles.stepLabel}>
@@ -356,54 +355,62 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
                   </>
                 )}
               </button>
-              {step.description && showDescription && (
-                <div className={styles.description} id={getStepDescId(index)}>
-                  {step.description}
-                </div>
-              )}
-              {step.optional && (
-                <span className={styles.optional}>(optional)</span>
-              )}
+              {
+                step.description && showDescription && (
+                  <div className={styles.description} id={getStepDescId(index)}>
+                    {step.description}
+                  </div>
+                )
+              }
+              {
+                step.optional && (
+                  <span className={styles.optional}>(optional)</span>
+                )
+              }
             </li>
           ))}
         </ol>
 
-        {variant === 'progress' && (
-          <div
-            role="progressbar"
-            aria-valuenow={Math.round(((clampedActiveStep + 1) / steps.length) * 100)}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            className={styles.progressBar}
-          >
+        {
+          variant === 'progress' && (
             <div
-              className={styles.progressFill}
-              style={{ width: `${((clampedActiveStep + 1) / steps.length) * 100}%` }}
-            />
-          </div>
-        )}
+              role="progressbar"
+              aria-valuenow={Math.round(((clampedActiveStep + 1) / steps.length) * 100)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              className={styles.progressBar}
+            >
+              <div
+                className={styles.progressFill}
+                style={{ width: `${((clampedActiveStep + 1) / steps.length) * 100}%` }}
+              />
+            </div>
+          )
+        }
 
-        {steps.map((step, index) => (
-          <section
-            key={step.id || index}
-            className={cn(getPanelClassName(index), 'step-content', contentClassName || '')}
-            id={getPanelId(index)}
-            role={variant === 'tabs' ? 'tabpanel' : 'region'}
-            /* avoid duplicating accessible name between the tab/button and the panel */
-            /* aria-labelledby intentionally omitted to prevent duplicate accessible names in tests */
-            tabIndex={-1}
-            hidden={index !== clampedActiveStep}
-          >
-            {renderStepContent ?
-              renderStepContent(step, index) :
-              (typeof step.content === 'function' ?
-                step.content({ index, selected: index === clampedActiveStep }) :
-                step.content
-              )
-            }
-          </section>
-        ))}
-      </div>
+        {
+          steps.map((step, index) => (
+            <section
+              key={step.id || index}
+              className={cn(getPanelClassName(index), 'step-content', contentClassName || '')}
+              id={getPanelId(index)}
+              role={variant === 'tabs' ? 'tabpanel' : 'region'}
+              /* avoid duplicating accessible name between the tab/button and the panel */
+              /* aria-labelledby intentionally omitted to prevent duplicate accessible names in tests */
+              tabIndex={-1}
+              hidden={index !== clampedActiveStep}
+            >
+              {renderStepContent ?
+                renderStepContent(step, index) :
+                (typeof step.content === 'function' ?
+                  step.content({ index, selected: index === clampedActiveStep }) :
+                  step.content
+                )
+              }
+            </section>
+          ))
+        }
+      </div >
     );
   }
 );

@@ -50,7 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: var(--dyn-toolbar-height, 56px);
+  min-height: var(--dyn-toolbar-height, 3.5rem);
   padding: 0 var(--dyn-spacing-md);
   gap: var(--dyn-spacing-md);
 }
@@ -77,7 +77,7 @@
   align-items: center;
   gap: var(--dyn-spacing-xs);
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
-  height: var(--dyn-toolbar-item-height, 36px);
+  height: var(--dyn-toolbar-item-height, 2.25rem);
   border: var(--dyn-border-width-sm) solid transparent;
   border-radius: var(--dyn-border-radius-sm);
   background: var(--dyn-toolbar-item-bg);
@@ -135,7 +135,7 @@
   display: flex;
   align-items: center;
   flex: 1;
-  max-width: 300px;
+  max-width: 18.75rem;
   position: relative;
 }
 
@@ -153,7 +153,7 @@
 
 .searchInput:focus {
   border-color: var(--dyn-toolbar-input-focus);
-  box-shadow: 0 0 0 2px var(--dyn-action-focus);
+  box-shadow: 0 0 0 var(--dyn-border-width-md, 2px) var(--dyn-action-focus);
 }
 
 /* ============================================
@@ -175,7 +175,7 @@
   top: 100%;
   left: 0;
   margin-top: var(--dyn-spacing-xs);
-  min-width: 160px;
+  min-width: 10rem;
   background-color: var(--dyn-toolbar-menu-bg);
   border: var(--dyn-border-width-sm) solid var(--dyn-toolbar-menu-border);
   border-radius: var(--dyn-border-radius-md);
@@ -240,7 +240,7 @@
   top: 100%;
   right: 0;
   margin-top: var(--dyn-spacing-xs);
-  min-width: 200px;
+  min-width: 12.5rem;
   background-color: var(--dyn-toolbar-menu-bg);
   border: var(--dyn-border-width-sm) solid var(--dyn-toolbar-menu-border);
   border-radius: var(--dyn-border-radius-md);
@@ -276,8 +276,8 @@
 }
 
 .sizeSmall {
-  --dyn-toolbar-height: 48px;
-  --dyn-toolbar-item-height: 32px;
+  --dyn-toolbar-height: 3rem;
+  --dyn-toolbar-item-height: 2rem;
 }
 
 .sizeSmall .item {
@@ -286,8 +286,8 @@
 }
 
 .sizeLarge {
-  --dyn-toolbar-height: 64px;
-  --dyn-toolbar-item-height: 40px;
+  --dyn-toolbar-height: 4rem;
+  --dyn-toolbar-item-height: 2.5rem;
 }
 
 .sizeLarge .item {
@@ -301,7 +301,7 @@
 
 @media (max-width: 767px) {
   .content {
-    min-height: 48px;
+    min-height: 3rem;
     padding: 0 var(--dyn-spacing-sm);
   }
 
@@ -311,7 +311,7 @@
   }
 
   .search {
-    max-width: 200px;
+    max-width: 12.5rem;
   }
 }
 

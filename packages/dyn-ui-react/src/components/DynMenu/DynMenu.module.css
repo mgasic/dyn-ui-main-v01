@@ -9,9 +9,9 @@
 
 .menubar {
   /* Component tokens */
-  --dyn-menu-min-width: 200px;
-  --dyn-menu-max-width: 280px;
-  --dyn-menu-dropdown-min-width: 180px;
+  --dyn-menu-min-width: 12.5rem;
+  --dyn-menu-max-width: 17.5rem;
+  --dyn-menu-dropdown-min-width: 11.25rem;
 
   display: flex;
   gap: var(--dyn-spacing-xs, 4px);
@@ -67,8 +67,8 @@
 }
 
 .menubar__button:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-border-width-md, 0.125rem);
 }
 
 .menubar__button--open {
@@ -179,8 +179,8 @@
 }
 
 .menu__item:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: -2px;
+  outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-semantic-border-focus);
+  outline-offset: calc(var(--dyn-border-width-md, 0.125rem) * -1);
 }
 
 .menu__item:active {
@@ -198,8 +198,8 @@
   }
 
   .menubar[aria-orientation="vertical"] {
-    min-width: 160px;
-    max-width: 200px;
+    min-width: 10rem;
+    max-width: 12.5rem;
   }
 
   .menubar__button {
@@ -208,7 +208,7 @@
   }
 
   .menu {
-    min-width: 160px;
+    min-width: 10rem;
   }
 
   .menu__item {
@@ -232,7 +232,7 @@
 
   .menubar__button:focus-visible,
   .menu__item:focus-visible {
-    outline-width: 3px;
+    outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

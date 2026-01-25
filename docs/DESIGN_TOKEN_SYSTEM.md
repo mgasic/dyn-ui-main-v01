@@ -124,19 +124,19 @@ packages/design-tokens/
 #### Tema
 | Token | Vrednost | Upotreba |
 |-------|----------|----------|
-| `--dyn-theme-primary` | #007bff | Primarna akcija |
-| `--dyn-theme-primary-light` | #4da3ff | Hover/lighter |
-| `--dyn-theme-primary-dark` | #0056b3 | Pressed/darker |
-| `--dyn-theme-secondary` | #6c757d | Sekundarna akcija |
-| `--dyn-theme-accent` | #17a2b8 | Akcentna boja |
+| `--dyn-theme-primary` | #2563eb | Primarna akcija |
+| `--dyn-theme-primary-light` | #60a5fa | Hover/lighter |
+| `--dyn-theme-primary-dark` | #1e40af | Pressed/darker |
+| `--dyn-theme-secondary` | #64748b | Sekundarna akcija |
+| `--dyn-theme-accent` | #0ea5e9 | Akcentna boja |
 
 #### Feedback
 | Token | Vrednost | Upotreba |
 |-------|----------|----------|
-| `--dyn-feedback-positive` | #28a745 | Uspeh |
-| `--dyn-feedback-negative-default` | #dc3545 | Greška |
-| `--dyn-feedback-warning` | #ffc107 | Upozorenje |
-| `--dyn-feedback-info` | #17a2b8 | Informacija |
+| `--dyn-feedback-positive` | #059669 | Uspeh |
+| `--dyn-feedback-negative-default` | #dc2626 | Greška |
+| `--dyn-feedback-warning` | #d97706 | Upozorenje |
+| `--dyn-feedback-info` | #0891b2 | Informacija |
 
 #### Neutralne (Grayscale)
 | Token | Vrednost |

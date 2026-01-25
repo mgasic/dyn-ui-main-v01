@@ -369,6 +369,7 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
             disabled={disabled}
             triggerWrapper="div"
             triggerRole="presentation"
+            fullWidth={true}
             trigger={
               <div className={styles.inputContainer}>
                 <input

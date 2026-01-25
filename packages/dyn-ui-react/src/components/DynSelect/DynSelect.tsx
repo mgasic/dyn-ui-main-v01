@@ -66,6 +66,7 @@ const DynSelectInner = <T extends string | number>(
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [focused, setFocused] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const dropdownRef = useRef<DynDropdownRef>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,6 +82,8 @@ const DynSelectInner = <T extends string | number>(
     validation: [],
     customError: resolvedErrorText,
   });
+
+  const displayError = touched ? (resolvedErrorText || error) : undefined;
 
   const updateValue = (newValue: T | T[]) => {
     setInternalValue(newValue);
@@ -176,7 +179,6 @@ const DynSelectInner = <T extends string | number>(
     });
   }
 
-  const resolvedError = resolvedErrorText ?? (error || undefined);
 
   // Size mapping - explicit map instead of string interpolation
   const SIZE_MAP: Record<string, string> = {
@@ -191,7 +193,7 @@ const DynSelectInner = <T extends string | number>(
     {
       [styles.open]: isOpen,
       [styles.focused]: focused,
-      [styles.error]: !!resolvedError,
+      [styles.error]: !!displayError,
       [styles.disabled]: disabled,
       [styles.readonly]: readOnly,
       [styles.loading]: loading
@@ -233,7 +235,7 @@ const DynSelectInner = <T extends string | number>(
       label={label}
       helpText={resolvedHelpText}
       required={required}
-      errorText={resolvedError}
+      errorText={displayError}
       className={className}
       htmlFor={fieldId}
     >
@@ -255,6 +257,7 @@ const DynSelectInner = <T extends string | number>(
               onFocus={() => setFocused(true)}
               onBlur={() => {
                 setFocused(false);
+                setTouched(true);
                 validate();
               }}
               onKeyDown={(e) => {

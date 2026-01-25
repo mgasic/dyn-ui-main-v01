@@ -69,7 +69,7 @@
 .textareaFocused {
   outline: none;
   border-color: var(--dyn-textarea-border-focus);
-  box-shadow: 0 0 0 3px var(--dyn-textarea-focus-ring);
+  box-shadow: 0 0 0 var(--dyn-border-width-lg, 3px) var(--dyn-textarea-focus-ring);
 }
 
 .textareaDisabled {

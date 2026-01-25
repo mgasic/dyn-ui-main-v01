@@ -153,7 +153,7 @@ describe('DynSelect', () => {
   it('applies size classes', () => {
     render(<DynSelectAny name="test" label="Test" options={sampleOptions} size="large" />);
     const select = screen.getByRole('combobox');
-    expect(select.className).toContain('large');
+    expect(select.className).toMatch(/sizeLarge/);
   });
 
 

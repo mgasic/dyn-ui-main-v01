@@ -112,8 +112,8 @@
 }
 
 .icon {
-  width: var(--dyn-sidebar-icon-size, 20px);
-  height: 20px;
+  width: var(--dyn-sidebar-icon-size, var(--dyn-size-icon-sm, 1.25rem));
+  height: var(--dyn-sidebar-icon-size, var(--dyn-size-icon-sm, 1.25rem));
   flex-shrink: 0;
 }
 

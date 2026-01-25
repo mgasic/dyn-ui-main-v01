@@ -61,6 +61,8 @@
   margin: 0;
   list-style: none;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================
@@ -82,7 +84,7 @@
   margin-bottom: var(--dyn-tabs-tab-offset);
   text-align: center;
   white-space: nowrap;
-  margin-right: calc(-1 * var(--dyn-tabs-border-width-thin));
+  margin-right: var(--dyn-spacing-2xs, 4px);
 }
 
 .tab:hover:not(.disabledTab) {
@@ -93,10 +95,13 @@
 .activeTab {
   background: var(--dyn-tabs-bg-active);
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-active);
+  /* The secret: border-bottom matches background to 'cut' the tabList line */
   border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-bg-active);
   color: var(--dyn-tabs-text-active);
   font-weight: var(--dyn-font-weight-semibold, 600);
   z-index: 2;
+  margin-bottom: calc(-1 * var(--dyn-tabs-border-width));
+  position: relative;
 }
 
 .disabledTab {
@@ -140,11 +145,13 @@
 .panel {
   background: var(--dyn-tabs-bg-active);
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-content);
-  border-top: none;
+  border-top: none; /* tabList border-bottom acts as the top border */
   border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   padding: var(--dyn-spacing-lg, 24px);
   min-height: var(--dyn-tabs-min-height);
   animation: fadeIn var(--dyn-tabs-animation-duration) ease;
+  position: relative;
+  z-index: 1;
 }
 
 .panel[hidden] {
@@ -178,7 +185,7 @@
 .orientationVertical .tabList {
   flex-direction: column;
   border-bottom: none;
-  border-right: none;
+  border-right: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
   min-width: var(--dyn-responsiveTabs-spacing-vertical-tabListMinWidth, 200px);
   margin-right: calc(-1 * var(--dyn-tabs-border-width));
   gap: var(--dyn-spacing-xs, 4px);
@@ -225,10 +232,11 @@
 
 .orientationVertical .activeTab {
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-active);
+  /* Cut the vertical line */
   border-right: var(--dyn-tabs-border-width) solid var(--dyn-tabs-bg-active);
   border-left-width: var(--dyn-tabs-border-width-active);
   padding-left: calc(var(--dyn-spacing-lg, 24px) - var(--dyn-tabs-border-width));
-  /* Adjust for border width change */
+  margin-right: calc(-1 * var(--dyn-tabs-border-width));
   z-index: 3;
 }
 
@@ -238,6 +246,7 @@
 
 .orientationVertical .panel {
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
+  border-left: none; /* tabList border-right acts as the left border */
   border-radius: 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   min-height: 300px;
 }

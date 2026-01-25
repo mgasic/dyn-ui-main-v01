@@ -64,7 +64,7 @@
 .focused,
 .open {
   border-color: var(--dyn-select-border-focus);
-  box-shadow: 0 0 0 3px var(--dyn-select-focus-ring);
+  box-shadow: 0 0 0 var(--dyn-border-width-lg, 0.1875rem) var(--dyn-select-focus-ring);
 }
 
 .disabled {
@@ -77,6 +77,15 @@
 .readonly {
   background-color: var(--dyn-select-readonly-bg);
   cursor: default;
+}
+
+.error {
+  border-color: var(--dyn-semantic-error-default, #ef4444) !important;
+}
+
+.error:focus,
+.error.focused {
+  box-shadow: 0 0 0 var(--dyn-border-width-lg, 0.1875rem) var(--dyn-semantic-error-alpha, rgba(239, 68, 68, 0.2)) !important;
 }
 
 /* ================================================
@@ -130,10 +139,31 @@
 }
 
 /* ================================================
+   SEARCH
+   ================================================ */
+.search {
+  padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
+  border-bottom: var(--dyn-border-width-sm) solid var(--dyn-neutral-light-200);
+}
+
+.searchInput {
+  width: 100%;
+  padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
+  border: var(--dyn-border-width-sm) solid var(--dyn-neutral-light-300);
+  border-radius: var(--dyn-border-radius-sm);
+  font-size: var(--dyn-font-size-sm);
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--dyn-select-border-focus);
+}
+
+/* ================================================
    OPTIONS DROPDOWN
    ================================================ */
 .options {
-  max-height: 240px;
+  max-height: 15rem;
   overflow-y: auto;
   padding: var(--dyn-spacing-xs) 0;
   background-color: var(--dyn-select-bg);

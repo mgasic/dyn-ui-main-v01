@@ -34,9 +34,9 @@
 .input {
   flex: 1;
   width: 100%;
-  height: var(--dyn-datePicker-input-height-md, 40px);
+  height: var(--dyn-datePicker-input-height-md, 2.5rem);
   /* Reduced right padding to bring icons closer */
-  padding: var(--dyn-date-picker-padding-y) 70px var(--dyn-date-picker-padding-y) var(--dyn-date-picker-padding-x);
+  padding: var(--dyn-date-picker-padding-y) 4.375rem var(--dyn-date-picker-padding-y) var(--dyn-date-picker-padding-x);
   font-family: inherit;
   font-size: var(--dyn-date-picker-font-size);
   color: var(--dyn-date-picker-color);
@@ -53,7 +53,7 @@
 .input:focus {
   outline: none;
   border-color: var(--dyn-date-picker-border-focus);
-  box-shadow: 0 0 0 3px var(--dyn-date-picker-focus-ring);
+  box-shadow: 0 0 0 var(--dyn-border-width-lg, 3px) var(--dyn-date-picker-focus-ring);
 }
 
 .input:disabled {
@@ -68,24 +68,24 @@
 
 /* Size Variants */
 .sizeSmall .input {
-  height: var(--dyn-datePicker-input-height-sm, 36px);
+  height: var(--dyn-datePicker-input-height-sm, 2.25rem);
   font-size: var(--dyn-font-size-xs);
 }
 
 .sizeMedium .input {
-  height: var(--dyn-datePicker-input-height-md, 40px);
+  height: var(--dyn-datePicker-input-height-md, 2.5rem);
   font-size: var(--dyn-font-size-sm);
 }
 
 .sizeLarge .input {
-  height: var(--dyn-datePicker-input-height-lg, 48px);
+  height: var(--dyn-datePicker-input-height-lg, 3rem);
   font-size: var(--dyn-font-size-md);
 }
 
 /* Input Actions (Clear, Calendar Icons) */
 .inputActions {
   position: absolute;
-  right: 8px; /* Closer to edge */
+  right: 0.5rem; /* Closer to edge */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -117,8 +117,8 @@
 }
 
 .clearButton:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* ============================================
@@ -126,7 +126,7 @@
    ============================================ */
 
 .dropdown {
-  width: var(--dyn-datePicker-calendar-width, 280px);
+  width: var(--dyn-datePicker-calendar-width, 17.5rem);
   padding: var(--dyn-datePicker-calendar-padding, var(--dyn-spacing-md));
   background-color: var(--dyn-date-picker-bg);
   border: var(--dyn-border-width-sm, 1px) solid var(--dyn-date-picker-border);
@@ -139,7 +139,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--dyn-datePicker-calendar-headerHeight, 40px);
+  height: var(--dyn-datePicker-calendar-headerHeight, 2.5rem);
   margin-bottom: var(--dyn-spacing-sm);
 }
 
@@ -154,8 +154,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-datePicker-nav-buttonSize, 32px);
-  height: var(--dyn-datePicker-nav-buttonSize, 32px);
+  width: var(--dyn-datePicker-nav-buttonSize, 2rem);
+  height: var(--dyn-datePicker-nav-buttonSize, 2rem);
   padding: 0;
   background: none;
   border: none;
@@ -170,8 +170,8 @@
 }
 
 .navButton:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* Weekday Headers */
@@ -186,7 +186,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--dyn-datePicker-weekday-height, 32px);
+  height: var(--dyn-datePicker-weekday-height, 2rem);
   font-size: var(--dyn-datePicker-weekday-fontSize, var(--dyn-font-size-xs));
   font-weight: 500;
   color: var(--dyn-datePicker-weekday-color, var(--dyn-semantic-text-secondary));
@@ -205,8 +205,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-datePicker-day-size, 36px);
-  height: var(--dyn-datePicker-day-size, 36px);
+  width: var(--dyn-datePicker-day-size, 2.25rem);
+  height: var(--dyn-datePicker-day-size, 2.25rem);
   font-size: var(--dyn-datePicker-day-fontSize, var(--dyn-font-size-sm));
   color: var(--dyn-datePicker-day-default-color, var(--dyn-semantic-text));
   background-color: var(--dyn-datePicker-day-default-bg, transparent);
@@ -221,8 +221,8 @@
 }
 
 .day:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* Today */
@@ -275,8 +275,8 @@
 }
 
 .shortcut:focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* Relative Text ("Today", "Tomorrow", etc.) */
@@ -293,7 +293,7 @@
 @media (max-width: 640px) {
   .input {
     font-size: var(--dyn-font-size-md);
-    height: var(--dyn-datePicker-input-height-lg, 48px);
+    height: var(--dyn-datePicker-input-height-lg, 3rem);
   }
 
   .dropdown {
@@ -320,15 +320,15 @@
 
 @media (prefers-contrast: high) {
   .input {
-    border-width: 2px;
+    border-width: var(--dyn-border-width-md, 2px);
   }
 
   .day {
-    border-width: 3px;
+    border-width: var(--dyn-border-width-lg, 3px);
   }
 
   .dayToday {
-    border-width: 3px;
+    border-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

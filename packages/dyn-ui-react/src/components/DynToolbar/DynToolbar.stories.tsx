@@ -96,28 +96,28 @@ const basicItems: ToolbarItem[] = [
   {
     id: 'new',
     label: 'New',
-    icon: '➕',
+    icon: 'plus', // Changed from emoji
     tooltip: 'Create new item',
     action: () => console.log('New clicked')
   },
   {
     id: 'save',
     label: 'Save',
-    icon: '💾',
+    icon: 'save', // Changed from emoji
     tooltip: 'Save current work',
     action: () => console.log('Save clicked')
   },
   {
     id: 'edit',
     label: 'Edit',
-    icon: '✏️',
+    icon: 'edit', // Changed from emoji
     tooltip: 'Edit selected item',
     action: () => console.log('Edit clicked')
   },
   {
     id: 'delete',
     label: 'Delete',
-    icon: '🗑️',
+    icon: 'delete', // Changed from emoji
     tooltip: 'Delete selected item',
     disabled: true,
     action: () => console.log('Delete clicked')
@@ -128,23 +128,23 @@ const advancedItems: ToolbarItem[] = [
   {
     id: 'file',
     label: 'File',
-    icon: '📁',
+    icon: 'folder', // Changed from emoji
     type: 'dropdown',
     items: [
-      { id: 'new-file', label: 'New File', icon: '📄', action: () => console.log('New File') },
-      { id: 'open-file', label: 'Open File', icon: '📂', action: () => console.log('Open File') },
-      { id: 'save-file', label: 'Save File', icon: '💾', action: () => console.log('Save File') }
+      { id: 'new-file', label: 'New File', icon: 'file', action: () => console.log('New File') },
+      { id: 'open-file', label: 'Open File', icon: 'folder', action: () => console.log('Open File') },
+      { id: 'save-file', label: 'Save File', icon: 'save', action: () => console.log('Save File') }
     ]
   },
   {
     id: 'edit-menu',
     label: 'Edit',
-    icon: '✂️',
+    icon: 'edit', // Changed from emoji
     type: 'dropdown',
     items: [
-      { id: 'cut', label: 'Cut', icon: '✂️', action: () => console.log('Cut') },
-      { id: 'copy', label: 'Copy', icon: '📋', action: () => console.log('Copy') },
-      { id: 'paste', label: 'Paste', icon: '📄', action: () => console.log('Paste') }
+      { id: 'cut', label: 'Cut', icon: 'scissors', action: () => console.log('Cut') }, // Note: Need to check if scissors exists, if not use edit
+      { id: 'copy', label: 'Copy', icon: 'copy', action: () => console.log('Copy') },
+      { id: 'paste', label: 'Paste', icon: 'clipboard', action: () => console.log('Paste') }
     ]
   },
   {
@@ -154,13 +154,13 @@ const advancedItems: ToolbarItem[] = [
   {
     id: 'undo',
     label: 'Undo',
-    icon: '↶',
+    icon: 'rotate-ccw', // Changed from emoji
     action: () => console.log('Undo')
   },
   {
     id: 'redo',
     label: 'Redo',
-    icon: '↷',
+    icon: 'rotate-cw', // Changed from emoji
     action: () => console.log('Redo')
   },
   {
@@ -175,23 +175,23 @@ const advancedItems: ToolbarItem[] = [
   {
     id: 'notifications',
     label: 'Notifications',
-    icon: '🔔',
+    icon: 'notifications', // Changed from emoji
     badge: { count: 3 },
     action: () => console.log('Notifications')
   }
 ];
 
 const manyItems: ToolbarItem[] = [
-  { id: 'item1', label: 'Dashboard', icon: '📊', action: () => console.log('Dashboard') },
-  { id: 'item2', label: 'Analytics', icon: '📈', action: () => console.log('Analytics') },
-  { id: 'item3', label: 'Reports', icon: '📋', action: () => console.log('Reports') },
-  { id: 'item4', label: 'Settings', icon: '⚙️', action: () => console.log('Settings') },
-  { id: 'item5', label: 'Users', icon: '👥', action: () => console.log('Users') },
-  { id: 'item6', label: 'Messages', icon: '💬', badge: { count: 5 }, action: () => console.log('Messages') },
-  { id: 'item7', label: 'Calendar', icon: '📅', action: () => console.log('Calendar') },
-  { id: 'item8', label: 'Tasks', icon: '✅', action: () => console.log('Tasks') },
-  { id: 'item9', label: 'Files', icon: '📁', action: () => console.log('Files') },
-  { id: 'item10', label: 'Help', icon: '❓', action: () => console.log('Help') }
+  { id: 'item1', label: 'Dashboard', icon: 'home', action: () => console.log('Dashboard') },
+  { id: 'item2', label: 'Analytics', icon: 'bar-chart', action: () => console.log('Analytics') },
+  { id: 'item3', label: 'Reports', icon: 'file', action: () => console.log('Reports') },
+  { id: 'item4', label: 'Settings', icon: 'settings', action: () => console.log('Settings') },
+  { id: 'item5', label: 'Users', icon: 'user', action: () => console.log('Users') },
+  { id: 'item6', label: 'Messages', icon: 'mail', badge: { count: 5 }, action: () => console.log('Messages') },
+  { id: 'item7', label: 'Calendar', icon: 'calendar', action: () => console.log('Calendar') },
+  { id: 'item8', label: 'Tasks', icon: 'check-square', action: () => console.log('Tasks') },
+  { id: 'item9', label: 'Files', icon: 'folder', action: () => console.log('Files') },
+  { id: 'item10', label: 'Help', icon: 'help', action: () => console.log('Help') }
 ];
 
 export const Default: Story = {
@@ -347,9 +347,9 @@ export const InteractiveExample: Story = {
   render: (args) => {
     const [items, setItems] = useState<ToolbarItem[]>([
       { id: 'counter', label: 'Count: 0', icon: '🔢' },
-      { id: 'increment', label: 'Add', icon: '➕', action: () => {} },
-      { id: 'decrement', label: 'Subtract', icon: '➖', action: () => {} },
-      { id: 'reset', label: 'Reset', icon: '🔄', action: () => {} }
+      { id: 'increment', label: 'Add', icon: '➕', action: () => { } },
+      { id: 'decrement', label: 'Subtract', icon: '➖', action: () => { } },
+      { id: 'reset', label: 'Reset', icon: '🔄', action: () => { } }
     ]);
 
     const [count, setCount] = useState(0);
@@ -392,20 +392,25 @@ export const ImperativeAPI: Story = {
 
     return (
       <div>
-        <div style={{ marginBottom: '16px', display: 'flex', gap: '8px' }}>
+        <div style={{ marginBottom: '16px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           <button onClick={() => toolbarRef.current?.openOverflow()}>Open Overflow</button>
           <button onClick={() => toolbarRef.current?.closeOverflow()}>Close Overflow</button>
           <button onClick={() => toolbarRef.current?.toggleOverflow()}>Toggle Overflow</button>
           <button onClick={() => toolbarRef.current?.refreshLayout()}>Refresh Layout</button>
         </div>
-        <DynToolbar
-          {...args}
-          ref={toolbarRef}
-          items={manyItems}
-          responsive={true}
-          overflowMenu={true}
-          overflowThreshold={3}
-        />
+        <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+          Note: This container has limited width to force overflow behavior.
+        </p>
+        <div style={{ maxWidth: '600px', border: '1px dashed #ccc', padding: '16px' }}>
+          <DynToolbar
+            {...args}
+            ref={toolbarRef}
+            items={manyItems}
+            responsive={true}
+            overflowMenu={true}
+            overflowThreshold={3}
+          />
+        </div>
       </div>
     );
   }

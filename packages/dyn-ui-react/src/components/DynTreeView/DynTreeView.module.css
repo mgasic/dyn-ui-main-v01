@@ -63,7 +63,7 @@
 
 .searchInput:focus {
   border-color: var(--dyn-tree-input-focus);
-  box-shadow: 0 0 0 2px var(--dyn-action-focus);
+  box-shadow: 0 0 0 var(--dyn-border-width-md, 2px) var(--dyn-action-focus);
 }
 
 /* ============================================
@@ -117,8 +117,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--dyn-treeView-icon-size, 20px);
-  height: 20px;
+  width: var(--dyn-treeView-icon-size, var(--dyn-size-icon-sm, 1.25rem));
+  height: var(--dyn-treeView-icon-size, var(--dyn-size-icon-sm, 1.25rem));
   cursor: pointer;
   border-radius: var(--dyn-border-radius-sm);
   transition: background-color var(--dyn-transition-fast);
@@ -158,7 +158,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
+  width: var(--dyn-treeView-icon-size, var(--dyn-size-icon-sm, 1.25rem));
   color: var(--dyn-tree-switcher-color);
   flex-shrink: 0;
 }
@@ -212,7 +212,7 @@
 @media (max-width: 767px) {
   .nodeContent {
     padding: var(--dyn-spacing-xs);
-    min-height: 40px;
+    min-height: var(--dyn-size-md, 2.5rem);
   }
 
   .title {

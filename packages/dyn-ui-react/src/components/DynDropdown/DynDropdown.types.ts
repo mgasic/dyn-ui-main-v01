@@ -86,6 +86,12 @@ export interface DynDropdownProps extends BaseComponentProps, AccessibilityProps
      * Set to 'presentation' or 'none' if the trigger contains interactive elements.
      */
     triggerRole?: string;
+
+    /**
+     * Whether the dropdown container should take up the full width of its parent.
+     * Useful for form fields like DatePicker.
+     */
+    fullWidth?: boolean;
 }
 
 

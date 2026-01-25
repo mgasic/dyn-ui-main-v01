@@ -292,6 +292,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
       axis: style.getPropertyValue('--dyn-chart-axis') || '#333',
       text: style.getPropertyValue('--dyn-chart-text-secondary') || '#666',
       primaryText: style.getPropertyValue('--dyn-chart-text-primary') || '#000',
+      fontSize: style.getPropertyValue('--dyn-chart-font-size') || '12px',
     };
   }, []);
 
@@ -332,7 +333,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
 
       ctx.restore();
     },
-    [chartDimensions, normalizedData, showGrid, type]
+    [chartDimensions, getThemeColors, normalizedData, showGrid, type]
   );
 
   const drawAxes = useCallback(
@@ -357,7 +358,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
       ctx.stroke();
 
       ctx.fillStyle = colors.text;
-      ctx.font = '12px Arial';
+      ctx.font = `${colors.fontSize} Arial`;
       ctx.textAlign = 'center';
 
       if (xAxis?.title) {
@@ -381,7 +382,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
 
       ctx.restore();
     },
-    [chartDimensions, dataRanges, type, xAxis?.title, yAxis?.title]
+    [chartDimensions, dataRanges, getThemeColors, type, xAxis?.title, yAxis?.title]
   );
 
   const drawLineOrAreaChart = useCallback(

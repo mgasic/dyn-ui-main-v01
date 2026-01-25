@@ -9,7 +9,7 @@
   --dyn-icon-color-warning: var(--dyn-feedback-warning, #f59e0b);
   --dyn-icon-color-danger: var(--dyn-feedback-negative-default, #ef4444);
   --dyn-icon-color-info: var(--dyn-feedback-info, #3b82f6);
-  --dyn-icon-radius: var(--dyn-icon-radius, var(--dyn-border-radius-sm, 4px));
+  --dyn-icon-radius: var(--dyn-icon-radius, var(--dyn-border-radius-sm, 0.25rem));
   --dyn-icon-transition: var(--dyn-icon-clickable-transition, var(--dyn-transition-fast, 0.15s ease));
   --dyn-icon-focus-ring: var(--dyn-semantic-border-focus, #3b82f6);
 
@@ -23,36 +23,36 @@
 
 /* Size Variants */
 .sizeXS {
-  width: var(--dyn-icon-size-xs, 12px);
-  height: var(--dyn-icon-size-xs, 12px);
-  font-size: var(--dyn-icon-size-xs, 12px);
+  width: var(--dyn-icon-size-xs, 0.75rem);
+  height: var(--dyn-icon-size-xs, 0.75rem);
+  font-size: var(--dyn-icon-size-xs, 0.75rem);
 }
 
 .sizeSM,
 .sizeSmall {
-  width: var(--dyn-icon-size-sm, 16px);
-  height: var(--dyn-icon-size-sm, 16px);
-  font-size: var(--dyn-icon-size-sm, 16px);
+  width: var(--dyn-icon-size-sm, 1rem);
+  height: var(--dyn-icon-size-sm, 1rem);
+  font-size: var(--dyn-icon-size-sm, 1rem);
 }
 
 .sizeMD,
 .sizeMedium {
-  width: var(--dyn-icon-size-md, 24px);
-  height: var(--dyn-icon-size-md, 24px);
-  font-size: var(--dyn-icon-size-md, 24px);
+  width: var(--dyn-icon-size-md, 1.5rem);
+  height: var(--dyn-icon-size-md, 1.5rem);
+  font-size: var(--dyn-icon-size-md, 1.5rem);
 }
 
 .sizeLG,
 .sizeLarge {
-  width: var(--dyn-icon-size-lg, 32px);
-  height: var(--dyn-icon-size-lg, 32px);
-  font-size: var(--dyn-icon-size-lg, 32px);
+  width: var(--dyn-icon-size-lg, 2rem);
+  height: var(--dyn-icon-size-lg, 2rem);
+  font-size: var(--dyn-icon-size-lg, 2rem);
 }
 
 .sizeXL {
-  width: var(--dyn-icon-size-xl, 48px);
-  height: var(--dyn-icon-size-xl, 48px);
-  font-size: var(--dyn-icon-size-xl, 48px);
+  width: var(--dyn-icon-size-xl, 3rem);
+  height: var(--dyn-icon-size-xl, 3rem);
+  font-size: var(--dyn-icon-size-xl, 3rem);
 }
 
 /* Tone Variants */
@@ -108,8 +108,8 @@
 }
 
 .iconClickable:focus-visible {
-  outline: 2px solid var(--dyn-icon-focus-ring);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-icon-focus-ring);
+  outline-offset: var(--dyn-border-width-md, 0.125rem);
 }
 
 /* Mirror Effects */

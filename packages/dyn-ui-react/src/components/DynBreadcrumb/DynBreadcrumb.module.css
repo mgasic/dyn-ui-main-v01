@@ -110,8 +110,8 @@
 }
 
 .breadcrumbLink:focus-visible {
-  outline: 2px solid var(--dyn-breadcrumb-focus-ring-color);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-breadcrumb-focus-ring-color);
+  outline-offset: var(--dyn-border-width-md, 0.125rem);
 }
 
 /* ============================================
@@ -198,8 +198,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
+  min-width: 2rem;
+  height: 2rem;
   padding: var(--dyn-spacing-xs);
   background-color: var(--dyn-breadcrumb-color-ellipsis-bg);
   color: var(--dyn-breadcrumb-color-text);
@@ -217,8 +217,8 @@
 }
 
 .breadcrumbItemEllipsis:focus-visible {
-  outline: 2px solid var(--dyn-breadcrumb-focus-ring-color);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-breadcrumb-focus-ring-color);
+  outline-offset: var(--dyn-border-width-md, 0.125rem);
 }
 
 .breadcrumbItemEllipsis:active {
@@ -236,7 +236,7 @@
 
   .breadcrumbLink:focus-visible,
   .breadcrumbItemEllipsis:focus-visible {
-    outline-width: 3px;
+    outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 

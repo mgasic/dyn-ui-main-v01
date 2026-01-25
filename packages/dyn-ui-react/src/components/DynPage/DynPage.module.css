@@ -202,7 +202,7 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--dyn-page-border-color);
+  border: var(--dyn-border-width-lg, 3px) solid var(--dyn-page-border-color);
   border-top-color: var(--dyn-theme-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;

@@ -9,11 +9,11 @@
 
 .root {
   /* Component Tokens (Local Scoped) - WITH DEBUG COLORS */
-  --dyn-list-view-item-min-height-sm: 28px;
-  --dyn-list-view-item-min-height-md: 48px;
-  --dyn-list-view-item-min-height-lg: 80px;
-  --dyn-list-view-item-min-height-mobile: 44px;
-  --dyn-list-view-checkbox-size: 18px;
+  --dyn-list-view-item-min-height-sm: 1.75rem;
+  --dyn-list-view-item-min-height-md: 3rem;
+  --dyn-list-view-item-min-height-lg: 5rem;
+  --dyn-list-view-item-min-height-mobile: 2.75rem;
+  --dyn-list-view-checkbox-size: 1.125rem;
   --dyn-list-view-focus-outline-offset: var(--dyn-spacing-2xs, 2px);
   --dyn-list-view-divider-color: var(--dyn-semantic-border, #e2e8f0);
   --dyn-list-view-stripe-bg: var(--dyn-semantic-surface, #f8fafc);
@@ -111,15 +111,15 @@
    ============================================ */
 
 .optionSmall {
-  padding: 2px 8px;
-  min-height: 28px;
-  gap: 4px;
+  padding: var(--dyn-spacing-2xs, 0.125rem) var(--dyn-spacing-sm, 0.5rem);
+  min-height: 1.75rem;
+  gap: var(--dyn-spacing-xs, 0.25rem);
 }
 
 .optionLarge {
-  padding: 24px 32px;
-  min-height: 80px;
-  gap: 16px;
+  padding: var(--dyn-spacing-lg, 1.5rem) var(--dyn-spacing-xl, 2rem);
+  min-height: 5rem;
+  gap: var(--dyn-spacing-md, 1rem);
 }
 
 /* ============================================
@@ -150,8 +150,8 @@
 }
 
 .optionLabel {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--dyn-font-size-sm, 0.875rem);
+  font-weight: var(--dyn-font-weight-semibold, 600);
   line-height: 1.4;
   color: var(--dyn-list-view-text-primary, #111827);
   overflow: hidden;
@@ -160,11 +160,11 @@
 }
 
 .optionLabelSmall {
-  font-size: 11px;
+  font-size: var(--dyn-font-size-2xs, 0.6875rem);
 }
 
 .optionLabelLarge {
-  font-size: 20px;
+  font-size: var(--dyn-font-size-lg, 1.25rem);
 }
 
 .optionDescription {
@@ -178,11 +178,11 @@
 }
 
 .optionDescriptionSmall {
-  font-size: 9px;
+  font-size: var(--dyn-font-size-3xs, 0.625rem);
 }
 
 .optionDescriptionLarge {
-  font-size: 16px;
+  font-size: var(--dyn-font-size-md, 1rem);
 }
 
 .optionContentWrapper {
@@ -239,8 +239,8 @@
 }
 
 .actionButton {
-  padding: 4px 12px;
-  font-size: var(--dyn-font-size-xs, 12px);
+  padding: var(--dyn-spacing-xs, 0.25rem) var(--dyn-spacing-md, 0.75rem);
+  font-size: var(--dyn-font-size-xs, 0.75rem);
   font-weight: var(--dyn-font-weight-medium, 500);
   font-family: inherit;
   color: var(--dyn-list-view-text-primary, #111827);

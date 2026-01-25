@@ -64,7 +64,7 @@ describe('DynTextArea', () => {
     await user.click(textarea);
     await user.tab();
 
-    expect(await screen.findByText('Este campo é obrigatório')).toBeInTheDocument();
+    expect(await screen.findByText('Field is required')).toBeInTheDocument();
   });
 
   it('applies disabled and readonly states', () => {

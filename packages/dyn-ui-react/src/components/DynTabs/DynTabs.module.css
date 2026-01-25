@@ -17,7 +17,7 @@
   --dyn-tabs-text: var(--dyn-color-text-secondary, var(--color-text-secondary, #475569));
   --dyn-tabs-text-hover: var(--dyn-color-primary, var(--color-primary, #2563eb));
   --dyn-tabs-text-active: var(--dyn-color-primary, var(--color-primary, #2563eb));
-  --dyn-tabs-content-text: var(--dyn-color-text-primary, var(--color-text-primary, #111827));
+  --dyn-tabs-content-text: var(--dyn-color-text-primary, var(--color-text-primary, #1e293b));
   --dyn-tabs-text-disabled: var(--dyn-color-text-disabled, var(--color-text-disabled, #94a3b8));
 
   --dyn-tabs-border: var(--dyn-color-border-light, var(--color-border-light, #e2e8f0));
@@ -27,7 +27,7 @@
 
   --dyn-tabs-radius: var(--dyn-border-radius-md, var(--border-radius-md, 0.5rem));
   --dyn-tabs-border-width: var(--dyn-border-width-hairline, var(--border-width-hairline, 1px));
-  --dyn-tabs-border-width-active: var(--dyn-border-width-thin, var(--border-width-thin, 2px));
+  --dyn-tabs-border-width-active: var(--dyn-border-width-md, 2px);
 
   --dyn-tabs-gap: 0; /* Seamless by default */
   --dyn-tabs-padding-x: var(--dyn-spacing-lg, var(--spacing-lg, 1rem));
@@ -42,7 +42,7 @@
   border-radius: var(--dyn-tabs-radius);
   overflow: hidden;
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
-  box-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 1px 2px rgba(15, 23, 42, 0.08)));
+  box-shadow: var(--dyn-shadow-sm, var(--shadow-sm, 0 0.0625rem 0.125rem rgba(15, 23, 42, 0.08)));
   transition: all var(--dyn-duration-normal, 0.2s) var(--dyn-timing-standard, ease);
 }
 
@@ -153,12 +153,18 @@
   position: relative;
   background: var(--dyn-tabs-header-bg);
   margin: 0;
-  padding: 0; /* Seamless: Removed padding */
+  padding: 0;
   list-style: none;
   z-index: 1;
   gap: var(--dyn-tabs-gap);
   border-bottom: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border);
   flex-wrap: nowrap;
+  width: 100%;
+  min-width: 0;
+}
+
+.tabsFitted .tablist {
+  width: 100%;
 }
 
 /* Restore gap and padding for Pills */
@@ -180,7 +186,7 @@
 }
 
 .scrollable .tablist::-webkit-scrollbar {
-  height: 4px;
+  height: var(--dyn-spacing-sm, 0.5rem);
 }
 
 .scrollable .tablist::-webkit-scrollbar-thumb {
@@ -212,7 +218,10 @@
   min-height: var(--dyn-spacing-3xl, 3rem);
 }
 
-
+.tabsFitted .tab {
+  flex: 1;
+  min-width: 0;
+}
 
 .icon {
   color: var(--dyn-tabs-icon-color);
@@ -276,7 +285,7 @@
    ============================================ */
 
 .variantPill {
-  border-radius: var(--dyn-border-radius-pill, 999px) !important;
+  border-radius: var(--dyn-border-radius-pill, 9999px) !important;
   margin: var(--dyn-spacing-xxs);
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-md);
 }
@@ -358,8 +367,8 @@
 
 .closeButton:hover {
   opacity: 1;
-  background: var(--dyn-color-error-alpha, rgba(239, 68, 68, 0.1));
-  color: var(--dyn-color-error, #ef4444);
+  background: var(--dyn-color-error-alpha, rgba(220, 38, 38, 0.1));
+  color: var(--dyn-color-error, #dc2626);
 }
 
 .addableButton {
@@ -403,7 +412,7 @@
   padding: var(--dyn-spacing-3xl);
   gap: var(--dyn-spacing-md);
   color: var(--dyn-tabs-text);
-  min-height: 200px;
+  min-height: var(--dyn-spacing-4xl, 12.5rem);
 }
 
 .loadingSpinner {

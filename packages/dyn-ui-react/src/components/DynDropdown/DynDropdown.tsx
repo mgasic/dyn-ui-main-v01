@@ -43,6 +43,7 @@ export const DynDropdown = forwardRef<DynDropdownRef, DynDropdownProps>(
             'data-testid': dataTestId = 'dyn-dropdown',
             triggerWrapper = 'button',
             triggerRole,
+            fullWidth = false,
         },
 
         ref
@@ -191,7 +192,7 @@ export const DynDropdown = forwardRef<DynDropdownRef, DynDropdownProps>(
         );
 
         return (
-            <div className={cn(styles.container, className)} data-testid={dataTestId}>
+            <div className={cn(styles.container, fullWidth && styles.containerBlock, className)} data-testid={dataTestId}>
                 {triggerWrapper === 'button' ? (
                     <button
                         ref={triggerRef as React.RefObject<HTMLButtonElement>}

@@ -172,6 +172,7 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
       variant === 'underlined' && styles.tabsUnderlined,
       variant === 'bordered' && styles.tabsBordered,
       scrollable && styles.scrollable,
+      fitted && styles.tabsFitted,
       className
     );
 

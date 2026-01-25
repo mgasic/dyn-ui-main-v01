@@ -14,7 +14,7 @@
 
 /* ===== CSS Custom Properties (Design Tokens) ===== */
 :root {
-  /* Color System */
+  /* Color System - Standardized */
   --color-primary: #2563eb;
   --color-primary-contrast: #ffffff;
   --color-secondary: #64748b;
@@ -81,21 +81,21 @@
   --z-toast: 1100;
   --z-tooltip: 1200;
 
-  /* Button Design Tokens */
-  --dyn-color-primary: #1976d2;
+  /* Legacy Button Design Tokens - Use --dyn-* instead where possible */
+  --dyn-color-primary: #2563eb;
   --dyn-color-primary-text: #ffffff;
-  --dyn-color-primary-hover: #1565c0;
+  --dyn-color-primary-hover: #1e40af;
 
-  --dyn-color-secondary: #1976d2;
-  --dyn-color-secondary-text: #1976d2;
-  --dyn-color-secondary-hover: rgba(25, 118, 210, 0.1);
+  --dyn-color-secondary: #64748b;
+  --dyn-color-secondary-text: #ffffff;
+  --dyn-color-secondary-hover: #475569;
 
-  --dyn-color-tertiary: #1976d2;
-  --dyn-color-tertiary-text: #1976d2;
-  --dyn-color-tertiary-hover: rgba(25, 118, 210, 0.08);
+  --dyn-color-tertiary: #2563eb;
+  --dyn-color-tertiary-text: #2563eb;
+  --dyn-color-tertiary-hover: rgba(37, 99, 235, 0.08);
 
-  --dyn-color-danger: #d32f2f;
-  --dyn-color-danger-hover: #b71c1c;
+  --dyn-color-danger: #dc2626;
+  --dyn-color-danger-hover: #b91c1c;
 }
 
 /* ===== Base Styles ===== */

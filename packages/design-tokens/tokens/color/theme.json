@@ -2,48 +2,48 @@
   "color": {
     "theme": {
       "primary": {
-        "value": "#007bff",
-        "description": "Primary brand color"
+        "value": "#2563eb",
+        "description": "Primary brand color (Blue 600)"
       },
       "primary-light": {
-        "value": "#4da3ff",
-        "description": "Light primary for hover states"
+        "value": "#60a5fa",
+        "description": "Light primary for hover states (Blue 400)"
       },
       "primary-dark": {
-        "value": "#0056b3",
-        "description": "Dark primary for active states"
+        "value": "#1e40af",
+        "description": "Dark primary for active states (Blue 800)"
       },
       "primary-subtle": {
-        "value": "rgba(0, 123, 255, 0.1)",
+        "value": "rgba(37, 99, 235, 0.1)",
         "description": "Subtle primary for backgrounds"
       },
       "secondary": {
-        "value": "#6c757d",
-        "description": "Secondary color"
+        "value": "#64748b",
+        "description": "Secondary color (Slate 500)"
       },
       "secondary-light": {
-        "value": "#868e96",
-        "description": "Light secondary"
+        "value": "#94a3b8",
+        "description": "Light secondary (Slate 400)"
       },
       "secondary-dark": {
-        "value": "#545b62",
-        "description": "Dark secondary"
+        "value": "#475569",
+        "description": "Dark secondary (Slate 600)"
       },
       "secondary-subtle": {
-        "value": "rgba(108, 117, 125, 0.1)",
+        "value": "rgba(100, 116, 139, 0.1)",
         "description": "Subtle secondary for backgrounds"
       },
       "accent": {
-        "value": "#17a2b8",
-        "description": "Accent color for highlights"
+        "value": "#0ea5e9",
+        "description": "Accent color for highlights (Sky 500)"
       },
       "accent-light": {
-        "value": "#3fc3dc",
-        "description": "Light accent"
+        "value": "#38bdf8",
+        "description": "Light accent (Sky 400)"
       },
       "accent-dark": {
-        "value": "#117a8b",
-        "description": "Dark accent"
+        "value": "#0284c7",
+        "description": "Dark accent (Sky 600)"
       }
     }
   }

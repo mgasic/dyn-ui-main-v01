@@ -1,7 +1,7 @@
 import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect, useId } from 'react';
 import { cn } from '../../utils/classNames';
 import { DynBadge } from '../DynBadge';
-import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
+import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS, DynAvatarSize } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
 
 // Default image loading timeout (10 seconds)
@@ -35,6 +35,14 @@ const generateInitials = (name: string): string => {
     .slice(0, 2)
     .map(word => word.charAt(0).toUpperCase())
     .join('');
+};
+
+const SIZE_CLASS_MAP: Record<DynAvatarSize, string> = {
+  xs: styles.sizeXs,
+  sm: styles.sizeSm,
+  md: styles.sizeM,
+  lg: styles.sizeLg,
+  xl: styles.sizeXl,
 };
 
 /**
@@ -158,7 +166,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
 
     const avatarClasses = cn(
       styles.container,
-      styles[size],
+      SIZE_CLASS_MAP[size] || styles.sizeM,
       styles[shape],
       {
         [styles.clickable]: isInteractive,

@@ -93,13 +93,13 @@
 
 @media (prefers-contrast: high) {
   .container > :focus-visible {
-    outline-width: 3px;
+    outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 
 .container > :focus-visible {
-  outline: 2px solid var(--dyn-semantic-border-focus);
-  outline-offset: 2px;
+  outline: var(--dyn-border-width-md, 2px) solid var(--dyn-semantic-border-focus);
+  outline-offset: var(--dyn-spacing-2xs, 2px);
 }
 
 /* ============================================

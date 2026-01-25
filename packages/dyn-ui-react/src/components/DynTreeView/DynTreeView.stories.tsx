@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import React from 'react';
 import DynTreeView from './DynTreeView';
 import { DynTreeViewProps, DynTreeNode } from './DynTreeView.types';
 
@@ -58,32 +59,32 @@ const fileSystemData: DynTreeNode[] = [
   {
     key: 'documents',
     title: 'Documents',
-    icon: '📁',
+    icon: 'folder',
     children: [
-      { key: 'doc1', title: 'Report.pdf', icon: '📄' },
-      { key: 'doc2', title: 'Presentation.pptx', icon: '📊' },
+      { key: 'doc1', title: 'Report.pdf', icon: 'file' },
+      { key: 'doc2', title: 'Presentation.pptx', icon: 'file' },
       {
         key: 'projects',
         title: 'Projects',
-        icon: '📁',
+        icon: 'folder',
         children: [
           {
             key: 'project1',
             title: 'Website Redesign',
-            icon: '🌐',
+            icon: 'desktop',
             children: [
-              { key: 'wireframes', title: 'Wireframes.fig', icon: '🎨' },
-              { key: 'assets', title: 'Assets', icon: '📁' },
-              { key: 'code', title: 'Source Code', icon: '💻' },
+              { key: 'wireframes', title: 'Wireframes.fig', icon: 'file' },
+              { key: 'assets', title: 'Assets', icon: 'folder' },
+              { key: 'code', title: 'Source Code', icon: 'settings' },
             ],
           },
           {
             key: 'project2',
             title: 'Mobile App',
-            icon: '📱',
+            icon: 'user',
             children: [
-              { key: 'mockups', title: 'Mockups.sketch', icon: '🎨' },
-              { key: 'prototype', title: 'Prototype.html', icon: '🔗' },
+              { key: 'mockups', title: 'Mockups.sketch', icon: 'file' },
+              { key: 'prototype', title: 'Prototype.html', icon: 'share' },
             ],
           },
         ],
@@ -93,17 +94,17 @@ const fileSystemData: DynTreeNode[] = [
   {
     key: 'images',
     title: 'Images',
-    icon: '🖼️',
+    icon: 'folder',
     children: [
-      { key: 'photo1', title: 'Vacation.jpg', icon: '📸' },
-      { key: 'photo2', title: 'Profile.png', icon: '🖼️' },
+      { key: 'photo1', title: 'Vacation.jpg', icon: 'file' },
+      { key: 'photo2', title: 'Profile.png', icon: 'file' },
       {
         key: 'screenshots',
         title: 'Screenshots',
-        icon: '📁',
+        icon: 'folder',
         children: [
-          { key: 'screen1', title: 'Dashboard.png', icon: '🖥️' },
-          { key: 'screen2', title: 'Settings.png', icon: '⚙️' },
+          { key: 'screen1', title: 'Dashboard.png', icon: 'desktop' },
+          { key: 'screen2', title: 'Settings.png', icon: 'settings' },
         ],
       },
     ],
@@ -111,44 +112,44 @@ const fileSystemData: DynTreeNode[] = [
   {
     key: 'downloads',
     title: 'Downloads',
-    icon: '⬇️',
+    icon: 'folder',
     children: [
-      { key: 'software1', title: 'VSCode-Setup.exe', icon: '💾' },
-      { key: 'software2', title: 'Chrome-Installer.dmg', icon: '💾' },
-      { key: 'archive', title: 'Archive.zip', icon: '🗄️', disabled: true },
+      { key: 'software1', title: 'VSCode-Setup.exe', icon: 'download' },
+      { key: 'software2', title: 'Chrome-Installer.dmg', icon: 'download' },
+      { key: 'archive', title: 'Archive.zip', icon: 'folder', disabled: true },
     ],
   },
-  { key: 'readme', title: 'README.md', icon: '📝' },
+  { key: 'readme', title: 'README.md', icon: 'edit' },
 ];
 
 const organizationData: DynTreeNode[] = [
   {
     key: 'ceo',
     title: 'CEO - John Smith',
-    icon: '👨‍💼',
+    icon: 'user',
     children: [
       {
         key: 'engineering',
         title: 'Engineering',
-        icon: '⚙️',
+        icon: 'settings',
         children: [
           {
             key: 'frontend',
             title: 'Frontend Team',
-            icon: '💻',
+            icon: 'desktop',
             children: [
-              { key: 'dev1', title: 'Alice Johnson - Senior Developer', icon: '👩‍💻' },
-              { key: 'dev2', title: 'Bob Wilson - Developer', icon: '👨‍💻' },
-              { key: 'dev3', title: 'Carol Davis - Junior Developer', icon: '👩‍💻' },
+              { key: 'dev1', title: 'Alice Johnson - Senior Developer', icon: 'user' },
+              { key: 'dev2', title: 'Bob Wilson - Developer', icon: 'user' },
+              { key: 'dev3', title: 'Carol Davis - Junior Developer', icon: 'user' },
             ],
           },
           {
             key: 'backend',
             title: 'Backend Team',
-            icon: '🔧',
+            icon: 'settings',
             children: [
-              { key: 'dev4', title: 'David Brown - Lead Developer', icon: '👨‍💻' },
-              { key: 'dev5', title: 'Emma Taylor - Developer', icon: '👩‍💻' },
+              { key: 'dev4', title: 'David Brown - Lead Developer', icon: 'user' },
+              { key: 'dev5', title: 'Emma Taylor - Developer', icon: 'user' },
             ],
           },
         ],
@@ -156,19 +157,19 @@ const organizationData: DynTreeNode[] = [
       {
         key: 'design',
         title: 'Design',
-        icon: '🎨',
+        icon: 'edit',
         children: [
-          { key: 'designer1', title: 'Frank Miller - UI Designer', icon: '🎨' },
-          { key: 'designer2', title: 'Grace Lee - UX Designer', icon: '🎨' },
+          { key: 'designer1', title: 'Frank Miller - UI Designer', icon: 'edit' },
+          { key: 'designer2', title: 'Grace Lee - UX Designer', icon: 'edit' },
         ],
       },
       {
         key: 'marketing',
         title: 'Marketing',
-        icon: '📢',
+        icon: 'share',
         children: [
-          { key: 'marketer1', title: 'Henry White - Marketing Manager', icon: '📈' },
-          { key: 'marketer2', title: 'Ivy Chen - Content Creator', icon: '✍️' },
+          { key: 'marketer1', title: 'Henry White - Marketing Manager', icon: 'info' },
+          { key: 'marketer2', title: 'Ivy Chen - Content Creator', icon: 'edit' },
         ],
       },
     ],
@@ -219,25 +220,48 @@ export const Default: Story = {
 
 // With Checkboxes
 export const WithCheckboxes: Story = {
+  render: (args) => {
+    const [checkedKeys, setCheckedKeys] = React.useState<string[]>(args.checkedKeys || []);
+
+    return (
+      <DynTreeView
+        {...args}
+        checkedKeys={checkedKeys}
+        onCheck={(keys, info) => {
+          setCheckedKeys(keys);
+          args.onCheck?.(keys, info);
+        }}
+      />
+    );
+  },
   args: {
     ...Default.args,
     checkable: true,
     checkedKeys: ['documents', 'doc1'],
-    onCheck: (checkedKeys, info) => {
-      console.log('Checked:', { checkedKeys, info });
-    },
+    multiple: true,
   },
 };
 
 // Multiple Selection
 export const MultipleSelection: Story = {
+  render: (args) => {
+    const [selectedKeys, setSelectedKeys] = React.useState<string[]>(args.selectedKeys || []);
+
+    return (
+      <DynTreeView
+        {...args}
+        selectedKeys={selectedKeys}
+        onSelect={(keys, info) => {
+          setSelectedKeys(keys);
+          args.onSelect?.(keys, info);
+        }}
+      />
+    );
+  },
   args: {
     ...Default.args,
     multiple: true,
     selectedKeys: ['documents', 'images'],
-    onSelect: (selectedKeys, info) => {
-      console.log('Selected:', { selectedKeys, info });
-    },
   },
 };
 
@@ -280,17 +304,33 @@ export const WithoutIcons: Story = {
 
 // Organization Chart
 export const OrganizationChart: Story = {
+  render: (args) => {
+    const [checkedKeys, setCheckedKeys] = React.useState<string[]>([]);
+    const [selectedKeys, setSelectedKeys] = React.useState<string[]>([]);
+
+    return (
+      <DynTreeView
+        {...args}
+        checkedKeys={checkedKeys}
+        selectedKeys={selectedKeys}
+        onCheck={(keys, info) => {
+          setCheckedKeys(keys);
+          args.onCheck?.(keys, info);
+        }}
+        onSelect={(keys, info) => {
+          setSelectedKeys(keys);
+          args.onSelect?.(keys, info);
+        }}
+      />
+    );
+  },
   args: {
     treeData: organizationData,
     checkable: true,
     selectable: true,
     showIcon: true,
     defaultExpandAll: true,
-    onSelect: (selectedKeys, info) => {
-      if (info?.node) {
-        console.log('Employee selected:', info.node.title);
-      }
-    },
+    multiple: true,
   },
 };
 
@@ -313,6 +353,32 @@ export const Empty: Story = {
 
 // All Features Combined
 export const AllFeatures: Story = {
+  render: (args) => {
+    const [checkedKeys, setCheckedKeys] = React.useState<string[]>(args.checkedKeys || []);
+    const [selectedKeys, setSelectedKeys] = React.useState<string[]>(args.selectedKeys || []);
+    const [expandedKeys, setExpandedKeys] = React.useState<string[]>(args.expandedKeys || []);
+
+    return (
+      <DynTreeView
+        {...args}
+        checkedKeys={checkedKeys}
+        selectedKeys={selectedKeys}
+        expandedKeys={expandedKeys}
+        onCheck={(keys, info) => {
+          setCheckedKeys(keys);
+          args.onCheck?.(keys, info);
+        }}
+        onSelect={(keys, info) => {
+          setSelectedKeys(keys);
+          args.onSelect?.(keys, info);
+        }}
+        onExpand={(keys) => {
+          setExpandedKeys(keys);
+          args.onExpand?.(keys);
+        }}
+      />
+    );
+  },
   args: {
     treeData: fileSystemData,
     checkable: true,
@@ -325,17 +391,5 @@ export const AllFeatures: Story = {
     expandedKeys: ['documents'],
     checkedKeys: ['doc1', 'photo1'],
     selectedKeys: ['projects'],
-    onExpand: (expandedKeys) => {
-      console.log('Expanded:', expandedKeys);
-    },
-    onCheck: (checkedKeys, info) => {
-      console.log('Checked:', { checkedKeys, info });
-    },
-    onSelect: (selectedKeys, info) => {
-      console.log('Selected:', { selectedKeys, info });
-    },
-    onSearch: (value) => {
-      console.log('Search:', value);
-    },
   },
 };

@@ -169,7 +169,7 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
         const isLink = Boolean(item.href) && !isCurrent;
         const listItemClasses = cn(
           styles.breadcrumbItem,
-          item.showWhenCollapsed && styles['breadcrumbItem--show']
+          item.showWhenCollapsed && styles.breadcrumbItemShow
         );
 
         const listItemProps = enableStructuredData
@@ -228,11 +228,11 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
         <>
           <li
             key="ellipsis"
-            className={cn(styles.breadcrumbItem, styles['breadcrumbItem--ellipsis'])}
+            className={cn(styles.breadcrumbItem, styles.breadcrumbItemEllipsis)}
           >
             <button
               type="button"
-              className={styles['breadcrumbItem--ellipsis']}
+              className={styles.breadcrumbItemEllipsis}
               onClick={handleEllipsisClick}
               aria-label={`Show ${hiddenItemCount} hidden breadcrumb items`}
               aria-expanded={expanded}
@@ -251,8 +251,8 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
 
     const breadcrumbClasses = cn(
       styles.breadcrumb,
-      styles[`breadcrumb--${size}`],
-      shouldCollapse && showEllipsis && styles['breadcrumb--collapsed'],
+      styles[`breadcrumb${size.charAt(0).toUpperCase() + size.slice(1)}`],
+      shouldCollapse && showEllipsis && styles.breadcrumbCollapsed,
       className
     );
 

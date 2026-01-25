@@ -134,7 +134,7 @@ const DynIconComponent = (
     const baseIcon = resolveRegistryIcon(normalizedIcon);
     if (baseIcon && strokeWidth && isValidElement(baseIcon)) {
       // Propagation strokeWidth to the SVG element
-      return React.cloneElement(baseIcon as ReactElement, {
+      return React.cloneElement(baseIcon as ReactElement<{ strokeWidth?: string }>, {
         strokeWidth: strokeWidth.toString(),
       });
     }
@@ -244,7 +244,7 @@ const DynIconComponent = (
       if (strokeWidth) {
         return (
           <span className={styles.dynIconCustom} aria-hidden="true">
-            {React.cloneElement(icon as ReactElement, {
+            {React.cloneElement(icon as ReactElement<{ strokeWidth?: string }>, {
               strokeWidth: strokeWidth.toString(),
             })}
           </span>

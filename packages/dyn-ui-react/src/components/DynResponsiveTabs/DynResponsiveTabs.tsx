@@ -1,7 +1,6 @@
-import React, { forwardRef, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { forwardRef, useState, useEffect, useMemo, useCallback, useId } from 'react';
 import type { KeyboardEventHandler } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import { DynIcon } from '../DynIcon';
 import type {
   DynResponsiveTabsProps,
@@ -113,9 +112,8 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
     const isControlled = activeTab !== undefined;
 
     // Generate unique ID for this tabs instance
-    const internalId = useMemo(() => {
-      return id || generateId(tabIdentifier ? `tabs-${tabIdentifier}` : 'responsive-tabs');
-    }, [id, tabIdentifier]);
+    const generatedId = useId();
+    const internalId = useMemo(() => id || generatedId, [id, generatedId]);
 
     // Internal state for uncontrolled mode
     const [internalActiveIndex, setInternalActiveIndex] = useState(defaultActive);
@@ -202,8 +200,8 @@ export const DynResponsiveTabs = forwardRef<DynResponsiveTabsRef, DynResponsiveT
         if (nextIndex !== index && !validTabs[nextIndex]?.disabled) {
           handleTabClick(nextIndex);
           // Focus the next tab
-          const nextButton = document.querySelector(
-            `#${internalId}-tab-${nextIndex}`
+          const nextButton = document.getElementById(
+            `${internalId}-tab-${nextIndex}`
           ) as HTMLButtonElement;
           nextButton?.focus();
         }

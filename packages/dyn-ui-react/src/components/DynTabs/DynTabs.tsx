@@ -1,6 +1,5 @@
-import React, { useMemo, useRef, useState, useEffect, forwardRef, useImperativeHandle } from 'react';
+import React, { useMemo, useRef, useState, useEffect, forwardRef, useImperativeHandle, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import styles from './DynTabs.module.css';
 import type { DynTabsProps, DynTabsRef } from './DynTabs.types';
 import { DynIcon } from '../DynIcon';
@@ -43,7 +42,8 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
     },
     ref
   ) => {
-    const [internalId] = useState(() => id || generateId('tabs'));
+    const generatedId = useId();
+    const internalId = id || generatedId;
 
     // Process items to ensure they have consistent IDs/values
     const processedItems = useMemo(() => {
@@ -65,10 +65,10 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
     const [loaded, setLoaded] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
-      if (controlledValue !== undefined) {
+      if (controlledValue !== undefined && controlledValue !== current) {
         setCurrent(controlledValue);
       }
-    }, [controlledValue]);
+    }, [controlledValue, current]);
 
     // Handle tab selection
     const handleSelect = (val: string, focusPanel = false) => {
@@ -115,6 +115,13 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
         case 'End':
           nextIndex = count - 1;
           break;
+        case 'Delete':
+        case 'Backspace':
+          const item = processedItems[currentIndex];
+          if (item && (closable || item.closable)) {
+            onTabClose?.(item.processedValue);
+          }
+          return;
         default:
           return;
       }
@@ -213,19 +220,22 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
             };
 
             return (
-              <button
+              <div
                 key={item.processedId}
-                ref={el => { tabsRef.current[index] = el; }}
+                ref={el => { tabsRef.current[index] = el as any; }}
                 id={tabId}
                 role="tab"
-                type="button"
                 className={tabClass}
                 aria-selected={isSelected}
                 aria-controls={panelId}
                 aria-disabled={item.disabled}
                 tabIndex={isSelected ? 0 : -1}
                 onClick={handleTabClick}
-                disabled={item.disabled}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleSelect(item.processedValue, activation === 'auto');
+                  }
+                }}
                 data-status={isSelected ? 'active' : item.disabled ? 'disabled' : 'inactive'}
               >
                 <div className={styles.tabContent}>
@@ -237,10 +247,10 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
                   <span className={styles.label}>{item.label}</span>
                   {item.badge && <span className={styles.badge}>{item.badge}</span>}
                   {(closable || item.closable) && (
-                    <button
-                      type="button"
+                    <span
                       className={styles.closeButton}
                       aria-label="Close tab"
+                      title="Close tab (Delete)"
                       data-testid={dataTestId ? `${dataTestId}-close-${item.processedValue}` : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
@@ -248,10 +258,10 @@ export const DynTabs = forwardRef<DynTabsRef, DynTabsProps>(
                       }}
                     >
                       <DynIcon icon="close" size="small" />
-                    </button>
+                    </span>
                   )}
                 </div>
-              </button>
+              </div>
             );
           })}
 

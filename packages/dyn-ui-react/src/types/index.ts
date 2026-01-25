@@ -31,9 +31,12 @@ export type {
   DynBadgeProps,
   DynBadgeSize,
   DynBadgeVariant,
+  DynBadgeSemanticColor,
 } from '../components/DynBadge/DynBadge.types';
 export {
-  DYN_BADGE_DEFAULT_PROPS,
+  DYN_BADGE_COLORS,
+  DYN_BADGE_SIZES,
+  DYN_BADGE_VARIANTS,
 } from '../components/DynBadge/DynBadge.types';
 
 export type {

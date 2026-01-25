@@ -49,6 +49,18 @@ describe('DynSidebar', () => {
         expect(mockItems[0].onClick).toHaveBeenCalled();
     });
 
+    it('calls onItemClick prop when item is clicked', async () => {
+        const user = userEvent.setup();
+        const handleItemClick = jest.fn();
+        render(<DynSidebar items={mockItems} onItemClick={handleItemClick} />);
+
+        await user.click(screen.getByText('Item 1'));
+        // It should be called with the item object
+        expect(handleItemClick).toHaveBeenCalledWith(expect.objectContaining({ id: 'item1' }));
+        // The individual item handler should also still be called
+        expect(mockItems[0].onClick).toHaveBeenCalled();
+    });
+
     it('shows active item', () => {
         render(<DynSidebar items={mockItems} activeId="item2" />);
         const activeButton = screen.getByText('Item 2').closest('button');

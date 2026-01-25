@@ -269,6 +269,90 @@
 }
 
 /* ============================================
+   VARIANTS
+   ============================================ */
+
+/* Variant: Numbered (Default-like but specific) */
+.variant-numbered .stepIndex {
+  /* Inherits standard look */
+}
+
+/* Variant: Dots */
+.variant-dots .stepIndex {
+  width: 12px;
+  height: 12px;
+  min-width: 12px; /* Ensure it doesn't shrink */
+  padding: 0;
+  border-radius: 50%;
+  color: transparent; /* Hide number */
+  background-color: var(--dyn-stepper-step-border);
+  border: none;
+}
+.variant-dots .itemCurrent .stepIndex {
+  background-color: var(--dyn-stepper-step-bg-active);
+  transform: scale(1.3);
+}
+.variant-dots .itemCompleted .stepIndex {
+  background-color: var(--dyn-stepper-step-bg-completed);
+}
+
+/* Variant: Tabs */
+.variant-tabs .list {
+  background-color: var(--dyn-stepper-step-bg-pending);
+  border-bottom: 1px solid var(--dyn-stepper-step-border);
+  gap: 0;
+}
+.variant-tabs .item {
+  flex: 1;
+}
+.variant-tabs .item::after {
+  display: none; /* No connectors in tabs */
+}
+.variant-tabs .button {
+  flex-direction: row;
+  justify-content: center;
+  padding: var(--dyn-spacing-md);
+  border-bottom: 2px solid transparent;
+  width: 100%;
+  gap: var(--dyn-spacing-sm);
+  border-radius: 0;
+}
+.variant-tabs .itemCurrent .button {
+  border-bottom-color: var(--dyn-stepper-step-bg-active);
+  color: var(--dyn-stepper-step-bg-active);
+}
+.variant-tabs .stepIndex {
+  display: none; /* Usually tabs don't show circle index, just icon/text */
+}
+.variant-tabs .stepLabel {
+  font-weight: var(--dyn-font-weight-medium);
+}
+.variant-tabs.orientation-vertical .list {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid var(--dyn-stepper-step-border);
+}
+
+/* Variant: Progress (already handled by specific progress bar, but hide list items?) */
+/* Usually progress variant implies showing just the bar or a simplified view */
+
+/* ============================================
+   SIZES
+   ============================================ */
+
+.size-small {
+  --dyn-stepper-step-size: 24px;
+  --dyn-stepper-font-size: var(--dyn-font-size-xs);
+  --dyn-stepper-icon-size: 16px;
+}
+
+.size-large {
+  --dyn-stepper-step-size: 40px;
+  --dyn-stepper-font-size: var(--dyn-font-size-base);
+  --dyn-stepper-icon-size: 24px;
+}
+
+/* ============================================
    DARK MODE
    Note: Handled automatically via semantic tokens!
    ============================================ */

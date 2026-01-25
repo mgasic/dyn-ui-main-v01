@@ -13,6 +13,8 @@
   --dyn-chart-border: var(--dyn-semantic-border, #e2e8f0);
   --dyn-chart-text-primary: var(--dyn-semantic-text, #0f172a);
   --dyn-chart-text-secondary: var(--dyn-semantic-text-secondary, #64748b);
+  --dyn-chart-grid: var(--dyn-semantic-border-subtle, #f1f5f9);
+  --dyn-chart-axis: var(--dyn-semantic-border-strong, #94a3b8);
   --dyn-chart-radius: var(--dyn-border-radius-md, 8px);
 
   display: flex;

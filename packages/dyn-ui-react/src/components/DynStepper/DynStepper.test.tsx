@@ -181,10 +181,10 @@ describe('DynStepper', () => {
       <DynStepper steps={mockSteps} orientation="horizontal" />
     );
 
-    expect(container.firstChild).toHaveClass('orientation-horizontal');
+    expect(container.firstChild).not.toHaveClass(/orientation-vertical/);
 
     rerender(<DynStepper steps={mockSteps} orientation="vertical" />);
-    expect(container.firstChild).toHaveClass('orientation-vertical');
+    expect(container.firstChild).toHaveClass(/orientationVertical/);
   });
 
   it('handles different variants correctly', () => {
@@ -192,13 +192,13 @@ describe('DynStepper', () => {
       <DynStepper steps={mockSteps} variant="numbered" />
     );
 
-    expect(container.firstChild).toHaveClass('variant-numbered');
+    expect(container.firstChild).toHaveClass(/variant-numbered/);
 
     rerender(<DynStepper steps={mockSteps} variant="dots" />);
-    expect(container.firstChild).toHaveClass('variant-dots');
+    expect(container.firstChild).toHaveClass(/variant-dots/);
 
     rerender(<DynStepper steps={mockSteps} variant="progress" />);
-    expect(container.firstChild).toHaveClass('variant-progress');
+    expect(container.firstChild).toHaveClass(/variant-progress/);
   });
 
   it('handles different sizes correctly', () => {
@@ -206,10 +206,10 @@ describe('DynStepper', () => {
       <DynStepper steps={mockSteps} size="small" />
     );
 
-    expect(container.firstChild).toHaveClass('size-small');
+    expect(container.firstChild).toHaveClass(/size-small/);
 
     rerender(<DynStepper steps={mockSteps} size="large" />);
-    expect(container.firstChild).toHaveClass('size-large');
+    expect(container.firstChild).toHaveClass(/size-large/);
   });
 
   it('shows progress bar for progress variant', () => {

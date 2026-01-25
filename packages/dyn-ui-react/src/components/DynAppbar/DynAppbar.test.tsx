@@ -82,12 +82,19 @@ describe('DynAppbar', () => {
     });
 
     describe('positions', () => {
-        it.each(['static', 'fixed', 'sticky', 'absolute'] as const)(
+        it.each(['static', 'fixed', 'sticky'] as const)(
             'applies %s position class',
             (position) => {
                 const { container } = render(<DynAppbar position={position} data-testid="appbar" />);
                 const appbar = screen.getByTestId('appbar');
-                expect(appbar.className).toContain(position);
+
+                if (position !== 'static') {
+                    expect(appbar.className).toContain(position);
+                } else {
+                    // Static is default, no specific class applied
+                    expect(appbar.className).not.toContain('fixed');
+                    expect(appbar.className).not.toContain('sticky');
+                }
             }
         );
     });

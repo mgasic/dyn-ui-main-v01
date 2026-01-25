@@ -19,6 +19,7 @@ export const DynSidebar = forwardRef<HTMLElement, DynSidebarProps>(
             activeId,
             open = false,
             onOpenChange,
+            onItemClick,
             className,
             style,
             ...rest
@@ -32,9 +33,13 @@ export const DynSidebar = forwardRef<HTMLElement, DynSidebarProps>(
                     key={item.id}
                     type="button"
                     className={cn(styles.item, isActive && styles.itemActive)}
-                    onClick={item.onClick}
+                    onClick={() => {
+                        item.onClick?.();
+                        onItemClick?.(item);
+                    }}
                     disabled={item.disabled}
                     title={collapsed ? item.label : undefined}
+                    aria-label={item.label}
                 >
                     {item.icon && (
                         <div className={styles.icon}>

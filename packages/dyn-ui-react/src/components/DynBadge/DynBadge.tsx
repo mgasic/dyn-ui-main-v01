@@ -133,7 +133,8 @@ export const DynBadge = forwardRef<DynBadgeRef, DynBadgeProps>(
      * Generate unique implementation ID if none provided
      * Stable across re-renders via useState
      */
-    const [internalId] = React.useState(() => id || generateId('badge'));
+    const generatedId = React.useId();
+    const internalId = id || generatedId;
 
     // ====================================
     // PHASE 1: Input Validation & Fallback

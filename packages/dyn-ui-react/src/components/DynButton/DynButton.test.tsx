@@ -47,13 +47,13 @@ describe('DynButton', () => {
       expect(button).toHaveTextContent('Custom Content');
     });
 
-    it('generates unique ID when not provided', () => {
-      const { rerender } = render(<DynButton label="Test" />);
-      const firstButton = screen.getByTestId('dyn-button');
+    it('generates unique IDs for different instances when not provided', () => {
+      render(<DynButton label="Button 1" />);
+      const firstButton = screen.getAllByTestId('dyn-button')[0];
       const firstId = firstButton.id;
 
-      rerender(<DynButton label="Test 2" />);
-      const secondButton = screen.getByTestId('dyn-button');
+      render(<DynButton label="Button 2" />);
+      const secondButton = screen.getAllByTestId('dyn-button')[1];
       const secondId = secondButton.id;
 
       expect(firstId).toBeTruthy();
@@ -284,7 +284,7 @@ describe('DynButton', () => {
       const button = screen.getByTestId('dyn-button');
       expect(button).toHaveClass(classes.loading!);
       expect(button.querySelector(`.${classes.spinner}`)).toBeInTheDocument();
-      
+
       // Check if content is properly hidden during loading
       const content = button.querySelector(`.${classes.content}`);
       expect(content).toBeInTheDocument();

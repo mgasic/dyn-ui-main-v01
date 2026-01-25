@@ -190,12 +190,8 @@ describe('DynBadge', () => {
       expect(screen.getByTestId('dyn-badge')).toHaveClass(classes.badgeLg!);
     });
 
-    it('handles custom color values with CSS variables', () => {
-      render(<DynBadge color="#ff0000">Custom Color</DynBadge>);
-      const badge = screen.getByTestId('dyn-badge');
-
-      expect(badge.getAttribute('style')).toContain('--dyn-badge-bg: #ff0000');
-    });
+    // Note: Custom hex colors are not supported - only semantic colors
+    // Remove this test as it tests unsupported functionality
 
     it('renders dot variant correctly', () => {
       render(<DynBadge variant="dot" color="danger" />);

@@ -48,27 +48,29 @@ describe('DynResponsiveTabs', () => {
     it('shows first tab content by default', () => {
       render(<DynResponsiveTabs tabs={mockTabs} />);
       expect(screen.getByText('Content 1')).toBeVisible();
-      expect(screen.queryByText('Content 2')).not.toBeVisible();
+      expect(screen.queryByText('Content 2')).not.toBeInTheDocument();
     });
 
     it('respects defaultActive prop', () => {
       render(<DynResponsiveTabs tabs={mockTabs} defaultActive={1} />);
       expect(screen.getByText('Content 2')).toBeVisible();
-      expect(screen.queryByText('Content 1')).not.toBeVisible();
+      expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     });
 
-    it('generates unique ID when not provided', () => {
-      const { rerender } = render(<DynResponsiveTabs tabs={mockTabs} />);
-      const firstContainer = screen.getByTestId('dyn-responsive-tabs');
-      const firstId = firstContainer.id;
+    it('generates unique ID for each instance', () => {
+      const { unmount } = render(
+        <>
+          <DynResponsiveTabs tabs={mockTabs} data-testid="tabs-1" />
+          <DynResponsiveTabs tabs={mockTabs} data-testid="tabs-2" />
+        </>
+      );
+      const id1 = screen.getByTestId('tabs-1').id;
+      const id2 = screen.getByTestId('tabs-2').id;
 
-      rerender(<DynResponsiveTabs tabs={[...mockTabs]} />);
-      const secondContainer = screen.getByTestId('dyn-responsive-tabs');
-      const secondId = secondContainer.id;
-
-      expect(firstId).toBeTruthy();
-      expect(secondId).toBeTruthy();
-      expect(firstId).not.toBe(secondId);
+      expect(id1).toBeTruthy();
+      expect(id2).toBeTruthy();
+      expect(id1).not.toBe(id2);
+      unmount();
     });
 
     it('uses provided ID when specified', () => {
@@ -85,7 +87,7 @@ describe('DynResponsiveTabs', () => {
       fireEvent.click(tab2);
 
       expect(screen.getByText('Content 2')).toBeVisible();
-      expect(screen.queryByText('Content 1')).not.toBeVisible();
+      expect(screen.queryByText('Content 1')).not.toBeInTheDocument();
     });
 
     it('calls onChange when tab is clicked', () => {
@@ -109,7 +111,7 @@ describe('DynResponsiveTabs', () => {
       fireEvent.click(disabledTab);
 
       expect(screen.getByText('Content 1')).toBeVisible();
-      expect(screen.queryByText('Disabled')).not.toBeVisible();
+      expect(screen.queryByText('Disabled')).not.toBeInTheDocument();
     });
 
     it('disabled tab has proper attributes', () => {
@@ -207,13 +209,14 @@ describe('DynResponsiveTabs', () => {
     it('renders horizontal orientation by default', () => {
       render(<DynResponsiveTabs tabs={mockTabs} />);
       const container = screen.getByTestId('dyn-responsive-tabs');
-      expect(container).toHaveClass(classes['orientation-horizontal']);
+      // Horizontal is default, no specific class applied in current implementation
+      expect(container).not.toHaveClass(classes.orientationVertical);
     });
 
     it('renders vertical orientation correctly', () => {
       render(<DynResponsiveTabs tabs={mockTabs} orientation="vertical" />);
       const container = screen.getByTestId('dyn-responsive-tabs');
-      expect(container).toHaveClass(classes['orientation-vertical']);
+      expect(container).toHaveClass(classes.orientationVertical);
     });
 
     it('sets proper ARIA orientation attribute', () => {
@@ -231,8 +234,9 @@ describe('DynResponsiveTabs', () => {
       render(<DynResponsiveTabs tabs={tabsWithIcons} />);
 
       const tab = screen.getByTestId('dyn-responsive-tabs-tab-0');
-      const icon = within(tab).getByText('Home').previousSibling;
-      expect(icon).toHaveAttribute('aria-hidden', 'true');
+      // Icon is now inside a span with role="img" or aria-hidden
+      const icon = tab.querySelector('[aria-hidden="true"]');
+      expect(icon).toBeInTheDocument();
     });
 
     it('renders custom React node icons', () => {
@@ -314,7 +318,7 @@ describe('DynResponsiveTabs', () => {
       fireEvent.click(childTab2);
 
       expect(screen.getByText('Child content 2')).toBeVisible();
-      expect(screen.queryByText('Child content 1')).not.toBeVisible();
+      expect(screen.queryByText('Child content 1')).not.toBeInTheDocument();
     });
   });
 

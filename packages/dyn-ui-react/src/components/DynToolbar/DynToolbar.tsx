@@ -83,10 +83,35 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
   }, [updateLayout]);
 
   useEffect(() => {
-    if (!responsive) return;
-    window.addEventListener('resize', updateLayout);
-    return () => window.removeEventListener('resize', updateLayout);
+    updateLayout();
+  }, [updateLayout]);
+
+  useEffect(() => {
+    if (!responsive || !toolbarRef.current) return;
+
+    let resizeObserver: ResizeObserver | null = null;
+
+    try {
+      resizeObserver = new ResizeObserver(() => {
+        updateLayout();
+      });
+      resizeObserver.observe(toolbarRef.current);
+    } catch (e) {
+      // Fallback or handle error
+      window.addEventListener('resize', updateLayout);
+    }
+
+    return () => {
+      if (resizeObserver && typeof resizeObserver.disconnect === 'function') {
+        resizeObserver.disconnect();
+      }
+      window.removeEventListener('resize', updateLayout);
+    };
   }, [responsive, updateLayout]);
+
+  useEffect(() => {
+    onOverflowToggle?.(isOverflowOpen);
+  }, [isOverflowOpen, onOverflowToggle]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -174,6 +199,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
     return (
       <div key={item.id} className={styles.itemWrapper}>
         <button
+          type="button"
           className={itemClass}
           onClick={(e) => handleItemClick(item, e)}
           disabled={item.disabled}
@@ -181,6 +207,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
           data-toolbar-item
           aria-expanded={item.type === 'dropdown' ? activeDropdown === item.id : undefined}
           aria-haspopup={item.type === 'dropdown' ? 'menu' : undefined}
+          aria-label={item.label}
         >
           {item.icon && (
             <span className={styles.itemIcon}>
@@ -201,6 +228,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
             {item.items.map(subItem => (
               <button
                 key={subItem.id}
+                type="button"
                 className={styles.dropdownItem}
                 onClick={() => handleSelectSubItem(subItem)}
                 disabled={subItem.disabled}
@@ -231,7 +259,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
   const VARIANT_MAP: Record<NonNullable<DynToolbarProps['variant']>, string | undefined> = {
     default: undefined,
     minimal: styles.variantLight, // CSS uses 'light' for minimal
-    floating: styles.variantOutline, // CSS uses 'outline' for floating
+    floating: styles.variantFloating, // CSS uses 'floating' for floating
   };
 
   const SIZE_MAP: Record<NonNullable<DynToolbarProps['size']>, string | undefined> = {
@@ -244,6 +272,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
     styles.root,
     VARIANT_MAP[variant],
     SIZE_MAP[size],
+    position && styles[`position-${position}`],
     className
   );
 
@@ -257,6 +286,7 @@ const DynToolbar = forwardRef<DynToolbarRef, DynToolbarProps>((
         {overflowItems.length > 0 && (
           <div className={styles.overflow}>
             <button
+              type="button"
               className={cn(styles.overflowButton, isOverflowOpen && styles.active)}
               onClick={() => setIsOverflowOpen(prev => !prev)}
               aria-haspopup="menu"

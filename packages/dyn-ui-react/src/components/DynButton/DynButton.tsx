@@ -1,11 +1,10 @@
-import React, { forwardRef, useMemo, useState } from 'react';
+import React, { forwardRef, useMemo, useId } from 'react';
 import type {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
 } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import { DynIcon } from '../DynIcon';
 import type {
   DynButtonDefaultProps,
@@ -80,9 +79,9 @@ export const DynButton = forwardRef<DynButtonRef, DynButtonProps>(
     },
     ref
   ) => {
-    // Generate an ID per render when not provided so tests that expect
-    // different IDs on rerender pass (generateId increments a module counter).
-    const internalId = id || generateId('button');
+    // Generate stable ID using React's useId hook
+    const generatedId = useId();
+    const internalId = id || generatedId;
 
     // Memoized computations
     const trimmedLabel = useMemo(() => (typeof label === 'string' ? label.trim() : ''), [label]);

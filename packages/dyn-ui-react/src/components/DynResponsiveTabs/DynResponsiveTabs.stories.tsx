@@ -517,27 +517,57 @@ const getParentTabs = (orientation: 'horizontal' | 'vertical') => [
 /**
  * Nested tabs example: horizontal parent with vertical children.
  */
+// Define stable parent tabs outside to prevent re-creation
+const nestedParentTabs: DynResponsiveTabItem[] = [
+  {
+    label: 'Horizontal 1',
+    content: (
+      <DynResponsiveTabs
+        tabs={childTabs1}
+        orientation="vertical"
+        tabIdentifier="child-vertical-1"
+        defaultActive={0}
+      />
+    ),
+  },
+  {
+    label: 'Horizontal 2',
+    content: (
+      <DynResponsiveTabs
+        tabs={childTabs2}
+        orientation="vertical"
+        tabIdentifier="child-vertical-2"
+        defaultActive={0}
+      />
+    ),
+  },
+];
+
+/**
+ * Nested tabs example: horizontal parent with vertical children.
+ */
 export const NestedTabs: Story = {
   render: (args) => {
-    // Parent tabs (horizontal) - recreating is cheap, content is stable references if possible
-    // However, moving logic out clarifies it.
-    const parentTabs = getParentTabs(args.orientation as any);
-
     return (
       <div>
         <h2>Demo</h2>
         <p style={{ marginBottom: '1rem', color: 'var(--dyn-color-text-secondary, #6b7280)' }}>
-          Selected tab: Responsive Tab 1
+          Selected tab: Parent 1
         </p>
         <DynResponsiveTabs
-          tabs={parentTabs}
-          orientation={args.orientation}
+          {...args}
+          tabs={nestedParentTabs}
           tabIdentifier="parent-horizontal"
-          defaultActive={0}
-          aria-label="Main navigation tabs"
         />
       </div>
     );
+  },
+  args: {
+    orientation: 'horizontal',
+    defaultActive: 0,
+  },
+  argTypes: {
+    tabs: { control: false }, // Hide tabs control for this complex story to prevent Storybook freeze
   },
   parameters: {
     docs: {

@@ -130,6 +130,17 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
     [color, ranges]
   );
 
+  // Read theme colors from CSS variables
+  const getThemeColors = useCallback(() => {
+    if (!canvasRef.current) return { track: '#e0e0e0', ticks: '#666', text: '#666' };
+    const style = getComputedStyle(canvasRef.current);
+    return {
+      track: style.getPropertyValue('--dyn-gauge-track') || '#e0e0e0',
+      ticks: style.getPropertyValue('--dyn-gauge-ticks') || '#666',
+      text: style.getPropertyValue('--dyn-gauge-text-secondary') || '#666',
+    };
+  }, []);
+
   const drawGauge = useCallback(
     (displayValue: number) => {
       const canvas = canvasRef.current;
@@ -152,6 +163,9 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
       const normalizedValue = (clampGaugeValue(displayValue, min, max) - min) / span;
       const currentColor = getColorForValue(displayValue);
 
+      const colors = getThemeColors();
+      const resolvedBackgroundColor = backgroundColor || colors.track;
+
       canvas.width = width;
       canvas.height = height;
 
@@ -159,7 +173,7 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
 
       context.beginPath();
       context.arc(centerX, centerY, radius, startAngle, startAngle + sweepAngle);
-      context.strokeStyle = backgroundColor;
+      context.strokeStyle = resolvedBackgroundColor;
       context.lineWidth = thickness;
       context.lineCap = rounded ? 'round' : 'butt';
       context.stroke();
@@ -207,7 +221,7 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
         context.beginPath();
         context.moveTo(startX, startY);
         context.lineTo(endX, endY);
-        context.strokeStyle = '#666666';
+        context.strokeStyle = colors.ticks;
         context.lineWidth = tickWidth;
         context.lineCap = 'round';
         context.stroke();
@@ -218,7 +232,7 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
           const labelY = centerY + Math.sin(angle) * labelRadius;
           const tickValue = min + (index / (tickCount - 1)) * span;
 
-          context.fillStyle = '#666666';
+          context.fillStyle = colors.text;
           context.font =
             size === 'small'
               ? '10px Arial'
@@ -252,7 +266,10 @@ export const DynGauge = forwardRef<HTMLDivElement, DynGaugeProps>((props, ref) =
       context.beginPath();
       context.arc(centerX, centerY, 4, 0, Math.PI * 2);
       context.fillStyle = '#ffffff';
+      context.shadowBlur = 2;
+      context.shadowColor = 'rgba(0,0,0,0.5)';
       context.fill();
+      context.shadowBlur = 0;
       context.strokeStyle = currentColor;
       context.lineWidth = 2;
       context.stroke();

@@ -43,6 +43,8 @@ export type DynFlexProps<E extends ElementType = 'div'> = PolymorphicComponentPr
     as?: E;
 };
 
+export type DynFlexRef<E extends ElementType = 'div'> = React.ComponentRef<E>;
+
 export const DYN_FLEX_DEFAULT_PROPS = {
     direction: 'row',
     justify: 'start',

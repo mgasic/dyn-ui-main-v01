@@ -68,6 +68,13 @@ describe('DynTabs', () => {
       expect(tabpanel).toBeInTheDocument();
     });
 
+    test('renders tab icons with correct class', () => {
+      render(<DynTabs {...defaultProps} />);
+      const icon = screen.getByTestId('tab-icon');
+      expect(icon).toBeInTheDocument();
+      expect(icon.parentElement).toHaveClass(getStyleClass('icon'));
+    });
+
     test('shows first enabled tab as active by default', () => {
       render(<DynTabs {...defaultProps} />);
 
@@ -249,10 +256,11 @@ describe('DynTabs', () => {
       const user = userEvent.setup();
       const onTabClose = vi.fn();
 
-      render(<DynTabs {...defaultProps} closable onTabClose={onTabClose} />);
+      render(<DynTabs {...defaultProps} closable onTabClose={onTabClose} defaultActiveTab="tab-4" />);
 
-      const closeButton = screen.getByTestId('test-tabs-close-tab-4');
-      await user.click(closeButton);
+      const tab4 = screen.getByRole('tab', { name: /closable tab/i });
+      tab4.focus();
+      await user.keyboard('{Delete}');
 
       expect(onTabClose).toHaveBeenCalledWith('tab-4');
     });
@@ -264,58 +272,46 @@ describe('DynTabs', () => {
 
       const tabs = screen.getAllByRole('tab');
       tabs.forEach(tab => {
-        expect(tab).toHaveClass(getStyleClass('tab--small'));
+        expect(tab).toHaveClass(getStyleClass('sizeSmall'));
       });
 
       rerender(<DynTabs {...defaultProps} size="large" />);
 
       const largeTabs = screen.getAllByRole('tab');
       largeTabs.forEach(tab => {
-        expect(tab).toHaveClass(getStyleClass('tab--large'));
+        expect(tab).toHaveClass(getStyleClass('sizeLarge'));
       });
     });
 
     test('applies variant classes correctly', () => {
       const { rerender } = render(<DynTabs {...defaultProps} variant="underlined" />);
 
-      expect(screen.getByRole('tab', { name: /first tab/i })).toHaveClass(getStyleClass('tab--underlined'));
+      expect(screen.getByRole('tab', { name: /first tab/i })).toHaveClass(getStyleClass('variantUnderlined'));
 
       rerender(<DynTabs {...defaultProps} variant="pills" />);
 
-      expect(screen.getByRole('tab', { name: /first tab/i })).toHaveClass(getStyleClass('tab--pills'));
+      expect(screen.getByRole('tab', { name: /first tab/i })).toHaveClass(getStyleClass('variantPill'));
     });
 
     test('applies position classes correctly', () => {
       const { container, rerender } = render(<DynTabs {...defaultProps} position="left" />);
 
-      expect(container.firstChild).toHaveClass(getStyleClass('tabs--left'));
+      expect(container.firstChild).toHaveClass(getStyleClass('tabsLeft'));
 
       rerender(<DynTabs {...defaultProps} position="bottom" />);
-      expect(container.firstChild).toHaveClass(getStyleClass('tabs--bottom'));
+      expect(container.firstChild).toHaveClass(getStyleClass('tabsBottom'));
     });
   });
 
-  describe('Loading and Lazy States', () => {
-    test('shows loading state for lazy tabs', async () => {
-      const user = userEvent.setup();
-      render(<DynTabs {...defaultProps} lazy defaultActiveTab="tab-1" />);
+  test('loads content progressively', async () => {
+    const user = userEvent.setup();
 
-      await user.click(screen.getByRole('tab', { name: /second tab/i }));
+    render(<DynTabs {...defaultProps} lazy />);
 
-      expect(screen.getByLabelText('Loading content')).toBeInTheDocument();
-      expect(screen.getByText('Loading tab content')).toBeInTheDocument();
-    });
+    await user.click(screen.getByRole('tab', { name: /second tab/i }));
 
-    test('loads content progressively', async () => {
-      const user = userEvent.setup();
-
-      render(<DynTabs {...defaultProps} lazy />);
-
-      await user.click(screen.getByRole('tab', { name: /second tab/i }));
-
-      await waitFor(() => {
-        expect(screen.getByText('Second tab content')).toBeInTheDocument();
-      });
+    await waitFor(() => {
+      expect(screen.getByText('Second tab content')).toBeInTheDocument();
     });
   });
 

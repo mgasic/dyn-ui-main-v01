@@ -356,16 +356,16 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
       ]
     );
 
-    const handleBlur = () => {
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       setFocused(false);
       validate();
-      onBlur?.();
+      onBlur?.(e);
     };
 
-    const handleFocus = () => {
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       setFocused(true);
       clearError();
-      onFocus?.();
+      onFocus?.(e);
     };
 
     const handleClean = () => {

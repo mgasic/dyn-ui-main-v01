@@ -3,6 +3,11 @@ import type { BaseComponentProps, AccessibilityProps } from '../../types';
 
 export type DynModalSize = 'small' | 'medium' | 'large' | 'full';
 
+/**
+ * Ref type for DynModal component
+ */
+export type DynModalRef = HTMLDivElement;
+
 export interface DynModalProps extends BaseComponentProps, AccessibilityProps {
     /** If true, the modal is displayed. */
     isOpen: boolean;

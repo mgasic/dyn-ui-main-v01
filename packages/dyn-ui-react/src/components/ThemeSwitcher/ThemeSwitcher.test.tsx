@@ -7,7 +7,7 @@ import { ThemeProvider, type Theme } from '../../theme/ThemeProvider';
 // Wrapper to provide theme context
 const renderWithTheme = (ui: React.ReactElement, initialTheme: Theme = 'light') => {
   return render(
-    <ThemeProvider defaultTheme={initialTheme}>
+    <ThemeProvider initialTheme={initialTheme}>
       {ui}
     </ThemeProvider>
   );
@@ -53,7 +53,7 @@ describe('ThemeSwitcher', () => {
 
   it('renders custom labels', () => {
     renderWithTheme(
-      <ThemeSwitcher labels={{ light: 'Day Mode', dark: 'Night Mode', system: 'Auto' }} />
+      <ThemeSwitcher labels={{ light: 'Day Mode', dark: 'Night Mode' }} />
     );
     expect(screen.getByRole('tab', { name: 'Day Mode' })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: 'Night Mode' })).toBeInTheDocument();

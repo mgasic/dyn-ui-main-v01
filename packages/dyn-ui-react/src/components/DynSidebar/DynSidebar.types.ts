@@ -25,4 +25,6 @@ export interface DynSidebarProps extends BaseComponentProps {
     open?: boolean;
     /** Callback when open state changes on mobile */
     onOpenChange?: (open: boolean) => void;
+    /** Callback when an item is clicked */
+    onItemClick?: (item: DynSidebarItem) => void;
 }

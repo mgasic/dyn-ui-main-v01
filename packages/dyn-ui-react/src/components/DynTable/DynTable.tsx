@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import styles from './DynTable.module.css';
 import type { DynTableProps, TableSortDirection } from './DynTable.types';
 import { DynIcon } from '../DynIcon';
@@ -36,7 +35,8 @@ export const DynTable: React.FC<DynTableProps> = ({
   'data-testid': dataTestId,
   ...rest
 }) => {
-  const [internalId] = useState(() => id || generateId('table'));
+  const generatedId = useId();
+  const internalId = id || generatedId;
 
   const selectionMode = selectable === true ? 'multiple' : selectable === false ? undefined : selectable;
   const isSelectable = selectionMode === 'multiple' || selectionMode === 'single';
@@ -45,9 +45,13 @@ export const DynTable: React.FC<DynTableProps> = ({
   const [internalSelectedKeys, setInternalSelectedKeys] = useState<string[]>(() => selectedKeys ?? []);
   useEffect(() => {
     if (selectedKeys !== undefined) {
-      setInternalSelectedKeys(selectedKeys);
+      const hasChanged = selectedKeys.length !== internalSelectedKeys.length ||
+        !selectedKeys.every((k, i) => k === internalSelectedKeys[i]);
+      if (hasChanged) {
+        setInternalSelectedKeys(selectedKeys);
+      }
     }
-  }, [selectedKeys]);
+  }, [selectedKeys, internalSelectedKeys]);
 
   const [internalSort, setInternalSort] = useState(sortBy ?? null);
   const userHasInteracted = useRef(false);

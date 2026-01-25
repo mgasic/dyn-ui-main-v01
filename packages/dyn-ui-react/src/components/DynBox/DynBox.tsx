@@ -1,6 +1,5 @@
-import React, { forwardRef, useMemo } from 'react';
+import React, { forwardRef, useMemo, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import type { DynBoxProps, DynBoxRef } from './DynBox.types';
 import styles from './DynBox.module.css';
 
@@ -62,7 +61,8 @@ function DynBoxInner<E extends React.ElementType = 'div'>(props: DynBoxProps<E>,
   } = props;
 
   const Component = (as ?? 'div') as React.ElementType;
-  const internalId = useMemo(() => id || generateId('dyn-box'), [id]);
+  const generatedId = useId();
+  const internalId = useMemo(() => id || generatedId, [id, generatedId]);
 
   // Filter props for DOM
   const domProps = Object.fromEntries(Object.entries(rest).filter(([k]) => !FILTERED_PROPS.has(k)));

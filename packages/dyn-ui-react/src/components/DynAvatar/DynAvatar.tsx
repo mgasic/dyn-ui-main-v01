@@ -1,6 +1,5 @@
-import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import React, { forwardRef, useState, useMemo, useCallback, useRef, useEffect, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import { DynBadge } from '../DynBadge';
 import { DynAvatarProps, DynAvatarRef, DYN_AVATAR_STATUS_LABELS } from './DynAvatar.types';
 import styles from './DynAvatar.module.css';
@@ -75,7 +74,8 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
   ) => {
     const [imageLoaded, setImageLoaded] = useState(false);
     const [imageError, setImageError] = useState(false);
-    const [internalId] = useState(() => id || generateId('avatar'));
+    const generatedId = useId();
+    const internalId = id || generatedId;
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const isInteractive = Boolean(onClick);

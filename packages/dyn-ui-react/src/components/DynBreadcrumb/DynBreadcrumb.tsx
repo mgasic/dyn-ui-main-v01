@@ -4,9 +4,9 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useId,
 } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import type {
   BreadcrumbItem,
   DynBreadcrumbProps,
@@ -44,7 +44,8 @@ export const DynBreadcrumb = forwardRef<DynBreadcrumbRef, DynBreadcrumbProps>(
     ref
   ) => {
     const [internalExpanded, setInternalExpanded] = useState(false);
-    const [generatedId] = useState(() => generateId('breadcrumb'));
+    const generatedId = useId();
+    const internalId = id || generatedId;
     const itemsSignature = useMemo(
       () =>
         items

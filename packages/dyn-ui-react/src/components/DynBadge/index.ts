@@ -3,8 +3,14 @@ export type {
   DynBadgeProps,
   DynBadgeRef,
   DynBadgeVariant,
-  DynBadgeColor,
+  DynBadgeSemanticColor,
+  DynBadgeSemanticColor as DynBadgeColor, // Alias for backward compatibility
+  DynBadgeSize,
   DynBadgePosition,
 } from './DynBadge.types';
-export type { ComponentSize as DynBadgeSize } from './DynBadge.types';
-export type { DynBadgeAccessibilityProps } from '../../types/badge.types';
+export {
+  DYN_BADGE_VARIANTS,
+  DYN_BADGE_COLORS,
+  DYN_BADGE_SIZES,
+  DYN_BADGE_POSITIONS,
+} from './DynBadge.types';

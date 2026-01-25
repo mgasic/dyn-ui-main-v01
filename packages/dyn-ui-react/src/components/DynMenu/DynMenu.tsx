@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState, forwardRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState, forwardRef, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import styles from './DynMenu.module.css';
 import { DynIcon } from '../DynIcon';
 import type { DynMenuProps, DynMenuItem } from './DynMenu.types';
@@ -19,7 +18,8 @@ export const DynMenu: React.FC<DynMenuProps> = ({
   onAction,
   ...rest
 }) => {
-  const [internalId] = useState(() => id || generateId('menu'));
+  const generatedId = useId();
+  const internalId = id || generatedId;
   const isHorizontal = orientation === 'horizontal';
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [focusIndex, setFocusIndex] = useState<number>(0);

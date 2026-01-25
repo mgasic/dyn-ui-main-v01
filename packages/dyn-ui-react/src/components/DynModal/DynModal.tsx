@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback, useId, useRef } from 'react';
+import React, { forwardRef, useEffect, useCallback, useId, useRef, useImperativeHandle } from 'react';
 import { createPortal } from 'react-dom';
 import { cn } from '../../utils/classNames';
 import { DynIcon } from '../DynIcon';
-import type { DynModalProps } from './DynModal.types';
+import type { DynModalProps, DynModalRef } from './DynModal.types';
 import { DYN_MODAL_DEFAULT_PROPS } from './DynModal.types';
 import styles from './DynModal.module.css';
 
@@ -10,33 +10,39 @@ import styles from './DynModal.module.css';
  * DynModal Component
  * A customizable modal component with overlay, header, body, and footer sections.
  */
-export const DynModal: React.FC<DynModalProps> = ({
-    isOpen,
-    onClose,
-    title,
-    children,
-    footer,
-    size = DYN_MODAL_DEFAULT_PROPS.size,
-    fullscreen = DYN_MODAL_DEFAULT_PROPS.fullscreen,
-    centered = DYN_MODAL_DEFAULT_PROPS.centered,
-    closeOnBackdropClick = DYN_MODAL_DEFAULT_PROPS.closeOnBackdropClick,
-    closeOnEsc = DYN_MODAL_DEFAULT_PROPS.closeOnEsc,
-    showCloseButton = DYN_MODAL_DEFAULT_PROPS.showCloseButton,
-    loading = DYN_MODAL_DEFAULT_PROPS.loading,
-    className,
-    style,
-    portalContainer = typeof document !== 'undefined' ? document.body : undefined,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledBy,
-    'aria-describedby': ariaDescribedBy,
-    id: idProp,
-    ...rest
-}) => {
+export const DynModal = forwardRef<DynModalRef, DynModalProps>((
+    {
+        isOpen,
+        onClose,
+        title,
+        children,
+        footer,
+        size = DYN_MODAL_DEFAULT_PROPS.size,
+        fullscreen = DYN_MODAL_DEFAULT_PROPS.fullscreen,
+        centered = DYN_MODAL_DEFAULT_PROPS.centered,
+        closeOnBackdropClick = DYN_MODAL_DEFAULT_PROPS.closeOnBackdropClick,
+        closeOnEsc = DYN_MODAL_DEFAULT_PROPS.closeOnEsc,
+        showCloseButton = DYN_MODAL_DEFAULT_PROPS.showCloseButton,
+        loading = DYN_MODAL_DEFAULT_PROPS.loading,
+        className,
+        style,
+        portalContainer = typeof document !== 'undefined' ? document.body : undefined,
+        'aria-label': ariaLabel,
+        'aria-labelledby': ariaLabelledBy,
+        'aria-describedby': ariaDescribedBy,
+        id: idProp,
+        ...rest
+    },
+    ref
+) => {
     const generatedId = useId();
     const modalId = idProp || generatedId;
     const titleId = `${modalId}-title`;
     const bodyId = `${modalId}-body`;
     const modalRef = useRef<HTMLDivElement>(null);
+
+    // Forward ref to the modal container
+    useImperativeHandle(ref, () => modalRef.current!, []);
 
     const previousFocus = useRef<HTMLElement | null>(null);
 
@@ -171,7 +177,7 @@ export const DynModal: React.FC<DynModalProps> = ({
         </div>,
         portalContainer
     );
-};
+});
 
 DynModal.displayName = 'DynModal';
 

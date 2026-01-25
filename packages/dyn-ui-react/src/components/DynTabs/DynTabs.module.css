@@ -22,6 +22,8 @@
 
   --dyn-tabs-border: var(--dyn-color-border-light, var(--color-border-light, #e2e8f0));
   --dyn-tabs-indicator: var(--dyn-color-primary, var(--color-primary, #2563eb));
+  --dyn-tabs-icon-color: var(--dyn-color-primary, #2563eb);
+  --dyn-tabs-icon-color-dark: var(--dyn-color-primary-dark, #60a5fa);
 
   --dyn-tabs-radius: var(--dyn-border-radius-md, var(--border-radius-md, 0.5rem));
   --dyn-tabs-border-width: var(--dyn-border-width-hairline, var(--border-width-hairline, 1px));
@@ -139,6 +141,7 @@
   --dyn-tabs-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #cbd5f5));
   --dyn-tabs-content-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
   --dyn-tabs-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
+  --dyn-tabs-icon-color: var(--dyn-tabs-icon-color-dark);
 }
 
 /* ============================================
@@ -207,6 +210,16 @@
   position: relative;
   flex-shrink: 0;
   min-height: var(--dyn-spacing-3xl, 3rem);
+}
+
+
+
+.icon {
+  color: var(--dyn-tabs-icon-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--dyn-spacing-xxs);
 }
 
 .tab:hover:not(.tabDisabled) {

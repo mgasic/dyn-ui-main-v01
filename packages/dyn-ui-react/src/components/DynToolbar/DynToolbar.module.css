@@ -267,6 +267,14 @@
   border-radius: var(--dyn-border-radius-md);
 }
 
+.variantFloating {
+  background-color: var(--dyn-toolbar-bg);
+  box-shadow: var(--dyn-toolbar-menu-shadow);
+  border: var(--dyn-border-width-sm) solid var(--dyn-toolbar-border);
+  border-radius: var(--dyn-border-radius-lg);
+  position: relative; /* ensure stacking context */
+}
+
 .sizeSmall {
   --dyn-toolbar-height: 48px;
   --dyn-toolbar-item-height: 32px;
@@ -310,6 +318,29 @@
 /* ============================================
    ACCESSIBILITY
    ============================================ */
+.position-top {
+  position: static;
+}
+
+.position-bottom {
+  margin-top: auto;
+}
+
+.position-fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--dyn-z-index-sticky, 1020);
+}
+
+.position-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--dyn-z-index-sticky, 1020);
+}
 
 @media (prefers-reduced-motion: reduce) {
 

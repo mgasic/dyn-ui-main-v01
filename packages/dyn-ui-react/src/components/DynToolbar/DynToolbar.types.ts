@@ -4,7 +4,7 @@
  */
 
 import type { ReactNode } from 'react';
-import type { DynBadgeColor, DynBadgeVariant } from '../DynBadge/DynBadge.types';
+import type { DynBadgeSemanticColor as DynBadgeColor, DynBadgeVariant } from '../DynBadge/DynBadge.types';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
 
 export type ToolbarBadge =

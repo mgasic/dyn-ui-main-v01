@@ -4,12 +4,6 @@
    Source: tokens/**
    ============================================ */
 
-html, body, button, input, select, textarea {
-  font-family: var(--dyn-font-family-base, 'Inter', sans-serif);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 :root {
   --dyn-transition-none: none;
   --dyn-transition-fast: 0.1s ease;
@@ -284,8 +278,8 @@ html, body, button, input, select, textarea {
   --dyn-themeSwitcher-minWidth: 60px;
   --dyn-treeView-item-minHeight: 32px;
   --dyn-treeView-icon-size: 20px;
-  --dyn-font-family-base: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --dyn-font-family-mono: 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Monaco, Courier, monospace;
+  --dyn-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --dyn-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   --dyn-font-weight-thin: 100;
   --dyn-font-weight-light: 300;
   --dyn-font-weight-normal: 400;

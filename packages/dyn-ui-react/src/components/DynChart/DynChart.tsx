@@ -21,39 +21,39 @@ import styles from './DynChart.module.css';
 
 type TooltipTarget =
   | {
-      kind: 'point';
-      x: number;
-      y: number;
-      radius: number;
-      value: number;
-      label?: string;
-      series: string;
-      color: string;
-    }
+    kind: 'point';
+    x: number;
+    y: number;
+    radius: number;
+    value: number;
+    label?: string;
+    series: string;
+    color: string;
+  }
   | {
-      kind: 'bar';
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      value: number;
-      label?: string;
-      series: string;
-      color: string;
-    }
+    kind: 'bar';
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    value: number;
+    label?: string;
+    series: string;
+    color: string;
+  }
   | {
-      kind: 'slice';
-      startAngle: number;
-      endAngle: number;
-      centerX: number;
-      centerY: number;
-      radius: number;
-      value: number;
-      label?: string;
-      series: string;
-      color: string;
-      percentage: number;
-    };
+    kind: 'slice';
+    startAngle: number;
+    endAngle: number;
+    centerX: number;
+    centerY: number;
+    radius: number;
+    value: number;
+    label?: string;
+    series: string;
+    color: string;
+    percentage: number;
+  };
 
 interface TooltipState {
   visible: boolean;
@@ -283,14 +283,27 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
 
   useEffect(() => () => hideTooltip(), [hideTooltip]);
 
+  // Read theme colors from CSS variables
+  const getThemeColors = useCallback(() => {
+    if (!canvasRef.current) return { grid: '#e0e0e0', axis: '#333', text: '#666' };
+    const style = getComputedStyle(canvasRef.current);
+    return {
+      grid: style.getPropertyValue('--dyn-chart-grid') || '#e0e0e0',
+      axis: style.getPropertyValue('--dyn-chart-axis') || '#333',
+      text: style.getPropertyValue('--dyn-chart-text-secondary') || '#666',
+      primaryText: style.getPropertyValue('--dyn-chart-text-primary') || '#000',
+    };
+  }, []);
+
   const drawGrid = useCallback(
     (ctx: CanvasRenderingContext2D) => {
       if (!showGrid || type === 'pie') return;
 
+      const colors = getThemeColors();
       const { padding, chartWidth, chartHeight } = chartDimensions;
 
       ctx.save();
-      ctx.strokeStyle = '#e0e0e0';
+      ctx.strokeStyle = colors.grid;
       ctx.lineWidth = 1;
       ctx.setLineDash([2, 2]);
 
@@ -326,10 +339,11 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
     (ctx: CanvasRenderingContext2D) => {
       if (type === 'pie') return;
 
+      const colors = getThemeColors();
       const { padding, chartWidth, chartHeight } = chartDimensions;
 
       ctx.save();
-      ctx.strokeStyle = '#333';
+      ctx.strokeStyle = colors.axis;
       ctx.lineWidth = 2;
 
       ctx.beginPath();
@@ -342,7 +356,7 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
       ctx.lineTo(padding.left, padding.top + chartHeight);
       ctx.stroke();
 
-      ctx.fillStyle = '#666';
+      ctx.fillStyle = colors.text;
       ctx.font = '12px Arial';
       ctx.textAlign = 'center';
 
@@ -532,10 +546,13 @@ const DynChart = forwardRef<HTMLDivElement, DynChartProps>((props, ref) => {
           const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
           const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
 
-          ctx.fillStyle = '#fff';
-          ctx.font = '12px Arial';
+          ctx.fillStyle = '#fff'; // Always white for better contrast on slices
+          ctx.shadowBlur = 2;
+          ctx.shadowColor = 'rgba(0,0,0,0.5)';
+          ctx.font = 'bold 12px Arial';
           ctx.textAlign = 'center';
           ctx.fillText(`${percentage.toFixed(1)}%`, labelX, labelY);
+          ctx.shadowBlur = 0;
         }
 
         if (showTooltip) {

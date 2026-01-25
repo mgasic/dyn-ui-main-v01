@@ -7,7 +7,7 @@
 :root {
   --dyn-button-root-fontFamily: inherit;
   --dyn-button-root-fontSize: var(--dyn-font-size-sm);
-  --dyn-button-root-fontWeight: var(--dyn-font-weight-semibold, 600);
+  --dyn-button-root-fontWeight: var(--dyn-font-weight-medium);
   --dyn-button-root-borderRadius: var(--dyn-border-radius-md);
   --dyn-button-root-borderWidth: var(--dyn-border-width-sm);
   --dyn-button-root-transition: var(--dyn-duration-fast);
@@ -19,8 +19,8 @@
   --dyn-button-size-fontSize-medium: var(--dyn-font-size-sm);
   --dyn-button-size-fontSize-large: var(--dyn-font-size-md);
   --dyn-button-size-minHeight-small: 32px;
-  --dyn-button-size-minHeight-medium: 44px;
-  --dyn-button-size-minHeight-large: 52px;
+  --dyn-button-size-minHeight-medium: 40px;
+  --dyn-button-size-minHeight-large: 48px;
   --dyn-button-color-primary-background: var(--dyn-theme-primary);
   --dyn-button-color-primary-text: var(--dyn-semantic-text-inverse);
   --dyn-button-color-primary-border: var(--dyn-theme-primary);

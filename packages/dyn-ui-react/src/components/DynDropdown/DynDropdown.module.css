@@ -8,6 +8,28 @@
    ============================================ */
 
 .container {
+  display: inline-block;
+}
+
+/* ============================================
+   TRIGGER
+   ============================================ */
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* ============================================
+   MENU
+   ============================================ */
+
+.menu {
   /* Color tokens - semantic for auto theme switching */
   --dyn-dropdown-bg: var(--dyn-semantic-background, #ffffff);
   --dyn-dropdown-border-color: var(--dyn-semantic-border, #e2e8f0);
@@ -34,27 +56,7 @@
   --dyn-dropdown-shadow: var(--dyn-elevation-high, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
   --dyn-dropdown-transition: var(--dyn-transition-fast, 150ms ease);
   --dyn-dropdown-z-index: 1000;
-}
 
-/* ============================================
-   TRIGGER
-   ============================================ */
-
-.trigger {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-}
-
-/* ============================================
-   MENU
-   ============================================ */
-
-.menu {
   position: fixed;
   min-width: var(--dyn-dropdown-min-width);
   max-width: var(--dyn-dropdown-max-width);

@@ -1,6 +1,5 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useMemo, useRef, useState, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import styles from './DynListView.module.css';
 import type { DynListViewProps, DynListViewRef, ListViewItem, ListAction } from './DynListView.types';
 import { DynIcon } from '../DynIcon';
@@ -53,7 +52,8 @@ export const DynListView = forwardRef<HTMLDivElement, DynListViewProps>(function
   // Use items prop, fallback to data for backward compatibility
   const listItems = items.length > 0 ? items : data;
 
-  const [internalId] = useState(() => id || generateId('listview'));
+  const generatedId = useId();
+  const internalId = id || generatedId;
   const isControlled = value !== undefined;
   const [selected, setSelected] = useState<string[] | string | undefined>(
     value ?? (multiSelect ? [] : defaultValue)

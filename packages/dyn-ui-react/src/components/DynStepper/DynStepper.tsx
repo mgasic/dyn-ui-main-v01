@@ -1,6 +1,5 @@
-import React, { forwardRef, useImperativeHandle, useState, useCallback, useEffect } from 'react';
+import React, { forwardRef, useImperativeHandle, useState, useCallback, useEffect, useId } from 'react';
 import { cn } from '../../utils/classNames';
-import { generateId } from '../../utils/accessibility';
 import styles from './DynStepper.module.css';
 import { DynIcon } from '../DynIcon';
 import type { DynStepperProps, DynStepperRef, DynStep, StepItem } from './DynStepper.types';
@@ -64,7 +63,8 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
     },
     ref
   ) => {
-    const [internalId] = useState(() => id || generateId('stepper'));
+    const generatedId = useId();
+    const internalId = id || generatedId;
 
     // Determine controlled state and initial value with proper priority:
     // 1. activeStep (new API) takes precedence
@@ -226,7 +226,7 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
       const classes = [styles.root];
 
       // Add semantic classes for tests
-      if (orientation) classes.push(styles[`orientation-${orientation}`]);
+      if (orientation === 'vertical') classes.push(styles.orientationVertical);
       if (variant) classes.push(styles[`variant-${variant}`]);
       if (size) classes.push(styles[`size-${size}`]);
       if (className) classes.push(className);

@@ -52,11 +52,13 @@ describe('DynDatePicker', () => {
 
   it('handles clear action', () => {
     const handleChange = vi.fn();
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
     render(
       <DynDatePicker
         name="test"
         label="Test"
-        value={new Date()}
+        value={todayString}
         onChange={handleChange}
       />
     );
@@ -98,7 +100,9 @@ describe('DynDatePicker', () => {
   });
 
   it('prevents changes when readonly', () => {
-    render(<DynDatePicker name="test" label="Test" readonly value={new Date()} />);
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    render(<DynDatePicker name="test" label="Test" readonly value={todayString} />);
 
     const input = screen.getByRole('textbox');
     expect(input).toHaveAttribute('readonly');

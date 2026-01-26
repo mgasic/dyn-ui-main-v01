@@ -100,28 +100,28 @@ export const DynMenu: React.FC<DynMenuProps> = ({
         const buttonId = `${internalId}-item-${idx}`;
         const menuId = `${internalId}-submenu-${idx}`;
         return (
-          <div key={buttonId} className={getStyleClass('menubar__item')}>
+          <div key={buttonId} className={getStyleClass('menubarItem')}>
             <button
               ref={(el) => { itemRefs.current[idx] = el; }}
               id={buttonId}
               type="button"
               role="menuitem"
-              className={cn(getStyleClass('menubar__button'), isOpen && getStyleClass('menubar__button--open'))}
+              className={cn(getStyleClass('menubarButton'), isOpen && getStyleClass('menubarButtonOpen'))}
               aria-haspopup={item.children && item.children.length ? 'menu' : undefined}
               aria-expanded={item.children && item.children.length ? isOpen : undefined}
               aria-controls={item.children && item.children.length ? menuId : undefined}
               onClick={() => handleItemClick(idx)}
             >
-              <div className={getStyleClass('menubar__button-content')}>
+              <div className={getStyleClass('menubarButtonContent')}>
                 {item.icon && (
-                  <span className={getStyleClass('menubar__icon')}>
+                  <span className={getStyleClass('menubarIcon')}>
                     <DynIcon icon={item.icon} size="small" />
                   </span>
                 )}
-                <span className={getStyleClass('menubar__label')}>{item.label}</span>
+                <span className={getStyleClass('menubarLabel')}>{item.label}</span>
               </div>
               {item.children && item.children.length > 0 && (
-                <span className={cn(getStyleClass('menubar__chevron'), isOpen && getStyleClass('menubar__chevron--open'))}>
+                <span className={cn(getStyleClass('menubarChevron'))}>
                   <DynIcon icon={isHorizontal ? 'chevron-down' : 'chevron-right'} size="small" />
                 </span>
               )}
@@ -138,15 +138,15 @@ export const DynMenu: React.FC<DynMenuProps> = ({
                     key={`${menuId}-opt-${sidx}`}
                     role="menuitem"
                     type="button"
-                    className={getStyleClass('menu__item')}
+                    className={getStyleClass('menuItem')}
                     onClick={() => onSubItemClick(sub.action)}
                   >
                     {sub.icon && (
-                      <span className={getStyleClass('menu__icon')}>
+                      <span className={getStyleClass('menuIcon')}>
                         <DynIcon icon={sub.icon} size="small" />
                       </span>
                     )}
-                    <span className={getStyleClass('menu__label')}>{sub.label}</span>
+                    <span className={getStyleClass('menuLabel')}>{sub.label}</span>
                   </button>
                 ))}
               </div>

@@ -14,6 +14,9 @@ import React, {
   useLayoutEffect
 } from 'react';
 import { cn } from '../../utils/classNames';
+
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 import type { DynInputProps, DynInputRef, CurrencyInputConfig } from './DynInput.types';
 import { DYN_INPUT_DEFAULT_PROPS } from './DynInput.types';
 import type { DynCurrencyConfig } from '../../utils/dynFormatters';
@@ -379,14 +382,14 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
 
     const inputClasses = cn(
       styles.input,
-      styles[`input--${size}`],
+      styles[`input${capitalize(size)}`],
       {
-        [styles['input--focused']]: focused,
-        [styles['input--error']]: !!error,
-        [styles['input--disabled']]: disabled,
-        [styles['input--readonly']]: readonly,
-        [styles['input--with-icon']]: !!icon,
-        [styles['input--clearable']]: !!(showCleanButton && inputValue && !readonly && !disabled)
+        [styles['inputFocused']]: focused,
+        [styles['inputError']]: !!error,
+        [styles['inputDisabled']]: disabled,
+        [styles['inputReadonly']]: readonly,
+        [styles['inputWithIcon']]: !!icon,
+        [styles['inputClearable']]: !!(showCleanButton && inputValue && !readonly && !disabled)
       }
     );
 
@@ -450,7 +453,7 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
           {showCleanButton && inputValue && !readonly && !disabled && (
             <button
               type="button"
-              className={styles['clear-button']}
+              className={styles.clearButton}
               onClick={handleClean}
               tabIndex={-1}
               aria-label="Clear field"

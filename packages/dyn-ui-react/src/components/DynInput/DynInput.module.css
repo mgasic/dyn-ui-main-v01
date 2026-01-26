@@ -56,7 +56,7 @@
 /* ================================================
    INTERACTIVE STATES
    ================================================ */
-.input:hover:not(:disabled):not(.input--readonly) {
+.input:hover:not(:disabled):not(.inputReadonly) {
   border-color: var(--dyn-input-border-hover);
 }
 
@@ -66,42 +66,42 @@
   box-shadow: 0 0 0 var(--dyn-border-width-lg, 3px) var(--dyn-input-focus-ring);
 }
 
-.input--focused {
+.inputFocused {
   border-color: var(--dyn-input-border-focus);
   box-shadow: 0 0 0 var(--dyn-border-width-lg, 3px) var(--dyn-input-focus-ring);
 }
 
 .input:disabled,
-.input--disabled {
+.inputDisabled {
   background: var(--dyn-input-disabled-bg);
   color: var(--dyn-input-disabled-color);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.input--readonly {
+.inputReadonly {
   background: var(--dyn-input-readonly-bg);
 }
 
-.input--error {
+.inputError {
   border-color: var(--dyn-input-error);
 }
 
 /* ================================================
    SIZE VARIANTS
    ================================================ */
-.input--small {
+.inputSmall {
   padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
   font-size: var(--dyn-font-size-xs);
 }
 
-.input--medium {
+.inputMedium {
   /* Medium uses default values from .input (lines 34-36) */
   padding: var(--dyn-spacing-sm) var(--dyn-spacing-md);
   font-size: var(--dyn-font-size-sm);
 }
 
-.input--large {
+.inputLarge {
   padding: var(--dyn-spacing-md) var(--dyn-spacing-lg);
   font-size: var(--dyn-font-size-md);
 }
@@ -109,11 +109,11 @@
 /* ================================================
    ICON SUPPORT
    ================================================ */
-.input--with-icon {
+.inputWithIcon {
   padding-left: 2.5rem;
 }
 
-.input--clearable {
+.inputClearable {
   padding-right: 2.5rem;
 }
 
@@ -127,7 +127,7 @@
   display: flex;
 }
 
-.clear-button {
+.clearButton {
   position: absolute;
   right: var(--dyn-spacing-sm);
   top: 50%;
@@ -142,7 +142,7 @@
   transition: all var(--dyn-transition-fast);
 }
 
-.clear-button:hover {
+.clearButton:hover {
   color: var(--dyn-input-color);
   background-color: var(--dyn-semantic-surface-hover);
 }

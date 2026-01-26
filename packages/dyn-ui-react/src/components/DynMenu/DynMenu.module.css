@@ -38,11 +38,11 @@
    MENUBAR ITEM
    ============================================ */
 
-.menubar__item {
+.menubarItem {
   position: relative;
 }
 
-.menubar__button {
+.menubarButton {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,28 +62,28 @@
   user-select: none;
 }
 
-.menubar__button:hover {
+.menubarButton:hover {
   background: var(--dyn-semantic-surface-hover);
 }
 
-.menubar__button:focus-visible {
+.menubarButton:focus-visible {
   outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-semantic-border-focus);
   outline-offset: var(--dyn-border-width-md, 0.125rem);
 }
 
-.menubar__button--open {
+.menubarButtonOpen {
   background: var(--dyn-semantic-surface-active);
   color: var(--dyn-theme-primary);
 }
 
-.menubar__button-content {
+.menubarButtonContent {
   display: flex;
   align-items: center;
   gap: var(--dyn-spacing-sm);
 }
 
-.menubar__icon,
-.menu__icon {
+.menubarIcon,
+.menuIcon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,11 +91,11 @@
   color: var(--dyn-semantic-text-secondary);
 }
 
-.menubar__button--open .menubar__icon {
+.menubarButtonOpen .menubarIcon {
   color: var(--dyn-theme-primary);
 }
 
-.menubar__chevron {
+.menubarChevron {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,20 +104,20 @@
   transition: transform var(--dyn-transition-fast);
 }
 
-.menubar__button--open .menubar__chevron {
+.menubarButtonOpen .menubarChevron {
   color: var(--dyn-theme-primary);
 }
 
-.menubar[aria-orientation="horizontal"] .menubar__button--open .menubar__chevron {
+.menubar[aria-orientation="horizontal"] .menubarButtonOpen .menubarChevron {
   transform: rotate(180deg);
 }
 
-.menubar[aria-orientation="vertical"] .menubar__button--open .menubar__chevron {
+.menubar[aria-orientation="vertical"] .menubarButtonOpen .menubarChevron {
   transform: rotate(90deg);
 }
 
-.menubar__label,
-.menu__label {
+.menubarLabel,
+.menuLabel {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -154,7 +154,7 @@
    MENU ITEMS
    ============================================ */
 
-.menu__item {
+.menuItem {
   display: flex;
   align-items: center;
   gap: var(--dyn-spacing-sm);
@@ -174,16 +174,16 @@
   white-space: nowrap;
 }
 
-.menu__item:hover {
+.menuItem:hover {
   background: var(--dyn-semantic-surface-hover);
 }
 
-.menu__item:focus-visible {
+.menuItem:focus-visible {
   outline: var(--dyn-border-width-md, 0.125rem) solid var(--dyn-semantic-border-focus);
   outline-offset: calc(var(--dyn-border-width-md, 0.125rem) * -1);
 }
 
-.menu__item:active {
+.menuItem:active {
   background: var(--dyn-semantic-surface-active);
   color: var(--dyn-theme-primary);
 }
@@ -202,7 +202,7 @@
     max-width: 12.5rem;
   }
 
-  .menubar__button {
+  .menubarButton {
     padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
     font-size: var(--dyn-font-size-xs);
   }
@@ -211,7 +211,7 @@
     min-width: 10rem;
   }
 
-  .menu__item {
+  .menuItem {
     padding: var(--dyn-spacing-xs) var(--dyn-spacing-sm);
     font-size: var(--dyn-font-size-xs);
   }
@@ -230,16 +230,16 @@
     border-width: 2px;
   }
 
-  .menubar__button:focus-visible,
-  .menu__item:focus-visible {
+  .menubarButton:focus-visible,
+  .menuItem:focus-visible {
     outline-width: var(--dyn-border-width-lg, 3px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-  .menubar__button,
-  .menu__item {
+  .menubarButton,
+  .menuItem {
     transition: none;
   }
 }

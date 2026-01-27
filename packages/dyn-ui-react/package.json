@@ -24,6 +24,5 @@
     "classnames": "catalog:"
   },
   "devDependencies": {
-    "@types/classnames": "catalog:"
   }
 }

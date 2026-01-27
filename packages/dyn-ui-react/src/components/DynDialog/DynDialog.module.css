@@ -1,0 +1,27 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dyn-spacing-4, 1rem);
+}
+
+.message {
+  color: var(--dyn-dialog-text-color, var(--dyn-text-primary, #1e293b));
+  font-size: var(--dyn-font-size-base, 1rem);
+  line-height: var(--dyn-line-height-base, 1.5);
+  margin: 0;
+}
+
+.inputContainer {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--dyn-spacing-3, 0.75rem);
+  margin-top: var(--dyn-spacing-2, 0.5rem);
+}

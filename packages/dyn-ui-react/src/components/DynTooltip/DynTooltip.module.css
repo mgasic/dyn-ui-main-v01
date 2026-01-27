@@ -1,0 +1,38 @@
+.tooltipContainer {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip {
+  position: fixed;
+  background-color: var(--dyn-tooltip-bg, #1f2937);
+  color: var(--dyn-tooltip-text, #ffffff);
+  padding: var(--dyn-spacing-2, 0.5rem) var(--dyn-spacing-3, 0.75rem);
+  border-radius: var(--dyn-radius-sm, 0.25rem);
+  font-size: var(--dyn-font-size-sm, 0.875rem);
+  line-height: 1.25;
+  z-index: var(--dyn-z-index-tooltip, 1500);
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: var(--dyn-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  max-width: 300px;
+  white-space: normal;
+  text-align: center;
+}
+
+.tooltipVisible {
+  opacity: 1;
+}
+
+/* Specific positioning adjustments will be handled via JS mostly for portals, 
+but we can define arrow styles here if needed */
+
+.arrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: var(--dyn-tooltip-bg, #1f2937);
+  transform: rotate(45deg);
+}

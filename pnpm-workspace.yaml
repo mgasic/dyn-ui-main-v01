@@ -2,108 +2,63 @@ packages:
   - packages/*
   - apps/*
 
+catalog:
+  '@chromatic-com/storybook': ^3.2.2
+  '@mdx-js/react': ^3.1.1
+  '@playwright/test': ^1.56.1
+  '@rollup/plugin-commonjs': ^25.0.7
+  '@rollup/plugin-node-resolve': ^15.2.3
+  '@rollup/plugin-typescript': ^11.1.6
+  '@storybook/addon-a11y': ^8.6.15
+  '@storybook/addon-controls': ^8.6.15
+  '@storybook/addon-docs': ^8.6.15
+  '@storybook/addon-essentials': ^8.6.15
+  '@storybook/addon-interactions': ^8.6.15
+  '@storybook/react': ^8.6.15
+  '@storybook/react-vite': ^8.6.15
+  '@storybook/test': ^8.6.15
+  '@testing-library/jest-dom': ^6.9.1
+  '@testing-library/react': ^16.3.0
+  '@testing-library/user-event': ^14.6.1
+  '@types/classnames': 2.3.4
+  '@types/node': ^24.6.2
+  '@types/react': ^19.2.2
+  '@types/react-dom': ^19.2.2
+  '@typescript-eslint/parser': ^8.12.1
+  '@vitest/browser': ^3.2.4
+  '@vitest/coverage-v8': ^3.2.4
+  '@vitest/ui': 3.2.4
+  autoprefixer: ^10.4.21
+  axe-core: ^4.11.0
+  baseline-browser-mapping: ^2.9.11
+  classnames: ^2.5.1
+  eslint-plugin-import: ^2.32.0
+  eslint-plugin-storybook: ^0.8.0
+  glob: ^11.0.3
+  jsdom: ^27.0.0
+  markdown-to-jsx: ^7.7.13
+  nodemon: ^3.1.11
+  playwright: ^1.55.1
+  postcss: ^8.5.6
+  postcss-nesting: ^13.0.2
+  react: ^18.3.1
+  react-dom: ^18.3.1
+  rollup: ^3.29.5
+  rollup-plugin-peer-deps-external: ^2.2.4
+  rollup-plugin-postcss: ^4.0.2
+  sass: ^1.93.2
+  sass-embedded: ^1.93.2
+  storybook: ^8.6.15
+  style-dictionary: ^3.9.2
+  terser: ^5.44.0
+  tslib: ^2.8.1
+  tsx: ^4.20.6
+  turbo: ^1.13.4
+  typescript: ^5.9.3
+  vite: ^4.5.14
+  vitest: ^3.2.4
+  vitest-axe: ^0.1.0
+
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - esbuild
-
-# ============================================
-# PNPM CATALOG - Centralized Version Management
-# ============================================
-# Use: "style-dictionary": "catalog:"
-# Docs: https://pnpm.io/catalogs
-
-catalog:
-  # ============================================
-  # BUILD TOOLS
-  # ============================================
-  rollup: ^3.29.5            # Matches package.json
-  vite: ^4.5.14              # Matches package.json (Safe)
-  typescript: ^5.9.3
-  tslib: ^2.8.1
-  turbo: ^1.13.4             # Matches package.json
-  
-  # ============================================
-  # DESIGN TOKENS
-  # ============================================
-  style-dictionary: ^3.9.2
-  nodemon: ^3.1.11
-  
-  # ============================================
-  # REACT & TESTING
-  # ============================================
-  react: ^18.3.1
-  react-dom: ^18.3.1
-  '@types/react': ^19.2.2    # Matches package.json
-  '@types/react-dom': ^19.2.2 # Matches package.json
-  '@testing-library/react': ^16.3.0 # Matches package.json
-  '@testing-library/jest-dom': ^6.9.1 # Matches package.json
-  '@testing-library/user-event': ^14.6.1
-  vitest: ^3.2.4             # Matches package.json
-  '@vitest/ui': 3.2.4        # Matches package.json
-  '@vitest/coverage-v8': ^3.2.4 # Matches package.json
-  '@vitest/browser': ^3.2.4  # Matches package.json
-  jsdom: ^27.0.0             # Matches package.json
-  
-  # ============================================
-  # STORYBOOK (v8 - Latest Stable)
-  # ============================================
-  storybook: ^8.6.15
-  '@storybook/react': ^8.6.15
-  '@storybook/react-vite': ^8.6.15
-  '@storybook/addon-essentials': ^8.6.15
-  '@storybook/addon-interactions': ^8.6.15
-  '@storybook/addon-a11y': ^8.6.15
-  '@storybook/addon-docs': ^8.6.15
-  '@storybook/addon-controls': ^8.6.15
-  '@chromatic-com/storybook': ^3.2.2 # Kept as is, compatible
-  '@mdx-js/react': ^3.1.1
-  
-  # ============================================
-  # ROLLUP PLUGINS
-  # ============================================
-  '@rollup/plugin-node-resolve': ^15.2.3
-  '@rollup/plugin-commonjs': ^25.0.7
-  '@rollup/plugin-typescript': ^11.1.6
-  'rollup-plugin-peer-deps-external': ^2.2.4
-  'rollup-plugin-postcss': ^4.0.2
-  
-  # ============================================
-  # CSS & STYLING
-  # ============================================
-  postcss: ^8.5.6
-  autoprefixer: ^10.4.21
-  'postcss-nesting': ^13.0.2
-  sass: ^1.93.2
-  'sass-embedded': ^1.93.2
-  
-  # ============================================
-  # LINTING & FORMATTING
-  # ============================================
-  '@typescript-eslint/parser': ^8.12.1
-  'eslint-plugin-import': ^2.32.0
-  'eslint-plugin-storybook': ^0.8.0
-  '@storybook/test': ^8.6.15
-  
-  # ============================================
-  # UTILITIES
-  # ============================================
-  classnames: ^2.5.1
-  glob: ^11.0.3
-  tsx: ^4.20.6
-  terser: ^5.44.0
-  '@types/node': ^24.6.2
-  '@types/classnames': ^2.3.4
-  'markdown-to-jsx': ^7.7.13
-  
-  # ============================================
-  # PLAYWRIGHT & E2E
-  # ============================================
-  '@playwright/test': ^1.56.1
-  playwright: ^1.55.1
-  'baseline-browser-mapping': ^2.9.11
-  
-  # ============================================
-  # ACCESSIBILITY
-  # ============================================
-  'axe-core': ^4.11.0
-  'vitest-axe': ^0.1.0

@@ -233,13 +233,13 @@
   border-top-color: var(--dyn-theme-primary, #3b82f6);
   border-right-color: var(--dyn-theme-primary, #3b82f6);
   border-radius: 50%;
-  animation: avatarSpin 0.8s linear infinite;
+  animation: dynAvatarSpin 0.8s linear infinite;
   transform: translate(-50%, -50%);
 }
 
-@keyframes avatarSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes dynAvatarSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .error {
@@ -263,9 +263,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .container { transition: none; }
+  /* .container { transition: none; } */
   .clickable:hover { transform: none; }
-  .container.loading::after { animation: none; }
+  /* .container.loading::after { animation: none; } */
 }
 
 @media (prefers-contrast: high) {

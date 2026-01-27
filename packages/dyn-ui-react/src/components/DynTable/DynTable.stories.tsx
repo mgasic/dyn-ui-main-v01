@@ -176,13 +176,23 @@ export const Default: Story = {
 
 // With Selection
 export const WithSelection: Story = {
+  render: (args) => {
+    const [selectedKeys, setSelectedKeys] = useState<string[]>(['1', '3']);
+    return (
+      <DynTable
+        {...args}
+        selectable="multiple"
+        selectedKeys={selectedKeys}
+        onSelectionChange={(keys, rows) => {
+          setSelectedKeys(keys);
+          // Alert user about selection change (limit detailed info for alert)
+          alert(`Selected ${keys.length} rows: ${rows.map(r => r.name).join(', ')}`);
+        }}
+      />
+    );
+  },
   args: {
     ...Default.args,
-    selectable: 'multiple',
-    selectedKeys: ['1', '3'],
-    onSelectionChange: (keys, rows) => {
-      console.log('Selected:', { keys, rows });
-    },
   },
 };
 
@@ -206,15 +216,20 @@ export const WithActions: Story = {
   },
 };
 
-// Advanced Columns
+// Advanced Columns (Interactive Sort)
 export const AdvancedColumns: Story = {
+  render: (args) => (
+    <DynTable
+      {...args}
+      onSort={(column, direction) => {
+        alert(`Sorting by ${column} in ${direction} order`);
+      }}
+    />
+  ),
   args: {
     ...Default.args,
     columns: advancedColumns,
     sortBy: { column: 'salary', direction: 'desc' },
-    onSort: (column, direction) => {
-      console.log('Sort changed:', { column, direction });
-    },
   },
 };
 
@@ -258,11 +273,36 @@ export const WithoutBorders: Story = {
   },
 };
 
-// With Pagination
+// With Pagination (Interactive)
 export const WithPagination: Story = {
+  render: (args) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 3;
+    // Generate more data for demonstration
+    const allData = Array.from({ length: 12 }, (_, i) => ({
+      ...sampleData[i % sampleData.length],
+      id: i + 1,
+      name: `${sampleData[i % sampleData.length].name} ${i + 1}`,
+    }));
+
+    // Slice data for current page
+    const currentData = allData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+    return (
+      <DynTable
+        {...args}
+        data={currentData}
+        pagination={{
+          current: currentPage,
+          pageSize: pageSize,
+          total: allData.length,
+          onChange: (page) => setCurrentPage(page),
+        }}
+      />
+    );
+  },
   args: {
     ...Default.args,
-    pagination,
   },
 };
 
@@ -300,26 +340,76 @@ export const CustomEmptyText: Story = {
   },
 };
 
-// All Features Combined
+// All Features Combined (Interactive)
 export const AllFeatures: Story = {
+  render: (args) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [selectedKeys, setSelectedKeys] = useState<string[]>([]);
+    const [currentSort, setCurrentSort] = useState(args.sortBy);
+    const pageSize = 3;
+
+    // 1. Sort Data
+    const sortedData = [...sampleData].sort((a, b) => {
+      if (!currentSort) return 0;
+      const { column, direction } = currentSort;
+      const aVal = a[column as keyof typeof a];
+      const bVal = b[column as keyof typeof b];
+      if (aVal < bVal) return direction === 'asc' ? -1 : 1;
+      if (aVal > bVal) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+
+    // 2. Paginate Data
+    const currentData = sortedData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+    return (
+      <DynTable
+        {...args}
+        data={currentData}
+        selectedKeys={selectedKeys}
+        sortBy={currentSort}
+        onSelectionChange={(keys) => {
+          setSelectedKeys(keys);
+          console.log('Selection updated');
+        }}
+        onSort={(column, direction) => {
+          setCurrentSort({ column, direction });
+          alert(`Sorting by ${column} (${direction})`);
+        }}
+        pagination={{
+          current: currentPage,
+          pageSize: pageSize,
+          total: sortedData.length,
+          onChange: (page) => setCurrentPage(page),
+        }}
+        actions={[
+          {
+            key: 'view',
+            title: 'View',
+            onClick: (record) => alert(`Viewing ${record.name}`),
+          },
+          {
+            key: 'edit',
+            title: 'Edit',
+            type: 'primary',
+            onClick: (record) => alert(`Editing ${record.name}`),
+          },
+          {
+            key: 'delete',
+            title: 'Delete',
+            type: 'danger',
+            onClick: (record) => alert(`Deleting ${record.name}`),
+            disabled: (record) => record.active,
+          }
+        ]}
+      />
+    );
+  },
   args: {
-    data: sampleData,
     columns: advancedColumns,
-    actions: sampleActions,
     selectable: 'multiple',
-    pagination: {
-      current: 1,
-      pageSize: 3,
-      total: sampleData.length,
-    },
-    sortBy: { column: 'name', direction: 'asc' },
     striped: true,
     size: 'medium',
-    onSort: (column, direction) => {
-      console.log('Sort:', { column, direction });
-    },
-    onSelectionChange: (keys, rows) => {
-      console.log('Selection:', { keys, rows });
-    },
+    sortBy: { column: 'name', direction: 'asc' },
   },
 };

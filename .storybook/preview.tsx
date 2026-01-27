@@ -70,6 +70,7 @@ const preview: Preview = {
           <div style={{
             backgroundColor: 'var(--dyn-semantic-background)',
             color: 'var(--dyn-semantic-text)',
+            fontFamily: 'var(--dyn-font-family-base)',
             padding: '1rem'
           }}>
             <Story />

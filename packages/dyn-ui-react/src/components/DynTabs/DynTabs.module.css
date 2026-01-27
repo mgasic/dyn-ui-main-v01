@@ -134,14 +134,22 @@
    ============================================ */
 
 :global(.theme-dark) .tabs,
-:global([data-theme='dark']) .tabs {
-  --dyn-tabs-bg: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
-  --dyn-tabs-header-bg: var(--dyn-color-background-secondary-dark, var(--color-background-secondary-dark, #1e293b));
-  --dyn-tabs-active-bg: var(--dyn-color-background-dark, var(--color-background-dark, #0f172a));
-  --dyn-tabs-text: var(--dyn-color-text-secondary-dark, var(--color-text-secondary-dark, #cbd5f5));
-  --dyn-tabs-content-text: var(--dyn-color-text-primary-dark, var(--color-text-primary-dark, #f1f5f9));
-  --dyn-tabs-border: var(--dyn-color-border-dark, var(--color-border-dark, #334155));
-  --dyn-tabs-icon-color: var(--dyn-tabs-icon-color-dark);
+:global([data-theme='dark']) .tabs,
+:global([data-theme='dark']).tabs {
+  --dyn-tabs-bg: var(--dyn-semantic-surface-muted, #1f2937);
+  --dyn-tabs-header-bg: var(--dyn-semantic-surface-card, #374151);
+  --dyn-tabs-active-bg: var(--dyn-semantic-surface-muted, #1f2937);
+  --dyn-tabs-hover-bg: var(--dyn-semantic-surface-hover, #374151);
+  
+  --dyn-tabs-text: var(--dyn-semantic-text-secondary, #9ca3af);
+  --dyn-tabs-text-hover: var(--dyn-theme-primary-light, #60a5fa);
+  --dyn-tabs-text-active: var(--dyn-theme-primary-light, #60a5fa);
+  --dyn-tabs-content-text: var(--dyn-semantic-text, #f9fafb);
+  --dyn-tabs-text-disabled: var(--dyn-semantic-text-disabled, #4b5563);
+  
+  --dyn-tabs-border: var(--dyn-semantic-border, #374151);
+  --dyn-tabs-indicator: var(--dyn-theme-primary-light, #60a5fa);
+  --dyn-tabs-icon-color: var(--dyn-theme-primary-light, #60a5fa);
 }
 
 /* ============================================
@@ -416,10 +424,10 @@
 }
 
 .loadingSpinner {
-  animation: dyn-spin var(--dyn-duration-deliberate, 1s) linear infinite;
+  animation: dynTabsSpin var(--dyn-duration-deliberate, 1s) linear infinite;
 }
 
-@keyframes dyn-spin {
+@keyframes dynTabsSpin {
   to {
     transform: rotate(360deg);
   }

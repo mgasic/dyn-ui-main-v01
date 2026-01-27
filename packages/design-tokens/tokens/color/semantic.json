@@ -65,14 +65,14 @@
         "description": "Inverse text color for use on primary/dark backgrounds"
       },
       "border": {
-        "value": "{color.neutral.light.300}",
+        "value": "{color.neutral.light.200}",
         "darkTheme": {
           "value": "{color.neutral.dark.800}"
         },
         "description": "Default border color for cards, inputs, and dividers"
       },
       "border-hover": {
-        "value": "{color.neutral.mid.400}",
+        "value": "{color.neutral.light.300}",
         "darkTheme": {
           "value": "{color.neutral.mid.600}"
         },

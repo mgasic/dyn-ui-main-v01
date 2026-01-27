@@ -98,21 +98,21 @@ const basicItems: ToolbarItem[] = [
     label: 'New',
     icon: 'plus', // Changed from emoji
     tooltip: 'Create new item',
-    action: () => console.log('New clicked')
+    action: () => alert('New clicked')
   },
   {
     id: 'save',
     label: 'Save',
     icon: 'save', // Changed from emoji
     tooltip: 'Save current work',
-    action: () => console.log('Save clicked')
+    action: () => alert('Save clicked')
   },
   {
     id: 'edit',
     label: 'Edit',
     icon: 'edit', // Changed from emoji
     tooltip: 'Edit selected item',
-    action: () => console.log('Edit clicked')
+    action: () => alert('Edit clicked')
   },
   {
     id: 'delete',
@@ -120,7 +120,7 @@ const basicItems: ToolbarItem[] = [
     icon: 'delete', // Changed from emoji
     tooltip: 'Delete selected item',
     disabled: true,
-    action: () => console.log('Delete clicked')
+    action: () => alert('Delete clicked')
   }
 ];
 
@@ -131,9 +131,9 @@ const advancedItems: ToolbarItem[] = [
     icon: 'folder', // Changed from emoji
     type: 'dropdown',
     items: [
-      { id: 'new-file', label: 'New File', icon: 'file', action: () => console.log('New File') },
-      { id: 'open-file', label: 'Open File', icon: 'folder', action: () => console.log('Open File') },
-      { id: 'save-file', label: 'Save File', icon: 'save', action: () => console.log('Save File') }
+      { id: 'new-file', label: 'New File', icon: 'file', action: () => alert('New File') },
+      { id: 'open-file', label: 'Open File', icon: 'folder', action: () => alert('Open File') },
+      { id: 'save-file', label: 'Save File', icon: 'save', action: () => alert('Save File') }
     ]
   },
   {
@@ -142,9 +142,9 @@ const advancedItems: ToolbarItem[] = [
     icon: 'edit', // Changed from emoji
     type: 'dropdown',
     items: [
-      { id: 'cut', label: 'Cut', icon: 'scissors', action: () => console.log('Cut') }, // Note: Need to check if scissors exists, if not use edit
-      { id: 'copy', label: 'Copy', icon: 'copy', action: () => console.log('Copy') },
-      { id: 'paste', label: 'Paste', icon: 'clipboard', action: () => console.log('Paste') }
+      { id: 'cut', label: 'Cut', icon: 'scissors', action: () => alert('Cut') }, // Note: Need to check if scissors exists, if not use edit
+      { id: 'copy', label: 'Copy', icon: 'copy', action: () => alert('Copy') },
+      { id: 'paste', label: 'Paste', icon: 'clipboard', action: () => alert('Paste') }
     ]
   },
   {

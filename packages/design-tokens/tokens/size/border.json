@@ -34,26 +34,26 @@
         },
         "sm": {
           "value": "4px",
-          "description": "Small radius (default)"
+          "description": "Small radius"
         },
         "md": {
           "value": "6px",
-          "description": "Medium radius"
+          "description": "Medium radius (Buttons, Cards)"
         },
         "lg": {
           "value": "8px",
-          "description": "Large radius"
+          "description": "Large radius (Modals)"
         },
         "xl": {
-          "value": "12px",
-          "description": "Extra large radius"
+          "value": "16px",
+          "description": "Extra large radius (Large Containers)"
         },
         "2xl": {
-          "value": "16px",
+          "value": "24px",
           "description": "2x Extra large radius"
         },
         "3xl": {
-          "value": "24px",
+          "value": "32px",
           "description": "3x Extra large radius"
         },
         "full": {

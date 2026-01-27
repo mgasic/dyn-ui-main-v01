@@ -73,16 +73,20 @@
 }
 
 /* Animation States */
+/* Animation States */
 .spinning {
-  animation: dynIconSpin var(--dyn-icon-animation-spin-duration, 2s) var(--dyn-icon-animation-spin-timingFunction, linear) infinite;
+  animation-name: dynIconSpin;
+  animation-duration: var(--dyn-icon-animation-spin-duration, 2s);
+  animation-timing-function: var(--dyn-icon-animation-spin-timingFunction, linear);
+  animation-iteration-count: infinite;
+  will-change: transform;
 }
 
 @keyframes dynIconSpin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }

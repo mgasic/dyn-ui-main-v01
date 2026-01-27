@@ -124,7 +124,7 @@ export const Playground: Story = {
     children: (
       <div>
         <p>This is a container with full control over all properties.</p>
-        <DynButton label="Sample Button" kind="primary" />
+        <DynButton label="Sample Button" kind="primary" onClick={() => alert('Sample Button Clicked')} />
       </div>
     ),
   },
@@ -140,7 +140,7 @@ export const Default: Story = {
     children: (
       <div>
         <p>This is the standard container with borders and padding enabled by default for better visibility.</p>
-        <DynButton label="Action Button" kind="primary" />
+        <DynButton label="Action Button" kind="primary" onClick={() => alert('Action Button Clicked')} />
       </div>
     ),
   },
@@ -172,7 +172,7 @@ export const NoBorder: Story = {
     children: (
       <div>
         <p>This container has no border or shadow for a lightweight appearance.</p>
-        <DynButton label="Action Button" kind="secondary" />
+        <DynButton label="Action Button" kind="secondary" onClick={() => alert('No Border Action Clicked')} />
       </div>
     ),
   },
@@ -186,7 +186,7 @@ export const CardBackground: Story = {
     children: (
       <div>
         <p>Use the card background variant to mimic elevated surfaces.</p>
-        <DynButton label="Primary" kind="primary" />
+        <DynButton label="Primary" kind="primary" onClick={() => alert('Card Primary Clicked')} />
       </div>
     ),
   },
@@ -205,7 +205,7 @@ export const HorizontalLayout: Story = {
           <strong>Left Column</strong>
           <p>Content aligns center vertically and spreads across.</p>
         </div>
-        <DynButton label="Primary Action" kind="primary" />
+        <DynButton label="Primary Action" kind="primary" onClick={() => alert('Horizontal Action Clicked')} />
       </>
     ),
   },

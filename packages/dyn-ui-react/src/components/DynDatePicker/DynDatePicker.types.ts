@@ -44,6 +44,12 @@ export interface DynDatePickerProps extends BaseComponentProps, AccessibilityPro
     /** Alias for errorText */
     errorMessage?: string;
 
+    /**
+   * Date format string (e.g., 'dd/MM/yyyy', 'MM/dd/yyyy', 'yyyy-MM-dd')
+   * @default 'dd/MM/yyyy'
+   */
+    format?: string;
+
     /** Helper text */
     helpText?: string;
 

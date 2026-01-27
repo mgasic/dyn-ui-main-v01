@@ -239,13 +239,14 @@
 }
 
 .loadingSpinner {
-  animation: spin 1s linear infinite;
+  animation: dynTableSpin 1s linear infinite;
   color: var(--dyn-theme-primary);
+  will-change: transform;
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@keyframes dynTableSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* ============================================

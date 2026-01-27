@@ -400,25 +400,25 @@ export const CustomIcons: Story = {
       {
         id: 'user',
         title: 'User Account',
-        icon: '👤',
+        icon: <span>👤</span>,
         content: <div style={{ padding: '20px' }}>Create your user account</div>
       },
       {
         id: 'profile',
         title: 'Profile Setup',
-        icon: '📋',
+        icon: <span>📋</span>,
         content: <div style={{ padding: '20px' }}>Complete your profile</div>
       },
       {
         id: 'preferences',
         title: 'Preferences',
-        icon: '⚙️',
+        icon: <span>⚙️</span>,
         content: <div style={{ padding: '20px' }}>Set your preferences</div>
       },
       {
         id: 'finish',
         title: 'Finish',
-        icon: '🎉',
+        icon: <span>🎉</span>,
         content: <div style={{ padding: '20px' }}>All done!</div>
       }
     ],

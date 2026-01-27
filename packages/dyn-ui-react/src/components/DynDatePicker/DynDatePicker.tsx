@@ -92,6 +92,7 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
       monthNames = DEFAULT_MONTH_NAMES,
       weekdayNames = DEFAULT_WEEKDAY_NAMES,
       'data-testid': dataTestId = 'dyn-date-picker',
+      format = 'dd/MM/yyyy',
       ...rest
     },
     ref
@@ -113,7 +114,6 @@ export const DynDatePicker = forwardRef<DynDatePickerRef, DynDatePickerProps>(
     const [viewDate, setViewDate] = useState<Date>(new Date());
     const [focusedDay, setFocusedDay] = useState<Date | null>(null);
 
-    const format = 'dd/MM/yyyy';
     const locale = 'en-US';
 
     const { error, validate, clearError } = useDynFieldValidation({

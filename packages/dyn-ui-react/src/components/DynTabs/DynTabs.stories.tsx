@@ -352,13 +352,16 @@ export const DarkTheme: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{
-        backgroundColor: 'var(--dyn-color-surface-dark, #111827)',
-        color: 'var(--dyn-color-text-primary-dark, #f9fafb)',
-        padding: '2rem',
-        borderRadius: '0.5rem',
-        minHeight: '400px'
-      }}>
+      <div
+        data-theme="dark"
+        style={{
+          backgroundColor: 'var(--dyn-color-surface-dark, #111827)',
+          color: 'var(--dyn-color-text-primary-dark, #f9fafb)',
+          padding: '2rem',
+          borderRadius: '0.5rem',
+          minHeight: '400px'
+        }}
+      >
         <Story />
       </div>
     )

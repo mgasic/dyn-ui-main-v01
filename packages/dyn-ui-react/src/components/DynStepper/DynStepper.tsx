@@ -341,8 +341,12 @@ export const DynStepper = forwardRef<DynStepperRef, DynStepperProps>(
                 {renderStepIcon ? renderStepIcon(step, index, index === clampedActiveStep) : (
                   <>
                     <span aria-hidden="true" className={styles.stepIndex}>
-                      {step.icon && typeof step.icon === 'string' ? (
-                        <DynIcon icon={step.icon} className={styles.icon} />
+                      {step.icon ? (
+                        typeof step.icon === 'string' ? (
+                          <DynIcon icon={step.icon} className={styles.icon} />
+                        ) : (
+                          step.icon
+                        )
                       ) : (
                         index + 1
                       )}

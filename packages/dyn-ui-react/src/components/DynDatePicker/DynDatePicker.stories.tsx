@@ -118,16 +118,19 @@ export const DifferentFormats: Story = {
         name="dd-mm-format"
         label="European Format (dd/MM/yyyy)"
         value="2023-12-25"
+        format="dd/MM/yyyy"
       />
       <DynDatePicker
         name="us-format"
         label="US Format (MM/dd/yyyy)"
         value="2023-12-25"
+        format="MM/dd/yyyy"
       />
       <DynDatePicker
         name="iso-format"
         label="ISO Format (yyyy-MM-dd)"
         value="2023-12-25"
+        format="yyyy-MM-dd"
       />
     </div>
   ),

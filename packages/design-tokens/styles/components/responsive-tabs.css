@@ -60,39 +60,39 @@
 /* Dark Theme Support (Media Query + Classes) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --dyn-responsiveTabs-color-darkTheme-background-inactive: #424242;
-    --dyn-responsiveTabs-color-darkTheme-background-active: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-background-hover: #f5f5f5;
+    --dyn-responsiveTabs-color-darkTheme-background-inactive: #27272a;
+    --dyn-responsiveTabs-color-darkTheme-background-active: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-background-hover: #f4f4f5;
     --dyn-responsiveTabs-color-darkTheme-background-content: #fafafa;
-    --dyn-responsiveTabs-color-darkTheme-border-default: #e0e0e0;
-    --dyn-responsiveTabs-color-darkTheme-border-active: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-border-content: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-text-inactive: #bdbdbd;
+    --dyn-responsiveTabs-color-darkTheme-border-default: #e4e4e7;
+    --dyn-responsiveTabs-color-darkTheme-border-active: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-border-content: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-text-inactive: #a1a1aa;
     --dyn-responsiveTabs-color-darkTheme-text-active: #60a5fa;
-    --dyn-responsiveTabs-color-darkTheme-accordion-header: #424242;
-    --dyn-responsiveTabs-color-darkTheme-accordion-headerActive: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-accordion-border: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-nested-backgroundInactive: #212121;
-    --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-nested-border: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-accordion-header: #27272a;
+    --dyn-responsiveTabs-color-darkTheme-accordion-headerActive: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-accordion-border: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundInactive: #18181b;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-nested-border: #3b82f6;
   }
 }
 
 [data-theme='dark'],
 .theme-dark {
-    --dyn-responsiveTabs-color-darkTheme-background-inactive: #424242;
-    --dyn-responsiveTabs-color-darkTheme-background-active: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-background-hover: #f5f5f5;
+    --dyn-responsiveTabs-color-darkTheme-background-inactive: #27272a;
+    --dyn-responsiveTabs-color-darkTheme-background-active: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-background-hover: #f4f4f5;
     --dyn-responsiveTabs-color-darkTheme-background-content: #fafafa;
-    --dyn-responsiveTabs-color-darkTheme-border-default: #e0e0e0;
-    --dyn-responsiveTabs-color-darkTheme-border-active: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-border-content: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-text-inactive: #bdbdbd;
+    --dyn-responsiveTabs-color-darkTheme-border-default: #e4e4e7;
+    --dyn-responsiveTabs-color-darkTheme-border-active: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-border-content: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-text-inactive: #a1a1aa;
     --dyn-responsiveTabs-color-darkTheme-text-active: #60a5fa;
-    --dyn-responsiveTabs-color-darkTheme-accordion-header: #424242;
-    --dyn-responsiveTabs-color-darkTheme-accordion-headerActive: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-accordion-border: #2563eb;
-    --dyn-responsiveTabs-color-darkTheme-nested-backgroundInactive: #212121;
-    --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #1e40af;
-    --dyn-responsiveTabs-color-darkTheme-nested-border: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-accordion-header: #27272a;
+    --dyn-responsiveTabs-color-darkTheme-accordion-headerActive: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-accordion-border: #3b82f6;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundInactive: #18181b;
+    --dyn-responsiveTabs-color-darkTheme-nested-backgroundActive: #2563eb;
+    --dyn-responsiveTabs-color-darkTheme-nested-border: #3b82f6;
 }

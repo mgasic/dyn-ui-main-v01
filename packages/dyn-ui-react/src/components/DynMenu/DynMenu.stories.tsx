@@ -86,22 +86,22 @@ const horizontalMenuItems: DynMenuItem[] = [
       {
         label: 'New',
         icon: 'plus',
-        action: () => console.log('File > New')
+        action: () => alert('File > New')
       },
       {
         label: 'Open',
         icon: 'folder-open',
-        action: () => console.log('File > Open')
+        action: () => alert('File > Open')
       },
       {
         label: 'Save',
         icon: 'save',
-        action: () => console.log('File > Save')
+        action: () => alert('File > Save')
       },
       {
         label: 'Exit',
         icon: 'close',
-        action: () => console.log('File > Exit')
+        action: () => alert('File > Exit')
       }
     ]
   },
@@ -112,27 +112,27 @@ const horizontalMenuItems: DynMenuItem[] = [
       {
         label: 'Undo',
         icon: 'undo',
-        action: () => console.log('Edit > Undo')
+        action: () => alert('Edit > Undo')
       },
       {
         label: 'Redo',
         icon: 'redo',
-        action: () => console.log('Edit > Redo')
+        action: () => alert('Edit > Redo')
       },
       {
         label: 'Cut',
         icon: 'cut',
-        action: () => console.log('Edit > Cut')
+        action: () => alert('Edit > Cut')
       },
       {
         label: 'Copy',
         icon: 'copy',
-        action: () => console.log('Edit > Copy')
+        action: () => alert('Edit > Copy')
       },
       {
         label: 'Paste',
         icon: 'paste',
-        action: () => console.log('Edit > Paste')
+        action: () => alert('Edit > Paste')
       }
     ]
   },
@@ -143,17 +143,17 @@ const horizontalMenuItems: DynMenuItem[] = [
       {
         label: 'Zoom In',
         icon: 'zoom-in',
-        action: () => console.log('View > Zoom In')
+        action: () => alert('View > Zoom In')
       },
       {
         label: 'Zoom Out',
         icon: 'zoom-out',
-        action: () => console.log('View > Zoom Out')
+        action: () => alert('View > Zoom Out')
       },
       {
         label: 'Reset Zoom',
         icon: 'refresh',
-        action: () => console.log('View > Reset Zoom')
+        action: () => alert('View > Reset Zoom')
       }
     ]
   },
@@ -164,12 +164,12 @@ const horizontalMenuItems: DynMenuItem[] = [
       {
         label: 'Documentation',
         icon: 'file-text',
-        action: () => console.log('Help > Documentation')
+        action: () => alert('Help > Documentation')
       },
       {
         label: 'About',
         icon: 'info',
-        action: () => console.log('Help > About')
+        action: () => alert('Help > About')
       }
     ]
   }

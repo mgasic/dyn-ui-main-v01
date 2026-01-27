@@ -149,7 +149,7 @@
   border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
   padding: var(--dyn-spacing-lg, 24px);
   min-height: var(--dyn-tabs-min-height);
-  animation: fadeIn var(--dyn-tabs-animation-duration) ease;
+  animation: dynResponsiveTabsFadeIn var(--dyn-tabs-animation-duration) ease;
   position: relative;
   z-index: 1;
 }
@@ -162,7 +162,7 @@
   display: block;
 }
 
-@keyframes fadeIn {
+@keyframes dynResponsiveTabsFadeIn {
   from {
     opacity: 0;
   }
@@ -331,10 +331,10 @@
   border: var(--dyn-tabs-border-width) solid var(--dyn-tabs-border-content);
   border-top: none;
   border-radius: 0 0 var(--dyn-tabs-radius) var(--dyn-tabs-radius);
-  animation: slideDown var(--dyn-duration-slow, 0.3s) ease;
+  animation: dynResponsiveTabsSlideDown var(--dyn-duration-slow, 0.3s) ease;
 }
 
-@keyframes slideDown {
+@keyframes dynResponsiveTabsSlideDown {
   from {
     opacity: 0;
     max-height: 0;
@@ -442,8 +442,20 @@
 
 /* ============================================
    DARK MODE
-   Note: Handled automatically via semantic tokens!
    ============================================ */
+:global([data-theme='dark']) .container {
+  --dyn-tabs-bg: var(--dyn-semantic-surface-muted, #1f2937);
+  --dyn-tabs-bg-active: var(--dyn-semantic-surface-card, #374151);
+  --dyn-tabs-bg-hover: var(--dyn-semantic-surface-hover, #374151);
+  --dyn-tabs-border: var(--dyn-semantic-border, #374151);
+  --dyn-tabs-border-active: var(--dyn-theme-primary, #60a5fa);
+  --dyn-tabs-border-content: var(--dyn-theme-primary, #60a5fa);
+  --dyn-tabs-text: var(--dyn-semantic-text-muted, #9ca3af);
+  --dyn-tabs-text-active: var(--dyn-semantic-text, #f9fafb);
+  
+  --dyn-tabs-accordion-header: var(--dyn-semantic-surface-muted, #1f2937);
+  --dyn-tabs-accordion-header-active: var(--dyn-semantic-surface-card, #374151);
+}
 
 /* ============================================
    REDUCED MOTION

@@ -626,22 +626,22 @@ export const CustomIcons: Story = {
     tabs: [
       {
         label: 'Dashboard',
-        icon: '📊',
+        icon: <span>📊</span>,
         content: <div><h3>Dashboard</h3><p>Analytics and metrics overview</p></div>,
       },
       {
         label: 'Messages',
-        icon: '💬',
+        icon: <span>💬</span>,
         content: <div><h3>Messages</h3><p>Your inbox and conversations</p></div>,
       },
       {
         label: 'Notifications',
-        icon: '🔔',
+        icon: <span>🔔</span>,
         content: <div><h3>Notifications</h3><p>Recent activity and alerts</p></div>,
       },
       {
         label: 'Profile',
-        icon: '👤',
+        icon: <span>👤</span>,
         content: <div><h3>Profile</h3><p>Your account settings and preferences</p></div>,
       },
     ],

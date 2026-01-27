@@ -2,16 +2,16 @@
   "color": {
     "theme": {
       "primary": {
-        "value": "#2563eb",
-        "description": "Primary brand color (Blue 600)"
+        "value": "#3b82f6",
+        "description": "Primary brand color (Soft Blue)"
       },
       "primary-light": {
         "value": "#60a5fa",
-        "description": "Light primary for hover states (Blue 400)"
+        "description": "Light primary for hover states"
       },
       "primary-dark": {
-        "value": "#1e40af",
-        "description": "Dark primary for active states (Blue 800)"
+        "value": "#2563eb",
+        "description": "Dark primary for active states"
       },
       "primary-subtle": {
         "value": "rgba(37, 99, 235, 0.1)",

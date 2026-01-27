@@ -149,9 +149,9 @@ export const Default: Story = {
 export const Variants: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-      <DynButton label="Primary" kind="primary" />
-      <DynButton label="Secondary" kind="secondary" />
-      <DynButton label="Tertiary" kind="tertiary" />
+      <DynButton label="Primary" kind="primary" onClick={() => alert('Primary Button Clicked')} />
+      <DynButton label="Secondary" kind="secondary" onClick={() => alert('Secondary Button Clicked')} />
+      <DynButton label="Tertiary" kind="tertiary" onClick={() => alert('Tertiary Button Clicked')} />
     </div>
   ),
   parameters: {
@@ -172,37 +172,37 @@ export const Interactive: Story = {
       <div>
         <h3 style={{ marginBottom: '0.5rem' }}>Sizes</h3>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <DynButton label="Small" size="small" />
-          <DynButton label="Medium" size="medium" />
-          <DynButton label="Large" size="large" />
+          <DynButton label="Small" size="small" onClick={() => alert('Small Button Clicked')} />
+          <DynButton label="Medium" size="medium" onClick={() => alert('Medium Button Clicked')} />
+          <DynButton label="Large" size="large" onClick={() => alert('Large Button Clicked')} />
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: '0.5rem' }}>With Icons</h3>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <DynButton label="Download" icon="download" />
-          <DynButton label="Settings" icon="settings" kind="secondary" />
-          <DynButton icon="help" aria-label="Help" kind="tertiary" />
+          <DynButton label="Download" icon="download" onClick={() => alert('Download Clicked')} />
+          <DynButton label="Settings" icon="settings" kind="secondary" onClick={() => alert('Settings Clicked')} />
+          <DynButton icon="help" aria-label="Help" kind="tertiary" onClick={() => alert('Help Clicked')} />
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: '0.5rem' }}>States</h3>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <DynButton label="Loading" loading />
-          <DynButton label="Disabled" disabled />
-          <DynButton label="Danger" danger />
-          <DynButton label="Full Width" fullWidth />
+          <DynButton label="Loading" loading onClick={() => alert('Should not trigger (Loading)')} />
+          <DynButton label="Disabled" disabled onClick={() => alert('Should not trigger (Disabled)')} />
+          <DynButton label="Danger" danger onClick={() => alert('Danger Action Clicked')} />
+          <DynButton label="Full Width" fullWidth onClick={() => alert('Full Width Clicked')} />
         </div>
       </div>
 
       <div>
         <h3 style={{ marginBottom: '0.5rem' }}>Danger Variants</h3>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <DynButton label="Delete" danger kind="primary" />
-          <DynButton label="Remove" danger kind="secondary" />
-          <DynButton label="Cancel" danger kind="tertiary" />
+          <DynButton label="Delete" danger kind="primary" onClick={() => alert('Delete Clicked')} />
+          <DynButton label="Remove" danger kind="secondary" onClick={() => alert('Remove Clicked')} />
+          <DynButton label="Cancel" danger kind="tertiary" onClick={() => alert('Cancel Clicked')} />
         </div>
       </div>
     </div>

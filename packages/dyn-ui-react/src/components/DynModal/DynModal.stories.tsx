@@ -57,8 +57,8 @@ export const WithFooter: Story = {
         children: 'Are you sure you want to proceed with this action?',
         footer: (
             <div style={{ display: 'flex', gap: '8px' }}>
-                <DynButton kind="secondary">Cancel</DynButton>
-                <DynButton kind="primary">Confirm</DynButton>
+                <DynButton kind="secondary" onClick={() => alert('Cancel Clicked')}>Cancel</DynButton>
+                <DynButton kind="primary" onClick={() => alert('Confirm Clicked')}>Confirm</DynButton>
             </div>
         ),
     },

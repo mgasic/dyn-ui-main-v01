@@ -95,7 +95,7 @@
   max-height: var(--dyn-modal-max-height);
   display: flex;
   flex-direction: column;
-  animation: slideUp 300ms var(--dyn-modal-animation-timing);
+  animation: dynModalSlideUp 300ms var(--dyn-modal-animation-timing);
 }
 
 /* ============================================
@@ -215,7 +215,7 @@
    ANIMATIONS
    ============================================ */
 
-@keyframes slideUp {
+@keyframes dynModalSlideUp {
   from {
     opacity: 0;
     transform: translateY(1.25rem);
@@ -227,7 +227,7 @@
   }
 }
 
-@keyframes slideDown {
+@keyframes dynModalSlideDown {
   from {
     opacity: 1;
     transform: translateY(0);

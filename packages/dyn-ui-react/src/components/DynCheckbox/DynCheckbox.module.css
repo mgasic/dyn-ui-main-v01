@@ -104,6 +104,12 @@
   opacity: 0.6;
 }
 
+/* Fix for invisible checkmark in disabled state */
+.boxChecked.boxDisabled,
+.boxIndeterminate.boxDisabled {
+  color: var(--dyn-neutral-mid-500); /* Zinc 500 - Visible Gray */
+}
+
 .label {
   color: var(--dyn-semantic-text);
   font-size: var(--dyn-font-size-sm);

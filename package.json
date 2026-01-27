@@ -75,10 +75,5 @@
     "vite": "catalog:",
     "vitest": "catalog:",
     "vitest-axe": "catalog:"
-  },
-  "dependencies": {
-    "classnames": "catalog:",
-    "glob": "catalog:",
-    "tslib": "catalog:"
   }
 }

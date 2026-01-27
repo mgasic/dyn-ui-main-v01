@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-01-27T00:13:29.374Z",
+  "summary": {
+    "successful": 15,
+    "errors": 3,
+    "warnings": 0,
+    "total": 20
+  },
+  "results": [
+    {
+      "status": "success",
+      "message": "Color token (action.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\color\\action.json"
+    },
+    {
+      "status": "success",
+      "message": "Color token (neutral.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\color\\neutral.json"
+    },
+    {
+      "status": "success",
+      "message": "Color token (feedback.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\color\\feedback.json"
+    },
+    {
+      "status": "success",
+      "message": "Color token (base.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\color\\base.json"
+    },
+    {
+      "status": "success",
+      "message": "Size token (spacing.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\size\\spacing.json"
+    },
+    {
+      "status": "error",
+      "message": "Size token (font.json) ne postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\size\\font.json"
+    },
+    {
+      "status": "success",
+      "message": "Size token (border.json) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\size\\border.json"
+    },
+    {
+      "status": "success",
+      "message": "Animation tokens postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\tokens\\animation\\transition.json"
+    },
+    {
+      "status": "success",
+      "message": "Style Dictionary config postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\design-tokens\\style-dictionary.config.js"
+    },
+    {
+      "status": "info",
+      "message": "Pokušavam build design tokena...",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "Build script postoji u design-tokens package.json",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "Design token build uspešan",
+      "details": ""
+    },
+    {
+      "status": "info",
+      "message": "Build folder sadrži 4 fajlova",
+      "details": "css, js, scss, ts"
+    },
+    {
+      "status": "success",
+      "message": "CSS varijabla --color-action-default postoji",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "CSS varijabla --color-neutral-light-00 postoji",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "CSS varijabla --size-spacing-sm postoji",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "CSS koristi :root selector",
+      "details": ""
+    },
+    {
+      "status": "success",
+      "message": "DynButton (DynButton.tsx) postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\dyn-ui-react\\src\\components\\DynButton\\DynButton.tsx"
+    },
+    {
+      "status": "error",
+      "message": "DynButton (DynButton.module.scss) ne postoji",
+      "details": "E:\\PROGRAMING\\AI_Projects\\dyn-ui-main-v02\\packages\\dyn-ui-react\\src\\components\\DynButton\\DynButton.module.scss"
+    },
+    {
+      "status": "error",
+      "message": "Design tokeni nisu integrisani ni u jedan globalni fajl",
+      "details": ""
+    }
+  ]
+}

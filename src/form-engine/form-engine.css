@@ -1,0 +1,204 @@
+/* ============================================================================
+   FORM ENGINE STYLING
+   ============================================================================ */
+
+.fe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 600px;
+}
+
+/* Sections */
+.fe-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--color-surface, #f9f9f9);
+  border-radius: 8px;
+  border: 1px solid var(--color-border, #e5e5e5);
+}
+
+.fe-section-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text, #333);
+}
+
+.fe-section-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form Group */
+.fe-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Label */
+.fe-field-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text, #333);
+}
+
+.fe-required {
+  color: #d32f2f;
+  margin-left: 0.25rem;
+}
+
+/* Input */
+.fe-input,
+.fe-select {
+  padding: 0.75rem 0.875rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-border, #ccc);
+  border-radius: 6px;
+  background-color: var(--color-surface, #fff);
+  color: var(--color-text, #333);
+  transition: all 150ms ease-in-out;
+}
+
+.fe-input:focus,
+.fe-select:focus {
+  outline: none;
+  border-color: var(--color-primary, #2196f3);
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.fe-input--error,
+.fe-input--error:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+}
+
+/* Radio Group */
+.fe-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fe-radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fe-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fe-radio-label input[type='radio'] {
+  cursor: pointer;
+}
+
+/* Checkbox */
+.fe-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fe-checkbox-label input[type='checkbox'] {
+  cursor: pointer;
+}
+
+/* Error Message */
+.fe-error-message {
+  font-size: 0.85rem;
+  color: #d32f2f;
+  margin-top: 0.25rem;
+}
+
+/* Helper Text */
+.fe-helper-text {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #666);
+  margin-top: 0.25rem;
+}
+
+/* Form Actions */
+.fe-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+
+/* Buttons */
+.fe-btn-primary,
+.fe-btn-secondary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+.fe-btn-primary {
+  background-color: var(--color-primary, #2196f3);
+  color: white;
+}
+
+.fe-btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover, #1976d2);
+}
+
+.fe-btn-primary:active:not(:disabled) {
+  background-color: var(--color-primary-active, #1565c0);
+}
+
+.fe-btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fe-btn-secondary {
+  background-color: var(--color-secondary, #f5f5f5);
+  color: var(--color-text, #333);
+  border: 1px solid var(--color-border, #ddd);
+}
+
+.fe-btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-secondary-hover, #eeeeee);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .fe-form {
+    gap: 1.5rem;
+  }
+
+  .fe-section {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .fe-form-actions {
+    flex-direction: column;
+  }
+
+  .fe-btn-primary,
+  .fe-btn-secondary {
+    width: 100%;
+  }
+}

@@ -96,32 +96,32 @@
    SIZE VARIANTS
    ========================================================================== */
 
-.sizeXs {
+.sizeExtraSmall {
   --dyn-avatar-size-val: var(--dyn-avatar-size-xs, 1.5rem);
   --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-xs, 0.625rem);
   --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-xs, 0.5rem);
 }
 
-.sizeSm {
+.sizeSmall {
   --dyn-avatar-size-val: var(--dyn-avatar-size-sm, 2rem);
   --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-sm, 0.75rem);
   --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-sm, 0.625rem);
 }
 
-.sizeM {
+.sizeMedium {
   /* Medium - default values (from container lines 18-19) */
   --dyn-avatar-size-val: var(--dyn-avatar-size-md, 2.5rem);
   --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-md, 0.875rem);
   --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-md, 0.75rem);
 }
 
-.sizeLg {
+.sizeLarge {
   --dyn-avatar-size-val: var(--dyn-avatar-size-lg, 3rem);
   --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-lg, 1rem);
   --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-lg, 0.875rem);
 }
 
-.sizeXl {
+.sizeExtraLarge {
   --dyn-avatar-size-val: var(--dyn-avatar-size-xl, 4rem);
   --dyn-avatar-font-size-val: var(--dyn-avatar-size-fontSize-xl, 1.25rem);
   --dyn-avatar-status-size-val: var(--dyn-avatar-status-indicator-size-xl, 1rem);

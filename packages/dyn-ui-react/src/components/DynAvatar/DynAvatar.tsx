@@ -38,11 +38,11 @@ const generateInitials = (name: string): string => {
 };
 
 const SIZE_CLASS_MAP: Record<DynAvatarSize, string> = {
-  xs: styles.sizeXs,
-  sm: styles.sizeSm,
-  md: styles.sizeM,
-  lg: styles.sizeLg,
-  xl: styles.sizeXl,
+  xs: styles.sizeExtraSmall,
+  sm: styles.sizeSmall,
+  md: styles.sizeMedium,
+  lg: styles.sizeLarge,
+  xl: styles.sizeExtraLarge,
 };
 
 /**
@@ -166,7 +166,7 @@ export const DynAvatar = forwardRef<DynAvatarRef, DynAvatarProps>(
 
     const avatarClasses = cn(
       styles.container,
-      SIZE_CLASS_MAP[size] || styles.sizeM,
+      SIZE_CLASS_MAP[size] || styles.sizeMedium,
       styles[shape],
       {
         [styles.clickable]: isInteractive,

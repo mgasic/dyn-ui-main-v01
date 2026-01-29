@@ -24,7 +24,7 @@ There is a lack of standardization in how size variants are named in CSS classes
 
 **Recommendation:**
 Standardize all components to use either full words OR widely accepted T-shirt sizing key (e.g., `sm`, `md`, `lg`) consistently. Given `DynButton` and `DynInput` are core inputs, their "Full Word" approach seems to be the intended standard for class names, while props might remain short (`size="md"`).
-*   **Proposed Fix:** Rename `DynAvatar` classes to `.sizeExtraSmall`, `.sizeSmall`, `.sizeMedium`, `.sizeLarge`, `.sizeExtraLarge` to match `DynButton`.
+*   **Status:** ✅ RESOLVED. `DynAvatar` classes updated to match `DynButton` standard.
 
 ### 2. Typographical Inconsistency (`sizeM` vs `sizeMd`)
 **Severity:** 🟡 Moderate
@@ -39,6 +39,7 @@ Within `DynAvatar` itself, the naming scheme switches between 2-letter codes (`s
 
 **Recommendation:**
 If using abbreviations, use `.sizeMd`. If using full words (preferred by `DynButton`), use `.sizeMedium`.
+**Status:** ✅ RESOLVED.
 
 ### 3. Utility vs Component Class Naming
 **Severity:** 🟢 Minor (Architecture choice)

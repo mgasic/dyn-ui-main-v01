@@ -48,6 +48,9 @@ Never hardcode hex values, pixels, or fonts directly.
     *   ✅ `sizeSmall`, `sizeMedium`, `sizeLarge`
     *   ❌ `sizeSm`, `sizeMd`, `sizeLg` (Exception: `DynAvatar` currently uses mixed abbreviations. See Irregularities Report).
 
+> [!NOTE]
+> **Exception:** `DynBox` is a polymorphic utility primitive and may use short utility classes (e.g., `boxPSm`). This is an intentional deviation.
+
 ### Rule #3: The 6-File Component Standard
 Every component must consist of exactly these files:
 1.  `DynName.tsx` (Logic)

@@ -5,6 +5,7 @@ import type {
   ReactNode,
 } from 'react';
 import type { BaseComponentProps, AccessibilityProps } from '../../types';
+import type { DynValidationRule } from '../../hooks/useDynFieldValidation';
 
 /**
  * Input size variants using design token scale
@@ -137,10 +138,10 @@ export interface DynInputProps
   successMessage?: string;
 
   /** Validation rule function or array of functions */
-  validation?: DynInputValidationRule | DynInputValidationRule[];
+  validation?: DynValidationRule | DynValidationRule[];
 
   /** Validation rules array (alias) */
-  validationRules?: DynInputValidationRule[];
+  validationRules?: DynValidationRule[];
 
   /** Whether to validate on change */
   validateOnChange?: boolean;

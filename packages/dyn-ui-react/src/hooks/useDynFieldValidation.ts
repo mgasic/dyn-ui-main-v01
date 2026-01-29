@@ -7,6 +7,9 @@ export type ValidationRuleType =
   | 'pattern'
   | 'minLength'
   | 'maxLength'
+  | 'min'
+  | 'max'
+  | 'number'
   | 'custom';
 
 export interface ValidationRule {
@@ -86,22 +89,39 @@ export const useDynFieldValidation = ({
                 isValid = false;
               }
               break;
+            case 'number':
+              if (value !== '' && (isNaN(Number(value)) || /^\s*$/.test(String(value)))) {
+                isValid = false;
+              }
+              break;
+            case 'min':
+              if (value !== '' && !isNaN(Number(value)) && Number(value) < Number(rule.value)) {
+                isValid = false;
+              }
+              break;
+            case 'max':
+              if (value !== '' && !isNaN(Number(value)) && Number(value) > Number(rule.value)) {
+                isValid = false;
+              }
+              break;
             case 'email':
               const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-              if (!emailRegex.test(String(value))) {
+              if (value !== '' && !emailRegex.test(String(value))) {
                 isValid = false;
               }
               break;
             case 'url':
-              try {
-                new URL(String(value));
-              } catch {
-                isValid = false;
+              if (value !== '') {
+                try {
+                  new URL(String(value));
+                } catch {
+                  isValid = false;
+                }
               }
               break;
             case 'pattern':
               const regex = typeof rule.value === 'string' ? new RegExp(rule.value) : rule.value;
-              if (regex && !regex.test(String(value))) {
+              if (regex && value !== '' && !regex.test(String(value))) {
                 isValid = false;
               }
               break;

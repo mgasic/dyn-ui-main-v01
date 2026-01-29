@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Page {
+  id          Int          @id @default(autoincrement())
+  name        String
+  route       String       @unique
+  title       String?
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  components  Component[]
+}
+
+model Component {
+  id             Int      @id @default(autoincrement())
+  componentType  String   // "DynButton", "DynTable", etc.
+  name           String?
+  configuration  String   // JSON string
+  order          Int      @default(0)
+  isActive       Boolean  @default(true)
+  pageId         Int?
+  page           Page?    @relation(fields: [pageId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ActionLog {
+  id           Int      @id @default(autoincrement())
+  componentId  Int
+  actionType   String
+  parameters   String?  // JSON string
+  result       String?  // JSON string
+  createdAt    DateTime @default(now())
+}

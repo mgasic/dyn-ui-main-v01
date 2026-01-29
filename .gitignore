@@ -23,3 +23,5 @@ Thumbs.db
 
 *storybook.log
 storybook-static
+# Examples
+examples/

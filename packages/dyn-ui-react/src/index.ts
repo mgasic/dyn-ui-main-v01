@@ -14,6 +14,7 @@ export { IconDictionaryProvider } from './providers';
 // Hooks
 export { useThemeVars } from './hooks/useTheme';
 export { useIconDictionary } from './hooks/useIconDictionary';
+export { useComponentConfig } from './hooks/useComponentConfig';
 
 // Root types
 export type { ThemeName, ThemeConfig, ColorVariant, Size, IconDictionary } from './types';

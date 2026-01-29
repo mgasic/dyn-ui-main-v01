@@ -42,7 +42,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@types/storybook__react": "^5.2.1",
+
     "@typescript-eslint/parser": "catalog:",
     "@vitejs/plugin-react": "^4.7.0",
     "@vitest/browser": "catalog:",
@@ -74,5 +74,10 @@
     "vite": "catalog:",
     "vitest": "catalog:",
     "vitest-axe": "catalog:"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client"
+    ]
   }
 }

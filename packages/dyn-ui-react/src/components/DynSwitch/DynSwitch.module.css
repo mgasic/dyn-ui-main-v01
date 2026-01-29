@@ -73,7 +73,7 @@
   transform: translateX(0.125rem);
   margin-top: 0.0rem; /* Center vertically if needed */
 }
-.input:checked + .track.sizeSm .thumb {
+.sizeSm .input:checked + .track .thumb {
   transform: translateX(1.125rem);
 }
 
@@ -87,7 +87,7 @@
   height: 1.25rem;
   transform: translateX(0.125rem);
 }
-.input:checked + .track.sizeMd .thumb {
+.sizeMd .input:checked + .track .thumb {
   transform: translateX(1.375rem);
 }
 
@@ -101,7 +101,7 @@
   height: 1.75rem;
   transform: translateX(0.125rem);
 }
-.input:checked + .track.sizeLg .thumb {
+.sizeLg .input:checked + .track .thumb {
   transform: translateX(1.625rem);
 }
 

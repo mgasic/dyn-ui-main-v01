@@ -84,7 +84,9 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
       currencyConfig,
       onChange,
       onBlur,
-      onFocus
+      onFocus,
+      onValidate,
+      validationRules
     },
     ref
   ) => {
@@ -104,12 +106,33 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
     const generatedIdRef = useRef<string>(`dyn-input-${Math.random().toString(36).slice(2, 9)}`);
     const inputId = id ?? name ?? generatedIdRef.current;
 
+    const [touched, setTouched] = useState(false);
+
     const { error, validate, clearError } = useDynFieldValidation({
       value: inputValue,
       required,
-      validation: validation as any,
+      validation: validation || validationRules, // Support both props
       customError: errorMessage
     });
+
+    // Notify parent about validation status changes
+    useEffect(() => {
+      onValidate?.(!error, error);
+    }, [error, onValidate]);
+
+    // Initial validation on mount (silently) to ensure parent knows current validity state (e.g. for Progress Bar)
+    useEffect(() => {
+      validate();
+    }, []);
+
+    // Re-validate when value changes
+    useEffect(() => {
+      // If we are already showing errors (touched), validate live to clear them
+      // Or if checking rules like max-length/numeric that should prevent input? No, standard validation
+      if (touched) {
+        validate();
+      }
+    }, [inputValue, validate, touched]);
 
 
     const { maskedValue, unmaskValue, handleMaskedChange } = useDynMask(
@@ -361,13 +384,14 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       setFocused(false);
+      setTouched(true);
       validate();
       onBlur?.(e);
     };
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       setFocused(true);
-      clearError();
+      // clearError(); // Don't clear immediately on focus, let user type to fix it
       onFocus?.(e);
     };
 
@@ -385,7 +409,7 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
       styles[`input${capitalize(size)}`],
       {
         [styles['inputFocused']]: focused,
-        [styles['inputError']]: !!error,
+        [styles['inputError']]: !!(touched && error), // Only style as error if touched
         [styles['inputDisabled']]: disabled,
         [styles['inputReadonly']]: readonly,
         [styles['inputWithIcon']]: !!icon,
@@ -405,7 +429,7 @@ export const DynInput = forwardRef<DynInputRef, DynInputProps>(
         helpText={help}
         required={required}
         optional={optional}
-        errorText={error}
+        errorText={touched ? error : ''} // Only show text if touched
         className={className}
         htmlFor={inputId}
         id={id}
